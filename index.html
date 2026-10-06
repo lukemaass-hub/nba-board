@@ -18,7 +18,7 @@
   header.top{padding:26px 24px 6px;max-width:1320px;margin:0 auto}
   header.top h1{margin:0;font-size:28px;line-height:1.1;font-weight:900;letter-spacing:-.01em}
   header.top p{margin:6px 0 0;color:var(--muted);max-width:66ch}
-  .wrap{max-width:1320px;margin:0 auto;padding:14px 24px 48px;display:grid;gap:22px;grid-template-columns:minmax(300px,420px) 1fr;align-items:start}
+  .wrap{max-width:980px;margin:0 auto;padding:14px 24px 48px;display:grid;gap:22px;grid-template-columns:1fr;align-items:start}
   @media (max-width:920px){.wrap{grid-template-columns:1fr;padding:10px 12px 40px}header.top{padding:18px 12px 4px}}
 
   /* calendar */
@@ -87,7 +87,7 @@
   .dot.out{background:var(--out)} .dot.doubt{background:var(--doubt)} .dot.q{background:var(--q)} .dot.prob{background:var(--prob)}
   .it .l1 b{font-weight:900}
   .it .pos{font-size:11.5px;color:var(--muted);font-weight:700;margin-left:2px}
-  .it .st{font-weight:700}
+  .it .st{font-weight:700} .pl-link{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px} .pl-link:hover{text-decoration-color:currentColor} .it .src a{color:inherit}
   .it .st.out{color:var(--out)} .it .st.doubt{color:var(--doubt)} .it .st.q{color:#A77F00} .it .st.prob{color:var(--prob)}
   .it .src{font-size:11.5px;color:var(--muted);margin-left:6px}
   .it .diff{font-size:11px;font-weight:700;background:#FFF0D1;color:#8A5A00;border-radius:4px;padding:0 5px;margin-left:6px}
@@ -154,21 +154,10 @@
 <body>
 <header class="top">
   <h1>NBA availability report</h1>
-  <p>Pick a day. Each game shows who is out or questionable, who is likely to pick up the minutes, and the projected rotation. Copy the day as a Slack message when it looks right.</p>
+  <p>Today's games: who is out or questionable, who picks up the minutes, and the projected rotation. Click an injured player's name to open the site that reported it.</p>
 </header>
 
 <main class="wrap">
-  <section class="cal" aria-label="Season calendar">
-    <div class="cal-head">
-      <button class="nav" id="prev" aria-label="Previous month">&#8249;</button>
-      <h2 id="monthTitle"></h2>
-      <button class="nav" id="next" aria-label="Next month">&#8250;</button>
-    </div>
-    <div class="dow" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
-    <div class="grid" id="grid"></div>
-    <div class="legend"><span><i></i>League event</span><span style="color:var(--out);font-weight:800">3 out</span><span>= players listed out that day</span></div>
-  </section>
-
   <section aria-live="polite">
     <div id="banner"></div>
     <div class="tools">
@@ -586,48 +575,42 @@ function outCount(d){
 
 /* ---------- minutes impact from depth charts ----------
    Vacated minutes = last-season MPG (sheet) or tier default (starter 30, rotation 18, limited 6).
-   Split 40/20 to the next two in the same position slot, 20/20 to bench players in adjacent slots. */
+   All of them go to one player: the next healthy player below him at the same position
+   (if there is none, the top healthy bench player at an adjacent position). */
 const TIER_MIN={S:30,R:18,L:6};
 const WEIGHT={out:1,doubt:.8,q:.5,prob:0};
 function impact(code,date){
   const ch=DEPTH_P[code], inj=injuriesFor(code,date);
   const status={}; inj.forEach(i=>status[normName(i.player)]=i.k);
   const bumps={}, items=[];
+  const rank={S:0,R:1,L:2};
+  const healthy=c=>{const s=status[normName(c.n)]; return s!=="out"&&s!=="doubt";};
   inj.forEach(i=>{
     const it={rec:i,pos:null,tier:null,next:[],usedDefault:false};
     items.push(it);
-    if(!ch||!WEIGHT[i.k]) return;
+    if(!ch) return;
     let pos=null,idx=-1;
     for(const p of POS){ const j=ch[p].findIndex(c=>normName(c.n)===normName(i.player)); if(j>=0){pos=p;idx=j;break;} }
     if(!pos) return;
     const me=ch[pos][idx]; it.pos=pos; it.tier=me.t;
+    if(!WEIGHT[i.k]) return;
     const m=mins[normName(i.player)];
     const base = m!=null ? m : TIER_MIN[me.t]; it.usedDefault = m==null;
-    const healthy=c=>{const s=status[normName(c.n)]; return s!=="out"&&s!=="doubt";};
-    const used=new Set([normName(i.player)]), cands=[];
-    const rank={S:0,R:1,L:2};
-    let pool;
-    if(me.t==="S") pool=ch[pos].filter((c,j)=>j>idx&&healthy(c));
-    else pool=ch[pos].filter((c,j)=>j!==idx&&c.t!=="S"&&healthy(c)).sort((a,b)=>rank[a.t]-rank[b.t]);
-    pool.slice(0,2).forEach((c,x)=>{cands.push({c,pos,w:x?.2:.4});used.add(normName(c.n));});
-    ADJ[pos].forEach(np=>{
-      const c=ch[np].filter(c=>c.t!=="S"&&healthy(c)&&!used.has(normName(c.n))).sort((a,b)=>rank[a.t]-rank[b.t])[0];
-      if(c){cands.push({c,pos:np,w:.2});used.add(normName(c.n));}
-    });
-    const tot=cands.reduce((a,x)=>a+x.w,0)||1;
-    cands.forEach(x=>{
-      const full=base*x.w/tot, k=normName(x.c.n);
-      (bumps[k]=bumps[k]||{name:x.c.n,pos:x.pos,add:0}).add+=full*WEIGHT[i.k];
-    });
-    it.next=cands.slice(0,2).map(x=>({name:x.c.n,pos:x.pos,add:base*x.w/tot}));
+    let c=ch[pos].find((c,j)=>j>idx&&healthy(c)), cpos=pos;
+    if(!c) for(const np of ADJ[pos]){ c=ch[np].filter(c=>c.t!=="S"&&healthy(c)).sort((a,b)=>rank[a.t]-rank[b.t])[0]; if(c){cpos=np;break;} }
+    if(!c) return;
+    it.next=[{name:c.n,pos:cpos,add:base}];
+    const k=normName(c.n);
+    (bumps[k]=bumps[k]||{name:c.n,pos:cpos,add:0}).add+=base*WEIGHT[i.k];
   });
-  const list=Object.values(bumps).filter(b=>b.add>=.5).sort((a,b)=>b.add-a.add).slice(0,5);
+  const list=Object.values(bumps).filter(b=>b.add>=.5).sort((a,b)=>b.add-a.add);
   return {items,bumps:list,hasChart:!!ch};
 }
 const r1=n=>Math.round(n);
 
 /* ---------- calendar ---------- */
 function renderCal(){
+  if(!$("grid")) return;
   $("monthTitle").textContent=`${MONTHS[viewM-1]} ${viewY}`;
   const first=new Date(viewY,viewM-1,1).getDay(), dim=new Date(viewY,viewM,0).getDate();
   const t=new Date(), todayKey=key(t.getFullYear(),t.getMonth()+1,t.getDate());
@@ -643,18 +626,35 @@ function renderCal(){
 }
 
 /* ---------- report ---------- */
+/* Injury source pages. The #:~:text= part makes the browser jump to the player's name on the page. */
+const SRC_URL={CBS:"https://www.cbssports.com/nba/injuries/",Covers:"https://www.covers.com/sport/basketball/nba/injuries",ESPN:"https://www.espn.com/nba/injuries"};
+function lineURL(l,player){
+  if(l.url) return l.url;
+  const u=SRC_URL[l.src]; return u?u+"#:~:text="+encodeURIComponent(player):"";
+}
+function srcLink(i){
+  const l=i.lines.find(l=>l.st===i.k&&lineURL(l,i.player))||i.lines.find(l=>lineURL(l,i.player));
+  return l?lineURL(l,i.player):"";
+}
+function srcsHTML(i){
+  const seen=new Set();
+  return i.lines.filter(l=>!seen.has(l.src)&&seen.add(l.src)).map(l=>{
+    const u=lineURL(l,i.player);
+    return u?`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l.src)}</a>`:esc(l.src);
+  }).join(", ");
+}
 function injLineHTML(it,date){
   const i=it.rec, k=i.k, m=mins[normName(i.player)];
   const first=i.lines[0];
   const inj=[...new Set(i.lines.map(l=>l.injury).filter(Boolean))][0]||"";
-  const srcs=[...new Set(i.lines.map(l=>l.src))].join(", ");
-  let h=`<div class="it"><span><i class="dot ${k}"></i></span><div class="l1"><b>${esc(i.player)}</b>${it.pos?`<span class="pos">${it.pos}</span>`:""} — <span class="st ${k}">${STATUS_LABEL[k]}</span>${inj?` · ${esc(inj)}`:""}${m!=null?` · ${m} mpg last season`:""}<span class="src">${esc(srcs)}</span>${i.conflict?`<span class="diff" title="${esc(i.lines.map(l=>l.src+": "+l.label).join(" | "))}">sources differ</span>`:""}</div>`;
+  const link=srcLink(i);
+  let h=`<div class="it"><span><i class="dot ${k}"></i></span><div class="l1"><b>${link?`<a class="pl-link" href="${esc(link)}" target="_blank" rel="noopener" title="Open the source for this injury">${esc(i.player)}</a>`:esc(i.player)}</b>${it.pos?`<span class="pos">${it.pos}</span>`:""} — <span class="st ${k}">${STATUS_LABEL[k]}</span>${inj?` · ${esc(inj)}`:""}${m!=null?` · ${m} mpg last season`:""}<span class="src">${srcsHTML(i)}</span>${i.conflict?`<span class="diff" title="${esc(i.lines.map(l=>l.src+": "+l.label).join(" | "))}">sources differ</span>`:""}</div>`;
   i.lines.filter(l=>String(l.src).startsWith("@")).forEach(l=>{
     h+=`<div class="next beat">📝 <b>${esc(l.src)}</b>${l.upd?` (${esc(l.upd)})`:""}: ${esc(l.note||l.label)}${l.url?` <a href="${esc(l.url)}" target="_blank" rel="noopener">post</a>`:""}</div>`;
   });
   if(it.next.length){
-    const lead = k==="out"||k==="doubt" ? "Next up" : "If he sits";
-    h+=`<div class="next">↳ ${lead}: ${it.next.map(n=>`<b>${esc(n.name)}</b> <span class="p" title="Rough estimate">+${Math.max(1,r1(n.add))}</span>`).join(" · ")}</div>`;
+    const n=it.next[0];
+    h+=`<div class="next">⬆ Minutes up: <b>${esc(n.name)}</b> <span class="p" title="Rough estimate">+${Math.max(1,r1(n.add))}</span>${k==="out"||k==="doubt"?"":" if he sits"}</div>`;
   }
   return h+`</div>`;
 }
@@ -701,8 +701,7 @@ function teamBlockHTML(code,date){
   let h=`<div class="tm"><div class="tmh">${logo(code,24)}${esc(t.name)}<span class="c">${imp.items.length?`${o?o+" out":""}${o&&q?" · ":""}${q?q+" questionable":""}`:""}</span></div>`;
   if(!imp.items.length) h+=`<div class="clear">✅ No injuries listed</div>`;
   else h+=imp.items.map(it=>injLineHTML(it,date)).join("");
-  if(imp.bumps.length) h+=`<div class="bump">⬆ <b>Minutes up:</b> ${imp.bumps.map(b=>`${esc(b.name)} <b>+${Math.max(1,r1(b.add))}</b>`).join(" · ")}</div>`;
-  else if(imp.items.length && !imp.hasChart) h+=`<div class="clear" style="margin-left:22px">Depth chart not loaded, so no replacements yet.</div>`;
+  if(imp.items.length && !imp.hasChart) h+=`<div class="clear" style="margin-left:22px">Depth chart not loaded, so no replacements yet.</div>`;
   h+=startersHTML(code,imp)+rotationBlockHTML(code,imp)+`</div>`;
   return h;
 }
@@ -725,7 +724,7 @@ function renderPanel(){
       ${meta?`<div class="gmeta">${esc(meta)}</div>`:""}${teamBlockHTML(g.away,selected)}${teamBlockHTML(g.home,selected)}</section>`;
   });
   h+=`<div class="rep-legend"><span><i style="background:var(--out)"></i>Out</span><span><i style="background:var(--doubt)"></i>Doubtful</span><span><i style="background:var(--q)"></i>Questionable</span><span><i style="background:var(--prob)"></i>Probable</span></div>
-    <div class="foot">Minutes shifts are a rough heuristic, not a projection. Vacated minutes (last-season MPG when your sheet is loaded, otherwise 30 for starters, 18 for rotation, 6 for limited) go mostly to the next players at the same position (backups for a starter, other bench players for a rotation player), with the rest to bench players at adjacent positions. Doubtful counts at 80% and questionable at 50% in the team total.</div></div>`;
+    <div class="foot">Minutes up is a rough estimate, not a projection. The injured player's minutes (last-season MPG when your sheet is loaded, otherwise 30 for starters, 18 for rotation, 6 for limited) go to the next healthy player below him on the depth chart at the same position. Click a player's name to open the source for that injury.</div></div>`;
   el.innerHTML=h;
 }
 
@@ -742,9 +741,8 @@ function slackText(date){
       imp.items.forEach(it=>{
         const i=it.rec, inj=[...new Set(i.lines.map(l=>l.injury).filter(Boolean))][0]||"";
         lines.push(`${EMOJI[i.k]} ${i.player}${it.pos?` (${it.pos})`:""} — ${STATUS_LABEL[i.k]}${inj?` | ${inj}`:""}${i.conflict?" | sources differ":""}`);
-        if(it.next.length) lines.push(`      ↳ ${i.k==="out"||i.k==="doubt"?"Next up":"If out"}: ${it.next.map(n=>`${n.name} (+${Math.max(1,r1(n.add))})`).join(", ")}`);
+        if(it.next.length) lines.push(`      ⬆ Minutes up: ${it.next[0].name} +${Math.max(1,r1(it.next[0].add))}${i.k==="out"||i.k==="doubt"?"":" if he sits"}`);
       });
-      if(imp.bumps.length) lines.push(`⬆ Minutes up: ${imp.bumps.map(b=>`${b.name} +${Math.max(1,r1(b.add))}`).join(" | ")}`);
     });
     lines.push("");
   });
@@ -823,7 +821,7 @@ function applyFeed(text,sourceLabel){
   feedGames=r.games; feedSkipped=r.skipped; refresh();
   const regular=feedGames.length;
   $("banner").innerHTML=`<div class="banner ok">Full schedule loaded from ${esc(sourceLabel)}: <b>${regular.toLocaleString()}</b> games.${r.skipped?` ${r.skipped} placeholder games (Cup knockout rounds, teams not set yet) were skipped.`:""}</div>`;
-  const first=[...new Set(games.map(g=>g.date))].sort(); if(!gamesOn(selected).length){ const t=new Date(); const tk=key(t.getFullYear(),t.getMonth()+1,t.getDate()); select(first.find(d=>d>=tk)||first[0]); }
+  const first=[...new Set(games.map(g=>g.date))].sort(); if(!gamesOn(selected).length){ const tk=utcToET(Date.now()).date; select(first.find(d=>d>=tk)||first[0]); }
   return true;
 }
 async function tryFeed(){
@@ -859,9 +857,6 @@ function renderCoverage(){
 
 /* ---------- wiring ---------- */
 function select(k){ selected=k; const [y,m]=k.split("-").map(Number); viewY=y; viewM=m; renderCal(); renderPanel(); }
-$("grid").addEventListener("click",e=>{ const b=e.target.closest(".day[data-k]"); if(!b) return; const k=b.dataset.k; if(gamesOn(k).length||EVENTS[k]) select(k); });
-$("prev").onclick=()=>{ viewM--; if(viewM<1){viewM=12;viewY--} renderCal(); };
-$("next").onclick=()=>{ viewM++; if(viewM>12){viewM=1;viewY++} renderCal(); };
 $("onlyInj").onchange=renderPanel;
 $("fileSched").onchange=readFile;
 $("copyBtn").onclick=()=>{ if(!selected) return; copyText(slackText(selected)).then(()=>toast("Copied. Paste it into Slack.")).catch(()=>toast("Copy failed. Select the report text instead.")); };
@@ -876,7 +871,7 @@ document.querySelectorAll("[data-clear]").forEach(b=>b.onclick=()=>{
 });
 
 /* ---------- data.json (written by pipeline/update_data.py) ---------- */
-let dataMeta=null;
+let dataMeta=null, noGamesNote="";
 async function loadData(){
   try{
     const res=await fetch("data.json",{cache:"no-store"}); if(!res.ok) return false;
@@ -904,14 +899,15 @@ function freshHTML(){
 (async function init(){
   const gotData=await loadData();
   buildDepth(); rebuildGames();
-  const t=new Date(), today=key(t.getFullYear(),t.getMonth()+1,t.getDate());
+  const today=utcToET(Date.now()).date;
   const dates=[...new Set(games.map(g=>g.date))].sort();
-  selected=dates.find(d=>d>=today)||dates[0];
+  selected=gamesOn(today).length?today:(dates.find(d=>d>today)||today);
   const [y,m]=selected.split("-").map(Number); viewY=y; viewM=m;
-  renderCal(); renderPanel(); renderCoverage();
-  $("banner").innerHTML=freshHTML();
+  renderPanel(); renderCoverage();
+  noGamesNote=selected!==today?`<div class="fresh">No regular-season games today (${esc(fmtDate(today).long)}). Showing the next game day.</div>`:"";
+  $("banner").innerHTML=freshHTML()+noGamesNote;
   if(!feedGames){ tryFeed(); }
-  else $("banner").innerHTML=freshHTML()+`<div class="fresh">Full schedule: <b>${feedGames.length.toLocaleString()}</b> games.</div>`;
+  else $("banner").innerHTML=freshHTML()+noGamesNote+`<div class="fresh">Full schedule: <b>${feedGames.length.toLocaleString()}</b> games.</div>`;
 })();
 </script>
 </body>

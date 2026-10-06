@@ -67,6 +67,7 @@ def test_covers():
     assert r[0]["upd"] == "2026-09-20" and r[0]["until"] == "" and r[0]["injury"] == "ACL"
     assert r[1]["upd"] == "2026-07-14" and r[1]["until"] == "2026-10-12"
     assert r[2]["through"] and r[2]["injury"] == "Ankle"
+    assert r[0]["url"].endswith("#:~:text=H.%20Veesaar")      # the name as Covers prints it
 
 
 def test_status_words():
@@ -108,3 +109,11 @@ def test_beat_classification():
     fake = lambda p: '[{"player":"Jose Alvarado","status":"questionable","injury":"knee","note":"Sore knee.","tweet_index":0},{"player":"X","status":"bogus","tweet_index":0}]'
     r = u.classify_tweets("NYK", tweets, fake)
     assert len(r) == 1 and r[0]["src"] == "@writer" and r[0]["st"] == "q" and r[0]["through"] == "2026-10-08"
+
+
+def test_pregame_window():
+    sch = [{"date": "2026-10-21", "time": "19:30"}]
+    at = lambda h, m: dt.datetime(2026, 10, 21, h, m, tzinfo=u.ET)
+    assert u.game_starting_soon(sch, at(18, 50), 45)
+    assert not u.game_starting_soon(sch, at(18, 30), 45)
+    assert not u.game_starting_soon(sch, at(19, 45), 45)

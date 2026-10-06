@@ -123,6 +123,16 @@ def rec(team, player, src, kind, injury="", upd="", until="", note="", through="
     return r
 
 
+CBS_URL = "https://www.cbssports.com/nba/injuries/"
+COVERS_URL = "https://www.covers.com/sport/basketball/nba/injuries"
+ESPN_URL = "https://www.espn.com/nba/injuries"
+
+
+def find_link(page, text):
+    """Link to the source page that jumps to (and highlights) the player's name, in browsers that support it."""
+    return page + "#:~:text=" + requests.utils.quote(text, safe="")
+
+
 def snapshot_through(days=2):
     """Game-time decisions are only trusted for a short window; the job refreshes them daily."""
     return (today_et() + dt.timedelta(days=days)).isoformat()
@@ -199,7 +209,8 @@ def parse_cbs(html):
             until = parse_until(status)
             note = status if kind == "O" else ""
             out.append(rec(team, player, "CBS", kind, injury, upd, until, note,
-                           through=snapshot_through() if kind == "G" else "", st=status_code(status)))
+                           through=snapshot_through() if kind == "G" else "", st=status_code(status),
+                           url=find_link(CBS_URL, player)))
     return out
 
 
@@ -235,7 +246,8 @@ def parse_covers(html):
             kind = classify_status(status)
             until = parse_duration_until(note, upd) if kind == "O" else ""
             out.append(rec(team, player, "Covers", kind, injury, upd, until, note,
-                           through=snapshot_through() if kind == "G" else "", st=status_code(status)))
+                           through=snapshot_through() if kind == "G" else "", st=status_code(status),
+                           url=find_link(COVERS_URL, clean(pa.get_text(" ", strip=True)))))
     return out
 
 
@@ -258,7 +270,7 @@ def parse_espn(j):
             ret = (d.get("returnDate") or "")[:10]
             out.append(rec(team, player, "ESPN", kind, injury, (i.get("date") or "")[:10], ret if kind == "O" else "",
                            i.get("shortComment", ""), through=snapshot_through() if kind == "G" else "",
-                           st=status_code(i.get("status", ""))))
+                           st=status_code(i.get("status", "")), url=find_link(ESPN_URL, player)))
     return out
 
 
@@ -432,9 +444,23 @@ class SkipSource(Exception):
     pass
 
 
+def game_starting_soon(schedule, now, minutes):
+    """True if any game tips off between now and `minutes` from now (times are ET)."""
+    for g in schedule:
+        try:
+            tip = dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=ET)
+        except (KeyError, ValueError):
+            continue
+        if now <= tip <= now + dt.timedelta(minutes=minutes):
+            return True
+    return False
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="data.json")
+    ap.add_argument("--pregame", type=int, metavar="MINUTES",
+                    help="only refresh if a game tips off within this many minutes; otherwise exit without changes")
     ap.add_argument("--beat-config", default=os.path.join(os.path.dirname(__file__), "beat_writers.json"))
     args = ap.parse_args()
 
@@ -444,6 +470,9 @@ def main():
             prev = json.load(open(args.out))
         except Exception:
             pass
+    if args.pregame and not game_starting_soon(prev.get("schedule", []), dt.datetime.now(ET), args.pregame):
+        print(f"No game starts in the next {args.pregame} minutes; nothing to do.")
+        return
     status, injuries = {}, []
     data = {"schedule": prev.get("schedule", []), "depth": prev.get("depth", {}), "minutes": prev.get("minutes", {})}
 

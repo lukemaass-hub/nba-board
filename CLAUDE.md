@@ -28,8 +28,12 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   purpose; do not guess handles).
 - Depth charts: embedded set covers only 22 of 30 teams (RealGM page was truncated in the chat). The pipeline run
   should fill all 30. HoopsHype blocks automated access.
-- Minutes shifts are a heuristic: vacated minutes = last-season MPG (or 30/18/6 by tier) split 40/20 to the next two
-  at the same position and 20/20 to bench players at adjacent positions; doubtful counts 80%, questionable 50%.
+- Minutes shifts are a heuristic (changed Oct 6 2026 at the user's request): all vacated minutes (last-season MPG, or
+  30/18/6 by tier) go to ONE player, the next healthy player below at the same position (else top bench player at an
+  adjacent position). Shown as "Minutes up: Name +N" under each injured player; "Next up" lines were removed.
+- Page shows today only (ET); if no games today, the next game day. Calendar removed. Injured player names link to
+  the source page with a #:~:text= fragment that jumps to the name.
+- Workflow also runs every 15 min, 11 AM-1 AM ET, with --pregame 45: refreshes only if a game tips within 45 min.
 
 ## Next steps, in order
 1. Run pytest, then the pipeline against the live sites. Fix each parser against the real response and update tests.

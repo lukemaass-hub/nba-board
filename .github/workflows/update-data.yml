@@ -6,6 +6,9 @@ on:
     - cron: "0 11 * * *"
     - cron: "0 17 * * *"
     - cron: "30 21 * * *"
+    # Every 15 minutes from 11 AM to 1 AM Eastern: refreshes only when a game tips off within
+    # 45 minutes, to catch the final injury report. GitHub can start these a few minutes late.
+    - cron: "*/15 15-23,0-5 * * *"
   workflow_dispatch: {}
   push:
     branches: [main]
@@ -23,9 +26,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -42,7 +45,8 @@ jobs:
           MINUTES_CSV_URL: ${{ secrets.MINUTES_CSV_URL }}
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python pipeline/update_data.py --out data.json
+          PREGAME: ${{ github.event.schedule == '*/15 15-23,0-5 * * *' && '45' || '' }}
+        run: python pipeline/update_data.py --out data.json ${PREGAME:+--pregame "$PREGAME"}
 
       - name: Save data.json
         run: |
