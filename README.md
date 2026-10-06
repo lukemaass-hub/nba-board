@@ -14,10 +14,11 @@
 ## What each source needs
 | Source | Needs | Status |
 |---|---|---|
-| Schedule (fixturedownload.com) | nothing | format verified from a real response |
-| CBS, Covers | nothing | parsers written from the page structure; not yet run against live HTML |
-| ESPN | nothing | public JSON endpoint; follows its documented shape; not yet run live |
-| RealGM depth charts | nothing | parser written from the page structure; not yet run against live HTML |
+| Schedule (fixturedownload.com) | nothing | checked live Oct 6 2026: 1,200 games (7 "To be announced" Cup slots skipped) |
+| CBS | nothing | checked live Oct 6 2026: 81 players, 27 teams |
+| Covers | nothing | checked live Oct 6 2026: 21 players; parser fixed for the real page |
+| ESPN | nothing | checked live Oct 6 2026: 89 players, 27 teams |
+| RealGM depth charts | nothing | RealGM refused the request (403) from our test machine; may or may not work from GitHub. Until it works, the board keeps the 22 teams already in data.json |
 | Minutes sheet | published CSV link | untested until you add the link |
 | Beat writers on X | X API access, Anthropic key, handle list | untested until you add keys and handles |
 
