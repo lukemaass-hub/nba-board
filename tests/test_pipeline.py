@@ -113,9 +113,9 @@ def test_rotowire():
                               "starters": [{"pos": "PG", "name": "Ben Saraf"}, {"pos": "SF", "name": "Michael Porter"}]}
     assert lineups["CHA"]["confirmed"] is False
     assert [(r["player"], r["st"], r["kind"], r["through"]) for r in inj] == [
-        ("Michael Porter", "q", "G", "2026-10-06"), ("Mikel Brown", "out", "O", "2026-10-06")]   # tag "Out" = out; other tags = questionable
+        ("Michael Porter", "q", "G", "2026-10-06"), ("Mikel Brown", "out", "O", "2026-10-06"),   # tag "Out" = out
+        ("Noah Clowney", "q", "G", "2026-10-06")]                                        # other tags = questionable
     assert inj[1]["note"] == "RotoWire tag: Out"
-    assert (inj[2]["player"], inj[2]["st"]) == ("Noah Clowney", "q")
     assert inj[1]["url"].endswith("#:~:text=M.%20Brown")
 
 
