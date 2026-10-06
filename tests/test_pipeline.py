@@ -50,7 +50,8 @@ ROTO = """<h1>NBA Daily Starting Lineups</h1><div>Starting lineups for October 6
 <li class="lineup__player"><div class="lineup__pos">SF</div><a title="Michael Porter">M. Porter</a><span class="lineup__inj">Ques</span></li>
 <li><button>Projected Minutes</button></li>
 <li class="lineup__title is-middle">MAY NOT PLAY</li>
-<li class="lineup__player has-injury-status"><div class="lineup__pos">G</div><a title="Mikel Brown">M. Brown</a><span class="lineup__inj">Out</span></li></ul>
+<li class="lineup__player has-injury-status"><div class="lineup__pos">G</div><a title="Mikel Brown">M. Brown</a><span class="lineup__inj">Out</span></li>
+<li class="lineup__player has-injury-status"><div class="lineup__pos">F</div><a title="Noah Clowney">N. Clowney</a><span class="lineup__inj">Prob</span></li></ul>
 <ul class="lineup__list is-home"><li class="lineup__status is-expected">Expected Lineup</li>
 <li class="lineup__player"><div class="lineup__pos">PG</div><a title="Dennis Schroder">D. Schroder</a></li></ul></div>"""
 
@@ -112,8 +113,9 @@ def test_rotowire():
                               "starters": [{"pos": "PG", "name": "Ben Saraf"}, {"pos": "SF", "name": "Michael Porter"}]}
     assert lineups["CHA"]["confirmed"] is False
     assert [(r["player"], r["st"], r["kind"], r["through"]) for r in inj] == [
-        ("Michael Porter", "q", "G", "2026-10-06"), ("Mikel Brown", "q", "G", "2026-10-06")]   # RotoWire "Out" -> questionable
+        ("Michael Porter", "q", "G", "2026-10-06"), ("Mikel Brown", "out", "O", "2026-10-06")]   # tag "Out" = out; other tags = questionable
     assert inj[1]["note"] == "RotoWire tag: Out"
+    assert (inj[2]["player"], inj[2]["st"]) == ("Noah Clowney", "q")
     assert inj[1]["url"].endswith("#:~:text=M.%20Brown")
 
 

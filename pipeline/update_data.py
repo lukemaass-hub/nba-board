@@ -381,9 +381,9 @@ def parse_rotowire(html):
                 tag = li.select_one(".lineup__inj")
                 tag = clean(tag.get_text()) if tag else ""
                 if bench or tag:
-                    # RotoWire's "may not play" list is a heads-up, not a ruling: always questionable here.
-                    # CBS / ESPN / Covers still decide "Out" (the page and email show the worst status).
-                    injuries.append(rec(team, name, "RotoWire", "G", upd=date, through=date, st="q",
+                    # RotoWire tag "Out" (or OFS / suspended) = out. Anything else on its "may not play" list = questionable.
+                    st = "out" if tag.lower() in ("out", "ofs", "susp") else "q"
+                    injuries.append(rec(team, name, "RotoWire", "O" if st == "out" else "G", upd=date, through=date, st=st,
                                         note=f"RotoWire tag: {tag}" if tag else "RotoWire: may not play",
                                         url=find_link(ROTO_URL, clean(a.get_text()))))
             if starters:
