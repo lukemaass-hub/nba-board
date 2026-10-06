@@ -1,5 +1,7 @@
 # Beat writer list to review (found Oct 6 2026)
 
+**In use:** the high and medium ones below are in pipeline/beat_writers.json. Low ones are not.
+
 **Confidence:** high = handle seen on the outlet's own page. Medium = handle from a published beat-writer
 list (Oct 2025) plus proof the writer still covers the team. Low = still covering the team not confirmed,
 or the handle wasn't seen on a page.
