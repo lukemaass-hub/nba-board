@@ -89,43 +89,102 @@ def starters_for(data, team, date, inj):
     return "Projected starters (depth chart)", rows
 
 
+ESPN_LOGO = {"GSW": "gs", "NOP": "no", "NYK": "ny", "SAS": "sa", "UTA": "utah", "WAS": "wsh"}
+TAG = {"out": ("OUT", "#c0392b"), "doubt": ("DOUBT", "#d35400"), "q": ("GTD", "#b7950b"), "prob": ("PROB", "#1e8449")}
+
+
+def logo(code, size):
+    src = f"https://a.espncdn.com/i/teamlogos/nba/500/{ESPN_LOGO.get(code, code.lower())}.png"
+    return (f'<img src="{src}" width="{size}" height="{size}" alt="{code}" '
+            f'style="vertical-align:middle;border:0;width:{size}px;height:{size}px">')
+
+
+def bench_for(data, team, inj, starters):
+    """Depth-chart players not starting, minus anyone out or doubtful: (bench, deep bench)."""
+    chart = (data.get("depth") or {}).get(team) or {}
+    status = {norm_name(i["player"]): i["st"] for i in inj}
+    skip = {norm_name(n) for _, n, _ in starters}
+    bench, deep, seen = [], [], set()
+    for tier in (0, 1, 2):                     # starter / rotation / limited, best players first
+        for p in POS:
+            parts = (chart.get(p) or "").split("/")
+            names = [n.strip() for n in (parts[tier] if tier < len(parts) else "").split(",") if n.strip()]
+            for n in names:
+                k = norm_name(n)
+                if k in skip or k in seen or status.get(k) in ("out", "doubt"):
+                    continue
+                seen.add(k)
+                (deep if tier == 2 else bench).append((p, n, status.get(k)))
+    return bench, deep
+
+
 def build(data, games, date):
     e = html.escape
-    title = f"NBA injury report: " + ", ".join(f"{g['away']} @ {g['home']} {fmt_time(g['time'])}" for g in games)
-    h = [f'<div style="font-family:Arial,sans-serif;font-size:14px;color:#1d1c1d;max-width:680px">'
-         f'<h2 style="margin:0 0 4px">Injury report, {e(dt.date.fromisoformat(date).strftime("%A, %B %-d"))}</h2>'
-         f'<div style="color:#666;font-size:12px;margin-bottom:12px">Data refreshed {e(data.get("generated_at", "?"))} UTC. '
-         f'<a href="{SITE}">Open the full board</a></div>']
+    title = "NBA injury report: " + ", ".join(f"{g['away']} @ {g['home']} {fmt_time(g['time'])}" for g in games)
+    grey = "color:#6b6b6b"
+
+    def tag(st):
+        if not st:
+            return ""
+        t, c = TAG[st]
+        return (f' <span style="font-size:10px;font-weight:bold;color:#fff;background:{c};border-radius:3px;'
+                f'padding:1px 4px;vertical-align:middle">{t}</span>')
+
+    h = [f'<div style="font-family:Arial,Helvetica,sans-serif;color:#1d1c1d;max-width:640px">'
+         f'<div style="font-size:18px;font-weight:bold">Injury report, {e(dt.date.fromisoformat(date).strftime("%A, %B %-d"))}</div>'
+         f'<div style="font-size:12px;{grey};margin:2px 0 8px">Data refreshed {e(data.get("generated_at", "?"))} UTC · '
+         f'<a href="{SITE}" style="color:#1264a3">Open the full board</a></div>']
     t = [title, ""]
     for g in games:
-        h.append(f'<h3 style="margin:16px 0 4px;border-top:1px solid #ddd;padding-top:10px">{fmt_time(g["time"])} ET: '
-                 f'{e(name(g["away"]))} @ {e(name(g["home"]))}</h3>')
+        h.append(f'<div style="margin:18px 0 6px;padding:10px 0 6px;border-top:2px solid #1d1c1d;font-size:16px;font-weight:bold">'
+                 f'{fmt_time(g["time"])} ET &nbsp;{logo(g["away"], 26)} {e(name(g["away"]))} '
+                 f'<span style="{grey};font-weight:normal">@</span> {logo(g["home"], 26)} {e(name(g["home"]))}</div>')
         t.append(f"{fmt_time(g['time'])} ET: {name(g['away'])} @ {name(g['home'])}")
         for team in (g["away"], g["home"]):
             inj = injuries_for(data, team, date)
-            h.append(f'<div style="font-weight:bold;margin:10px 0 4px">{e(name(team))}</div>')
+            status = {norm_name(i["player"]): i["st"] for i in inj}
+            label, starters = starters_for(data, team, date, inj)
+            bench, deep = bench_for(data, team, inj, starters)
+            h.append(f'<div style="margin:12px 0 0;padding:10px 12px;background:#f6f7f9;border-radius:6px">'
+                     f'<div style="font-size:15px;font-weight:bold;margin-bottom:6px">{logo(team, 28)} {e(name(team))}</div>')
             t.append(f"  {name(team)}")
+            # 1. starters
+            if starters:
+                h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:4px 0 2px">{e(label)}</div>'
+                         '<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:15px">')
+                for p, n, why in starters:
+                    h.append(f'<tr><td style="width:34px;padding:2px 0;{grey};font-size:12px;font-weight:bold">{e(p)}</td>'
+                             f'<td style="padding:2px 0"><b>{e(n)}</b>{tag(status.get(norm_name(n)))}'
+                             f'{f" <span style=color:#1e8449;font-size:12px>in for {e(why[7:])}</span>" if why else ""}</td></tr>')
+                h.append("</table>")
+                t.append(f"    {label}: " + ", ".join(f"{p} {n}{f' ({why})' if why else ''}" for p, n, why in starters))
+            # 2. bench
+            if bench or deep:
+                h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:8px 0 2px">Projected bench</div>'
+                         f'<div style="font-size:13px;line-height:1.6">'
+                         + " · ".join(f'<span style="{grey};font-size:11px">{e(p)}</span> {e(n)}{tag(st)}' for p, n, st in bench)
+                         + (f'<div style="font-size:12px;{grey}">Deep bench: ' + ", ".join(e(n) for _, n, _ in deep) + "</div>" if deep else "")
+                         + "</div>")
+                t.append("    Bench: " + ", ".join(n for _, n, _ in bench) + (f" | Deep bench: {', '.join(n for _, n, _ in deep)}" if deep else ""))
+            # 3. injuries, smaller
+            h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:8px 0 2px">Injuries</div>'
+                     '<div style="font-size:12px;line-height:1.5">')
             if not inj:
-                h.append('<div>✅ No injuries listed</div>')
-                t.append("    No injuries listed")
+                h.append("✅ None listed")
+                t.append("    Injuries: none listed")
             for i in inj:
                 who = f'<a href="{e(i["link"])}" style="color:#1d1c1d">{e(i["player"])}</a>' if i["link"] else e(i["player"])
-                srcs = ", ".join(f'<a href="{e(s["url"])}" style="color:#888">{e(s["src"])}</a>' if s["url"] else e(s["src"])
-                                 for s in i["srcs"])
-                h.append(f'<div style="margin:2px 0">{DOT[i["st"]]} <b>{who}</b>: {LABEL[i["st"]]}'
-                         f'{" · " + e(i["injury"]) if i["injury"] else ""} <span style="color:#888;font-size:12px">{srcs}'
-                         f'{" · sources differ" if i["differ"] else ""}</span></div>')
+                srcs = ", ".join(f'<a href="{e(x["url"])}" style="color:#8a8a8a">{e(x["src"])}</a>' if x["url"] else e(x["src"])
+                                 for x in i["srcs"])
+                h.append(f'<div>{DOT[i["st"]]} <b>{who}</b> {LABEL[i["st"]]}{" · " + e(i["injury"]) if i["injury"] else ""} '
+                         f'<span style="color:#8a8a8a">· {srcs}{" · sources differ" if i["differ"] else ""}</span></div>')
                 t.append(f"    {DOT[i['st']]} {i['player']}: {LABEL[i['st']]}{' | ' + i['injury'] if i['injury'] else ''}"
-                         f" ({', '.join(s['src'] for s in i['srcs'])})")
-            label, rows = starters_for(data, team, date, inj)
-            if rows:
-                h.append(f'<div style="color:#666;font-size:12px;margin-top:6px">{e(label)}</div><div>'
-                         + " · ".join(f'<span style="color:#888">{e(p)}</span> {e(n)}{f" <i style=color:#2a7>({e(why)})</i>" if why else ""}'
-                                      for p, n, why in rows) + "</div>")
-                t.append(f"    {label}: " + ", ".join(f"{p} {n}{f' ({why})' if why else ''}" for p, n, why in rows))
+                         f" ({', '.join(x['src'] for x in i['srcs'])})")
+            h.append("</div></div>")
         t.append("")
-    h.append('<div style="color:#888;font-size:12px;margin-top:16px;border-top:1px solid #ddd;padding-top:8px">'
-             '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable. Click a player for the source.</div></div>')
+    h.append(f'<div style="font-size:11px;{grey};margin-top:16px;border-top:1px solid #ddd;padding-top:8px">'
+             '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable. Click a player for the source. '
+             'Bench comes from the ESPN depth chart.</div></div>')
     return title, "".join(h), "\n".join(t)
 
 

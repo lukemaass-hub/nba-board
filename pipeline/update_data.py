@@ -343,7 +343,6 @@ def fetch_espn_depth():
 
 # ---------------------------------------------------------------- lineups (RotoWire)
 ROTO_URL = "https://www.rotowire.com/basketball/nba-lineups.php"
-ROTO_STATUS = {"out": "out", "ofs": "out", "susp": "out", "doubt": "doubt", "ques": "q", "gtd": "q", "prob": "prob"}
 
 
 def parse_rotowire(html):
@@ -380,10 +379,13 @@ def parse_rotowire(html):
                 if not bench:
                     starters.append({"pos": clean(p.get_text()) if p else "", "name": name})
                 tag = li.select_one(".lineup__inj")
-                st = ROTO_STATUS.get(clean(tag.get_text()).lower()) if tag else None
-                if st:
-                    injuries.append(rec(team, name, "RotoWire", "O" if st == "out" else "G", upd=date, through=date,
-                                        st=st, url=find_link(ROTO_URL, clean(a.get_text()))))
+                tag = clean(tag.get_text()) if tag else ""
+                if bench or tag:
+                    # RotoWire tag "Out" (or OFS / suspended) = out. Anything else on its "may not play" list = questionable.
+                    st = "out" if tag.lower() in ("out", "ofs", "susp") else "q"
+                    injuries.append(rec(team, name, "RotoWire", "O" if st == "out" else "G", upd=date, through=date, st=st,
+                                        note=f"RotoWire tag: {tag}" if tag else "RotoWire: may not play",
+                                        url=find_link(ROTO_URL, clean(a.get_text()))))
             if starters:
                 lineups[team] = {"date": date, "time": tip, "vs": opp, "home": home, "confirmed": confirmed,
                                  "starters": starters}
