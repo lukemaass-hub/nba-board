@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NBA availability report 2026-27</title>
+<style>
+  :root{
+    --chalk:#EDF0F3; --card:#FFFFFF; --ink:#1D1C1D; --muted:#5E6B78; --line:#D3DAE1;
+    --paint:#2447A0; --paint-soft:#DCE4F6;
+    --out:#D1332A; --doubt:#E8751A; --q:#E2A912; --prob:#2E9A5B;
+  }
+  *{box-sizing:border-box}
+  html{background:var(--chalk)}
+  body{margin:0;color:var(--ink);font:15px/1.5 "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--chalk);-webkit-font-smoothing:antialiased}
+  button,input,select{font:inherit;color:inherit}
+  :focus-visible{outline:3px solid var(--paint);outline-offset:2px}
+  header.top{padding:26px 24px 6px;max-width:1320px;margin:0 auto}
+  header.top h1{margin:0;font-size:28px;line-height:1.1;font-weight:900;letter-spacing:-.01em}
+  header.top p{margin:6px 0 0;color:var(--muted);max-width:66ch}
+  .wrap{max-width:1320px;margin:0 auto;padding:14px 24px 48px;display:grid;gap:22px;grid-template-columns:minmax(300px,420px) 1fr;align-items:start}
+  @media (max-width:920px){.wrap{grid-template-columns:1fr;padding:10px 12px 40px}header.top{padding:18px 12px 4px}}
+
+  /* calendar */
+  .cal{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px;position:sticky;top:12px}
+  @media (max-width:920px){.cal{position:static}}
+  .cal-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .cal-head h2{margin:0;font-size:18px;font-weight:900;flex:1}
+  .nav{width:34px;height:34px;border:1px solid var(--line);background:var(--card);border-radius:6px;cursor:pointer;font-size:18px;line-height:1}
+  .nav:hover:not(:disabled){background:var(--paint-soft);border-color:var(--paint)}
+  .nav:disabled{opacity:.35;cursor:default}
+  .dow,.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+  .dow span{font-size:12px;color:var(--muted);text-align:center;padding-bottom:4px}
+  .day{position:relative;min-height:62px;border:1px solid var(--line);border-radius:6px;background:var(--card);padding:5px 6px;text-align:left;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between}
+  .day.blank{border:0;background:transparent;cursor:default}
+  .day .d{font-size:12px;color:var(--muted)}
+  .day .n{font-size:22px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+  .day .o{font-size:10.5px;color:var(--out);font-weight:800;min-height:12px}
+  .day.has{background:#F6F8FC}
+  .day.has:hover{border-color:var(--paint);background:var(--paint-soft)}
+  .day.none{cursor:default;color:#9AA6B1}
+  .day.none .n{display:none}
+  .day.event::after{content:"";position:absolute;right:5px;top:6px;width:7px;height:7px;border-radius:50%;background:var(--paint)}
+  .day.sel{background:var(--paint);border-color:var(--paint);color:#fff}
+  .day.sel .d,.day.sel .o{color:#fff}
+  .day.sel.event::after{background:#fff}
+  .day.today{box-shadow:inset 0 -3px 0 var(--paint)}
+  .day.sel.today{box-shadow:inset 0 -3px 0 #fff}
+  .legend{margin-top:12px;font-size:12px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+  .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--paint);margin-right:5px}
+
+  /* banner */
+  .banner{background:#FFF7E0;border:1px solid #F0DC9C;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:14px}
+  .banner.ok{background:#E6F5EC;border-color:#B7DEC6}
+  .banner a{color:var(--paint);font-weight:700}
+  .banner .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+
+  /* report (slack style) */
+  .tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+  .btn{background:var(--paint);color:#fff;border:0;border-radius:6px;padding:7px 14px;font-weight:700;cursor:pointer}
+  .btn.alt{background:var(--card);color:var(--ink);border:1px solid var(--line);font-weight:400}
+  .btn:hover{filter:brightness(1.08)}
+  .tools label{font-size:14px;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
+  .report{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px 20px 18px}
+  .rep-head{display:flex;gap:10px;align-items:center;margin-bottom:6px}
+  .avatar{width:38px;height:38px;border-radius:7px;background:var(--paint);display:grid;place-items:center;color:#fff;font-weight:900;font-size:13px;flex:none}
+  .rep-by{font-weight:900}
+  .rep-by small{font-weight:400;color:var(--muted);margin-left:6px;font-size:12px}
+  .rep-title{font-weight:900;font-size:17px;margin:2px 0 0}
+  .hr{border:0;border-top:1px solid #1D1C1D33;margin:6px 0 14px}
+  .event-note{background:var(--paint-soft);border-left:4px solid var(--paint);padding:8px 12px;border-radius:0 6px 6px 0;margin-bottom:14px;font-size:14px}
+  .empty{border:1px dashed var(--line);border-radius:8px;padding:24px;color:var(--muted)}
+
+  .gm{margin:0 0 20px}
+  .gh{margin:0;font-size:16px;font-weight:900;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .gh .at{color:var(--muted);font-weight:400}
+  .gh .tag{font-size:11.5px;font-weight:700;background:var(--paint-soft);color:var(--paint);padding:1px 8px;border-radius:99px}
+  .gmeta{font-size:12.5px;color:var(--muted);margin:1px 0 6px}
+  .lg{display:inline-grid;place-items:center;width:var(--s,22px);height:var(--s,22px);flex:none}
+  .lg img{width:100%;height:100%;object-fit:contain}
+  .lg b{display:none;width:100%;height:100%;border-radius:50%;background:#E7ECF1;font-size:calc(var(--s,22px)*.38);place-items:center;font-weight:900;color:var(--muted)}
+  .tm{margin:8px 0 0 0;padding-left:2px}
+  .tmh{font-weight:900;font-size:14px;display:flex;align-items:center;gap:7px;margin-bottom:3px}
+  .tmh span.c{font-weight:400;color:var(--muted);font-size:12.5px}
+  .it{margin:3px 0 5px 0;display:grid;grid-template-columns:18px 1fr;gap:0 4px}
+  .dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-top:6px}
+  .dot.out{background:var(--out)} .dot.doubt{background:var(--doubt)} .dot.q{background:var(--q)} .dot.prob{background:var(--prob)}
+  .it .l1 b{font-weight:900}
+  .it .pos{font-size:11.5px;color:var(--muted);font-weight:700;margin-left:2px}
+  .it .st{font-weight:700}
+  .it .st.out{color:var(--out)} .it .st.doubt{color:var(--doubt)} .it .st.q{color:#A77F00} .it .st.prob{color:var(--prob)}
+  .it .src{font-size:11.5px;color:var(--muted);margin-left:6px}
+  .it .diff{font-size:11px;font-weight:700;background:#FFF0D1;color:#8A5A00;border-radius:4px;padding:0 5px;margin-left:6px}
+  .next{grid-column:2;font-size:13.5px;color:#343A40}
+  .next b{font-weight:700}
+  .next .p{color:var(--paint);font-weight:800;font-variant-numeric:tabular-nums}
+  .bump{margin:4px 0 0 22px;font-size:13.5px;background:#EEF3FF;border-radius:6px;padding:4px 10px;display:inline-block}
+  .bump b{font-weight:800}
+  .clear{margin:2px 0 4px 2px;font-size:13.5px;color:var(--muted)}
+  details.rot{margin:8px 0 0 0}
+  details.rot>summary{cursor:pointer;font-size:13px;color:var(--paint);font-weight:700;padding:2px 0}
+  .rrow{display:grid;grid-template-columns:30px 1fr;gap:6px;margin:4px 0;align-items:start}
+  .rrow .pl{font-size:11.5px;font-weight:900;color:var(--muted);padding-top:3px}
+  .chips{display:flex;flex-wrap:wrap;gap:4px}
+  .chip{font-size:12.5px;border:1px solid #DDE3E9;background:#F4F6F8;border-radius:4px;padding:1px 7px;display:inline-flex;gap:5px;align-items:baseline}
+  .chip.S{background:#fff;border-color:var(--paint);font-weight:700}
+  .chip.L{opacity:.7}
+  .chip .mp{color:var(--paint);font-weight:800;font-size:11.5px}
+  .chip.out{background:#FBE2DF;border-color:#EDB5AF;text-decoration:line-through}
+  .chip.doubt{background:#FCE6D3} .chip.q{background:#FBEFC6}
+  .chip .tg{text-decoration:none;font-size:10px;font-weight:900;display:inline-block}
+  .nodepth{font-size:13px;color:var(--muted);background:#F5F7F9;border:1px dashed var(--line);border-radius:4px;padding:6px 10px;margin-top:4px}
+  .rep-legend{margin-top:16px;padding-top:10px;border-top:1px solid #1D1C1D33;font-size:14px}
+  .rep-legend span{margin-right:12px;white-space:nowrap}
+  .rep-legend span i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+  .foot{font-size:12px;color:var(--muted);margin-top:8px;max-width:80ch}
+
+  .sech{font-weight:900;font-size:13.5px;margin:10px 0 3px;color:var(--ink);display:flex;gap:8px;align-items:baseline}
+  .sech small{font-weight:400;color:var(--muted);font-size:12px}
+  ul.starters{list-style:none;margin:0;padding:0;display:grid;gap:3px}
+  .sl{display:grid;grid-template-columns:30px auto 1fr;gap:8px;align-items:baseline;padding:3px 8px;border-radius:6px;background:#F4F7FB;border-left:3px solid var(--paint)}
+  .sl .pos{font-size:11.5px;font-weight:900;color:var(--muted)}
+  .sl .nm{font-weight:700}
+  .sl .mp{color:var(--paint);font-weight:800;font-size:12px;margin-left:6px}
+  .sl .tags{display:flex;gap:6px;flex-wrap:wrap;font-size:12px;align-items:baseline}
+  .sl.in{background:#EAF6EF;border-left-color:var(--prob)}
+  .sl .why{color:#256B45;font-size:12px}
+  .tg{font-size:10.5px;font-weight:900;border-radius:4px;padding:0 5px;color:#fff}
+  .tg.out{background:var(--out)} .tg.doubt{background:var(--doubt)} .tg.q{background:var(--q);color:#3A2C00} .tg.prob{background:var(--prob)}
+  .chip .up{color:#256B45;font-weight:900;font-size:11.5px}
+  .chip .pp{font-size:10.5px;color:var(--muted);font-weight:700}
+  .lim{font-size:12.5px;color:var(--muted);margin-top:5px}
+  .next.beat{background:#F3F0FF;border-radius:6px;padding:3px 8px;margin-top:3px}
+  .next.beat a{color:var(--paint);font-weight:700}
+  .fresh{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+  .fresh b{color:var(--ink)} .fresh .bad{color:var(--out);font-weight:700}
+  /* data drawer */
+  details.data{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:8px}
+  details.data>summary{padding:12px 14px;cursor:pointer;font-weight:900}
+  .data-body{padding:4px 14px 16px;display:grid;gap:16px}
+  .cov{font-size:13.5px;color:var(--muted);display:grid;gap:3px}
+  .cov b{color:var(--ink)}
+  .imp h3{margin:0 0 2px;font-size:14px}
+  .imp p{margin:0 0 6px;font-size:13px;color:var(--muted)}
+  .imp code{background:#EEF1F4;padding:1px 4px;border-radius:3px;font-size:12px}
+  textarea{width:100%;min-height:76px;border:1px solid var(--line);border-radius:6px;padding:8px;font:12.5px/1.4 ui-monospace,Menlo,Consolas,monospace;resize:vertical}
+  .imp .row{display:flex;gap:10px;align-items:center;margin-top:6px;flex-wrap:wrap}
+  .msg{font-size:13px}.msg.ok{color:var(--prob)}.msg.err{color:var(--out)}
+  .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#1D1C1D;color:#fff;padding:9px 16px;border-radius:8px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
+  .toast.show{opacity:1}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>NBA availability report</h1>
+  <p>Pick a day. Each game shows who is out or questionable, who is likely to pick up the minutes, and the projected rotation. Copy the day as a Slack message when it looks right.</p>
+</header>
+
+<main class="wrap">
+  <section class="cal" aria-label="Season calendar">
+    <div class="cal-head">
+      <button class="nav" id="prev" aria-label="Previous month">&#8249;</button>
+      <h2 id="monthTitle"></h2>
+      <button class="nav" id="next" aria-label="Next month">&#8250;</button>
+    </div>
+    <div class="dow" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+    <div class="grid" id="grid"></div>
+    <div class="legend"><span><i></i>League event</span><span style="color:var(--out);font-weight:800">3 out</span><span>= players listed out that day</span></div>
+  </section>
+
+  <section aria-live="polite">
+    <div id="banner"></div>
+    <div class="tools">
+      <button class="btn" id="copyBtn">Copy as Slack message</button>
+      <label><input type="checkbox" id="onlyInj"> Hide games with no injuries</label>
+    </div>
+    <div id="panel"></div>
+
+    <details class="data" id="dataDrawer">
+      <summary>Data coverage and import</summary>
+      <div class="data-body">
+        <div class="cov" id="coverage"></div>
+
+        <div class="imp">
+          <h3>Full schedule</h3>
+          <p>The page tries to load all 1,230 games automatically. If your browser blocks that, download the file from <a href="https://fixturedownload.com/download/csv/nba-2026" target="_blank" rel="noopener">fixturedownload.com</a> (CSV or JSON) and pick it here.</p>
+          <div class="row"><input type="file" id="fileSched" accept=".csv,.json,text/csv,application/json"><span class="msg" id="msgFile"></span></div>
+        </div>
+
+        <div class="imp">
+          <h3>Add individual games</h3>
+          <p>Columns: <code>date</code> (YYYY-MM-DD), <code>time_et</code> (24h), <code>away</code>, <code>home</code>, optional <code>note</code>.</p>
+          <textarea id="inSched" placeholder="2026-11-05,19:30,LAL,DEN,Peacock"></textarea>
+          <div class="row"><button class="btn" data-load="sched">Add games</button><button class="btn alt" data-clear="sched">Remove added games</button><span class="msg" id="msgSched"></span></div>
+        </div>
+
+        <div class="imp">
+          <h3>Minutes (from your sheet)</h3>
+          <p>Paste the sheet as CSV. Needs a player column and an average-minutes column; a header row with <code>player</code>, <code>team</code>, <code>mpg</code> is detected automatically.</p>
+          <textarea id="inMins" placeholder="player,team,mpg&#10;Jalen Brunson,NYK,35.2"></textarea>
+          <div class="row"><button class="btn" data-load="mins">Load minutes</button><button class="btn alt" data-clear="mins">Clear</button><span class="msg" id="msgMins"></span></div>
+        </div>
+
+        <div class="imp">
+          <h3>Injuries</h3>
+          <p>Columns: <code>team</code>, <code>player</code>, <code>status</code> (Out, Doubtful, Questionable, Probable), optional <code>note</code>, <code>through</code> date and <code>source</code>. Use it for beat-writer tips and ESPN items, e.g. <code>NYK,Jose Alvarado,Questionable,Knee soreness,2026-10-12,Beat writer</code>.</p>
+          <textarea id="inInj" placeholder="LAL,Austin Reaves,Questionable,Left ankle soreness,2026-10-24,Beat writer"></textarea>
+          <div class="row"><button class="btn" data-load="inj">Add injuries</button><button class="btn alt" data-clear="inj">Remove added injuries</button><span class="msg" id="msgInj"></span></div>
+        </div>
+
+        <div class="imp">
+          <h3>Depth charts</h3>
+          <p>Fill in teams that are missing, or replace one. Columns: <code>team</code>, <code>position</code> (PG, SG, SF, PF, C), <code>tier</code> (S starter, R rotation, L limited), <code>player</code>, in depth order. A team in the paste is fully replaced.</p>
+          <textarea id="inDepth" placeholder="SAS,PG,S,De'Aaron Fox&#10;SAS,PG,R,Jordan McLaughlin"></textarea>
+          <div class="row"><button class="btn" data-load="depth">Load depth chart</button><button class="btn alt" data-clear="depth">Remove added charts</button><span class="msg" id="msgDepth"></span></div>
+        </div>
+      </div>
+    </details>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+<script>
+/* ---------- teams ---------- */
+const TEAM_LIST = [
+ ["ATL","Atlanta","Hawks",1610612737],["BOS","Boston","Celtics",1610612738],["BKN","Brooklyn","Nets",1610612751],["CHA","Charlotte","Hornets",1610612766],
+ ["CHI","Chicago","Bulls",1610612741],["CLE","Cleveland","Cavaliers",1610612739],["DAL","Dallas","Mavericks",1610612742],["DEN","Denver","Nuggets",1610612743],
+ ["DET","Detroit","Pistons",1610612765],["GSW","Golden State","Warriors",1610612744],["HOU","Houston","Rockets",1610612745],["IND","Indiana","Pacers",1610612754],
+ ["LAC","Los Angeles","Clippers",1610612746],["LAL","Los Angeles","Lakers",1610612747],["MEM","Memphis","Grizzlies",1610612763],["MIA","Miami","Heat",1610612748],
+ ["MIL","Milwaukee","Bucks",1610612749],["MIN","Minnesota","Timberwolves",1610612750],["NOP","New Orleans","Pelicans",1610612740],["NYK","New York","Knicks",1610612752],
+ ["OKC","Oklahoma City","Thunder",1610612760],["ORL","Orlando","Magic",1610612753],["PHI","Philadelphia","76ers",1610612755],["PHX","Phoenix","Suns",1610612756],
+ ["POR","Portland","Trail Blazers",1610612757],["SAC","Sacramento","Kings",1610612758],["SAS","San Antonio","Spurs",1610612759],["TOR","Toronto","Raptors",1610612761],
+ ["UTA","Utah","Jazz",1610612762],["WAS","Washington","Wizards",1610612764]
+];
+const TEAMS = {}; const ALIAS = {};
+TEAM_LIST.forEach(([c,city,nick,id])=>{
+  TEAMS[c]={code:c,city,nick,id,name:city+" "+nick};
+  [c,city+" "+nick,nick,city].forEach(a=>ALIAS[a.toLowerCase().replace(/[.']/g,"")]=c);
+});
+Object.assign(ALIAS,{"sixers":"PHI","blazers":"POR","la lakers":"LAL","la clippers":"LAC","los angeles lakers":"LAL","los angeles clippers":"LAC","golden state":"GSW","gs":"GSW","no":"NOP","ny":"NYK","sa":"SAS","brk":"BKN","cho":"CHA","pho":"PHX","uth":"UTA","wsh":"WAS"});
+function teamCode(s){ if(!s) return null; return ALIAS[String(s).trim().toLowerCase().replace(/[.']/g,"")]||null; }
+function logo(code,size){
+  const t=TEAMS[code]; const s=size||22;
+  if(!t) return `<span class="lg" style="--s:${s}px"><b style="display:grid">${esc(code)}</b></span>`;
+  return `<span class="lg" style="--s:${s}px"><img src="https://cdn.nba.com/logos/nba/${t.id}/global/L/logo.svg" alt="${esc(t.name)} logo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><b>${code}</b></span>`;
+}
+
+/* ---------- marquee schedule notes (NBA release) + today's preseason slate ----------
+   date|time ET|away|home|type|note    type: pre, reg, cup, neu */
+const BASE_GAMES = `
+2026-10-06|19:00|BKN|CHA|pre|
+2026-10-06|20:00|NOP|OKC|pre|BOK Center, Tulsa
+2026-10-06|21:00|DEN|UTA|pre|
+2026-10-06|22:00|LAL|GSW|pre|
+2026-10-20|15:00|BOS|DET|reg|Tip-Off · NBC/Peacock
+2026-10-20|19:00|PHI|NYK|reg|Banner night · NBC/Peacock
+2026-10-20|21:30|OKC|SAS|reg|West finals rematch · NBC/Peacock
+2026-10-21|19:30|MIN|MIA|reg|Giannis' Heat debut · ESPN
+2026-10-21|22:00|GSW|LAL|reg|ESPN
+2026-10-22|19:00|CLE|PHI|reg|ESPN
+2026-10-22|21:30|DEN|OKC|reg|ESPN
+2026-10-23|19:00|NYK|BOS|reg|Prime Video
+2026-10-23|21:30|HOU|SAS|reg|Prime Video · Moody Center
+2026-10-26|22:00|GSW|DEN|reg|Peacock
+2026-10-27|20:00|DET|NYK|reg|NBC/Peacock
+2026-10-27|23:00|POR|LAL|reg|NBC/Peacock (8 PM PT)
+2026-10-30|19:30|NYK|PHI|cup|Cup Group Play · Prime Video
+2026-10-30|22:00|LAL|GSW|cup|Cup Group Play · Prime Video
+2026-11-24|20:00|BOS|WAS|cup|Cup Group Play · NBC/Peacock
+2026-11-24|22:00|DAL|DEN|cup|Cup Group Play · NBC/Peacock
+2026-11-25|17:00|MIA|PHI|cup|Cup Group Play · ESPN
+2026-11-25|19:30|MIN|OKC|cup|Cup Group Play · ESPN
+2026-11-25|22:00|SAS|POR|cup|Cup Group Play · ESPN
+2026-11-27|19:00|MIA|NYK|cup|Cup Group Play · Prime Video
+2026-11-27|21:30|LAL|SAS|cup|Cup Group Play · Prime Video
+2026-12-12|20:30|NYK|MIA|reg|ABC
+2026-12-21|19:00|NYK|CLE|reg|East finals rematch · Peacock
+2026-12-25|12:00|SAS|NYK|reg|Christmas · Finals rematch · ABC
+2026-12-25|14:30|MIA|BOS|reg|Christmas · ABC
+2026-12-25|17:00|PHI|LAL|reg|Christmas · LeBron returns to LA · ABC
+2026-12-25|20:00|OKC|MIN|reg|Christmas · ESPN
+2026-12-25|22:30|DEN|GSW|reg|Christmas · ESPN
+2027-01-14|14:00|NOP|SAS|neu|NBA Paris Game · Prime Video
+2027-01-17|10:30|NOP|SAS|neu|NBA Manchester Game · Prime Video
+2027-01-18|12:00|DET|CLE|reg|MLK Day · NBC/Peacock
+2027-01-18|14:30|PHI|ATL|reg|MLK Day · NBC/Peacock
+2027-01-18|17:00|MIN|NYK|reg|MLK Day · NBC/Peacock
+2027-01-18|19:30|HOU|MEM|reg|MLK Day · Peacock/NBCSN
+2027-01-21|19:30|PHI|BOS|reg|Prime Video
+2027-01-22|19:00|NYK|ATL|reg|ESPN
+2027-01-22|21:30|MIN|SAS|reg|ESPN
+2027-01-24|20:30|OKC|GSW|reg|Sunday Night Basketball · NBC/Peacock
+2027-01-28|21:30|MIA|MIL|reg|Giannis returns to Milwaukee · Prime Video
+2027-01-29|19:00|CLE|TOR|reg|Rivals Week · ESPN
+2027-01-29|21:30|CHA|MIN|reg|Rivals Week · ESPN
+2027-01-30|12:30|PHI|MIA|reg|Rivals Week · ABC
+2027-01-30|15:00|DEN|OKC|reg|Rivals Week · ABC
+2027-01-30|17:30|SAS|GSW|reg|Rivals Week · ABC
+2027-01-30|20:30|LAL|NYK|reg|Rivals Week · ABC
+2027-02-03|19:00|NYK|DET|reg|Pioneers Classic · ESPN
+2027-02-05|19:00|DET|PHI|reg|Prime Video
+2027-02-05|21:30|IND|OKC|reg|Prime Video
+2027-02-06|15:00|MIA|MIN|reg|Prime Video
+2027-02-06|17:30|POR|MEM|reg|Prime Video
+2027-02-11|19:00|NYK|PHI|reg|Prime Video
+2027-02-11|21:30|SAS|OKC|reg|Prime Video
+2027-02-15|12:00|MIN|CHA|reg|Presidents' Day · NBC/Peacock
+2027-02-15|14:30|PHI|DAL|reg|Presidents' Day · NBC/Peacock
+2027-02-15|17:00|SAS|MIA|reg|Presidents' Day · NBC/Peacock
+2027-02-15|19:30|IND|GSW|reg|Presidents' Day · Peacock/NBCSN
+2027-02-27|15:00|WAS|UTA|reg|No. 1 vs No. 2 pick · Prime Video
+2027-02-27|17:30|OKC|DET|reg|Prime Video
+2027-02-28|13:00|DEN|SAS|reg|Moody Center · ABC
+2027-02-28|15:30|LAL|DAL|reg|ABC
+2027-03-07|19:30|NYK|SAS|reg|Finals rematch · NBC/Peacock
+2027-03-07|22:00|HOU|GSW|reg|NBC/Peacock
+2027-04-09|19:00|DET|NYK|reg|Prime Video
+2027-04-09|21:30|DEN|SAS|reg|Prime Video
+`;
+const EVENTS = {
+ "2026-10-20":"Opening night",
+ "2026-11-03":"No games · Election Day",
+ "2026-12-04":"Cup quarterfinals","2026-12-05":"Cup quarterfinals",
+ "2026-12-08":"Cup semifinals","2026-12-09":"Cup semifinals",
+ "2026-12-11":"Cup championship · Indianapolis (teams set after Group Play)",
+ "2027-02-19":"All-Star Weekend · Phoenix","2027-02-20":"All-Star Weekend · Phoenix","2027-02-21":"All-Star Weekend · Phoenix",
+ "2027-04-11":"Final day of the regular season · all 30 teams play"
+};
+
+/* ---------- projected rotations (RealGM depth charts, Oct 6 2026) ----------
+   per position: starter / rotation,rotation / limited,limited */
+const DEPTH_RAW = {
+ ATL:{PG:"CJ McCollum//RayJ Dennis",SG:"Nickeil Alexander-Walker//Kingston Flemings,Isaac McKneely,Kobe Johnson,Keshon Gilbert",SF:"Dyson Daniels/Luguentz Dort,Aaron Wiggins,Corey Kispert/Zuby Ejiofor,Jalen Wilson",PF:"Jalen Johnson/Dorian Finney-Smith,Asa Newell/Henri Veesaar,Cam Corhen",C:"Onyeka Okongwu/Jock Landale,Mouhamed Gueye/"},
+ BOS:{PG:"Derrick White/Payton Pritchard,Mike Conley,Devin Carter/",SG:"Hayden Gray/Baylor Scheierman,Ron Harper Jr./Milos Uzan",SF:"Sam Hauser/Hugo Gonzalez/Tucker DeVries,Dillon Mitchell",PF:"Jayson Tatum/Paul George,Jordan Walsh/Gabe McGlothan",C:"Neemias Queta/Mitchell Robinson,Luka Garza/Chris Cenac Jr.,Amari Williams"},
+ BKN:{PG:"Egor Demin/Nolan Traore,Ben Saraf/",SG:"Terance Mann/Drake Powell/Mikel Brown Jr.",SF:"Michael Porter Jr./Keon Ellis/Ben Humrichous,Dain Dainja,Tyler Bilodeau,Grant Nelson",PF:"Julius Randle/Noah Clowney,Danny Wolf,Josh Minott/Chaney Johnson",C:"Day'Ron Sharpe/Moe Wagner/Joshua Jefferson"},
+ CHA:{PG:"Dennis Schroder/Sion James/",SG:"Brandon Miller/Grayson Allen,Coby White/Christian Anderson Jr.,Jarkel Joiner,Kylan Boswell",SF:"Kon Knueppel/Liam McNeeley/Pat Connaughton,Hannes Steinbach,Wyatt Fricks,Michael Ajayi",PF:"Royce O'Neale/Grant Williams,Tidjane Salaun/",C:"Naz Reid/Moussa Diabate,Ryan Kalkbrenner/PJ Hall"},
+ CHI:{PG:"Josh Giddey/Tre Jones,Isaiah Stevens/",SG:"Norman Powell/Buddy Hield/BJ Boston Jr.,Jaylin Sellers",SF:"Isaac Okoro//Noa Essengue,Caleb Wilson,Dailyn Swain,Jalen Bridges",PF:"Matas Buzelis/Patrick Williams,Leonard Miller,Drew Peterson/Orlando Robinson,Tobe Awaka",C:"Nicolas Claxton/Jalen Smith,Zach Collins/"},
+ CLE:{PG:"James Harden/Craig Porter Jr.,Tyrese Proctor/",SG:"Donovan Mitchell/Sam Merrill,Kadary Richmond/Curtis Jones,Meleek Thomas,Mario Hezonja",SF:"Jaylon Tyson//Zack Austin,Rashaun Agee,Riley Minix",PF:"Evan Mobley/Peyton Watson,Naeqwan Tomlin/Khalifa Diop,Tristan Enaruna",C:"Jarrett Allen/Thomas Bryant/Ernest Udeh Jr."},
+ DAL:{PG:"Marcus Sasser//",SG:"Max Christie//Kyrie Irving,Tarik Biberovic,Jett Howard",SF:"Naji Marshall/Zaccharie Risacher/Morez Johnson Jr.,Sergio De Larrea,Seth Lundy,John Poulakidas",PF:"Cooper Flagg/PJ Washington,Caleb Martin/",C:"Santi Aldama/Daniel Gafford,Dereck Lively II,Dwight Powell,Moussa Cisse/"},
+ DEN:{PG:"Jamal Murray/Tyus Jones/Ryan Nembhard",SG:"Christian Braun/Julian Strawther/Lonnie Walker,Dane Goodwin",SF:"DeMar DeRozan/Cameron Johnson/Emanuel Miller,Trevon Brazile,Alpha Diallo,Coleman Hawkins",PF:"Aaron Gordon/Spencer Jones/Cam Whitmore",C:"Nikola Jokic/Marvin Bagley III,Zeke Nnaji/DaRon Holmes II"},
+ DET:{PG:"Cade Cunningham/Daniss Jenkins/Ebuka Okorie,EJ Harkless",SG:"Duncan Robinson/Isaiah Joe/Chaz Lanier",SF:"Ausar Thompson/Taurean Prince,Kevin Huerter,Ron Holland/Brice Williams,John Ukomadu",PF:"Javonte Green//",C:"Jalen Duren/John Collins,Paul Reed Jr./Tolu Smith,Isaac Jones,Ugonna Onyenso"},
+ GSW:{PG:"Stephen Curry/Brandin Podziemski,Brandon Williams/LJ Cryer",SG:"DeAnthony Melton/Dalen Terry/",SF:"Jimmy Butler III/Moses Moody,Gui Santos,Will Richard,Gary Payton II/Miles Kelly,Yaxel Lendeborg,Georges Niang,Alex Toohey",PF:"Draymond Green//Malevy Leons",C:"Kristaps Porzingis/Al Horford,Charles Bassey/"},
+ HOU:{PG:"Amen Thompson/Reed Sheppard/Sean Pedulla",SG:"Fred VanVleet//Bruce Thornton",SF:"Kevin Durant/Marcus Smart,Tari Eason,Bogdan Bogdanovic/Julian Phillips,Jae'Sean Tate,Isaiah Crawford,Quadir Copeland",PF:"Jabari Smith Jr.//",C:"Alperen Sengun/Steven Adams,Oscar Tshiebwe,Clint Capela/"},
+ IND:{PG:"Andrew Nembhard/Quenton Jackson,TJ McConnell/Tyrese Haliburton,Braden Smith",SG:"Aaron Nesmith/Ben Sheppard/",SF:"Kelly Oubre Jr./Jarace Walker,Johnny Furphy/James Johnson,Kobe Brown",PF:"Pascal Siakam/Obi Toppin,Larry Nance Jr./Jalen Slawson",C:"Ivica Zubac/James Huff/Keba Keita,Rienk Mast"},
+ LAC:{PG:"Darius Garland/Jordan Miller,Yuki Kawamura/",SG:"Kris Dunn/Bradley Beal,Gradey Dick,Blake Wesley/Cameron Christie,Keaton Wagler,Jalen Pickett",SF:"Brandon Ingram/Rui Hachimura,Derrick Jones Jr.,Max Strus/Fletcher Loyer,Nick Martinelli",PF:"Kobe Sanders//",C:"Brook Lopez/Isaiah Jackson,Yanic Konan Niederhauser/Baba Miller"},
+ LAL:{PG:"Luka Doncic//Bronny James",SG:"Austin Reaves/Quentin Grimes,Jake LaRavia,Collin Sexton,Jaden Hardy/Cameron Carr,Chris Manon",SF:"Ziaire Williams/Matisse Thybulle/Adou Thiero,Cole Swider,AK Okereke,Arthur Kaluma",PF:"Jarred Vanderbilt/Dalton Knecht/",C:"Walker Kessler/Sandro Mamukelashvili,Kevon Looney/William Kyle III"},
+ MEM:{PG:"Ty Jerome/Walter Clayton Jr./Javon Small,Jahmai Mashack",SG:"Cam Spencer/Scotty Pippen Jr./",SF:"Jerami Grant/Jaylen Wells,Cedric Coward,Micah Peavy/Cameron Boozer,Karim Lopez",PF:"Kris Murray/GG Jackson/",C:"Zach Edey/Isaiah Stewart II,Taylor Hendricks,Olivier-Maxence Prosper,Quinten Post/Carson Cooper"},
+ MIA:{PG:"Davion Mitchell/Dru Smith/",SG:"Bez Mbeng/Tim Hardaway Jr.,Klay Thompson/Ryan Conwell,Lester Quinones,Tre Donaldson",SF:"Andrew Wiggins/Pelle Larsson/J'Vonne Hadley,Ian Schieffelin",PF:"Giannis Antetokounmpo/Simone Fontecchio/Myron Gardner,Keshad Johnson",C:"Bam Adebayo/Bobby Portis,Nikola Jovic,Nick Richards/Vladislav Goldin"},
+ MIL:{PG:"Kevin Porter Jr./Ryan Rollins,AJ Green,Kasparas Jakucionis/Kam Jones",SG:"Tyler Herro/Gary Trent Jr.,Caris LeVert/Cormac Ryan",SF:"Jaime Jaquez Jr.//Brayden Burries,Nate Ament",PF:"Kyle Kuzma/Ousmane Dieng,Pete Nance/Bogoljub Markovic",C:"Myles Turner/Kel'el Ware,Jericho Sims/John Butler,Jake Stephens"},
+ MIN:{PG:"Donte DiVincenzo/LaMelo Ball,Bones Hyland/Zyon Pullin",SG:"Anthony Edwards/Jaylen Clark/Antonio Reeves,Isaiah Evans",SF:"Jaden McDaniels/Ayo Dosunmu,Cody Williams,Terrence Shannon Jr./Trey Lyles,KJ Martin",PF:"Jonathan Kuminga//Enrique Freeman",C:"Rudy Gobert//Drew Timme,Joan Beringer,Norchad Omier,Rocco Zikarsky"},
+ NOP:{PG:"Dejounte Murray/Jeremiah Fears/",SG:"Trey Murphy III/Bennedict Mathurin,Herb Jones,Jordan Poole,Bryce McGowens/AJ Johnson,Kobe Bufkin",SF:"Saddiq Bey//Caleb Houstan,Jaron Pierre Jr.,Malik Dia",PF:"Zion Williamson/Karlo Matkovic/",C:"Derik Queen/Yves Missi,DeAndre Jordan,Trendon Watford,Christian Koloko/Julian Reese"},
+ NYK:{PG:"Jalen Brunson/Jose Alvarado,Tyler Kolek/",SG:"Mikal Bridges/Miles McBride,Landry Shamet/Kevin McCullar Jr.,Jaden Akins",SF:"Josh Hart/Bruce Brown Jr.,Jordan Clarkson,Ochai Agbaji/Pacome Dadiet,Tyler Nickel",PF:"OG Anunoby//Mohamed Diawara",C:"Karl-Anthony Towns/Andre Drummond,James Wiseman,Drew Eubanks,Tony Bradley/"},
+ OKC:{PG:"Shai Gilgeous-Alexander/Ajay Mitchell,Nikola Topic/",SG:"Cason Wallace/Jared McCain/Bennett Stirtz,Robert McCray V,Zhaire Smith,Otega Oweh",SF:"Jalen Williams//Brooks Barnhizer",PF:"Chet Holmgren/Alex Caruso,Kenrich Williams/Thomas Sorber",C:"Isaiah Hartenstein/Jaylin Williams/Aday Mara,Christoph Tilly,Andrew Holifield"},
+ ORL:{PG:"Jalen Suggs/Jevon Carter,Jase Richardson/JD Davison",SG:"Desmond Bane/Anthony Black/Malaki Branham",SF:"Franz Wagner/Jamal Cain/Kevin Knox II",PF:"Paolo Banchero/Tristan Da Silva,Noah Penda/Jonathan Isaac",C:"Wendell Carter Jr./Nikola Vucevic,Goga Bitadze/Colin Castleton"}
+};
+const POS = ["PG","SG","SF","PF","C"];
+const ADJ = {PG:["SG"],SG:["PG","SF"],SF:["SG","PF"],PF:["SF","C"],C:["PF"]};
+let DEPTH_P = {}, importedDepth = {};
+function buildDepth(){
+  DEPTH_P = {};
+  Object.entries(DEPTH_RAW).forEach(([team,cols])=>{
+    const o={};
+    POS.forEach(p=>{
+      const parts=(cols[p]||"").split("/"); const out=[];
+      if((parts[0]||"").trim()) out.push({n:parts[0].trim(),t:"S"});
+      (parts[1]||"").split(",").map(x=>x.trim()).filter(Boolean).forEach(n=>out.push({n,t:"R"}));
+      (parts[2]||"").split(",").map(x=>x.trim()).filter(Boolean).forEach(n=>out.push({n,t:"L"}));
+      o[p]=out;
+    });
+    DEPTH_P[team]=o;
+  });
+  Object.entries(importedDepth).forEach(([team,o])=>DEPTH_P[team]=o);
+}
+
+/* ---------- injuries: merged from CBS Sports, Covers and RealGM (pulled Oct 6 2026) ----------
+   team|player|source|kind|injury|updated|earliest return|note
+   kind G = game-time decision (trusted through the preseason); O = out */
+const INJ_RAW = `
+ATL|Luguentz Dort|CBS|G|Knee|Oct 5
+ATL|Mouhamed Gueye|CBS|G|Foot|Oct 5
+ATL|CJ McCollum|CBS|G|Nose|Oct 5
+ATL|Henri Veesaar|CBS|O|Knee|Sep 21||Out for the season
+ATL|Henri Veesaar|Covers|O|Torn right ACL|Sep 20||Team says he will miss the 2026-27 season
+ATL|Mouhamed Gueye|Covers|O|Foot|Jul 14|2026-11-14|Surgery on a fractured foot; re-evaluation set for 3-4 months after mid-July
+BKN|Joshua Jefferson|CBS|G|Back|Oct 5
+BKN|Mikel Brown Jr.|CBS|G|Ankle|Oct 5
+BKN|Mikel Brown Jr.|Covers|O|Ankle|Sep 30||Not cleared for contact practice, no return timetable (per NY Post)
+CHA|Coby White|CBS|G|Calf|Oct 5
+CHA|Coby White|RealGM|O|Left calf strain|Oct 6|2026-10-20|Out for the preseason
+CHA|Kylan Boswell|CBS|G|Knee|Oct 5
+CHA|PJ Hall|CBS|G|Ankle|Oct 1
+CHA|Grant Williams|CBS|G|Hamstring|Sep 25
+CHA|Grant Williams|Covers|O|Hamstring|Sep 24|2026-10-26|Out for preseason; re-evaluated in week one of the regular season
+CHA|Kon Knueppel|CBS|G|Hamstring|Sep 25
+CHA|Kon Knueppel|Covers|O|Hamstring|Sep 24|2026-10-26|Out for preseason; re-evaluated in week one of the regular season
+CHI|Nicolas Claxton|CBS|G|Hamstring|Oct 5
+CHI|Nicolas Claxton|Covers|O|Hamstring|Oct 4|2026-10-18|Tweaked hamstring; re-evaluation in two weeks
+CHI|Zach Collins|CBS|G|Toe|Sep 28
+CLE|Peyton Watson|CBS|G|Hamstring|Oct 1
+DAL|Santi Aldama|CBS|G|Undisclosed|Oct 1
+DAL|Santi Aldama|Covers|O|Knee|Sep 25|2026-10-19|Limited in team practice
+DAL|Morez Johnson Jr.|CBS|G|Lower leg|Sep 30
+DAL|Dereck Lively II|CBS|G|Foot|Sep 23
+DAL|Dereck Lively II|Covers|O|Foot|Sep 22|2026-10-19|Not cleared for camp, ramping up slowly (per ESPN)
+DEN|Spencer Jones|CBS|G|Hamstring|Oct 4
+DEN|Jamal Murray|CBS|G|Personal|Oct 4
+DET|Jalen Duren|CBS|G|Rest|Oct 5
+GSW|Jimmy Butler III|CBS|O|Knee|Oct 2|2027-01-02|Expected out until at least Jan 2
+GSW|Jimmy Butler III|Covers|O|Knee|Sep 27|2027-01-02|Cleared for light on-court work
+GSW|Kristaps Porzingis|CBS|G|Undisclosed|Sep 28
+GSW|Moses Moody|CBS|O|Knee|Sep 8|2026-12-01|Expected out until at least Dec 1
+GSW|Moses Moody|Covers|O|Ruptured left patellar tendon|Sep 27|2026-12-01|Progressed to light on-court work
+IND|Quenton Jackson|CBS|G|Undisclosed|Oct 4
+IND|TJ McConnell|CBS|G|Undisclosed|Oct 4
+IND|Larry Nance Jr.|CBS|G|Hamstring|Sep 29
+IND|Johnny Furphy|CBS|O|Knee|Sep 8|2027-01-01|Expected out until at least Jan 1
+IND|Johnny Furphy|Covers|O|Torn right ACL|Feb 8||Diagnosed with a torn ACL (per USA Today). The two sources disagree on the timeline.
+LAC|Max Strus|CBS|O|Foot|Oct 5|2026-11-02|Expected out until at least Nov 2
+LAC|Max Strus|Covers|O|Partial plantar fascia tear, right foot|Oct 4|2026-11-02|Out at least 4 weeks
+LAC|Max Strus|RealGM|O|Right foot|Oct 6|2026-11-02|Out at least four weeks
+LAC|Bradley Beal|CBS|G|Knee|Oct 4
+LAC|Kobe Sanders|CBS|G|Hip|Oct 3
+LAC|Yanic Konan Niederhauser|CBS|O|Foot|Sep 28|2026-11-01|Expected out until at least Nov 1
+LAC|Brandon Ingram|CBS|O|Achilles|Sep 28|2026-11-01|Expected out until at least Nov 1
+LAC|Jordan Miller|CBS|O|Shoulder|Sep 8|2027-03-01|Expected out until at least Mar 1
+LAC|Jordan Miller|Covers|O|Torn left rotator cuff (repaired)|Aug 25|2027-03-01|Re-evaluation in six months
+LAL|Walker Kessler|CBS|G|Finger|Oct 5
+LAL|Collin Sexton|CBS|G|Lower body|Oct 5
+LAL|Arthur Kaluma|CBS|G|Lower body|Oct 5
+LAL|Austin Reaves|CBS|G|Ankle|Oct 5
+MEM|Micah Peavy|CBS|G|Ankle|Oct 5
+MEM|Zach Edey|CBS|G|Ankle|Oct 5
+MIA|Keshad Johnson|CBS|O|Hamstring|Oct 2|2026-10-26|Expected out until at least Oct 26
+MIA|Dru Smith|CBS|G|Calf|Oct 1
+MIA|Dru Smith|Covers|O|Calf|Sep 30|2026-10-15|Out at least a couple of weeks
+MIN|Donte DiVincenzo|CBS|O|Achilles|Sep 8|2027-04-01|Expected out until at least Apr 1
+MIN|Donte DiVincenzo|Covers|O|Leg (Achilles)|Sep 27|2027-04-01|Team president expects a return at some point this season
+NOP|Bryce McGowens|CBS|G|Toe|Oct 1
+NYK|Jose Alvarado|CBS|G|Knee|Oct 5
+OKC|Shai Gilgeous-Alexander|CBS|G|Not injury related|Oct 5
+OKC|Jalen Williams|CBS|G|Not injury related|Oct 5
+OKC|Cason Wallace|CBS|G|Rest|Oct 5
+OKC|Chet Holmgren|CBS|G|Rest|Oct 5
+OKC|Thomas Sorber|CBS|G|Knee|Oct 5
+OKC|Thomas Sorber|Covers|O|Knee|Sep 23|2026-10-19|Limited to start training camp
+OKC|Isaiah Hartenstein|CBS|G|Rest|Oct 5
+OKC|Nikola Topic|CBS|G|Back|Oct 5
+OKC|Alex Caruso|CBS|G|Rest|Oct 5
+ORL|Jalen Suggs|CBS|G|Illness|Oct 5
+ORL|Anthony Black|CBS|G|Ankle|Sep 30
+ORL|Noah Penda|CBS|G|Hamstring|Sep 30
+ORL|Jonathan Isaac|CBS|G|Knee|Sep 28
+ORL|Izaiyah Nelson|CBS|G|Ankle|Sep 8
+PHI|LeBron James|CBS|G|Rest|Oct 5
+PHI|Tyrese Maxey|CBS|G|Rest|Oct 5
+PHI|Dom Barlow|CBS|G|Back|Oct 5
+PHI|Adem Bona|CBS|G|Foot|Oct 5
+PHI|Adem Bona|Covers|O|Foot|Sep 16|2026-10-19|Re-evaluation was set for the start of camp
+PHI|Joel Embiid|CBS|G|Rest|Oct 5
+PHI|Tacko Fall|CBS|G|Hip|Oct 1
+PHI|Tacko Fall|Covers|O|Hip|Sep 30|2026-10-15|Out at least two weeks
+PHX|Mark Williams|CBS|O|Shoulder|Sep 28|2027-02-03|Expected out until at least Feb 3
+PHX|Mark Williams|Covers|O|Torn left labrum (surgery)|Sep 10|2027-02-03|Extended absence
+POR|Shaedon Sharpe|CBS|O|Knee|Sep 28|2027-03-02|Expected out until at least Mar 2
+POR|Shaedon Sharpe|Covers|O|Torn meniscus|Aug 23|2027-03-02|About six months
+SAC|Keegan Murray|CBS|G|Undisclosed|Oct 5
+SAC|Ben Simmons|CBS|G|Undisclosed|Oct 5
+SAC|Malik Monk|CBS|G|Rest|Oct 5
+SAS|David Jones|CBS|G|Ankle|Oct 1
+SAS|Jayden Quaintance|CBS|O|Knee|Sep 8|2026-12-01|Expected out until at least Dec 1
+TOR|Scottie Barnes|CBS|G|Knee|Oct 5
+TOR|Nate Bittle|CBS|G|Foot|Oct 3
+TOR|Allen Graves|CBS|G|Groin|Oct 3
+TOR|Kawhi Leonard|CBS|G|Not injury related|Oct 3
+TOR|Jamison Battle|CBS|G|Back|Oct 3
+TOR|Alijah Martin|CBS|G|Knee|Oct 3
+TOR|Trayce Jackson-Davis|CBS|G|Undisclosed|Oct 3
+UTA|Jusuf Nurkic|CBS|G|Foot|Oct 5
+UTA|Brice Sensabaugh|CBS|G|Hip|Oct 4
+UTA|Kyle Filipowski|CBS|G|Back|Oct 4
+WAS|Alex Sarr|CBS|G|Foot|Oct 1
+WAS|Tristan Vukcevic|CBS|O|Hip|Oct 1|2026-11-02|Expected out until at least Nov 2
+WAS|Tristan Vukcevic|Covers|O|Hip|Sep 30|2026-11-02|Out at least four weeks
+WAS|Jamir Watkins|CBS|O|Knee|Sep 8|2027-04-01|Expected out until at least Apr 1
+`;
+const SNAPSHOT_THROUGH = "2026-10-19";
+function parseInjRaw(txt){
+  return txt.trim().split("\n").map(l=>{
+    const p=l.split("|");
+    return {team:p[0],player:p[1],src:p[2],kind:p[3],injury:p[4]||"",upd:p[5]||"",until:p[6]||"",note:p[7]||"",through:p[3]==="G"?SNAPSHOT_THROUGH:""};
+  });
+}
+
+/* ---------- state ---------- */
+let baseGames=[], feedGames=null, feedSkipped=0, extraGames=[], games=[];
+let injuries = parseInjRaw(INJ_RAW), importedInj = [], mins = {};
+let selected=null, viewY=2026, viewM=10;
+const START="2026-10", END="2027-04";
+
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id);
+const esc = s => String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pad = n => String(n).padStart(2,"0");
+const key = (y,m,d)=>`${y}-${pad(m)}-${pad(d)}`;
+const MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+const DAYS=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+function normName(s){
+  return String(s||"").toLowerCase().replace(/[.'’]/g,"").replace(/[^a-z0-9]+/g," ").trim()
+    .split(" ").filter(t=>!["jr","sr","ii","iii","iv"].includes(t)).join(" ");
+}
+function fmtTime(t){ const [h,m]=t.split(":").map(Number); return `${((h+11)%12)+1}:${pad(m)} ${h>=12?"PM":"AM"}`; }
+function fmtDate(k){ const [y,m,d]=k.split("-").map(Number); const dt=new Date(y,m-1,d); return {long:`${DAYS[dt.getDay()]}, ${MONTHS[m-1]} ${d}`}; }
+function statusKey(s){ s=String(s||"").toLowerCase(); if(s.includes("out")) return "out"; if(s.includes("doubt")) return "doubt"; if(s.includes("prob")) return "prob"; return "q"; }
+const STATUS_LABEL={out:"Out",doubt:"Doubtful",q:"Questionable",prob:"Probable"};
+const STATUS_RANK={out:0,doubt:1,q:2,prob:3};
+const EMOJI={out:"🔴",doubt:"🟠",q:"🟡",prob:"🟢"};
+function toast(t){ const e=$("toast"); e.textContent=t; e.classList.add("show"); setTimeout(()=>e.classList.remove("show"),2200); }
+
+/* ---------- schedule ---------- */
+const etFmt = new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"});
+function utcToET(ms){ const p={}; etFmt.formatToParts(new Date(ms)).forEach(x=>p[x.type]=x.value); return {date:`${p.year}-${p.month}-${p.day}`,time:`${p.hour}:${p.minute}`}; }
+function parseBase(){
+  return BASE_GAMES.trim().split("\n").map(l=>{const p=l.split("|");return {date:p[0],time:p[1],away:p[2],home:p[3],type:p[4]||"reg",note:p[5]||"",venue:""};});
+}
+function parseFeed(text){
+  let rows=null; const out=[]; let skipped=0;
+  try{ const j=JSON.parse(text); if(Array.isArray(j)) rows=j.map(r=>({utc:String(r.DateUtc||"").replace(" ","T"),home:r.HomeTeam,away:r.AwayTeam,venue:r.Location||""})); }catch(e){}
+  if(!rows){
+    const t=parseCSV(text); if(!t.length) return {games:[],skipped:0};
+    const h=t[0].map(c=>c.toLowerCase());
+    const di=h.findIndex(c=>c==="date"||c.includes("date")), hi=h.findIndex(c=>c.includes("home")), ai=h.findIndex(c=>c.includes("away")), li=h.findIndex(c=>c.includes("location")||c.includes("venue"));
+    rows=t.slice(1).map(r=>{
+      let d=r[di]||"", iso="";
+      let m=d.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})/);
+      if(m) iso=`${m[3]}-${pad(m[2])}-${pad(m[1])}T${pad(m[4])}:${m[5]}:00Z`;
+      else iso=d.replace(" ","T").replace(/Z?$/,"Z");
+      return {utc:iso,home:r[hi],away:r[ai],venue:r[li]||""};
+    });
+  }
+  rows.forEach(r=>{
+    const h=teamCode(r.home), a=teamCode(r.away), ms=Date.parse(r.utc);
+    if(!h||!a||isNaN(ms)){ skipped++; return; }
+    const et=utcToET(ms);
+    out.push({date:et.date,time:et.time,away:a,home:h,type:"reg",note:"",venue:r.venue});
+  });
+  return {games:out,skipped};
+}
+function rebuildGames(){
+  const base=parseBase();
+  let list;
+  if(feedGames){
+    const notes={}; base.filter(g=>g.type!=="pre").forEach(g=>{ notes[[g.date,g.away,g.home].join("|")]=g; notes[[g.date,g.home,g.away].join("|")]=g; });
+    list=feedGames.map(g=>{ const n=notes[[g.date,g.away,g.home].join("|")]; return n?{...g,type:n.type,note:n.note}:g; });
+    list=list.concat(base.filter(g=>g.type==="pre"));
+  } else list=base;
+  const have=new Set(list.map(g=>[g.date,g.away,g.home].join("|")));
+  extraGames.forEach(g=>{ if(!have.has([g.date,g.away,g.home].join("|"))) list.push(g); });
+  list.sort((a,b)=>a.date.localeCompare(b.date)||a.time.localeCompare(b.time));
+  games=list;
+}
+function gamesOn(d){ return games.filter(g=>g.date===d); }
+
+/* ---------- injuries (merged per player) ---------- */
+function injuriesFor(code,date){
+  const recs=injuries.concat(importedInj).filter(r=>r.team===code && (!r.through || date<=r.through));
+  const groups={};
+  recs.forEach(r=>{
+    let st, stale=false;
+    if(r.st) st=r.st;
+    else if(r.kind==="O"){ if(r.until && date>=r.until){ st="q"; stale=true; } else st="out"; }
+    else st="q";
+    const g=groups[normName(r.player)] || (groups[normName(r.player)]={player:r.player,keys:new Set(),lines:[]});
+    g.keys.add(st);
+    const label = stale?"Out earlier, return date passed": st==="out"?"Out": r.kind==="G"?"Game-time decision":STATUS_LABEL[st];
+    g.lines.push({src:r.src,label:r.stale?label+" (stale, source failed on last run)":label,injury:r.injury,upd:r.upd,note:r.note,st,url:r.url||""});
+  });
+  return Object.values(groups).map(g=>{
+    const best=[...g.keys].sort((a,b)=>STATUS_RANK[a]-STATUS_RANK[b])[0];
+    return {player:g.player,status:STATUS_LABEL[best],k:best,lines:g.lines,conflict:g.keys.size>1};
+  }).sort((a,b)=>STATUS_RANK[a.k]-STATUS_RANK[b.k]||a.player.localeCompare(b.player));
+}
+function outCount(d){
+  const teams=new Set(); gamesOn(d).forEach(g=>{teams.add(g.away);teams.add(g.home)});
+  let n=0; teams.forEach(t=>injuriesFor(t,d).forEach(i=>{ if(i.k==="out") n++; })); return n;
+}
+
+/* ---------- minutes impact from depth charts ----------
+   Vacated minutes = last-season MPG (sheet) or tier default (starter 30, rotation 18, limited 6).
+   Split 40/20 to the next two in the same position slot, 20/20 to bench players in adjacent slots. */
+const TIER_MIN={S:30,R:18,L:6};
+const WEIGHT={out:1,doubt:.8,q:.5,prob:0};
+function impact(code,date){
+  const ch=DEPTH_P[code], inj=injuriesFor(code,date);
+  const status={}; inj.forEach(i=>status[normName(i.player)]=i.k);
+  const bumps={}, items=[];
+  inj.forEach(i=>{
+    const it={rec:i,pos:null,tier:null,next:[],usedDefault:false};
+    items.push(it);
+    if(!ch||!WEIGHT[i.k]) return;
+    let pos=null,idx=-1;
+    for(const p of POS){ const j=ch[p].findIndex(c=>normName(c.n)===normName(i.player)); if(j>=0){pos=p;idx=j;break;} }
+    if(!pos) return;
+    const me=ch[pos][idx]; it.pos=pos; it.tier=me.t;
+    const m=mins[normName(i.player)];
+    const base = m!=null ? m : TIER_MIN[me.t]; it.usedDefault = m==null;
+    const healthy=c=>{const s=status[normName(c.n)]; return s!=="out"&&s!=="doubt";};
+    const used=new Set([normName(i.player)]), cands=[];
+    const rank={S:0,R:1,L:2};
+    let pool;
+    if(me.t==="S") pool=ch[pos].filter((c,j)=>j>idx&&healthy(c));
+    else pool=ch[pos].filter((c,j)=>j!==idx&&c.t!=="S"&&healthy(c)).sort((a,b)=>rank[a.t]-rank[b.t]);
+    pool.slice(0,2).forEach((c,x)=>{cands.push({c,pos,w:x?.2:.4});used.add(normName(c.n));});
+    ADJ[pos].forEach(np=>{
+      const c=ch[np].filter(c=>c.t!=="S"&&healthy(c)&&!used.has(normName(c.n))).sort((a,b)=>rank[a.t]-rank[b.t])[0];
+      if(c){cands.push({c,pos:np,w:.2});used.add(normName(c.n));}
+    });
+    const tot=cands.reduce((a,x)=>a+x.w,0)||1;
+    cands.forEach(x=>{
+      const full=base*x.w/tot, k=normName(x.c.n);
+      (bumps[k]=bumps[k]||{name:x.c.n,pos:x.pos,add:0}).add+=full*WEIGHT[i.k];
+    });
+    it.next=cands.slice(0,2).map(x=>({name:x.c.n,pos:x.pos,add:base*x.w/tot}));
+  });
+  const list=Object.values(bumps).filter(b=>b.add>=.5).sort((a,b)=>b.add-a.add).slice(0,5);
+  return {items,bumps:list,hasChart:!!ch};
+}
+const r1=n=>Math.round(n);
+
+/* ---------- calendar ---------- */
+function renderCal(){
+  $("monthTitle").textContent=`${MONTHS[viewM-1]} ${viewY}`;
+  const first=new Date(viewY,viewM-1,1).getDay(), dim=new Date(viewY,viewM,0).getDate();
+  const t=new Date(), todayKey=key(t.getFullYear(),t.getMonth()+1,t.getDate());
+  let h=""; for(let i=0;i<first;i++) h+=`<div class="day blank"></div>`;
+  for(let d=1; d<=dim; d++){
+    const k=key(viewY,viewM,d), gs=gamesOn(k).length, ev=EVENTS[k], outs=gs?outCount(k):0;
+    const cls=["day",gs?"has":"none"]; if(ev) cls.push("event"); if(k===selected) cls.push("sel"); if(k===todayKey) cls.push("today");
+    const label=`${fmtDate(k).long}. ${gs} ${gs===1?"game":"games"}${outs?`, ${outs} players out`:""}${ev?`. ${ev}`:""}`;
+    h+=`<button class="${cls.join(" ")}" data-k="${k}" ${(gs||ev)?"":"tabindex='-1'"} aria-label="${esc(label)}"><span class="d">${d}</span><span class="n">${gs||""}</span><span class="o">${outs?outs+" out":""}</span></button>`;
+  }
+  $("grid").innerHTML=h;
+  $("prev").disabled=`${viewY}-${pad(viewM)}`<=START; $("next").disabled=`${viewY}-${pad(viewM)}`>=END;
+}
+
+/* ---------- report ---------- */
+function injLineHTML(it,date){
+  const i=it.rec, k=i.k, m=mins[normName(i.player)];
+  const first=i.lines[0];
+  const inj=[...new Set(i.lines.map(l=>l.injury).filter(Boolean))][0]||"";
+  const srcs=[...new Set(i.lines.map(l=>l.src))].join(", ");
+  let h=`<div class="it"><span><i class="dot ${k}"></i></span><div class="l1"><b>${esc(i.player)}</b>${it.pos?`<span class="pos">${it.pos}</span>`:""} — <span class="st ${k}">${STATUS_LABEL[k]}</span>${inj?` · ${esc(inj)}`:""}${m!=null?` · ${m} mpg last season`:""}<span class="src">${esc(srcs)}</span>${i.conflict?`<span class="diff" title="${esc(i.lines.map(l=>l.src+": "+l.label).join(" | "))}">sources differ</span>`:""}</div>`;
+  i.lines.filter(l=>String(l.src).startsWith("@")).forEach(l=>{
+    h+=`<div class="next beat">📝 <b>${esc(l.src)}</b>${l.upd?` (${esc(l.upd)})`:""}: ${esc(l.note||l.label)}${l.url?` <a href="${esc(l.url)}" target="_blank" rel="noopener">post</a>`:""}</div>`;
+  });
+  if(it.next.length){
+    const lead = k==="out"||k==="doubt" ? "Next up" : "If he sits";
+    h+=`<div class="next">↳ ${lead}: ${it.next.map(n=>`<b>${esc(n.name)}</b> <span class="p" title="Rough estimate">+${Math.max(1,r1(n.add))}</span>`).join(" · ")}</div>`;
+  }
+  return h+`</div>`;
+}
+function rotationHTML(code,date){
+  const ch=DEPTH_P[code]; if(!ch) return `<div class="nodepth">No projected rotation loaded for this team yet. Add one under Data coverage and import.</div>`;
+  const st={}; injuriesFor(code,date).forEach(i=>st[normName(i.player)]=i.k);
+  return POS.map(p=>`<div class="rrow"><span class="pl">${p}</span><div class="chips">${ch[p].map(c=>{
+    const s=st[normName(c.n)], m=mins[normName(c.n)];
+    return `<span class="chip ${c.t} ${s||""}">${esc(c.n)}${m!=null?`<span class="mp">${m}</span>`:""}${s?`<span class="tg">${s==="out"?"OUT":s==="doubt"?"DTD":"GTD"}</span>`:""}</span>`;
+  }).join("")||'<span class="chip L">—</span>'}</div></div>`).join("");
+}
+function tagFor(k){ return k?`<span class="tg ${k}">${k==="out"?"OUT":k==="doubt"?"DTD":k==="q"?"GTD":"PROB"}</span>`:""; }
+function mpHTML(name){ const m=mins[normName(name)]; return m!=null?`<span class="mp" title="Last season minutes per game">${m}</span>`:""; }
+function startersHTML(code,imp){
+  const ch=DEPTH_P[code]; if(!ch) return `<div class="nodepth">Projected starters and rotation are not loaded for this team yet.</div>`;
+  const st={}; imp.items.forEach(i=>st[normName(i.rec.player)]=i.rec.k);
+  const repl={}; imp.items.forEach(i=>{ if((i.rec.k==="out"||i.rec.k==="doubt")&&i.next.length) repl[normName(i.rec.player)]=i.next[0]; });
+  let adjusted=false;
+  const rows=POS.map(p=>{
+    const s=ch[p].find(c=>c.t==="S"); if(!s) return "";
+    const k=st[normName(s.n)], r=repl[normName(s.n)];
+    if(r){ adjusted=true; return `<li class="sl in"><span class="pos">${p}</span><span class="nm">${esc(r.name)}${mpHTML(r.name)}</span><span class="tags"><span class="why">in for ${esc(s.n)}</span>${tagFor(k)}</span></li>`; }
+    return `<li class="sl"><span class="pos">${p}</span><span class="nm">${esc(s.n)}${mpHTML(s.n)}</span><span class="tags">${tagFor(k)}</span></li>`;
+  }).join("");
+  return `<div class="sech">Projected starters${adjusted?`<small>adjusted for injuries</small>`:""}</div><ul class="starters">${rows}</ul>`;
+}
+function rotationBlockHTML(code,imp){
+  const ch=DEPTH_P[code]; if(!ch) return "";
+  const st={}; imp.items.forEach(i=>st[normName(i.rec.player)]=i.rec.k);
+  const up={}; imp.bumps.forEach(b=>up[normName(b.name)]=b.add);
+  const promoted=new Set(); imp.items.forEach(i=>{ if((i.rec.k==="out"||i.rec.k==="doubt")&&i.next.length&&ch[i.pos||""]&&i.tier==="S") promoted.add(normName(i.next[0].name)); });
+  const out=[], lim=[];
+  POS.forEach(p=>ch[p].forEach(c=>{
+    if(c.t==="S"||promoted.has(normName(c.n))) return;
+    const k=st[normName(c.n)], u=up[normName(c.n)];
+    const chip=`<span class="chip ${k||""}"><span class="pp">${p}</span>${esc(c.n)}${mpHTML(c.n)}${u?`<span class="up" title="Rough estimate of added minutes">+${Math.max(1,r1(u))}</span>`:""}${tagFor(k)}</span>`;
+    (c.t==="R"?out:lim).push(chip);
+  }));
+  return `<div class="sech">Projected rotation</div><div class="chips">${out.join("")||'<span class="chip L">none listed</span>'}</div>${lim.length?`<div class="sech" style="margin-top:8px">Limited minutes</div><div class="chips" style="opacity:.8">${lim.join("")}</div>`:""}`;
+}
+function teamBlockHTML(code,date){
+  const t=TEAMS[code]||{name:code}, imp=impact(code,date);
+  const o=imp.items.filter(x=>x.rec.k==="out").length, q=imp.items.length-o;
+  let h=`<div class="tm"><div class="tmh">${logo(code,24)}${esc(t.name)}<span class="c">${imp.items.length?`${o?o+" out":""}${o&&q?" · ":""}${q?q+" questionable":""}`:""}</span></div>`;
+  if(!imp.items.length) h+=`<div class="clear">✅ No injuries listed</div>`;
+  else h+=imp.items.map(it=>injLineHTML(it,date)).join("");
+  if(imp.bumps.length) h+=`<div class="bump">⬆ <b>Minutes up:</b> ${imp.bumps.map(b=>`${esc(b.name)} <b>+${Math.max(1,r1(b.add))}</b>`).join(" · ")}</div>`;
+  else if(imp.items.length && !imp.hasChart) h+=`<div class="clear" style="margin-left:22px">Depth chart not loaded, so no replacements yet.</div>`;
+  h+=startersHTML(code,imp)+rotationBlockHTML(code,imp)+`</div>`;
+  return h;
+}
+function renderPanel(){
+  const el=$("panel"); if(!selected){ el.innerHTML=""; return; }
+  const only=$("onlyInj").checked;
+  let gs=gamesOn(selected); const total=gs.length;
+  if(only) gs=gs.filter(g=>injuriesFor(g.away,selected).length||injuriesFor(g.home,selected).length);
+  const ev=EVENTS[selected];
+  let h=`<div class="report"><div class="rep-head"><div class="avatar">IP</div><div><div class="rep-by">Availability Bot<small>APP</small></div></div></div>
+    <div class="rep-title">Injury &amp; Minutes Report — ${fmtDate(selected).long}</div><hr class="hr">`;
+  if(ev) h+=`<div class="event-note">${esc(ev)}</div>`;
+  if(!total) h+=`<div class="empty">No games loaded for this date.</div>`;
+  else if(!gs.length) h+=`<div class="empty">No injuries listed for any of the ${total} games today.</div>`;
+  gs.forEach(g=>{
+    const A=TEAMS[g.away]||{name:g.away}, H=TEAMS[g.home]||{name:g.home};
+    const tags=[]; if(g.type==="pre") tags.push("Preseason"); if(g.type==="cup") tags.push("NBA Cup"); if(g.type==="neu") tags.push("Neutral site");
+    const meta=[g.venue,g.note].filter(Boolean).join(" · ");
+    h+=`<section class="gm"><h3 class="gh">${fmtTime(g.time)} ET — ${logo(g.away,26)}${esc(A.name)}<span class="at">${g.type==="neu"?"vs":"@"}</span>${logo(g.home,26)}${esc(H.name)}${tags.map(t=>`<span class="tag">${t}</span>`).join("")}</h3>
+      ${meta?`<div class="gmeta">${esc(meta)}</div>`:""}${teamBlockHTML(g.away,selected)}${teamBlockHTML(g.home,selected)}</section>`;
+  });
+  h+=`<div class="rep-legend"><span><i style="background:var(--out)"></i>Out</span><span><i style="background:var(--doubt)"></i>Doubtful</span><span><i style="background:var(--q)"></i>Questionable</span><span><i style="background:var(--prob)"></i>Probable</span></div>
+    <div class="foot">Minutes shifts are a rough heuristic, not a projection. Vacated minutes (last-season MPG when your sheet is loaded, otherwise 30 for starters, 18 for rotation, 6 for limited) go mostly to the next players at the same position (backups for a starter, other bench players for a rotation player), with the rest to bench players at adjacent positions. Doubtful counts at 80% and questionable at 50% in the team total.</div></div>`;
+  el.innerHTML=h;
+}
+
+/* ---------- slack text ---------- */
+function slackText(date){
+  const gs=gamesOn(date); const lines=[`*Injury & Minutes Report — ${fmtDate(date).long}*`,"______________________________",""];
+  if(EVENTS[date]) lines.push(`_${EVENTS[date]}_`,"");
+  gs.forEach(g=>{
+    const A=TEAMS[g.away]||{name:g.away}, H=TEAMS[g.home]||{name:g.home};
+    lines.push(`*${fmtTime(g.time)} ET — ${A.name} ${g.type==="neu"?"vs":"@"} ${H.name}*${g.type==="pre"?" _(preseason)_":""}`);
+    [g.away,g.home].forEach(code=>{
+      const imp=impact(code,date); lines.push(`_${(TEAMS[code]||{name:code}).name}_`);
+      if(!imp.items.length) lines.push("✅ No injuries listed");
+      imp.items.forEach(it=>{
+        const i=it.rec, inj=[...new Set(i.lines.map(l=>l.injury).filter(Boolean))][0]||"";
+        lines.push(`${EMOJI[i.k]} ${i.player}${it.pos?` (${it.pos})`:""} — ${STATUS_LABEL[i.k]}${inj?` | ${inj}`:""}${i.conflict?" | sources differ":""}`);
+        if(it.next.length) lines.push(`      ↳ ${i.k==="out"||i.k==="doubt"?"Next up":"If out"}: ${it.next.map(n=>`${n.name} (+${Math.max(1,r1(n.add))})`).join(", ")}`);
+      });
+      if(imp.bumps.length) lines.push(`⬆ Minutes up: ${imp.bumps.map(b=>`${b.name} +${Math.max(1,r1(b.add))}`).join(" | ")}`);
+    });
+    lines.push("");
+  });
+  lines.push("______________________________","🔴 Out | 🟠 Doubtful | 🟡 Questionable | 🟢 Probable");
+  return lines.join("\n");
+}
+function copyText(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText) return navigator.clipboard.writeText(t);
+  return new Promise((res,rej)=>{ const a=document.createElement("textarea"); a.value=t; document.body.appendChild(a); a.select(); try{document.execCommand("copy");res();}catch(e){rej(e);} a.remove(); });
+}
+
+/* ---------- csv + imports ---------- */
+function parseCSV(text){
+  const rows=[]; let row=[],cur="",q=false; const t=text.replace(/\r/g,"");
+  for(let i=0;i<t.length;i++){
+    const ch=t[i];
+    if(q){ if(ch==='"'){ if(t[i+1]==='"'){cur+='"';i++} else q=false } else cur+=ch; }
+    else if(ch==='"') q=true;
+    else if(ch===","||ch==="\t"){ row.push(cur); cur=""; }
+    else if(ch==="\n"){ row.push(cur); rows.push(row); row=[]; cur=""; }
+    else cur+=ch;
+  }
+  row.push(cur); rows.push(row);
+  return rows.map(r=>r.map(c=>c.trim())).filter(r=>r.some(c=>c));
+}
+function msg(id,text,ok){ const e=$(id); e.textContent=text; e.className="msg "+(ok?"ok":"err"); }
+function refresh(){ buildDepth(); rebuildGames(); renderCal(); renderPanel(); renderCoverage(); }
+
+function loadSched(){
+  const rows=parseCSV($("inSched").value); let added=0,bad=0;
+  rows.forEach(r=>{
+    if(/^date$/i.test(r[0])) return;
+    const a=teamCode(r[2]), h=teamCode(r[3]);
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(r[0])||!/^\d{1,2}:\d{2}$/.test(r[1]||"")||!a||!h){bad++;return;}
+    extraGames.push({date:r[0],time:pad(+r[1].split(":")[0])+":"+r[1].split(":")[1],away:a,home:h,type:"reg",note:r[4]||"",venue:""}); added++;
+  });
+  refresh(); msg("msgSched",`Added ${added} games${bad?`, skipped ${bad} rows`:""}.`,added>0||!bad);
+}
+function loadMins(){
+  const rows=parseCSV($("inMins").value); if(!rows.length){msg("msgMins","Paste your sheet first.",false);return;}
+  let pi=0,mi=2,start=0; const hdr=rows[0].map(c=>c.toLowerCase());
+  if(hdr.some(c=>/player|name/.test(c))){
+    start=1; pi=hdr.findIndex(c=>/player|name/.test(c));
+    mi=hdr.findIndex(c=>/^(mpg|min|mins|mp|minutes)\b|min.*game|avg.*min/.test(c)); if(mi<0) mi=hdr.findIndex(c=>/min/.test(c));
+    if(mi<0){msg("msgMins","Could not find a minutes column in the header row.",false);return;}
+  }
+  let n=0; rows.slice(start).forEach(r=>{ const v=parseFloat(r[mi]); if(r[pi]&&!isNaN(v)){ mins[normName(r[pi])]=Math.round(v*10)/10; n++; } });
+  refresh(); msg("msgMins",`Loaded minutes for ${n} players.`,n>0);
+}
+function loadInj(){
+  const rows=parseCSV($("inInj").value); let n=0,bad=0;
+  rows.forEach(r=>{
+    if(/^team$/i.test(r[0])) return;
+    const t=teamCode(r[0]); if(!t||!r[1]||!r[2]){bad++;return;}
+    const k=statusKey(r[2]);
+    importedInj.push({team:t,player:r[1],src:r[5]||"Import",st:k,kind:k==="out"?"O":"G",injury:"",upd:"",note:r[3]||"",until:"",through:/^\d{4}-\d{2}-\d{2}$/.test(r[4]||"")?r[4]:""}); n++;
+  });
+  refresh(); msg("msgInj",`Added ${n} injuries${bad?`, skipped ${bad} rows`:""}.`,n>0||!bad);
+}
+function loadDepth(){
+  const rows=parseCSV($("inDepth").value); const tmp={}; let n=0,bad=0;
+  rows.forEach(r=>{
+    if(/^team$/i.test(r[0])) return;
+    const t=teamCode(r[0]), p=(r[1]||"").toUpperCase(), tr=(r[2]||"").toUpperCase()[0], name=r[3];
+    if(!t||!POS.includes(p)||!"SRL".includes(tr||"?")||!name){bad++;return;}
+    tmp[t]=tmp[t]||Object.fromEntries(POS.map(x=>[x,[]])); tmp[t][p].push({n:name,t:tr}); n++;
+  });
+  Object.entries(tmp).forEach(([t,o])=>{ POS.forEach(p=>o[p].sort((a,b)=>"SRL".indexOf(a.t)-"SRL".indexOf(b.t))); importedDepth[t]=o; });
+  refresh(); msg("msgDepth",`Loaded ${n} players for ${Object.keys(tmp).length} teams${bad?`, skipped ${bad} rows`:""}.`,n>0);
+}
+
+/* ---------- schedule loading ---------- */
+function applyFeed(text,sourceLabel){
+  const r=parseFeed(text);
+  if(r.games.length<200) return false;
+  feedGames=r.games; feedSkipped=r.skipped; refresh();
+  const regular=feedGames.length;
+  $("banner").innerHTML=`<div class="banner ok">Full schedule loaded from ${esc(sourceLabel)}: <b>${regular.toLocaleString()}</b> games.${r.skipped?` ${r.skipped} placeholder games (Cup knockout rounds, teams not set yet) were skipped.`:""}</div>`;
+  const first=[...new Set(games.map(g=>g.date))].sort(); if(!gamesOn(selected).length){ const t=new Date(); const tk=key(t.getFullYear(),t.getMonth()+1,t.getDate()); select(first.find(d=>d>=tk)||first[0]); }
+  return true;
+}
+async function tryFeed(){
+  $("banner").innerHTML=`<div class="banner">Loading the full 2026-27 schedule…</div>`;
+  try{
+    const res=await fetch("https://fixturedownload.com/feed/json/nba-2026",{cache:"no-store"});
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    const txt=await res.text();
+    if(!applyFeed(txt,"fixturedownload.com")) throw new Error("empty");
+  }catch(e){
+    $("banner").innerHTML=`<div class="banner">Only the marquee games are loaded so far (${games.length}). Your browser blocked the automatic download of the full schedule. Get the file from <a href="https://fixturedownload.com/download/csv/nba-2026" target="_blank" rel="noopener">fixturedownload.com</a>, then pick it here:
+      <div class="row"><input type="file" id="fileSched2" accept=".csv,.json"></div></div>`;
+    const f=$("fileSched2"); if(f) f.onchange=readFile;
+  }
+}
+function readFile(ev){
+  const f=ev.target.files[0]; if(!f) return;
+  const rd=new FileReader();
+  rd.onload=()=>{ const ok=applyFeed(String(rd.result),f.name); msg("msgFile",ok?`Loaded ${f.name}.`:"That file did not look like the NBA schedule.",ok); if(!ok) toast("Could not read that schedule file"); };
+  rd.readAsText(f);
+}
+
+/* ---------- coverage ---------- */
+function renderCoverage(){
+  const missing=TEAM_LIST.map(t=>t[0]).filter(c=>!DEPTH_P[c]);
+  const real=games.filter(g=>g.type!=="pre").length;
+  $("coverage").innerHTML=`
+    <div><b>Schedule:</b> ${real.toLocaleString()} regular-season games loaded${feedGames?" (full schedule)":" (marquee games only, full schedule not loaded)"}.</div>
+    <div><b>Projected rotations:</b> ${Object.keys(DEPTH_P).length} of 30 teams. Missing: ${missing.length?missing.join(", "):"none"}. Orlando's limited-minutes list is cut off in the source.</div>
+    <div><b>Last season minutes:</b> ${Object.keys(mins).length?Object.keys(mins).length+" players loaded":"not loaded. Minutes shifts use tier defaults until you paste your sheet."}</div>
+    <div><b>Injuries:</b> ${injuries.length+importedInj.length} source entries${dataMeta?" from the automatic refresh":" from the built-in Oct 6 snapshot (CBS, Covers, RealGM)"}. Game-time decisions only show for about two days after a source posts them.</div>`;
+}
+
+/* ---------- wiring ---------- */
+function select(k){ selected=k; const [y,m]=k.split("-").map(Number); viewY=y; viewM=m; renderCal(); renderPanel(); }
+$("grid").addEventListener("click",e=>{ const b=e.target.closest(".day[data-k]"); if(!b) return; const k=b.dataset.k; if(gamesOn(k).length||EVENTS[k]) select(k); });
+$("prev").onclick=()=>{ viewM--; if(viewM<1){viewM=12;viewY--} renderCal(); };
+$("next").onclick=()=>{ viewM++; if(viewM>12){viewM=1;viewY++} renderCal(); };
+$("onlyInj").onchange=renderPanel;
+$("fileSched").onchange=readFile;
+$("copyBtn").onclick=()=>{ if(!selected) return; copyText(slackText(selected)).then(()=>toast("Copied. Paste it into Slack.")).catch(()=>toast("Copy failed. Select the report text instead.")); };
+document.querySelectorAll("[data-load]").forEach(b=>b.onclick=()=>({sched:loadSched,mins:loadMins,inj:loadInj,depth:loadDepth})[b.dataset.load]());
+document.querySelectorAll("[data-clear]").forEach(b=>b.onclick=()=>{
+  const w=b.dataset.clear;
+  if(w==="sched"){ extraGames=[]; $("inSched").value=""; msg("msgSched","Added games removed.",true); }
+  if(w==="mins"){ mins={}; $("inMins").value=""; msg("msgMins","Minutes cleared.",true); }
+  if(w==="inj"){ importedInj=[]; $("inInj").value=""; msg("msgInj","Added injuries removed.",true); }
+  if(w==="depth"){ importedDepth={}; $("inDepth").value=""; msg("msgDepth","Added charts removed.",true); }
+  refresh();
+});
+
+/* ---------- data.json (written by pipeline/update_data.py) ---------- */
+let dataMeta=null;
+async function loadData(){
+  try{
+    const res=await fetch("data.json",{cache:"no-store"}); if(!res.ok) return false;
+    const d=await res.json();
+    if(Array.isArray(d.injuries)&&d.injuries.length){
+      injuries=d.injuries.map(r=>({team:r.team,player:r.player,src:r.src,kind:r.kind||"G",injury:r.injury||"",upd:r.upd||"",until:r.until||"",note:r.note||"",through:r.through||"",st:r.st||undefined,url:r.url||"",stale:!!r.stale}));
+    }
+    if(d.depth) Object.entries(d.depth).forEach(([t,o])=>DEPTH_RAW[t]=o);
+    if(d.minutes) Object.entries(d.minutes).forEach(([n,v])=>{ mins[normName(n)]=v; });
+    if(Array.isArray(d.schedule)&&d.schedule.length>1000) feedGames=d.schedule.map(g=>({date:g.date,time:g.time,away:g.away,home:g.home,type:"reg",note:"",venue:g.venue||""}));
+    dataMeta={generated:d.generated_at,sources:d.sources||{}};
+    return true;
+  }catch(e){ return false; }
+}
+function freshHTML(){
+  if(!dataMeta) return `<div class="fresh">Using the built-in snapshot from Oct 6. The automatic refresh (data.json) was not found.</div>`;
+  const ago=Math.max(0,Math.round((Date.now()-Date.parse(dataMeta.generated))/60000));
+  const when=ago<90?`${ago} min ago`:ago<2880?`${Math.round(ago/60)} hours ago`:`${Math.round(ago/1440)} days ago`;
+  const names={schedule:"Schedule",realgm_depth:"Depth charts",minutes:"Minutes sheet",cbs:"CBS",covers:"Covers",espn:"ESPN",x:"Beat writers"};
+  const parts=Object.entries(dataMeta.sources).map(([k,v])=>v.ok===true?`${names[k]||k} ✓`:v.ok===false?`<span class="bad">${names[k]||k} failed</span>`:`${names[k]||k} off`);
+  return `<div class="fresh">Data refreshed <b>${when}</b> · ${parts.join(" · ")}</div>`;
+}
+
+/* ---------- init ---------- */
+(async function init(){
+  const gotData=await loadData();
+  buildDepth(); rebuildGames();
+  const t=new Date(), today=key(t.getFullYear(),t.getMonth()+1,t.getDate());
+  const dates=[...new Set(games.map(g=>g.date))].sort();
+  selected=dates.find(d=>d>=today)||dates[0];
+  const [y,m]=selected.split("-").map(Number); viewY=y; viewM=m;
+  renderCal(); renderPanel(); renderCoverage();
+  $("banner").innerHTML=freshHTML();
+  if(!feedGames){ tryFeed(); }
+  else $("banner").innerHTML=freshHTML()+`<div class="fresh">Full schedule: <b>${feedGames.length.toLocaleString()}</b> games.</div>`;
+})();
+</script>
+</body>
+</html>
