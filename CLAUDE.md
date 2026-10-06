@@ -22,14 +22,23 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 - Schedule feed format: verified from a real response.
 - CBS, Covers, ESPN parsers: run against live pages on Oct 6 2026 and fixed (Covers used <b> + abbreviated names).
   Tests use the real Covers layout. Questionable/Doubtful/Probable now map to the page's status keys.
-- RealGM depth charts: returned 403 to our default request. Not yet known whether GitHub Actions gets through.
+- RealGM depth charts: 403 from both here and GitHub Actions; removed. Replaced (Oct 6 2026, user's choice) by
+  ESPN depth chart JSON (site.api.espn.com .../teams/{1-30}/depthcharts). ESPN lists players under several
+  positions; each bench player is kept at his best-ranked position and the top 5 bench players count as rotation.
+- RotoWire (rotowire.com/basketball/nba-lineups.php, robots.txt allows it): expected/confirmed starters for today
+  go in data.json "lineups" and replace depth-chart starters on the page; "may not play" entries become RotoWire
+  injury records valid for that day only.
 - .github/workflows/update-data.yml: added Oct 6 2026 (was missing from the upload).
 - X beat writers: needs X API access, ANTHROPIC_API_KEY, and handles in pipeline/beat_writers.json (left empty on
   purpose; do not guess handles).
 - Depth charts: embedded set covers only 22 of 30 teams (RealGM page was truncated in the chat). The pipeline run
   should fill all 30. HoopsHype blocks automated access.
-- Minutes shifts are a heuristic: vacated minutes = last-season MPG (or 30/18/6 by tier) split 40/20 to the next two
-  at the same position and 20/20 to bench players at adjacent positions; doubtful counts 80%, questionable 50%.
+- Minutes shifts are a heuristic (changed Oct 6 2026 at the user's request): all vacated minutes (last-season MPG, or
+  30/18/6 by tier) go to ONE player, the next healthy player below at the same position (else top bench player at an
+  adjacent position). Shown as "Minutes up: Name +N" under each injured player; "Next up" lines were removed.
+- Page shows today only (ET); if no games today, the next game day. Calendar removed. Injured player names link to
+  the source page with a #:~:text= fragment that jumps to the name.
+- Workflow also runs every 15 min, 11 AM-1 AM ET, with --pregame 45: refreshes only if a game tips within 45 min.
 
 ## Next steps, in order
 1. Run pytest, then the pipeline against the live sites. Fix each parser against the real response and update tests.

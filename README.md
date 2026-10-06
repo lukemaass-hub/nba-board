@@ -18,7 +18,8 @@
 | CBS | nothing | checked live Oct 6 2026: 81 players, 27 teams |
 | Covers | nothing | checked live Oct 6 2026: 21 players; parser fixed for the real page |
 | ESPN | nothing | checked live Oct 6 2026: 89 players, 27 teams |
-| RealGM depth charts | nothing | RealGM refused the request (403) from our test machine; may or may not work from GitHub. Until it works, the board keeps the 22 teams already in data.json |
+| ESPN depth charts | nothing | checked live Oct 6 2026: all 30 teams. Replaces RealGM, which blocks automated requests |
+| RotoWire lineups | nothing | checked live Oct 6 2026: expected/confirmed starters for today's games, plus its "may not play" list |
 | Minutes sheet | published CSV link | untested until you add the link |
 | Beat writers on X | X API access, Anthropic key, handle list | untested until you add keys and handles |
 

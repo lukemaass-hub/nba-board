@@ -6,7 +6,8 @@ Sources (each one is optional; a failure keeps that source's last good data, mar
   cbs        cbssports.com/nba/injuries
   covers     covers.com NBA injuries
   espn       ESPN public JSON injuries endpoint
-  realgm     RealGM depth charts (projected starters / rotation)
+  espn_depth ESPN depth charts, all 30 teams (rotation and minutes-up order)
+  rotowire   RotoWire expected / confirmed starting lineups for today, plus its "may not play" list
   minutes    your Google Sheet, published to the web as CSV (MINUTES_CSV_URL)
   x          team beat writers on X (X_BEARER_TOKEN + ANTHROPIC_API_KEY + beat_writers.json)
 
@@ -43,7 +44,8 @@ for code, names in TEAMS.items():
     ALIAS[code.lower()] = code
     for n in names:
         ALIAS[re.sub(r"[.']", "", n.lower())] = code
-ALIAS.update({"la lakers": "LAL", "la clippers": "LAC", "los angeles lakers": "LAL", "los angeles clippers": "LAC"})
+ALIAS.update({"la lakers": "LAL", "la clippers": "LAC", "los angeles lakers": "LAL", "los angeles clippers": "LAC",
+              "gs": "GSW", "ny": "NYK", "sa": "SAS", "no": "NOP", "pho": "PHX", "utah": "UTA", "wsh": "WAS"})
 
 
 def team_code(s):
@@ -123,6 +125,16 @@ def rec(team, player, src, kind, injury="", upd="", until="", note="", through="
     return r
 
 
+CBS_URL = "https://www.cbssports.com/nba/injuries/"
+COVERS_URL = "https://www.covers.com/sport/basketball/nba/injuries"
+ESPN_URL = "https://www.espn.com/nba/injuries"
+
+
+def find_link(page, text):
+    """Link to the source page that jumps to (and highlights) the player's name, in browsers that support it."""
+    return page + "#:~:text=" + requests.utils.quote(text, safe="")
+
+
 def snapshot_through(days=2):
     """Game-time decisions are only trusted for a short window; the job refreshes them daily."""
     return (today_et() + dt.timedelta(days=days)).isoformat()
@@ -199,7 +211,8 @@ def parse_cbs(html):
             until = parse_until(status)
             note = status if kind == "O" else ""
             out.append(rec(team, player, "CBS", kind, injury, upd, until, note,
-                           through=snapshot_through() if kind == "G" else "", st=status_code(status)))
+                           through=snapshot_through() if kind == "G" else "", st=status_code(status),
+                           url=find_link(CBS_URL, player)))
     return out
 
 
@@ -235,7 +248,8 @@ def parse_covers(html):
             kind = classify_status(status)
             until = parse_duration_until(note, upd) if kind == "O" else ""
             out.append(rec(team, player, "Covers", kind, injury, upd, until, note,
-                           through=snapshot_through() if kind == "G" else "", st=status_code(status)))
+                           through=snapshot_through() if kind == "G" else "", st=status_code(status),
+                           url=find_link(COVERS_URL, clean(pa.get_text(" ", strip=True)))))
     return out
 
 
@@ -258,7 +272,7 @@ def parse_espn(j):
             ret = (d.get("returnDate") or "")[:10]
             out.append(rec(team, player, "ESPN", kind, injury, (i.get("date") or "")[:10], ret if kind == "O" else "",
                            i.get("shortComment", ""), through=snapshot_through() if kind == "G" else "",
-                           st=status_code(i.get("status", ""))))
+                           st=status_code(i.get("status", "")), url=find_link(ESPN_URL, player)))
     return out
 
 
@@ -274,51 +288,110 @@ def fetch_espn():
     return parse_espn(get("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries").json())
 
 
-# ---------------------------------------------------------------- depth charts
-TIER = {"starters": "S", "rotation": "R", "lim pt": "L"}
+# ---------------------------------------------------------------- depth charts (ESPN)
+ESPN_POS = ["pg", "sg", "sf", "pf", "c"]
+ROTATION_SIZE = 5          # bench players marked "rotation"; the rest are "limited minutes"
 
 
-def player_display(a):
-    text = a.get_text(" ", strip=True)
-    if re.match(r"^[A-Z]\.(\s?[A-Z]\.)?\s", text):                      # 'N. Alexander-Walker'
-        m = re.search(r"/player/([^/]+)/", a.get("href", ""))
-        if m:
-            return m.group(1).replace("-", " ")
-    return text
-
-
-def parse_realgm_depth(html):
-    soup = BeautifulSoup(html, "html.parser")
+def parse_espn_depth(j):
+    """One ESPN team depth chart -> (team, {"PG": "starter/rotation,rotation/limited,limited", ...}).
+    ESPN lists the same player under several positions. Each bench player is kept at the position where he
+    ranks highest; the 5 highest-ranked bench players overall count as the rotation."""
+    team = team_code((j.get("team") or {}).get("displayName"))
+    charts = j.get("depthchart") or []
+    if not team or not charts:
+        return None, None
+    pos = charts[0].get("positions") or {}
+    cols = {p.upper(): [clean(a.get("displayName")) for a in (pos.get(p) or {}).get("athletes", []) if a.get("displayName")]
+            for p in ESPN_POS}
+    starters, used = {}, set()
+    for p, names in cols.items():
+        st = next((n for n in names if norm_name(n) not in used), "")
+        starters[p] = st
+        used.add(norm_name(st))
+    best = {}
+    for pi, (p, names) in enumerate(cols.items()):
+        for i, n in enumerate(names):
+            k = norm_name(n)
+            if k not in used and (k not in best or (i, pi) < best[k][:2]):
+                best[k] = (i, pi, p, n)
+    bench = sorted(best.values())
+    rotation = {x[3] for x in bench[:ROTATION_SIZE]}
     out = {}
-    for h in soup.find_all(["h2", "h3"]):
-        m = re.match(r"\d{4}-\d{4}\s+(.*?)\s+Depth Chart", h.get_text(" ", strip=True))
-        if not m:
+    for p in cols:
+        mine = [x[3] for x in bench if x[2] == p]
+        out[p] = "{}/{}/{}".format(starters[p], ",".join(n for n in mine if n in rotation),
+                                   ",".join(n for n in mine if n not in rotation))
+    return team, out
+
+
+def fetch_espn_depth():
+    out = {}
+    for tid in range(1, 31):
+        try:
+            team, chart = parse_espn_depth(get(f"https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/{tid}/depthcharts").json())
+        except Exception as e:
+            print(f"[espn_depth] team {tid}: {e}", file=sys.stderr)
             continue
-        team = team_code(m.group(1))
-        table = h.find_next("table")
-        if not team or not table:
-            continue
-        rows = table.find_all("tr")
-        header = [c.get_text(strip=True).upper() for c in rows[0].find_all(["th", "td"])][1:]
-        cols = {p: {"S": [], "R": [], "L": []} for p in header}
-        for tr in rows[1:]:
-            cells = tr.find_all(["th", "td"])
-            tier = TIER.get(cells[0].get_text(" ", strip=True).lower())
-            if not tier:
-                continue
-            for p, td in zip(header, cells[1:]):
-                a = td.find("a")
-                if a:
-                    cols[p][tier].append(player_display(a))
-        out[team] = {p: "{}/{}/{}".format(",".join(v["S"][:1]), ",".join(v["R"]), ",".join(v["L"])) for p, v in cols.items()}
+        if team:
+            out[team] = chart
+        time.sleep(0.3)
+    if len(out) < 25:
+        raise RuntimeError(f"only {len(out)} depth charts parsed")
     return out
 
 
-def fetch_realgm():
-    d = parse_realgm_depth(get("https://basketball.realgm.com/nba/depth-charts").text)
-    if len(d) < 25:
-        raise RuntimeError(f"only {len(d)} depth charts parsed")
-    return d
+# ---------------------------------------------------------------- lineups (RotoWire)
+ROTO_URL = "https://www.rotowire.com/basketball/nba-lineups.php"
+ROTO_STATUS = {"out": "out", "ofs": "out", "susp": "out", "doubt": "doubt", "ques": "q", "gtd": "q", "prob": "prob"}
+
+
+def parse_rotowire(html):
+    """-> (lineups {team: {date, vs, confirmed, starters: [{pos, name}]}}, injury records)."""
+    soup = BeautifulSoup(html, "html.parser")
+    m = re.search(r"lineups for ([A-Za-z]+) (\d{1,2}), (\d{4})", soup.get_text(" ", strip=True))
+    date = dt.date(int(m.group(3)), MONTHS[m.group(1)[:3].lower()], int(m.group(2))).isoformat() if m else today_et().isoformat()
+    lineups, injuries = {}, []
+    for g in soup.select(".lineup.is-nba"):
+        teams = [team_code(x.get_text(strip=True)) for x in g.select(".lineup__abbr")]
+        if len(teams) != 2 or not all(teams):
+            continue
+        tm = g.select_one(".lineup__time")
+        mt = re.match(r"(\d{1,2}):(\d{2})\s*([AP]M)", clean(tm.get_text()) if tm else "")
+        tip = f"{int(mt.group(1)) % 12 + (12 if mt.group(3) == 'PM' else 0):02d}:{mt.group(2)}" if mt else ""
+        for side, team, opp in (("is-visit", teams[0], teams[1]), ("is-home", teams[1], teams[0])):
+            home = side == "is-home"
+            ul = g.select_one(f"ul.lineup__list.{side}")
+            if not ul:
+                continue
+            head = ul.select_one(".lineup__status")
+            confirmed = bool(head and "is-confirmed" in head.get("class", []))
+            starters, bench = [], False
+            for li in ul.find_all("li", recursive=False):
+                cls = li.get("class", [])
+                if "lineup__title" in cls:
+                    bench = True
+                    continue
+                a = li.find("a")
+                if "lineup__player" not in cls or not a:
+                    continue
+                name = clean(a.get("title") or a.get_text())
+                p = li.select_one(".lineup__pos")
+                if not bench:
+                    starters.append({"pos": clean(p.get_text()) if p else "", "name": name})
+                tag = li.select_one(".lineup__inj")
+                st = ROTO_STATUS.get(clean(tag.get_text()).lower()) if tag else None
+                if st:
+                    injuries.append(rec(team, name, "RotoWire", "O" if st == "out" else "G", upd=date, through=date,
+                                        st=st, url=find_link(ROTO_URL, clean(a.get_text()))))
+            if starters:
+                lineups[team] = {"date": date, "time": tip, "vs": opp, "home": home, "confirmed": confirmed,
+                                 "starters": starters}
+    return lineups, injuries
+
+
+def fetch_rotowire():
+    return parse_rotowire(get(ROTO_URL).text)
 
 
 # ---------------------------------------------------------------- minutes sheet
@@ -432,9 +505,33 @@ class SkipSource(Exception):
     pass
 
 
+def all_games(data):
+    """Schedule games plus any RotoWire game not in it (preseason games are only on RotoWire)."""
+    games = list(data.get("schedule", []))
+    have = {(g["date"], g["home"]) for g in games}
+    for team, l in (data.get("lineups") or {}).items():
+        if l.get("home") and l.get("time") and (l["date"], team) not in have:
+            games.append({"date": l["date"], "time": l["time"], "away": l["vs"], "home": team, "venue": ""})
+    return sorted(games, key=lambda g: (g["date"], g["time"]))
+
+
+def game_starting_soon(schedule, now, minutes):
+    """True if any game tips off between now and `minutes` from now (times are ET)."""
+    for g in schedule:
+        try:
+            tip = dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=ET)
+        except (KeyError, ValueError):
+            continue
+        if now <= tip <= now + dt.timedelta(minutes=minutes):
+            return True
+    return False
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="data.json")
+    ap.add_argument("--pregame", type=int, metavar="MINUTES",
+                    help="only refresh if a game tips off within this many minutes; otherwise exit without changes")
     ap.add_argument("--beat-config", default=os.path.join(os.path.dirname(__file__), "beat_writers.json"))
     args = ap.parse_args()
 
@@ -444,8 +541,12 @@ def main():
             prev = json.load(open(args.out))
         except Exception:
             pass
+    if args.pregame and not game_starting_soon(all_games(prev), dt.datetime.now(ET), args.pregame):
+        print(f"No game starts in the next {args.pregame} minutes; nothing to do.")
+        return
     status, injuries = {}, []
-    data = {"schedule": prev.get("schedule", []), "depth": prev.get("depth", {}), "minutes": prev.get("minutes", {})}
+    data = {"schedule": prev.get("schedule", []), "depth": prev.get("depth", {}), "minutes": prev.get("minutes", {}),
+            "lineups": prev.get("lineups", {})}
 
     def run(name, fn):
         try:
@@ -463,10 +564,15 @@ def main():
     if sch:
         data["schedule"] = sch[0]
         status["schedule"]["count"] = sch[1]["count"]
-    dep = run("realgm_depth", fetch_realgm)
+    dep = run("espn_depth", fetch_espn_depth)
     if dep:
-        data["depth"] = dep
-        status["realgm_depth"]["teams"] = len(dep)
+        data["depth"].update(dep)
+        status["espn_depth"]["teams"] = len(dep)
+    roto = run("rotowire", fetch_rotowire)
+    roto_inj = None
+    if roto:
+        data["lineups"], roto_inj = roto
+        status["rotowire"]["teams"] = len(roto[0])
     mins = run("minutes", fetch_minutes)
     if mins:
         data["minutes"] = mins
@@ -484,6 +590,10 @@ def main():
                 r["stale"] = True
             injuries += old
             status[name]["kept_stale"] = len(old)
+
+    if roto:                      # RotoWire's "may not play" list only covers today, so it is never kept stale
+        injuries += roto_inj
+        status["rotowire"]["injuries"] = len(roto_inj)
 
     canon = {}
     for r in injuries:
