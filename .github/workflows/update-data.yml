@@ -6,10 +6,10 @@ on:
     - cron: "0 11 * * *"
     - cron: "0 17 * * *"
     - cron: "30 21 * * *"
-    # Every 15 minutes from 11 AM to 1 AM Eastern: refreshes only when a game tips off within
-    # 45 minutes, then emails the report for games starting within 40 minutes (once per game).
-    # GitHub can start these a few minutes late.
-    - cron: "*/15 15-23,0-5 * * *"
+    # Every 10 minutes from 11 AM to 1 AM Eastern: refreshes only when a game tips off within
+    # 45 minutes, then emails the report for games starting within 25 minutes (once per game),
+    # so the email lands about 20 minutes before tip. GitHub can start these a few minutes late.
+    - cron: "*/10 15-23,0-5 * * *"
   workflow_dispatch: {}
   push:
     branches: [main]
@@ -46,7 +46,7 @@ jobs:
           MINUTES_CSV_URL: ${{ secrets.MINUTES_CSV_URL }}
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          PREGAME: ${{ github.event.schedule == '*/15 15-23,0-5 * * *' && '45' || '' }}
+          PREGAME: ${{ github.event.schedule == '*/10 15-23,0-5 * * *' && '45' || '' }}
         run: python pipeline/update_data.py --out data.json ${PREGAME:+--pregame "$PREGAME"}
 
       - name: Email the report for games tipping off soon
@@ -54,7 +54,7 @@ jobs:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
-        run: python pipeline/email_report.py --data data.json --window 40
+        run: python pipeline/email_report.py --data data.json --window 25
 
       - name: Save data.json
         run: |
