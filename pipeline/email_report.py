@@ -7,7 +7,7 @@ Run right after update_data.py. Picks every game starting within --window minute
 Needs (GitHub secrets): SMTP_USER, SMTP_PASSWORD, EMAIL_TO. Optional: SMTP_HOST (default smtp.gmail.com), SMTP_PORT (465).
 Without them, --out writes the email to files instead of sending.
 
-Usage:  python pipeline/email_report.py --data data.json --window 40
+Usage:  python pipeline/email_report.py --data data.json --window 25
 """
 import argparse, datetime as dt, html, json, os, smtplib, sys
 from email.message import EmailMessage
@@ -202,7 +202,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default="data.json")
     ap.add_argument("--log", default="email_log.json")
-    ap.add_argument("--window", type=int, default=40, help="email games tipping off within this many minutes")
+    ap.add_argument("--window", type=int, default=25, help="email games tipping off within this many minutes")
     ap.add_argument("--out", help="write subject/html/text to files with this prefix instead of sending")
     args = ap.parse_args()
 

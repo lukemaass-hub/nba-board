@@ -38,7 +38,8 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   adjacent position). Shown as "Minutes up: Name +N" under each injured player; "Next up" lines were removed.
 - Page shows today only (ET); if no games today, the next game day. Calendar removed. Injured player names link to
   the source page with a #:~:text= fragment that jumps to the name.
-- Workflow also runs every 15 min, 11 AM-1 AM ET, with --pregame 45: refreshes only if a game tips within 45 min.
+- Workflow also runs every 10 min, 11 AM-1 AM ET, with --pregame 45: refreshes only if a game tips within 45 min,
+  then pipeline/email_report.py --window 25 emails each game once (email_log.json), about 20 min before tip.
 
 ## Next steps, in order
 1. Run pytest, then the pipeline against the live sites. Fix each parser against the real response and update tests.
