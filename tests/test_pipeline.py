@@ -12,20 +12,29 @@ CBS = """
 <tr><td><span class="CellPlayerName--long"><a>Bradley Beal</a></span></td><td>SG</td><td>Sun, Oct 4</td><td>Knee</td><td>Game Time Decision</td></tr>
 </tbody></table></div>"""
 
+# Real Covers layout (Oct 6 2026): <b> status, padded abbreviated names, note in a collapsed row.
 COVERS = """
-<a href="https://www.covers.com/sport/basketball/nba/teams/main/atlanta-hawks">Atlanta Hawks</a>
-<table><tr><td><a href="/sport/basketball/nba/players/403756/henri-veesaar">H. Veesaar</a></td><td>C</td>
-<td><strong>Out For Season - ACL</strong> ( Sun, Sep 20)</td></tr>
-<tr><td colspan="3">Veesaar was diagnosed with a torn right ACL and is expected to miss the season.</td></tr>
-<tr><td><a href="/sport/basketball/nba/players/239513/mouhamed-gueye">M. Gueye</a></td><td>PF</td>
-<td><strong>Out - Foot</strong> ( Tue, Jul 14)</td></tr>
-<tr><td colspan="3">Gueye is to be re-evaluated in 3 months.</td></tr></table>"""
+<div class="covers-CoversMatchups-teamName"><a class="covers-CoversMatchups-imgLink" href="/sport/basketball/nba/teams/main/atlanta-hawks">Atlanta<br/><span>Hawks</span></a></div>
+<table class="table table-sm covers-CoversMatchups-Table"><thead><tr><th>Player</th><th>POS</th><th>Status</th><th></th></tr></thead><tbody>
+<tr><td><a class="player-link" href="/sport/basketball/nba/players/403756/henri-veesaar">H.                                        Veesaar</a></td><td>C</td>
+<td><b>Out For Season - ACL</b><br/>(
+Sun, Sep 20)</td><td><a href="#injuryCollapseAATL0"></a></td></tr>
+<tr class="collapse" id="injuryCollapseAATL0"><td colspan="4"><div>Veesaar was diagnosed with a torn right ACL and is expected to miss the 2026-27 season.</div></td></tr>
+<tr><td><a class="player-link" href="/sport/basketball/nba/players/239513/mouhamed-gueye">M.                                        Gueye</a></td><td>PF</td>
+<td><b>Out - Foot</b><br/>(
+Tue, Jul 14)</td><td><a href="#injuryCollapseAATL1"></a></td></tr>
+<tr class="collapse" id="injuryCollapseAATL1"><td colspan="4"><div>Gueye underwent surgery on fractured foot and is to be re-evaluated in 3-4 months.</div></td></tr>
+<tr><td><a class="player-link" href="/sport/basketball/nba/players/1/trae-young">T. Young</a></td><td>PG</td>
+<td><b>Questionable - Ankle</b><br/>( Mon, Oct 5)</td><td></td></tr>
+</tbody></table>"""
 
 ESPN = {"injuries": [{"displayName": "Boston Celtics", "injuries": [
     {"status": "Out", "date": "2026-10-04T12:00Z", "athlete": {"displayName": "Jayson Tatum"},
      "details": {"type": "Achilles", "returnDate": "2026-12-01"}, "shortComment": "Rehab continues."},
     {"status": "Day-To-Day", "date": "2026-10-05T12:00Z", "athlete": {"displayName": "Derrick White"},
-     "details": {"type": "Ankle", "side": "Left"}}]}]}
+     "details": {"type": "Ankle", "side": "Left"}},
+    {"status": "Day-To-Day", "date": "2026-10-06T00:29Z", "athlete": {"displayName": "Aaron Wiggins"},
+     "details": {"type": "Not Specified", "detail": "Laceration", "location": "Lips"}}]}]}
 
 DEPTH = """
 <h2>2026-2027 Atlanta Hawks Depth Chart</h2>
@@ -53,15 +62,23 @@ def test_cbs():
 
 def test_covers():
     r = u.parse_covers(COVERS)
-    assert [(x["team"], x["player"], x["kind"]) for x in r] == [("ATL", "H. Veesaar", "O"), ("ATL", "M. Gueye", "O")]
-    assert r[0]["upd"] == "2026-09-20" and r[0]["until"] == ""
+    assert [(x["team"], x["player"], x["kind"], x.get("st")) for x in r] == [
+        ("ATL", "Henri Veesaar", "O", None), ("ATL", "Mouhamed Gueye", "O", None), ("ATL", "Trae Young", "G", "q")]
+    assert r[0]["upd"] == "2026-09-20" and r[0]["until"] == "" and r[0]["injury"] == "ACL"
     assert r[1]["upd"] == "2026-07-14" and r[1]["until"] == "2026-10-12"
+    assert r[2]["through"] and r[2]["injury"] == "Ankle"
+
+
+def test_status_words():
+    assert [u.classify_status(t) for t in ["Out", "Out For Season", "Day-To-Day", "Game Time Decision", "Doubtful"]] == ["O", "O", "G", "G", "G"]
+    assert [u.status_code(t) for t in ["Doubtful", "Questionable", "Probable", "Game Time Decision", "Day-To-Day"]] == ["doubt", "q", "prob", None, None]
 
 
 def test_espn():
     r = u.parse_espn(ESPN)
     assert r[0]["kind"] == "O" and r[0]["until"] == "2026-12-01" and r[0]["injury"] == "Achilles"
     assert r[1]["kind"] == "G" and r[1]["injury"] == "Left Ankle"
+    assert r[2]["injury"] == "Laceration"
 
 
 def test_depth():

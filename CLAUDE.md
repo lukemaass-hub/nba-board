@@ -20,8 +20,10 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 
 ## Known status (be honest about this)
 - Schedule feed format: verified from a real response.
-- CBS, Covers, RealGM parsers: written from page structure seen as markdown; never run against live HTML.
-- ESPN: public JSON endpoint (site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries); shape assumed.
+- CBS, Covers, ESPN parsers: run against live pages on Oct 6 2026 and fixed (Covers used <b> + abbreviated names).
+  Tests use the real Covers layout. Questionable/Doubtful/Probable now map to the page's status keys.
+- RealGM depth charts: returned 403 to our default request. Not yet known whether GitHub Actions gets through.
+- .github/workflows/update-data.yml: added Oct 6 2026 (was missing from the upload).
 - X beat writers: needs X API access, ANTHROPIC_API_KEY, and handles in pipeline/beat_writers.json (left empty on
   purpose; do not guess handles).
 - Depth charts: embedded set covers only 22 of 30 teams (RealGM page was truncated in the chat). The pipeline run

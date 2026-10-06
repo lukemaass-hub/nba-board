@@ -105,7 +105,7 @@ def parse_duration_until(note, updated_iso):
     """'out at least 4 weeks', 're-evaluated in two weeks', 'about six months' -> an ISO date, else ''."""
     if not updated_iso or re.search(r"season", note or "", re.I):
         return ""
-    m = re.search(r"(\d+|one|two|three|four|five|six)\s+(week|month)s?", note or "", re.I)
+    m = re.search(r"(\d+|one|two|three|four|five|six)(?:\s*-\s*\d+)?\s+(week|month)s?", note or "", re.I)
     if not m:
         return ""
     n = int(m.group(1)) if m.group(1).isdigit() else WORDNUM[m.group(1).lower()]
@@ -157,9 +157,23 @@ def fetch_schedule():
 # ---------------------------------------------------------------- injuries
 def classify_status(text):
     t = (text or "").lower()
-    if "out" in t:
+    if re.search(r"\bout\b|\bofs\b|suspend", t):
         return "O"
     return "G"
+
+
+def status_code(text):
+    """Explicit Doubtful / Questionable / Probable -> the page's status key. Game-time decision and
+    day-to-day return None, so the page shows them as 'Game-time decision'."""
+    t = (text or "").lower()
+    for word, st in (("doubtful", "doubt"), ("questionable", "q"), ("probable", "prob")):
+        if word in t:
+            return st
+    return None
+
+
+def clean(s):
+    return re.sub(r"\s+", " ", s or "").strip()
 
 
 def parse_cbs(html):
@@ -185,8 +199,17 @@ def parse_cbs(html):
             until = parse_until(status)
             note = status if kind == "O" else ""
             out.append(rec(team, player, "CBS", kind, injury, upd, until, note,
-                           through=snapshot_through() if kind == "G" else ""))
+                           through=snapshot_through() if kind == "G" else "", st=status_code(status)))
     return out
+
+
+def covers_player(a):
+    """Covers shows 'H. Veesaar'; the link ends in '/henri-veesaar', which gives the full name."""
+    text = clean(a.get_text(" ", strip=True))
+    m = re.search(r"/players/\d+/([a-z0-9-]+)", a.get("href", ""))
+    if re.match(r"^[A-Z]\.\s", text) and m:
+        return " ".join(w.capitalize() for w in m.group(1).split("-"))
+    return text
 
 
 def parse_covers(html):
@@ -201,18 +224,18 @@ def parse_covers(html):
             pa = tr.find("a", href=re.compile(r"/nba/players/"))
             if not pa:
                 continue
-            player = pa.get_text(" ", strip=True)
-            strong = tr.find("strong")
-            status = strong.get_text(" ", strip=True) if strong else ""
+            player = covers_player(pa)
+            strong = tr.find(["b", "strong"])
+            status = clean(strong.get_text(" ", strip=True)) if strong else ""
             injury = status.split("-", 1)[1].strip() if "-" in status else ""
             md = re.search(r"\(\s*([A-Za-z]{3}),?\s+([A-Za-z]{3}) (\d{1,2})\s*\)", tr.get_text(" ", strip=True))
             upd = past_date(md.group(2), md.group(3)) if md else ""
             nxt = tr.find_next_sibling("tr")
-            note = nxt.get_text(" ", strip=True) if nxt and not nxt.find("a", href=re.compile(r"/nba/players/")) else ""
+            note = clean(nxt.get_text(" ", strip=True)) if nxt and not nxt.find("a", href=re.compile(r"/nba/players/")) else ""
             kind = classify_status(status)
             until = parse_duration_until(note, upd) if kind == "O" else ""
             out.append(rec(team, player, "Covers", kind, injury, upd, until, note,
-                           through=snapshot_through() if kind == "G" else ""))
+                           through=snapshot_through() if kind == "G" else "", st=status_code(status)))
     return out
 
 
@@ -228,11 +251,14 @@ def parse_espn(j):
             if not player:
                 continue
             d = i.get("details") or {}
-            injury = " ".join(x for x in [d.get("side"), d.get("type") or (i.get("type") or {}).get("description"), d.get("detail")] if x)
-            kind = classify_status(i.get("status", ""))
+            injury = " ".join(x for x in [d.get("side"), d.get("type") or (i.get("type") or {}).get("description"), d.get("detail")]
+                              if x and x.lower() != "not specified")
+            fantasy = (d.get("fantasyStatus") or {}).get("abbreviation", "")
+            kind = classify_status(i.get("status", "") + " " + fantasy)
             ret = (d.get("returnDate") or "")[:10]
             out.append(rec(team, player, "ESPN", kind, injury, (i.get("date") or "")[:10], ret if kind == "O" else "",
-                           i.get("shortComment", ""), through=snapshot_through() if kind == "G" else ""))
+                           i.get("shortComment", ""), through=snapshot_through() if kind == "G" else "",
+                           st=status_code(i.get("status", ""))))
     return out
 
 
@@ -458,6 +484,13 @@ def main():
                 r["stale"] = True
             injuries += old
             status[name]["kept_stale"] = len(old)
+
+    canon = {}
+    for r in injuries:
+        if r["src"] in ("CBS", "ESPN"):
+            canon.setdefault((r["team"], norm_name(r["player"])), r["player"])
+    for r in injuries:
+        r["player"] = canon.get((r["team"], norm_name(r["player"])), r["player"])
 
     data.update({"generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
                  "sources": status, "injuries": injuries})
