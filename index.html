@@ -627,7 +627,7 @@ function renderCal(){
 
 /* ---------- report ---------- */
 /* Injury source pages. The #:~:text= part makes the browser jump to the player's name on the page. */
-const SRC_URL={CBS:"https://www.cbssports.com/nba/injuries/",Covers:"https://www.covers.com/sport/basketball/nba/injuries",ESPN:"https://www.espn.com/nba/injuries"};
+const SRC_URL={RotoWire:"https://www.rotowire.com/basketball/nba-lineups.php",CBS:"https://www.cbssports.com/nba/injuries/",Covers:"https://www.covers.com/sport/basketball/nba/injuries",ESPN:"https://www.espn.com/nba/injuries"};
 function lineURL(l,player){
   if(l.url) return l.url;
   const u=SRC_URL[l.src]; return u?u+"#:~:text="+encodeURIComponent(player):"";
@@ -668,7 +668,15 @@ function rotationHTML(code,date){
 }
 function tagFor(k){ return k?`<span class="tg ${k}">${k==="out"?"OUT":k==="doubt"?"DTD":k==="q"?"GTD":"PROB"}</span>`:""; }
 function mpHTML(name){ const m=mins[normName(name)]; return m!=null?`<span class="mp" title="Last season minutes per game">${m}</span>`:""; }
-function startersHTML(code,imp){
+/* RotoWire's expected or confirmed starting five for this team on this date, if the refresh found one */
+function lineupFor(code,date){ const l=LINEUPS[code]; return l&&l.date===date&&l.starters&&l.starters.length?l:null; }
+function startersHTML(code,imp,date){
+  const lu=lineupFor(code,date);
+  if(lu){
+    const st={}; imp.items.forEach(i=>st[normName(i.rec.player)]=i.rec.k);
+    const rows=lu.starters.map(s=>`<li class="sl"><span class="pos">${esc(s.pos)}</span><span class="nm">${esc(s.name)}${mpHTML(s.name)}</span><span class="tags">${tagFor(st[normName(s.name)])}</span></li>`).join("");
+    return `<div class="sech">${lu.confirmed?"Confirmed starters":"Expected starters"}<small><a href="${SRC_URL.RotoWire}" target="_blank" rel="noopener">RotoWire</a>${lu.confirmed?"":", not yet confirmed"}</small></div><ul class="starters">${rows}</ul>`;
+  }
   const ch=DEPTH_P[code]; if(!ch) return `<div class="nodepth">Projected starters and rotation are not loaded for this team yet.</div>`;
   const st={}; imp.items.forEach(i=>st[normName(i.rec.player)]=i.rec.k);
   const repl={}; imp.items.forEach(i=>{ if((i.rec.k==="out"||i.rec.k==="doubt")&&i.next.length) repl[normName(i.rec.player)]=i.next[0]; });
@@ -681,17 +689,18 @@ function startersHTML(code,imp){
   }).join("");
   return `<div class="sech">Projected starters${adjusted?`<small>adjusted for injuries</small>`:""}</div><ul class="starters">${rows}</ul>`;
 }
-function rotationBlockHTML(code,imp){
+function rotationBlockHTML(code,imp,date){
   const ch=DEPTH_P[code]; if(!ch) return "";
+  const lu=lineupFor(code,date), luSet=new Set(lu?lu.starters.map(s=>normName(s.name)):[]);
   const st={}; imp.items.forEach(i=>st[normName(i.rec.player)]=i.rec.k);
   const up={}; imp.bumps.forEach(b=>up[normName(b.name)]=b.add);
   const promoted=new Set(); imp.items.forEach(i=>{ if((i.rec.k==="out"||i.rec.k==="doubt")&&i.next.length&&ch[i.pos||""]&&i.tier==="S") promoted.add(normName(i.next[0].name)); });
   const out=[], lim=[];
   POS.forEach(p=>ch[p].forEach(c=>{
-    if(c.t==="S"||promoted.has(normName(c.n))) return;
+    if(lu ? luSet.has(normName(c.n)) : (c.t==="S"||promoted.has(normName(c.n)))) return;
     const k=st[normName(c.n)], u=up[normName(c.n)];
     const chip=`<span class="chip ${k||""}"><span class="pp">${p}</span>${esc(c.n)}${mpHTML(c.n)}${u?`<span class="up" title="Rough estimate of added minutes">+${Math.max(1,r1(u))}</span>`:""}${tagFor(k)}</span>`;
-    (c.t==="R"?out:lim).push(chip);
+    (c.t!=="L"?out:lim).push(chip);
   }));
   return `<div class="sech">Projected rotation</div><div class="chips">${out.join("")||'<span class="chip L">none listed</span>'}</div>${lim.length?`<div class="sech" style="margin-top:8px">Limited minutes</div><div class="chips" style="opacity:.8">${lim.join("")}</div>`:""}`;
 }
@@ -702,7 +711,7 @@ function teamBlockHTML(code,date){
   if(!imp.items.length) h+=`<div class="clear">✅ No injuries listed</div>`;
   else h+=imp.items.map(it=>injLineHTML(it,date)).join("");
   if(imp.items.length && !imp.hasChart) h+=`<div class="clear" style="margin-left:22px">Depth chart not loaded, so no replacements yet.</div>`;
-  h+=startersHTML(code,imp)+rotationBlockHTML(code,imp)+`</div>`;
+  h+=startersHTML(code,imp,date)+rotationBlockHTML(code,imp,date)+`</div>`;
   return h;
 }
 function renderPanel(){
@@ -850,7 +859,7 @@ function renderCoverage(){
   const real=games.filter(g=>g.type!=="pre").length;
   $("coverage").innerHTML=`
     <div><b>Schedule:</b> ${real.toLocaleString()} regular-season games loaded${feedGames?" (full schedule)":" (marquee games only, full schedule not loaded)"}.</div>
-    <div><b>Projected rotations:</b> ${Object.keys(DEPTH_P).length} of 30 teams. Missing: ${missing.length?missing.join(", "):"none"}. Orlando's limited-minutes list is cut off in the source.</div>
+    <div><b>Projected rotations:</b> ${Object.keys(DEPTH_P).length} of 30 teams. Missing: ${missing.length?missing.join(", "):"none"}. Source: ESPN depth charts.</div>
     <div><b>Last season minutes:</b> ${Object.keys(mins).length?Object.keys(mins).length+" players loaded":"not loaded. Minutes shifts use tier defaults until you paste your sheet."}</div>
     <div><b>Injuries:</b> ${injuries.length+importedInj.length} source entries${dataMeta?" from the automatic refresh":" from the built-in Oct 6 snapshot (CBS, Covers, RealGM)"}. Game-time decisions only show for about two days after a source posts them.</div>`;
 }
@@ -871,7 +880,7 @@ document.querySelectorAll("[data-clear]").forEach(b=>b.onclick=()=>{
 });
 
 /* ---------- data.json (written by pipeline/update_data.py) ---------- */
-let dataMeta=null, noGamesNote="";
+let dataMeta=null, noGamesNote="", LINEUPS={};
 async function loadData(){
   try{
     const res=await fetch("data.json",{cache:"no-store"}); if(!res.ok) return false;
@@ -880,6 +889,7 @@ async function loadData(){
       injuries=d.injuries.map(r=>({team:r.team,player:r.player,src:r.src,kind:r.kind||"G",injury:r.injury||"",upd:r.upd||"",until:r.until||"",note:r.note||"",through:r.through||"",st:r.st||undefined,url:r.url||"",stale:!!r.stale}));
     }
     if(d.depth) Object.entries(d.depth).forEach(([t,o])=>DEPTH_RAW[t]=o);
+    if(d.lineups) LINEUPS=d.lineups;
     if(d.minutes) Object.entries(d.minutes).forEach(([n,v])=>{ mins[normName(n)]=v; });
     if(Array.isArray(d.schedule)&&d.schedule.length>1000) feedGames=d.schedule.map(g=>({date:g.date,time:g.time,away:g.away,home:g.home,type:"reg",note:"",venue:g.venue||""}));
     dataMeta={generated:d.generated_at,sources:d.sources||{}};
@@ -890,7 +900,7 @@ function freshHTML(){
   if(!dataMeta) return `<div class="fresh">Using the built-in snapshot from Oct 6. The automatic refresh (data.json) was not found.</div>`;
   const ago=Math.max(0,Math.round((Date.now()-Date.parse(dataMeta.generated))/60000));
   const when=ago<90?`${ago} min ago`:ago<2880?`${Math.round(ago/60)} hours ago`:`${Math.round(ago/1440)} days ago`;
-  const names={schedule:"Schedule",realgm_depth:"Depth charts",minutes:"Minutes sheet",cbs:"CBS",covers:"Covers",espn:"ESPN",x:"Beat writers"};
+  const names={schedule:"Schedule",espn_depth:"Depth charts",realgm_depth:"Depth charts",rotowire:"RotoWire lineups",minutes:"Minutes sheet",cbs:"CBS",covers:"Covers",espn:"ESPN",x:"Beat writers"};
   const parts=Object.entries(dataMeta.sources).map(([k,v])=>v.ok===true?`${names[k]||k} ✓`:v.ok===false?`<span class="bad">${names[k]||k} failed</span>`:`${names[k]||k} off`);
   return `<div class="fresh">Data refreshed <b>${when}</b> · ${parts.join(" · ")}</div>`;
 }

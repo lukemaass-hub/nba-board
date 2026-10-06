@@ -22,7 +22,12 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 - Schedule feed format: verified from a real response.
 - CBS, Covers, ESPN parsers: run against live pages on Oct 6 2026 and fixed (Covers used <b> + abbreviated names).
   Tests use the real Covers layout. Questionable/Doubtful/Probable now map to the page's status keys.
-- RealGM depth charts: returned 403 to our default request. Not yet known whether GitHub Actions gets through.
+- RealGM depth charts: 403 from both here and GitHub Actions; removed. Replaced (Oct 6 2026, user's choice) by
+  ESPN depth chart JSON (site.api.espn.com .../teams/{1-30}/depthcharts). ESPN lists players under several
+  positions; each bench player is kept at his best-ranked position and the top 5 bench players count as rotation.
+- RotoWire (rotowire.com/basketball/nba-lineups.php, robots.txt allows it): expected/confirmed starters for today
+  go in data.json "lineups" and replace depth-chart starters on the page; "may not play" entries become RotoWire
+  injury records valid for that day only.
 - .github/workflows/update-data.yml: added Oct 6 2026 (was missing from the upload).
 - X beat writers: needs X API access, ANTHROPIC_API_KEY, and handles in pipeline/beat_writers.json (left empty on
   purpose; do not guess handles).

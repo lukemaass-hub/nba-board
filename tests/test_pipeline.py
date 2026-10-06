@@ -36,13 +36,23 @@ ESPN = {"injuries": [{"displayName": "Boston Celtics", "injuries": [
     {"status": "Day-To-Day", "date": "2026-10-06T00:29Z", "athlete": {"displayName": "Aaron Wiggins"},
      "details": {"type": "Not Specified", "detail": "Laceration", "location": "Lips"}}]}]}
 
-DEPTH = """
-<h2>2026-2027 Atlanta Hawks Depth Chart</h2>
-<table><thead><tr><th></th><th>PG</th><th>SG</th></tr></thead><tbody>
-<tr><td>Starters</td><td><a href="/player/CJ-McCollum/Summary/1">C.J. McCollum</a> 19p</td><td><a href="/player/Nickeil-Alexander-Walker/Summary/2">N. Alexander-Walker</a></td></tr>
-<tr><td>Rotation</td><td></td><td><a href="/player/Foo-Bar/Summary/3">Foo Bar</a></td></tr>
-<tr><td>Lim PT</td><td><a href="/player/RayJ-Dennis/Summary/4">RayJ Dennis</a></td><td></td></tr>
-</tbody></table>"""
+def espn_team(name, **cols):
+    return {"team": {"displayName": name}, "depthchart": [{"positions": {
+        p: {"athletes": [{"displayName": n} for n in names]} for p, names in cols.items()}}]}
+
+
+# Real RotoWire layout (Oct 6 2026), trimmed to one game.
+ROTO = """<h1>NBA Daily Starting Lineups</h1><div>Starting lineups for October 6, 2026</div>
+<div class="lineup is-nba"><div class="lineup__time">7:00 PM ET</div>
+<a class="lineup__team is-visit"><div class="lineup__abbr">BKN</div></a><a class="lineup__team is-home"><div class="lineup__abbr">CHA</div></a>
+<ul class="lineup__list is-visit"><li class="lineup__status is-confirmed">Confirmed Lineup</li>
+<li class="lineup__player"><div class="lineup__pos">PG</div><a title="Ben Saraf">Ben Saraf</a></li>
+<li class="lineup__player"><div class="lineup__pos">SF</div><a title="Michael Porter">M. Porter</a><span class="lineup__inj">Ques</span></li>
+<li><button>Projected Minutes</button></li>
+<li class="lineup__title is-middle">MAY NOT PLAY</li>
+<li class="lineup__player has-injury-status"><div class="lineup__pos">G</div><a title="Mikel Brown">M. Brown</a><span class="lineup__inj">Out</span></li></ul>
+<ul class="lineup__list is-home"><li class="lineup__status is-expected">Expected Lineup</li>
+<li class="lineup__player"><div class="lineup__pos">PG</div><a title="Dennis Schroder">D. Schroder</a></li></ul></div>"""
 
 
 def test_until_parsers():
@@ -82,11 +92,28 @@ def test_espn():
     assert r[2]["injury"] == "Laceration"
 
 
-def test_depth():
-    d = u.parse_realgm_depth(DEPTH)
-    assert d["ATL"]["PG"] == "CJ McCollum//RayJ Dennis"
-    assert d["ATL"]["SG"] == "Nickeil Alexander Walker/Foo Bar/"
-    assert u.norm_name("Nickeil Alexander Walker") == u.norm_name("Nickeil Alexander-Walker")
+def test_espn_depth():
+    team, d = u.parse_espn_depth(espn_team("Atlanta Hawks",
+        pg=["CJ McCollum", "Kingston Flemings", "RayJ Dennis"], sg=["Nickeil Alexander-Walker", "CJ McCollum", "Luguentz Dort"],
+        sf=["Dyson Daniels", "Aaron Wiggins"], pf=["Jalen Johnson", "Aaron Wiggins", "Mouhamed Gueye"],
+        c=["Onyeka Okongwu", "Jock Landale", "Zuby Ejiofor", "Henri Veesaar"]))
+    assert team == "ATL"
+    # bench ranked by best depth slot: Flemings, Wiggins, Landale (2nd), Dennis, Dort (3rd) = rotation; Gueye 6th
+    assert d["PG"] == "CJ McCollum/Kingston Flemings,RayJ Dennis/"
+    assert d["SG"] == "Nickeil Alexander-Walker/Luguentz Dort/"
+    assert d["SF"] == "Dyson Daniels/Aaron Wiggins/"
+    assert d["PF"] == "Jalen Johnson//Mouhamed Gueye"
+    assert d["C"] == "Onyeka Okongwu/Jock Landale/Zuby Ejiofor,Henri Veesaar"
+
+
+def test_rotowire():
+    lineups, inj = u.parse_rotowire(ROTO)
+    assert lineups["BKN"] == {"date": "2026-10-06", "vs": "CHA", "confirmed": True,
+                              "starters": [{"pos": "PG", "name": "Ben Saraf"}, {"pos": "SF", "name": "Michael Porter"}]}
+    assert lineups["CHA"]["confirmed"] is False
+    assert [(r["player"], r["st"], r["kind"], r["through"]) for r in inj] == [
+        ("Michael Porter", "q", "G", "2026-10-06"), ("Mikel Brown", "out", "O", "2026-10-06")]
+    assert inj[1]["url"].endswith("#:~:text=M.%20Brown")
 
 
 def test_schedule_et():
