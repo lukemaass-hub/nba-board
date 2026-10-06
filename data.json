@@ -8620,11 +8620,11 @@
    "time": "19:00",
    "vs": "CHA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Ben Saraf"
+     "name": "Keon Ellis"
     },
     {
      "pos": "SG",
@@ -8848,21 +8848,21 @@
    ]
   }
  },
- "generated_at": "2026-10-06T22:22:26+00:00",
+ "generated_at": "2026-10-06T22:31:11+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-06T22:22:12+00:00",
+   "at": "2026-10-06T22:30:54+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-06T22:22:25+00:00",
+   "at": "2026-10-06T22:31:08+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-06T22:22:25+00:00",
+   "at": "2026-10-06T22:31:09+00:00",
    "teams": 8,
    "injuries": 36
   },
@@ -8872,18 +8872,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-06T22:22:26+00:00",
+   "at": "2026-10-06T22:31:10+00:00",
    "count": 85
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-06T22:22:26+00:00",
+   "at": "2026-10-06T22:31:11+00:00",
    "count": 21
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-06T22:22:26+00:00",
-   "count": 89
+   "at": "2026-10-06T22:31:11+00:00",
+   "count": 90
   },
   "x": {
    "ok": null,
@@ -10741,6 +10741,18 @@
   },
   {
    "team": "OKC",
+   "player": "Jaylin Williams",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Heel",
+   "upd": "2026-10-06",
+   "until": "",
+   "note": "Williams (heel) won't play in Tuesday's preseason opener against the Pelicans, Clemente Almanza of USA Today reports.",
+   "through": "2026-10-08",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Jaylin%20Williams"
+  },
+  {
+   "team": "OKC",
    "player": "Thomas Sorber",
    "src": "ESPN",
    "kind": "G",
@@ -11239,7 +11251,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Brown"
@@ -11252,7 +11264,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Jefferson"
@@ -11265,7 +11277,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Anderson"
@@ -11278,7 +11290,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Boswell"
@@ -11291,7 +11303,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Knueppel"
@@ -11304,7 +11316,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Miller"
@@ -11317,7 +11329,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20White"
@@ -11330,7 +11342,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=G.%20Williams"
@@ -11343,7 +11355,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Hall"
@@ -11356,9 +11368,9 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Prob",
    "through": "2026-10-06",
-   "st": "prob",
+   "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20McGowens"
   },
   {
@@ -11369,7 +11381,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Caruso"
@@ -11382,7 +11394,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Gilgeous-Alexander"
@@ -11395,7 +11407,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Hartenstein"
@@ -11408,7 +11420,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Holmgren"
@@ -11421,7 +11433,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20Sorber"
@@ -11434,7 +11446,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Topic"
@@ -11447,7 +11459,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Wallace"
@@ -11460,7 +11472,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Williams"
@@ -11473,7 +11485,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Williams"
@@ -11486,7 +11498,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Murray"
@@ -11499,7 +11511,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Jones"
@@ -11512,7 +11524,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Murray"
@@ -11525,7 +11537,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Nurkic"
@@ -11538,7 +11550,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Filipowski"
@@ -11551,7 +11563,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Green"
@@ -11564,7 +11576,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Nurkic"
@@ -11577,7 +11589,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Sensabaugh"
@@ -11590,7 +11602,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Reaves"
@@ -11603,7 +11615,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=W.%20Kessler"
@@ -11616,7 +11628,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Kaluma"
@@ -11629,7 +11641,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=W.%20Kessler"
@@ -11642,7 +11654,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Reaves"
@@ -11655,7 +11667,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Sexton"
@@ -11668,7 +11680,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Porzingis"
@@ -11681,7 +11693,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Out",
    "through": "2026-10-06",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Butler"
@@ -11694,7 +11706,7 @@
    "injury": "",
    "upd": "2026-10-06",
    "until": "",
-   "note": "",
+   "note": "RotoWire tag: Out",
    "through": "2026-10-06",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Moody"
