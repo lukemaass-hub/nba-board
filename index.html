@@ -154,7 +154,7 @@
 <body>
 <header class="top">
   <h1>NBA availability report</h1>
-  <p>Today's games: who is out or questionable, who picks up the minutes, and the projected rotation. Click an injured player's name to open the site that reported it.</p>
+  <p>Today's games: who is out or questionable, the expected starters, and the projected rotation. Click an injured player's name to open the site that reported it.</p>
 </header>
 
 <main class="wrap">
@@ -652,10 +652,6 @@ function injLineHTML(it,date){
   i.lines.filter(l=>String(l.src).startsWith("@")).forEach(l=>{
     h+=`<div class="next beat">📝 <b>${esc(l.src)}</b>${l.upd?` (${esc(l.upd)})`:""}: ${esc(l.note||l.label)}${l.url?` <a href="${esc(l.url)}" target="_blank" rel="noopener">post</a>`:""}</div>`;
   });
-  if(it.next.length){
-    const n=it.next[0];
-    h+=`<div class="next">⬆ Minutes up: <b>${esc(n.name)}</b> <span class="p" title="Rough estimate">+${Math.max(1,r1(n.add))}</span>${k==="out"||k==="doubt"?"":" if he sits"}</div>`;
-  }
   return h+`</div>`;
 }
 function rotationHTML(code,date){
@@ -699,7 +695,7 @@ function rotationBlockHTML(code,imp,date){
   POS.forEach(p=>ch[p].forEach(c=>{
     if(lu ? luSet.has(normName(c.n)) : (c.t==="S"||promoted.has(normName(c.n)))) return;
     const k=st[normName(c.n)], u=up[normName(c.n)];
-    const chip=`<span class="chip ${k||""}"><span class="pp">${p}</span>${esc(c.n)}${mpHTML(c.n)}${u?`<span class="up" title="Rough estimate of added minutes">+${Math.max(1,r1(u))}</span>`:""}${tagFor(k)}</span>`;
+    const chip=`<span class="chip ${k||""}"><span class="pp">${p}</span>${esc(c.n)}${mpHTML(c.n)}${tagFor(k)}</span>`;
     (c.t!=="L"?out:lim).push(chip);
   }));
   return `<div class="sech">Projected rotation</div><div class="chips">${out.join("")||'<span class="chip L">none listed</span>'}</div>${lim.length?`<div class="sech" style="margin-top:8px">Limited minutes</div><div class="chips" style="opacity:.8">${lim.join("")}</div>`:""}`;
@@ -733,7 +729,7 @@ function renderPanel(){
       ${meta?`<div class="gmeta">${esc(meta)}</div>`:""}${teamBlockHTML(g.away,selected)}${teamBlockHTML(g.home,selected)}</section>`;
   });
   h+=`<div class="rep-legend"><span><i style="background:var(--out)"></i>Out</span><span><i style="background:var(--doubt)"></i>Doubtful</span><span><i style="background:var(--q)"></i>Questionable</span><span><i style="background:var(--prob)"></i>Probable</span></div>
-    <div class="foot">Minutes up is a rough estimate, not a projection. The injured player's minutes (last-season MPG when your sheet is loaded, otherwise 30 for starters, 18 for rotation, 6 for limited) go to the next healthy player below him on the depth chart at the same position. Click a player's name to open the source for that injury.</div></div>`;
+    <div class="foot">Starters come from RotoWire when it has a lineup for the game; otherwise from the ESPN depth chart, with an injured starter replaced by the next healthy player at his position. Click a player's name to open the source for that injury.</div></div>`;
   el.innerHTML=h;
 }
 
@@ -750,7 +746,6 @@ function slackText(date){
       imp.items.forEach(it=>{
         const i=it.rec, inj=[...new Set(i.lines.map(l=>l.injury).filter(Boolean))][0]||"";
         lines.push(`${EMOJI[i.k]} ${i.player}${it.pos?` (${it.pos})`:""} — ${STATUS_LABEL[i.k]}${inj?` | ${inj}`:""}${i.conflict?" | sources differ":""}`);
-        if(it.next.length) lines.push(`      ⬆ Minutes up: ${it.next[0].name} +${Math.max(1,r1(it.next[0].add))}${i.k==="out"||i.k==="doubt"?"":" if he sits"}`);
       });
     });
     lines.push("");
@@ -901,7 +896,7 @@ function freshHTML(){
   const ago=Math.max(0,Math.round((Date.now()-Date.parse(dataMeta.generated))/60000));
   const when=ago<90?`${ago} min ago`:ago<2880?`${Math.round(ago/60)} hours ago`:`${Math.round(ago/1440)} days ago`;
   const names={schedule:"Schedule",espn_depth:"Depth charts",realgm_depth:"Depth charts",rotowire:"RotoWire lineups",minutes:"Minutes sheet",cbs:"CBS",covers:"Covers",espn:"ESPN",x:"Beat writers"};
-  const parts=Object.entries(dataMeta.sources).map(([k,v])=>v.ok===true?`${names[k]||k} ✓`:v.ok===false?`<span class="bad">${names[k]||k} failed</span>`:`${names[k]||k} off`);
+  const parts=Object.entries(dataMeta.sources).filter(([k])=>k!=="minutes").map(([k,v])=>v.ok===true?`${names[k]||k} ✓`:v.ok===false?`<span class="bad">${names[k]||k} failed</span>`:`${names[k]||k} off`);
   return `<div class="fresh">Data refreshed <b>${when}</b> · ${parts.join(" · ")}</div>`;
 }
 

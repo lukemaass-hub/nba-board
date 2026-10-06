@@ -7,7 +7,8 @@ on:
     - cron: "0 17 * * *"
     - cron: "30 21 * * *"
     # Every 15 minutes from 11 AM to 1 AM Eastern: refreshes only when a game tips off within
-    # 45 minutes, to catch the final injury report. GitHub can start these a few minutes late.
+    # 45 minutes, then emails the report for games starting within 40 minutes (once per game).
+    # GitHub can start these a few minutes late.
     - cron: "*/15 15-23,0-5 * * *"
   workflow_dispatch: {}
   push:
@@ -48,11 +49,19 @@ jobs:
           PREGAME: ${{ github.event.schedule == '*/15 15-23,0-5 * * *' && '45' || '' }}
         run: python pipeline/update_data.py --out data.json ${PREGAME:+--pregame "$PREGAME"}
 
+      - name: Email the report for games tipping off soon
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python pipeline/email_report.py --data data.json --window 40
+
       - name: Save data.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
           git add data.json
+          [ -f email_log.json ] && git add email_log.json
           if git diff --cached --quiet; then
             echo "No changes."
           else

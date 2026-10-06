@@ -8617,7 +8617,9 @@
  "lineups": {
   "BKN": {
    "date": "2026-10-06",
+   "time": "19:00",
    "vs": "CHA",
+   "home": false,
    "confirmed": false,
    "starters": [
     {
@@ -8644,7 +8646,9 @@
   },
   "CHA": {
    "date": "2026-10-06",
+   "time": "19:00",
    "vs": "BKN",
+   "home": true,
    "confirmed": false,
    "starters": [
     {
@@ -8671,7 +8675,9 @@
   },
   "NOP": {
    "date": "2026-10-06",
+   "time": "20:00",
    "vs": "OKC",
+   "home": false,
    "confirmed": false,
    "starters": [
     {
@@ -8698,7 +8704,9 @@
   },
   "OKC": {
    "date": "2026-10-06",
+   "time": "20:00",
    "vs": "NOP",
+   "home": true,
    "confirmed": false,
    "starters": [
     {
@@ -8725,7 +8733,9 @@
   },
   "DEN": {
    "date": "2026-10-06",
+   "time": "21:00",
    "vs": "UTA",
+   "home": false,
    "confirmed": false,
    "starters": [
     {
@@ -8752,7 +8762,9 @@
   },
   "UTA": {
    "date": "2026-10-06",
+   "time": "21:00",
    "vs": "DEN",
+   "home": true,
    "confirmed": false,
    "starters": [
     {
@@ -8779,7 +8791,9 @@
   },
   "LAL": {
    "date": "2026-10-06",
+   "time": "22:00",
    "vs": "GSW",
+   "home": false,
    "confirmed": false,
    "starters": [
     {
@@ -8806,7 +8820,9 @@
   },
   "GSW": {
    "date": "2026-10-06",
+   "time": "22:00",
    "vs": "LAL",
+   "home": true,
    "confirmed": false,
    "starters": [
     {
@@ -8832,23 +8848,23 @@
    ]
   }
  },
- "generated_at": "2026-10-06T22:09:36+00:00",
+ "generated_at": "2026-10-06T22:14:56+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-06T22:09:10+00:00",
+   "at": "2026-10-06T22:14:28+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-06T22:09:33+00:00",
+   "at": "2026-10-06T22:14:53+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-06T22:09:34+00:00",
+   "at": "2026-10-06T22:14:54+00:00",
    "teams": 8,
-   "injuries": 35
+   "injuries": 37
   },
   "minutes": {
    "ok": null,
@@ -8856,17 +8872,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-06T22:09:35+00:00",
-   "count": 81
+   "at": "2026-10-06T22:14:55+00:00",
+   "count": 85
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-06T22:09:36+00:00",
+   "at": "2026-10-06T22:14:56+00:00",
    "count": 21
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-06T22:09:36+00:00",
+   "at": "2026-10-06T22:14:56+00:00",
    "count": 89
   },
   "x": {
@@ -8877,27 +8893,15 @@
  "injuries": [
   {
    "team": "ATL",
-   "player": "Luguentz Dort",
+   "player": "Isaac McKneely",
    "src": "CBS",
    "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-10-05",
+   "injury": "Shoulder",
+   "upd": "2026-10-06",
    "until": "",
    "note": "",
    "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Luguentz%20Dort"
-  },
-  {
-   "team": "ATL",
-   "player": "Mouhamed Gueye",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Foot",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Mouhamed%20Gueye"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Isaac%20McKneely"
   },
   {
    "team": "ATL",
@@ -8913,6 +8917,30 @@
   },
   {
    "team": "ATL",
+   "player": "Mouhamed Gueye",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Foot",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Mouhamed%20Gueye"
+  },
+  {
+   "team": "ATL",
+   "player": "Luguentz Dort",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Knee",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Luguentz%20Dort"
+  },
+  {
+   "team": "ATL",
    "player": "Henri Veesaar",
    "src": "CBS",
    "kind": "O",
@@ -8922,18 +8950,6 @@
    "note": "Out for the season",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Henri%20Veesaar"
-  },
-  {
-   "team": "BKN",
-   "player": "Mikel Brown Jr.",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Mikel%20Brown%20Jr."
   },
   {
    "team": "BKN",
@@ -8948,16 +8964,40 @@
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Joshua%20Jefferson"
   },
   {
-   "team": "CHA",
-   "player": "Coby White",
+   "team": "BKN",
+   "player": "Mikel Brown Jr.",
    "src": "CBS",
    "kind": "G",
-   "injury": "Calf",
+   "injury": "Ankle",
    "upd": "2026-10-05",
    "until": "",
    "note": "",
    "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Coby%20White"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Mikel%20Brown%20Jr."
+  },
+  {
+   "team": "CHA",
+   "player": "Brandon Miller",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Leg",
+   "upd": "2026-10-06",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandon%20Miller"
+  },
+  {
+   "team": "CHA",
+   "player": "Christian Anderson",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Ankle",
+   "upd": "2026-10-06",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Christian%20Anderson"
   },
   {
    "team": "CHA",
@@ -8973,6 +9013,18 @@
   },
   {
    "team": "CHA",
+   "player": "Coby White",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Calf",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Coby%20White"
+  },
+  {
+   "team": "CHA",
    "player": "PJ Hall",
    "src": "CBS",
    "kind": "G",
@@ -8985,18 +9037,6 @@
   },
   {
    "team": "CHA",
-   "player": "Kon Knueppel",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Hamstring",
-   "upd": "2026-09-25",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kon%20Knueppel"
-  },
-  {
-   "team": "CHA",
    "player": "Grant Williams",
    "src": "CBS",
    "kind": "G",
@@ -9006,6 +9046,18 @@
    "note": "",
    "through": "2026-10-08",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Grant%20Williams"
+  },
+  {
+   "team": "CHA",
+   "player": "Kon Knueppel",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Hamstring",
+   "upd": "2026-09-25",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kon%20Knueppel"
   },
   {
    "team": "CHI",
@@ -9153,18 +9205,6 @@
   },
   {
    "team": "IND",
-   "player": "T.J. McConnell",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Undisclosed",
-   "upd": "2026-10-04",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=T.J.%20McConnell"
-  },
-  {
-   "team": "IND",
    "player": "Quenton Jackson",
    "src": "CBS",
    "kind": "G",
@@ -9174,6 +9214,18 @@
    "note": "",
    "through": "2026-10-08",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Quenton%20Jackson"
+  },
+  {
+   "team": "IND",
+   "player": "T.J. McConnell",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Undisclosed",
+   "upd": "2026-10-04",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=T.J.%20McConnell"
   },
   {
    "team": "IND",
@@ -9237,18 +9289,6 @@
   },
   {
    "team": "LAC",
-   "player": "Yanic Konan Niederhauser",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Foot",
-   "upd": "2026-09-28",
-   "until": "2026-11-01",
-   "note": "Expected to be out until at least Nov 1",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Yanic%20Konan%20Niederhauser"
-  },
-  {
-   "team": "LAC",
    "player": "Brandon Ingram",
    "src": "CBS",
    "kind": "O",
@@ -9258,6 +9298,18 @@
    "note": "Expected to be out until at least Nov 1",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandon%20Ingram"
+  },
+  {
+   "team": "LAC",
+   "player": "Yanic Konan Niederhauser",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Foot",
+   "upd": "2026-09-28",
+   "until": "2026-11-01",
+   "note": "Expected to be out until at least Nov 1",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Yanic%20Konan%20Niederhauser"
   },
   {
    "team": "LAC",
@@ -9273,15 +9325,15 @@
   },
   {
    "team": "LAL",
-   "player": "Collin Sexton",
+   "player": "Walker Kessler",
    "src": "CBS",
    "kind": "G",
-   "injury": "Lower Body",
+   "injury": "Finger",
    "upd": "2026-10-05",
    "until": "",
    "note": "",
    "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Collin%20Sexton"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Walker%20Kessler"
   },
   {
    "team": "LAL",
@@ -9297,18 +9349,6 @@
   },
   {
    "team": "LAL",
-   "player": "Walker Kessler",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Finger",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Walker%20Kessler"
-  },
-  {
-   "team": "LAL",
    "player": "Austin Reaves",
    "src": "CBS",
    "kind": "G",
@@ -9320,16 +9360,28 @@
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Austin%20Reaves"
   },
   {
-   "team": "MEM",
-   "player": "Micah Peavy",
+   "team": "LAL",
+   "player": "Collin Sexton",
    "src": "CBS",
    "kind": "G",
-   "injury": "Ankle",
+   "injury": "Lower Body",
    "upd": "2026-10-05",
    "until": "",
    "note": "",
    "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Micah%20Peavy"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Collin%20Sexton"
+  },
+  {
+   "team": "MEM",
+   "player": "Isaiah Stewart",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Ankle",
+   "upd": "2026-10-06",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Isaiah%20Stewart"
   },
   {
    "team": "MEM",
@@ -9342,6 +9394,18 @@
    "note": "",
    "through": "2026-10-08",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Zach%20Edey"
+  },
+  {
+   "team": "MEM",
+   "player": "Micah Peavy",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Ankle",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Micah%20Peavy"
   },
   {
    "team": "MIA",
@@ -9405,18 +9469,6 @@
   },
   {
    "team": "OKC",
-   "player": "Shai Gilgeous-Alexander",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Not Injury Related",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Shai%20Gilgeous-Alexander"
-  },
-  {
-   "team": "OKC",
    "player": "Jalen Williams",
    "src": "CBS",
    "kind": "G",
@@ -9429,18 +9481,6 @@
   },
   {
    "team": "OKC",
-   "player": "Isaiah Hartenstein",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Rest",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Isaiah%20Hartenstein"
-  },
-  {
-   "team": "OKC",
    "player": "Chet Holmgren",
    "src": "CBS",
    "kind": "G",
@@ -9450,6 +9490,30 @@
    "note": "",
    "through": "2026-10-08",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Chet%20Holmgren"
+  },
+  {
+   "team": "OKC",
+   "player": "Cason Wallace",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cason%20Wallace"
+  },
+  {
+   "team": "OKC",
+   "player": "Shai Gilgeous-Alexander",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Not Injury Related",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Shai%20Gilgeous-Alexander"
   },
   {
    "team": "OKC",
@@ -9489,7 +9553,7 @@
   },
   {
    "team": "OKC",
-   "player": "Cason Wallace",
+   "player": "Isaiah Hartenstein",
    "src": "CBS",
    "kind": "G",
    "injury": "Rest",
@@ -9497,7 +9561,7 @@
    "until": "",
    "note": "",
    "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cason%20Wallace"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Isaiah%20Hartenstein"
   },
   {
    "team": "ORL",
@@ -9561,6 +9625,18 @@
   },
   {
    "team": "PHI",
+   "player": "Tyrese Maxey",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tyrese%20Maxey"
+  },
+  {
+   "team": "PHI",
    "player": "Dom Barlow",
    "src": "CBS",
    "kind": "G",
@@ -9573,15 +9649,15 @@
   },
   {
    "team": "PHI",
-   "player": "Tyrese Maxey",
+   "player": "Adem Bona",
    "src": "CBS",
    "kind": "G",
-   "injury": "Rest",
+   "injury": "Foot",
    "upd": "2026-10-05",
    "until": "",
    "note": "",
    "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tyrese%20Maxey"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Adem%20Bona"
   },
   {
    "team": "PHI",
@@ -9606,18 +9682,6 @@
    "note": "",
    "through": "2026-10-08",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Joel%20Embiid"
-  },
-  {
-   "team": "PHI",
-   "player": "Adem Bona",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Foot",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Adem%20Bona"
   },
   {
    "team": "PHI",
@@ -9657,6 +9721,18 @@
   },
   {
    "team": "SAC",
+   "player": "Keegan Murray",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Undisclosed",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Keegan%20Murray"
+  },
+  {
+   "team": "SAC",
    "player": "Malik Monk",
    "src": "CBS",
    "kind": "G",
@@ -9678,18 +9754,6 @@
    "note": "",
    "through": "2026-10-08",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Ben%20Simmons"
-  },
-  {
-   "team": "SAC",
-   "player": "Keegan Murray",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Undisclosed",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Keegan%20Murray"
   },
   {
    "team": "SAS",
@@ -9729,15 +9793,15 @@
   },
   {
    "team": "TOR",
-   "player": "Nate Bittle",
+   "player": "Jamison Battle",
    "src": "CBS",
    "kind": "G",
-   "injury": "Foot",
+   "injury": "Back",
    "upd": "2026-10-03",
    "until": "",
    "note": "",
    "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nate%20Bittle"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jamison%20Battle"
   },
   {
    "team": "TOR",
@@ -9765,15 +9829,15 @@
   },
   {
    "team": "TOR",
-   "player": "Jamison Battle",
+   "player": "Nate Bittle",
    "src": "CBS",
    "kind": "G",
-   "injury": "Back",
+   "injury": "Foot",
    "upd": "2026-10-03",
    "until": "",
    "note": "",
    "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jamison%20Battle"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nate%20Bittle"
   },
   {
    "team": "UTA",
@@ -9789,18 +9853,6 @@
   },
   {
    "team": "UTA",
-   "player": "Kyle Filipowski",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Back",
-   "upd": "2026-10-04",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kyle%20Filipowski"
-  },
-  {
-   "team": "UTA",
    "player": "Brice Sensabaugh",
    "src": "CBS",
    "kind": "G",
@@ -9810,6 +9862,18 @@
    "note": "",
    "through": "2026-10-08",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brice%20Sensabaugh"
+  },
+  {
+   "team": "UTA",
+   "player": "Kyle Filipowski",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Back",
+   "upd": "2026-10-04",
+   "until": "",
+   "note": "",
+   "through": "2026-10-08",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kyle%20Filipowski"
   },
   {
    "team": "WAS",
@@ -11299,6 +11363,19 @@
   },
   {
    "team": "OKC",
+   "player": "Jaylin Williams",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-06",
+   "until": "",
+   "note": "",
+   "through": "2026-10-06",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Williams"
+  },
+  {
+   "team": "OKC",
    "player": "Alex Caruso",
    "src": "RotoWire",
    "kind": "G",
@@ -11391,6 +11468,19 @@
   {
    "team": "OKC",
    "player": "Jalen Williams",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-06",
+   "until": "",
+   "note": "",
+   "through": "2026-10-06",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Williams"
+  },
+  {
+   "team": "OKC",
+   "player": "Jaylin Williams",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",

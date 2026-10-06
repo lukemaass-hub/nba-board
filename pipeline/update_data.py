@@ -356,7 +356,11 @@ def parse_rotowire(html):
         teams = [team_code(x.get_text(strip=True)) for x in g.select(".lineup__abbr")]
         if len(teams) != 2 or not all(teams):
             continue
+        tm = g.select_one(".lineup__time")
+        mt = re.match(r"(\d{1,2}):(\d{2})\s*([AP]M)", clean(tm.get_text()) if tm else "")
+        tip = f"{int(mt.group(1)) % 12 + (12 if mt.group(3) == 'PM' else 0):02d}:{mt.group(2)}" if mt else ""
         for side, team, opp in (("is-visit", teams[0], teams[1]), ("is-home", teams[1], teams[0])):
+            home = side == "is-home"
             ul = g.select_one(f"ul.lineup__list.{side}")
             if not ul:
                 continue
@@ -381,7 +385,8 @@ def parse_rotowire(html):
                     injuries.append(rec(team, name, "RotoWire", "O" if st == "out" else "G", upd=date, through=date,
                                         st=st, url=find_link(ROTO_URL, clean(a.get_text()))))
             if starters:
-                lineups[team] = {"date": date, "vs": opp, "confirmed": confirmed, "starters": starters}
+                lineups[team] = {"date": date, "time": tip, "vs": opp, "home": home, "confirmed": confirmed,
+                                 "starters": starters}
     return lineups, injuries
 
 
@@ -500,6 +505,16 @@ class SkipSource(Exception):
     pass
 
 
+def all_games(data):
+    """Schedule games plus any RotoWire game not in it (preseason games are only on RotoWire)."""
+    games = list(data.get("schedule", []))
+    have = {(g["date"], g["home"]) for g in games}
+    for team, l in (data.get("lineups") or {}).items():
+        if l.get("home") and l.get("time") and (l["date"], team) not in have:
+            games.append({"date": l["date"], "time": l["time"], "away": l["vs"], "home": team, "venue": ""})
+    return sorted(games, key=lambda g: (g["date"], g["time"]))
+
+
 def game_starting_soon(schedule, now, minutes):
     """True if any game tips off between now and `minutes` from now (times are ET)."""
     for g in schedule:
@@ -526,7 +541,7 @@ def main():
             prev = json.load(open(args.out))
         except Exception:
             pass
-    if args.pregame and not game_starting_soon(prev.get("schedule", []), dt.datetime.now(ET), args.pregame):
+    if args.pregame and not game_starting_soon(all_games(prev), dt.datetime.now(ET), args.pregame):
         print(f"No game starts in the next {args.pregame} minutes; nothing to do.")
         return
     status, injuries = {}, []

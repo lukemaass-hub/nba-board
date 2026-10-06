@@ -108,7 +108,7 @@ def test_espn_depth():
 
 def test_rotowire():
     lineups, inj = u.parse_rotowire(ROTO)
-    assert lineups["BKN"] == {"date": "2026-10-06", "vs": "CHA", "confirmed": True,
+    assert lineups["BKN"] == {"date": "2026-10-06", "time": "19:00", "vs": "CHA", "home": False, "confirmed": True,
                               "starters": [{"pos": "PG", "name": "Ben Saraf"}, {"pos": "SF", "name": "Michael Porter"}]}
     assert lineups["CHA"]["confirmed"] is False
     assert [(r["player"], r["st"], r["kind"], r["through"]) for r in inj] == [
@@ -144,3 +144,19 @@ def test_pregame_window():
     assert u.game_starting_soon(sch, at(18, 50), 45)
     assert not u.game_starting_soon(sch, at(18, 30), 45)
     assert not u.game_starting_soon(sch, at(19, 45), 45)
+
+
+def test_email_due_and_build():
+    import email_report as e
+    data = {"schedule": [{"date": "2026-10-21", "time": "19:30", "away": "MIA", "home": "NYK"}],
+            "lineups": {"CHA": {"date": "2026-10-21", "time": "19:00", "vs": "BKN", "home": True, "confirmed": False,
+                                "starters": [{"pos": "PG", "name": "Dennis Schroder"}]}},
+            "depth": {"NYK": {"PG": "Jalen Brunson/Miles McBride/", "C": "Karl-Anthony Towns//"}},
+            "injuries": [{"team": "NYK", "player": "Jalen Brunson", "src": "ESPN", "kind": "O", "injury": "Ankle",
+                          "until": "", "through": "", "url": "https://x/#b"}]}
+    now = dt.datetime(2026, 10, 21, 18, 55, tzinfo=u.ET)
+    assert [k for k, _ in e.due_games(data, now, 40, {})] == ["2026-10-21 BKN@CHA", "2026-10-21 MIA@NYK"]
+    assert [k for k, _ in e.due_games(data, now, 40, {"2026-10-21 BKN@CHA": "x"})] == ["2026-10-21 MIA@NYK"]
+    subject, body, text = e.build(data, [g for _, g in e.due_games(data, now, 40, {})], "2026-10-21")
+    assert "MIA @ NYK 7:30 PM" in subject and 'href="https://x/#b"' in body
+    assert "PG Miles McBride (in for Jalen Brunson)" in text and "Expected starters (RotoWire" in text
