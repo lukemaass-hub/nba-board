@@ -8736,7 +8736,7 @@
    "time": "20:00",
    "vs": "OKC",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8752,7 +8752,7 @@
     },
     {
      "pos": "PF",
-     "name": "Kyle Kuzma"
+     "name": "Kel'el Ware"
     },
     {
      "pos": "C",
@@ -8765,7 +8765,7 @@
    "time": "20:00",
    "vs": "MIL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8781,7 +8781,7 @@
     },
     {
      "pos": "PF",
-     "name": "Kenrich Williams"
+     "name": "Alex Caruso"
     },
     {
      "pos": "C",
@@ -8794,11 +8794,11 @@
    "time": "20:00",
    "vs": "MEM",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Jalen Suggs"
+     "name": "Jase Richardson"
     },
     {
      "pos": "SG",
@@ -8823,7 +8823,7 @@
    "time": "20:00",
    "vs": "ORL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8906,7 +8906,7 @@
    ]
   }
  },
- "generated_at": "2026-10-07T23:31:03+00:00",
+ "generated_at": "2026-10-07T23:46:41+00:00",
  "sources": {
   "schedule": {
    "ok": false,
@@ -8914,14 +8914,14 @@
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-07T23:31:00+00:00",
+   "at": "2026-10-07T23:46:38+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-07T23:31:02+00:00",
+   "at": "2026-10-07T23:46:39+00:00",
    "teams": 10,
-   "injuries": 36
+   "injuries": 35
   },
   "minutes": {
    "ok": null,
@@ -8929,17 +8929,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-07T23:31:02+00:00",
+   "at": "2026-10-07T23:46:40+00:00",
    "count": 95
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-07T23:31:02+00:00",
+   "at": "2026-10-07T23:46:40+00:00",
    "count": 22
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-07T23:31:03+00:00",
+   "at": "2026-10-07T23:46:41+00:00",
    "count": 97
   },
   "x": {
@@ -11700,7 +11700,7 @@
   },
   {
    "team": "ORL",
-   "player": "Jalen Suggs",
+   "player": "Anthony Black",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
@@ -11709,7 +11709,7 @@
    "note": "RotoWire tag: Ques",
    "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Suggs"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Black"
   },
   {
    "team": "ORL",
@@ -11739,19 +11739,6 @@
   },
   {
    "team": "ORL",
-   "player": "Anthony Black",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-07",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-07",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Black"
-  },
-  {
-   "team": "ORL",
    "player": "Noah Penda",
    "src": "RotoWire",
    "kind": "G",
@@ -11778,19 +11765,6 @@
   },
   {
    "team": "MEM",
-   "player": "Isaiah Stewart",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-07",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-07",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Stewart"
-  },
-  {
-   "team": "MEM",
    "player": "Micah Peavy",
    "src": "RotoWire",
    "kind": "G",
@@ -11801,6 +11775,19 @@
    "through": "2026-10-07",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Peavy"
+  },
+  {
+   "team": "MEM",
+   "player": "Isaiah Stewart",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-07",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Stewart"
   },
   {
    "team": "MEM",
