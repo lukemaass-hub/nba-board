@@ -8736,7 +8736,7 @@
    "time": "21:00",
    "vs": "UTA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8823,7 +8823,7 @@
    "time": "22:00",
    "vs": "LAL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8835,34 +8835,34 @@
     },
     {
      "pos": "SF",
-     "name": "Yaxel Lendeborg"
+     "name": "Gui Santos"
     },
     {
      "pos": "PF",
-     "name": "Draymond Green"
+     "name": "Yaxel Lendeborg"
     },
     {
      "pos": "C",
-     "name": "Al Horford"
+     "name": "Draymond Green"
     }
    ]
   }
  },
- "generated_at": "2026-10-07T00:19:52+00:00",
+ "generated_at": "2026-10-07T00:48:30+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-07T00:19:36+00:00",
+   "at": "2026-10-07T00:48:14+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-07T00:19:50+00:00",
+   "at": "2026-10-07T00:48:29+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-07T00:19:51+00:00",
+   "at": "2026-10-07T00:48:29+00:00",
    "teams": 8,
    "injuries": 36
   },
@@ -8872,17 +8872,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-07T00:19:51+00:00",
+   "at": "2026-10-07T00:48:30+00:00",
    "count": 86
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-07T00:19:51+00:00",
+   "at": "2026-10-07T00:48:30+00:00",
    "count": 21
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-07T00:19:52+00:00",
+   "at": "2026-10-07T00:48:30+00:00",
    "count": 90
   },
   "x": {
@@ -11173,13 +11173,25 @@
   },
   {
    "team": "UTA",
+   "player": "Brice Sensabaugh",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Left Hip",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "Sensabaugh (hip) won't play in Tuesday's preseason game against the Nuggets.",
+   "through": "2026-10-08",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Brice%20Sensabaugh"
+  },
+  {
+   "team": "UTA",
    "player": "Jusuf Nurkic",
    "src": "ESPN",
    "kind": "G",
    "injury": "Right Foot",
-   "upd": "2026-10-05",
+   "upd": "2026-10-07",
    "until": "",
-   "note": "Nurkic didn't participate in Monday's practice due to a right foot injury, Shreyas Laddha of The Salt Lake Tribune reports.",
+   "note": "Nurkic (foot) is listed as out for Tuesday's preseason game against Denver.",
    "through": "2026-10-08",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jusuf%20Nurkic"
   },
@@ -11189,9 +11201,9 @@
    "src": "ESPN",
    "kind": "G",
    "injury": "Back",
-   "upd": "2026-10-05",
+   "upd": "2026-10-07",
    "until": "",
-   "note": "Filipowski (back) won't play in Tuesday's preseason game against the Nuggets, Shreyas Laddha of The Salt Lake Tribune reports.",
+   "note": "Filipowski (back) is out for Tuesday's exhibition versus the Nuggets.",
    "through": "2026-10-08",
    "url": "https://www.espn.com/nba/injuries#:~:text=Kyle%20Filipowski"
   },
@@ -11206,18 +11218,6 @@
    "note": "Green (knee) has been ruled out for Sunday's preseason game against the Nuggets, Shreyas Laddha of The Salt Lake Tribune reports.",
    "through": "2026-10-08",
    "url": "https://www.espn.com/nba/injuries#:~:text=Josh%20Green"
-  },
-  {
-   "team": "UTA",
-   "player": "Brice Sensabaugh",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Hip",
-   "upd": "2026-10-04",
-   "until": "",
-   "note": "Sensabaugh won't play in Sunday's preseason opener against the Nuggets due to a left hip injury, Shreyas Laddha of The Salt Lake Tribune reports.",
-   "through": "2026-10-08",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Brice%20Sensabaugh"
   },
   {
    "team": "WAS",
@@ -11517,19 +11517,6 @@
   },
   {
    "team": "DEN",
-   "player": "Spencer Jones",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Jones"
-  },
-  {
-   "team": "DEN",
    "player": "Jamal Murray",
    "src": "RotoWire",
    "kind": "G",
@@ -11540,6 +11527,19 @@
    "through": "2026-10-06",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Murray"
+  },
+  {
+   "team": "DEN",
+   "player": "Spencer Jones",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-06",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-06",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Jones"
   },
   {
    "team": "UTA",
