@@ -8906,20 +8906,21 @@
    ]
   }
  },
- "generated_at": "2026-10-07T23:46:41+00:00",
+ "generated_at": "2026-10-07T23:57:26+00:00",
  "sources": {
   "schedule": {
-   "ok": false,
-   "error": "ReadTimeout: HTTPSConnectionPool(host='fixturedownload.com', port=443): Read timed out. (read timeout=45)"
+   "ok": true,
+   "at": "2026-10-07T23:57:11+00:00",
+   "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-07T23:46:38+00:00",
+   "at": "2026-10-07T23:57:23+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-07T23:46:39+00:00",
+   "at": "2026-10-07T23:57:24+00:00",
    "teams": 10,
    "injuries": 35
   },
@@ -8929,17 +8930,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-07T23:46:40+00:00",
+   "at": "2026-10-07T23:57:25+00:00",
    "count": 95
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-07T23:46:40+00:00",
+   "at": "2026-10-07T23:57:26+00:00",
    "count": 22
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-07T23:46:41+00:00",
+   "at": "2026-10-07T23:57:26+00:00",
    "count": 97
   },
   "x": {
@@ -11122,13 +11123,37 @@
   },
   {
    "team": "ORL",
+   "player": "Noah Penda",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Hamstring",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "Penda (hamstring) is out for Wednesday's preseason game in Memphis, Jason Beede of the Orlando Sentinel reports.",
+   "through": "2026-10-09",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Noah%20Penda"
+  },
+  {
+   "team": "ORL",
+   "player": "Anthony Black",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Ankle Sprain",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "Black (ankle) has been ruled out for Wednesday's preseason game against the Grizzlies, Jason Beede of the Orlando Sentinel reports.",
+   "through": "2026-10-09",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Anthony%20Black"
+  },
+  {
+   "team": "ORL",
    "player": "Jalen Suggs",
    "src": "ESPN",
    "kind": "G",
    "injury": "Illness",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
-   "note": "Suggs remains under the weather but was able to get on the court and run around during Tuesday's practice, Jason Beede of the Orlando Sentinel reports.",
+   "note": "Suggs (illness) has been ruled out for Wednesday's preseason game against the Grizzlies, Jason Beede of the Orlando Sentinel reports.",
    "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jalen%20Suggs"
   },
@@ -11143,30 +11168,6 @@
    "note": "Isaac (knee) won't travel with the Magic for Wednesday's preseason opener against the Grizzlies due to personal reasons, Jason Beede of the Orlando Sentinel reports.",
    "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jonathan%20Isaac"
-  },
-  {
-   "team": "ORL",
-   "player": "Noah Penda",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Hamstring",
-   "upd": "2026-10-04",
-   "until": "",
-   "note": "Penda (hamstring) participated in Sunday's practice and has been progressing in his ramp-up process, Jason Beede of the Orlando Sentinel reports.",
-   "through": "2026-10-09",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Noah%20Penda"
-  },
-  {
-   "team": "ORL",
-   "player": "Anthony Black",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Ankle Sprain",
-   "upd": "2026-10-04",
-   "until": "",
-   "note": "Black (ankle) participated in Sunday's practice and has been progressing in his ramp-up process, Jason Beede of the Orlando Sentinel reports.",
-   "through": "2026-10-09",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Anthony%20Black"
   },
   {
    "team": "ORL",
