@@ -8615,223 +8615,252 @@
  },
  "minutes": {},
  "lineups": {
-  "BKN": {
-   "date": "2026-10-06",
+  "MIN": {
+   "date": "2026-10-07",
    "time": "19:00",
-   "vs": "CHA",
+   "vs": "IND",
    "home": false,
-   "confirmed": true,
+   "confirmed": false,
    "starters": [
     {
      "pos": "PG",
-     "name": "Keon Ellis"
+     "name": "LaMelo Ball"
     },
     {
      "pos": "SG",
-     "name": "Egor Demin"
+     "name": "Anthony Edwards"
     },
     {
      "pos": "SF",
-     "name": "Michael Porter"
+     "name": "Jaden McDaniels"
     },
     {
      "pos": "PF",
-     "name": "Julius Randle"
+     "name": "Jonathan Kuminga"
     },
     {
      "pos": "C",
-     "name": "Day'Ron Sharpe"
+     "name": "Rudy Gobert"
     }
    ]
   },
-  "CHA": {
-   "date": "2026-10-06",
+  "IND": {
+   "date": "2026-10-07",
    "time": "19:00",
-   "vs": "BKN",
+   "vs": "MIN",
    "home": true,
-   "confirmed": true,
+   "confirmed": false,
    "starters": [
     {
      "pos": "PG",
-     "name": "Dennis Schroder"
+     "name": "Tyrese Haliburton"
     },
     {
      "pos": "SG",
-     "name": "Grayson Allen"
+     "name": "Andrew Nembhard"
     },
     {
      "pos": "SF",
-     "name": "Liam McNeeley"
+     "name": "Aaron Nesmith"
     },
     {
      "pos": "PF",
-     "name": "Naz Reid"
+     "name": "Pascal Siakam"
     },
     {
      "pos": "C",
-     "name": "Moussa Diabate"
+     "name": "Ivica Zubac"
     }
    ]
   },
-  "NOP": {
-   "date": "2026-10-06",
+  "PHX": {
+   "date": "2026-10-07",
+   "time": "20:00",
+   "vs": "CHI",
+   "home": false,
+   "confirmed": false,
+   "starters": [
+    {
+     "pos": "PG",
+     "name": "Devin Booker"
+    },
+    {
+     "pos": "SG",
+     "name": "Jalen Green"
+    },
+    {
+     "pos": "SF",
+     "name": "Dillon Brooks"
+    },
+    {
+     "pos": "PF",
+     "name": "Miles Bridges"
+    },
+    {
+     "pos": "C",
+     "name": "Oso Ighodaro"
+    }
+   ]
+  },
+  "CHI": {
+   "date": "2026-10-07",
+   "time": "20:00",
+   "vs": "PHX",
+   "home": true,
+   "confirmed": false,
+   "starters": [
+    {
+     "pos": "PG",
+     "name": "Josh Giddey"
+    },
+    {
+     "pos": "SG",
+     "name": "Norman Powell"
+    },
+    {
+     "pos": "SF",
+     "name": "Matas Buzelis"
+    },
+    {
+     "pos": "PF",
+     "name": "Caleb Wilson"
+    },
+    {
+     "pos": "C",
+     "name": "Jalen Smith"
+    }
+   ]
+  },
+  "MIL": {
+   "date": "2026-10-07",
    "time": "20:00",
    "vs": "OKC",
    "home": false,
-   "confirmed": true,
+   "confirmed": false,
    "starters": [
     {
      "pos": "PG",
-     "name": "Dejounte Murray"
+     "name": "Ryan Rollins"
     },
     {
      "pos": "SG",
-     "name": "Trey Murphy"
+     "name": "Tyler Herro"
     },
     {
      "pos": "SF",
-     "name": "Herbert Jones"
+     "name": "Jaime Jaquez"
     },
     {
      "pos": "PF",
-     "name": "Zion Williamson"
+     "name": "Kyle Kuzma"
     },
     {
      "pos": "C",
-     "name": "Yves Missi"
+     "name": "Myles Turner"
     }
    ]
   },
   "OKC": {
-   "date": "2026-10-06",
+   "date": "2026-10-07",
    "time": "20:00",
-   "vs": "NOP",
+   "vs": "MIL",
    "home": true,
-   "confirmed": true,
+   "confirmed": false,
    "starters": [
     {
      "pos": "PG",
-     "name": "Ajay Mitchell"
+     "name": "Shai Gilgeous-Alexander"
     },
     {
      "pos": "SG",
-     "name": "Jared McCain"
+     "name": "Cason Wallace"
     },
     {
      "pos": "SF",
-     "name": "Bennett Stirtz"
+     "name": "Jalen Williams"
     },
     {
      "pos": "PF",
-     "name": "Kenrich Williams"
+     "name": "Chet Holmgren"
     },
     {
      "pos": "C",
-     "name": "Aday Mara"
+     "name": "Isaiah Hartenstein"
     }
    ]
   },
-  "DEN": {
-   "date": "2026-10-06",
-   "time": "21:00",
-   "vs": "UTA",
+  "ORL": {
+   "date": "2026-10-07",
+   "time": "20:00",
+   "vs": "MEM",
    "home": false,
-   "confirmed": true,
+   "confirmed": false,
    "starters": [
     {
      "pos": "PG",
-     "name": "Jamal Murray"
+     "name": "Jalen Suggs"
     },
     {
      "pos": "SG",
-     "name": "Christian Braun"
+     "name": "Desmond Bane"
     },
     {
      "pos": "SF",
-     "name": "Cameron Johnson"
+     "name": "Franz Wagner"
     },
     {
      "pos": "PF",
-     "name": "Aaron Gordon"
+     "name": "Paolo Banchero"
     },
     {
      "pos": "C",
-     "name": "Nikola Jokic"
+     "name": "Wendell Carter"
     }
    ]
   },
-  "UTA": {
-   "date": "2026-10-06",
-   "time": "21:00",
-   "vs": "DEN",
+  "MEM": {
+   "date": "2026-10-07",
+   "time": "20:00",
+   "vs": "ORL",
    "home": true,
-   "confirmed": true,
+   "confirmed": false,
    "starters": [
     {
      "pos": "PG",
-     "name": "Keyonte George"
+     "name": "Ty Jerome"
     },
     {
      "pos": "SG",
-     "name": "Darryn Peterson"
+     "name": "Cedric Coward"
     },
     {
      "pos": "SF",
-     "name": "Ace Bailey"
+     "name": "Jaylen Wells"
     },
     {
      "pos": "PF",
-     "name": "Jaren Jackson"
+     "name": "Cameron Boozer"
     },
     {
      "pos": "C",
-     "name": "Jaxson Hayes"
-    }
-   ]
-  },
-  "LAL": {
-   "date": "2026-10-06",
-   "time": "22:00",
-   "vs": "GSW",
-   "home": false,
-   "confirmed": true,
-   "starters": [
-    {
-     "pos": "PG",
-     "name": "Bronny James"
-    },
-    {
-     "pos": "SG",
-     "name": "Adou Thiero"
-    },
-    {
-     "pos": "SF",
-     "name": "Quentin Grimes"
-    },
-    {
-     "pos": "PF",
-     "name": "Jake LaRavia"
-    },
-    {
-     "pos": "C",
-     "name": "Sandro Mamukelashvili"
+     "name": "Zach Edey"
     }
    ]
   },
   "GSW": {
-   "date": "2026-10-06",
+   "date": "2026-10-07",
    "time": "22:00",
-   "vs": "LAL",
-   "home": true,
-   "confirmed": true,
+   "vs": "POR",
+   "home": false,
+   "confirmed": false,
    "starters": [
     {
      "pos": "PG",
-     "name": "Stephen Curry"
+     "name": "Brandin Podziemski"
     },
     {
      "pos": "SG",
-     "name": "Brandin Podziemski"
+     "name": "Will Richard"
     },
     {
      "pos": "SF",
@@ -8843,28 +8872,57 @@
     },
     {
      "pos": "C",
-     "name": "Draymond Green"
+     "name": "Charles Bassey"
+    }
+   ]
+  },
+  "POR": {
+   "date": "2026-10-07",
+   "time": "22:00",
+   "vs": "GSW",
+   "home": true,
+   "confirmed": false,
+   "starters": [
+    {
+     "pos": "PG",
+     "name": "Damian Lillard"
+    },
+    {
+     "pos": "SG",
+     "name": "Jrue Holiday"
+    },
+    {
+     "pos": "SF",
+     "name": "Toumani Camara"
+    },
+    {
+     "pos": "PF",
+     "name": "Deni Avdija"
+    },
+    {
+     "pos": "C",
+     "name": "Donovan Clingan"
     }
    ]
   }
  },
- "generated_at": "2026-10-07T01:59:16+00:00",
+ "generated_at": "2026-10-07T11:09:45+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-07T01:58:59+00:00",
+   "at": "2026-10-07T11:09:32+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-07T01:59:14+00:00",
+   "at": "2026-10-07T11:09:44+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-07T01:59:15+00:00",
-   "teams": 8,
-   "injuries": 35
+   "at": "2026-10-07T11:09:44+00:00",
+   "teams": 10,
+   "injuries": 40
   },
   "minutes": {
    "ok": null,
@@ -8872,17 +8930,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-07T01:59:15+00:00",
-   "count": 89
+   "at": "2026-10-07T11:09:44+00:00",
+   "count": 80
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-07T01:59:16+00:00",
+   "at": "2026-10-07T11:09:45+00:00",
    "count": 22
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-07T01:59:16+00:00",
+   "at": "2026-10-07T11:09:45+00:00",
    "count": 93
   },
   "x": {
@@ -8892,66 +8950,6 @@
  },
  "injuries": [
   {
-   "team": "ATL",
-   "player": "Isaac McKneely",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Shoulder",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Isaac%20McKneely"
-  },
-  {
-   "team": "ATL",
-   "player": "Luguentz Dort",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Luguentz%20Dort"
-  },
-  {
-   "team": "ATL",
-   "player": "CJ McCollum",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Nose",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=CJ%20McCollum"
-  },
-  {
-   "team": "ATL",
-   "player": "Mouhamed Gueye",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Foot",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Mouhamed%20Gueye"
-  },
-  {
-   "team": "ATL",
-   "player": "Henri Veesaar",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-09-21",
-   "until": "",
-   "note": "Out for the season",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Henri%20Veesaar"
-  },
-  {
    "team": "BKN",
    "player": "Mikel Brown Jr.",
    "src": "CBS",
@@ -8960,7 +8958,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Mikel%20Brown%20Jr."
   },
   {
@@ -8972,7 +8970,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Joshua%20Jefferson"
   },
   {
@@ -8984,7 +8982,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandon%20Miller"
   },
   {
@@ -8996,20 +8994,8 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Christian%20Anderson"
-  },
-  {
-   "team": "CHA",
-   "player": "Coby White",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Calf",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Coby%20White"
   },
   {
    "team": "CHA",
@@ -9020,32 +9006,20 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kylan%20Boswell"
   },
   {
    "team": "CHA",
-   "player": "PJ Hall",
+   "player": "Coby White",
    "src": "CBS",
    "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-01",
+   "injury": "Calf",
+   "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=PJ%20Hall"
-  },
-  {
-   "team": "CHA",
-   "player": "Kon Knueppel",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Hamstring",
-   "upd": "2026-09-25",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kon%20Knueppel"
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Coby%20White"
   },
   {
    "team": "CHA",
@@ -9056,56 +9030,20 @@
    "upd": "2026-09-25",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Grant%20Williams"
   },
   {
-   "team": "CHI",
-   "player": "Nicolas Claxton",
+   "team": "CHA",
+   "player": "Kon Knueppel",
    "src": "CBS",
    "kind": "G",
    "injury": "Hamstring",
-   "upd": "2026-10-05",
+   "upd": "2026-09-25",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nicolas%20Claxton"
-  },
-  {
-   "team": "CHI",
-   "player": "Zach Collins",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Toe",
-   "upd": "2026-09-28",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Zach%20Collins"
-  },
-  {
-   "team": "CLE",
-   "player": "Peyton Watson",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Hamstring",
-   "upd": "2026-10-01",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Peyton%20Watson"
-  },
-  {
-   "team": "DAL",
-   "player": "Santi Aldama",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Undisclosed",
-   "upd": "2026-10-01",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Santi%20Aldama"
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kon%20Knueppel"
   },
   {
    "team": "DAL",
@@ -9116,20 +9054,8 @@
    "upd": "2026-09-30",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Morez%20Johnson%20Jr."
-  },
-  {
-   "team": "DAL",
-   "player": "Dereck Lively II",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Foot",
-   "upd": "2026-09-23",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
   },
   {
    "team": "DEN",
@@ -9137,10 +9063,10 @@
    "src": "CBS",
    "kind": "G",
    "injury": "Hamstring",
-   "upd": "2026-10-04",
+   "upd": "2026-10-07",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Spencer%20Jones"
   },
   {
@@ -9152,8 +9078,44 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jalen%20Duren"
+  },
+  {
+   "team": "GSW",
+   "player": "Stephen Curry",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "",
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Stephen%20Curry"
+  },
+  {
+   "team": "GSW",
+   "player": "Al Horford",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "",
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Al%20Horford"
+  },
+  {
+   "team": "GSW",
+   "player": "Draymond Green",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "",
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Draymond%20Green"
   },
   {
    "team": "GSW",
@@ -9176,7 +9138,7 @@
    "upd": "2026-09-28",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kristaps%20Porzingis"
   },
   {
@@ -9200,7 +9162,7 @@
    "upd": "2026-10-04",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Quenton%20Jackson"
   },
   {
@@ -9212,7 +9174,7 @@
    "upd": "2026-10-04",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=T.J.%20McConnell"
   },
   {
@@ -9224,7 +9186,7 @@
    "upd": "2026-09-29",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Larry%20Nance%20Jr."
   },
   {
@@ -9260,7 +9222,7 @@
    "upd": "2026-10-04",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Bradley%20Beal"
   },
   {
@@ -9272,20 +9234,8 @@
    "upd": "2026-10-03",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kobe%20Sanders"
-  },
-  {
-   "team": "LAC",
-   "player": "Brandon Ingram",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Achilles",
-   "upd": "2026-09-28",
-   "until": "2026-11-01",
-   "note": "Expected to be out until at least Nov 1",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandon%20Ingram"
   },
   {
    "team": "LAC",
@@ -9301,6 +9251,18 @@
   },
   {
    "team": "LAC",
+   "player": "Brandon Ingram",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Achilles",
+   "upd": "2026-09-28",
+   "until": "2026-11-01",
+   "note": "Expected to be out until at least Nov 1",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandon%20Ingram"
+  },
+  {
+   "team": "LAC",
    "player": "Jordan Miller",
    "src": "CBS",
    "kind": "O",
@@ -9313,27 +9275,27 @@
   },
   {
    "team": "LAL",
-   "player": "Matisse Thybulle",
+   "player": "Arthur Kaluma",
    "src": "CBS",
    "kind": "G",
-   "injury": "Rest",
+   "injury": "Lower Body",
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Matisse%20Thybulle"
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Arthur%20Kaluma"
   },
   {
    "team": "LAL",
-   "player": "Ziaire Williams",
+   "player": "Austin Reaves",
    "src": "CBS",
    "kind": "G",
-   "injury": "Rest",
+   "injury": "Ankle",
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Ziaire%20Williams"
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Austin%20Reaves"
   },
   {
    "team": "LAL",
@@ -9344,7 +9306,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Collin%20Sexton"
   },
   {
@@ -9356,20 +9318,20 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Walker%20Kessler"
   },
   {
    "team": "LAL",
-   "player": "Arthur Kaluma",
+   "player": "Matisse Thybulle",
    "src": "CBS",
    "kind": "G",
-   "injury": "Lower Body",
+   "injury": "Rest",
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Arthur%20Kaluma"
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Matisse%20Thybulle"
   },
   {
    "team": "LAL",
@@ -9380,20 +9342,20 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Luka%20Doncic"
   },
   {
    "team": "LAL",
-   "player": "Austin Reaves",
+   "player": "Ziaire Williams",
    "src": "CBS",
    "kind": "G",
-   "injury": "Ankle",
+   "injury": "Rest",
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Austin%20Reaves"
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Ziaire%20Williams"
   },
   {
    "team": "MEM",
@@ -9401,10 +9363,10 @@
    "src": "CBS",
    "kind": "G",
    "injury": "Ankle",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Isaiah%20Stewart"
   },
   {
@@ -9416,7 +9378,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Micah%20Peavy"
   },
   {
@@ -9428,7 +9390,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Zach%20Edey"
   },
   {
@@ -9452,7 +9414,7 @@
    "upd": "2026-10-01",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dru%20Smith"
   },
   {
@@ -9468,18 +9430,6 @@
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Donte%20DiVincenzo"
   },
   {
-   "team": "NOP",
-   "player": "Bryce McGowens",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Toe",
-   "upd": "2026-10-01",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Bryce%20McGowens"
-  },
-  {
    "team": "NYK",
    "player": "Jose Alvarado",
    "src": "CBS",
@@ -9488,7 +9438,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jose%20Alvarado"
   },
   {
@@ -9500,20 +9450,8 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jaylin%20Williams"
-  },
-  {
-   "team": "OKC",
-   "player": "Jalen Williams",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Not Injury Related",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jalen%20Williams"
   },
   {
    "team": "OKC",
@@ -9524,44 +9462,8 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Chet%20Holmgren"
-  },
-  {
-   "team": "OKC",
-   "player": "Shai Gilgeous-Alexander",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Not Injury Related",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Shai%20Gilgeous-Alexander"
-  },
-  {
-   "team": "OKC",
-   "player": "Thomas Sorber",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Thomas%20Sorber"
-  },
-  {
-   "team": "OKC",
-   "player": "Nikola Topic",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Back",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nikola%20Topic"
   },
   {
    "team": "OKC",
@@ -9572,8 +9474,32 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cason%20Wallace"
+  },
+  {
+   "team": "OKC",
+   "player": "Nikola Topic",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Back",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nikola%20Topic"
+  },
+  {
+   "team": "OKC",
+   "player": "Thomas Sorber",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Knee",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Thomas%20Sorber"
   },
   {
    "team": "OKC",
@@ -9584,8 +9510,32 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Alex%20Caruso"
+  },
+  {
+   "team": "OKC",
+   "player": "Jalen Williams",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Not Injury Related",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jalen%20Williams"
+  },
+  {
+   "team": "OKC",
+   "player": "Shai Gilgeous-Alexander",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Not Injury Related",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Shai%20Gilgeous-Alexander"
   },
   {
    "team": "OKC",
@@ -9596,7 +9546,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Isaiah%20Hartenstein"
   },
   {
@@ -9608,7 +9558,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jonathan%20Isaac"
   },
   {
@@ -9620,7 +9570,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jalen%20Suggs"
   },
   {
@@ -9632,7 +9582,7 @@
    "upd": "2026-09-30",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Anthony%20Black"
   },
   {
@@ -9644,7 +9594,7 @@
    "upd": "2026-09-30",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Noah%20Penda"
   },
   {
@@ -9656,20 +9606,8 @@
    "upd": "2026-09-08",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Izaiyah%20Nelson"
-  },
-  {
-   "team": "PHI",
-   "player": "Adem Bona",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Foot",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Adem%20Bona"
   },
   {
    "team": "PHI",
@@ -9680,20 +9618,8 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=LeBron%20James"
-  },
-  {
-   "team": "PHI",
-   "player": "Tyrese Maxey",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Rest",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tyrese%20Maxey"
   },
   {
    "team": "PHI",
@@ -9704,8 +9630,32 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dom%20Barlow"
+  },
+  {
+   "team": "PHI",
+   "player": "Adem Bona",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Foot",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Adem%20Bona"
+  },
+  {
+   "team": "PHI",
+   "player": "Tyrese Maxey",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-05",
+   "until": "",
+   "note": "",
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tyrese%20Maxey"
   },
   {
    "team": "PHI",
@@ -9716,7 +9666,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Joel%20Embiid"
   },
   {
@@ -9728,7 +9678,7 @@
    "upd": "2026-10-01",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tacko%20Fall"
   },
   {
@@ -9764,7 +9714,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Keegan%20Murray"
   },
   {
@@ -9776,7 +9726,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Ben%20Simmons"
   },
   {
@@ -9788,7 +9738,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Malik%20Monk"
   },
   {
@@ -9800,7 +9750,7 @@
    "upd": "2026-10-01",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=David%20Jones"
   },
   {
@@ -9824,7 +9774,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Trayce%20Jackson-Davis"
   },
   {
@@ -9836,20 +9786,8 @@
    "upd": "2026-10-03",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nate%20Bittle"
-  },
-  {
-   "team": "TOR",
-   "player": "Allen Graves",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Groin",
-   "upd": "2026-10-03",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Allen%20Graves"
   },
   {
    "team": "TOR",
@@ -9860,8 +9798,20 @@
    "upd": "2026-10-03",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kawhi%20Leonard"
+  },
+  {
+   "team": "TOR",
+   "player": "Allen Graves",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Groin",
+   "upd": "2026-10-03",
+   "until": "",
+   "note": "",
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Allen%20Graves"
   },
   {
    "team": "TOR",
@@ -9872,8 +9822,20 @@
    "upd": "2026-10-03",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jamison%20Battle"
+  },
+  {
+   "team": "UTA",
+   "player": "Brice Sensabaugh",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Hip",
+   "upd": "2026-10-06",
+   "until": "",
+   "note": "",
+   "through": "2026-10-09",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brice%20Sensabaugh"
   },
   {
    "team": "UTA",
@@ -9884,7 +9846,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kyle%20Filipowski"
   },
   {
@@ -9896,7 +9858,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Lauri%20Markkanen"
   },
   {
@@ -9908,20 +9870,8 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jusuf%20Nurkic"
-  },
-  {
-   "team": "UTA",
-   "player": "Brice Sensabaugh",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Hip",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "",
-   "through": "2026-10-08",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brice%20Sensabaugh"
   },
   {
    "team": "WAS",
@@ -9932,7 +9882,7 @@
    "upd": "2026-10-01",
    "until": "",
    "note": "",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Alex%20Sarr"
   },
   {
@@ -10232,7 +10182,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Wiggins won't return to Monday's preseason game against the Grizzlies due to a cut to his inner lip. He'll end with seven points (2-4 FG, 1-2 3Pt, 2-2 FT) in 11 minutes.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Aaron%20Wiggins"
   },
   {
@@ -10244,7 +10194,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Dort won't play in Monday's preseason game against the Grizzlies due to a right knee contusion, Kevin Chouinard of the Hawks' official site reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Luguentz%20Dort"
   },
   {
@@ -10256,7 +10206,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "McCollum is out for Monday's preseason opener against the Grizzlies due to a nose contusion, Brad Rowland of the Locked On Podcast Network reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=CJ%20McCollum"
   },
   {
@@ -10280,7 +10230,7 @@
    "upd": "2026-07-19",
    "until": "",
    "note": "Gueye underwent surgery Tuesday to repair a fractured left foot that he suffered during a workout last week, Brad Rowland of the Locked On Podcast Network reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Mouhamed%20Gueye"
   },
   {
@@ -10292,7 +10242,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Jefferson (lower back) is out for Tuesday's preseason game against Charlotte, Brian Lewis of the New York Post reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Joshua%20Jefferson"
   },
   {
@@ -10304,7 +10254,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Brown (ankle) will miss Tuesday's preseason game against the Hornets, Brian Lewis of the New York Post reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Mikel%20Brown%20Jr."
   },
   {
@@ -10316,7 +10266,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Miller (leg) is listed as out for Tuesday's preseason game versus the Nets.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Brandon%20Miller"
   },
   {
@@ -10328,7 +10278,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Anderson (ankle) won't play in Tuesday's preseason game against the Nets.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Christian%20Anderson"
   },
   {
@@ -10340,7 +10290,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Boswell is rehabbing a right knee injury, and he's hopeful to be cleared for basketball activities prior to the start of the G League season in late October.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Kylan%20Boswell"
   },
   {
@@ -10352,7 +10302,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "The Hornets announced Monday that White suffered a left calf strain during training camp and will not play during the preseason.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Coby%20White"
   },
   {
@@ -10364,7 +10314,7 @@
    "upd": "2026-09-28",
    "until": "",
    "note": "Hornets general manager Jeff Peterson said Monday that he \"doesn't know\" whether Knueppel (hamstring) will be available for the team's regular-season opener against the Nets, Owen Watterson of SI.com reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Kon%20Knueppel"
   },
   {
@@ -10376,20 +10326,8 @@
    "upd": "2026-09-25",
    "until": "",
    "note": "Williams will miss the preseason after suffering a right hamstring injury, the Hornets announced Friday.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Grant%20Williams"
-  },
-  {
-   "team": "CHA",
-   "player": "PJ Hall",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Ankle Surgery",
-   "upd": "2026-06-16",
-   "until": "",
-   "note": "The Hornets announced Thursday that Hall underwent a procedure to address a fractured right ankle and will miss the remainder of the 2025-26 campaign.",
-   "through": "2026-10-08",
-   "url": "https://www.espn.com/nba/injuries#:~:text=PJ%20Hall"
   },
   {
    "team": "CHI",
@@ -10400,7 +10338,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Collins (toe) was a big part of Tuesday's practice, Joel Lorenzi of The Athletic reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Zach%20Collins"
   },
   {
@@ -10412,7 +10350,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Claxton tweaked his hamstring and will be re-evaluated in two weeks, Chuck Swirsky of the Bulls Radio Network of the Bulls Radio Network reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Nic%20Claxton"
   },
   {
@@ -10424,7 +10362,7 @@
    "upd": "2026-09-25",
    "until": "",
    "note": "Although head coach Kenny Atkinson said the starting lineup for the beginning of the 2026-27 season is not yet set, he praised Watson's (hamstring) fit in Cleveland and added that \"there's a lot of room for growth in his offensive game,\" Chris Fedor of Cleveland.com reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Peyton%20Watson"
   },
   {
@@ -10436,7 +10374,7 @@
    "upd": "2026-10-01",
    "until": "",
    "note": "Head coach Dusty May said Wednesday that Johnson has been limited in training camp due to lower-leg soreness, Ron Harrod Jr. of DLLS Sports reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Morez%20Johnson%20Jr."
   },
   {
@@ -10448,7 +10386,7 @@
    "upd": "2026-09-26",
    "until": "",
    "note": "Aldama (undisclosed) was limited during Saturday's practice, Noah Weber of TheSmokingCuban.com reported.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Santi%20Aldama"
   },
   {
@@ -10460,7 +10398,7 @@
    "upd": "2026-09-25",
    "until": "",
    "note": "Mavericks president Masai Ujiri said Friday that Lively (foot) is \"making good progress\" in his recovery, Mike Curtis of The Dallas Morning News reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Dereck%20Lively%20II"
   },
   {
@@ -10469,10 +10407,10 @@
    "src": "ESPN",
    "kind": "G",
    "injury": "Hamstring",
-   "upd": "2026-10-04",
+   "upd": "2026-10-07",
    "until": "",
-   "note": "Jones (hamstring) has been ruled out for Sunday's preseason game against the Jazz, Katy Winge of Altitude Sports reports.",
-   "through": "2026-10-08",
+   "note": "Jones (hamstring) did not play during Tuesday's 93-79 preseason win over the Jazz.",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Spencer%20Jones"
   },
   {
@@ -10484,8 +10422,44 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Duren (rest) won't play in Monday's preseason game against the Suns, Hunter Patterson of The Athletic reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jalen%20Duren"
+  },
+  {
+   "team": "GSW",
+   "player": "Draymond Green",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "Green will be limited to around 20 minutes in Tuesday's preseason contest against the Lakers and won't travel to Portland for Wednesday's back-to-back against the Trail Blazers, Anthony Slater of ESPN.com reports.",
+   "through": "2026-10-09",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Draymond%20Green"
+  },
+  {
+   "team": "GSW",
+   "player": "Al Horford",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "Horford will come off the bench for Tuesday's preseason game against the Lakers and he will not travel to Portland for Wednesday's exhibition, Anthony Slater of ESPN.com reports.",
+   "through": "2026-10-09",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Al%20Horford"
+  },
+  {
+   "team": "GSW",
+   "player": "Stephen Curry",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "Curry will be limited to \"around 20 minutes\" in Tuesday's preseason game against the Lakers, Anthony Slater of ESPN.com reports.",
+   "through": "2026-10-09",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Stephen%20Curry"
   },
   {
    "team": "GSW",
@@ -10496,7 +10470,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Porzingis (undisclosed) remains out indefinitely, per Anthony Slater of ESPN.com.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Kristaps%20Porzingis"
   },
   {
@@ -10532,7 +10506,7 @@
    "upd": "2026-10-04",
    "until": "",
    "note": "Jackson (undisclosed) won't participate in Sunday's scrimmage, Tony East of Forbes.com reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Quenton%20Jackson"
   },
   {
@@ -10544,7 +10518,7 @@
    "upd": "2026-10-04",
    "until": "",
    "note": "McConnell (undisclosed) will not participate in Sunday's scrimmage, Tony East of Forbes.com reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=T.J.%20McConnell"
   },
   {
@@ -10556,7 +10530,7 @@
    "upd": "2026-10-04",
    "until": "",
    "note": "Nance (hamstring) won't participate in Sunday's scrimmage, Tony East of Forbes.com reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Larry%20Nance%20Jr."
   },
   {
@@ -10592,7 +10566,7 @@
    "upd": "2026-10-03",
    "until": "",
    "note": "Sanders won't play in Sunday's preseason game against the Warriors due to a left hip impingement, Joey Linn of SI.com reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Kobe%20Sanders"
   },
   {
@@ -10604,7 +10578,7 @@
    "upd": "2026-09-28",
    "until": "",
    "note": "Beal (knee) will miss the start of training camp, Law Murray of The Athletic reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Bradley%20Beal"
   },
   {
@@ -10652,7 +10626,7 @@
    "upd": "2026-10-07",
    "until": "",
    "note": "Kaluma (lower body) won't play in Tuesday's preseason game Golden State, Luca Evans of the San Francisco Chronicle reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Arthur%20Kaluma"
   },
   {
@@ -10664,7 +10638,7 @@
    "upd": "2026-10-07",
    "until": "",
    "note": "Sexton (lower body) won't play in Tuesday's preseason game against the Warriors, Luca Evans of the San Francisco Chronicle reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Collin%20Sexton"
   },
   {
@@ -10676,7 +10650,7 @@
    "upd": "2026-10-07",
    "until": "",
    "note": "Williams (rest) is out for Tuesday's preseason game against the Warriors, Luca Evans of the San Francisco Chronicle reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Ziaire%20Williams"
   },
   {
@@ -10688,7 +10662,7 @@
    "upd": "2026-10-07",
    "until": "",
    "note": "Kessler (finger) won't play in Tuesday's exhibition game against the Warriors, Luca Evans of the San Francisco Chronicle reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Walker%20Kessler"
   },
   {
@@ -10700,7 +10674,7 @@
    "upd": "2026-10-07",
    "until": "",
    "note": "Doncic (undisclosed) won't play in Tuesday's preseason game against the Warriors, Luca Evans of the San Francisco Chronicle reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Luka%20Doncic"
   },
   {
@@ -10712,7 +10686,7 @@
    "upd": "2026-10-07",
    "until": "",
    "note": "Thybulle (rest) will skip Tuesday's exhibition against the Warriors, Luca Evans of the San Francisco Chronicle reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Matisse%20Thybulle"
   },
   {
@@ -10724,7 +10698,7 @@
    "upd": "2026-10-07",
    "until": "",
    "note": "Reaves (ankle) won't play in Tuesday's preseason game against the Warriors, Luca Evans of the San Francisco Chronicle reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Austin%20Reaves"
   },
   {
@@ -10736,7 +10710,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Peavy (ankle) did not see the floor in Monday's 132-123 preseason win over the Hawks.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Micah%20Peavy"
   },
   {
@@ -10748,7 +10722,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Stewart exited Monday's 132-123 preseason win over the Hawks in the first quarter and did not return due to a left ankle injury, finishing with one rebound in two minutes.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Isaiah%20Stewart"
   },
   {
@@ -10760,7 +10734,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Edey (ankle) completed a full on-court workout Monday but won't play in the Grizzlies' preseason game against the Hawks, Michael Wallace of the Grizzlies' official site reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Zach%20Edey"
   },
   {
@@ -10784,7 +10758,7 @@
    "upd": "2026-10-01",
    "until": "",
    "note": "Smith will miss a couple weeks with a strained right calf, Ira Winderman of the South Florida Sun Sentinel reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Dru%20Smith"
   },
   {
@@ -10800,18 +10774,6 @@
    "url": "https://www.espn.com/nba/injuries#:~:text=Donte%20DiVincenzo"
   },
   {
-   "team": "NOP",
-   "player": "Bryce McGowens",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Toe Fracture",
-   "upd": "2026-06-16",
-   "until": "",
-   "note": "McGowens (toe) is out for Sunday's game against the Timberwolves.",
-   "through": "2026-10-08",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Bryce%20McGowens"
-  },
-  {
    "team": "NYK",
    "player": "Jose Alvarado",
    "src": "ESPN",
@@ -10820,7 +10782,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Alvarado (knee) won't play in Monday's preseason game against the 76ers, Steve Popper of Newsday reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jose%20Alvarado"
   },
   {
@@ -10832,7 +10794,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Williams (heel) won't play in Tuesday's preseason opener against the Pelicans, Clemente Almanza of USA Today reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jaylin%20Williams"
   },
   {
@@ -10844,7 +10806,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Sorber (knee) will not play in Tuesday's preseason opener against New Orleans, Clemente Almanza of USA Today reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Thomas%20Sorber"
   },
   {
@@ -10856,7 +10818,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Topic (back) will not play in Tuesday's preseason opener against the Pelicans, Clemente Almanza of USA Today reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Nikola%20Topic"
   },
   {
@@ -10868,7 +10830,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Wallace will not play in Tuesday's preseason opener against New Orleans, Clemente Almanza of USA Today reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Cason%20Wallace"
   },
   {
@@ -10880,7 +10842,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Caruso will not play in Tuesday's preseason opener against the Pelicans, Clemente Almanza of USA Today reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Alex%20Caruso"
   },
   {
@@ -10892,7 +10854,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Holmgren (rest) will not play in Tuesday's preseason opener against New Orleans, Clemente Almanza of USA Today reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Chet%20Holmgren"
   },
   {
@@ -10904,7 +10866,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Hartenstein (rest) will not play in Tuesday's preseason opener against the Pelicans, Clemente Almanza of USA Today reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Isaiah%20Hartenstein"
   },
   {
@@ -10916,7 +10878,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Williams (not injury related) is out for Tuesday's preseason game against the Pelicans, Clemente Almanza of USA Today reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jalen%20Williams"
   },
   {
@@ -10928,7 +10890,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Gilgeous-Alexander will not play in Tuesday's preseason opener against the Pelicans, Clemente Almanza of USA Today reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Shai%20Gilgeous-Alexander"
   },
   {
@@ -10940,7 +10902,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Suggs remains under the weather but was able to get on the court and run around during Tuesday's practice, Jason Beede of the Orlando Sentinel reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jalen%20Suggs"
   },
   {
@@ -10952,7 +10914,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Isaac (knee) won't travel with the Magic for Wednesday's preseason opener against the Grizzlies due to personal reasons, Jason Beede of the Orlando Sentinel reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jonathan%20Isaac"
   },
   {
@@ -10964,7 +10926,7 @@
    "upd": "2026-10-04",
    "until": "",
    "note": "Penda (hamstring) participated in Sunday's practice and has been progressing in his ramp-up process, Jason Beede of the Orlando Sentinel reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Noah%20Penda"
   },
   {
@@ -10976,7 +10938,7 @@
    "upd": "2026-10-04",
    "until": "",
    "note": "Black (ankle) participated in Sunday's practice and has been progressing in his ramp-up process, Jason Beede of the Orlando Sentinel reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Anthony%20Black"
   },
   {
@@ -11012,7 +10974,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Simons (rest) won't play in Monday's preseason game against the Knicks, Chris Hine of The Minnesota Star Tribune reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Anfernee%20Simons"
   },
   {
@@ -11024,7 +10986,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Barlow will be rested for Monday's preseason game against the Knicks, Chris Hine of The Minnesota Star Tribune reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Dominick%20Barlow"
   },
   {
@@ -11036,7 +10998,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Bona (foot) will not play in Monday's preseason opener against New York, Chris Hine of The Minnesota Star Tribune reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Adem%20Bona"
   },
   {
@@ -11048,7 +11010,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Maxey (rest) won't play in Monday's preseason game against the Knicks, Chris Hine of The Minnesota Star Tribune reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Tyrese%20Maxey"
   },
   {
@@ -11060,7 +11022,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "James (rest) has been ruled out for Monday's game against the Knicks, Chris Hine of The Minnesota Star Tribune reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=LeBron%20James"
   },
   {
@@ -11072,7 +11034,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Embiid (rest) won't play in Monday's preseason game against the Knicks, Chris Hine of The Minnesota Star Tribune reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Joel%20Embiid"
   },
   {
@@ -11084,7 +11046,7 @@
    "upd": "2026-10-01",
    "until": "",
    "note": "Fall was diagnosed with a left hip strain Thursday and will miss at least two weeks, Kyle Neubeck of AllPHLY.com reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Tacko%20Fall"
   },
   {
@@ -11120,7 +11082,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Murray (undisclosed) won't play in Monday's preseason game against the Lakers, Sean Cunningham of Fox 40 Sacramento reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Keegan%20Murray"
   },
   {
@@ -11132,7 +11094,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Monk (rest) won't suit up for Monday's exhibition versus the Lakers, Sean Cunningham of Fox 40 Sacramento reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Malik%20Monk"
   },
   {
@@ -11144,7 +11106,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Simmons (not injury related) won't play in Monday's preseason game against the Lakers, Sean Cunningham of Fox 40 Sacramento reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Ben%20Simmons"
   },
   {
@@ -11168,7 +11130,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Spurs head coach Mitch Johnson said they will not rush Tobias Harris (calf) back to the court, Jared Weiss of The Athletic reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Tobias%20Harris"
   },
   {
@@ -11180,7 +11142,7 @@
    "upd": "2026-07-22",
    "until": "",
    "note": "Jones Garcia (ankle) agreed to a two-way contract with the Spurs on Wednesday, per Michael Scotto of HoopsHype.com.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=David%20Jones%20Garcia"
   },
   {
@@ -11192,7 +11154,7 @@
    "upd": "2026-10-06",
    "until": "",
    "note": "Correcting a previous report, Jackson-Davis (migraines) was absent from Tuesday's practice, Josh Lewenberg of TSN.ca reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Trayce%20Jackson-Davis"
   },
   {
@@ -11204,7 +11166,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Battle (lower back) was a limited participant in Monday's practice, Esfandiar Baraheni of The Athletic reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jamison%20Battle"
   },
   {
@@ -11216,7 +11178,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Graves (groin) was limited during Sunday's practice, Josh Lewenberg of TSN.ca reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Allen%20Graves"
   },
   {
@@ -11228,7 +11190,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Leonard (not injury related) went through a full practice Monday, Michael Grange of Sportsnet.ca reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Kawhi%20Leonard"
   },
   {
@@ -11240,7 +11202,7 @@
    "upd": "2026-10-04",
    "until": "",
    "note": "Bittle (foot) did not play in Saturday's 129-105 preseason loss to the Heat.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Nate%20Bittle"
   },
   {
@@ -11252,7 +11214,7 @@
    "upd": "2026-10-07",
    "until": "",
    "note": "Markkanen won't play in Tuesday's preseason game against the Nuggets due to neck soreness.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Lauri%20Markkanen"
   },
   {
@@ -11264,7 +11226,7 @@
    "upd": "2026-10-07",
    "until": "",
    "note": "Sensabaugh (hip) won't play in Tuesday's preseason game against the Nuggets.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Brice%20Sensabaugh"
   },
   {
@@ -11276,7 +11238,7 @@
    "upd": "2026-10-07",
    "until": "",
    "note": "Nurkic (foot) is listed as out for Tuesday's preseason game against Denver.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jusuf%20Nurkic"
   },
   {
@@ -11288,20 +11250,8 @@
    "upd": "2026-10-07",
    "until": "",
    "note": "Filipowski (back) is out for Tuesday's exhibition versus the Nuggets.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Kyle%20Filipowski"
-  },
-  {
-   "team": "UTA",
-   "player": "Josh Green",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Knee",
-   "upd": "2026-10-04",
-   "until": "",
-   "note": "Green (knee) has been ruled out for Sunday's preseason game against the Nuggets, Shreyas Laddha of The Salt Lake Tribune reports.",
-   "through": "2026-10-08",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Josh%20Green"
   },
   {
    "team": "WAS",
@@ -11312,7 +11262,7 @@
    "upd": "2026-10-05",
    "until": "",
    "note": "Sarr said he took part in the Wizards' 5-on-5 full-contact work during Monday's practice, Josh Robbins of The Athletic reports.",
-   "through": "2026-10-08",
+   "through": "2026-10-09",
    "url": "https://www.espn.com/nba/injuries#:~:text=Alex%20Sarr"
   },
   {
@@ -11340,147 +11290,108 @@
    "url": "https://www.espn.com/nba/injuries#:~:text=Jamir%20Watkins"
   },
   {
-   "team": "BKN",
-   "player": "Mikel Brown Jr.",
+   "team": "MIN",
+   "player": "Donte DiVincenzo",
    "src": "RotoWire",
-   "kind": "G",
+   "kind": "O",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Brown"
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-07",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20DiVincenzo"
   },
   {
-   "team": "BKN",
-   "player": "Joshua Jefferson",
+   "team": "IND",
+   "player": "Quenton Jackson",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Jefferson"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Q.%20Jackson"
   },
   {
-   "team": "CHA",
-   "player": "Christian Anderson",
+   "team": "IND",
+   "player": "T.J. McConnell",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Anderson"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20McConnell"
   },
   {
-   "team": "CHA",
-   "player": "Kylan Boswell",
+   "team": "IND",
+   "player": "Larry Nance Jr.",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Boswell"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=L.%20Nance"
   },
   {
-   "team": "CHA",
-   "player": "PJ Hall",
+   "team": "IND",
+   "player": "Johnny Furphy",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-07",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Furphy"
+  },
+  {
+   "team": "PHX",
+   "player": "Mark Williams",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-07",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Williams"
+  },
+  {
+   "team": "CHI",
+   "player": "Nic Claxton",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Hall"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Claxton"
   },
   {
-   "team": "CHA",
-   "player": "Kon Knueppel",
+   "team": "CHI",
+   "player": "Zach Collins",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Knueppel"
-  },
-  {
-   "team": "CHA",
-   "player": "Brandon Miller",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Miller"
-  },
-  {
-   "team": "CHA",
-   "player": "Coby White",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20White"
-  },
-  {
-   "team": "CHA",
-   "player": "Grant Williams",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=G.%20Williams"
-  },
-  {
-   "team": "NOP",
-   "player": "Bryce McGowens",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "RotoWire tag: Prob",
-   "through": "2026-10-06",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20McGowens"
-  },
-  {
-   "team": "OKC",
-   "player": "Alex Caruso",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Caruso"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Z.%20Collins"
   },
   {
    "team": "OKC",
@@ -11488,64 +11399,12 @@
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Gilgeous-Alexander"
-  },
-  {
-   "team": "OKC",
-   "player": "Isaiah Hartenstein",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Hartenstein"
-  },
-  {
-   "team": "OKC",
-   "player": "Chet Holmgren",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Holmgren"
-  },
-  {
-   "team": "OKC",
-   "player": "Thomas Sorber",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20Sorber"
-  },
-  {
-   "team": "OKC",
-   "player": "Nikola Topic",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Topic"
   },
   {
    "team": "OKC",
@@ -11553,10 +11412,10 @@
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Wallace"
   },
@@ -11566,12 +11425,38 @@
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Williams"
+  },
+  {
+   "team": "OKC",
+   "player": "Chet Holmgren",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-07",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Holmgren"
+  },
+  {
+   "team": "OKC",
+   "player": "Isaiah Hartenstein",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-07",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Hartenstein"
   },
   {
    "team": "OKC",
@@ -11579,181 +11464,298 @@
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Williams"
   },
   {
-   "team": "DEN",
-   "player": "Spencer Jones",
+   "team": "OKC",
+   "player": "Alex Caruso",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Jones"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Caruso"
   },
   {
-   "team": "UTA",
-   "player": "Kyle Filipowski",
+   "team": "OKC",
+   "player": "Shai Gilgeous-Alexander",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Filipowski"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Gilgeous-Alexander"
   },
   {
-   "team": "UTA",
-   "player": "Lauri Markkanen",
+   "team": "OKC",
+   "player": "Isaiah Hartenstein",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=L.%20Markkanen"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Hartenstein"
   },
   {
-   "team": "UTA",
-   "player": "Jusuf Nurkic",
+   "team": "OKC",
+   "player": "Chet Holmgren",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Nurkic"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Holmgren"
   },
   {
-   "team": "UTA",
-   "player": "Brice Sensabaugh",
+   "team": "OKC",
+   "player": "Thomas Sorber",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Sensabaugh"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20Sorber"
   },
   {
-   "team": "UTA",
-   "player": "Josh Green",
+   "team": "OKC",
+   "player": "Nikola Topic",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Green"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Topic"
   },
   {
-   "team": "LAL",
-   "player": "Luka Doncic",
+   "team": "OKC",
+   "player": "Cason Wallace",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=L.%20Doncic"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Wallace"
   },
   {
-   "team": "LAL",
-   "player": "Arthur Kaluma",
+   "team": "OKC",
+   "player": "Jalen Williams",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Kaluma"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Williams"
   },
   {
-   "team": "LAL",
-   "player": "Walker Kessler",
+   "team": "ORL",
+   "player": "Jalen Suggs",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=W.%20Kessler"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Suggs"
   },
   {
-   "team": "LAL",
-   "player": "Austin Reaves",
+   "team": "ORL",
+   "player": "Jonathan Isaac",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Reaves"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Isaac"
   },
   {
-   "team": "LAL",
-   "player": "Collin Sexton",
+   "team": "ORL",
+   "player": "Izaiyah Nelson",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Sexton"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Nelson"
   },
   {
-   "team": "LAL",
-   "player": "Matisse Thybulle",
+   "team": "ORL",
+   "player": "Anthony Black",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Thybulle"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Black"
   },
   {
-   "team": "LAL",
-   "player": "Ziaire Williams",
+   "team": "ORL",
+   "player": "Noah Penda",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Z.%20Williams"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Penda"
+  },
+  {
+   "team": "ORL",
+   "player": "Jalen Suggs",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-07",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Suggs"
+  },
+  {
+   "team": "MEM",
+   "player": "Zach Edey",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-07",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Z.%20Edey"
+  },
+  {
+   "team": "MEM",
+   "player": "Zach Edey",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-07",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Z.%20Edey"
+  },
+  {
+   "team": "MEM",
+   "player": "Micah Peavy",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-07",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Peavy"
+  },
+  {
+   "team": "MEM",
+   "player": "Isaiah Stewart",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-07",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Stewart"
+  },
+  {
+   "team": "MEM",
+   "player": "Richie Saunders",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-07",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=R.%20Saunders"
+  },
+  {
+   "team": "GSW",
+   "player": "Stephen Curry",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-07",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Curry"
+  },
+  {
+   "team": "GSW",
+   "player": "Draymond Green",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-07",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Green"
+  },
+  {
+   "team": "GSW",
+   "player": "Al Horford",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-07",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Horford"
   },
   {
    "team": "GSW",
@@ -11761,10 +11763,10 @@
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Ques",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Porzingis"
   },
@@ -11774,10 +11776,10 @@
    "src": "RotoWire",
    "kind": "O",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Out",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Butler"
   },
@@ -11787,12 +11789,25 @@
    "src": "RotoWire",
    "kind": "O",
    "injury": "",
-   "upd": "2026-10-06",
+   "upd": "2026-10-07",
    "until": "",
    "note": "RotoWire tag: Out",
-   "through": "2026-10-06",
+   "through": "2026-10-07",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Moody"
+  },
+  {
+   "team": "POR",
+   "player": "Shaedon Sharpe",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-07",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Sharpe"
   }
  ]
 }
