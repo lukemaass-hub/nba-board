@@ -8852,7 +8852,7 @@
    "time": "22:00",
    "vs": "POR",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8860,7 +8860,7 @@
     },
     {
      "pos": "SG",
-     "name": "LJ Cryer"
+     "name": "Dalen Terry"
     },
     {
      "pos": "SF",
@@ -8881,7 +8881,7 @@
    "time": "22:00",
    "vs": "GSW",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8889,7 +8889,7 @@
     },
     {
      "pos": "SG",
-     "name": "Jrue Holiday"
+     "name": "Ja Morant"
     },
     {
      "pos": "SF",
@@ -8906,23 +8906,23 @@
    ]
   }
  },
- "generated_at": "2026-10-07T23:57:26+00:00",
+ "generated_at": "2026-10-08T01:24:53+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-07T23:57:11+00:00",
+   "at": "2026-10-08T01:24:40+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-07T23:57:23+00:00",
+   "at": "2026-10-08T01:24:52+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-07T23:57:24+00:00",
+   "at": "2026-10-08T01:24:53+00:00",
    "teams": 10,
-   "injuries": 35
+   "injuries": 36
   },
   "minutes": {
    "ok": null,
@@ -8930,17 +8930,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-07T23:57:25+00:00",
+   "at": "2026-10-08T01:24:53+00:00",
    "count": 95
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-07T23:57:26+00:00",
+   "at": "2026-10-08T01:24:53+00:00",
    "count": 22
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-07T23:57:26+00:00",
+   "at": "2026-10-08T01:24:53+00:00",
    "count": 97
   },
   "x": {
@@ -10283,6 +10283,18 @@
   },
   {
    "team": "PHI",
+   "player": "Adem Bona",
+   "src": "Covers",
+   "kind": "O",
+   "injury": "Foot",
+   "upd": "2026-10-06",
+   "until": "",
+   "note": "The Sixers said on Wednesday (Oct. 7) that Bona has yet to practice during training camp while recovering from the foot injury he suffered during FIBA competition.",
+   "through": "",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=A.%20Bona"
+  },
+  {
+   "team": "PHI",
    "player": "Ariel Hukporti",
    "src": "Covers",
    "kind": "O",
@@ -10301,21 +10313,9 @@
    "injury": "Hip",
    "upd": "2026-09-30",
    "until": "2026-10-14",
-   "note": "The 76ers said on Thursday (Oct. 1) that Fall is OUT for at least next 2 weeks.",
+   "note": "The 76ers said on Thursday (Oct. 1) that Fall is OUT for at least the next 2 weeks.",
    "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Fall"
-  },
-  {
-   "team": "PHI",
-   "player": "Adem Bona",
-   "src": "Covers",
-   "kind": "O",
-   "injury": "Foot",
-   "upd": "2026-09-16",
-   "until": "",
-   "note": "The Sixers said on Thursday (Sept. 17) that Bona will be re-evaluated at the start of training camp, per Derek Bodner of AllPHLY.com.",
-   "through": "",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=A.%20Bona"
   },
   {
    "team": "PHX",
@@ -11633,6 +11633,19 @@
    "through": "2026-10-07",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Sellers"
+  },
+  {
+   "team": "MIL",
+   "player": "Nate Ament",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-07",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-07",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Ament"
   },
   {
    "team": "OKC",
