@@ -8678,7 +8678,7 @@
    "time": "19:30",
    "vs": "MIA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8686,11 +8686,11 @@
     },
     {
      "pos": "SG",
-     "name": "Trey Murphy"
+     "name": "Bennedict Mathurin"
     },
     {
      "pos": "SF",
-     "name": "Herbert Jones"
+     "name": "Trey Murphy"
     },
     {
      "pos": "PF",
@@ -8707,7 +8707,7 @@
    "time": "19:30",
    "vs": "NOP",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8736,7 +8736,7 @@
    "time": "19:30",
    "vs": "BKN",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8765,19 +8765,19 @@
    "time": "19:30",
    "vs": "PHI",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Ben Saraf"
-    },
-    {
-     "pos": "SG",
      "name": "Egor Demin"
     },
     {
-     "pos": "SF",
+     "pos": "SG",
      "name": "Keon Ellis"
+    },
+    {
+     "pos": "SF",
+     "name": "Noah Clowney"
     },
     {
      "pos": "PF",
@@ -8794,7 +8794,7 @@
    "time": "19:30",
    "vs": "NYK",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8885,7 +8885,7 @@
    "starters": [
     {
      "pos": "PG",
-     "name": "De'Aaron Fox"
+     "name": "Dylan Harper"
     },
     {
      "pos": "SG",
@@ -8893,11 +8893,11 @@
     },
     {
      "pos": "SF",
-     "name": "Dylan Harper"
+     "name": "Devin Vassell"
     },
     {
      "pos": "PF",
-     "name": "Devin Vassell"
+     "name": "Julian Champagnie"
     },
     {
      "pos": "C",
@@ -8964,23 +8964,23 @@
    ]
   }
  },
- "generated_at": "2026-10-08T22:59:58+00:00",
+ "generated_at": "2026-10-08T23:16:10+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-08T22:59:43+00:00",
+   "at": "2026-10-08T23:15:56+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-08T22:59:56+00:00",
+   "at": "2026-10-08T23:16:09+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-08T22:59:56+00:00",
+   "at": "2026-10-08T23:16:10+00:00",
    "teams": 12,
-   "injuries": 51
+   "injuries": 56
   },
   "minutes": {
    "ok": null,
@@ -8988,18 +8988,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-08T22:59:58+00:00",
+   "at": "2026-10-08T23:16:10+00:00",
    "count": 101
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-08T22:59:58+00:00",
+   "at": "2026-10-08T23:16:10+00:00",
    "count": 22
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-08T22:59:58+00:00",
-   "count": 106
+   "at": "2026-10-08T23:16:10+00:00",
+   "count": 109
   },
   "x": {
    "ok": null,
@@ -10509,30 +10509,6 @@
   },
   {
    "team": "ATL",
-   "player": "Aaron Wiggins",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Lips Laceration",
-   "upd": "2026-10-06",
-   "until": "",
-   "note": "Wiggins won't return to Monday's preseason game against the Grizzlies due to a cut to his inner lip. He'll end with seven points (2-4 FG, 1-2 3Pt, 2-2 FT) in 11 minutes.",
-   "through": "2026-10-10",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Aaron%20Wiggins"
-  },
-  {
-   "team": "ATL",
-   "player": "CJ McCollum",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "day-to-day",
-   "upd": "2026-10-05",
-   "until": "",
-   "note": "McCollum is out for Monday's preseason opener against the Grizzlies due to a nose contusion, Brad Rowland of the Locked On Podcast Network reports.",
-   "through": "2026-10-10",
-   "url": "https://www.espn.com/nba/injuries#:~:text=CJ%20McCollum"
-  },
-  {
-   "team": "ATL",
    "player": "Henri Veesaar",
    "src": "ESPN",
    "kind": "O",
@@ -10554,6 +10530,66 @@
    "note": "Gueye underwent surgery Tuesday to repair a fractured left foot that he suffered during a workout last week, Brad Rowland of the Locked On Podcast Network reports.",
    "through": "2026-10-10",
    "url": "https://www.espn.com/nba/injuries#:~:text=Mouhamed%20Gueye"
+  },
+  {
+   "team": "BOS",
+   "player": "Sam Hauser",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Rest",
+   "upd": "2026-10-08",
+   "until": "2026-10-10",
+   "note": "Hauser's role could become more secure following Boston's offseason shakeup with the team swapping Jaylen Brown for Paul George, John Schuhmann of NBA.com reports.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Sam%20Hauser"
+  },
+  {
+   "team": "BOS",
+   "player": "Ron Harper Jr.",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Undisclosed",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "Harper is expected to sign a three-year, $9 million deal with the Celtics, Shams Charania of ESPN reports.",
+   "through": "2026-10-10",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Ron%20Harper%20Jr."
+  },
+  {
+   "team": "BOS",
+   "player": "Payton Pritchard",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Undisclosed",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "Pritchard said Monday that he's focused on making incremental improvements across the board rather than dramatically changing his game heading into the 2026-27 season, Bobby Krivitsky of Forbes.com reports.",
+   "through": "2026-10-10",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Payton%20Pritchard"
+  },
+  {
+   "team": "BOS",
+   "player": "Mitchell Robinson",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Undisclosed",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "Robinson (undisclosed) won't play in Thursday's preseason game against the Cavaliers, Sean Grande of NBC Sports Boston reports.",
+   "through": "2026-10-10",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Mitchell%20Robinson"
+  },
+  {
+   "team": "BOS",
+   "player": "Neemias Queta",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "Queta (rest) isn't in line to play Thursday against Cleveland, Zack Cox of the Boston Herald reports.",
+   "through": "2026-10-10",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Neemias%20Queta"
   },
   {
    "team": "BOS",
@@ -11770,6 +11806,45 @@
   },
   {
    "team": "BOS",
+   "player": "Ron Harper Jr.",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-08",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=R.%20Harper"
+  },
+  {
+   "team": "BOS",
+   "player": "Sam Hauser",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-08",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Hauser"
+  },
+  {
+   "team": "BOS",
+   "player": "Payton Pritchard",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-08",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Pritchard"
+  },
+  {
+   "team": "BOS",
    "player": "Neemias Queta",
    "src": "RotoWire",
    "kind": "G",
@@ -11871,6 +11946,19 @@
    "through": "2026-10-08",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Murray"
+  },
+  {
+   "team": "MIA",
+   "player": "Pelle Larsson",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-08",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Larsson"
   },
   {
    "team": "MIA",
@@ -12222,6 +12310,19 @@
    "through": "2026-10-08",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Quaintance"
+  },
+  {
+   "team": "SAS",
+   "player": "Malik Williams",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-08",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Williams"
   },
   {
    "team": "SAC",
