@@ -8906,21 +8906,20 @@
    ]
   }
  },
- "generated_at": "2026-10-08T01:43:00+00:00",
+ "generated_at": "2026-10-08T02:00:58+00:00",
  "sources": {
   "schedule": {
-   "ok": true,
-   "at": "2026-10-08T01:42:43+00:00",
-   "count": 1200
+   "ok": false,
+   "error": "ReadTimeout: HTTPSConnectionPool(host='fixturedownload.com', port=443): Read timed out. (read timeout=45)"
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-08T01:42:58+00:00",
+   "at": "2026-10-08T02:00:56+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-08T01:42:59+00:00",
+   "at": "2026-10-08T02:00:57+00:00",
    "teams": 10,
    "injuries": 36
   },
@@ -8930,17 +8929,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-08T01:42:59+00:00",
+   "at": "2026-10-08T02:00:57+00:00",
    "count": 98
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-08T01:42:59+00:00",
+   "at": "2026-10-08T02:00:58+00:00",
    "count": 22
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-08T01:43:00+00:00",
+   "at": "2026-10-08T02:00:58+00:00",
    "count": 98
   },
   "x": {
