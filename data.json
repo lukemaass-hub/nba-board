@@ -8823,7 +8823,7 @@
    "time": "19:30",
    "vs": "WAS",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8964,23 +8964,23 @@
    ]
   }
  },
- "generated_at": "2026-10-08T23:16:10+00:00",
+ "generated_at": "2026-10-08T23:33:08+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-08T23:15:56+00:00",
+   "at": "2026-10-08T23:32:53+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-08T23:16:09+00:00",
+   "at": "2026-10-08T23:33:06+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-08T23:16:10+00:00",
+   "at": "2026-10-08T23:33:07+00:00",
    "teams": 12,
-   "injuries": 56
+   "injuries": 57
   },
   "minutes": {
    "ok": null,
@@ -8988,18 +8988,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-08T23:16:10+00:00",
+   "at": "2026-10-08T23:33:07+00:00",
    "count": 101
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-08T23:16:10+00:00",
+   "at": "2026-10-08T23:33:08+00:00",
    "count": 22
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-08T23:16:10+00:00",
-   "count": 109
+   "at": "2026-10-08T23:33:08+00:00",
+   "count": 112
   },
   "x": {
    "ok": null,
@@ -10535,12 +10535,12 @@
    "team": "BOS",
    "player": "Sam Hauser",
    "src": "ESPN",
-   "kind": "O",
+   "kind": "G",
    "injury": "Rest",
    "upd": "2026-10-08",
-   "until": "2026-10-10",
-   "note": "Hauser's role could become more secure following Boston's offseason shakeup with the team swapping Jaylen Brown for Paul George, John Schuhmann of NBA.com reports.",
-   "through": "",
+   "until": "",
+   "note": "Hauser (rest) is out for Thursday's preseason game against the Cavaliers, Sean Grande of NBC Sports Boston reports.",
+   "through": "2026-10-10",
    "url": "https://www.espn.com/nba/injuries#:~:text=Sam%20Hauser"
   },
   {
@@ -10548,10 +10548,10 @@
    "player": "Ron Harper Jr.",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Undisclosed",
+   "injury": "Shoulder",
    "upd": "2026-10-08",
    "until": "",
-   "note": "Harper is expected to sign a three-year, $9 million deal with the Celtics, Shams Charania of ESPN reports.",
+   "note": "Harper (undisclosed) won't play in Thursday's preseason game against the Cavaliers, Sean Grande of NBC Sports Boston reports.",
    "through": "2026-10-10",
    "url": "https://www.espn.com/nba/injuries#:~:text=Ron%20Harper%20Jr."
   },
@@ -10563,7 +10563,7 @@
    "injury": "Undisclosed",
    "upd": "2026-10-08",
    "until": "",
-   "note": "Pritchard said Monday that he's focused on making incremental improvements across the board rather than dramatically changing his game heading into the 2026-27 season, Bobby Krivitsky of Forbes.com reports.",
+   "note": "Pritchard (undisclosed) has been ruled out for Thursday's preseason game against the Cavaliers, Sean Grande of NBC Sports Boston reports.",
    "through": "2026-10-10",
    "url": "https://www.espn.com/nba/injuries#:~:text=Payton%20Pritchard"
   },
@@ -11229,6 +11229,18 @@
   },
   {
    "team": "MIA",
+   "player": "Pelle Larsson",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Illness",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "Larsson (illness) won't play in Thursday's preseason game against the Pelicans, Anthony Chiang of the Miami Herald reports.",
+   "through": "2026-10-10",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Pelle%20Larsson"
+  },
+  {
+   "team": "MIA",
    "player": "Keshad Johnson",
    "src": "ESPN",
    "kind": "O",
@@ -11598,6 +11610,30 @@
    "note": "Simmons (not injury related) won't play in Monday's preseason game against the Lakers, Sean Cunningham of Fox 40 Sacramento reports.",
    "through": "2026-10-10",
    "url": "https://www.espn.com/nba/injuries#:~:text=Ben%20Simmons"
+  },
+  {
+   "team": "SAS",
+   "player": "De'Aaron Fox",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Undisclosed Soreness",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "Fox won't play in Thursday's preseason game against the Hawks due to soreness, Jeff McDonald of the San Antonio Express-News reports.",
+   "through": "2026-10-10",
+   "url": "https://www.espn.com/nba/injuries#:~:text=De%27Aaron%20Fox"
+  },
+  {
+   "team": "SAS",
+   "player": "Malik Williams",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Undisclosed",
+   "upd": "2026-10-08",
+   "until": "2026-10-10",
+   "note": "Williams (undisclosed) is out for Thursday's preseason game against the Hawks, Matt Guzman of SI.com reports.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Malik%20Williams"
   },
   {
    "team": "SAS",
@@ -12170,6 +12206,19 @@
   },
   {
    "team": "NYK",
+   "player": "Jose Alvarado",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-08",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Alvarado"
+  },
+  {
+   "team": "NYK",
    "player": "Tony Bradley",
    "src": "RotoWire",
    "kind": "G",
@@ -12206,19 +12255,6 @@
    "through": "2026-10-08",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20McCullar"
-  },
-  {
-   "team": "NYK",
-   "player": "Jose Alvarado",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-08",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-08",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Alvarado"
   },
   {
    "team": "ATL",
@@ -12284,6 +12320,19 @@
    "through": "2026-10-08",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Brown"
+  },
+  {
+   "team": "SAS",
+   "player": "De'Aaron Fox",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-08",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Fox"
   },
   {
    "team": "SAS",
