@@ -8852,7 +8852,7 @@
    "time": "20:00",
    "vs": "SAS",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8868,7 +8868,7 @@
     },
     {
      "pos": "PF",
-     "name": "Asa Newell"
+     "name": "Aaron Wiggins"
     },
     {
      "pos": "C",
@@ -8964,21 +8964,20 @@
    ]
   }
  },
- "generated_at": "2026-10-08T23:33:08+00:00",
+ "generated_at": "2026-10-08T23:51:16+00:00",
  "sources": {
   "schedule": {
-   "ok": true,
-   "at": "2026-10-08T23:32:53+00:00",
-   "count": 1200
+   "ok": false,
+   "error": "ReadTimeout: HTTPSConnectionPool(host='fixturedownload.com', port=443): Read timed out. (read timeout=45)"
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-08T23:33:06+00:00",
+   "at": "2026-10-08T23:51:15+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-08T23:33:07+00:00",
+   "at": "2026-10-08T23:51:15+00:00",
    "teams": 12,
    "injuries": 57
   },
@@ -8988,17 +8987,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-08T23:33:07+00:00",
+   "at": "2026-10-08T23:51:16+00:00",
    "count": 101
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-08T23:33:08+00:00",
+   "at": "2026-10-08T23:51:16+00:00",
    "count": 22
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-08T23:33:08+00:00",
+   "at": "2026-10-08T23:51:16+00:00",
    "count": 112
   },
   "x": {
