@@ -8620,11 +8620,11 @@
    "time": "19:00",
    "vs": "CLE",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Derrick White"
+     "name": "Mike Conley"
     },
     {
      "pos": "SG",
@@ -8632,15 +8632,15 @@
     },
     {
      "pos": "SF",
-     "name": "Paul George"
+     "name": "Hugo Gonzalez"
     },
     {
      "pos": "PF",
-     "name": "Jayson Tatum"
+     "name": "Jordan Walsh"
     },
     {
      "pos": "C",
-     "name": "Neemias Queta"
+     "name": "Luka Garza"
     }
    ]
   },
@@ -8649,15 +8649,15 @@
    "time": "19:00",
    "vs": "BOS",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "James Harden"
+     "name": "Donovan Mitchell"
     },
     {
      "pos": "SG",
-     "name": "Donovan Mitchell"
+     "name": "Jaylon Tyson"
     },
     {
      "pos": "SF",
@@ -8814,7 +8814,7 @@
     },
     {
      "pos": "C",
-     "name": "Alex Sarr"
+     "name": "Deandre Ayton"
     }
    ]
   },
@@ -8868,7 +8868,7 @@
     },
     {
      "pos": "PF",
-     "name": "Jalen Johnson"
+     "name": "Asa Newell"
     },
     {
      "pos": "C",
@@ -8964,23 +8964,23 @@
    ]
   }
  },
- "generated_at": "2026-10-08T22:24:45+00:00",
+ "generated_at": "2026-10-08T22:42:20+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-08T22:24:29+00:00",
+   "at": "2026-10-08T22:42:05+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-08T22:24:43+00:00",
+   "at": "2026-10-08T22:42:18+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-08T22:24:44+00:00",
+   "at": "2026-10-08T22:42:19+00:00",
    "teams": 12,
-   "injuries": 48
+   "injuries": 52
   },
   "minutes": {
    "ok": null,
@@ -8988,18 +8988,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-08T22:24:44+00:00",
+   "at": "2026-10-08T22:42:19+00:00",
    "count": 95
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-08T22:24:44+00:00",
+   "at": "2026-10-08T22:42:20+00:00",
    "count": 22
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-08T22:24:45+00:00",
-   "count": 98
+   "at": "2026-10-08T22:42:20+00:00",
+   "count": 101
   },
   "x": {
    "ok": null,
@@ -10413,6 +10413,18 @@
   },
   {
    "team": "ATL",
+   "player": "Jalen Johnson",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "Johnson recorded eight points (1-7 FG, 0-3 3Pt, 6-6 FT), five rebounds, three assists and one steal in 18 minutes during Monday's preseason loss to Memphis.",
+   "through": "2026-10-10",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Jalen%20Johnson"
+  },
+  {
+   "team": "ATL",
    "player": "Aaron Wiggins",
    "src": "ESPN",
    "kind": "G",
@@ -11096,6 +11108,18 @@
    "url": "https://www.espn.com/nba/injuries#:~:text=Donte%20DiVincenzo"
   },
   {
+   "team": "NOP",
+   "player": "Dejounte Murray",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Right Toe Bruise",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "Murray (toe) has been ruled out for Thursday's preseason game against the Heat, Andrew Lopez of Gulf Coast Sports &amp; Entertainment Network reports.",
+   "through": "2026-10-10",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Dejounte%20Murray"
+  },
+  {
    "team": "NYK",
    "player": "Kevin McCullar Jr.",
    "src": "ESPN",
@@ -11557,11 +11581,23 @@
    "src": "ESPN",
    "kind": "G",
    "injury": "Right Foot Surgery",
-   "upd": "2026-10-05",
+   "upd": "2026-10-08",
    "until": "",
-   "note": "Sarr said he took part in the Wizards' 5-on-5 full-contact work during Monday's practice, Josh Robbins of The Athletic reports.",
+   "note": "Sarr (foot) won't play in Thursday's preseason game against the Knicks, Josh Robbins of The Athletic reports.",
    "through": "2026-10-10",
    "url": "https://www.espn.com/nba/injuries#:~:text=Alex%20Sarr"
+  },
+  {
+   "team": "WAS",
+   "player": "Khris Middleton",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "Middleton (rest) won't play in Thursday's preseason game against the Knicks, Josh Robbins of The Athletic reports.",
+   "through": "2026-10-10",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Khris%20Middleton"
   },
   {
    "team": "WAS",
@@ -11588,6 +11624,32 @@
    "url": "https://www.espn.com/nba/injuries#:~:text=Jamir%20Watkins"
   },
   {
+   "team": "BOS",
+   "player": "Jayson Tatum",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-08",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Tatum"
+  },
+  {
+   "team": "BOS",
+   "player": "Derrick White",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-08",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20White"
+  },
+  {
    "team": "CLE",
    "player": "Peyton Watson",
    "src": "RotoWire",
@@ -11602,6 +11664,19 @@
   },
   {
    "team": "CLE",
+   "player": "James Harden",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-08",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Harden"
+  },
+  {
+   "team": "CLE",
    "player": "Peyton Watson",
    "src": "RotoWire",
    "kind": "G",
@@ -11612,6 +11687,19 @@
    "through": "2026-10-08",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Watson"
+  },
+  {
+   "team": "NOP",
+   "player": "Dejounte Murray",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-08",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Murray"
   },
   {
    "team": "MIA",
@@ -11758,19 +11846,6 @@
   },
   {
    "team": "WAS",
-   "player": "Alex Sarr",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-08",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-08",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Sarr"
-  },
-  {
-   "team": "WAS",
    "player": "Khris Middleton",
    "src": "RotoWire",
    "kind": "G",
@@ -11901,32 +11976,6 @@
   },
   {
    "team": "ATL",
-   "player": "Mouhamed Gueye",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-08",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-08",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Gueye"
-  },
-  {
-   "team": "ATL",
-   "player": "Henri Veesaar",
-   "src": "RotoWire",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-10-08",
-   "until": "",
-   "note": "RotoWire tag: OFS",
-   "through": "2026-10-08",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=H.%20Veesaar"
-  },
-  {
-   "team": "ATL",
    "player": "Luguentz Dort",
    "src": "RotoWire",
    "kind": "G",
@@ -11940,6 +11989,32 @@
   },
   {
    "team": "ATL",
+   "player": "Mouhamed Gueye",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-08",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Gueye"
+  },
+  {
+   "team": "ATL",
+   "player": "Jalen Johnson",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-08",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Johnson"
+  },
+  {
+   "team": "ATL",
    "player": "CJ McCollum",
    "src": "RotoWire",
    "kind": "G",
@@ -11950,6 +12025,19 @@
    "through": "2026-10-08",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20McCollum"
+  },
+  {
+   "team": "ATL",
+   "player": "Henri Veesaar",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-08",
+   "until": "",
+   "note": "RotoWire tag: OFS",
+   "through": "2026-10-08",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=H.%20Veesaar"
   },
   {
    "team": "ATL",
