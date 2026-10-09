@@ -186,7 +186,7 @@ def minutes_change(data, player):
 
 def mins_tag(data, player):
     m = avg_minutes(data, player)
-    return f" ({round(m[0])})" if m else ""
+    return f" ({m[0]:.1f})" if m else ""
 
 
 def change_html(data, player):
@@ -224,10 +224,16 @@ def news_credit(i):
     return f"{i['reporter']}, {i['outlet']}" if i.get("reporter") else "RotoWire"
 
 
+def short(text, n=170):
+    text = text or ""
+    return text if len(text) <= n else text[:n].rsplit(" ", 1)[0] + "…"
+
+
 def build(data, games, date):
     e = html.escape
     title = "NBA injury report: " + ", ".join(f"{g['away']} @ {g['home']} {fmt_time(g['time'])}" for g in games)
-    grey = "color:#6b6b6b"
+    grey, light = "color:#6b7280", "color:#9aa3ad"
+    label_css = f"font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;{grey};font-weight:bold;margin:12px 0 4px"
 
     def tag(st):
         if not st:
@@ -236,62 +242,64 @@ def build(data, games, date):
         return (f' <span style="font-size:10px;font-weight:bold;color:#fff;background:{c};border-radius:3px;'
                 f'padding:1px 4px;vertical-align:middle">{t}</span>')
 
-    h = [f'<div style="font-family:Arial,Helvetica,sans-serif;color:#1d1c1d;max-width:640px">'
-         f'<div style="font-size:18px;font-weight:bold">Injury report, {e(dt.date.fromisoformat(date).strftime("%A, %B %-d"))}</div>'
-         f'<div style="font-size:12px;{grey};margin:2px 0 8px">Data refreshed {e(data.get("generated_at", "?"))} UTC · '
-         f'<a href="{SITE}" style="color:#1264a3">Open the full board</a></div>']
+    def mins(n):
+        m = mins_tag(data, n)
+        return f'<span style="{grey};font-size:12.5px;font-weight:normal">{m}</span>' if m else ""
+
+    h = [f'<div style="font-family:Arial,Helvetica,sans-serif;color:#1d1c1d;background:#f2f4f7;padding:14px">'
+         f'<div style="max-width:640px;margin:0 auto">'
+         f'<div style="background:#1d1c1d;color:#fff;border-radius:10px;padding:14px 18px">'
+         f'<div style="font-size:18px;font-weight:bold">NBA injury report</div>'
+         f'<div style="font-size:13px;color:#c9ced6;margin-top:2px">{e(dt.date.fromisoformat(date).strftime("%A, %B %-d"))} · '
+         f'<a href="{SITE}" style="color:#9ec5ff">Open the board</a></div></div>']
     t = [title, ""]
     for g in games:
-        h.append(f'<div style="margin:18px 0 6px;padding:10px 0 6px;border-top:2px solid #1d1c1d;font-size:16px;font-weight:bold">'
-                 f'{fmt_time(g["time"])} ET &nbsp;{logo(g["away"], 26)} {e(name(g["away"]))} '
-                 f'<span style="{grey};font-weight:normal">@</span> {logo(g["home"], 26)} {e(name(g["home"]))}</div>')
+        h.append(f'<div style="background:#fff;border:1px solid #e3e6ea;border-radius:10px;padding:14px 16px;margin-top:12px">'
+                 f'<div style="font-size:16px;font-weight:bold;padding-bottom:10px;border-bottom:1px solid #eceff2">'
+                 f'<span style="font-size:12px;color:#fff;background:#1d1c1d;border-radius:4px;padding:2px 7px;vertical-align:middle">'
+                 f'{fmt_time(g["time"])} ET</span>&nbsp; {logo(g["away"], 26)} {e(name(g["away"]))} '
+                 f'<span style="{light};font-weight:normal">@</span> {logo(g["home"], 26)} {e(name(g["home"]))}</div>')
         t.append(f"{fmt_time(g['time'])} ET: {name(g['away'])} @ {name(g['home'])}")
         for w in restrictions_for(data, (g["away"], g["home"]), date):
-            h.append(f'<div style="margin:8px 0;padding:10px 12px;background:#fdecea;border:2px solid #c0392b;border-radius:6px">'
+            h.append(f'<div style="margin:12px 0 0;padding:10px 12px;background:#fdecea;border:2px solid #c0392b;border-radius:8px">'
                      f'<div style="font-size:15px;font-weight:bold;color:#c0392b">⚠️ MINUTES RESTRICTION: '
                      f'<a href="{e(w["url"])}" style="color:#c0392b">{e(w["player"])}</a> ({e(w["team"])})</div>'
-                     f'<div style="font-size:12px;margin-top:3px">{e(w["text"])} '
-                     f'<span style="color:#8a8a8a">({e(news_credit(w))} · {ago(w["at"])})</span></div></div>')
+                     f'<div style="font-size:12.5px;margin-top:3px">{e(short(w["text"], 260))} '
+                     f'<span style="{light}">{e(news_credit(w))} · {ago(w["at"])}</span></div></div>')
             t.append(f"  ⚠️ MINUTES RESTRICTION: {w['player']} ({w['team']}): {w['text']} ({news_credit(w)})")
-        for team, opp in ((g["away"], g["home"]), (g["home"], g["away"])):
+        for n_team, (team, opp) in enumerate(((g["away"], g["home"]), (g["home"], g["away"]))):
             inj = injuries_for(data, team, date)
             status = {norm_name(i["player"]): i["st"] for i in inj}
             label, starters = starters_for(data, team, date, inj)
             bench, deep = bench_for(data, team, inj, starters)
-            h.append(f'<div style="margin:12px 0 0;padding:10px 12px;background:#f6f7f9;border-radius:6px">'
-                     f'<div style="font-size:15px;font-weight:bold;margin-bottom:6px">{logo(team, 28)} {e(name(team))}</div>')
+            sep = "border-top:1px solid #eceff2;margin-top:14px;padding-top:12px" if n_team else "margin-top:12px"
+            h.append(f'<div style="{sep}"><div style="font-size:15px;font-weight:bold">{logo(team, 24)} {e(name(team))}</div>')
             t.append(f"  {name(team)}")
             # 1. starters
             if starters:
-                h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:4px 0 2px">{e(label)}</div>'
-                         '<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:15px">')
+                h.append(f'<div style="{label_css}">{e(label)}</div><table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:14px">')
                 for p, n, why in starters:
                     hl = "background:#fff4c2;" if minutes_change(data, n) else ""
-                    h.append(f'<tr><td style="width:34px;padding:2px 0;{grey};font-size:12px;font-weight:bold">{e(p)}</td>'
-                             f'<td style="padding:2px 4px;{hl}"><b>{e(n)}</b><span style="{grey};font-size:13px">{mins_tag(data, n)}</span>'
-                             f'{tag(status.get(norm_name(n)))}{change_html(data, n)}'
+                    h.append(f'<tr><td style="width:30px;padding:2px 0;{light};font-size:11px;font-weight:bold">{e(p)}</td>'
+                             f'<td style="padding:2px 4px;{hl}"><b>{e(n)}</b> {mins(n)}{tag(status.get(norm_name(n)))}{change_html(data, n)}'
                              f'{f" <span style=color:#1e8449;font-size:12px>in for {e(why[7:])}</span>" if why else ""}</td></tr>')
                 h.append("</table>")
                 t.append(f"    {label}: " + ", ".join(f"{p} {n}{mins_tag(data, n)}{change_text(data, n)}{f' ({why})' if why else ''}"
                                                        for p, n, why in starters))
             # 2. bench
             if bench or deep:
-                h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:8px 0 2px">Projected bench</div>'
-                         f'<div style="font-size:13px;line-height:1.6">'
-                         + " · ".join(f'<span style="{grey};font-size:11px">{e(p)}</span> '
-                                      f'<span style="{"background:#fff4c2;" if minutes_change(data, n) else ""}">{e(n)}'
-                                      f'<span style="{grey}">{mins_tag(data, n)}</span></span>{tag(st)}{change_html(data, n)}'
-                                      for p, n, st in bench)
-                         + (f'<div style="font-size:12px;{grey}">Deep bench: ' + ", ".join(
-                             f'{e(n)}{mins_tag(data, n)}{change_html(data, n)}' for _, n, _ in deep) + "</div>" if deep else "")
-                         + "</div>")
+                h.append(f'<div style="{label_css}">Bench</div><div style="font-size:13px;line-height:1.7">'
+                         + " &nbsp;·&nbsp; ".join(f'<span style="{"background:#fff4c2;" if minutes_change(data, n) else ""}">{e(n)} {mins(n)}</span>'
+                                                  f'{tag(st)}{change_html(data, n)}' for p, n, st in bench) + "</div>")
+                if deep:
+                    h.append(f'<div style="font-size:12px;{light};line-height:1.6;margin-top:2px">Deep bench: '
+                             + ", ".join(f'{e(n)}{mins_tag(data, n)}{change_html(data, n)}' for _, n, _ in deep) + "</div>")
                 t.append("    Bench: " + ", ".join(f"{n}{mins_tag(data, n)}{change_text(data, n)}" for _, n, _ in bench)
                          + (f" | Deep bench: {', '.join(n + mins_tag(data, n) for _, n, _ in deep)}" if deep else ""))
             # 3. matchup minutes alerts (minutes-vs-teams workbook)
             alerts = matchup_alerts_for(data, team, opp, inj, starters)
             if alerts:
-                h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:8px 0 2px">'
-                         f'Matchup minutes alert</div><div style="font-size:13px;line-height:1.5">'
+                h.append(f'<div style="{label_css}">Matchup minutes</div><div style="font-size:13px;line-height:1.6">'
                          + "".join(f'<div>{"📈" if d == "up" else "📉"} <b>{e(n)}</b> usually plays '
                                    f'<b style="color:{"#1e8449" if d == "up" else "#c0392b"}">{"more" if d == "up" else "fewer"}</b>'
                                    f' minutes vs {e(name(opp).split()[-1])}</div>' for n, d in alerts) + "</div>")
@@ -299,37 +307,35 @@ def build(data, games, date):
             # 4. beat-writer news (RotoWire feed)
             news = news_for(data, team)
             if news:
-                h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:8px 0 2px">'
-                         f'Beat-writer news</div>')
+                h.append(f'<div style="{label_css}">Beat-writer news</div>')
                 for i in news[:4]:
-                    h.append(f'<div style="font-size:12px;line-height:1.45;margin:3px 0">📰 <b>{e(i["player"])}:</b> '
-                             f'<a href="{e(i["url"])}" style="color:#1d1c1d">{e(i["headline"])}</a> '
-                             f'<span style="{grey}">{e(i["text"])}</span> '
-                             f'<span style="color:#8a8a8a">({e(news_credit(i))} · {ago(i["at"])})</span></div>')
+                    h.append(f'<div style="font-size:13px;line-height:1.45;margin:0 0 7px"><b>{e(i["player"])}</b> · '
+                             f'<a href="{e(i["url"])}" style="color:#1d1c1d;font-weight:bold">{e(i["headline"])}</a> '
+                             f'<span style="{light};font-size:11.5px">{e(i.get("reporter") or "RotoWire")} · {ago(i["at"])}</span>'
+                             f'<div style="{grey};font-size:12.5px">{e(short(i["text"]))}</div></div>')
                 t.append("    News: " + " | ".join(f"{i['player']}: {i['headline']} ({news_credit(i)})" for i in news[:4]))
-            # 5. injuries, smaller
-            h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:8px 0 2px">Injuries</div>'
-                     '<div style="font-size:12px;line-height:1.5">')
+            # 5. injuries
+            h.append(f'<div style="{label_css}">Injuries</div>')
             if not inj:
-                h.append("✅ None listed")
+                h.append(f'<div style="font-size:13px;{grey}">None listed</div>')
                 t.append("    Injuries: none listed")
             for i in inj:
-                who = f'<a href="{e(i["link"])}" style="color:#1d1c1d">{e(i["player"])}</a>' if i["link"] else e(i["player"])
-                srcs = ", ".join(f'<a href="{e(x["url"])}" style="color:#8a8a8a">{e(x["src"])}</a>' if x["url"] else e(x["src"])
-                                 for x in i["srcs"])
-                per = f" <i>(per {e(i['beat'])})</i>" if i["beat"] else ""
-                h.append(f'<div>{DOT[i["st"]]} <b>{who}</b><span style="{grey}">{mins_tag(data, i["player"])}</span> {LABEL[i["st"]]}{per}'
-                         f'{" · " + e(i["injury"]) if i["injury"] else ""} '
-                         f'<span style="color:#8a8a8a">· {srcs}{" · sources differ" if i["differ"] else ""}</span></div>')
+                who = f'<a href="{e(i["link"])}" style="color:#1d1c1d;text-decoration:none">{e(i["player"])}</a>' if i["link"] else e(i["player"])
+                per = (f' <span style="font-size:11px;font-weight:bold;color:#5b4b00;background:#fff4c2;border-radius:3px;padding:0 4px">'
+                       f'per {e(i["beat"])}</span>') if i["beat"] else ""
+                srcs = ", ".join(e(x["src"]) for x in i["srcs"]) + (" · sources differ" if i["differ"] else "")
+                what = f' <span style="{grey}">{e(i["injury"])}</span>' if i["injury"] else ""
+                h.append(f'<div style="font-size:13px;line-height:1.4;margin:0 0 6px">{DOT[i["st"]]} <b>{who}</b> {mins(i["player"])} '
+                         f'<b style="color:{TAG[i["st"]][1]}">{LABEL[i["st"]]}</b>{per}{what}'
+                         f'<div style="font-size:11px;{light};margin-left:20px">{srcs}</div></div>')
                 t.append(f"    {DOT[i['st']]} {i['player']}{mins_tag(data, i['player'])}: {LABEL[i['st']]}{' | ' + i['injury'] if i['injury'] else ''}"
                          f" ({', '.join(x['src'] for x in i['srcs'])})")
-            h.append("</div></div>")
+            h.append("</div>")
+        h.append("</div>")
         t.append("")
-    h.append(f'<div style="font-size:11px;{grey};margin-top:16px;border-top:1px solid #ddd;padding-top:8px">'
-             '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable. Click a player for the source. '
-             '(Number) = average minutes per game: this season once he has 3+ games, otherwise the last season he played (ESPN). '
-             'Highlighted = 5+ minutes more or fewer than last season. Bench comes from the ESPN depth chart. Matchup alerts: average minutes vs this opponent is 5+ above or below '
-             'the player\'s usual over 5+ games vs that team (your minutes-vs-teams sheet, top 100 players, 2023-26).</div></div>')
+    h.append(f'<div style="font-size:11px;{light};margin:12px 4px 0;line-height:1.5">'
+             '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · (Number) = average minutes per game, this season after 3 games, '
+             'otherwise last season · Highlighted = 5+ minutes more or fewer than last season · Click a player for the source.</div></div></div>')
     return title, "".join(h), "\n".join(t)
 
 

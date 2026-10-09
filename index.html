@@ -18,7 +18,7 @@
   header.top{padding:26px 24px 6px;max-width:1320px;margin:0 auto}
   header.top h1{margin:0;font-size:28px;line-height:1.1;font-weight:900;letter-spacing:-.01em}
   header.top p{margin:6px 0 0;color:var(--muted);max-width:66ch}
-  .wrap{max-width:980px;margin:0 auto;padding:14px 24px 48px;display:grid;gap:22px;grid-template-columns:1fr;align-items:start}
+  .wrap{max-width:1180px;margin:0 auto;padding:14px 24px 48px;display:grid;gap:22px;grid-template-columns:1fr;align-items:start}
   @media (max-width:920px){.wrap{grid-template-columns:1fr;padding:10px 12px 40px}header.top{padding:18px 12px 4px}}
 
   /* calendar */
@@ -150,6 +150,38 @@
   .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#1D1C1D;color:#fff;padding:9px 16px;border-radius:8px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
   .toast.show{opacity:1}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  /* clean layout */
+  .report{background:none;border:0;padding:0}
+  .rep-title{font-size:20px;font-weight:900;margin:4px 0 12px;display:flex;gap:10px;align-items:baseline}
+  .rep-title small{font-size:13px;font-weight:600;color:var(--muted)}
+  .gm{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px 12px;margin:0 0 14px;box-shadow:0 1px 2px #0000000a}
+  .gh{font-size:17px;gap:9px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:6px}
+  .gh .time{font-size:12.5px;font-weight:800;color:#fff;background:#1D1C1D;border-radius:5px;padding:2px 8px;margin-right:4px}
+  .gmeta{margin:-2px 0 6px}
+  .teams{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+  @media (max-width:860px){.teams{grid-template-columns:1fr}}
+  .tm{margin-top:10px}
+  .tmh{font-size:15px;margin-bottom:6px}
+  .it{grid-template-columns:14px 1fr;margin:4px 0 7px}
+  .dot{width:9px;height:9px;margin-top:7px}
+  .it .l1{font-size:14px}
+  .it .l1 b{font-weight:800}
+  .it .st{font-weight:700;margin-left:4px}
+  .it .inj{color:var(--muted)}
+  .it .src{font-size:11.5px;color:#9AA3AD;margin:1px 0 0;display:block}
+  .it .src a{color:inherit;text-decoration:none} .it .src a:hover{text-decoration:underline}
+  .it .diff{background:none;color:#B07A00;padding:0;margin:0;font-weight:700}
+  .mpi{color:var(--muted);font-weight:600;font-size:12.5px}
+  .pl-link{text-decoration:none} .pl-link:hover{text-decoration:underline}
+  .clear{color:var(--muted);font-size:13px}
+  .sech{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 4px}
+  .news{font-size:13px;margin:4px 0 8px}
+  .news a{font-weight:600}
+  .news .nc{color:#9AA3AD;font-size:11.5px;margin-left:4px}
+  .news .nt{color:var(--muted);font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  details.lineup{border:0;background:#F6F8FA;border-radius:8px;padding:7px 12px;margin:12px 0 4px}
+  .rep-legend{border-top:0;font-size:13px;color:var(--muted);margin-top:4px}
+  .foot{margin-top:4px}
 </style>
 </head>
 <body>
@@ -232,7 +264,8 @@ function teamCode(s){ if(!s) return null; return ALIAS[String(s).trim().toLowerC
 function logo(code,size){
   const t=TEAMS[code]; const s=size||22;
   if(!t) return `<span class="lg" style="--s:${s}px"><b style="display:grid">${esc(code)}</b></span>`;
-  return `<span class="lg" style="--s:${s}px"><img src="https://cdn.nba.com/logos/nba/${t.id}/global/L/logo.svg" alt="${esc(t.name)} logo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><b>${code}</b></span>`;
+  const espn={GSW:"gs",NOP:"no",NYK:"ny",SAS:"sa",UTA:"utah",WAS:"wsh"}[code]||code.toLowerCase();
+  return `<span class="lg" style="--s:${s}px"><img src="https://a.espncdn.com/i/teamlogos/nba/500/${espn}.png" alt="${esc(t.name)} logo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><b>${code}</b></span>`;
 }
 
 /* ---------- marquee schedule notes (NBA release) + today's preseason slate ----------
@@ -655,7 +688,7 @@ function injLineHTML(it,date){
   const first=i.lines[0];
   const inj=[...new Set(i.lines.map(l=>l.injury).filter(Boolean))][0]||"";
   const link=srcLink(i);
-  let h=`<div class="it"><span><i class="dot ${k}"></i></span><div class="l1"><b>${link?`<a class="pl-link" href="${esc(link)}" target="_blank" rel="noopener" title="Open the source for this injury">${esc(i.player)}</a>`:esc(i.player)}</b>${it.pos?`<span class="pos">${it.pos}</span>`:""} — <span class="st ${k}">${STATUS_LABEL[k]}</span>${i.beat?` <span class="per">per ${esc(i.beat)}</span>`:""}${inj?` · ${esc(inj)}`:""}${m!=null?` <span class="mpi">(${Math.round(m)})</span>`:""}${changeHTML(i.player)}<span class="src">${srcsHTML(i)}</span>${i.conflict?`<span class="diff" title="${esc(i.lines.map(l=>l.src+": "+l.label).join(" | "))}">sources differ</span>`:""}</div>`;
+  let h=`<div class="it"><span><i class="dot ${k}"></i></span><div class="l1"><b>${link?`<a class="pl-link" href="${esc(link)}" target="_blank" rel="noopener" title="Open the source for this injury">${esc(i.player)}</a>`:esc(i.player)}</b>${m!=null?` <span class="mpi">(${Number(m).toFixed(1)})</span>`:""}${changeHTML(i.player)} <span class="st ${k}">${STATUS_LABEL[k]}</span>${i.beat?` <span class="per">per ${esc(i.beat)}</span>`:""}${inj?` <span class="inj">${esc(inj)}</span>`:""}<div class="src">${srcsHTML(i)}${i.conflict?` · <span class="diff" title="${esc(i.lines.map(l=>l.src+": "+l.label).join(" | "))}">sources differ</span>`:""}</div></div>`;
   i.lines.filter(l=>String(l.src).startsWith("@")).forEach(l=>{
     h+=`<div class="next beat">📝 <b>${esc(l.src)}</b>${l.upd?` (${esc(l.upd)})`:""}: ${esc(l.note||l.label)}${l.url?` <a href="${esc(l.url)}" target="_blank" rel="noopener">post</a>`:""}</div>`;
   });
@@ -670,7 +703,7 @@ function rotationHTML(code,date){
   }).join("")||'<span class="chip L">—</span>'}</div></div>`).join("");
 }
 function tagFor(k){ return k?`<span class="tg ${k}">${k==="out"?"OUT":k==="doubt"?"DTD":k==="q"?"GTD":"PROB"}</span>`:""; }
-function mpHTML(name){ const k=normName(name), m=mins[k]; return (m!=null?`<span class="mp" title="Average minutes per game (${esc(MIN_LABEL[k]||"your sheet")})">(${Math.round(m)})</span>`:"")+changeHTML(name); }
+function mpHTML(name){ const k=normName(name), m=mins[k]; return (m!=null?`<span class="mp" title="Average minutes per game (${esc(MIN_LABEL[k]||"your sheet")})">(${Number(m).toFixed(1)})</span>`:"")+changeHTML(name); }
 /* RotoWire's expected or confirmed starting five for this team on this date, if the refresh found one */
 function lineupFor(code,date){ const l=LINEUPS[code]; return l&&l.date===date&&l.starters&&l.starters.length?l:null; }
 function startersHTML(code,imp,date){
@@ -727,7 +760,7 @@ function agoText(iso){ const m=Math.max(1,Math.round((Date.now()-Date.parse(iso)
 function newsHTML(code){
   const items=NEWS.filter(i=>i.team===code&&Date.now()-Date.parse(i.at)<36*3600e3).slice(0,4);
   if(!items.length) return "";
-  return `<div class="sech" style="margin-top:8px">Beat-writer news</div>`+items.map(i=>`<div class="news">📰 <b>${esc(i.player)}:</b> <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.headline)}</a> <span class="nt">${esc(i.text)}</span> <span class="nc">(${esc(i.reporter?`${i.reporter}, ${i.outlet}`:"RotoWire")} · ${agoText(i.at)})</span></div>`).join("");
+  return `<div class="sech" style="margin-top:8px">Beat-writer news</div>`+items.map(i=>`<div class="news"><div><b>${esc(i.player)}</b> · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.headline)}</a> <span class="nc">${esc(i.reporter||"RotoWire")} · ${agoText(i.at)}</span></div><div class="nt" title="${esc(i.text)}">${esc(i.text)}</div></div>`).join("");
 }
 function restrictionsHTML(g,date){
   return RESTRICTIONS.filter(w=>(w.team===g.away||w.team===g.home)&&w.from<=date&&date<=w.through).map(w=>
@@ -735,10 +768,8 @@ function restrictionsHTML(g,date){
 }
 function teamBlockHTML(code,date,opp){
   const t=TEAMS[code]||{name:code}, imp=impact(code,date);
-  const n=k=>imp.items.filter(x=>x.rec.k===k).length;
-  const counts=[[n("out"),"out"],[n("doubt"),"doubtful"],[n("q"),"questionable"],[n("prob"),"probable"]].filter(c=>c[0]).map(c=>c.join(" ")).join(" · ");
-  let h=`<div class="tm"><div class="tmh">${logo(code,24)}${esc(t.name)}<span class="c">${counts}</span></div>`;
-  if(!imp.items.length) h+=`<div class="clear">✅ No injuries listed</div>`;
+  let h=`<div class="tm"><div class="tmh">${logo(code,26)}<span>${esc(t.name)}</span></div>`;
+  if(!imp.items.length) h+=`<div class="clear">No injuries listed</div>`;
   else h+=imp.items.map(it=>injLineHTML(it,date)).join("");
   if(imp.items.length && !imp.hasChart) h+=`<div class="clear" style="margin-left:22px">Depth chart not loaded, so no replacements yet.</div>`;
   const lu=lineupFor(code,date);
@@ -753,8 +784,7 @@ function renderPanel(){
   let gs=gamesOn(selected); const total=gs.length;
   if(only) gs=gs.filter(g=>injuriesFor(g.away,selected).length||injuriesFor(g.home,selected).length);
   const ev=EVENTS[selected];
-  let h=`<div class="report"><div class="rep-head"><div class="avatar">IP</div><div><div class="rep-by">Availability Bot<small>APP</small></div></div></div>
-    <div class="rep-title">Injury &amp; Minutes Report — ${fmtDate(selected).long}</div><hr class="hr">`;
+  let h=`<div class="report"><div class="rep-title">${fmtDate(selected).long}<small>${total} ${total===1?"game":"games"}</small></div>`;
   if(ev) h+=`<div class="event-note">${esc(ev)}</div>`;
   if(!total) h+=`<div class="empty">No games loaded for this date.</div>`;
   else if(!gs.length) h+=`<div class="empty">No injuries listed for any of the ${total} games today.</div>`;
@@ -762,11 +792,11 @@ function renderPanel(){
     const A=TEAMS[g.away]||{name:g.away}, H=TEAMS[g.home]||{name:g.home};
     const tags=[]; if(g.type==="pre") tags.push("Preseason"); if(g.type==="cup") tags.push("NBA Cup"); if(g.type==="neu") tags.push("Neutral site");
     const meta=[g.venue,g.note].filter(Boolean).join(" · ");
-    h+=`<section class="gm"><h3 class="gh">${fmtTime(g.time)} ET — ${logo(g.away,26)}${esc(A.name)}<span class="at">${g.type==="neu"?"vs":"@"}</span>${logo(g.home,26)}${esc(H.name)}${tags.map(t=>`<span class="tag">${t}</span>`).join("")}</h3>
-      ${meta?`<div class="gmeta">${esc(meta)}</div>`:""}${restrictionsHTML(g,selected)}${teamBlockHTML(g.away,selected,g.home)}${teamBlockHTML(g.home,selected,g.away)}</section>`;
+    h+=`<section class="gm"><h3 class="gh"><span class="time">${fmtTime(g.time)} ET</span>${logo(g.away,30)}${esc(A.name)}<span class="at">${g.type==="neu"?"vs":"@"}</span>${logo(g.home,30)}${esc(H.name)}${tags.map(t=>`<span class="tag">${t}</span>`).join("")}</h3>
+      ${meta?`<div class="gmeta">${esc(meta)}</div>`:""}${restrictionsHTML(g,selected)}<div class="teams">${teamBlockHTML(g.away,selected,g.home)}${teamBlockHTML(g.home,selected,g.away)}</div></section>`;
   });
   h+=`<div class="rep-legend"><span><i style="background:var(--out)"></i>Out</span><span><i style="background:var(--doubt)"></i>Doubtful</span><span><i style="background:var(--q)"></i>Questionable</span><span><i style="background:var(--prob)"></i>Probable</span></div>
-    <div class="foot">Starters come from RotoWire when it has a lineup for the game; otherwise from the ESPN depth chart, with an injured starter replaced by the next healthy player at his position. Click a player's name to open the source for that injury.</div></div>`;
+    <div class="foot">(Number) = average minutes per game. Starters from RotoWire, bench from the ESPN depth chart. Click a player for the source.</div></div>`;
   el.innerHTML=h;
 }
 
@@ -972,7 +1002,7 @@ function freshHTML(){
   noGamesNote=selected!==today?`<div class="fresh">No regular-season games today (${esc(fmtDate(today).long)}). Showing the next game day.</div>`:"";
   $("banner").innerHTML=freshHTML()+noGamesNote;
   if(!feedGames){ tryFeed(); }
-  else $("banner").innerHTML=freshHTML()+noGamesNote+`<div class="fresh">Full schedule: <b>${feedGames.length.toLocaleString()}</b> games.</div>`;
+  else $("banner").innerHTML=freshHTML()+noGamesNote;
 })();
 </script>
 </body>
