@@ -211,7 +211,7 @@ def build(data, games, date):
     h.append(f'<div style="font-size:11px;{grey};margin-top:16px;border-top:1px solid #ddd;padding-top:8px">'
              '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable. Click a player for the source. '
              'Bench comes from the ESPN depth chart. Matchup alerts: average minutes vs this opponent is 5+ above or below '
-             'the player\'s usual (your minutes-vs-teams sheet, top 100 players); one odd game can cause one.</div></div>')
+             'the player\'s usual over 5+ games vs that team (your minutes-vs-teams sheet, top 100 players, 2023-26).</div></div>')
     return title, "".join(h), "\n".join(t)
 
 

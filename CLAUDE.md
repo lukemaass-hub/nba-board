@@ -43,9 +43,9 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 
 - Matchup minutes alerts (Oct 9 2026): pipeline/build_matchup_alerts.py reads the user's NBA_Mins_VS_Teams.xlsx
   (Team_Chart method: each player's avg minutes vs every opponent from Player_vs_Team_Grid; "Avg Mins" = mean of
-  those 30). Alert when vs-opponent avg is 5+ min above/below Avg Mins -> pipeline/matchup_alerts.json (142 alerts,
-  top 100 players). Shown on page and in email as "usually plays more/fewer minutes vs X" (no numbers, user's
-  choice). The sheet has no game counts, so one odd game (overtime, injury exit) can create an alert.
+  those 30). Alert when vs-opponent avg is 5+ min above/below Avg Mins AND 5+ games vs that team (game count from the
+  Top100_vs_Opponent sheet, whose averages match the grid exactly) -> pipeline/matchup_alerts.json (top 100 players). Shown on page and in email as "usually plays more/fewer minutes vs X" (no numbers, user's
+  choice).
   The xlsx itself is not in the repo; re-run the builder when the user sends a new copy.
 
 ## Next steps, in order

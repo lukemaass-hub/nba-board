@@ -173,8 +173,14 @@ def test_matchup_alerts():
     jokic[opps.index("DET") + 1] = 28.0          # well below his usual
     jokic[opps.index("DEN") + 1] = None          # never plays his own team
     grid = [[None] + opps + ["team"], jokic, ["Empty Row"] + [None] * 30 + ["SA"]]
-    alerts = b.alerts_from_grid(grid)
-    assert [(a["player"], a["opp"], a["dir"]) for a in alerts] == [("Nikola Jokic", "DET", "down")]
+    jokic[opps.index("BOS") + 1] = 44.0          # well above, but only 3 games -> no alert
+    log = [(False, str(i), 28.0, "DET", "Nikola Jokic", "2025-26", "DEN") for i in range(5)] + \
+          [(False, str(i), 44.0, "BOS", "Nikola Jokic", "2025-26", "DEN") for i in range(3)] + \
+          [(True, "9", None, "DET", "Nikola Jokic", "2025-26", "DEN")]    # did not play: not counted
+    games = b.games_played(log)
+    assert games[("Nikola Jokic", "DET")] == 5 and games[("Nikola Jokic", "BOS")] == 3
+    alerts = b.alerts_from_grid(grid, games)
+    assert [(a["player"], a["opp"], a["dir"], a["games"]) for a in alerts] == [("Nikola Jokic", "DET", "down", 5)]
     data = {"matchup_alerts": alerts, "depth": {"DEN": {"C": "Nikola Jokic//"}}}
     assert e.matchup_alerts_for(data, "DEN", "DET", [], []) == [("Nikola Jokic", "down")]
     out = [{"player": "Nikola Jokic", "st": "out"}]
