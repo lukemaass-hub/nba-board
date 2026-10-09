@@ -250,3 +250,30 @@ def test_news_feed():
     later = dt.datetime(2026, 10, 11, 6, tzinfo=dt.timezone.utc)      # Edey item 31 h old, Durant item 39 h old
     assert [i["id"] for i in e.news_for({"news": kept}, "MEM", later)] == ["nba1"]
     assert e.news_for({"news": kept}, "HOU", later) == []                                      # older than 36 hours
+
+
+def test_news_sets_status_and_restrictions():
+    fri = dt.datetime(2026, 10, 9, 20, tzinfo=dt.timezone.utc)              # posted Friday afternoon ET
+    assert u.news_status("Durant will not play in Sunday's game") == "out"
+    assert u.news_status("Sarr's status for Saturday's game remains uncertain") == "q"
+    assert u.news_status("Irving is scheduled to play Sunday") == "prob"
+    assert u.news_status("Bridges participated in Friday's practice") is None
+    assert u.news_dates("Durant will not play in Sunday's game", fri) == ("2026-10-11", "2026-10-11")
+    assert u.news_dates("Coach said Friday that Sarr's status for Saturday's game is uncertain", fri) == ("2026-10-10", "2026-10-10")
+    assert u.news_dates("Brunson is questionable tonight", fri) == ("2026-10-09", "2026-10-10")
+    assert u.RESTRICTION.search("will be on a minutes restriction") and u.RESTRICTION.search("limited to about 20 minutes")
+    assert not u.RESTRICTION.search("He played 31 minutes") and not u.RESTRICTION.search("an uptick in minutes")
+
+    data = {"injuries": [{"team": "NYK", "player": "Jalen Brunson", "src": "ESPN", "kind": "O", "st": "out"}],
+            "news": [{"id": "n1", "team": "NYK", "player": "Jalen Brunson", "headline": "Questionable Friday", "at": fri.isoformat(),
+                      "text": "Brunson is questionable for Friday's game and will be on a minutes restriction if he plays, A B of C reports.",
+                      "reporter": "A B", "outlet": "C", "url": "https://r/1"}]}
+    u.apply_news(data)
+    u.apply_news(data)                                                       # running twice doesn't duplicate
+    assert len(data["injuries"]) == 2 and len(data["restrictions"]) == 1
+    import email_report as e
+    inj = e.injuries_for(data, "NYK", "2026-10-09")
+    assert (inj[0]["st"], inj[0]["beat"], inj[0]["differ"]) == ("q", "A B", True)   # writer beats ESPN's "out"
+    assert e.injuries_for(data, "NYK", "2026-10-08")[0]["st"] == "out"                 # news not in effect yet
+    assert [w["player"] for w in e.restrictions_for(data, ("NYK", "MIA"), "2026-10-09")] == ["Jalen Brunson"]
+    assert e.restrictions_for(data, ("NYK",), "2026-10-12") == []

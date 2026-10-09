@@ -37,10 +37,11 @@ def fmt_time(t):
 
 
 def injuries_for(data, team, date):
-    """Same merge as the page: one entry per player, worst status wins, every source listed."""
+    """Same merge as the page: one entry per player, every source listed. The worst status wins, except that a
+    beat writer's status (from the news feed) overrides the injury sites; the newest beat-writer report counts."""
     groups = {}
     for r in data.get("injuries", []):
-        if r["team"] != team or (r.get("through") and date > r["through"]):
+        if r["team"] != team or (r.get("through") and date > r["through"]) or (r.get("from") and date < r["from"]):
             continue
         if r.get("st"):
             st, label = r["st"], LABEL[r["st"]]
@@ -48,13 +49,15 @@ def injuries_for(data, team, date):
             st, label = ("q", "Out earlier, return date passed") if r.get("until") and date >= r["until"] else ("out", "Out")
         else:
             st, label = "q", "Game-time decision"
-        g = groups.setdefault(norm_name(r["player"]), {"player": r["player"], "sts": set(), "lines": []})
+        g = groups.setdefault(norm_name(r["player"]), {"player": r["player"], "sts": set(), "lines": [], "beat": None})
         g["sts"].add(st)
         g["lines"].append({"src": r["src"], "st": st, "label": label, "injury": r.get("injury", ""),
-                           "url": r.get("url") or SRC_URL.get(r["src"], "")})
+                           "url": r.get("url") or SRC_URL.get(r["src"], ""), "beat": bool(r.get("override"))})
+        if r.get("override") and (not g["beat"] or r.get("at", "") > g["beat"]["at"]):
+            g["beat"] = {"st": st, "at": r.get("at", ""), "src": r["src"]}
     out = []
     for g in groups.values():
-        best = min(g["sts"], key=RANK.get)
+        best = g["beat"]["st"] if g["beat"] else min(g["sts"], key=RANK.get)
         srcs, seen = [], set()
         for l in g["lines"]:
             if l["src"] not in seen:
@@ -62,7 +65,8 @@ def injuries_for(data, team, date):
                 srcs.append(l)
         link = next((l["url"] for l in g["lines"] if l["st"] == best and l["url"]), "") or next((l["url"] for l in srcs if l["url"]), "")
         out.append({"player": g["player"], "st": best, "injury": next((l["injury"] for l in g["lines"] if l["injury"]), ""),
-                    "srcs": srcs, "link": link, "differ": len(g["sts"]) > 1})
+                    "srcs": srcs, "link": link, "differ": len(g["sts"]) > 1,
+                    "beat": g["beat"]["src"] if g["beat"] else ""})
     return sorted(out, key=lambda i: (RANK[i["st"]], i["player"]))
 
 
@@ -141,6 +145,11 @@ def matchup_alerts_for(data, team, opp, inj, starters):
 NEWS_HOURS = 36
 
 
+def restrictions_for(data, teams, date):
+    """Minutes-restriction warnings from beat-writer news for these teams on this date."""
+    return [w for w in data.get("restrictions", []) if w["team"] in teams and w["from"] <= date <= w["through"]]
+
+
 def news_for(data, team, now=None):
     """Beat-writer news (RotoWire feed) about this team's players from the last 36 hours, newest first."""
     now = now or dt.datetime.now(dt.timezone.utc)
@@ -179,6 +188,13 @@ def build(data, games, date):
                  f'{fmt_time(g["time"])} ET &nbsp;{logo(g["away"], 26)} {e(name(g["away"]))} '
                  f'<span style="{grey};font-weight:normal">@</span> {logo(g["home"], 26)} {e(name(g["home"]))}</div>')
         t.append(f"{fmt_time(g['time'])} ET: {name(g['away'])} @ {name(g['home'])}")
+        for w in restrictions_for(data, (g["away"], g["home"]), date):
+            h.append(f'<div style="margin:8px 0;padding:10px 12px;background:#fdecea;border:2px solid #c0392b;border-radius:6px">'
+                     f'<div style="font-size:15px;font-weight:bold;color:#c0392b">⚠️ MINUTES RESTRICTION: '
+                     f'<a href="{e(w["url"])}" style="color:#c0392b">{e(w["player"])}</a> ({e(w["team"])})</div>'
+                     f'<div style="font-size:12px;margin-top:3px">{e(w["text"])} '
+                     f'<span style="color:#8a8a8a">({e(news_credit(w))} · {ago(w["at"])})</span></div></div>')
+            t.append(f"  ⚠️ MINUTES RESTRICTION: {w['player']} ({w['team']}): {w['text']} ({news_credit(w)})")
         for team, opp in ((g["away"], g["home"]), (g["home"], g["away"])):
             inj = injuries_for(data, team, date)
             status = {norm_name(i["player"]): i["st"] for i in inj}
@@ -235,7 +251,9 @@ def build(data, games, date):
                 who = f'<a href="{e(i["link"])}" style="color:#1d1c1d">{e(i["player"])}</a>' if i["link"] else e(i["player"])
                 srcs = ", ".join(f'<a href="{e(x["url"])}" style="color:#8a8a8a">{e(x["src"])}</a>' if x["url"] else e(x["src"])
                                  for x in i["srcs"])
-                h.append(f'<div>{DOT[i["st"]]} <b>{who}</b> {LABEL[i["st"]]}{" · " + e(i["injury"]) if i["injury"] else ""} '
+                per = f" <i>(per {e(i['beat'])})</i>" if i["beat"] else ""
+                h.append(f'<div>{DOT[i["st"]]} <b>{who}</b> {LABEL[i["st"]]}{per}'
+                         f'{" · " + e(i["injury"]) if i["injury"] else ""} '
                          f'<span style="color:#8a8a8a">· {srcs}{" · sources differ" if i["differ"] else ""}</span></div>')
                 t.append(f"    {DOT[i['st']]} {i['player']}: {LABEL[i['st']]}{' | ' + i['injury'] if i['injury'] else ''}"
                          f" ({', '.join(x['src'] for x in i['srcs'])})")
@@ -259,6 +277,10 @@ def build_slack(data, game, date, test=False):
     g = game
     title = f"{'[TEST] ' if test else ''}{fmt_time(g['time'])} ET · {name(g['away'])} @ {name(g['home'])}"
     blocks = [{"type": "header", "text": {"type": "plain_text", "text": title[:150]}}]
+    for w in restrictions_for(data, (g["away"], g["home"]), date):
+        blocks.append({"type": "section", "text": {"type": "mrkdwn", "text":
+                       f":warning: *MINUTES RESTRICTION: <{w['url']}|{e(w['player'])}> ({w['team']})*\n{e(w['text'])} "
+                       f"_({e(news_credit(w))} · {ago(w['at'])})_"[:2900]}})
     for team, opp in ((g["away"], g["home"]), (g["home"], g["away"])):
         inj = injuries_for(data, team, date)
         status = {norm_name(i["player"]): i["st"] for i in inj}
@@ -290,7 +312,9 @@ def build_slack(data, game, date, test=False):
         lines = []
         for i in inj:
             who = f"<{i['link']}|{e(i['player'])}>" if i["link"] else e(i["player"])
-            lines.append(f"{DOT[i['st']]} *{who}* {LABEL[i['st']]}{' · ' + e(i['injury']) if i['injury'] else ''}"
+            per = f" _(per {e(i['beat'])})_" if i["beat"] else ""
+            lines.append(f"{DOT[i['st']]} *{who}* {LABEL[i['st']]}{per}"
+                         f"{' · ' + e(i['injury']) if i['injury'] else ''}"
                          f" · {', '.join(e(x['src']) for x in i['srcs'])}{' · sources differ' if i['differ'] else ''}")
         blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
                        "text": ("*Injuries*\n" + "\n".join(lines))[:2900] if lines else "✅ No injuries listed"}]})

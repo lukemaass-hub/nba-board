@@ -456,6 +456,74 @@ def fetch_news():
     return parse_news(get(NEWS_URL).text)
 
 
+# Status words in a news item, checked in this order (the first match wins). A beat writer's status overrides the
+# injury sites on the page and in the email.
+NEWS_STATUS = [
+    ("out", re.compile(r"\b(will not|won't|will miss|to miss|ruled out|not expected to (?:play|suit up|be available)|"
+                       r"out for|will sit|sit out|sitting out|is out\b(?! of)|be held out|will be held|will rest|"
+                       r"not play|unavailable)", re.I)),
+    ("doubt", re.compile(r"\bdoubtful\b", re.I)),
+    ("q", re.compile(r"\b(questionable|game-time decision|uncertain|day-to-day|up in the air|in doubt)\b", re.I)),
+    ("prob", re.compile(r"\b(probable|will play|expected to play|plans to play|set to play|scheduled to play|"
+                        r"cleared to play|will be available|is available|available to play|will start|will return|"
+                        r"set to return|in the starting lineup|will suit up|will make his (?:season |preseason )?debut)\b", re.I)),
+]
+RESTRICTION = re.compile(r"minutes? (?:restriction|limit|cap)|restricted minutes|limited minutes|minutes-restricted|"
+                         r"on a minutes|minutes (?:will be |are )?(?:limited|capped|monitored|managed)|"
+                         r"(?:limited|capped) to (?:about |around |roughly |under |fewer than )?\d+ minutes|"
+                         r"(?:play|see) (?:only )?(?:about |around |roughly )?\d+ minutes", re.I)
+WEEKDAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+
+
+def news_dates(text, posted):
+    """Which day(s) a news item is about: a weekday it names ("Sunday's game") -> that date only;
+    'tonight'/'today' or no day named -> the day it was posted and the next day."""
+    d0 = posted.astimezone(ET).date()
+    days = "|".join(WEEKDAYS)
+    # prefer the game's day ("Saturday's game", "against X on Sunday") over when something was said ("said Friday")
+    m = (re.search(rf"\b({days})(?:'s|’s)", text, re.I)
+         or next((x for x in re.finditer(rf"\b({days})\b", text, re.I)
+                  if not re.search(r"(said|says|announced|reported|told reporters|noted|added)\s+$", text[:x.start()], re.I)), None))
+    if m:
+        ahead = (WEEKDAYS.index(m.group(1).lower()) - d0.weekday()) % 7
+        if ahead <= 4:                      # further ahead than that is almost always a game that already happened
+            d = d0 + dt.timedelta(days=ahead)
+            return d.isoformat(), d.isoformat()
+    return d0.isoformat(), (d0 + dt.timedelta(days=1)).isoformat()
+
+
+def news_status(text):
+    for st, rx in NEWS_STATUS:
+        if rx.search(text):
+            return st
+    return None
+
+
+def apply_news(data):
+    """Turn news items into injury records (a beat writer's status overrides the sites) and minutes-restriction
+    warnings. Replaces whatever earlier news produced."""
+    recs, warns = [], []
+    for i in data.get("news", []):
+        if not i.get("team"):
+            continue
+        text = f"{i.get('headline', '')}. {i.get('text', '')}"
+        start, through = news_dates(text, dt.datetime.fromisoformat(i["at"]))
+        who = i.get("reporter") or "RotoWire news"
+        st = news_status(text)
+        if st:
+            r = rec(i["team"], i["player"], who, "O" if st == "out" else "G", upd=start, note=i.get("text", ""),
+                    through=through, st=st, url=i.get("url", ""))
+            r.update({"from": start, "override": True, "at": i["at"], "from_news": True})
+            recs.append(r)
+        if RESTRICTION.search(text):
+            warns.append({"team": i["team"], "player": i["player"], "from": start, "through": through,
+                          "text": i.get("text", ""), "reporter": i.get("reporter", ""), "outlet": i.get("outlet", ""),
+                          "url": i.get("url", ""), "at": i["at"]})
+    data["injuries"] = [r for r in data.get("injuries", []) if not r.get("from_news")] + recs
+    data["restrictions"] = warns
+    return data
+
+
 # ---------------------------------------------------------------- minutes sheet
 def parse_minutes_csv(text):
     rows = list(csv.reader(io.StringIO(text)))
@@ -612,6 +680,7 @@ def main():
             return
         if [i["id"] for i in news] != [i["id"] for i in prev.get("news", [])]:
             prev["news"] = news
+            apply_news(prev)
             prev.setdefault("sources", {})["news"] = {"ok": True, "at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
                                                       "count": len(news)}
             with open(args.out, "w") as f:
@@ -685,8 +754,11 @@ def main():
     if os.path.exists(alerts_path):
         data["matchup_alerts"] = json.load(open(alerts_path)).get("alerts", [])
 
+    data["injuries"] = injuries
+    apply_news(data)
+
     data.update({"generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-                 "sources": status, "injuries": injuries})
+                 "sources": status})
     with open(args.out, "w") as f:
         json.dump(data, f, indent=1)
     print(json.dumps(status, indent=1))

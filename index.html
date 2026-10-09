@@ -87,7 +87,7 @@
   .dot.out{background:var(--out)} .dot.doubt{background:var(--doubt)} .dot.q{background:var(--q)} .dot.prob{background:var(--prob)}
   .it .l1 b{font-weight:900}
   .it .pos{font-size:11.5px;color:var(--muted);font-weight:700;margin-left:2px}
-  .it .st{font-weight:700} .news{font-size:12.5px;line-height:1.45;margin:3px 0} .news a{color:inherit;font-weight:600} .news .nt{opacity:.8} .news .nc{opacity:.6} .ma{font-size:13px;margin:2px 0} .ma.up .d{color:#1e8449} .ma.down .d{color:#c0392b} .pl-link{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px} .pl-link:hover{text-decoration-color:currentColor} .it .src a{color:inherit}
+  .it .st{font-weight:700} .per{font-size:11.5px;font-weight:700;color:#5b4b00;background:#fff4c2;border-radius:3px;padding:0 4px} .warn{margin:8px 0 10px;padding:10px 12px;background:#fdecea;border:2px solid #c0392b;border-radius:8px;font-size:13px} .warn b{color:#c0392b;font-size:14.5px} .warn a{color:#c0392b} .warn .nc{opacity:.65} details.lineup{margin:10px 0 4px;border:1px solid var(--line);border-radius:6px;padding:6px 10px} details.lineup summary{cursor:pointer;font-weight:700;font-size:13px} details.lineup summary small{font-weight:400;opacity:.7;margin-left:4px} details.lineup[open] summary{margin-bottom:6px} .news{font-size:12.5px;line-height:1.45;margin:3px 0} .news a{color:inherit;font-weight:600} .news .nt{opacity:.8} .news .nc{opacity:.6} .ma{font-size:13px;margin:2px 0} .ma.up .d{color:#1e8449} .ma.down .d{color:#c0392b} .pl-link{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px} .pl-link:hover{text-decoration-color:currentColor} .it .src a{color:inherit}
   .it .st.out{color:var(--out)} .it .st.doubt{color:var(--doubt)} .it .st.q{color:#A77F00} .it .st.prob{color:var(--prob)}
   .it .src{font-size:11.5px;color:var(--muted);margin-left:6px}
   .it .diff{font-size:11px;font-weight:700;background:#FFF0D1;color:#8A5A00;border-radius:4px;padding:0 5px;margin-left:6px}
@@ -555,21 +555,23 @@ function gamesOn(d){ return games.filter(g=>g.date===d); }
 
 /* ---------- injuries (merged per player) ---------- */
 function injuriesFor(code,date){
-  const recs=injuries.concat(importedInj).filter(r=>r.team===code && (!r.through || date<=r.through));
+  const recs=injuries.concat(importedInj).filter(r=>r.team===code && (!r.through || date<=r.through) && (!r.from || date>=r.from));
   const groups={};
   recs.forEach(r=>{
     let st, stale=false;
     if(r.st) st=r.st;
     else if(r.kind==="O"){ if(r.until && date>=r.until){ st="q"; stale=true; } else st="out"; }
     else st="q";
-    const g=groups[normName(r.player)] || (groups[normName(r.player)]={player:r.player,keys:new Set(),lines:[]});
+    const g=groups[normName(r.player)] || (groups[normName(r.player)]={player:r.player,keys:new Set(),lines:[],beat:null});
     g.keys.add(st);
-    const label = stale?"Out earlier, return date passed": st==="out"?"Out": r.kind==="G"?"Game-time decision":STATUS_LABEL[st];
+    if(r.override && (!g.beat || r.at>g.beat.at)) g.beat={st,at:r.at,src:r.src};
+    const label = r.override?`${STATUS_LABEL[st]} (beat writer)`: stale?"Out earlier, return date passed": st==="out"?"Out": r.kind==="G"?"Game-time decision":STATUS_LABEL[st];
     g.lines.push({src:r.src,label:r.stale?label+" (stale, source failed on last run)":label,injury:r.injury,upd:r.upd,note:r.note,st,url:r.url||""});
   });
   return Object.values(groups).map(g=>{
-    const best=[...g.keys].sort((a,b)=>STATUS_RANK[a]-STATUS_RANK[b])[0];
-    return {player:g.player,status:STATUS_LABEL[best],k:best,lines:g.lines,conflict:g.keys.size>1};
+    // a beat writer's status (news feed) overrides the injury sites; otherwise the worst status wins
+    const best=g.beat?g.beat.st:[...g.keys].sort((a,b)=>STATUS_RANK[a]-STATUS_RANK[b])[0];
+    return {player:g.player,status:STATUS_LABEL[best],k:best,lines:g.lines,conflict:g.keys.size>1,beat:g.beat?g.beat.src:""};
   }).sort((a,b)=>STATUS_RANK[a.k]-STATUS_RANK[b.k]||a.player.localeCompare(b.player));
 }
 function outCount(d){
@@ -652,7 +654,7 @@ function injLineHTML(it,date){
   const first=i.lines[0];
   const inj=[...new Set(i.lines.map(l=>l.injury).filter(Boolean))][0]||"";
   const link=srcLink(i);
-  let h=`<div class="it"><span><i class="dot ${k}"></i></span><div class="l1"><b>${link?`<a class="pl-link" href="${esc(link)}" target="_blank" rel="noopener" title="Open the source for this injury">${esc(i.player)}</a>`:esc(i.player)}</b>${it.pos?`<span class="pos">${it.pos}</span>`:""} — <span class="st ${k}">${STATUS_LABEL[k]}</span>${inj?` · ${esc(inj)}`:""}${m!=null?` · ${m} mpg last season`:""}<span class="src">${srcsHTML(i)}</span>${i.conflict?`<span class="diff" title="${esc(i.lines.map(l=>l.src+": "+l.label).join(" | "))}">sources differ</span>`:""}</div>`;
+  let h=`<div class="it"><span><i class="dot ${k}"></i></span><div class="l1"><b>${link?`<a class="pl-link" href="${esc(link)}" target="_blank" rel="noopener" title="Open the source for this injury">${esc(i.player)}</a>`:esc(i.player)}</b>${it.pos?`<span class="pos">${it.pos}</span>`:""} — <span class="st ${k}">${STATUS_LABEL[k]}</span>${i.beat?` <span class="per">per ${esc(i.beat)}</span>`:""}${inj?` · ${esc(inj)}`:""}${m!=null?` · ${m} mpg last season`:""}<span class="src">${srcsHTML(i)}</span>${i.conflict?`<span class="diff" title="${esc(i.lines.map(l=>l.src+": "+l.label).join(" | "))}">sources differ</span>`:""}</div>`;
   i.lines.filter(l=>String(l.src).startsWith("@")).forEach(l=>{
     h+=`<div class="next beat">📝 <b>${esc(l.src)}</b>${l.upd?` (${esc(l.upd)})`:""}: ${esc(l.note||l.label)}${l.url?` <a href="${esc(l.url)}" target="_blank" rel="noopener">post</a>`:""}</div>`;
   });
@@ -719,21 +721,29 @@ function matchupAlertsHTML(code,opp,date,imp){
   return rows.length?`<div class="sech" style="margin-top:8px">Matchup minutes alert</div>${rows.join("")}`:"";
 }
 /* Beat-writer news (RotoWire news feed) about this team's players from the last 36 hours */
-let NEWS=[];
+let NEWS=[], RESTRICTIONS=[];
 function agoText(iso){ const m=Math.max(1,Math.round((Date.now()-Date.parse(iso))/60000)); return m<60?`${m}m ago`:m<2880?`${Math.round(m/60)}h ago`:`${Math.round(m/1440)}d ago`; }
 function newsHTML(code){
   const items=NEWS.filter(i=>i.team===code&&Date.now()-Date.parse(i.at)<36*3600e3).slice(0,4);
   if(!items.length) return "";
   return `<div class="sech" style="margin-top:8px">Beat-writer news</div>`+items.map(i=>`<div class="news">📰 <b>${esc(i.player)}:</b> <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.headline)}</a> <span class="nt">${esc(i.text)}</span> <span class="nc">(${esc(i.reporter?`${i.reporter}, ${i.outlet}`:"RotoWire")} · ${agoText(i.at)})</span></div>`).join("");
 }
+function restrictionsHTML(g,date){
+  return RESTRICTIONS.filter(w=>(w.team===g.away||w.team===g.home)&&w.from<=date&&date<=w.through).map(w=>
+    `<div class="warn">⚠️ <b>MINUTES RESTRICTION: <a href="${esc(w.url)}" target="_blank" rel="noopener">${esc(w.player)}</a> (${esc(w.team)})</b><div>${esc(w.text)} <span class="nc">(${esc(w.reporter?`${w.reporter}, ${w.outlet}`:"RotoWire")} · ${agoText(w.at)})</span></div></div>`).join("");
+}
 function teamBlockHTML(code,date,opp){
   const t=TEAMS[code]||{name:code}, imp=impact(code,date);
-  const o=imp.items.filter(x=>x.rec.k==="out").length, q=imp.items.length-o;
-  let h=`<div class="tm"><div class="tmh">${logo(code,24)}${esc(t.name)}<span class="c">${imp.items.length?`${o?o+" out":""}${o&&q?" · ":""}${q?q+" questionable":""}`:""}</span></div>`;
+  const n=k=>imp.items.filter(x=>x.rec.k===k).length;
+  const counts=[[n("out"),"out"],[n("doubt"),"doubtful"],[n("q"),"questionable"],[n("prob"),"probable"]].filter(c=>c[0]).map(c=>c.join(" ")).join(" · ");
+  let h=`<div class="tm"><div class="tmh">${logo(code,24)}${esc(t.name)}<span class="c">${counts}</span></div>`;
   if(!imp.items.length) h+=`<div class="clear">✅ No injuries listed</div>`;
   else h+=imp.items.map(it=>injLineHTML(it,date)).join("");
   if(imp.items.length && !imp.hasChart) h+=`<div class="clear" style="margin-left:22px">Depth chart not loaded, so no replacements yet.</div>`;
-  h+=startersHTML(code,imp,date)+rotationBlockHTML(code,imp,date)+(opp?matchupAlertsHTML(code,opp,date,imp):"")+newsHTML(code)+`</div>`;
+  const lu=lineupFor(code,date);
+  h+=(opp?matchupAlertsHTML(code,opp,date,imp):"")+newsHTML(code);
+  if(DEPTH_P[code]||lu) h+=`<details class="lineup"><summary>Starters &amp; bench <small>${lu?(lu.confirmed?"confirmed (RotoWire)":"expected (RotoWire)"):"from the depth chart"}</small></summary>${startersHTML(code,imp,date)}${rotationBlockHTML(code,imp,date)}</details>`;
+  h+=`</div>`;
   return h;
 }
 function renderPanel(){
@@ -752,7 +762,7 @@ function renderPanel(){
     const tags=[]; if(g.type==="pre") tags.push("Preseason"); if(g.type==="cup") tags.push("NBA Cup"); if(g.type==="neu") tags.push("Neutral site");
     const meta=[g.venue,g.note].filter(Boolean).join(" · ");
     h+=`<section class="gm"><h3 class="gh">${fmtTime(g.time)} ET — ${logo(g.away,26)}${esc(A.name)}<span class="at">${g.type==="neu"?"vs":"@"}</span>${logo(g.home,26)}${esc(H.name)}${tags.map(t=>`<span class="tag">${t}</span>`).join("")}</h3>
-      ${meta?`<div class="gmeta">${esc(meta)}</div>`:""}${teamBlockHTML(g.away,selected,g.home)}${teamBlockHTML(g.home,selected,g.away)}</section>`;
+      ${meta?`<div class="gmeta">${esc(meta)}</div>`:""}${restrictionsHTML(g,selected)}${teamBlockHTML(g.away,selected,g.home)}${teamBlockHTML(g.home,selected,g.away)}</section>`;
   });
   h+=`<div class="rep-legend"><span><i style="background:var(--out)"></i>Out</span><span><i style="background:var(--doubt)"></i>Doubtful</span><span><i style="background:var(--q)"></i>Questionable</span><span><i style="background:var(--prob)"></i>Probable</span></div>
     <div class="foot">Starters come from RotoWire when it has a lineup for the game; otherwise from the ESPN depth chart, with an injured starter replaced by the next healthy player at his position. Click a player's name to open the source for that injury.</div></div>`;
@@ -907,12 +917,13 @@ async function loadData(){
     const res=await fetch("data.json",{cache:"no-store"}); if(!res.ok) return false;
     const d=await res.json();
     if(Array.isArray(d.injuries)&&d.injuries.length){
-      injuries=d.injuries.map(r=>({team:r.team,player:r.player,src:r.src,kind:r.kind||"G",injury:r.injury||"",upd:r.upd||"",until:r.until||"",note:r.note||"",through:r.through||"",st:r.st||undefined,url:r.url||"",stale:!!r.stale}));
+      injuries=d.injuries.map(r=>({team:r.team,player:r.player,src:r.src,kind:r.kind||"G",injury:r.injury||"",upd:r.upd||"",until:r.until||"",note:r.note||"",through:r.through||"",st:r.st||undefined,url:r.url||"",stale:!!r.stale,from:r.from||"",override:!!r.override,at:r.at||""}));
     }
     if(d.depth) Object.entries(d.depth).forEach(([t,o])=>DEPTH_RAW[t]=o);
     if(d.lineups) LINEUPS=d.lineups;
     if(Array.isArray(d.matchup_alerts)) MATCHUP_ALERTS=d.matchup_alerts;
     if(Array.isArray(d.news)) NEWS=d.news;
+    if(Array.isArray(d.restrictions)) RESTRICTIONS=d.restrictions;
     if(d.minutes) Object.entries(d.minutes).forEach(([n,v])=>{ mins[normName(n)]=v; });
     if(Array.isArray(d.schedule)&&d.schedule.length>1000) feedGames=d.schedule.map(g=>({date:g.date,time:g.time,away:g.away,home:g.home,type:"reg",note:"",venue:g.venue||""}));
     dataMeta={generated:d.generated_at,sources:d.sources||{}};
