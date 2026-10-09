@@ -143,6 +143,64 @@ def matchup_alerts_for(data, team, opp, inj, starters):
 
 
 NEWS_HOURS = 36
+CUR_MIN_GAMES = 3          # games this season before its average replaces last season's
+CHANGE_MIN = 5.0           # minutes up/down vs last season that counts as a big change
+CHANGE_CUR_GAMES = 5       # games this season needed before we call a change
+CHANGE_BASE_GAMES = 10     # games in the comparison season needed
+
+
+def _season_index(data):
+    sm = data.get("season_minutes") or {}
+    if "_idx" not in sm:
+        sm["_idx"] = {k: {norm_name(n): v for n, v in (sm.get(k) or {}).items()} for k in ("current", "last", "prior")}
+    return sm, sm["_idx"]
+
+
+def avg_minutes(data, player):
+    """(minutes per game, season label) from this season once he has CUR_MIN_GAMES games, else the last season
+    he played. None if we have nothing."""
+    sm, idx = _season_index(data)
+    k = norm_name(player)
+    for key, need, label in (("current", CUR_MIN_GAMES, sm.get("season")), ("last", 1, sm.get("last_season")),
+                             ("prior", 1, sm.get("prior_season"))):
+        v = idx[key].get(k)
+        if v and v[0] >= need:
+            return v[1], label
+    return None
+
+
+def minutes_change(data, player):
+    """Big change this season vs the last season he played: (difference, this season mpg, earlier mpg, label) or None."""
+    sm, idx = _season_index(data)
+    k = norm_name(player)
+    cur = idx["current"].get(k)
+    if not cur or cur[0] < CHANGE_CUR_GAMES:
+        return None
+    for key in ("last", "prior"):
+        base = idx[key].get(k)
+        if base and base[0] >= CHANGE_BASE_GAMES:
+            diff = cur[1] - base[1]
+            return (round(diff, 1), cur[1], base[1], sm.get(f"{key}_season")) if abs(diff) >= CHANGE_MIN else None
+    return None
+
+
+def mins_tag(data, player):
+    m = avg_minutes(data, player)
+    return f" ({round(m[0])})" if m else ""
+
+
+def change_html(data, player):
+    c = minutes_change(data, player)
+    if not c:
+        return ""
+    up = c[0] > 0
+    return (f' <span style="font-size:11px;font-weight:bold;color:#fff;background:{"#1e8449" if up else "#c0392b"};'
+            f'border-radius:3px;padding:1px 5px">{"📈 +" if up else "📉 "}{round(c[0])} min vs {c[3]}</span>')
+
+
+def change_text(data, player):
+    c = minutes_change(data, player)
+    return f" [{'+' if c[0] > 0 else ''}{round(c[0])} min vs {c[3]}]" if c else ""
 
 
 def restrictions_for(data, teams, date):
@@ -208,19 +266,27 @@ def build(data, games, date):
                 h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:4px 0 2px">{e(label)}</div>'
                          '<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:15px">')
                 for p, n, why in starters:
+                    hl = "background:#fff4c2;" if minutes_change(data, n) else ""
                     h.append(f'<tr><td style="width:34px;padding:2px 0;{grey};font-size:12px;font-weight:bold">{e(p)}</td>'
-                             f'<td style="padding:2px 0"><b>{e(n)}</b>{tag(status.get(norm_name(n)))}'
+                             f'<td style="padding:2px 4px;{hl}"><b>{e(n)}</b><span style="{grey};font-size:13px">{mins_tag(data, n)}</span>'
+                             f'{tag(status.get(norm_name(n)))}{change_html(data, n)}'
                              f'{f" <span style=color:#1e8449;font-size:12px>in for {e(why[7:])}</span>" if why else ""}</td></tr>')
                 h.append("</table>")
-                t.append(f"    {label}: " + ", ".join(f"{p} {n}{f' ({why})' if why else ''}" for p, n, why in starters))
+                t.append(f"    {label}: " + ", ".join(f"{p} {n}{mins_tag(data, n)}{change_text(data, n)}{f' ({why})' if why else ''}"
+                                                       for p, n, why in starters))
             # 2. bench
             if bench or deep:
                 h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:8px 0 2px">Projected bench</div>'
                          f'<div style="font-size:13px;line-height:1.6">'
-                         + " · ".join(f'<span style="{grey};font-size:11px">{e(p)}</span> {e(n)}{tag(st)}' for p, n, st in bench)
-                         + (f'<div style="font-size:12px;{grey}">Deep bench: ' + ", ".join(e(n) for _, n, _ in deep) + "</div>" if deep else "")
+                         + " · ".join(f'<span style="{grey};font-size:11px">{e(p)}</span> '
+                                      f'<span style="{"background:#fff4c2;" if minutes_change(data, n) else ""}">{e(n)}'
+                                      f'<span style="{grey}">{mins_tag(data, n)}</span></span>{tag(st)}{change_html(data, n)}'
+                                      for p, n, st in bench)
+                         + (f'<div style="font-size:12px;{grey}">Deep bench: ' + ", ".join(
+                             f'{e(n)}{mins_tag(data, n)}{change_html(data, n)}' for _, n, _ in deep) + "</div>" if deep else "")
                          + "</div>")
-                t.append("    Bench: " + ", ".join(n for _, n, _ in bench) + (f" | Deep bench: {', '.join(n for _, n, _ in deep)}" if deep else ""))
+                t.append("    Bench: " + ", ".join(f"{n}{mins_tag(data, n)}{change_text(data, n)}" for _, n, _ in bench)
+                         + (f" | Deep bench: {', '.join(n + mins_tag(data, n) for _, n, _ in deep)}" if deep else ""))
             # 3. matchup minutes alerts (minutes-vs-teams workbook)
             alerts = matchup_alerts_for(data, team, opp, inj, starters)
             if alerts:
@@ -252,16 +318,17 @@ def build(data, games, date):
                 srcs = ", ".join(f'<a href="{e(x["url"])}" style="color:#8a8a8a">{e(x["src"])}</a>' if x["url"] else e(x["src"])
                                  for x in i["srcs"])
                 per = f" <i>(per {e(i['beat'])})</i>" if i["beat"] else ""
-                h.append(f'<div>{DOT[i["st"]]} <b>{who}</b> {LABEL[i["st"]]}{per}'
+                h.append(f'<div>{DOT[i["st"]]} <b>{who}</b><span style="{grey}">{mins_tag(data, i["player"])}</span> {LABEL[i["st"]]}{per}'
                          f'{" · " + e(i["injury"]) if i["injury"] else ""} '
                          f'<span style="color:#8a8a8a">· {srcs}{" · sources differ" if i["differ"] else ""}</span></div>')
-                t.append(f"    {DOT[i['st']]} {i['player']}: {LABEL[i['st']]}{' | ' + i['injury'] if i['injury'] else ''}"
+                t.append(f"    {DOT[i['st']]} {i['player']}{mins_tag(data, i['player'])}: {LABEL[i['st']]}{' | ' + i['injury'] if i['injury'] else ''}"
                          f" ({', '.join(x['src'] for x in i['srcs'])})")
             h.append("</div></div>")
         t.append("")
     h.append(f'<div style="font-size:11px;{grey};margin-top:16px;border-top:1px solid #ddd;padding-top:8px">'
              '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable. Click a player for the source. '
-             'Bench comes from the ESPN depth chart. Matchup alerts: average minutes vs this opponent is 5+ above or below '
+             '(Number) = average minutes per game: this season once he has 3+ games, otherwise the last season he played (ESPN). '
+             'Highlighted = 5+ minutes more or fewer than last season. Bench comes from the ESPN depth chart. Matchup alerts: average minutes vs this opponent is 5+ above or below '
              'the player\'s usual over 5+ games vs that team (your minutes-vs-teams sheet, top 100 players, 2023-26).</div></div>')
     return title, "".join(h), "\n".join(t)
 
@@ -292,13 +359,13 @@ def build_slack(data, game, date, test=False):
             {"type": "image", "image_url": logo_url, "alt_text": team},
             {"type": "mrkdwn", "text": f"*{e(name(team))}*"}]})
         if starters:
-            rows = [f"`{p:<2}` *{e(n)}*{tag.get(status.get(norm_name(n)), '')}{f'  _in for {e(why[7:])}_' if why else ''}"
+            rows = [f"`{p:<2}` *{e(n)}*{mins_tag(data, n)}{tag.get(status.get(norm_name(n)), '')}{change_text(data, n)}{f'  _in for {e(why[7:])}_' if why else ''}"
                     for p, n, why in starters]
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": f"_{e(label)}_\n" + "\n".join(rows)}})
         if bench or deep:
-            txt = "*Bench:* " + " · ".join(f"{e(n)}{tag.get(st, '')}" for _, n, st in bench)
+            txt = "*Bench:* " + " · ".join(f"{e(n)}{mins_tag(data, n)}{tag.get(st, '')}{change_text(data, n)}" for _, n, st in bench)
             if deep:
-                txt += "\n*Deep bench:* " + ", ".join(e(n) for _, n, _ in deep)
+                txt += "\n*Deep bench:* " + ", ".join(e(n) + mins_tag(data, n) for _, n, _ in deep)
             blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": txt[:2900]}]})
         if alerts:
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(
@@ -313,7 +380,7 @@ def build_slack(data, game, date, test=False):
         for i in inj:
             who = f"<{i['link']}|{e(i['player'])}>" if i["link"] else e(i["player"])
             per = f" _(per {e(i['beat'])})_" if i["beat"] else ""
-            lines.append(f"{DOT[i['st']]} *{who}* {LABEL[i['st']]}{per}"
+            lines.append(f"{DOT[i['st']]} *{who}*{mins_tag(data, i['player'])} {LABEL[i['st']]}{per}"
                          f"{' · ' + e(i['injury']) if i['injury'] else ''}"
                          f" · {', '.join(e(x['src']) for x in i['srcs'])}{' · sources differ' if i['differ'] else ''}")
         blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
@@ -350,6 +417,48 @@ def next_games(data, now):
     return [g for g in upcoming if (g["date"], g["time"]) == (upcoming[0]["date"], upcoming[0]["time"])] if upcoming else []
 
 
+def weekly_changes(data):
+    """Every player whose minutes this season are CHANGE_MIN+ above or below the last season he played."""
+    sm = data.get("season_minutes") or {}
+    rows = []
+    for player, (gp, mpg, team) in (sm.get("current") or {}).items():
+        c = minutes_change(data, player)
+        if c:
+            rows.append({"player": player, "team": team, "gp": gp, "diff": c[0], "now": c[1], "before": c[2], "vs": c[3]})
+    return sorted(rows, key=lambda r: -abs(r["diff"]))
+
+
+def build_weekly(data, rows):
+    e = html.escape
+    sm = data.get("season_minutes") or {}
+    title = f"NBA weekly minutes changes: {len(rows)} players ({sm.get('season', '')})"
+    grey = "color:#6b6b6b"
+    h = [f'<div style="font-family:Arial,Helvetica,sans-serif;color:#1d1c1d;max-width:640px">'
+         f'<div style="font-size:18px;font-weight:bold">Weekly minutes changes</div>'
+         f'<div style="font-size:12px;{grey};margin:2px 0 10px">Players averaging {CHANGE_MIN:g}+ minutes more or fewer than the '
+         f'last season they played ({CHANGE_CUR_GAMES}+ games this season). Stats through {e(sm.get("fetched_at", "?")[:10])} (ESPN). '
+         f'<a href="{SITE}" style="color:#1264a3">Open the board</a></div>']
+    t = [title, ""]
+    for label, part in (("📈 Playing more", [r for r in rows if r["diff"] > 0]), ("📉 Playing less", [r for r in rows if r["diff"] < 0])):
+        if not part:
+            continue
+        h.append(f'<div style="font-size:15px;font-weight:bold;margin:14px 0 4px">{label} ({len(part)})</div>'
+                 '<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:14px;width:100%">')
+        t.append(label)
+        for r in part:
+            up = r["diff"] > 0
+            h.append(f'<tr style="border-top:1px solid #eee"><td style="padding:5px 6px 5px 0;width:34px">{logo(r["team"], 22) if r["team"] else ""}</td>'
+                     f'<td style="padding:5px 0"><b>{e(r["player"])}</b> <span style="{grey};font-size:12px">{e(name(r["team"]) if r["team"] else "")}</span></td>'
+                     f'<td style="padding:5px 0;text-align:right;white-space:nowrap"><b>{r["now"]:.1f}</b> '
+                     f'<span style="{grey}">vs {r["before"]:.1f} in {e(r["vs"])}</span> '
+                     f'<b style="color:{"#1e8449" if up else "#c0392b"}">{"+" if up else ""}{r["diff"]:.1f}</b> '
+                     f'<span style="{grey};font-size:12px">({r["gp"]} games)</span></td></tr>')
+            t.append(f"  {r['player']} ({r['team']}): {r['now']:.1f} vs {r['before']:.1f} in {r['vs']} ({'+' if up else ''}{r['diff']:.1f}), {r['gp']} games")
+        h.append("</table>")
+    h.append("</div>")
+    return title, "".join(h), "\n".join(t)
+
+
 def send_email(subject, body_html, body_text):
     user, pw, to = os.environ.get("SMTP_USER"), os.environ.get("SMTP_PASSWORD"), os.environ.get("EMAIL_TO")
     if not (user and pw and to):
@@ -373,11 +482,26 @@ def main():
     ap.add_argument("--window", type=int, default=25, help="send games tipping off within this many minutes")
     ap.add_argument("--out", help="write subject/html/text to files with this prefix instead of sending")
     ap.add_argument("--test-slack", action="store_true", help="post the next game's report to Slack now, marked TEST")
+    ap.add_argument("--weekly", action="store_true", help="send the weekly minutes-changes email")
     args = ap.parse_args()
 
     data = json.load(open(args.data))
     now = dt.datetime.now(ET)
     slack_url = os.environ.get("SLACK_WEBHOOK_URL")
+
+    if args.weekly:
+        rows = weekly_changes(data)
+        if not rows:
+            print("Weekly: no big minutes changes yet (this season needs 5+ games per player); nothing sent.")
+            return
+        subject, body_html, body_text = build_weekly(data, rows)
+        if args.out:
+            open(args.out + ".html", "w").write(body_html)
+            open(args.out + ".txt", "w").write(body_text)
+            print(f"Wrote {args.out}.*  ({len(rows)} players)")
+        else:
+            send_email(subject, body_html, body_text)
+        return
 
     if args.test_slack:
         if not slack_url:

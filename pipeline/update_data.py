@@ -8,6 +8,8 @@ Sources (each one is optional; a failure keeps that source's last good data, mar
   espn       ESPN public JSON injuries endpoint
   espn_depth ESPN depth charts, all 30 teams (rotation and minutes-up order)
   rotowire   RotoWire expected / confirmed starting lineups for today, plus its "may not play" list
+  season_min ESPN season stats: games played + minutes per game for every player, this season (refreshed each
+             morning) and the two seasons before (fetched once)
   news       RotoWire NBA news feed (mostly beat-writer reports, writer named); only the latest 5 items, so it is
              checked every 10 minutes and kept for 3 days
   minutes    your Google Sheet, published to the web as CSV (MINUTES_CSV_URL)
@@ -524,6 +526,58 @@ def apply_news(data):
     return data
 
 
+# ---------------------------------------------------------------- season minutes (ESPN)
+SEASON_STATS_URL = ("https://site.web.api.espn.com/apis/common/v3/sports/basketball/nba/statistics/byathlete"
+                    "?region=us&lang=en&contentorigin=espn&isqualified=false&page=1&limit=1000&seasontype=2&season={}")
+SEASON_REFRESH_HOURS = 12
+
+
+def espn_season(day):
+    """ESPN names a season by the year it ends: Oct 2026 -> 2027 (the 2026-27 season)."""
+    return day.year + 1 if day.month >= 8 else day.year
+
+
+def season_label(year):
+    return f"{year - 1}-{str(year)[2:]}"
+
+
+def parse_season_stats(j):
+    """-> {player name: [games played, minutes per game, team code]} (regular season)."""
+    out = {}
+    for a in j.get("athletes", []):
+        ath = a.get("athlete") or {}
+        gen = next((c for c in a.get("categories", []) if c.get("name") == "general"), None)
+        if not ath.get("displayName") or not gen:
+            continue
+        try:
+            gp, mpg = int(float(gen["totals"][0])), float(gen["totals"][1])
+        except (ValueError, IndexError, KeyError):
+            continue
+        out[ath["displayName"]] = [gp, round(mpg, 1), team_code(ath.get("teamShortName")) or ""]
+    return out
+
+
+def fetch_season_minutes(prev):
+    """This season's numbers every SEASON_REFRESH_HOURS (the morning run picks up last night's games); the two
+    previous seasons only once."""
+    now = dt.datetime.now(dt.timezone.utc)
+    cur = espn_season(today_et())
+    old = prev if prev.get("year") == cur else {}
+    out = {"year": cur, "season": season_label(cur), "last_season": season_label(cur - 1),
+           "prior_season": season_label(cur - 2)}
+    for key, year in (("last", cur - 1), ("prior", cur - 2)):
+        out[key] = old.get(key) or parse_season_stats(get(SEASON_STATS_URL.format(year)).json())
+    fresh = old.get("fetched_at") and now - dt.datetime.fromisoformat(old["fetched_at"]) < dt.timedelta(hours=SEASON_REFRESH_HOURS)
+    if fresh:
+        out["current"], out["fetched_at"] = old.get("current", {}), old["fetched_at"]
+    else:
+        out["current"] = parse_season_stats(get(SEASON_STATS_URL.format(cur)).json())
+        out["fetched_at"] = now.isoformat(timespec="seconds")
+    if len(out["last"]) < 300:
+        raise RuntimeError(f"last season looks incomplete: {len(out['last'])} players")
+    return out
+
+
 # ---------------------------------------------------------------- minutes sheet
 def parse_minutes_csv(text):
     rows = list(csv.reader(io.StringIO(text)))
@@ -716,6 +770,10 @@ def main():
     if roto:
         data["lineups"], roto_inj = roto
         status["rotowire"]["teams"] = len(roto[0])
+    sm = run("season_minutes", lambda: fetch_season_minutes(prev.get("season_minutes") or {}))
+    data["season_minutes"] = sm or prev.get("season_minutes") or {}
+    if sm:
+        status["season_minutes"].update({"current_players": len(sm["current"]), "last_players": len(sm["last"])})
     mins = run("minutes", fetch_minutes)
     if mins:
         data["minutes"] = mins

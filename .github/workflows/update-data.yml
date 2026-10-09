@@ -10,10 +10,16 @@ on:
     # 45 minutes, then emails the report for games starting within 25 minutes (once per game),
     # so the email lands about 20 minutes before tip. GitHub can start these a few minutes late.
     - cron: "*/10 15-23,0-5 * * *"
+    # Mondays 9 AM Eastern: weekly minutes-changes email
+    - cron: "0 13 * * 1"
   workflow_dispatch:
     inputs:
       test_slack:
         description: "Send a TEST Slack message for the next game now"
+        type: boolean
+        default: false
+      weekly_email:
+        description: "Send the weekly minutes-changes email now"
         type: boolean
         default: false
   push:
@@ -67,6 +73,14 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: python pipeline/email_report.py --data data.json --test-slack
+
+      - name: Weekly minutes-changes email (Mondays, or when you tick the box)
+        if: ${{ github.event.schedule == '0 13 * * 1' || (github.event_name == 'workflow_dispatch' && inputs.weekly_email) }}
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python pipeline/email_report.py --data data.json --weekly
 
       - name: Save data.json
         run: |

@@ -277,3 +277,26 @@ def test_news_sets_status_and_restrictions():
     assert e.injuries_for(data, "NYK", "2026-10-08")[0]["st"] == "out"                 # news not in effect yet
     assert [w["player"] for w in e.restrictions_for(data, ("NYK", "MIA"), "2026-10-09")] == ["Jalen Brunson"]
     assert e.restrictions_for(data, ("NYK",), "2026-10-12") == []
+
+
+def test_season_minutes_and_weekly():
+    import email_report as e
+    j = {"athletes": [{"athlete": {"displayName": "Jalen Brunson", "teamShortName": "NY"},
+                       "categories": [{"name": "general", "totals": ["74", "35.0", "2.1"]}]}]}
+    assert u.parse_season_stats(j) == {"Jalen Brunson": [74, 35.0, "NYK"]}
+    assert u.espn_season(dt.date(2026, 10, 9)) == 2027 and u.season_label(2027) == "2026-27"
+    sm = {"season": "2026-27", "last_season": "2025-26", "prior_season": "2024-25", "fetched_at": "2026-11-02T11:00:00+00:00",
+          "current": {"Jalen Brunson": [2, 30.0, "NYK"], "Miles McBride": [8, 29.0, "NYK"], "Josh Hart": [8, 33.0, "NYK"]},
+          "last": {"Jalen Brunson": [74, 35.0, "NYK"], "Miles McBride": [70, 20.0, "NYK"], "Josh Hart": [77, 32.0, "NYK"]},
+          "prior": {"Mitchell Robinson": [17, 22.0, "NYK"]}}
+    data = {"season_minutes": sm}
+    assert e.avg_minutes(data, "Jalen Brunson") == (35.0, "2025-26")       # only 2 games this season: last season
+    assert e.avg_minutes(data, "Miles McBride") == (29.0, "2026-27")       # 8 games: this season
+    assert e.avg_minutes(data, "Mitchell Robinson") == (22.0, "2024-25")   # missed last season: the one before
+    assert e.mins_tag(data, "Nobody") == ""
+    assert e.minutes_change(data, "Miles McBride") == (9.0, 29.0, 20.0, "2025-26")
+    assert e.minutes_change(data, "Josh Hart") is None and e.minutes_change(data, "Jalen Brunson") is None
+    rows = e.weekly_changes(data)
+    assert [(r["player"], r["diff"]) for r in rows] == [("Miles McBride", 9.0)]
+    title, body, text = e.build_weekly(data, rows)
+    assert "1 players" in title and "Miles McBride (NYK): 29.0 vs 20.0 in 2025-26 (+9.0), 8 games" in text
