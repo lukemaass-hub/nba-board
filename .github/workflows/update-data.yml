@@ -10,7 +10,12 @@ on:
     # 45 minutes, then emails the report for games starting within 25 minutes (once per game),
     # so the email lands about 20 minutes before tip. GitHub can start these a few minutes late.
     - cron: "*/10 15-23,0-5 * * *"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      test_slack:
+        description: "Send a TEST Slack message for the next game now"
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths: ["pipeline/**", "tests/**", ".github/workflows/update-data.yml"]
@@ -49,12 +54,19 @@ jobs:
           PREGAME: ${{ github.event.schedule == '*/10 15-23,0-5 * * *' && '45' || '' }}
         run: python pipeline/update_data.py --out data.json ${PREGAME:+--pregame "$PREGAME"}
 
-      - name: Email the report for games tipping off soon
+      - name: Email / Slack the report for games tipping off soon
         env:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: python pipeline/email_report.py --data data.json --window 25
+
+      - name: Slack test message (only when you tick the box on "Run workflow")
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.test_slack }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: python pipeline/email_report.py --data data.json --test-slack
 
       - name: Save data.json
         run: |

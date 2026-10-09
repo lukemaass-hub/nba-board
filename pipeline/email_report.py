@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
-"""Email the availability report for games that tip off soon.
+"""Email (and post to Slack) the availability report for games that tip off soon.
 
-Run right after update_data.py. Picks every game starting within --window minutes that has not been emailed yet
-(email_log.json remembers), builds the same report the page shows, and sends it by SMTP.
+Run right after update_data.py. Picks every game starting within --window minutes that has not been sent yet
+(email_log.json remembers, separately for email and Slack), builds the same report the page shows, and sends it.
 
-Needs (GitHub secrets): SMTP_USER, SMTP_PASSWORD, EMAIL_TO. Optional: SMTP_HOST (default smtp.gmail.com), SMTP_PORT (465).
-Without them, --out writes the email to files instead of sending.
+Email needs (GitHub secrets): SMTP_USER, SMTP_PASSWORD, EMAIL_TO. Optional: SMTP_HOST (smtp.gmail.com), SMTP_PORT (465).
+Slack needs: SLACK_WEBHOOK_URL (an incoming webhook; it posts wherever the webhook was pointed, e.g. your own DMs).
+Without them, that channel is skipped. --out writes the email to files instead of sending.
+--test-slack posts the next game's report to Slack right away, marked TEST, without touching the log.
 
 Usage:  python pipeline/email_report.py --data data.json --window 25
 """
 import argparse, datetime as dt, html, json, os, smtplib, sys
+import urllib.request
 from email.message import EmailMessage
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -215,43 +218,84 @@ def build(data, games, date):
     return title, "".join(h), "\n".join(t)
 
 
-def due_games(data, now, window, sent):
+def slack_escape(t):
+    return str(t).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def build_slack(data, game, date, test=False):
+    """One Slack message (Block Kit) per game, same layout as the email: starters, bench, alerts, then injuries."""
+    e = slack_escape
+    tag = {"out": " `OUT`", "doubt": " `DOUBT`", "q": " `GTD`", "prob": " `PROB`"}
+    g = game
+    title = f"{'[TEST] ' if test else ''}{fmt_time(g['time'])} ET · {name(g['away'])} @ {name(g['home'])}"
+    blocks = [{"type": "header", "text": {"type": "plain_text", "text": title[:150]}}]
+    for team, opp in ((g["away"], g["home"]), (g["home"], g["away"])):
+        inj = injuries_for(data, team, date)
+        status = {norm_name(i["player"]): i["st"] for i in inj}
+        label, starters = starters_for(data, team, date, inj)
+        bench, deep = bench_for(data, team, inj, starters)
+        alerts = matchup_alerts_for(data, team, opp, inj, starters)
+        logo_url = f"https://a.espncdn.com/i/teamlogos/nba/500/{ESPN_LOGO.get(team, team.lower())}.png"
+        blocks.append({"type": "context", "elements": [
+            {"type": "image", "image_url": logo_url, "alt_text": team},
+            {"type": "mrkdwn", "text": f"*{e(name(team))}*"}]})
+        if starters:
+            rows = [f"`{p:<2}` *{e(n)}*{tag.get(status.get(norm_name(n)), '')}{f'  _in for {e(why[7:])}_' if why else ''}"
+                    for p, n, why in starters]
+            blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": f"_{e(label)}_\n" + "\n".join(rows)}})
+        if bench or deep:
+            txt = "*Bench:* " + " · ".join(f"{e(n)}{tag.get(st, '')}" for _, n, st in bench)
+            if deep:
+                txt += "\n*Deep bench:* " + ", ".join(e(n) for _, n, _ in deep)
+            blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": txt[:2900]}]})
+        if alerts:
+            blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(
+                f"{'📈' if d == 'up' else '📉'} *{e(n)}* usually plays *{'more' if d == 'up' else 'fewer'}* minutes vs "
+                f"{e(name(opp).split()[-1])}" for n, d in alerts)}})
+        lines = []
+        for i in inj:
+            who = f"<{i['link']}|{e(i['player'])}>" if i["link"] else e(i["player"])
+            lines.append(f"{DOT[i['st']]} *{who}* {LABEL[i['st']]}{' · ' + e(i['injury']) if i['injury'] else ''}"
+                         f" · {', '.join(e(x['src']) for x in i['srcs'])}{' · sources differ' if i['differ'] else ''}")
+        blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
+                       "text": ("*Injuries*\n" + "\n".join(lines))[:2900] if lines else "✅ No injuries listed"}]})
+        blocks.append({"type": "divider"})
+    blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text":
+                   f"🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · <{SITE}|Open the full board>"}]})
+    return title, blocks
+
+
+def post_slack(url, text, blocks):
+    req = urllib.request.Request(url, data=json.dumps({"text": text, "blocks": blocks}).encode(),
+                                 headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        body = r.read().decode()
+    if body.strip() != "ok":
+        raise RuntimeError(f"Slack said: {body[:200]}")
+
+
+def due_games(data, now, window, sent, prefix=""):
     out = []
     for g in all_games(data):
         tip = dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=ET)
         key = f"{g['date']} {g['away']}@{g['home']}"
-        if now <= tip <= now + dt.timedelta(minutes=window) and key not in sent:
+        if now <= tip <= now + dt.timedelta(minutes=window) and prefix + key not in sent:
             out.append((key, g))
     return out
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--data", default="data.json")
-    ap.add_argument("--log", default="email_log.json")
-    ap.add_argument("--window", type=int, default=25, help="email games tipping off within this many minutes")
-    ap.add_argument("--out", help="write subject/html/text to files with this prefix instead of sending")
-    args = ap.parse_args()
+def next_games(data, now):
+    """The next tip-off time's games (for --test-slack)."""
+    upcoming = [g for g in all_games(data)
+                if dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=ET) >= now]
+    return [g for g in upcoming if (g["date"], g["time"]) == (upcoming[0]["date"], upcoming[0]["time"])] if upcoming else []
 
-    data = json.load(open(args.data))
-    sent = json.load(open(args.log)) if os.path.exists(args.log) else {}
-    due = due_games(data, dt.datetime.now(ET), args.window, sent)
-    if not due:
-        print("No games due for an email.")
-        return
-    games = [g for _, g in due]
-    subject, body_html, body_text = build(data, games, games[0]["date"])
 
-    if args.out:
-        open(args.out + ".subject.txt", "w").write(subject)
-        open(args.out + ".html", "w").write(body_html)
-        open(args.out + ".txt", "w").write(body_text)
-        print(f"Wrote {args.out}.*  ({len(games)} games)")
-        return
+def send_email(subject, body_html, body_text):
     user, pw, to = os.environ.get("SMTP_USER"), os.environ.get("SMTP_PASSWORD"), os.environ.get("EMAIL_TO")
     if not (user and pw and to):
-        print("SMTP_USER / SMTP_PASSWORD / EMAIL_TO not set; not sending.")
-        return
+        print("Email: SMTP_USER / SMTP_PASSWORD / EMAIL_TO not set; skipped.")
+        return False
     msg = EmailMessage()
     msg["Subject"], msg["From"], msg["To"] = subject, user, to
     msg.set_content(body_text)
@@ -259,12 +303,63 @@ def main():
     with smtplib.SMTP_SSL(os.environ.get("SMTP_HOST", "smtp.gmail.com"), int(os.environ.get("SMTP_PORT", "465"))) as s:
         s.login(user, pw)
         s.send_message(msg)
-    now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
-    sent.update({k: now for k, _ in due})
+    print(f"Email sent: {subject}")
+    return True
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--data", default="data.json")
+    ap.add_argument("--log", default="email_log.json")
+    ap.add_argument("--window", type=int, default=25, help="send games tipping off within this many minutes")
+    ap.add_argument("--out", help="write subject/html/text to files with this prefix instead of sending")
+    ap.add_argument("--test-slack", action="store_true", help="post the next game's report to Slack now, marked TEST")
+    args = ap.parse_args()
+
+    data = json.load(open(args.data))
+    now = dt.datetime.now(ET)
+    slack_url = os.environ.get("SLACK_WEBHOOK_URL")
+
+    if args.test_slack:
+        if not slack_url:
+            sys.exit("SLACK_WEBHOOK_URL is not set (add it under Settings > Secrets and variables > Actions).")
+        games = next_games(data, now)
+        if not games:
+            sys.exit("No upcoming games in data.json to test with.")
+        for g in games:
+            title, blocks = build_slack(data, g, g["date"], test=True)
+            post_slack(slack_url, title, blocks)
+            print(f"Slack test sent: {title}")
+        return
+
+    sent = json.load(open(args.log)) if os.path.exists(args.log) else {}
+    stamp = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    due = due_games(data, now, args.window, sent)
+    if due:
+        games = [g for _, g in due]
+        subject, body_html, body_text = build(data, games, games[0]["date"])
+        if args.out:
+            open(args.out + ".subject.txt", "w").write(subject)
+            open(args.out + ".html", "w").write(body_html)
+            open(args.out + ".txt", "w").write(body_text)
+            print(f"Wrote {args.out}.*  ({len(games)} games)")
+            return
+        if send_email(subject, body_html, body_text):
+            sent.update({k: stamp for k, _ in due})
+    elif not args.out:
+        print("Email: no games due.")
+
+    if slack_url and not args.out:
+        for key, g in due_games(data, now, args.window, sent, prefix="slack "):
+            title, blocks = build_slack(data, g, g["date"])
+            post_slack(slack_url, title, blocks)
+            sent["slack " + key] = stamp
+            print(f"Slack sent: {title}")
+
     cutoff = (dt.date.today() - dt.timedelta(days=7)).isoformat()
-    sent = {k: v for k, v in sent.items() if k[:10] >= cutoff}
-    json.dump(sent, open(args.log, "w"), indent=1)
-    print(f"Sent: {subject}")
+    sent = {k: v for k, v in sent.items() if k.removeprefix("slack ")[:10] >= cutoff}
+    if sent or os.path.exists(args.log):
+        json.dump(sent, open(args.log, "w"), indent=1)
 
 
 if __name__ == "__main__":
