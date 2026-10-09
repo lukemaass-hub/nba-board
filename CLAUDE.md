@@ -40,6 +40,12 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   Covers/RotoWire on the page, email and Slack ("per <writer>"); the newest writer report wins. The day comes from
   the text ("Sunday's game" -> that date only; none named -> posted day + next day; "said Friday" is skipped).
   "Minutes restriction" phrases -> data["restrictions"] -> big red warning at the top of that game everywhere.
+- Season minutes (Oct 9 2026): ESPN byathlete stats (regular season) -> data["season_minutes"]: current season
+  refreshed every 12 h (morning run picks up last night), last + prior season fetched once. Email/Slack show
+  "Name (35)" = this season's MPG once 3+ games, else the last season he played. Big change = 5+ min vs the last
+  season he played (5+ games now, 10+ then): yellow highlight + "+N min vs 2025-26" badge in the pre-game email,
+  and a weekly email (Mondays 9 AM ET, or Run workflow > weekly_email) listing all of them. Nothing until 2026-27
+  games are played.
 - Board layout: starters & bench are inside a closed "Starters & bench" dropdown; injuries, alerts, news visible.
 - Depth charts: embedded set covers only 22 of 30 teams (RealGM page was truncated in the chat). The pipeline run
   should fill all 30. HoopsHype blocks automated access.
