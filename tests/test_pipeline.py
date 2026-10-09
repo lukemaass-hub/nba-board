@@ -185,3 +185,40 @@ def test_matchup_alerts():
     assert e.matchup_alerts_for(data, "DEN", "DET", [], []) == [("Nikola Jokic", "down")]
     out = [{"player": "Nikola Jokic", "st": "out"}]
     assert e.matchup_alerts_for(data, "DEN", "DET", out, []) == []           # not shown when he's out
+
+
+def test_slack_message_and_once_per_game(tmp_path, monkeypatch):
+    import email_report as e, http.server, threading
+    got = []
+
+    class Fake(http.server.BaseHTTPRequestHandler):
+        def do_POST(self):
+            got.append(json.loads(self.rfile.read(int(self.headers["Content-Length"]))))
+            self.send_response(200); self.end_headers(); self.wfile.write(b"ok")
+
+        def log_message(self, *a):
+            pass
+
+    srv = http.server.HTTPServer(("127.0.0.1", 0), Fake)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    tip = dt.datetime.now(u.ET) + dt.timedelta(minutes=15)
+    data = {"schedule": [{"date": tip.date().isoformat(), "time": tip.strftime("%H:%M"), "away": "MIA", "home": "NYK"}],
+            "depth": {"NYK": {"PG": "Jalen Brunson/Miles McBride/"}},
+            "injuries": [{"team": "NYK", "player": "Jalen Brunson", "src": "ESPN", "kind": "O", "url": "https://x/#b"}],
+            "matchup_alerts": [{"player": "Miles McBride", "opp": "MIA", "dir": "up"}]}
+    (tmp_path / "data.json").write_text(json.dumps(data))
+    log = tmp_path / "log.json"
+    monkeypatch.setenv("SLACK_WEBHOOK_URL", f"http://127.0.0.1:{srv.server_port}/hook")
+    for v in ("SMTP_USER", "SMTP_PASSWORD", "EMAIL_TO"):
+        monkeypatch.delenv(v, raising=False)
+    for _ in range(2):                                   # second run must not post again
+        monkeypatch.setattr(sys, "argv", ["x", "--data", str(tmp_path / "data.json"), "--log", str(log)])
+        e.main()
+    srv.shutdown()
+    assert len(got) == 1
+    blocks = got[0]["blocks"]
+    assert blocks[0]["type"] == "header" and "Miami Heat @ New York Knicks" in blocks[0]["text"]["text"]
+    text = json.dumps(blocks)
+    assert "Miles McBride" in text and "in for Jalen Brunson" in text and "<https://x/#b|Jalen Brunson>" in text
+    assert "usually plays *more* minutes vs Heat" in text and len(blocks) <= 50
+    assert list(json.loads(log.read_text())) == [f"slack {tip.date().isoformat()} MIA@NYK"]

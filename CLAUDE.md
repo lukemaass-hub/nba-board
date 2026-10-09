@@ -48,6 +48,11 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   choice).
   The xlsx itself is not in the repo; re-run the builder when the user sends a new copy.
 
+- Slack (Oct 9 2026, TESTING ONLY, user's DMs): pipeline/email_report.py also posts one Block Kit message per game to
+  SLACK_WEBHOOK_URL (secret), same layout as the email; tracked in email_log.json as "slack <date> A@H". Workflow
+  "Run workflow" has a test_slack checkbox that posts the next game now, marked [TEST]. Don't point it at a shared
+  channel until the user says testing is over.
+
 ## Next steps, in order
 1. Run pytest, then the pipeline against the live sites. Fix each parser against the real response and update tests.
 2. Serve index.html locally (python -m http.server) and check all 30 teams render with injuries and depth charts.
