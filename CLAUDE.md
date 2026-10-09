@@ -34,7 +34,13 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 - Beat-writer news (Oct 9 2026, user's choice): RotoWire NBA RSS (rotowire.com/rss/news.php?sport=NBA). It only
   returns the latest 5 items, so update_data.py checks it on every 10-minute run (even when no game is close) and
   keeps items for 3 days in data.json "news", tagged with the team from the depth chart. Shown per team (last 36 h)
-  on the board, email and Slack as "Beat-writer news" with the writer and outlet. News never changes a status.
+  on the board, email and Slack as "Beat-writer news" with the writer and outlet.
+- News -> status (Oct 9 2026, user's rule): apply_news() reads status words (out / doubtful / questionable /
+  will play = probable) and turns them into injury records with "override": a beat writer's status beats CBS/ESPN/
+  Covers/RotoWire on the page, email and Slack ("per <writer>"); the newest writer report wins. The day comes from
+  the text ("Sunday's game" -> that date only; none named -> posted day + next day; "said Friday" is skipped).
+  "Minutes restriction" phrases -> data["restrictions"] -> big red warning at the top of that game everywhere.
+- Board layout: starters & bench are inside a closed "Starters & bench" dropdown; injuries, alerts, news visible.
 - Depth charts: embedded set covers only 22 of 30 teams (RealGM page was truncated in the chat). The pipeline run
   should fill all 30. HoopsHype blocks automated access.
 - Minutes shifts are a heuristic (changed Oct 6 2026 at the user's request): all vacated minutes (last-season MPG, or
