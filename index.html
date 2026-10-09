@@ -122,6 +122,7 @@
   .sl .pos{font-size:11.5px;font-weight:900;color:var(--muted)}
   .sl .nm{font-weight:700}
   .sl .mp{color:var(--paint);font-weight:800;font-size:12px;margin-left:6px}
+  .mpi{opacity:.65;font-weight:600} .chg{font-size:10.5px;font-weight:800;color:#fff;border-radius:3px;padding:1px 5px;margin-left:5px;white-space:nowrap} .chg.up{background:#1e8449} .chg.down{background:#c0392b}
   .sl .tags{display:flex;gap:6px;flex-wrap:wrap;font-size:12px;align-items:baseline}
   .sl.in{background:#EAF6EF;border-left-color:var(--prob)}
   .sl .why{color:#256B45;font-size:12px}
@@ -654,7 +655,7 @@ function injLineHTML(it,date){
   const first=i.lines[0];
   const inj=[...new Set(i.lines.map(l=>l.injury).filter(Boolean))][0]||"";
   const link=srcLink(i);
-  let h=`<div class="it"><span><i class="dot ${k}"></i></span><div class="l1"><b>${link?`<a class="pl-link" href="${esc(link)}" target="_blank" rel="noopener" title="Open the source for this injury">${esc(i.player)}</a>`:esc(i.player)}</b>${it.pos?`<span class="pos">${it.pos}</span>`:""} — <span class="st ${k}">${STATUS_LABEL[k]}</span>${i.beat?` <span class="per">per ${esc(i.beat)}</span>`:""}${inj?` · ${esc(inj)}`:""}${m!=null?` · ${m} mpg last season`:""}<span class="src">${srcsHTML(i)}</span>${i.conflict?`<span class="diff" title="${esc(i.lines.map(l=>l.src+": "+l.label).join(" | "))}">sources differ</span>`:""}</div>`;
+  let h=`<div class="it"><span><i class="dot ${k}"></i></span><div class="l1"><b>${link?`<a class="pl-link" href="${esc(link)}" target="_blank" rel="noopener" title="Open the source for this injury">${esc(i.player)}</a>`:esc(i.player)}</b>${it.pos?`<span class="pos">${it.pos}</span>`:""} — <span class="st ${k}">${STATUS_LABEL[k]}</span>${i.beat?` <span class="per">per ${esc(i.beat)}</span>`:""}${inj?` · ${esc(inj)}`:""}${m!=null?` <span class="mpi">(${Math.round(m)})</span>`:""}${changeHTML(i.player)}<span class="src">${srcsHTML(i)}</span>${i.conflict?`<span class="diff" title="${esc(i.lines.map(l=>l.src+": "+l.label).join(" | "))}">sources differ</span>`:""}</div>`;
   i.lines.filter(l=>String(l.src).startsWith("@")).forEach(l=>{
     h+=`<div class="next beat">📝 <b>${esc(l.src)}</b>${l.upd?` (${esc(l.upd)})`:""}: ${esc(l.note||l.label)}${l.url?` <a href="${esc(l.url)}" target="_blank" rel="noopener">post</a>`:""}</div>`;
   });
@@ -669,7 +670,7 @@ function rotationHTML(code,date){
   }).join("")||'<span class="chip L">—</span>'}</div></div>`).join("");
 }
 function tagFor(k){ return k?`<span class="tg ${k}">${k==="out"?"OUT":k==="doubt"?"DTD":k==="q"?"GTD":"PROB"}</span>`:""; }
-function mpHTML(name){ const m=mins[normName(name)]; return m!=null?`<span class="mp" title="Last season minutes per game">${m}</span>`:""; }
+function mpHTML(name){ const k=normName(name), m=mins[k]; return (m!=null?`<span class="mp" title="Average minutes per game (${esc(MIN_LABEL[k]||"your sheet")})">(${Math.round(m)})</span>`:"")+changeHTML(name); }
 /* RotoWire's expected or confirmed starting five for this team on this date, if the refresh found one */
 function lineupFor(code,date){ const l=LINEUPS[code]; return l&&l.date===date&&l.starters&&l.starters.length?l:null; }
 function startersHTML(code,imp,date){
@@ -912,6 +913,25 @@ document.querySelectorAll("[data-clear]").forEach(b=>b.onclick=()=>{
 
 /* ---------- data.json (written by pipeline/update_data.py) ---------- */
 let dataMeta=null, noGamesNote="";
+/* Average minutes (ESPN season stats), same rules as the email: this season once he has 3+ games, else the last
+   season he played. CHANGES = 5+ minutes more or fewer than that last season (5+ games now, 10+ then). */
+let MIN_LABEL={}, CHANGES={};
+function loadSeasonMinutes(sm){
+  if(!sm) return;
+  const idx=k=>{ const o={}; Object.entries(sm[k]||{}).forEach(([n,v])=>o[normName(n)]=v); return o; };
+  const cur=idx("current"), last=idx("last"), prior=idx("prior");
+  new Set([...Object.keys(cur),...Object.keys(last),...Object.keys(prior)]).forEach(k=>{
+    const c=cur[k], l=last[k], p=prior[k];
+    const pick=c&&c[0]>=3?[c,sm.season]:l&&l[0]>=1?[l,sm.last_season]:p&&p[0]>=1?[p,sm.prior_season]:null;
+    if(pick){ mins[k]=pick[0][1]; MIN_LABEL[k]=pick[1]; }
+    const base=l&&l[0]>=10?[l,sm.last_season]:p&&p[0]>=10?[p,sm.prior_season]:null;
+    if(c&&c[0]>=5&&base&&Math.abs(c[1]-base[0][1])>=5) CHANGES[k]={diff:c[1]-base[0][1],vs:base[1]};
+  });
+}
+function changeHTML(name){
+  const c=CHANGES[normName(name)]; if(!c) return "";
+  return `<span class="chg ${c.diff>0?"up":"down"}" title="Average minutes this season vs ${esc(c.vs)}">${c.diff>0?"📈 +":"📉 "}${Math.round(c.diff)} min vs ${esc(c.vs)}</span>`;
+}
 async function loadData(){
   try{
     const res=await fetch("data.json",{cache:"no-store"}); if(!res.ok) return false;
@@ -925,6 +945,7 @@ async function loadData(){
     if(Array.isArray(d.news)) NEWS=d.news;
     if(Array.isArray(d.restrictions)) RESTRICTIONS=d.restrictions;
     if(d.minutes) Object.entries(d.minutes).forEach(([n,v])=>{ mins[normName(n)]=v; });
+    loadSeasonMinutes(d.season_minutes);
     if(Array.isArray(d.schedule)&&d.schedule.length>1000) feedGames=d.schedule.map(g=>({date:g.date,time:g.time,away:g.away,home:g.home,type:"reg",note:"",venue:g.venue||""}));
     dataMeta={generated:d.generated_at,sources:d.sources||{}};
     return true;
@@ -934,7 +955,7 @@ function freshHTML(){
   if(!dataMeta) return `<div class="fresh">Using the built-in snapshot from Oct 6. The automatic refresh (data.json) was not found.</div>`;
   const ago=Math.max(0,Math.round((Date.now()-Date.parse(dataMeta.generated))/60000));
   const when=ago<90?`${ago} min ago`:ago<2880?`${Math.round(ago/60)} hours ago`:`${Math.round(ago/1440)} days ago`;
-  const names={schedule:"Schedule",espn_depth:"Depth charts",realgm_depth:"Depth charts",rotowire:"RotoWire lineups",news:"Beat-writer news",minutes:"Minutes sheet",cbs:"CBS",covers:"Covers",espn:"ESPN",x:"Beat writers"};
+  const names={schedule:"Schedule",espn_depth:"Depth charts",realgm_depth:"Depth charts",rotowire:"RotoWire lineups",news:"Beat-writer news",season_minutes:"Season minutes",minutes:"Minutes sheet",cbs:"CBS",covers:"Covers",espn:"ESPN",x:"Beat writers"};
   const parts=Object.entries(dataMeta.sources).filter(([k])=>k!=="minutes"&&k!=="x").map(([k,v])=>v.ok===true?`${names[k]||k} ✓`:v.ok===false?`<span class="bad">${names[k]||k} failed</span>`:`${names[k]||k} off`);
   return `<div class="fresh">Data refreshed <b>${when}</b> · ${parts.join(" · ")}</div>`;
 }
