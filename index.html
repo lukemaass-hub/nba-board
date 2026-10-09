@@ -87,7 +87,7 @@
   .dot.out{background:var(--out)} .dot.doubt{background:var(--doubt)} .dot.q{background:var(--q)} .dot.prob{background:var(--prob)}
   .it .l1 b{font-weight:900}
   .it .pos{font-size:11.5px;color:var(--muted);font-weight:700;margin-left:2px}
-  .it .st{font-weight:700} .ma{font-size:13px;margin:2px 0} .ma.up .d{color:#1e8449} .ma.down .d{color:#c0392b} .pl-link{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px} .pl-link:hover{text-decoration-color:currentColor} .it .src a{color:inherit}
+  .it .st{font-weight:700} .allalerts{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:0 0 14px} .allalerts summary{cursor:pointer;font-weight:700} .allalerts small{font-weight:400;opacity:.7} .aa-date{font-weight:800;margin:12px 0 4px;font-size:13px} .aa-row{display:flex;gap:12px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:6px 2px;cursor:pointer;font:inherit;font-size:13px;color:inherit} .aa-row:hover{background:rgba(0,0,0,.04)} .aa-g{min-width:150px;font-weight:700} .aa-p b.up{color:#1e8449} .aa-p b.down{color:#c0392b} .ma{font-size:13px;margin:2px 0} .ma.up .d{color:#1e8449} .ma.down .d{color:#c0392b} .pl-link{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px} .pl-link:hover{text-decoration-color:currentColor} .it .src a{color:inherit}
   .it .st.out{color:var(--out)} .it .st.doubt{color:var(--doubt)} .it .st.q{color:#A77F00} .it .st.prob{color:var(--prob)}
   .it .src{font-size:11.5px;color:var(--muted);margin-left:6px}
   .it .diff{font-size:11px;font-weight:700;background:#FFF0D1;color:#8A5A00;border-radius:4px;padding:0 5px;margin-left:6px}
@@ -164,6 +164,7 @@
       <button class="btn" id="copyBtn">Copy as Slack message</button>
       <label><input type="checkbox" id="onlyInj"> Hide games with no injuries</label>
     </div>
+    <details class="allalerts" id="allAlerts"><summary id="allAlertsSum">Matchup minutes alerts: all games</summary><div id="allAlertsBody"></div></details>
     <div id="panel"></div>
 
     <details class="data" id="dataDrawer">
@@ -483,7 +484,7 @@ function parseInjRaw(txt){
 /* ---------- state ---------- */
 let baseGames=[], feedGames=null, feedSkipped=0, extraGames=[], games=[];
 let injuries = parseInjRaw(INJ_RAW), importedInj = [], mins = {};
-let selected=null, viewY=2026, viewM=10;
+let selected=null, viewY=2026, viewM=10, LINEUPS={}, homeDate=null;
 const START="2026-10", END="2027-04";
 
 /* ---------- helpers ---------- */
@@ -544,6 +545,10 @@ function rebuildGames(){
   } else list=base;
   const have=new Set(list.map(g=>[g.date,g.away,g.home].join("|")));
   extraGames.forEach(g=>{ if(!have.has([g.date,g.away,g.home].join("|"))) list.push(g); });
+  Object.entries(LINEUPS).forEach(([team,l])=>{          // games RotoWire lists that aren't on the schedule (preseason)
+    if(l.home&&l.time&&l.vs&&!list.some(g=>g.date===l.date&&g.home===team))
+      list.push({date:l.date,time:l.time,away:l.vs,home:team,type:"pre",note:"",venue:""});
+  });
   list.sort((a,b)=>a.date.localeCompare(b.date)||a.time.localeCompare(b.time));
   games=list;
 }
@@ -714,6 +719,25 @@ function matchupAlertsHTML(code,opp,date,imp){
     .map(a=>`<div class="ma ${a.dir}" title="${esc(`${a.vs} min vs ${opp}, usual ${a.avg}`)}">${a.dir==="up"?"📈":"📉"} <b>${esc(names[normName(a.player)])}</b> usually plays <b class="d">${a.dir==="up"?"more":"fewer"}</b> minutes vs ${esc(oppName)}</div>`);
   return rows.length?`<div class="sech" style="margin-top:8px">Matchup minutes alert</div>${rows.join("")}`:"";
 }
+function alertPlayers(code,opp){
+  const names={}; const ch=DEPTH_P[code]||{};
+  POS.forEach(p=>(ch[p]||[]).forEach(c=>names[normName(c.n)]=c.n));
+  return MATCHUP_ALERTS.filter(a=>a.opp===opp&&names[normName(a.player)]).map(a=>({...a,name:names[normName(a.player)]}));
+}
+function renderAllAlerts(){
+  const from=homeDate||utcToET(Date.now()).date, rows=[];
+  games.filter(g=>g.date>=from).forEach(g=>{
+    const hits=alertPlayers(g.away,g.home).concat(alertPlayers(g.home,g.away));
+    if(hits.length) rows.push({g,hits});
+  });
+  $("allAlertsSum").innerHTML=`📈📉 Matchup minutes alerts: <b>${rows.length}</b> upcoming ${rows.length===1?"game":"games"} <small>(click a game to open its report)</small>`;
+  let h="", last="";
+  rows.forEach(({g,hits})=>{
+    if(g.date!==last){ h+=`<div class="aa-date">${esc(fmtDate(g.date).long)}</div>`; last=g.date; }
+    h+=`<button class="aa-row" data-k="${g.date}"><span class="aa-g">${fmtTime(g.time)} · ${esc(g.away)} @ ${esc(g.home)}</span><span class="aa-p">${hits.map(a=>`${a.dir==="up"?"📈":"📉"} ${esc(a.name)} <b class="${a.dir}">${a.dir==="up"?"more":"fewer"}</b>`).join(" · ")}</span></button>`;
+  });
+  $("allAlertsBody").innerHTML=h||`<div class="empty">No upcoming games have a matchup minutes alert.</div>`;
+}
 function teamBlockHTML(code,date,opp){
   const t=TEAMS[code]||{name:code}, imp=impact(code,date);
   const o=imp.items.filter(x=>x.rec.k==="out").length, q=imp.items.length-o;
@@ -730,7 +754,8 @@ function renderPanel(){
   let gs=gamesOn(selected); const total=gs.length;
   if(only) gs=gs.filter(g=>injuriesFor(g.away,selected).length||injuriesFor(g.home,selected).length);
   const ev=EVENTS[selected];
-  let h=`<div class="report"><div class="rep-head"><div class="avatar">IP</div><div><div class="rep-by">Availability Bot<small>APP</small></div></div></div>
+  let h=(homeDate&&selected!==homeDate)?`<div class="fresh"><button class="btn alt" id="backToday">← Back to today</button></div>`:"";
+  h+=`<div class="report"><div class="rep-head"><div class="avatar">IP</div><div><div class="rep-by">Availability Bot<small>APP</small></div></div></div>
     <div class="rep-title">Injury &amp; Minutes Report — ${fmtDate(selected).long}</div><hr class="hr">`;
   if(ev) h+=`<div class="event-note">${esc(ev)}</div>`;
   if(!total) h+=`<div class="empty">No games loaded for this date.</div>`;
@@ -876,6 +901,9 @@ function renderCoverage(){
 /* ---------- wiring ---------- */
 function select(k){ selected=k; const [y,m]=k.split("-").map(Number); viewY=y; viewM=m; renderCal(); renderPanel(); }
 $("onlyInj").onchange=renderPanel;
+$("allAlertsBody").addEventListener("click",e=>{ const b=e.target.closest(".aa-row"); if(!b) return;
+  selected=b.dataset.k; renderPanel(); $("allAlerts").open=false; $("panel").scrollIntoView({behavior:"smooth"}); });
+$("panel").addEventListener("click",e=>{ if(e.target.closest("#backToday")){ selected=homeDate; renderPanel(); } });
 $("fileSched").onchange=readFile;
 $("copyBtn").onclick=()=>{ if(!selected) return; copyText(slackText(selected)).then(()=>toast("Copied. Paste it into Slack.")).catch(()=>toast("Copy failed. Select the report text instead.")); };
 document.querySelectorAll("[data-load]").forEach(b=>b.onclick=()=>({sched:loadSched,mins:loadMins,inj:loadInj,depth:loadDepth})[b.dataset.load]());
@@ -889,7 +917,7 @@ document.querySelectorAll("[data-clear]").forEach(b=>b.onclick=()=>{
 });
 
 /* ---------- data.json (written by pipeline/update_data.py) ---------- */
-let dataMeta=null, noGamesNote="", LINEUPS={};
+let dataMeta=null, noGamesNote="";
 async function loadData(){
   try{
     const res=await fetch("data.json",{cache:"no-store"}); if(!res.ok) return false;
@@ -923,7 +951,8 @@ function freshHTML(){
   const dates=[...new Set(games.map(g=>g.date))].sort();
   selected=gamesOn(today).length?today:(dates.find(d=>d>today)||today);
   const [y,m]=selected.split("-").map(Number); viewY=y; viewM=m;
-  renderPanel(); renderCoverage();
+  homeDate=selected;
+  renderPanel(); renderCoverage(); renderAllAlerts();
   noGamesNote=selected!==today?`<div class="fresh">No regular-season games today (${esc(fmtDate(today).long)}). Showing the next game day.</div>`:"";
   $("banner").innerHTML=freshHTML()+noGamesNote;
   if(!feedGames){ tryFeed(); }
