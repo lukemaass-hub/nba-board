@@ -604,6 +604,10 @@ def main():
     for r in injuries:
         r["player"] = canon.get((r["team"], norm_name(r["player"])), r["player"])
 
+    alerts_path = os.path.join(os.path.dirname(__file__), "matchup_alerts.json")
+    if os.path.exists(alerts_path):
+        data["matchup_alerts"] = json.load(open(alerts_path)).get("alerts", [])
+
     data.update({"generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
                  "sources": status, "injuries": injuries})
     with open(args.out, "w") as f:

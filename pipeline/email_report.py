@@ -118,6 +118,23 @@ def bench_for(data, team, inj, starters):
     return bench, deep
 
 
+def matchup_alerts_for(data, team, opp, inj, starters):
+    """Players on this team today (depth chart or lineup, not out/doubtful) whose minutes vs this opponent are
+    well above or below their usual, from the minutes-vs-teams workbook."""
+    names = {norm_name(n): n for _, n, _ in starters}
+    for col in ((data.get("depth") or {}).get(team) or {}).values():
+        for n in col.replace("/", ",").split(","):
+            if n.strip():
+                names.setdefault(norm_name(n), n.strip())
+    status = {norm_name(i["player"]): i["st"] for i in inj}
+    out = []
+    for a in data.get("matchup_alerts", []):
+        k = norm_name(a["player"])
+        if a["opp"] == opp and k in names and status.get(k) not in ("out", "doubt"):
+            out.append((names[k], a["dir"]))
+    return sorted(out, key=lambda x: (x[1] != "up", x[0]))
+
+
 def build(data, games, date):
     e = html.escape
     title = "NBA injury report: " + ", ".join(f"{g['away']} @ {g['home']} {fmt_time(g['time'])}" for g in games)
@@ -140,7 +157,7 @@ def build(data, games, date):
                  f'{fmt_time(g["time"])} ET &nbsp;{logo(g["away"], 26)} {e(name(g["away"]))} '
                  f'<span style="{grey};font-weight:normal">@</span> {logo(g["home"], 26)} {e(name(g["home"]))}</div>')
         t.append(f"{fmt_time(g['time'])} ET: {name(g['away'])} @ {name(g['home'])}")
-        for team in (g["away"], g["home"]):
+        for team, opp in ((g["away"], g["home"]), (g["home"], g["away"])):
             inj = injuries_for(data, team, date)
             status = {norm_name(i["player"]): i["st"] for i in inj}
             label, starters = starters_for(data, team, date, inj)
@@ -166,7 +183,16 @@ def build(data, games, date):
                          + (f'<div style="font-size:12px;{grey}">Deep bench: ' + ", ".join(e(n) for _, n, _ in deep) + "</div>" if deep else "")
                          + "</div>")
                 t.append("    Bench: " + ", ".join(n for _, n, _ in bench) + (f" | Deep bench: {', '.join(n for _, n, _ in deep)}" if deep else ""))
-            # 3. injuries, smaller
+            # 3. matchup minutes alerts (minutes-vs-teams workbook)
+            alerts = matchup_alerts_for(data, team, opp, inj, starters)
+            if alerts:
+                h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:8px 0 2px">'
+                         f'Matchup minutes alert</div><div style="font-size:13px;line-height:1.5">'
+                         + "".join(f'<div>{"📈" if d == "up" else "📉"} <b>{e(n)}</b> usually plays '
+                                   f'<b style="color:{"#1e8449" if d == "up" else "#c0392b"}">{"more" if d == "up" else "fewer"}</b>'
+                                   f' minutes vs {e(name(opp).split()[-1])}</div>' for n, d in alerts) + "</div>")
+                t.append("    Matchup minutes: " + ", ".join(f"{n} {'more' if d == 'up' else 'fewer'} vs {opp}" for n, d in alerts))
+            # 4. injuries, smaller
             h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:8px 0 2px">Injuries</div>'
                      '<div style="font-size:12px;line-height:1.5">')
             if not inj:
@@ -184,7 +210,8 @@ def build(data, games, date):
         t.append("")
     h.append(f'<div style="font-size:11px;{grey};margin-top:16px;border-top:1px solid #ddd;padding-top:8px">'
              '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable. Click a player for the source. '
-             'Bench comes from the ESPN depth chart.</div></div>')
+             'Bench comes from the ESPN depth chart. Matchup alerts: average minutes vs this opponent is 5+ above or below '
+             'the player\'s usual over 5+ games vs that team (your minutes-vs-teams sheet, top 100 players, 2023-26).</div></div>')
     return title, "".join(h), "\n".join(t)
 
 
