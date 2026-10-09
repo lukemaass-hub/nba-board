@@ -87,7 +87,7 @@
   .dot.out{background:var(--out)} .dot.doubt{background:var(--doubt)} .dot.q{background:var(--q)} .dot.prob{background:var(--prob)}
   .it .l1 b{font-weight:900}
   .it .pos{font-size:11.5px;color:var(--muted);font-weight:700;margin-left:2px}
-  .it .st{font-weight:700} .pl-link{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px} .pl-link:hover{text-decoration-color:currentColor} .it .src a{color:inherit}
+  .it .st{font-weight:700} .ma{font-size:13px;margin:2px 0} .ma.up .d{color:#1e8449} .ma.down .d{color:#c0392b} .pl-link{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px} .pl-link:hover{text-decoration-color:currentColor} .it .src a{color:inherit}
   .it .st.out{color:var(--out)} .it .st.doubt{color:var(--doubt)} .it .st.q{color:#A77F00} .it .st.prob{color:var(--prob)}
   .it .src{font-size:11.5px;color:var(--muted);margin-left:6px}
   .it .diff{font-size:11px;font-weight:700;background:#FFF0D1;color:#8A5A00;border-radius:4px;padding:0 5px;margin-left:6px}
@@ -700,14 +700,28 @@ function rotationBlockHTML(code,imp,date){
   }));
   return `<div class="sech">Projected rotation</div><div class="chips">${out.join("")||'<span class="chip L">none listed</span>'}</div>${lim.length?`<div class="sech" style="margin-top:8px">Limited minutes</div><div class="chips" style="opacity:.8">${lim.join("")}</div>`:""}`;
 }
-function teamBlockHTML(code,date){
+/* Matchup minutes alerts (from the minutes-vs-teams workbook): players on this team, not out or doubtful, whose
+   average minutes vs this opponent are 5+ above or below their usual. */
+let MATCHUP_ALERTS=[];
+function matchupAlertsHTML(code,opp,date,imp){
+  const names={}; const ch=DEPTH_P[code]||{};
+  POS.forEach(p=>(ch[p]||[]).forEach(c=>names[normName(c.n)]=c.n));
+  const lu=lineupFor(code,date); if(lu) lu.starters.forEach(s=>names[normName(s.name)]=names[normName(s.name)]||s.name);
+  const st={}; imp.items.forEach(i=>st[normName(i.rec.player)]=i.rec.k);
+  const oppName=(TEAMS[opp]||{name:opp}).name.split(" ").pop();
+  const rows=MATCHUP_ALERTS.filter(a=>a.opp===opp&&names[normName(a.player)]&&st[normName(a.player)]!=="out"&&st[normName(a.player)]!=="doubt")
+    .sort((a,b)=>(a.dir!=="up")-(b.dir!=="up")||a.player.localeCompare(b.player))
+    .map(a=>`<div class="ma ${a.dir}" title="${esc(`${a.vs} min vs ${opp}, usual ${a.avg}`)}">${a.dir==="up"?"📈":"📉"} <b>${esc(names[normName(a.player)])}</b> usually plays <b class="d">${a.dir==="up"?"more":"fewer"}</b> minutes vs ${esc(oppName)}</div>`);
+  return rows.length?`<div class="sech" style="margin-top:8px">Matchup minutes alert</div>${rows.join("")}`:"";
+}
+function teamBlockHTML(code,date,opp){
   const t=TEAMS[code]||{name:code}, imp=impact(code,date);
   const o=imp.items.filter(x=>x.rec.k==="out").length, q=imp.items.length-o;
   let h=`<div class="tm"><div class="tmh">${logo(code,24)}${esc(t.name)}<span class="c">${imp.items.length?`${o?o+" out":""}${o&&q?" · ":""}${q?q+" questionable":""}`:""}</span></div>`;
   if(!imp.items.length) h+=`<div class="clear">✅ No injuries listed</div>`;
   else h+=imp.items.map(it=>injLineHTML(it,date)).join("");
   if(imp.items.length && !imp.hasChart) h+=`<div class="clear" style="margin-left:22px">Depth chart not loaded, so no replacements yet.</div>`;
-  h+=startersHTML(code,imp,date)+rotationBlockHTML(code,imp,date)+`</div>`;
+  h+=startersHTML(code,imp,date)+rotationBlockHTML(code,imp,date)+(opp?matchupAlertsHTML(code,opp,date,imp):"")+`</div>`;
   return h;
 }
 function renderPanel(){
@@ -726,7 +740,7 @@ function renderPanel(){
     const tags=[]; if(g.type==="pre") tags.push("Preseason"); if(g.type==="cup") tags.push("NBA Cup"); if(g.type==="neu") tags.push("Neutral site");
     const meta=[g.venue,g.note].filter(Boolean).join(" · ");
     h+=`<section class="gm"><h3 class="gh">${fmtTime(g.time)} ET — ${logo(g.away,26)}${esc(A.name)}<span class="at">${g.type==="neu"?"vs":"@"}</span>${logo(g.home,26)}${esc(H.name)}${tags.map(t=>`<span class="tag">${t}</span>`).join("")}</h3>
-      ${meta?`<div class="gmeta">${esc(meta)}</div>`:""}${teamBlockHTML(g.away,selected)}${teamBlockHTML(g.home,selected)}</section>`;
+      ${meta?`<div class="gmeta">${esc(meta)}</div>`:""}${teamBlockHTML(g.away,selected,g.home)}${teamBlockHTML(g.home,selected,g.away)}</section>`;
   });
   h+=`<div class="rep-legend"><span><i style="background:var(--out)"></i>Out</span><span><i style="background:var(--doubt)"></i>Doubtful</span><span><i style="background:var(--q)"></i>Questionable</span><span><i style="background:var(--prob)"></i>Probable</span></div>
     <div class="foot">Starters come from RotoWire when it has a lineup for the game; otherwise from the ESPN depth chart, with an injured starter replaced by the next healthy player at his position. Click a player's name to open the source for that injury.</div></div>`;
@@ -885,6 +899,7 @@ async function loadData(){
     }
     if(d.depth) Object.entries(d.depth).forEach(([t,o])=>DEPTH_RAW[t]=o);
     if(d.lineups) LINEUPS=d.lineups;
+    if(Array.isArray(d.matchup_alerts)) MATCHUP_ALERTS=d.matchup_alerts;
     if(d.minutes) Object.entries(d.minutes).forEach(([n,v])=>{ mins[normName(n)]=v; });
     if(Array.isArray(d.schedule)&&d.schedule.length>1000) feedGames=d.schedule.map(g=>({date:g.date,time:g.time,away:g.away,home:g.home,type:"reg",note:"",venue:g.venue||""}));
     dataMeta={generated:d.generated_at,sources:d.sources||{}};

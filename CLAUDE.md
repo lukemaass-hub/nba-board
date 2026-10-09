@@ -41,6 +41,13 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 - Workflow also runs every 10 min, 11 AM-1 AM ET, with --pregame 45: refreshes only if a game tips within 45 min,
   then pipeline/email_report.py --window 25 emails each game once (email_log.json), about 20 min before tip.
 
+- Matchup minutes alerts (Oct 9 2026): pipeline/build_matchup_alerts.py reads the user's NBA_Mins_VS_Teams.xlsx
+  (Team_Chart method: each player's avg minutes vs every opponent from Player_vs_Team_Grid; "Avg Mins" = mean of
+  those 30). Alert when vs-opponent avg is 5+ min above/below Avg Mins -> pipeline/matchup_alerts.json (142 alerts,
+  top 100 players). Shown on page and in email as "usually plays more/fewer minutes vs X" (no numbers, user's
+  choice). The sheet has no game counts, so one odd game (overtime, injury exit) can create an alert.
+  The xlsx itself is not in the repo; re-run the builder when the user sends a new copy.
+
 ## Next steps, in order
 1. Run pytest, then the pipeline against the live sites. Fix each parser against the real response and update tests.
 2. Serve index.html locally (python -m http.server) and check all 30 teams render with injuries and depth charts.

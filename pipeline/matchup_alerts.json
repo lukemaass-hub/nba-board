@@ -1,0 +1,999 @@
+{
+ "_about": "Built 2026-10-09 from NBA_Mins_VS_Teams.xlsx (Team_Chart / Player_vs_Team_Grid). Alert = average vs that opponent at least 5 min above/below the player's Avg Mins. Rebuild with pipeline/build_matchup_alerts.py.",
+ "alerts": [
+  {
+   "player": "Nikola Jokic",
+   "opp": "DET",
+   "dir": "down",
+   "vs": 28.8,
+   "avg": 35.3
+  },
+  {
+   "player": "Anthony Edwards",
+   "opp": "IND",
+   "dir": "down",
+   "vs": 30.2,
+   "avg": 35.4
+  },
+  {
+   "player": "Jalen Brunson",
+   "opp": "SAC",
+   "dir": "down",
+   "vs": 30.0,
+   "avg": 35.3
+  },
+  {
+   "player": "Jalen Williams",
+   "opp": "WAS",
+   "dir": "down",
+   "vs": 26.0,
+   "avg": 31.2
+  },
+  {
+   "player": "Evan Mobley",
+   "opp": "NOP",
+   "dir": "down",
+   "vs": 25.7,
+   "avg": 30.9
+  },
+  {
+   "player": "Anthony Davis",
+   "opp": "GSW",
+   "dir": "down",
+   "vs": 24.0,
+   "avg": 34.4
+  },
+  {
+   "player": "Anthony Davis",
+   "opp": "MIL",
+   "dir": "up",
+   "vs": 46.5,
+   "avg": 34.4
+  },
+  {
+   "player": "Devin Booker",
+   "opp": "DET",
+   "dir": "down",
+   "vs": 23.5,
+   "avg": 35.5
+  },
+  {
+   "player": "Jimmy Butler III",
+   "opp": "ATL",
+   "dir": "up",
+   "vs": 38.0,
+   "avg": 32.6
+  },
+  {
+   "player": "Jimmy Butler III",
+   "opp": "MIA",
+   "dir": "down",
+   "vs": 25.0,
+   "avg": 32.6
+  },
+  {
+   "player": "Jimmy Butler III",
+   "opp": "OKC",
+   "dir": "down",
+   "vs": 20.2,
+   "avg": 32.6
+  },
+  {
+   "player": "Alperen Sengun",
+   "opp": "TOR",
+   "dir": "down",
+   "vs": 25.2,
+   "avg": 32.5
+  },
+  {
+   "player": "Derrick White",
+   "opp": "MIN",
+   "dir": "up",
+   "vs": 38.6,
+   "avg": 33.5
+  },
+  {
+   "player": "Tyrese Maxey",
+   "opp": "MEM",
+   "dir": "down",
+   "vs": 31.2,
+   "avg": 37.7
+  },
+  {
+   "player": "Tyrese Maxey",
+   "opp": "POR",
+   "dir": "down",
+   "vs": 31.5,
+   "avg": 37.7
+  },
+  {
+   "player": "Jaren Jackson Jr.",
+   "opp": "ATL",
+   "dir": "down",
+   "vs": 23.6,
+   "avg": 30.6
+  },
+  {
+   "player": "Franz Wagner",
+   "opp": "SAC",
+   "dir": "down",
+   "vs": 22.8,
+   "avg": 32.5
+  },
+  {
+   "player": "Ja Morant",
+   "opp": "CLE",
+   "dir": "down",
+   "vs": 25.0,
+   "avg": 30.3
+  },
+  {
+   "player": "Ja Morant",
+   "opp": "POR",
+   "dir": "down",
+   "vs": 23.0,
+   "avg": 30.3
+  },
+  {
+   "player": "Domantas Sabonis",
+   "opp": "CHA",
+   "dir": "down",
+   "vs": 29.2,
+   "avg": 34.6
+  },
+  {
+   "player": "Domantas Sabonis",
+   "opp": "HOU",
+   "dir": "down",
+   "vs": 28.7,
+   "avg": 34.6
+  },
+  {
+   "player": "Ivica Zubac",
+   "opp": "BKN",
+   "dir": "down",
+   "vs": 24.8,
+   "avg": 29.9
+  },
+  {
+   "player": "Ivica Zubac",
+   "opp": "TOR",
+   "dir": "up",
+   "vs": 37.0,
+   "avg": 29.9
+  },
+  {
+   "player": "Amen Thompson",
+   "opp": "MEM",
+   "dir": "up",
+   "vs": 36.8,
+   "avg": 31.4
+  },
+  {
+   "player": "Amen Thompson",
+   "opp": "SAS",
+   "dir": "down",
+   "vs": 25.7,
+   "avg": 31.4
+  },
+  {
+   "player": "Darius Garland",
+   "opp": "LAL",
+   "dir": "down",
+   "vs": 25.8,
+   "avg": 31.2
+  },
+  {
+   "player": "OG Anunoby",
+   "opp": "HOU",
+   "dir": "up",
+   "vs": 40.2,
+   "avg": 34.9
+  },
+  {
+   "player": "Julius Randle",
+   "opp": "UTA",
+   "dir": "down",
+   "vs": 27.9,
+   "avg": 33.5
+  },
+  {
+   "player": "Lauri Markkanen",
+   "opp": "DET",
+   "dir": "up",
+   "vs": 38.0,
+   "avg": 32.9
+  },
+  {
+   "player": "Jalen Johnson",
+   "opp": "WAS",
+   "dir": "down",
+   "vs": 29.4,
+   "avg": 35.0
+  },
+  {
+   "player": "Joel Embiid",
+   "opp": "DEN",
+   "dir": "up",
+   "vs": 39.5,
+   "avg": 32.9
+  },
+  {
+   "player": "Joel Embiid",
+   "opp": "HOU",
+   "dir": "up",
+   "vs": 38.5,
+   "avg": 32.9
+  },
+  {
+   "player": "Joel Embiid",
+   "opp": "NOP",
+   "dir": "up",
+   "vs": 39.0,
+   "avg": 32.9
+  },
+  {
+   "player": "Kristaps Porzingis",
+   "opp": "ATL",
+   "dir": "up",
+   "vs": 35.3,
+   "avg": 27.6
+  },
+  {
+   "player": "Kristaps Porzingis",
+   "opp": "BOS",
+   "dir": "down",
+   "vs": 20.0,
+   "avg": 27.6
+  },
+  {
+   "player": "Kristaps Porzingis",
+   "opp": "GSW",
+   "dir": "down",
+   "vs": 22.0,
+   "avg": 27.6
+  },
+  {
+   "player": "Draymond Green",
+   "opp": "ORL",
+   "dir": "down",
+   "vs": 22.8,
+   "avg": 27.8
+  },
+  {
+   "player": "Cooper Flagg",
+   "opp": "CHI",
+   "dir": "down",
+   "vs": 19.0,
+   "avg": 33.3
+  },
+  {
+   "player": "Cooper Flagg",
+   "opp": "LAC",
+   "dir": "up",
+   "vs": 40.2,
+   "avg": 33.3
+  },
+  {
+   "player": "Cooper Flagg",
+   "opp": "NYK",
+   "dir": "down",
+   "vs": 28.0,
+   "avg": 33.3
+  },
+  {
+   "player": "Cooper Flagg",
+   "opp": "UTA",
+   "dir": "up",
+   "vs": 40.0,
+   "avg": 33.3
+  },
+  {
+   "player": "Alex Caruso",
+   "opp": "CHI",
+   "dir": "down",
+   "vs": 17.8,
+   "avg": 22.8
+  },
+  {
+   "player": "Alex Caruso",
+   "opp": "GSW",
+   "dir": "down",
+   "vs": 16.5,
+   "avg": 22.8
+  },
+  {
+   "player": "Alex Caruso",
+   "opp": "IND",
+   "dir": "up",
+   "vs": 28.6,
+   "avg": 22.8
+  },
+  {
+   "player": "Alex Caruso",
+   "opp": "NYK",
+   "dir": "up",
+   "vs": 28.8,
+   "avg": 22.8
+  },
+  {
+   "player": "Paul George",
+   "opp": "CHA",
+   "dir": "up",
+   "vs": 37.4,
+   "avg": 32.3
+  },
+  {
+   "player": "Paul George",
+   "opp": "LAC",
+   "dir": "down",
+   "vs": 22.5,
+   "avg": 32.3
+  },
+  {
+   "player": "Paul George",
+   "opp": "UTA",
+   "dir": "down",
+   "vs": 27.2,
+   "avg": 32.3
+  },
+  {
+   "player": "Dyson Daniels",
+   "opp": "ATL",
+   "dir": "down",
+   "vs": 22.0,
+   "avg": 30.1
+  },
+  {
+   "player": "Dyson Daniels",
+   "opp": "DET",
+   "dir": "up",
+   "vs": 35.8,
+   "avg": 30.1
+  },
+  {
+   "player": "Dyson Daniels",
+   "opp": "MEM",
+   "dir": "down",
+   "vs": 24.6,
+   "avg": 30.1
+  },
+  {
+   "player": "Isaiah Hartenstein",
+   "opp": "ATL",
+   "dir": "down",
+   "vs": 20.6,
+   "avg": 25.9
+  },
+  {
+   "player": "Isaiah Hartenstein",
+   "opp": "CHA",
+   "dir": "down",
+   "vs": 20.4,
+   "avg": 25.9
+  },
+  {
+   "player": "Isaiah Hartenstein",
+   "opp": "HOU",
+   "dir": "up",
+   "vs": 31.3,
+   "avg": 25.9
+  },
+  {
+   "player": "Isaiah Hartenstein",
+   "opp": "MEM",
+   "dir": "up",
+   "vs": 31.6,
+   "avg": 25.9
+  },
+  {
+   "player": "Isaiah Hartenstein",
+   "opp": "OKC",
+   "dir": "up",
+   "vs": 33.0,
+   "avg": 25.9
+  },
+  {
+   "player": "Myles Turner",
+   "opp": "LAC",
+   "dir": "down",
+   "vs": 20.8,
+   "avg": 27.8
+  },
+  {
+   "player": "Myles Turner",
+   "opp": "UTA",
+   "dir": "down",
+   "vs": 20.6,
+   "avg": 27.8
+  },
+  {
+   "player": "Trey Murphy III",
+   "opp": "DET",
+   "dir": "down",
+   "vs": 22.7,
+   "avg": 33.3
+  },
+  {
+   "player": "Trey Murphy III",
+   "opp": "MIL",
+   "dir": "up",
+   "vs": 39.5,
+   "avg": 33.3
+  },
+  {
+   "player": "Jalen Suggs",
+   "opp": "HOU",
+   "dir": "down",
+   "vs": 21.0,
+   "avg": 27.9
+  },
+  {
+   "player": "Jalen Suggs",
+   "opp": "MEM",
+   "dir": "down",
+   "vs": 19.7,
+   "avg": 27.9
+  },
+  {
+   "player": "Austin Reaves",
+   "opp": "MIL",
+   "dir": "up",
+   "vs": 39.2,
+   "avg": 33.8
+  },
+  {
+   "player": "LaMelo Ball",
+   "opp": "DAL",
+   "dir": "up",
+   "vs": 34.2,
+   "avg": 29.2
+  },
+  {
+   "player": "LaMelo Ball",
+   "opp": "DEN",
+   "dir": "down",
+   "vs": 19.0,
+   "avg": 29.2
+  },
+  {
+   "player": "LaMelo Ball",
+   "opp": "LAL",
+   "dir": "down",
+   "vs": 23.7,
+   "avg": 29.2
+  },
+  {
+   "player": "LaMelo Ball",
+   "opp": "TOR",
+   "dir": "down",
+   "vs": 23.8,
+   "avg": 29.2
+  },
+  {
+   "player": "Luguentz Dort",
+   "opp": "IND",
+   "dir": "up",
+   "vs": 35.5,
+   "avg": 28.2
+  },
+  {
+   "player": "Aaron Nesmith",
+   "opp": "DET",
+   "dir": "down",
+   "vs": 22.6,
+   "avg": 27.6
+  },
+  {
+   "player": "Aaron Nesmith",
+   "opp": "NOP",
+   "dir": "down",
+   "vs": 21.3,
+   "avg": 27.6
+  },
+  {
+   "player": "Aaron Nesmith",
+   "opp": "WAS",
+   "dir": "down",
+   "vs": 22.1,
+   "avg": 27.6
+  },
+  {
+   "player": "Deni Avdija",
+   "opp": "CHI",
+   "dir": "up",
+   "vs": 36.5,
+   "avg": 31.2
+  },
+  {
+   "player": "Deni Avdija",
+   "opp": "POR",
+   "dir": "up",
+   "vs": 37.0,
+   "avg": 31.2
+  },
+  {
+   "player": "Deni Avdija",
+   "opp": "WAS",
+   "dir": "down",
+   "vs": 23.0,
+   "avg": 31.2
+  },
+  {
+   "player": "Cameron Johnson",
+   "opp": "LAC",
+   "dir": "down",
+   "vs": 23.0,
+   "avg": 29.7
+  },
+  {
+   "player": "Cameron Johnson",
+   "opp": "MIL",
+   "dir": "up",
+   "vs": 35.2,
+   "avg": 29.7
+  },
+  {
+   "player": "Cameron Johnson",
+   "opp": "MIN",
+   "dir": "down",
+   "vs": 21.5,
+   "avg": 29.7
+  },
+  {
+   "player": "Tyler Herro",
+   "opp": "MEM",
+   "dir": "down",
+   "vs": 25.6,
+   "avg": 33.9
+  },
+  {
+   "player": "Josh Hart",
+   "opp": "GSW",
+   "dir": "up",
+   "vs": 39.2,
+   "avg": 33.9
+  },
+  {
+   "player": "Michael Porter Jr.",
+   "opp": "UTA",
+   "dir": "down",
+   "vs": 27.5,
+   "avg": 32.6
+  },
+  {
+   "player": "Coby White",
+   "opp": "CHI",
+   "dir": "down",
+   "vs": 16.0,
+   "avg": 32.0
+  },
+  {
+   "player": "Zach LaVine",
+   "opp": "MIN",
+   "dir": "down",
+   "vs": 28.5,
+   "avg": 34.3
+  },
+  {
+   "player": "Dereck Lively II",
+   "opp": "BKN",
+   "dir": "down",
+   "vs": 17.0,
+   "avg": 23.0
+  },
+  {
+   "player": "Dereck Lively II",
+   "opp": "CHA",
+   "dir": "up",
+   "vs": 32.0,
+   "avg": 23.0
+  },
+  {
+   "player": "Dereck Lively II",
+   "opp": "IND",
+   "dir": "down",
+   "vs": 15.0,
+   "avg": 23.0
+  },
+  {
+   "player": "Jaden McDaniels",
+   "opp": "MIL",
+   "dir": "down",
+   "vs": 25.2,
+   "avg": 30.9
+  },
+  {
+   "player": "Jaden McDaniels",
+   "opp": "NYK",
+   "dir": "down",
+   "vs": 25.6,
+   "avg": 30.9
+  },
+  {
+   "player": "Brandon Miller",
+   "opp": "DEN",
+   "dir": "down",
+   "vs": 24.2,
+   "avg": 31.7
+  },
+  {
+   "player": "Brandon Miller",
+   "opp": "HOU",
+   "dir": "down",
+   "vs": 22.0,
+   "avg": 31.7
+  },
+  {
+   "player": "Brandon Ingram",
+   "opp": "TOR",
+   "dir": "down",
+   "vs": 27.5,
+   "avg": 33.2
+  },
+  {
+   "player": "Toumani Camara",
+   "opp": "CHI",
+   "dir": "down",
+   "vs": 24.0,
+   "avg": 30.5
+  },
+  {
+   "player": "Toumani Camara",
+   "opp": "MIA",
+   "dir": "up",
+   "vs": 36.2,
+   "avg": 30.5
+  },
+  {
+   "player": "Onyeka Okongwu",
+   "opp": "NOP",
+   "dir": "down",
+   "vs": 19.5,
+   "avg": 28.2
+  },
+  {
+   "player": "Onyeka Okongwu",
+   "opp": "SAC",
+   "dir": "down",
+   "vs": 22.4,
+   "avg": 28.2
+  },
+  {
+   "player": "DeMar DeRozan",
+   "opp": "DAL",
+   "dir": "down",
+   "vs": 30.0,
+   "avg": 35.2
+  },
+  {
+   "player": "Andrew Nembhard",
+   "opp": "SAC",
+   "dir": "down",
+   "vs": 20.8,
+   "avg": 28.1
+  },
+  {
+   "player": "Jonathan Kuminga",
+   "opp": "SAS",
+   "dir": "down",
+   "vs": 19.7,
+   "avg": 25.2
+  },
+  {
+   "player": "Jaden Ivey",
+   "opp": "GSW",
+   "dir": "down",
+   "vs": 21.0,
+   "avg": 26.4
+  },
+  {
+   "player": "Jaden Ivey",
+   "opp": "MIN",
+   "dir": "up",
+   "vs": 36.0,
+   "avg": 26.4
+  },
+  {
+   "player": "Jaden Ivey",
+   "opp": "PHX",
+   "dir": "down",
+   "vs": 17.2,
+   "avg": 26.4
+  },
+  {
+   "player": "Jaden Ivey",
+   "opp": "TOR",
+   "dir": "up",
+   "vs": 31.8,
+   "avg": 26.4
+  },
+  {
+   "player": "Jaden Ivey",
+   "opp": "WAS",
+   "dir": "up",
+   "vs": 31.6,
+   "avg": 26.4
+  },
+  {
+   "player": "Bradley Beal",
+   "opp": "DEN",
+   "dir": "up",
+   "vs": 37.4,
+   "avg": 32.1
+  },
+  {
+   "player": "Bradley Beal",
+   "opp": "DET",
+   "dir": "up",
+   "vs": 39.0,
+   "avg": 32.1
+  },
+  {
+   "player": "Bradley Beal",
+   "opp": "HOU",
+   "dir": "down",
+   "vs": 26.5,
+   "avg": 32.1
+  },
+  {
+   "player": "Bradley Beal",
+   "opp": "MIL",
+   "dir": "up",
+   "vs": 37.5,
+   "avg": 32.1
+  },
+  {
+   "player": "Bradley Beal",
+   "opp": "NYK",
+   "dir": "down",
+   "vs": 19.5,
+   "avg": 32.1
+  },
+  {
+   "player": "Bradley Beal",
+   "opp": "PHX",
+   "dir": "down",
+   "vs": 20.0,
+   "avg": 32.1
+  },
+  {
+   "player": "Jonas Valanciunas",
+   "opp": "DEN",
+   "dir": "up",
+   "vs": 26.2,
+   "avg": 19.1
+  },
+  {
+   "player": "Jonas Valanciunas",
+   "opp": "IND",
+   "dir": "down",
+   "vs": 13.7,
+   "avg": 19.1
+  },
+  {
+   "player": "Zach Edey",
+   "opp": "ATL",
+   "dir": "up",
+   "vs": 27.0,
+   "avg": 21.8
+  },
+  {
+   "player": "Zach Edey",
+   "opp": "BOS",
+   "dir": "down",
+   "vs": 13.0,
+   "avg": 21.8
+  },
+  {
+   "player": "Zach Edey",
+   "opp": "CHI",
+   "dir": "down",
+   "vs": 14.0,
+   "avg": 21.8
+  },
+  {
+   "player": "Zach Edey",
+   "opp": "DET",
+   "dir": "up",
+   "vs": 29.0,
+   "avg": 21.8
+  },
+  {
+   "player": "Zach Edey",
+   "opp": "MIA",
+   "dir": "up",
+   "vs": 27.5,
+   "avg": 21.8
+  },
+  {
+   "player": "Zach Edey",
+   "opp": "NOP",
+   "dir": "up",
+   "vs": 27.2,
+   "avg": 21.8
+  },
+  {
+   "player": "Zach Edey",
+   "opp": "OKC",
+   "dir": "down",
+   "vs": 16.7,
+   "avg": 21.8
+  },
+  {
+   "player": "Zach Edey",
+   "opp": "ORL",
+   "dir": "down",
+   "vs": 12.5,
+   "avg": 21.8
+  },
+  {
+   "player": "Naz Reid",
+   "opp": "NYK",
+   "dir": "down",
+   "vs": 20.7,
+   "avg": 25.8
+  },
+  {
+   "player": "Naz Reid",
+   "opp": "WAS",
+   "dir": "down",
+   "vs": 20.0,
+   "avg": 25.8
+  },
+  {
+   "player": "Jrue Holiday",
+   "opp": "BOS",
+   "dir": "down",
+   "vs": 24.0,
+   "avg": 30.7
+  },
+  {
+   "player": "Jrue Holiday",
+   "opp": "MIN",
+   "dir": "up",
+   "vs": 35.8,
+   "avg": 30.7
+  },
+  {
+   "player": "Jrue Holiday",
+   "opp": "POR",
+   "dir": "down",
+   "vs": 21.0,
+   "avg": 30.7
+  },
+  {
+   "player": "Mitchell Robinson",
+   "opp": "ATL",
+   "dir": "up",
+   "vs": 26.8,
+   "avg": 20.5
+  },
+  {
+   "player": "Mitchell Robinson",
+   "opp": "CHA",
+   "dir": "up",
+   "vs": 26.6,
+   "avg": 20.5
+  },
+  {
+   "player": "Mitchell Robinson",
+   "opp": "MEM",
+   "dir": "down",
+   "vs": 12.0,
+   "avg": 20.5
+  },
+  {
+   "player": "Jakob Poeltl",
+   "opp": "LAL",
+   "dir": "up",
+   "vs": 33.0,
+   "avg": 27.4
+  },
+  {
+   "player": "Jakob Poeltl",
+   "opp": "OKC",
+   "dir": "up",
+   "vs": 33.0,
+   "avg": 27.4
+  },
+  {
+   "player": "Jakob Poeltl",
+   "opp": "UTA",
+   "dir": "down",
+   "vs": 21.0,
+   "avg": 27.4
+  },
+  {
+   "player": "P.J. Washington",
+   "opp": "CHI",
+   "dir": "down",
+   "vs": 25.2,
+   "avg": 31.0
+  },
+  {
+   "player": "P.J. Washington",
+   "opp": "MIL",
+   "dir": "down",
+   "vs": 21.0,
+   "avg": 31.0
+  },
+  {
+   "player": "P.J. Washington",
+   "opp": "PHX",
+   "dir": "down",
+   "vs": 24.2,
+   "avg": 31.0
+  },
+  {
+   "player": "Nickeil Alexander-Walker",
+   "opp": "ATL",
+   "dir": "down",
+   "vs": 22.0,
+   "avg": 27.4
+  },
+  {
+   "player": "Nickeil Alexander-Walker",
+   "opp": "CHA",
+   "dir": "up",
+   "vs": 32.8,
+   "avg": 27.4
+  },
+  {
+   "player": "Nickeil Alexander-Walker",
+   "opp": "MIN",
+   "dir": "up",
+   "vs": 33.0,
+   "avg": 27.4
+  },
+  {
+   "player": "Payton Pritchard",
+   "opp": "DEN",
+   "dir": "down",
+   "vs": 21.8,
+   "avg": 27.5
+  },
+  {
+   "player": "Payton Pritchard",
+   "opp": "NOP",
+   "dir": "down",
+   "vs": 22.2,
+   "avg": 27.5
+  },
+  {
+   "player": "Payton Pritchard",
+   "opp": "POR",
+   "dir": "up",
+   "vs": 34.0,
+   "avg": 27.5
+  },
+  {
+   "player": "Walker Kessler",
+   "opp": "CHA",
+   "dir": "down",
+   "vs": 20.0,
+   "avg": 26.3
+  },
+  {
+   "player": "Walker Kessler",
+   "opp": "CHI",
+   "dir": "up",
+   "vs": 31.3,
+   "avg": 26.3
+  },
+  {
+   "player": "Walker Kessler",
+   "opp": "PHI",
+   "dir": "down",
+   "vs": 21.0,
+   "avg": 26.3
+  },
+  {
+   "player": "Walker Kessler",
+   "opp": "WAS",
+   "dir": "down",
+   "vs": 15.0,
+   "avg": 26.3
+  }
+ ]
+}

@@ -163,3 +163,19 @@ def test_email_due_and_build():
     subject, body, text = e.build(data, [g for _, g in e.due_games(data, now, 40, {})], "2026-10-21")
     assert "MIA @ NYK 7:30 PM" in subject and 'href="https://x/#b"' in body
     assert "PG Miles McBride (in for Jalen Brunson)" in text and "Expected starters (RotoWire" in text
+
+
+def test_matchup_alerts():
+    import build_matchup_alerts as b, email_report as e
+    opps = ["ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GS", "HOU", "IND", "LAC", "LAL", "MEM",
+            "MIA", "MIL", "MIN", "NO", "NY", "OKC", "ORL", "PHI", "PHX", "POR", "SA", "SAC", "TOR", "UTAH", "WSH"]
+    jokic = ["Nikola Jokic"] + [35.0] * 30 + ["DEN"]
+    jokic[opps.index("DET") + 1] = 28.0          # well below his usual
+    jokic[opps.index("DEN") + 1] = None          # never plays his own team
+    grid = [[None] + opps + ["team"], jokic, ["Empty Row"] + [None] * 30 + ["SA"]]
+    alerts = b.alerts_from_grid(grid)
+    assert [(a["player"], a["opp"], a["dir"]) for a in alerts] == [("Nikola Jokic", "DET", "down")]
+    data = {"matchup_alerts": alerts, "depth": {"DEN": {"C": "Nikola Jokic//"}}}
+    assert e.matchup_alerts_for(data, "DEN", "DET", [], []) == [("Nikola Jokic", "down")]
+    out = [{"player": "Nikola Jokic", "st": "out"}]
+    assert e.matchup_alerts_for(data, "DEN", "DET", out, []) == []           # not shown when he's out
