@@ -8707,7 +8707,7 @@
    "time": "20:00",
    "vs": "MEM",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8733,6 +8733,17 @@
   }
  },
  "news": [
+  {
+   "id": "nba533801",
+   "player": "Kawhi Leonard",
+   "headline": "Ruled out for Saturday",
+   "text": "Leonard (not injury related) won't suit up for Saturday's exhibition against the Clippers, Tomer Azarly of ClutchPoints.com reports.",
+   "reporter": "Tomer Azarly",
+   "outlet": "ClutchPoints.com",
+   "url": "https://www.rotowire.com/basketball/player/kawhi-leonard-3195",
+   "at": "2026-10-09T23:32:00+00:00",
+   "team": "TOR"
+  },
   {
    "id": "nba533793",
    "player": "Zach Edey",
@@ -9239,53 +9250,6 @@
    "games": 6
   }
  ],
- "generated_at": "2026-10-09T23:27:04+00:00",
- "sources": {
-  "schedule": {
-   "ok": true,
-   "at": "2026-10-09T23:26:49+00:00",
-   "count": 1200
-  },
-  "espn_depth": {
-   "ok": true,
-   "at": "2026-10-09T23:27:02+00:00",
-   "teams": 30
-  },
-  "rotowire": {
-   "ok": true,
-   "at": "2026-10-09T23:27:03+00:00",
-   "teams": 4,
-   "injuries": 15
-  },
-  "minutes": {
-   "ok": null,
-   "note": "MINUTES_CSV_URL not set"
-  },
-  "cbs": {
-   "ok": true,
-   "at": "2026-10-09T23:27:03+00:00",
-   "count": 117
-  },
-  "covers": {
-   "ok": true,
-   "at": "2026-10-09T23:27:03+00:00",
-   "count": 22
-  },
-  "espn": {
-   "ok": true,
-   "at": "2026-10-09T23:27:04+00:00",
-   "count": 119
-  },
-  "x": {
-   "ok": null,
-   "note": "X_BEARER_TOKEN / ANTHROPIC_API_KEY not set"
-  },
-  "news": {
-   "ok": true,
-   "at": "2026-10-09T23:27:04+00:00",
-   "count": 5
-  }
- },
  "injuries": [
   {
    "team": "ATL",
@@ -12577,6 +12541,139 @@
    "through": "2026-10-09",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Smith"
+  },
+  {
+   "team": "TOR",
+   "player": "Kawhi Leonard",
+   "src": "Tomer Azarly",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Leonard (not injury related) won't suit up for Saturday's exhibition against the Clippers, Tomer Azarly of ClutchPoints.com reports.",
+   "through": "2026-10-10",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/kawhi-leonard-3195",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-09T23:32:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "MEM",
+   "player": "Zach Edey",
+   "src": "Rob Fischer",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-09",
+   "until": "",
+   "note": "Edey will play in Friday's preseason game against the Bulls and is expected to see an uptick in minutes, Rob Fischer of FanDuel Sports Network Southeast reports.",
+   "through": "2026-10-09",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/zach-edey-6263",
+   "from": "2026-10-09",
+   "override": true,
+   "at": "2026-10-09T22:45:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "WAS",
+   "player": "Alex Sarr",
+   "src": "Josh Robbins",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Wizards head coach Brian Keefe said Friday that Sarr (foot) is trending in a positive direction regarding his availability, though his status for Saturday's preseason game remains uncertain, Josh Robbins of The Athletic reports.",
+   "through": "2026-10-10",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/alex-sarr-6240",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-09T17:08:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "DAL",
+   "player": "Kyrie Irving",
+   "src": "Kevin Gray Jr.",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-11",
+   "until": "",
+   "note": "Irving is scheduled to play in Sunday's preseason rematch against Houston, Kevin Gray Jr. of AllDLLS.com reports.",
+   "through": "2026-10-11",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/kyrie-irving-3186",
+   "from": "2026-10-11",
+   "override": true,
+   "at": "2026-10-09T15:06:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "HOU",
+   "player": "Kevin Durant",
+   "src": "Varun Shankar",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-11",
+   "until": "",
+   "note": "Durant will not play in Sunday's preseason rematch against Dallas, Varun Shankar of the Houston Chronicle reports. The forward finished Friday's preseason contest with 15 points (7-12 FG, 1-1 3Pt, 0-1 FT), two assists and one block in 23 minutes.",
+   "through": "2026-10-11",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/kevin-durant-2811",
+   "from": "2026-10-11",
+   "override": true,
+   "at": "2026-10-09T15:03:00+00:00",
+   "from_news": true
   }
- ]
+ ],
+ "restrictions": [],
+ "generated_at": "2026-10-09T23:37:11+00:00",
+ "sources": {
+  "schedule": {
+   "ok": true,
+   "at": "2026-10-09T23:36:57+00:00",
+   "count": 1200
+  },
+  "espn_depth": {
+   "ok": true,
+   "at": "2026-10-09T23:37:10+00:00",
+   "teams": 30
+  },
+  "rotowire": {
+   "ok": true,
+   "at": "2026-10-09T23:37:10+00:00",
+   "teams": 4,
+   "injuries": 15
+  },
+  "minutes": {
+   "ok": null,
+   "note": "MINUTES_CSV_URL not set"
+  },
+  "cbs": {
+   "ok": true,
+   "at": "2026-10-09T23:37:11+00:00",
+   "count": 117
+  },
+  "covers": {
+   "ok": true,
+   "at": "2026-10-09T23:37:11+00:00",
+   "count": 22
+  },
+  "espn": {
+   "ok": true,
+   "at": "2026-10-09T23:37:11+00:00",
+   "count": 119
+  },
+  "x": {
+   "ok": null,
+   "note": "X_BEARER_TOKEN / ANTHROPIC_API_KEY not set"
+  },
+  "news": {
+   "ok": true,
+   "at": "2026-10-09T23:37:11+00:00",
+   "count": 6
+  }
+ }
 }
