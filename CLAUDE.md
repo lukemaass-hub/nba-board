@@ -29,8 +29,12 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   go in data.json "lineups" and replace depth-chart starters on the page; "may not play" entries become RotoWire
   injury records valid for that day only.
 - .github/workflows/update-data.yml: added Oct 6 2026 (was missing from the upload).
-- X beat writers: needs X API access, ANTHROPIC_API_KEY, and handles in pipeline/beat_writers.json (left empty on
-  purpose; do not guess handles).
+- X beat writers: X has no free read access (pay per post read, ~$0.005 each, as of 2026); user chose not to pay
+  and not to scrape. pipeline/beat_writers.json holds 44 verified handles in case that changes.
+- Beat-writer news (Oct 9 2026, user's choice): RotoWire NBA RSS (rotowire.com/rss/news.php?sport=NBA). It only
+  returns the latest 5 items, so update_data.py checks it on every 10-minute run (even when no game is close) and
+  keeps items for 3 days in data.json "news", tagged with the team from the depth chart. Shown per team (last 36 h)
+  on the board, email and Slack as "Beat-writer news" with the writer and outlet. News never changes a status.
 - Depth charts: embedded set covers only 22 of 30 teams (RealGM page was truncated in the chat). The pipeline run
   should fill all 30. HoopsHype blocks automated access.
 - Minutes shifts are a heuristic (changed Oct 6 2026 at the user's request): all vacated minutes (last-season MPG, or

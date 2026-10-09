@@ -8,6 +8,8 @@ Sources (each one is optional; a failure keeps that source's last good data, mar
   espn       ESPN public JSON injuries endpoint
   espn_depth ESPN depth charts, all 30 teams (rotation and minutes-up order)
   rotowire   RotoWire expected / confirmed starting lineups for today, plus its "may not play" list
+  news       RotoWire NBA news feed (mostly beat-writer reports, writer named); only the latest 5 items, so it is
+             checked every 10 minutes and kept for 3 days
   minutes    your Google Sheet, published to the web as CSV (MINUTES_CSV_URL)
   x          team beat writers on X (X_BEARER_TOKEN + ANTHROPIC_API_KEY + beat_writers.json)
 
@@ -396,6 +398,64 @@ def fetch_rotowire():
     return parse_rotowire(get(ROTO_URL).text)
 
 
+# ---------------------------------------------------------------- beat-writer news (RotoWire RSS)
+NEWS_URL = "https://www.rotowire.com/rss/news.php?sport=NBA"
+NEWS_KEEP_DAYS = 3
+REPORTER = re.compile(r"([A-Z][\w.'’-]+(?: [A-Z][\w.'’-]+){1,3}) of (?:the )?(.+?) (?:reports|reported|relays|relayed)\b")
+
+
+def parse_news(xml_text):
+    """RotoWire RSS -> [{id, player, headline, text, reporter, outlet, url, at}]."""
+    import xml.etree.ElementTree as ElementTree
+    from email.utils import parsedate_to_datetime
+    out = []
+    for it in ElementTree.fromstring(xml_text).iter("item"):
+        f = {c.tag: (c.text or "").strip() for c in it}
+        player, _, headline = f.get("title", "").partition(":")
+        text = clean(re.sub(r"Visit RotoWire\.com.*$", "", f.get("description", ""), flags=re.S))
+        try:   # 'Fri, 09 Oct 2026 3:45:00 PM PDT'
+            when = dt.datetime.strptime(re.sub(r" P[DS]T$", "", f.get("pubDate", "")), "%a, %d %b %Y %I:%M:%S %p")
+            when = when.replace(tzinfo=ZoneInfo("America/Los_Angeles")).astimezone(dt.timezone.utc)
+        except ValueError:
+            try:
+                when = parsedate_to_datetime(f.get("pubDate", "")).astimezone(dt.timezone.utc)
+            except (TypeError, ValueError):
+                when = dt.datetime.now(dt.timezone.utc)
+        m = REPORTER.search(text)
+        out.append({"id": f.get("guid") or f.get("link", ""), "player": clean(player), "headline": clean(headline),
+                    "text": text, "reporter": m.group(1) if m else "", "outlet": clean(m.group(2)) if m else "",
+                    "url": f.get("link", "").replace(".com//", ".com/"), "at": when.isoformat(timespec="seconds")})
+    return out
+
+
+def merge_news(old, new, data, now=None):
+    """Add new items to the kept ones (by id), tag each with the player's team, drop items older than 3 days."""
+    now = now or dt.datetime.now(dt.timezone.utc)
+    roster = {}
+    for team, chart in (data.get("depth") or {}).items():
+        for col in chart.values():
+            for n in col.replace("/", ",").split(","):
+                if n.strip():
+                    roster[norm_name(n)] = team
+    for team, l in (data.get("lineups") or {}).items():
+        for s in l.get("starters", []):
+            roster.setdefault(norm_name(s["name"]), team)
+    items = {i["id"]: i for i in old}
+    for i in new:
+        items.setdefault(i["id"], i)
+    keep = []
+    for i in items.values():
+        if dt.datetime.fromisoformat(i["at"]) < now - dt.timedelta(days=NEWS_KEEP_DAYS):
+            continue
+        i["team"] = roster.get(norm_name(i["player"]), i.get("team", ""))
+        keep.append(i)
+    return sorted(keep, key=lambda i: i["at"], reverse=True)
+
+
+def fetch_news():
+    return parse_news(get(NEWS_URL).text)
+
+
 # ---------------------------------------------------------------- minutes sheet
 def parse_minutes_csv(text):
     rows = list(csv.reader(io.StringIO(text)))
@@ -544,7 +604,19 @@ def main():
         except Exception:
             pass
     if args.pregame and not game_starting_soon(all_games(prev), dt.datetime.now(ET), args.pregame):
-        print(f"No game starts in the next {args.pregame} minutes; nothing to do.")
+        print(f"No game starts in the next {args.pregame} minutes; only checking the news feed.")
+        try:
+            news = merge_news(prev.get("news", []), fetch_news(), prev)
+        except Exception as e:
+            print(f"[news] FAILED: {e}", file=sys.stderr)
+            return
+        if [i["id"] for i in news] != [i["id"] for i in prev.get("news", [])]:
+            prev["news"] = news
+            prev.setdefault("sources", {})["news"] = {"ok": True, "at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+                                                      "count": len(news)}
+            with open(args.out, "w") as f:
+                json.dump(prev, f, indent=1)
+            print(f"News updated: {len(news)} items kept.")
         return
     status, injuries = {}, []
     data = {"schedule": prev.get("schedule", []), "depth": prev.get("depth", {}), "minutes": prev.get("minutes", {}),
@@ -592,6 +664,11 @@ def main():
                 r["stale"] = True
             injuries += old
             status[name]["kept_stale"] = len(old)
+
+    news = run("news", fetch_news)
+    data["news"] = merge_news(prev.get("news", []), news or [], data)
+    if news is not None:
+        status["news"]["count"] = len(data["news"])
 
     if roto:                      # RotoWire's "may not play" list only covers today, so it is never kept stale
         injuries += roto_inj

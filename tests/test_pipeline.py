@@ -222,3 +222,31 @@ def test_slack_message_and_once_per_game(tmp_path, monkeypatch):
     assert "Miles McBride" in text and "in for Jalen Brunson" in text and "<https://x/#b|Jalen Brunson>" in text
     assert "usually plays *more* minutes vs Heat" in text and len(blocks) <= 50
     assert list(json.loads(log.read_text())) == [f"slack {tip.date().isoformat()} MIA@NYK"]
+
+
+NEWS_RSS = """<?xml version="1.0"?><rss><channel>
+<item><guid>nba1</guid><title>Zach Edey: More minutes on tap</title><link>https://www.rotowire.com//basketball/player/zach-edey-6263</link>
+<description>Edey will play Friday and is expected to see an uptick in minutes, Rob Fischer of FanDuel Sports Network Southeast reports.
+
+        Visit RotoWire.com for more analysis on this update.</description><pubDate>Fri, 09 Oct 2026 3:45:00 PM PDT</pubDate></item>
+<item><guid>nba2</guid><title>Kevin Durant: Will sit out Sunday</title><link>https://www.rotowire.com/x</link>
+<description>Durant will not play Sunday, Varun Shankar of the Houston Chronicle reports.</description><pubDate>Fri, 09 Oct 2026 8:03:00 AM PDT</pubDate></item>
+</channel></rss>"""
+
+
+def test_news_feed():
+    items = u.parse_news(NEWS_RSS)
+    assert items[0] == {"id": "nba1", "player": "Zach Edey", "headline": "More minutes on tap",
+                        "text": "Edey will play Friday and is expected to see an uptick in minutes, Rob Fischer of FanDuel Sports Network Southeast reports.",
+                        "reporter": "Rob Fischer", "outlet": "FanDuel Sports Network Southeast",
+                        "url": "https://www.rotowire.com/basketball/player/zach-edey-6263", "at": "2026-10-09T22:45:00+00:00"}
+    assert (items[1]["reporter"], items[1]["outlet"]) == ("Varun Shankar", "Houston Chronicle")
+    data = {"depth": {"MEM": {"C": "Zach Edey//"}, "HOU": {"SF": "Kevin Durant//"}}}
+    now = dt.datetime(2026, 10, 10, 12, tzinfo=dt.timezone.utc)
+    old = [{"id": "nba0", "player": "Old News", "at": "2026-10-01T00:00:00+00:00"}]          # > 3 days: dropped
+    kept = u.merge_news(old, items + items, data, now)                                          # duplicates collapse
+    assert [(i["id"], i["team"]) for i in kept] == [("nba1", "MEM"), ("nba2", "HOU")]
+    import email_report as e
+    later = dt.datetime(2026, 10, 11, 6, tzinfo=dt.timezone.utc)      # Edey item 31 h old, Durant item 39 h old
+    assert [i["id"] for i in e.news_for({"news": kept}, "MEM", later)] == ["nba1"]
+    assert e.news_for({"news": kept}, "HOU", later) == []                                      # older than 36 hours

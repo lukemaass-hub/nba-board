@@ -87,7 +87,7 @@
   .dot.out{background:var(--out)} .dot.doubt{background:var(--doubt)} .dot.q{background:var(--q)} .dot.prob{background:var(--prob)}
   .it .l1 b{font-weight:900}
   .it .pos{font-size:11.5px;color:var(--muted);font-weight:700;margin-left:2px}
-  .it .st{font-weight:700} .ma{font-size:13px;margin:2px 0} .ma.up .d{color:#1e8449} .ma.down .d{color:#c0392b} .pl-link{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px} .pl-link:hover{text-decoration-color:currentColor} .it .src a{color:inherit}
+  .it .st{font-weight:700} .news{font-size:12.5px;line-height:1.45;margin:3px 0} .news a{color:inherit;font-weight:600} .news .nt{opacity:.8} .news .nc{opacity:.6} .ma{font-size:13px;margin:2px 0} .ma.up .d{color:#1e8449} .ma.down .d{color:#c0392b} .pl-link{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px} .pl-link:hover{text-decoration-color:currentColor} .it .src a{color:inherit}
   .it .st.out{color:var(--out)} .it .st.doubt{color:var(--doubt)} .it .st.q{color:#A77F00} .it .st.prob{color:var(--prob)}
   .it .src{font-size:11.5px;color:var(--muted);margin-left:6px}
   .it .diff{font-size:11px;font-weight:700;background:#FFF0D1;color:#8A5A00;border-radius:4px;padding:0 5px;margin-left:6px}
@@ -718,6 +718,14 @@ function matchupAlertsHTML(code,opp,date,imp){
     .map(a=>`<div class="ma ${a.dir}" title="${esc(`${a.vs} min vs ${opp}, usual ${a.avg}`)}">${a.dir==="up"?"📈":"📉"} <b>${esc(names[normName(a.player)])}</b> usually plays <b class="d">${a.dir==="up"?"more":"fewer"}</b> minutes vs ${esc(oppName)}</div>`);
   return rows.length?`<div class="sech" style="margin-top:8px">Matchup minutes alert</div>${rows.join("")}`:"";
 }
+/* Beat-writer news (RotoWire news feed) about this team's players from the last 36 hours */
+let NEWS=[];
+function agoText(iso){ const m=Math.max(1,Math.round((Date.now()-Date.parse(iso))/60000)); return m<60?`${m}m ago`:m<2880?`${Math.round(m/60)}h ago`:`${Math.round(m/1440)}d ago`; }
+function newsHTML(code){
+  const items=NEWS.filter(i=>i.team===code&&Date.now()-Date.parse(i.at)<36*3600e3).slice(0,4);
+  if(!items.length) return "";
+  return `<div class="sech" style="margin-top:8px">Beat-writer news</div>`+items.map(i=>`<div class="news">📰 <b>${esc(i.player)}:</b> <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.headline)}</a> <span class="nt">${esc(i.text)}</span> <span class="nc">(${esc(i.reporter?`${i.reporter}, ${i.outlet}`:"RotoWire")} · ${agoText(i.at)})</span></div>`).join("");
+}
 function teamBlockHTML(code,date,opp){
   const t=TEAMS[code]||{name:code}, imp=impact(code,date);
   const o=imp.items.filter(x=>x.rec.k==="out").length, q=imp.items.length-o;
@@ -725,7 +733,7 @@ function teamBlockHTML(code,date,opp){
   if(!imp.items.length) h+=`<div class="clear">✅ No injuries listed</div>`;
   else h+=imp.items.map(it=>injLineHTML(it,date)).join("");
   if(imp.items.length && !imp.hasChart) h+=`<div class="clear" style="margin-left:22px">Depth chart not loaded, so no replacements yet.</div>`;
-  h+=startersHTML(code,imp,date)+rotationBlockHTML(code,imp,date)+(opp?matchupAlertsHTML(code,opp,date,imp):"")+`</div>`;
+  h+=startersHTML(code,imp,date)+rotationBlockHTML(code,imp,date)+(opp?matchupAlertsHTML(code,opp,date,imp):"")+newsHTML(code)+`</div>`;
   return h;
 }
 function renderPanel(){
@@ -904,6 +912,7 @@ async function loadData(){
     if(d.depth) Object.entries(d.depth).forEach(([t,o])=>DEPTH_RAW[t]=o);
     if(d.lineups) LINEUPS=d.lineups;
     if(Array.isArray(d.matchup_alerts)) MATCHUP_ALERTS=d.matchup_alerts;
+    if(Array.isArray(d.news)) NEWS=d.news;
     if(d.minutes) Object.entries(d.minutes).forEach(([n,v])=>{ mins[normName(n)]=v; });
     if(Array.isArray(d.schedule)&&d.schedule.length>1000) feedGames=d.schedule.map(g=>({date:g.date,time:g.time,away:g.away,home:g.home,type:"reg",note:"",venue:g.venue||""}));
     dataMeta={generated:d.generated_at,sources:d.sources||{}};
@@ -914,8 +923,8 @@ function freshHTML(){
   if(!dataMeta) return `<div class="fresh">Using the built-in snapshot from Oct 6. The automatic refresh (data.json) was not found.</div>`;
   const ago=Math.max(0,Math.round((Date.now()-Date.parse(dataMeta.generated))/60000));
   const when=ago<90?`${ago} min ago`:ago<2880?`${Math.round(ago/60)} hours ago`:`${Math.round(ago/1440)} days ago`;
-  const names={schedule:"Schedule",espn_depth:"Depth charts",realgm_depth:"Depth charts",rotowire:"RotoWire lineups",minutes:"Minutes sheet",cbs:"CBS",covers:"Covers",espn:"ESPN",x:"Beat writers"};
-  const parts=Object.entries(dataMeta.sources).filter(([k])=>k!=="minutes").map(([k,v])=>v.ok===true?`${names[k]||k} ✓`:v.ok===false?`<span class="bad">${names[k]||k} failed</span>`:`${names[k]||k} off`);
+  const names={schedule:"Schedule",espn_depth:"Depth charts",realgm_depth:"Depth charts",rotowire:"RotoWire lineups",news:"Beat-writer news",minutes:"Minutes sheet",cbs:"CBS",covers:"Covers",espn:"ESPN",x:"Beat writers"};
+  const parts=Object.entries(dataMeta.sources).filter(([k])=>k!=="minutes"&&k!=="x").map(([k,v])=>v.ok===true?`${names[k]||k} ✓`:v.ok===false?`<span class="bad">${names[k]||k} failed</span>`:`${names[k]||k} off`);
   return `<div class="fresh">Data refreshed <b>${when}</b> · ${parts.join(" · ")}</div>`;
 }
 
