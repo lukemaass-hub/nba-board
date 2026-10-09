@@ -247,5 +247,6 @@ def test_news_feed():
     kept = u.merge_news(old, items + items, data, now)                                          # duplicates collapse
     assert [(i["id"], i["team"]) for i in kept] == [("nba1", "MEM"), ("nba2", "HOU")]
     import email_report as e
-    assert [i["id"] for i in e.news_for({"news": kept}, "MEM", now)] == ["nba1"]
-    assert e.news_for({"news": kept}, "HOU", now) == []                                        # older than 36 hours
+    later = dt.datetime(2026, 10, 11, 6, tzinfo=dt.timezone.utc)      # Edey item 31 h old, Durant item 39 h old
+    assert [i["id"] for i in e.news_for({"news": kept}, "MEM", later)] == ["nba1"]
+    assert e.news_for({"news": kept}, "HOU", later) == []                                      # older than 36 hours
