@@ -138,6 +138,25 @@ def matchup_alerts_for(data, team, opp, inj, starters):
     return sorted(out, key=lambda x: (x[1] != "up", x[0]))
 
 
+NEWS_HOURS = 36
+
+
+def news_for(data, team, now=None):
+    """Beat-writer news (RotoWire feed) about this team's players from the last 36 hours, newest first."""
+    now = now or dt.datetime.now(dt.timezone.utc)
+    return [i for i in data.get("news", []) if i.get("team") == team
+            and dt.datetime.fromisoformat(i["at"]) >= now - dt.timedelta(hours=NEWS_HOURS)]
+
+
+def ago(iso, now=None):
+    mins = int(((now or dt.datetime.now(dt.timezone.utc)) - dt.datetime.fromisoformat(iso)).total_seconds() // 60)
+    return f"{max(mins, 1)}m ago" if mins < 60 else f"{mins // 60}h ago" if mins < 48 * 60 else f"{mins // 1440}d ago"
+
+
+def news_credit(i):
+    return f"{i['reporter']}, {i['outlet']}" if i.get("reporter") else "RotoWire"
+
+
 def build(data, games, date):
     e = html.escape
     title = "NBA injury report: " + ", ".join(f"{g['away']} @ {g['home']} {fmt_time(g['time'])}" for g in games)
@@ -195,7 +214,18 @@ def build(data, games, date):
                                    f'<b style="color:{"#1e8449" if d == "up" else "#c0392b"}">{"more" if d == "up" else "fewer"}</b>'
                                    f' minutes vs {e(name(opp).split()[-1])}</div>' for n, d in alerts) + "</div>")
                 t.append("    Matchup minutes: " + ", ".join(f"{n} {'more' if d == 'up' else 'fewer'} vs {opp}" for n, d in alerts))
-            # 4. injuries, smaller
+            # 4. beat-writer news (RotoWire feed)
+            news = news_for(data, team)
+            if news:
+                h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:8px 0 2px">'
+                         f'Beat-writer news</div>')
+                for i in news[:4]:
+                    h.append(f'<div style="font-size:12px;line-height:1.45;margin:3px 0">📰 <b>{e(i["player"])}:</b> '
+                             f'<a href="{e(i["url"])}" style="color:#1d1c1d">{e(i["headline"])}</a> '
+                             f'<span style="{grey}">{e(i["text"])}</span> '
+                             f'<span style="color:#8a8a8a">({e(news_credit(i))} · {ago(i["at"])})</span></div>')
+                t.append("    News: " + " | ".join(f"{i['player']}: {i['headline']} ({news_credit(i)})" for i in news[:4]))
+            # 5. injuries, smaller
             h.append(f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;{grey};margin:8px 0 2px">Injuries</div>'
                      '<div style="font-size:12px;line-height:1.5">')
             if not inj:
@@ -252,6 +282,11 @@ def build_slack(data, game, date, test=False):
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(
                 f"{'📈' if d == 'up' else '📉'} *{e(n)}* usually plays *{'more' if d == 'up' else 'fewer'}* minutes vs "
                 f"{e(name(opp).split()[-1])}" for n, d in alerts)}})
+        news = news_for(data, team)
+        if news:
+            blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": ("*Beat-writer news*\n" + "\n".join(
+                f"📰 *{e(i['player'])}:* <{i['url']}|{e(i['headline'])}> {e(i['text'])} _({e(news_credit(i))} · {ago(i['at'])})_"
+                for i in news[:4]))[:2900]}]})
         lines = []
         for i in inj:
             who = f"<{i['link']}|{e(i['player'])}>" if i["link"] else e(i["player"])
