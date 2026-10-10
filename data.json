@@ -8794,7 +8794,7 @@
    "time": "20:00",
    "vs": "BOS",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8823,7 +8823,7 @@
    "time": "20:00",
    "vs": "PHI",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8831,7 +8831,7 @@
     },
     {
      "pos": "SG",
-     "name": "Baylor Scheierman"
+     "name": "Jordan Walsh"
     },
     {
      "pos": "SF",
@@ -8843,7 +8843,7 @@
     },
     {
      "pos": "C",
-     "name": "Neemias Queta"
+     "name": "Mitchell Robinson"
     }
    ]
   },
@@ -8852,27 +8852,27 @@
    "time": "20:00",
    "vs": "MIA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "LaMelo Ball"
+     "name": "Bones Hyland"
     },
     {
      "pos": "SG",
-     "name": "Anthony Edwards"
+     "name": "Terrence Shannon"
     },
     {
      "pos": "SF",
-     "name": "Jonathan Kuminga"
+     "name": "Jaylen Clark"
     },
     {
      "pos": "PF",
-     "name": "Jaden McDaniels"
+     "name": "Trey Lyles"
     },
     {
      "pos": "C",
-     "name": "Rudy Gobert"
+     "name": "Joan Beringer"
     }
    ]
   },
@@ -14791,6 +14791,61 @@
  },
  "news": [
   {
+   "id": "nba533894",
+   "player": "Rudy Gobert",
+   "headline": "Not playing Saturday",
+   "text": "Gobert (rest) has been ruled out for Saturday's game against the Heat.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/rudy-gobert-3440",
+   "at": "2026-10-10T23:45:00+00:00",
+   "team": "MIN"
+  },
+  {
+   "id": "nba533895",
+   "player": "Trey Lyles",
+   "headline": "Starting Saturday",
+   "text": "Lyles will start in Saturday's exhibition in Miami.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/trey-lyles-3738",
+   "at": "2026-10-10T23:45:00+00:00",
+   "team": "MIN"
+  },
+  {
+   "id": "nba533893",
+   "player": "Jaylen Clark",
+   "headline": "Starting Saturday",
+   "text": "Clark will start in Saturday's exhibition against the Heat.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/jaylen-clark-5972",
+   "at": "2026-10-10T23:42:00+00:00",
+   "team": "MIN"
+  },
+  {
+   "id": "nba533890",
+   "player": "Anthony Edwards",
+   "headline": "Idle for Saturday's exhibition game",
+   "text": "Edwards (rest) is not available for Saturday's preseason game against Miami.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/anthony-edwards-5110",
+   "at": "2026-10-10T23:39:00+00:00",
+   "team": "MIN"
+  },
+  {
+   "id": "nba533889",
+   "player": "Terrence Shannon",
+   "headline": "Starting Saturday",
+   "text": "Shannon will start in Saturday's preseason game against the Heat.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/terrence-shannon-6278",
+   "at": "2026-10-10T23:38:00+00:00",
+   "team": "MIN"
+  },
+  {
    "id": "nba533885",
    "player": "Ben Simmons",
    "headline": "Set for preseason debut",
@@ -17718,7 +17773,7 @@
    "player": "Sam Hauser",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Rest",
+   "injury": "day-to-day",
    "upd": "2026-10-08",
    "until": "",
    "note": "Hauser (rest) is out for Thursday's preseason game against the Cavaliers, Sean Grande of NBC Sports Boston reports.",
@@ -17742,7 +17797,7 @@
    "player": "Mitchell Robinson",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Undisclosed",
+   "injury": "day-to-day",
    "upd": "2026-10-08",
    "until": "",
    "note": "Robinson (undisclosed) won't play in Thursday's preseason game against the Cavaliers, Sean Grande of NBC Sports Boston reports.",
@@ -17766,7 +17821,7 @@
    "player": "Paul George",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Rest",
+   "injury": "day-to-day",
    "upd": "2026-10-08",
    "until": "",
    "note": "George (rest) isn't in line to play Thursday versus Cleveland, Zack Cox of the Boston Herald reports.",
@@ -17778,7 +17833,7 @@
    "player": "Jayson Tatum",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Rest",
+   "injury": "day-to-day",
    "upd": "2026-10-08",
    "until": "",
    "note": "Tatum (rest) isn't in line to play Thursday against Cleveland, Zack Cox of the Boston Herald reports.",
@@ -17790,7 +17845,7 @@
    "player": "Derrick White",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Rest",
+   "injury": "day-to-day",
    "upd": "2026-10-08",
    "until": "",
    "note": "White (rest) isn't in line to play Thursday against Cleveland, Zack Cox of the Boston Herald reports.",
@@ -18516,6 +18571,78 @@
    "note": "Ament won't return to Wednesday's preseason game against the Thunder due to a left ankle sprain. He'll finish with three points (1-7 FG, 0-1 3Pt, 1-4 FT), four rebounds, one assist and one steal in 10 minutes.",
    "through": "2026-10-12",
    "url": "https://www.espn.com/nba/injuries#:~:text=Nate%20Ament"
+  },
+  {
+   "team": "MIN",
+   "player": "Rudy Gobert",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Gobert (rest) has been ruled out for Saturday's game against the Heat.",
+   "through": "2026-10-12",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Rudy%20Gobert"
+  },
+  {
+   "team": "MIN",
+   "player": "Anthony Edwards",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Edwards (rest) is not available for Saturday's preseason game against Miami.",
+   "through": "2026-10-12",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Anthony%20Edwards"
+  },
+  {
+   "team": "MIN",
+   "player": "LaMelo Ball",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Ball (rest) has been ruled out for Saturday's preseason game against the Heat.",
+   "through": "2026-10-12",
+   "url": "https://www.espn.com/nba/injuries#:~:text=LaMelo%20Ball"
+  },
+  {
+   "team": "MIN",
+   "player": "Jaden McDaniels",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "McDaniels finished with 16 points (6-10 FG, 4-6 3Pt), three rebounds, one steal and one block in 21 minutes during Wednesday's 123-112 preseason loss to Indiana.",
+   "through": "2026-10-12",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Jaden%20McDaniels"
+  },
+  {
+   "team": "MIN",
+   "player": "Jonathan Kuminga",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Kuminga finished with two points (1-9 FG, 0-3 3Pt), three assists, one rebound and one steal in 19 minutes during Wednesday's 123-112 preseason loss to the Pacers.",
+   "through": "2026-10-12",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Jonathan%20Kuminga"
+  },
+  {
+   "team": "MIN",
+   "player": "Ayo Dosunmu",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Dosunmu finished with five points (2-5 FG, 1-2 3Pt) and three rebounds across 13 minutes in Monday's 116-97 preseason win over Milwaukee.",
+   "through": "2026-10-12",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Ayo%20Dosunmu"
   },
   {
    "team": "MIN",
@@ -19645,7 +19772,7 @@
   },
   {
    "team": "BOS",
-   "player": "Derrick White",
+   "player": "Devin Carter",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
@@ -19654,11 +19781,11 @@
    "note": "RotoWire tag: Ques",
    "through": "2026-10-10",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20White"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Carter"
   },
   {
-   "team": "BOS",
-   "player": "Paul George",
+   "team": "MIN",
+   "player": "LaMelo Ball",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
@@ -19667,11 +19794,11 @@
    "note": "RotoWire tag: Ques",
    "through": "2026-10-10",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20George"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=L.%20Ball"
   },
   {
-   "team": "BOS",
-   "player": "Jayson Tatum",
+   "team": "MIN",
+   "player": "Ayo Dosunmu",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
@@ -19680,11 +19807,11 @@
    "note": "RotoWire tag: Ques",
    "through": "2026-10-10",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Tatum"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Dosunmu"
   },
   {
-   "team": "BOS",
-   "player": "Neemias Queta",
+   "team": "MIN",
+   "player": "Anthony Edwards",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
@@ -19693,11 +19820,11 @@
    "note": "RotoWire tag: Ques",
    "through": "2026-10-10",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Queta"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Edwards"
   },
   {
-   "team": "BOS",
-   "player": "Paul George",
+   "team": "MIN",
+   "player": "Rudy Gobert",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
@@ -19706,11 +19833,11 @@
    "note": "RotoWire tag: Ques",
    "through": "2026-10-10",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20George"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=R.%20Gobert"
   },
   {
-   "team": "BOS",
-   "player": "Ron Harper Jr.",
+   "team": "MIN",
+   "player": "Jonathan Kuminga",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
@@ -19719,11 +19846,11 @@
    "note": "RotoWire tag: Ques",
    "through": "2026-10-10",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=R.%20Harper"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Kuminga"
   },
   {
-   "team": "BOS",
-   "player": "Sam Hauser",
+   "team": "MIN",
+   "player": "Jaden McDaniels",
    "src": "RotoWire",
    "kind": "G",
    "injury": "",
@@ -19732,59 +19859,7 @@
    "note": "RotoWire tag: Ques",
    "through": "2026-10-10",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Hauser"
-  },
-  {
-   "team": "BOS",
-   "player": "Neemias Queta",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-10",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-10",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Queta"
-  },
-  {
-   "team": "BOS",
-   "player": "Mitchell Robinson",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-10",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-10",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Robinson"
-  },
-  {
-   "team": "BOS",
-   "player": "Jayson Tatum",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-10",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-10",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Tatum"
-  },
-  {
-   "team": "BOS",
-   "player": "Derrick White",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-10",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-10",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20White"
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20McDaniels"
   },
   {
    "team": "MIN",
@@ -20149,6 +20224,74 @@
    "through": "2026-10-10",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Williams"
+  },
+  {
+   "team": "MIN",
+   "player": "Rudy Gobert",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Gobert (rest) has been ruled out for Saturday's game against the Heat.",
+   "through": "2026-10-10",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/rudy-gobert-3440",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T23:45:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "MIN",
+   "player": "Trey Lyles",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Lyles will start in Saturday's exhibition in Miami.",
+   "through": "2026-10-10",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/trey-lyles-3738",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T23:45:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "MIN",
+   "player": "Jaylen Clark",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Clark will start in Saturday's exhibition against the Heat.",
+   "through": "2026-10-10",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/jaylen-clark-5972",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T23:42:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "MIN",
+   "player": "Terrence Shannon",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Shannon will start in Saturday's preseason game against the Heat.",
+   "through": "2026-10-10",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/terrence-shannon-6278",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T23:38:00+00:00",
+   "from_news": true
   },
   {
    "team": "SAC",
@@ -20747,27 +20890,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-10-10T23:31:04+00:00",
+ "generated_at": "2026-10-10T23:49:18+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-10T23:30:48+00:00",
+   "at": "2026-10-10T23:49:04+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-10T23:31:02+00:00",
+   "at": "2026-10-10T23:49:17+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-10T23:31:03+00:00",
+   "at": "2026-10-10T23:49:18+00:00",
    "teams": 14,
-   "injuries": 73
+   "injuries": 69
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-10T23:31:03+00:00",
+   "at": "2026-10-10T23:49:18+00:00",
    "current_players": 0,
    "last_players": 582
   },
@@ -20777,18 +20920,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-10T23:31:03+00:00",
+   "at": "2026-10-10T23:49:18+00:00",
    "count": 132
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-10T23:31:04+00:00",
+   "at": "2026-10-10T23:49:18+00:00",
    "count": 24
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-10T23:31:04+00:00",
-   "count": 129
+   "at": "2026-10-10T23:49:18+00:00",
+   "count": 135
   },
   "x": {
    "ok": null,
@@ -20796,8 +20939,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-10T23:31:04+00:00",
-   "count": 49
+   "at": "2026-10-10T23:49:18+00:00",
+   "count": 54
   }
  }
 }
