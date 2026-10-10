@@ -8508,7 +8508,7 @@
    "C": "Zach Edey/Isaiah Stewart/Quinten Post,Olivier-Maxence Prosper,Carson Cooper"
   },
   "MIA": {
-   "PG": "Davion Mitchell/Dru Smith,Ryan Conwell/Tre Donaldson",
+   "PG": "Davion Mitchell/Dru Smith,Ryan Conwell/Tre Donaldson,Bez Mbeng",
    "SG": "Klay Thompson/Tim Hardaway Jr./Myron Gardner",
    "SF": "Andrew Wiggins/Pelle Larsson/Keshad Johnson",
    "PF": "Giannis Antetokounmpo/Bobby Portis/Simone Fontecchio",
@@ -8606,11 +8606,11 @@
    "C": "Alex Sarr/Deandre Ayton/Tristan Vukcevic,Anthony Gill,Felix Okpara"
   },
   "TOR": {
-   "PG": "//",
-   "SG": "//",
-   "SF": "//",
-   "PF": "Scottie Barnes/Collin Murray-Boyles/",
-   "C": "Jakob Poeltl/Trayce Jackson-Davis,Jamison Battle,Trey Jemison III/"
+   "PG": "Immanuel Quickley/Jamal Shead/Jaden Bradley,Chucky Hepburn",
+   "SG": "RJ Barrett/Ja'Kobe Walter/Alijah Martin,Malachi Smith",
+   "SF": "Kawhi Leonard/Allen Graves,Jamison Battle/",
+   "PF": "Scottie Barnes/Collin Murray-Boyles/Kyle Anderson",
+   "C": "Jakob Poeltl//Trayce Jackson-Davis,Trey Jemison III"
   }
  },
  "minutes": {},
@@ -8678,7 +8678,7 @@
    "time": "19:00",
    "vs": "IND",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8707,19 +8707,19 @@
    "time": "19:00",
    "vs": "ATL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "T.J. McConnell"
-    },
-    {
-     "pos": "SG",
      "name": "Andrew Nembhard"
     },
     {
-     "pos": "SF",
+     "pos": "SG",
      "name": "Aaron Nesmith"
+    },
+    {
+     "pos": "SF",
+     "name": "Kelly Oubre"
     },
     {
      "pos": "PF",
@@ -8736,11 +8736,11 @@
    "time": "19:00",
    "vs": "WAS",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Cade Cunningham"
+     "name": "Daniss Jenkins"
     },
     {
      "pos": "SG",
@@ -8756,7 +8756,7 @@
     },
     {
      "pos": "C",
-     "name": "Jalen Duren"
+     "name": "Paul Reed"
     }
    ]
   },
@@ -8765,7 +8765,7 @@
    "time": "19:00",
    "vs": "DET",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -14791,6 +14791,61 @@
  },
  "news": [
   {
+   "id": "nba533871",
+   "player": "Jalen Johnson",
+   "headline": "Starting Saturday",
+   "text": "Johnson (rest) will start in Saturday's exhibition against the Pacers, Kevin Chouinard of the Hawks' official site reports.",
+   "reporter": "Kevin Chouinard",
+   "outlet": "Hawks' official site",
+   "url": "https://www.rotowire.com/basketball/player/jalen-johnson-5329",
+   "at": "2026-10-10T22:55:00+00:00",
+   "team": "ATL"
+  },
+  {
+   "id": "nba533868",
+   "player": "Kentavious Caldwell-Pope",
+   "headline": "Out for Saturday",
+   "text": "Caldwell-Pope (rest) won't play in Saturday's exhibition against the Celtics, Tony Jones of The Athletic reports.",
+   "reporter": "Tony Jones",
+   "outlet": "The Athletic",
+   "url": "https://www.rotowire.com/basketball/player/kentavious-caldwell-pope-3450",
+   "at": "2026-10-10T22:52:00+00:00",
+   "team": "PHI"
+  },
+  {
+   "id": "nba533866",
+   "player": "Jaylen Brown",
+   "headline": "Ruled out for Saturday",
+   "text": "Brown (rest) won't suit up for Saturday's preseason game in Boston, Tony Jones of The Athletic reports.",
+   "reporter": "Tony Jones",
+   "outlet": "The Athletic",
+   "url": "https://www.rotowire.com/basketball/player/jaylen-brown-3894",
+   "at": "2026-10-10T22:50:00+00:00",
+   "team": "PHI"
+  },
+  {
+   "id": "nba533867",
+   "player": "Cade Cunningham",
+   "headline": "Not starting Saturday",
+   "text": "Cunningham is not in the starting lineup for Saturday's preseason game against the Wizards, Coty M. Davis of The Detroit News reports.",
+   "reporter": "Coty M. Davis",
+   "outlet": "The Detroit News",
+   "url": "https://www.rotowire.com/basketball/player/cade-cunningham-5336",
+   "at": "2026-10-10T22:50:00+00:00",
+   "team": "DET"
+  },
+  {
+   "id": "nba533865",
+   "player": "Joel Embiid",
+   "headline": "Won't play Saturday",
+   "text": "Embiid (rest) is out for Saturday's exhibition against the Celtics, Tony Jones of The Athletic reports.",
+   "reporter": "Tony Jones",
+   "outlet": "The Athletic",
+   "url": "https://www.rotowire.com/basketball/player/joel-embiid-3572",
+   "at": "2026-10-10T22:48:00+00:00",
+   "team": "PHI"
+  },
+  {
    "id": "nba533862",
    "player": "Nikola Jovic",
    "headline": "Starting Saturday",
@@ -18279,6 +18334,54 @@
   },
   {
    "team": "MIA",
+   "player": "Bam Adebayo",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Adebayo won't be available for Saturday's preseason game against the Timberwolves due to rest, Eric Nehm of The Athletic reports.",
+   "through": "2026-10-12",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Bam%20Adebayo"
+  },
+  {
+   "team": "MIA",
+   "player": "Andrew Wiggins",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Wiggins (rest) won't play in Saturday's preseason game against the Timberwolves, Eric Nehm of The Athletic reports.",
+   "through": "2026-10-12",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Andrew%20Wiggins"
+  },
+  {
+   "team": "MIA",
+   "player": "Klay Thompson",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Thompson (rest) is out for Saturday's preseason game against the Timberwolves, Eric Nehm of The Athletic reports.",
+   "through": "2026-10-12",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Klay%20Thompson"
+  },
+  {
+   "team": "MIA",
+   "player": "Giannis Antetokounmpo",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Antetokounmpo (rest) won't be available for Saturday's preseason game against the Timberwolves, Eric Nehm of The Athletic reports.",
+   "through": "2026-10-12",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Giannis%20Antetokounmpo"
+  },
+  {
+   "team": "MIA",
    "player": "Davion Mitchell",
    "src": "ESPN",
    "kind": "G",
@@ -18300,18 +18403,6 @@
    "note": "Kelley (calf) signed a contract with the Heat on Thursday, Ira Winderman of the South Florida Sun Sentinel reports.",
    "through": "2026-10-12",
    "url": "https://www.espn.com/nba/injuries#:~:text=Kylor%20Kelley"
-  },
-  {
-   "team": "MIA",
-   "player": "Pelle Larsson",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-10-08",
-   "until": "",
-   "note": "Larsson (illness) won't play in Thursday's preseason game against the Pelicans, Anthony Chiang of the Miami Herald reports.",
-   "through": "2026-10-12",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Pelle%20Larsson"
   },
   {
    "team": "MIA",
@@ -19142,19 +19233,6 @@
   },
   {
    "team": "ATL",
-   "player": "Jalen Johnson",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-10",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-10",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Johnson"
-  },
-  {
-   "team": "ATL",
    "player": "Nickeil Alexander-Walker",
    "src": "RotoWire",
    "kind": "G",
@@ -19219,32 +19297,6 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=H.%20Veesaar"
   },
   {
-   "team": "ATL",
-   "player": "Jalen Johnson",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-10",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-10",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Johnson"
-  },
-  {
-   "team": "IND",
-   "player": "T.J. McConnell",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-10",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-10",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20McConnell"
-  },
-  {
    "team": "IND",
    "player": "Tyrese Haliburton",
    "src": "RotoWire",
@@ -19295,19 +19347,6 @@
    "through": "2026-10-10",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Furphy"
-  },
-  {
-   "team": "DET",
-   "player": "Jalen Duren",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-10",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-10",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Duren"
   },
   {
    "team": "DET",
@@ -19399,6 +19438,45 @@
    "through": "2026-10-10",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Bona"
+  },
+  {
+   "team": "PHI",
+   "player": "Jaylen Brown",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-10",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Brown"
+  },
+  {
+   "team": "PHI",
+   "player": "Kentavious Caldwell-Pope",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-10",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Caldwell-Pope"
+  },
+  {
+   "team": "PHI",
+   "player": "Joel Embiid",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-10",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Embiid"
   },
   {
    "team": "PHI",
@@ -20103,6 +20181,91 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Williams"
   },
   {
+   "team": "ATL",
+   "player": "Jalen Johnson",
+   "src": "Kevin Chouinard",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Johnson (rest) will start in Saturday's exhibition against the Pacers, Kevin Chouinard of the Hawks' official site reports.",
+   "through": "2026-10-10",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/jalen-johnson-5329",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T22:55:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "PHI",
+   "player": "Kentavious Caldwell-Pope",
+   "src": "Tony Jones",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Caldwell-Pope (rest) won't play in Saturday's exhibition against the Celtics, Tony Jones of The Athletic reports.",
+   "through": "2026-10-10",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/kentavious-caldwell-pope-3450",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T22:52:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "PHI",
+   "player": "Jaylen Brown",
+   "src": "Tony Jones",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Brown (rest) won't suit up for Saturday's preseason game in Boston, Tony Jones of The Athletic reports.",
+   "through": "2026-10-10",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/jaylen-brown-3894",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T22:50:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "DET",
+   "player": "Cade Cunningham",
+   "src": "Coty M. Davis",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Cunningham is not in the starting lineup for Saturday's preseason game against the Wizards, Coty M. Davis of The Detroit News reports.",
+   "through": "2026-10-10",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/cade-cunningham-5336",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T22:50:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "PHI",
+   "player": "Joel Embiid",
+   "src": "Tony Jones",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Embiid (rest) is out for Saturday's exhibition against the Celtics, Tony Jones of The Athletic reports.",
+   "through": "2026-10-10",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/joel-embiid-3572",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T22:48:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "MIA",
    "player": "Nikola Jovic",
    "src": "Ira Winderman",
@@ -20512,27 +20675,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-10-10T22:40:59+00:00",
+ "generated_at": "2026-10-10T22:57:50+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-10T22:40:45+00:00",
+   "at": "2026-10-10T22:57:33+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-10T22:40:56+00:00",
+   "at": "2026-10-10T22:57:49+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-10T22:40:57+00:00",
+   "at": "2026-10-10T22:57:49+00:00",
    "teams": 14,
-   "injuries": 85
+   "injuries": 84
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-10T22:40:57+00:00",
+   "at": "2026-10-10T22:57:49+00:00",
    "current_players": 0,
    "last_players": 582
   },
@@ -20542,18 +20705,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-10T22:40:59+00:00",
+   "at": "2026-10-10T22:57:50+00:00",
    "count": 126
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-10T22:40:59+00:00",
+   "at": "2026-10-10T22:57:50+00:00",
    "count": 24
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-10T22:40:59+00:00",
-   "count": 129
+   "at": "2026-10-10T22:57:50+00:00",
+   "count": 132
   },
   "x": {
    "ok": null,
@@ -20561,8 +20724,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-10T22:40:59+00:00",
-   "count": 37
+   "at": "2026-10-10T22:57:50+00:00",
+   "count": 42
   }
  }
 }
