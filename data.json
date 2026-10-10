@@ -8606,11 +8606,11 @@
    "C": "Alex Sarr/Deandre Ayton/Tristan Vukcevic,Anthony Gill,Felix Okpara"
   },
   "TOR": {
-   "PG": "Immanuel Quickley/Jamal Shead/Jaden Bradley,Chucky Hepburn",
-   "SG": "RJ Barrett/Ja'Kobe Walter/Alijah Martin,Malachi Smith",
-   "SF": "Kawhi Leonard/Allen Graves,Jamison Battle/",
-   "PF": "Scottie Barnes/Collin Murray-Boyles/Kyle Anderson",
-   "C": "Jakob Poeltl//Trayce Jackson-Davis,Trey Jemison III"
+   "PG": "//",
+   "SG": "//",
+   "SF": "//",
+   "PF": "Scottie Barnes/Collin Murray-Boyles/",
+   "C": "Jakob Poeltl/Trayce Jackson-Davis,Jamison Battle,Trey Jemison III/"
   }
  },
  "minutes": {},
@@ -8806,15 +8806,15 @@
     },
     {
      "pos": "SF",
-     "name": "Jaylen Brown"
+     "name": "Justin Edwards"
     },
     {
      "pos": "PF",
-     "name": "LeBron James"
+     "name": "Dean Wade"
     },
     {
      "pos": "C",
-     "name": "Joel Embiid"
+     "name": "Jabari Walker"
     }
    ]
   },
@@ -8881,27 +8881,27 @@
    "time": "20:00",
    "vs": "MIN",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Davion Mitchell"
+     "name": "Simone Fontecchio"
     },
     {
      "pos": "SG",
-     "name": "Klay Thompson"
+     "name": "Tre Donaldson"
     },
     {
      "pos": "SF",
-     "name": "Andrew Wiggins"
+     "name": "Pelle Larsson"
     },
     {
      "pos": "PF",
-     "name": "Giannis Antetokounmpo"
+     "name": "Nikola Jovic"
     },
     {
      "pos": "C",
-     "name": "Bam Adebayo"
+     "name": "Nick Richards"
     }
    ]
   },
@@ -14791,6 +14791,61 @@
  },
  "news": [
   {
+   "id": "nba533862",
+   "player": "Nikola Jovic",
+   "headline": "Starting Saturday",
+   "text": "Jovic is in the starting lineup for Saturday's preseason matchup with the Timberwolves, Ira Winderman of the South Florida Sun Sentinel reports.",
+   "reporter": "Ira Winderman",
+   "outlet": "South Florida Sun Sentinel",
+   "url": "https://www.rotowire.com/basketball/player/nikola-jovic-5640",
+   "at": "2026-10-10T22:40:00+00:00",
+   "team": "MIA"
+  },
+  {
+   "id": "nba533861",
+   "player": "Simone Fontecchio",
+   "headline": "Starting Saturday",
+   "text": "Fontecchio will start in Saturday's preseason game against the Timberwolves, Ira Winderman of the South Florida Sun Sentinel reports.",
+   "reporter": "Ira Winderman",
+   "outlet": "South Florida Sun Sentinel",
+   "url": "https://www.rotowire.com/basketball/player/simone-fontecchio-5797",
+   "at": "2026-10-10T22:37:00+00:00",
+   "team": "MIA"
+  },
+  {
+   "id": "nba533859",
+   "player": "Bam Adebayo",
+   "headline": "Not playing Saturday",
+   "text": "Adebayo won't be available for Saturday's preseason game against the Timberwolves due to rest, Eric Nehm of The Athletic reports.",
+   "reporter": "Eric Nehm",
+   "outlet": "The Athletic",
+   "url": "https://www.rotowire.com/basketball/player/bam-adebayo-4153",
+   "at": "2026-10-10T22:34:00+00:00",
+   "team": "MIA"
+  },
+  {
+   "id": "nba533858",
+   "player": "Andrew Wiggins",
+   "headline": "Resting Saturday",
+   "text": "Wiggins (rest) won't play in Saturday's preseason game against the Timberwolves, Eric Nehm of The Athletic reports.",
+   "reporter": "Eric Nehm",
+   "outlet": "The Athletic",
+   "url": "https://www.rotowire.com/basketball/player/andrew-wiggins-3571",
+   "at": "2026-10-10T22:32:00+00:00",
+   "team": "MIA"
+  },
+  {
+   "id": "nba533857",
+   "player": "Giannis Antetokounmpo",
+   "headline": "Won't play vs. Minnesota",
+   "text": "Antetokounmpo (rest) won't be available for Saturday's preseason game against the Timberwolves, Eric Nehm of The Athletic reports.",
+   "reporter": "Eric Nehm",
+   "outlet": "The Athletic",
+   "url": "https://www.rotowire.com/basketball/player/giannis-antetokounmpo-3456",
+   "at": "2026-10-10T22:31:00+00:00",
+   "team": "MIA"
+  },
+  {
    "id": "nba533854",
    "player": "Isaiah Jackson",
    "headline": "Not starting Saturday",
@@ -18224,6 +18279,18 @@
   },
   {
    "team": "MIA",
+   "player": "Davion Mitchell",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Mitchell (rest) won't suit up for Saturday's exhibition against the Timberwolves, Eric Nehm of The Athletic reports.",
+   "through": "2026-10-12",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Davion%20Mitchell"
+  },
+  {
+   "team": "MIA",
    "player": "Kylor Kelley",
    "src": "ESPN",
    "kind": "G",
@@ -19530,6 +19597,45 @@
   },
   {
    "team": "MIA",
+   "player": "Bam Adebayo",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-10",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Adebayo"
+  },
+  {
+   "team": "MIA",
+   "player": "Giannis Antetokounmpo",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-10",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=G.%20Antetokounmpo"
+  },
+  {
+   "team": "MIA",
+   "player": "Davion Mitchell",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-10",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Mitchell"
+  },
+  {
+   "team": "MIA",
    "player": "Dru Smith",
    "src": "RotoWire",
    "kind": "G",
@@ -19543,6 +19649,32 @@
   },
   {
    "team": "MIA",
+   "player": "Klay Thompson",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-10",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Thompson"
+  },
+  {
+   "team": "MIA",
+   "player": "Andrew Wiggins",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-10",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Wiggins"
+  },
+  {
+   "team": "MIA",
    "player": "Kylor Kelley",
    "src": "RotoWire",
    "kind": "G",
@@ -19553,19 +19685,6 @@
    "through": "2026-10-10",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Kelley"
-  },
-  {
-   "team": "MIA",
-   "player": "Pelle Larsson",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-10",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-10",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Larsson"
   },
   {
    "team": "MIA",
@@ -19984,6 +20103,91 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Williams"
   },
   {
+   "team": "MIA",
+   "player": "Nikola Jovic",
+   "src": "Ira Winderman",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Jovic is in the starting lineup for Saturday's preseason matchup with the Timberwolves, Ira Winderman of the South Florida Sun Sentinel reports.",
+   "through": "2026-10-10",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/nikola-jovic-5640",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T22:40:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "MIA",
+   "player": "Simone Fontecchio",
+   "src": "Ira Winderman",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Fontecchio will start in Saturday's preseason game against the Timberwolves, Ira Winderman of the South Florida Sun Sentinel reports.",
+   "through": "2026-10-10",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/simone-fontecchio-5797",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T22:37:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "MIA",
+   "player": "Bam Adebayo",
+   "src": "Eric Nehm",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Adebayo won't be available for Saturday's preseason game against the Timberwolves due to rest, Eric Nehm of The Athletic reports.",
+   "through": "2026-10-10",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/bam-adebayo-4153",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T22:34:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "MIA",
+   "player": "Andrew Wiggins",
+   "src": "Eric Nehm",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Wiggins (rest) won't play in Saturday's preseason game against the Timberwolves, Eric Nehm of The Athletic reports.",
+   "through": "2026-10-10",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/andrew-wiggins-3571",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T22:32:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "MIA",
+   "player": "Giannis Antetokounmpo",
+   "src": "Eric Nehm",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-10",
+   "until": "",
+   "note": "Antetokounmpo (rest) won't be available for Saturday's preseason game against the Timberwolves, Eric Nehm of The Athletic reports.",
+   "through": "2026-10-10",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/giannis-antetokounmpo-3456",
+   "from": "2026-10-10",
+   "override": true,
+   "at": "2026-10-10T22:31:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "DET",
    "player": "Jalen Duren",
    "src": "Josh Robbins",
@@ -20308,27 +20512,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-10-10T22:22:22+00:00",
+ "generated_at": "2026-10-10T22:40:59+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-10T22:22:05+00:00",
+   "at": "2026-10-10T22:40:45+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-10T22:22:20+00:00",
+   "at": "2026-10-10T22:40:56+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-10T22:22:21+00:00",
+   "at": "2026-10-10T22:40:57+00:00",
    "teams": 14,
-   "injuries": 81
+   "injuries": 85
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-10T22:22:21+00:00",
+   "at": "2026-10-10T22:40:57+00:00",
    "current_players": 0,
    "last_players": 582
   },
@@ -20338,18 +20542,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-10T22:22:21+00:00",
+   "at": "2026-10-10T22:40:59+00:00",
    "count": 126
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-10T22:22:21+00:00",
+   "at": "2026-10-10T22:40:59+00:00",
    "count": 24
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-10T22:22:21+00:00",
-   "count": 128
+   "at": "2026-10-10T22:40:59+00:00",
+   "count": 129
   },
   "x": {
    "ok": null,
@@ -20357,8 +20561,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-10T22:22:22+00:00",
-   "count": 32
+   "at": "2026-10-10T22:40:59+00:00",
+   "count": 37
   }
  }
 }
