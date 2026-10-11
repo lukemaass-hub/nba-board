@@ -8736,7 +8736,7 @@
    "time": "19:00",
    "vs": "CHA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8752,7 +8752,7 @@
     },
     {
      "pos": "PF",
-     "name": "Kel'el Ware"
+     "name": "Kyle Kuzma"
     },
     {
      "pos": "C",
@@ -8765,7 +8765,7 @@
    "time": "19:00",
    "vs": "MIL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8773,11 +8773,11 @@
     },
     {
      "pos": "SG",
-     "name": "Sion James"
+     "name": "Brandon Miller"
     },
     {
      "pos": "SF",
-     "name": "Brandon Miller"
+     "name": "Liam McNeeley"
     },
     {
      "pos": "PF",
@@ -18786,6 +18786,18 @@
   },
   {
    "team": "MIL",
+   "player": "Kasparas Jakucionis",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Coach's Decision",
+   "upd": "2026-10-11",
+   "until": "",
+   "note": "Jakucionis was a DNP-CD during Monday's 116-97 preseason loss to the Timberwolves.",
+   "through": "2026-10-13",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Kasparas%20Jakucionis"
+  },
+  {
+   "team": "MIL",
    "player": "Nate Ament",
    "src": "ESPN",
    "kind": "G",
@@ -19771,6 +19783,32 @@
    "through": "2026-10-11",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Ament"
+  },
+  {
+   "team": "MIL",
+   "player": "Brayden Burries",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-11",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-11",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Burries"
+  },
+  {
+   "team": "MIL",
+   "player": "Kasparas Jakucionis",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-11",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-11",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Jakucionis"
   },
   {
    "team": "CHA",
@@ -20870,27 +20908,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-10-11T22:33:11+00:00",
+ "generated_at": "2026-10-11T22:51:04+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-11T22:32:56+00:00",
+   "at": "2026-10-11T22:50:50+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-11T22:33:09+00:00",
+   "at": "2026-10-11T22:51:02+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-11T22:33:10+00:00",
+   "at": "2026-10-11T22:51:03+00:00",
    "teams": 8,
-   "injuries": 31
+   "injuries": 33
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-11T22:33:10+00:00",
+   "at": "2026-10-11T22:51:03+00:00",
    "current_players": 0,
    "last_players": 582
   },
@@ -20900,18 +20938,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-11T22:33:11+00:00",
+   "at": "2026-10-11T22:51:03+00:00",
    "count": 128
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-11T22:33:11+00:00",
+   "at": "2026-10-11T22:51:04+00:00",
    "count": 24
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-11T22:33:11+00:00",
-   "count": 131
+   "at": "2026-10-11T22:51:04+00:00",
+   "count": 132
   },
   "x": {
    "ok": null,
@@ -20919,7 +20957,7 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-11T22:33:11+00:00",
+   "at": "2026-10-11T22:51:04+00:00",
    "count": 100
   }
  }
