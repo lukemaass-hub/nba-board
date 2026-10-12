@@ -8620,7 +8620,7 @@
    "time": "19:00",
    "vs": "ATL",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8649,7 +8649,7 @@
    "time": "19:00",
    "vs": "OKC",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -14617,6 +14617,17 @@
  },
  "news": [
   {
+   "id": "nba534142",
+   "player": "Deandre Ayton",
+   "headline": "Starting sans Davis",
+   "text": "Ayton is starting Monday's preseason game against the Nets.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/deandre-ayton-4372",
+   "at": "2026-10-12T22:35:00+00:00",
+   "team": "WAS"
+  },
+  {
    "id": "nba534137",
    "player": "Onyeka Okongwu",
    "headline": "Ruled out Monday",
@@ -15990,17 +16001,6 @@
    "url": "https://www.rotowire.com/basketball/player/kawhi-leonard-3195",
    "at": "2026-10-09T23:32:00+00:00",
    "team": "TOR"
-  },
-  {
-   "id": "nba533793",
-   "player": "Zach Edey",
-   "headline": "More minutes on tap",
-   "text": "Edey will play in Friday's preseason game against the Bulls and is expected to see an uptick in minutes, Rob Fischer of FanDuel Sports Network Southeast reports.",
-   "reporter": "Rob Fischer",
-   "outlet": "FanDuel Sports Network Southeast",
-   "url": "https://www.rotowire.com/basketball/player/zach-edey-6263",
-   "at": "2026-10-09T22:45:00+00:00",
-   "team": "MEM"
   }
  ],
  "matchup_alerts": [
@@ -21817,47 +21817,30 @@
    "override": true,
    "at": "2026-10-09T23:32:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "MEM",
-   "player": "Zach Edey",
-   "src": "Rob Fischer",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-09",
-   "until": "",
-   "note": "Edey will play in Friday's preseason game against the Bulls and is expected to see an uptick in minutes, Rob Fischer of FanDuel Sports Network Southeast reports.",
-   "through": "2026-10-09",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/zach-edey-6263",
-   "from": "2026-10-09",
-   "override": true,
-   "at": "2026-10-09T22:45:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [],
- "generated_at": "2026-10-12T22:36:39+00:00",
+ "generated_at": "2026-10-12T22:53:48+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-12T22:36:25+00:00",
+   "at": "2026-10-12T22:53:35+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-12T22:36:37+00:00",
+   "at": "2026-10-12T22:53:46+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-12T22:36:38+00:00",
+   "at": "2026-10-12T22:53:47+00:00",
    "teams": 8,
    "injuries": 54
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-12T22:36:38+00:00",
+   "at": "2026-10-12T22:53:47+00:00",
    "current_players": 0,
    "last_players": 582
   },
@@ -21867,17 +21850,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-12T22:36:38+00:00",
+   "at": "2026-10-12T22:53:48+00:00",
    "count": 134
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-12T22:36:38+00:00",
+   "at": "2026-10-12T22:53:48+00:00",
    "count": 24
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-12T22:36:39+00:00",
+   "at": "2026-10-12T22:53:48+00:00",
    "count": 137
   },
   "x": {
@@ -21886,7 +21869,7 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-12T22:36:39+00:00",
+   "at": "2026-10-12T22:53:48+00:00",
    "count": 126
   }
  }
