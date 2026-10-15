@@ -150,19 +150,26 @@ def build():
     # 4. baseline from the previous 10 games played (strictly before)
     played = st["status"].eq("played")
     st["baseline"], st["base_n"], st["base_start_rate"], st["last3"] = np.nan, 0, np.nan, np.nan
+    st["last1"], st["std10"], st["cd_last5"] = np.nan, np.nan, 0
     for pid, idx in st.groupby("player_id").groups.items():
         sub = st.loc[idx]
         mins, starts, pl = sub["minutes"].to_numpy(), sub["starter"].to_numpy(), played.loc[idx].to_numpy()
-        hist_m, hist_s = [], []
-        base, n, sr, l3 = [], [], [], []
-        for m, s, p in zip(mins, starts, pl):
+        hist_m, hist_s, team_st = [], [], []
+        base, n, sr, l3, l1, sd, cd5 = [], [], [], [], [], [], []
+        stats_ = sub["status"].to_numpy()
+        for m, s, p, stt in zip(mins, starts, pl, stats_):
             last = hist_m[-BASE_GAMES:]
             base.append(np.mean(last) if len(last) >= BASE_MIN_GAMES else np.nan)
             n.append(len(last)); sr.append(np.mean(hist_s[-BASE_GAMES:]) if last else np.nan)
             l3.append(np.mean(hist_m[-3:]) if len(hist_m) >= 3 else np.nan)
+            l1.append(hist_m[-1] if hist_m else np.nan)
+            sd.append(np.std(last) if len(last) >= BASE_MIN_GAMES else np.nan)
+            cd5.append(sum(1 for x in team_st[-5:] if x == "cd"))
+            team_st.append(stt)
             if p:
                 hist_m.append(m); hist_s.append(s)
         st.loc[idx, "baseline"], st.loc[idx, "base_n"], st.loc[idx, "base_start_rate"], st.loc[idx, "last3"] = base, n, sr, l3
+        st.loc[idx, "last1"], st.loc[idx, "std10"], st.loc[idx, "cd_last5"] = l1, sd, cd5
     st["out_streak"] = 0
     for pid, idx in st.groupby("player_id").groups.items():
         n, vals = 0, []
@@ -177,6 +184,9 @@ def build():
     # 5. units and candidates
     st["is_out"] = st["status"].isin(["out", "inactive"])
     st["healthy"] = st["status"].isin(["played", "cd"])
+    tg["prev_date"] = tg.groupby("team")["date"].shift(1)
+    tg["b2b"] = (pd.to_datetime(tg["date"]) - pd.to_datetime(tg["prev_date"])).dt.days.eq(1).astype(int)
+    b2b = dict(zip(zip(tg["game_id"], tg["team"]), tg["b2b"])); home = dict(zip(zip(tg["game_id"], tg["team"]), tg["home"]))
     st = st.sort_values(["date", "game_id"]).reset_index(drop=True)
     units, cands = [], []
     hist = {}                                         # player_id -> list of (out group, change) from earlier units
@@ -205,6 +215,8 @@ def build():
         hc["trend"] = hc["last3"] - hc["baseline"]
         hc["n_healthy"] = len(hc)
         hc["out_streak"] = top["out_streak"]                 # 1 = the main player's first game out
+        hc["last1_vs_base"] = hc["last1"] - hc["baseline"]
+        hc["b2b"], hc["home"] = b2b.get((gid, team), 0), home.get((gid, team), 0)
         # how he responded before when a similar (same-group) rotation player was out, shrunk toward 0
         hs, hn, ha, han = [], [], [], []
         for pid, gr in zip(hc["player_id"], hc["group"]):
@@ -224,7 +236,7 @@ def build():
     U["unit"] = U["game_id"] + "-" + U["team"]
     keep = ["unit", "season", "game_id", "date", "team", "opponent", "player_id", "player", "position", "group", "status", "minutes",
             "baseline", "truth", "gainer", "base_rank", "is_starter", "bench_rank", "overlap_top", "vacated_same_pos",
-            "vacated_total", "n_out", "starter_out_same_pos", "trend", "out_streak", "n_healthy", "hist_similar", "hist_similar_n",
+            "vacated_total", "n_out", "starter_out_same_pos", "trend", "out_streak", "last1_vs_base", "std10", "cd_last5", "b2b", "home", "n_healthy", "hist_similar", "hist_similar_n",
             "hist_any", "hist_any_n", "base_start_rate"]
     C = C[keep]
     U.to_csv(os.path.join(DATA, "units.csv"), index=False); C.to_csv(os.path.join(DATA, "candidates.csv"), index=False)
