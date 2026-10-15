@@ -1,0 +1,118 @@
+"Both models beat every simple rule: the #1 pick gained minutes 54% of the time, vs 45% for next man up"
+"Ranks healthy teammates by chance of playing 2+ minutes above their 10-game baseline, in team-games where a rotation player (15+ min) is out."
+"Source: backtest/backtest.py (github.com/lukemaass-hub/nba-board), ESPN box scores, 2024-25 and 2025-26 regular seasons, 2,460 games, 3,043 team-games with a rotation player out. Run by Claude 2026-10-15. Full write-up: backtest/REPORT.md"
+
+"Train 2024-25, test 2025-26"
+Method,Units,#1 pick is a gainer,Top 3 precision,Rank correlation,#1 pick vs best simple rule,Top 3 vs best simple rule
+Random,1655,38.4%,38.4%,0.000
+Highest usual minutes,1655,32.7%,38.3%,0.061
+Next man up (same position),1655,44.6%,41.1%,0.051
+Simple model,1655,54.1%,46.7%,0.222,=C10-MAX(C8:C9),=D10-MAX(D8:D9)
+Boosted ranker,1655,54.2%,47.6%,0.227,=C11-MAX(C8:C9),=D11-MAX(D8:D9)
+Simple model vs Next man up (same position): 95% range of the #1-pick gap +6.6 to +12.3 points
+Boosted ranker vs Next man up (same position): 95% range of the #1-pick gap +6.9 to +12.4 points
+
+"Train 2025-26, test 2024-25"
+Method,Units,#1 pick is a gainer,Top 3 precision,Rank correlation,#1 pick vs best simple rule,Top 3 vs best simple rule
+Random,1388,40.0%,40.0%,0.000
+Highest usual minutes,1388,33.4%,40.0%,0.033
+Next man up (same position),1388,47.3%,42.5%,0.046
+Simple model,1388,53.7%,48.0%,0.225,=C20-MAX(C18:C19),=D20-MAX(D18:D19)
+Boosted ranker,1388,54.8%,48.2%,0.227,=C21-MAX(C18:C19),=D21-MAX(D18:D19)
+Simple model vs Next man up (same position): 95% range of the #1-pick gap +3.5 to +9.4 points
+Boosted ranker vs Next man up (same position): 95% range of the #1-pick gap +4.6 to +10.5 points
+
+Walk-forward through 2025-26 (re-trained each month)
+Method,Units,#1 pick is a gainer,Top 3 precision,Rank correlation,#1 pick vs best simple rule,Top 3 vs best simple rule
+Random,1655,38.4%,38.4%,0.000
+Highest usual minutes,1655,32.7%,38.3%,0.061
+Next man up (same position),1655,44.6%,41.1%,0.051
+Simple model,1655,53.9%,46.9%,0.224,=C30-MAX(C28:C29),=D30-MAX(D28:D29)
+Boosted ranker,1655,56.3%,48.4%,0.239,=C31-MAX(C28:C29),=D31-MAX(D28:D29)
+
+Walk-forward by month: #1 pick is a gainer
+Month,Units,Random,Highest usual minutes,Next man up (same position),Simple model,Boosted ranker
+Oct (2025),98,36.0%,33.7%,31.6%,52.0%,45.9%
+Nov (2025),305,39.2%,37.7%,45.6%,56.1%,56.7%
+Dec (2025),264,35.4%,29.9%,41.3%,53.8%,53.8%
+Jan (2026),310,38.6%,30.6%,46.1%,55.2%,60.6%
+Feb (2026),222,36.7%,25.7%,46.8%,56.8%,58.6%
+Mar (2026),329,38.2%,35.0%,43.8%,48.3%,52.9%
+Apr (2026),127,48.0%,37.8%,53.5%,56.7%,63.0%
+Weighted by units,=SUM(B35:B41),"=SUMPRODUCT($B$35:$B$41,C35:C41)/$B$42","=SUMPRODUCT($B$35:$B$41,D35:D41)/$B$42","=SUMPRODUCT($B$35:$B$41,E35:E41)/$B$42","=SUMPRODUCT($B$35:$B$41,F35:F41)/$B$42","=SUMPRODUCT($B$35:$B$41,G35:G41)/$B$42"
+
+What the simple model looks at,Weight (+ = more likely to gain)
+his last 3 games vs his usual,+0.38
+his spot in the bench order,-0.23
+his usual minutes (last 10 games),-0.20
+his minutes rank on the team,-0.16
+how many games the main player has been out,-0.15
+he is a starter,-0.14
+how he did before when a similar player was out (shrunk),+0.14
+total minutes missing,+0.12
+minutes missing at his position,+0.11
+number of healthy teammates,-0.03
+how he did before in any game with a teammate out (shrunk),+0.03
+a starter at his position is out,+0.03
+number of rotation players out,+0.03
+plays the same position as the main player out,+0.01
+
+What the boosted ranker looks at,Share of what it learned
+his last 3 games vs his usual,28.4%
+his usual minutes (last 10 games),20.2%
+how he did before when a similar player was out (shrunk),11.9%
+how he did before in any game with a teammate out (shrunk),9.9%
+minutes missing at his position,7.6%
+total minutes missing,7.6%
+his minutes rank on the team,4.6%
+how many games the main player has been out,2.3%
+plays the same position as the main player out,1.8%
+his spot in the bench order,1.7%
+number of healthy teammates,1.7%
+a starter at his position is out,0.9%
+he is a starter,0.7%
+number of rotation players out,0.6%
+
+"Where the #1 pick goes wrong (Boosted ranker, tested on 2025-26)",Model #1 pick right,Next man up #1 pick right,Model minus next man up
+Players out
+  1 player out,49.2%,39.6%,=B78-C78
+  2 players out,55.6%,43.7%,=B79-C79
+  3 or more out,65.6%,59.5%,=B80-C80
+Position of main player out
+  Center,56.3%,49.4%,=B82-C82
+  Forward,54.3%,39.4%,=B83-C83
+  Guard,53.4%,47.4%,=B84-C84
+Game of the absence
+  1st game out,56.0%,48.7%,=B86-C86
+  2nd or 3rd game out,56.2%,46.8%,=B87-C87
+  4th to 10th game out,51.2%,39.5%,=B88-C88
+Time of season
+  April (end of season),62.2%,53.5%,=B90-C90
+  Oct-Mar,53.5%,43.8%,=B91-C91
+Gainers available
+  No teammate gained,0.0%,0.0%,=B93-C93
+  1 or 2 teammates gained,39.5%,31.8%,=B94-C94
+  3 or more gained,68.3%,56.7%,=B95-C95
+Share of games with no gainer at all (nobody could be right),4.8%
+
+"Hits (2025-26, 30+ minutes missing): the #1 pick gained minutes"
+Date,Team,Opponent,Out (baseline minutes),Model's top 3 (actual change),Biggest real gainer
+2025-11-12,DET,CHI,Cade Cunningham (37); Isaiah Stewart (23); Jalen Duren (30); Ausar Thompson (29); Tobias Harris (28),"Daniss Jenkins (+30), Chaz Lanier (+8), Bobi Klintman (+7)",Daniss Jenkins (+30)
+2026-04-10,OKC,DEN,Alex Caruso (16); Isaiah Hartenstein (20); Shai Gilgeous-Alexander (32); Isaiah Joe (17); Jaylin Williams (16); Chet Holmgren (26); Jalen Williams (24); Cason Wallace (22); Ajay Mitchell (23),"Nikola Topic (+29), Kenrich Williams (+23), Brooks Barnhizer (+26)",Branden Carlson (+29)
+2026-02-03,IND,UTA,T.J. McConnell (16); Pascal Siakam (34); Andrew Nembhard (33); Aaron Nesmith (32),"Kam Jones (+28), Quenton Jackson (+3), Taelon Peter (+26)",Kam Jones (+28)
+2026-04-12,ATL,MIA,Onyeka Okongwu (30); Jalen Johnson (35); Dyson Daniels (33),"Asa Newell (+28), Mouhamed Gueye (-14), Zaccharie Risacher (+8)",Asa Newell (+28)
+2026-01-16,LAC,TOR,Derrick Jones Jr. (24); Kawhi Leonard (34),"Jordan Miller (+28), Nicolas Batum (-16), Cam Christie (+14)",Jordan Miller (+28)
+2026-04-07,NOP,UTA,Dejounte Murray (29); Trey Murphy III (35); Karlo Matkovic (19); Yves Missi (23),"Micah Peavy (+26), Derik Queen (+16), Jeremiah Fears (+12)",Micah Peavy (+26)
+
+"Misses: the #1 pick did not, though someone else did"
+Date,Team,Opponent,Out (baseline minutes),Model's top 3 (actual change),Biggest real gainer
+2026-04-10,MEM,UTA,Cam Spencer (23); Cedric Coward (24); GG Jackson (25); Jaylen Wells (25),"Javon Small (-25), Lucas Williamson (+20), Jahmai Mashack (+20)",Jahmai Mashack (+20)
+2026-01-10,UTA,CHA,Lauri Markkanen (38); Oscar Tshiebwe (20); Ace Bailey (26),"Svi Mykhailiuk (-22), Cody Williams (+16), Isaiah Collier (+10)",Cody Williams (+16)
+2025-12-05,PHI,MIL,Joel Embiid (25); Kelly Oubre Jr. (35),"Justin Edwards (-22), Paul George (+3), Adem Bona (+8)",Adem Bona (+8)
+2026-03-21,UTA,PHI,Keyonte George (27); Isaiah Collier (27); Brice Sensabaugh (26),"Blake Hinson (-20), Elijah Harkless (+12), Kyle Filipowski (-9)",Elijah Harkless (+12)
+2026-03-19,WAS,DET,Leaky Black (32); Julian Reese (30); Bilal Coulibaly (28); Kyshawn George (20),"Justin Champagnie (-20), Anthony Gill (+1), Tre Johnson (+2)",Sharife Cooper (+14)
+2026-03-01,POR,ATL,Robert Williams III (17); Caleb Love (24); Deni Avdija (27); Shaedon Sharpe (30),"Kris Murray (-20), Scoot Henderson (+1), Donovan Clingan (+2)",Toumani Camara (+3)
+
+Data source
+Source,Object,Obtained via,Request,Run at,Requested by,Rows,Changes after retrieval
+ESPN public JSON (scoreboard + game summary box scores),site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=ID,Downloaded and scored by Claude,Backtest which healthy teammates gain 2+ minutes when a rotation teammate is out,2026-10-15,Luke,"21,810 teammate rows","Postponed, All-Star and NBA Cup final games removed; players on two teams dropped; aggregated by backtest/backtest.py"

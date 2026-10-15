@@ -1,0 +1,8 @@
+{
+ "_help": "Settings for the live 2026-27 test. last_game_x / bench_x multiply two weights of the simple model (1 = as trained). gain = minutes above the 10-game baseline that count as a gain. predict_within_minutes = only (re)rank games that tip within this many minutes, so the latest injury news is used; a game's picks lock once it starts.",
+ "last_game_x": 1.0,
+ "bench_x": 1.0,
+ "gain": 1.0,
+ "predict_within_minutes": 120,
+ "regular_season_only": true
+}
