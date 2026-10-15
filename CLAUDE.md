@@ -69,6 +69,14 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   "Run workflow" has a test_slack checkbox that posts the next game now, marked [TEST]. Don't point it at a shared
   channel until the user says testing is over.
 
+- Teammate-minutes backtest (Oct 15 2026, separate from the site; nothing on the site uses it): backtest/.
+  fetch_espn.py (ESPN scoreboard + summary box scores, 2024-25 and 2025-26 regular season; NBA cdn/stats block us,
+  bref terms forbid bulk download) -> build_dataset.py -> backtest.py -> make_report.py (REPORT.md),
+  make_sheet.py (results.xlsx), make_csv.py (one-tab CSV uploaded to the user's Drive as a Google Sheet).
+  ESPN omits most inactive players, so "missing while on the team" = inactive (out); an absence counts for its
+  first 10 games. Result: simple model ~54% #1-pick hit vs 45% next man up, 38% random; boosted ranker ~56% in
+  walk-forward. Main signal: last-3-games trend, then low baseline, then past response when a similar player was out.
+
 ## Next steps, in order
 1. Run pytest, then the pipeline against the live sites. Fix each parser against the real response and update tests.
 2. Serve index.html locally (python -m http.server) and check all 30 teams render with injuries and depth charts.

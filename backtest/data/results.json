@@ -1,0 +1,664 @@
+{
+ "splits": {
+  "Train 2024-25, test 2025-26": {
+   "Random": {
+    "units": 1655,
+    "top1": 0.3840799918443423,
+    "p3": 0.3840799918443423,
+    "rho": 0.0
+   },
+   "Highest usual minutes": {
+    "units": 1655,
+    "top1": 0.3274924471299094,
+    "p3": 0.38348439073514606,
+    "rho": 0.06122495054927195
+   },
+   "Next man up (same position)": {
+    "units": 1655,
+    "top1": 0.4459214501510574,
+    "p3": 0.4108761329305136,
+    "rho": 0.05092626230040486
+   },
+   "Simple model": {
+    "units": 1655,
+    "top1": 0.5413897280966767,
+    "p3": 0.46686807653575024,
+    "rho": 0.22241273754902935
+   },
+   "Boosted ranker": {
+    "units": 1655,
+    "top1": 0.5419939577039274,
+    "p3": 0.4759315206445116,
+    "rho": 0.22691969973365236
+   },
+   "_vs_best_baseline": {
+    "Simple model": {
+     "baseline": "Next man up (same position)",
+     "top1": [
+      0.06645015105740182,
+      0.12326283987915408
+     ],
+     "p3": [
+      0.04209466263846929,
+      0.06968781470292044
+     ],
+     "rho": [
+      0.14691397669259867,
+      0.19671799733208475
+     ]
+    },
+    "Boosted ranker": {
+     "baseline": "Next man up (same position)",
+     "top1": [
+      0.0688821752265861,
+      0.12388217522658601
+     ],
+     "p3": [
+      0.051555891238670694,
+      0.07935548841893252
+     ],
+     "rho": [
+      0.15172965617015546,
+      0.19892984551434642
+     ]
+    }
+   }
+  },
+  "Train 2025-26, test 2024-25": {
+   "Random": {
+    "units": 1388,
+    "top1": 0.40021577445929024,
+    "p3": 0.40021577445929024,
+    "rho": 0.0
+   },
+   "Highest usual minutes": {
+    "units": 1388,
+    "top1": 0.33429394812680113,
+    "p3": 0.39961575408261285,
+    "rho": 0.03251987507166096
+   },
+   "Next man up (same position)": {
+    "units": 1388,
+    "top1": 0.47262247838616717,
+    "p3": 0.425312199807877,
+    "rho": 0.04608844968214748
+   },
+   "Simple model": {
+    "units": 1388,
+    "top1": 0.5367435158501441,
+    "p3": 0.47982708933717577,
+    "rho": 0.2246152435752798
+   },
+   "Boosted ranker": {
+    "units": 1388,
+    "top1": 0.5482708933717579,
+    "p3": 0.48174831892411146,
+    "rho": 0.22659946012150511
+   },
+   "_vs_best_baseline": {
+    "Simple model": {
+     "baseline": "Next man up (same position)",
+     "top1": [
+      0.0345821325648415,
+      0.09439841498559068
+     ],
+     "p3": [
+      0.041060278578290095,
+      0.06820965417867432
+     ],
+     "rho": [
+      0.1477918506875909,
+      0.20802741348288306
+     ]
+    },
+    "Boosted ranker": {
+     "baseline": "Next man up (same position)",
+     "top1": [
+      0.04610951008645533,
+      0.10518731988472622
+     ],
+     "p3": [
+      0.04442843419788665,
+      0.06893011527377518
+     ],
+     "rho": [
+      0.15045001353439616,
+      0.20830770760773773
+     ]
+    }
+   }
+  }
+ },
+ "walk_forward": {
+  "Boosted ranker": {
+   "units": 1655,
+   "top1": 0.5631419939577039,
+   "p3": 0.48358509566968777,
+   "rho": 0.23871872361038843
+  },
+  "Highest usual minutes": {
+   "units": 1655,
+   "top1": 0.3274924471299094,
+   "p3": 0.38348439073514606,
+   "rho": 0.06122495054927195
+  },
+  "Next man up (same position)": {
+   "units": 1655,
+   "top1": 0.4459214501510574,
+   "p3": 0.4108761329305136,
+   "rho": 0.05092626230040486
+  },
+  "Random": {
+   "units": 1655,
+   "top1": 0.3840799918443423,
+   "p3": 0.3840799918443423,
+   "rho": 0.0
+  },
+  "Simple model": {
+   "units": 1655,
+   "top1": 0.5389728096676737,
+   "p3": 0.4688821752265861,
+   "rho": 0.22355292892404965
+  }
+ },
+ "walk_forward_by_month": {
+  "2025-10|Boosted ranker": {
+   "units": 98,
+   "top1": 0.45918367346938777,
+   "p3": 0.44217687074829926,
+   "rho": 0.18270390529694466
+  },
+  "2025-10|Highest usual minutes": {
+   "units": 98,
+   "top1": 0.336734693877551,
+   "p3": 0.4217687074829932,
+   "rho": 0.1591499464785483
+  },
+  "2025-10|Next man up (same position)": {
+   "units": 98,
+   "top1": 0.3163265306122449,
+   "p3": 0.37755102040816324,
+   "rho": -0.003617371137962548
+  },
+  "2025-10|Random": {
+   "units": 98,
+   "top1": 0.3602000323939099,
+   "p3": 0.3602000323939099,
+   "rho": 0.0
+  },
+  "2025-10|Simple model": {
+   "units": 98,
+   "top1": 0.5204081632653061,
+   "p3": 0.4591836734693878,
+   "rho": 0.17017209659361318
+  },
+  "2025-11|Boosted ranker": {
+   "units": 305,
+   "top1": 0.5672131147540984,
+   "p3": 0.49945355191256835,
+   "rho": 0.27104197190874363
+  },
+  "2025-11|Highest usual minutes": {
+   "units": 305,
+   "top1": 0.3770491803278688,
+   "p3": 0.4196721311475409,
+   "rho": 0.13972525836440547
+  },
+  "2025-11|Next man up (same position)": {
+   "units": 305,
+   "top1": 0.4557377049180328,
+   "p3": 0.4120218579234972,
+   "rho": 0.037326703278586885
+  },
+  "2025-11|Random": {
+   "units": 305,
+   "top1": 0.3915139687270835,
+   "p3": 0.3915139687270835,
+   "rho": 0.0
+  },
+  "2025-11|Simple model": {
+   "units": 305,
+   "top1": 0.5606557377049181,
+   "p3": 0.5049180327868853,
+   "rho": 0.28499505141067943
+  },
+  "2025-12|Boosted ranker": {
+   "units": 264,
+   "top1": 0.5378787878787878,
+   "p3": 0.4419191919191919,
+   "rho": 0.22880267059446555
+  },
+  "2025-12|Highest usual minutes": {
+   "units": 264,
+   "top1": 0.29924242424242425,
+   "p3": 0.369949494949495,
+   "rho": 0.07998656834970021
+  },
+  "2025-12|Next man up (same position)": {
+   "units": 264,
+   "top1": 0.4128787878787879,
+   "p3": 0.3737373737373737,
+   "rho": 0.08306051433922322
+  },
+  "2025-12|Random": {
+   "units": 264,
+   "top1": 0.35362991385718656,
+   "p3": 0.35362991385718656,
+   "rho": 0.0
+  },
+  "2025-12|Simple model": {
+   "units": 264,
+   "top1": 0.5378787878787878,
+   "p3": 0.44570707070707066,
+   "rho": 0.21951562388600288
+  },
+  "2026-01|Boosted ranker": {
+   "units": 310,
+   "top1": 0.6064516129032258,
+   "p3": 0.48817204301075273,
+   "rho": 0.23572632142880884
+  },
+  "2026-01|Highest usual minutes": {
+   "units": 310,
+   "top1": 0.3064516129032258,
+   "p3": 0.3720430107526881,
+   "rho": 0.058736601152638804
+  },
+  "2026-01|Next man up (same position)": {
+   "units": 310,
+   "top1": 0.4612903225806452,
+   "p3": 0.42365591397849456,
+   "rho": 0.08896639497781957
+  },
+  "2026-01|Random": {
+   "units": 310,
+   "top1": 0.38630482420805,
+   "p3": 0.38630482420805,
+   "rho": 0.0
+  },
+  "2026-01|Simple model": {
+   "units": 310,
+   "top1": 0.5516129032258065,
+   "p3": 0.4623655913978495,
+   "rho": 0.20682820266643479
+  },
+  "2026-02|Boosted ranker": {
+   "units": 222,
+   "top1": 0.5855855855855856,
+   "p3": 0.49099099099099097,
+   "rho": 0.27687203361791407
+  },
+  "2026-02|Highest usual minutes": {
+   "units": 222,
+   "top1": 0.25675675675675674,
+   "p3": 0.3333333333333333,
+   "rho": -0.001884091829655068
+  },
+  "2026-02|Next man up (same position)": {
+   "units": 222,
+   "top1": 0.46846846846846846,
+   "p3": 0.40840840840840836,
+   "rho": 0.037926947320641675
+  },
+  "2026-02|Random": {
+   "units": 222,
+   "top1": 0.36660004160004156,
+   "p3": 0.36660004160004156,
+   "rho": 0.0
+  },
+  "2026-02|Simple model": {
+   "units": 222,
+   "top1": 0.5675675675675675,
+   "p3": 0.4579579579579579,
+   "rho": 0.29416279273117846
+  },
+  "2026-03|Boosted ranker": {
+   "units": 329,
+   "top1": 0.5288753799392097,
+   "p3": 0.4731509625126646,
+   "rho": 0.20256388383830615
+  },
+  "2026-03|Highest usual minutes": {
+   "units": 329,
+   "top1": 0.3495440729483283,
+   "p3": 0.3728470111448835,
+   "rho": 0.059015326437295235
+  },
+  "2026-03|Next man up (same position)": {
+   "units": 329,
+   "top1": 0.4376899696048632,
+   "p3": 0.40628166160081053,
+   "rho": 0.03265706712652053
+  },
+  "2026-03|Random": {
+   "units": 329,
+   "top1": 0.3815056270983323,
+   "p3": 0.3815056270983323,
+   "rho": 0.0
+  },
+  "2026-03|Simple model": {
+   "units": 329,
+   "top1": 0.48328267477203646,
+   "p3": 0.43971631205673767,
+   "rho": 0.1815727142084806
+  },
+  "2026-04|Boosted ranker": {
+   "units": 127,
+   "top1": 0.6299212598425197,
+   "p3": 0.5669291338582679,
+   "rho": 0.2592010196698912
+  },
+  "2026-04|Highest usual minutes": {
+   "units": 127,
+   "top1": 0.3779527559055118,
+   "p3": 0.43832020997375326,
+   "rho": -0.11974944732536946
+  },
+  "2026-04|Next man up (same position)": {
+   "units": 127,
+   "top1": 0.5354330708661418,
+   "p3": 0.4960629921259842,
+   "rho": 0.03607327842704462
+  },
+  "2026-04|Random": {
+   "units": 127,
+   "top1": 0.479745429548579,
+   "p3": 0.479745429548579,
+   "rho": 0.0
+  },
+  "2026-04|Simple model": {
+   "units": 127,
+   "top1": 0.5669291338582677,
+   "p3": 0.5485564304461942,
+   "rho": 0.15172685613747736
+  }
+ },
+ "simple_weights": [
+  [
+   "his last 3 games vs his usual",
+   0.38
+  ],
+  [
+   "his spot in the bench order",
+   -0.234
+  ],
+  [
+   "his usual minutes (last 10 games)",
+   -0.203
+  ],
+  [
+   "his minutes rank on the team",
+   -0.164
+  ],
+  [
+   "how many games the main player has been out",
+   -0.152
+  ],
+  [
+   "he is a starter",
+   -0.142
+  ],
+  [
+   "how he did before when a similar player was out (shrunk)",
+   0.139
+  ],
+  [
+   "total minutes missing",
+   0.122
+  ],
+  [
+   "minutes missing at his position",
+   0.11
+  ],
+  [
+   "number of healthy teammates",
+   -0.03
+  ],
+  [
+   "how he did before in any game with a teammate out (shrunk)",
+   0.03
+  ],
+  [
+   "a starter at his position is out",
+   0.029
+  ],
+  [
+   "number of rotation players out",
+   0.027
+  ],
+  [
+   "plays the same position as the main player out",
+   0.007
+  ]
+ ],
+ "gbm_importance": [
+  [
+   "his last 3 games vs his usual",
+   28.4
+  ],
+  [
+   "his usual minutes (last 10 games)",
+   20.2
+  ],
+  [
+   "how he did before when a similar player was out (shrunk)",
+   11.9
+  ],
+  [
+   "how he did before in any game with a teammate out (shrunk)",
+   9.9
+  ],
+  [
+   "minutes missing at his position",
+   7.6
+  ],
+  [
+   "total minutes missing",
+   7.6
+  ],
+  [
+   "his minutes rank on the team",
+   4.6
+  ],
+  [
+   "how many games the main player has been out",
+   2.3
+  ],
+  [
+   "plays the same position as the main player out",
+   1.8
+  ],
+  [
+   "his spot in the bench order",
+   1.7
+  ],
+  [
+   "number of healthy teammates",
+   1.7
+  ],
+  [
+   "a starter at his position is out",
+   0.9
+  ],
+  [
+   "he is a starter",
+   0.7
+  ],
+  [
+   "number of rotation players out",
+   0.6
+  ]
+ ],
+ "best_model": "Boosted ranker",
+ "fail_by": {
+  "Players out": {
+   "1": {
+    "top1": 0.492,
+    "nextman_top1": 0.396
+   },
+   "2": {
+    "top1": 0.556,
+    "nextman_top1": 0.437
+   },
+   "3+": {
+    "top1": 0.656,
+    "nextman_top1": 0.595
+   }
+  },
+  "Position of main player out": {
+   "C": {
+    "top1": 0.563,
+    "nextman_top1": 0.494
+   },
+   "F": {
+    "top1": 0.543,
+    "nextman_top1": 0.394
+   },
+   "G": {
+    "top1": 0.534,
+    "nextman_top1": 0.474
+   }
+  },
+  "Game of the absence": {
+   "1st game out": {
+    "top1": 0.56,
+    "nextman_top1": 0.487
+   },
+   "2nd-3rd": {
+    "top1": 0.562,
+    "nextman_top1": 0.468
+   },
+   "4th-10th": {
+    "top1": 0.512,
+    "nextman_top1": 0.395
+   }
+  },
+  "Time of season": {
+   "April (end of season)": {
+    "top1": 0.622,
+    "nextman_top1": 0.535
+   },
+   "Oct-Mar": {
+    "top1": 0.535,
+    "nextman_top1": 0.438
+   }
+  },
+  "Gainers available": {
+   "0": {
+    "top1": 0.0,
+    "nextman_top1": 0.0
+   },
+   "1-2": {
+    "top1": 0.395,
+    "nextman_top1": 0.318
+   },
+   "3+": {
+    "top1": 0.683,
+    "nextman_top1": 0.567
+   }
+  },
+  "Units": {
+   "no gainer at all (nobody could be right)": 0.048
+  }
+ },
+ "examples_hit": [
+  {
+   "date": "2025-11-12",
+   "team": "DET",
+   "opponent": "CHI",
+   "out_players": "Cade Cunningham (37); Isaiah Stewart (23); Jalen Duren (30); Ausar Thompson (29); Tobias Harris (28)",
+   "model_top3": "Daniss Jenkins (+30), Chaz Lanier (+8), Bobi Klintman (+7)",
+   "real_biggest": "Daniss Jenkins (+30)"
+  },
+  {
+   "date": "2026-04-10",
+   "team": "OKC",
+   "opponent": "DEN",
+   "out_players": "Alex Caruso (16); Isaiah Hartenstein (20); Shai Gilgeous-Alexander (32); Isaiah Joe (17); Jaylin Williams (16); Chet Holmgren (26); Jalen Williams (24); Cason Wallace (22); Ajay Mitchell (23)",
+   "model_top3": "Nikola Topic (+29), Kenrich Williams (+23), Brooks Barnhizer (+26)",
+   "real_biggest": "Branden Carlson (+29)"
+  },
+  {
+   "date": "2026-02-03",
+   "team": "IND",
+   "opponent": "UTA",
+   "out_players": "T.J. McConnell (16); Pascal Siakam (34); Andrew Nembhard (33); Aaron Nesmith (32)",
+   "model_top3": "Kam Jones (+28), Quenton Jackson (+3), Taelon Peter (+26)",
+   "real_biggest": "Kam Jones (+28)"
+  },
+  {
+   "date": "2026-04-12",
+   "team": "ATL",
+   "opponent": "MIA",
+   "out_players": "Onyeka Okongwu (30); Jalen Johnson (35); Dyson Daniels (33)",
+   "model_top3": "Asa Newell (+28), Mouhamed Gueye (-14), Zaccharie Risacher (+8)",
+   "real_biggest": "Asa Newell (+28)"
+  },
+  {
+   "date": "2026-01-16",
+   "team": "LAC",
+   "opponent": "TOR",
+   "out_players": "Derrick Jones Jr. (24); Kawhi Leonard (34)",
+   "model_top3": "Jordan Miller (+28), Nicolas Batum (-16), Cam Christie (+14)",
+   "real_biggest": "Jordan Miller (+28)"
+  },
+  {
+   "date": "2026-04-07",
+   "team": "NOP",
+   "opponent": "UTA",
+   "out_players": "Dejounte Murray (29); Trey Murphy III (35); Karlo Matkovic (19); Yves Missi (23)",
+   "model_top3": "Micah Peavy (+26), Derik Queen (+16), Jeremiah Fears (+12)",
+   "real_biggest": "Micah Peavy (+26)"
+  }
+ ],
+ "examples_miss": [
+  {
+   "date": "2026-04-10",
+   "team": "MEM",
+   "opponent": "UTA",
+   "out_players": "Cam Spencer (23); Cedric Coward (24); GG Jackson (25); Jaylen Wells (25)",
+   "model_top3": "Javon Small (-25), Lucas Williamson (+20), Jahmai Mashack (+20)",
+   "real_biggest": "Jahmai Mashack (+20)"
+  },
+  {
+   "date": "2026-01-10",
+   "team": "UTA",
+   "opponent": "CHA",
+   "out_players": "Lauri Markkanen (38); Oscar Tshiebwe (20); Ace Bailey (26)",
+   "model_top3": "Svi Mykhailiuk (-22), Cody Williams (+16), Isaiah Collier (+10)",
+   "real_biggest": "Cody Williams (+16)"
+  },
+  {
+   "date": "2025-12-05",
+   "team": "PHI",
+   "opponent": "MIL",
+   "out_players": "Joel Embiid (25); Kelly Oubre Jr. (35)",
+   "model_top3": "Justin Edwards (-22), Paul George (+3), Adem Bona (+8)",
+   "real_biggest": "Adem Bona (+8)"
+  },
+  {
+   "date": "2026-03-21",
+   "team": "UTA",
+   "opponent": "PHI",
+   "out_players": "Keyonte George (27); Isaiah Collier (27); Brice Sensabaugh (26)",
+   "model_top3": "Blake Hinson (-20), Elijah Harkless (+12), Kyle Filipowski (-9)",
+   "real_biggest": "Elijah Harkless (+12)"
+  },
+  {
+   "date": "2026-03-19",
+   "team": "WAS",
+   "opponent": "DET",
+   "out_players": "Leaky Black (32); Julian Reese (30); Bilal Coulibaly (28); Kyshawn George (20)",
+   "model_top3": "Justin Champagnie (-20), Anthony Gill (+1), Tre Johnson (+2)",
+   "real_biggest": "Sharife Cooper (+14)"
+  },
+  {
+   "date": "2026-03-01",
+   "team": "POR",
+   "opponent": "ATL",
+   "out_players": "Robert Williams III (17); Caleb Love (24); Deni Avdija (27); Shaedon Sharpe (30)",
+   "model_top3": "Kris Murray (-20), Scoot Henderson (+1), Donovan Clingan (+2)",
+   "real_biggest": "Toumani Camara (+3)"
+  }
+ ]
+}

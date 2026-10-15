@@ -30,10 +30,34 @@ def ci(block):
     return "\n".join(lines)
 
 
+sp = R["splits"]["Train 2024-25, test 2025-26"]; wfb = R["walk_forward"]
+best = R["best_model"]
+bottom = [
+    "## Bottom line", "",
+    f"- Both models beat every simple rule in all three tests. Tested on 2025-26 after training on 2024-25, the #1 pick "
+    f"gained 2+ minutes {pct(sp['Boosted ranker']['top1'])} of the time (boosted ranker) and {pct(sp['Simple model']['top1'])} (simple model), "
+    f"against {pct(sp['Next man up (same position)']['top1'])} for next man up at the same position, "
+    f"{pct(sp['Highest usual minutes']['top1'])} for the highest-minutes teammate and {pct(sp['Random']['top1'])} for a random pick.",
+    f"- Re-trained month by month through 2025-26, the boosted ranker's #1 pick was right {pct(wfb['Boosted ranker']['top1'])} of the time; "
+    f"its top 3 averaged {pct(wfb['Boosted ranker']['p3'])} gainers and its ranking correlated {wfb['Boosted ranker']['rho']:.2f} with the real changes "
+    f"(next man up: {wfb['Next man up (same position)']['rho']:.2f}).",
+    "- The simple model is nearly as good as the boosted ranker and is easier to explain, so it is the one to start with.",
+    "- The strongest signal is a player whose minutes were already rising in his last 3 games. Next: lower usual minutes "
+    "(a bench player clears +2 more easily than a 34-minute starter), and how he did the last times a similar teammate was out. "
+    "Playing the same position as the missing player adds little once those are known.",
+    "- Highest-minutes teammate is worse than random: stars are already near their ceiling.",
+    "",
+    "## Limits", "",
+    "- ESPN leaves most inactive players out of its box scores, so a player missing from a game while on the team counts as "
+    "inactive (out). ESPN does not say why for those; rare non-injury absences (personal, G League) can slip in.",
+    "- An absence only counts for its first 10 games; after that his teammates' 10-game baselines already include it.",
+    f"- {S['players_dropped_multi_team']} players who played for two teams were dropped, as asked; that removes many rotation players from trade-deadline teams.",
+    "- ESPN minutes are whole numbers.",
+    "- The most common miss is a #1 pick who doesn't play at all (coach's decision), often late in the season.", ""]
 out = [f"# Who gains minutes when a teammate is out: backtest report", "",
        "Ranking only: for each game where a rotation player (15+ minute baseline) is out, rank his healthy teammates by how "
        "likely they are to play 2+ minutes more than their baseline (average of their previous 10 games).", "",
-       "## Data", "",
+       *bottom, "## Data", "",
        f"- {S['games']:,} regular-season games (2024-25 and 2025-26) from ESPN box scores; {S['players_all']:,} players.",
        f"- Dropped {S['players_dropped_multi_team']:,} players who played for more than one team; {S['players_kept']:,} kept.",
        f"- Player-games by status: " + ", ".join(f"{STATUS.get(k, k)} {v:,}" for k, v in S["status_counts"].items()) + ".",

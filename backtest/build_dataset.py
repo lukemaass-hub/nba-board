@@ -10,7 +10,8 @@ Rules (from the task):
   as inactive. ESPN does not say why for those.
 - Baseline = average minutes over the player's previous 10 games played, before that game only (it can reach back
   into the previous season; same team, since multi-team players are dropped). At least 5 earlier games needed.
-- Unit = a team-game where at least one rotation player (baseline 15+) is out.
+- Unit = a team-game where at least one rotation player (baseline 15+) is out, in the first 10 games of his absence
+  (after that, his teammates' 10-game baselines already include it, so nothing is left to gain).
 - Candidates = healthy teammates (played, or DNP coach's decision) with a baseline. Truth = minutes - baseline;
   gainer = +2 or more.
 
@@ -25,6 +26,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 SEASONS = ["2024-25", "2025-26"]
 ROTATION_MIN = 15.0
+MAX_OUT_STREAK = 10                  # an absence counts for its first 10 team games; after that teammates' baselines
+                                     # (their last 10 games) already reflect it
 BASE_GAMES, BASE_MIN_GAMES = 10, 5
 GAIN = 2.0
 SHRINK_K = 5.0                       # history shrinkage: k phantom games at 0 change
@@ -49,10 +52,23 @@ def classify_dnp(reason):
     return "out"                                     # injury, illness, rest, surgery, reconditioning...
 
 
+NBA = {"ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GS", "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL",
+       "MIN", "NO", "NY", "OKC", "ORL", "PHI", "PHX", "POR", "SA", "SAC", "TOR", "UTAH", "WSH"}
+
+
 def load():
+    """Box scores and games, minus: postponed games (nobody played; ESPN keeps them on the original date and lists
+    the makeup game separately), All-Star exhibitions (non-NBA teams), and the NBA Cup final (the only game on its
+    date in mid-December; it does not count toward regular-season stats)."""
     box = pd.concat([pd.read_csv(os.path.join(DATA, f"box_{s}.csv"), dtype={"game_id": str, "player_id": str}) for s in SEASONS])
     games = pd.concat([pd.read_csv(os.path.join(DATA, f"games_{s}.csv"), dtype={"game_id": str}) for s in SEASONS])
-    return box.drop_duplicates(["game_id", "player_id"]), games.drop_duplicates("game_id")
+    box, games = box.drop_duplicates(["game_id", "player_id"]), games.drop_duplicates("game_id")
+    played = set(box.loc[box["played"] == 1, "game_id"])
+    per_day = games.groupby("date")["game_id"].transform("size")
+    cup_final = (per_day == 1) & games["date"].str[5:7].eq("12") & games["date"].str[8:10].astype(int).between(13, 20)
+    keep = games["game_id"].isin(played) & games["home"].isin(NBA) & games["away"].isin(NBA) & ~cup_final
+    games = games[keep]
+    return box[box["game_id"].isin(games["game_id"])], games
 
 
 def depth_2027():
@@ -147,6 +163,13 @@ def build():
             if p:
                 hist_m.append(m); hist_s.append(s)
         st.loc[idx, "baseline"], st.loc[idx, "base_n"], st.loc[idx, "base_start_rate"], st.loc[idx, "last3"] = base, n, sr, l3
+    st["out_streak"] = 0
+    for pid, idx in st.groupby("player_id").groups.items():
+        n, vals = 0, []
+        for o in st.loc[idx, "status"].isin(["out", "inactive"]).to_numpy():
+            n = n + 1 if o else 0
+            vals.append(n)
+        st.loc[idx, "out_streak"] = vals
     st["position"] = st["player_id"].map(pos).fillna("")
     st["group"] = st["position"].map(GROUP).fillna("")
     st["player"] = st["player_id"].map(name)
@@ -158,7 +181,7 @@ def build():
     units, cands = [], []
     hist = {}                                         # player_id -> list of (out group, change) from earlier units
     for (gid, team), g in st.groupby(["game_id", "team"], sort=False):
-        outs = g[g["is_out"] & (g["baseline"] >= ROTATION_MIN)]
+        outs = g[g["is_out"] & (g["baseline"] >= ROTATION_MIN) & (g["out_streak"] <= MAX_OUT_STREAK)]
         if outs.empty:
             continue
         hc = g[g["healthy"] & g["baseline"].notna()].copy()
@@ -181,6 +204,7 @@ def build():
                                       for gr in hc["group"]]
         hc["trend"] = hc["last3"] - hc["baseline"]
         hc["n_healthy"] = len(hc)
+        hc["out_streak"] = top["out_streak"]                 # 1 = the main player's first game out
         # how he responded before when a similar (same-group) rotation player was out, shrunk toward 0
         hs, hn, ha, han = [], [], [], []
         for pid, gr in zip(hc["player_id"], hc["group"]):
@@ -191,7 +215,7 @@ def build():
         hc["hist_similar"], hc["hist_similar_n"], hc["hist_any"], hc["hist_any_n"] = hs, hn, ha, han
         units.append({"season": g["season"].iat[0], "game_id": gid, "date": g["date"].iat[0], "team": team,
                       "opponent": g["opponent"].iat[0], "out_players": "; ".join(f"{p} ({b:.0f})" for p, b in zip(outs["player"], outs["baseline"])),
-                      "top_out": top["player"], "top_out_group": top["group"], "n_out": len(outs), "vacated": round(vac, 1),
+                      "top_out": top["player"], "top_out_group": top["group"], "out_streak": int(top["out_streak"]), "n_out": len(outs), "vacated": round(vac, 1),
                       "n_candidates": len(hc), "n_gainers": int(hc["gainer"].sum())})
         cands.append(hc.assign(unit=f"{gid}-{team}"))
         for pid, c in zip(hc["player_id"], hc["truth"]):     # remember for later games (after this game only)
@@ -200,7 +224,7 @@ def build():
     U["unit"] = U["game_id"] + "-" + U["team"]
     keep = ["unit", "season", "game_id", "date", "team", "opponent", "player_id", "player", "position", "group", "status", "minutes",
             "baseline", "truth", "gainer", "base_rank", "is_starter", "bench_rank", "overlap_top", "vacated_same_pos",
-            "vacated_total", "n_out", "starter_out_same_pos", "trend", "n_healthy", "hist_similar", "hist_similar_n",
+            "vacated_total", "n_out", "starter_out_same_pos", "trend", "out_streak", "n_healthy", "hist_similar", "hist_similar_n",
             "hist_any", "hist_any_n", "base_start_rate"]
     C = C[keep]
     U.to_csv(os.path.join(DATA, "units.csv"), index=False); C.to_csv(os.path.join(DATA, "candidates.csv"), index=False)

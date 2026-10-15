@@ -20,12 +20,12 @@ import lightgbm as lgb
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 FEATURES = ["baseline", "is_starter", "bench_rank", "base_rank", "overlap_top", "vacated_same_pos", "starter_out_same_pos",
-            "vacated_total", "n_out", "n_healthy", "trend", "hist_similar", "hist_any"]
+            "vacated_total", "n_out", "n_healthy", "trend", "out_streak", "hist_similar", "hist_any"]
 PLAIN = {"baseline": "his usual minutes (last 10 games)", "is_starter": "he is a starter", "bench_rank": "his spot in the bench order",
          "base_rank": "his minutes rank on the team", "overlap_top": "plays the same position as the main player out",
          "vacated_same_pos": "minutes missing at his position", "starter_out_same_pos": "a starter at his position is out",
          "vacated_total": "total minutes missing", "n_out": "number of rotation players out", "n_healthy": "number of healthy teammates",
-         "trend": "his last 3 games vs his usual", "hist_similar": "how he did before when a similar player was out (shrunk)",
+         "trend": "his last 3 games vs his usual", "out_streak": "how many games the main player has been out", "hist_similar": "how he did before when a similar player was out (shrunk)",
          "hist_any": "how he did before in any game with a teammate out (shrunk)"}
 RNG = np.random.default_rng(7)
 
@@ -148,13 +148,15 @@ def main():
     test, res = scored["Train 2024-25, test 2025-26"]
     best = "Simple model" if res["Simple model"]["top1"].mean() >= res["Boosted ranker"]["top1"].mean() else "Boosted ranker"
     col = "s_simple" if best == "Simple model" else "s_gbm"
-    m = res[best].merge(U[["unit", "date", "team", "opponent", "out_players", "top_out_group", "n_out", "vacated", "n_gainers", "n_candidates"]], on="unit")
+    m = res[best].merge(U[["unit", "date", "team", "opponent", "out_players", "top_out_group", "n_out", "vacated", "n_gainers", "n_candidates", "out_streak"]], on="unit")
     nm = res["Next man up (same position)"].set_index("unit")["top1"]
     m["nextman_top1"] = m["unit"].map(nm)
     out["best_model"] = best
     out["fail_by"] = {
         "Players out": m.groupby(np.where(m["n_out"] >= 3, "3+", m["n_out"].astype(str)))[["top1", "nextman_top1"]].mean().round(3).to_dict("index"),
         "Position of main player out": m.groupby("top_out_group")[["top1", "nextman_top1"]].mean().round(3).to_dict("index"),
+        "Game of the absence": m.groupby(np.select([m["out_streak"] == 1, m["out_streak"] <= 3], ["1st game out", "2nd-3rd"], "4th-10th"))[["top1", "nextman_top1"]].mean().round(3).to_dict("index"),
+        "Time of season": m.groupby(np.where(m["date"].str[5:7] == "04", "April (end of season)", "Oct-Mar"))[["top1", "nextman_top1"]].mean().round(3).to_dict("index"),
         "Gainers available": m.groupby(np.select([m["n_gainers"] == 0, m["n_gainers"] <= 2], ["0", "1-2"], "3+"))[["top1", "nextman_top1"]].mean().round(3).to_dict("index"),
         "Units": {"no gainer at all (nobody could be right)": round((m["n_gainers"] == 0).mean(), 3)},
     }

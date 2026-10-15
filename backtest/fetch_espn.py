@@ -63,7 +63,10 @@ def box_rows(season, gid, date, summary):
                 mins = 0.0
             dnp = bool(a.get("didNotPlay"))
             rows.append({"season": season, "game_id": gid, "date": date, "team": abbr[i], "opponent": abbr[1 - i],
-                         "home": int(t["team"]["id"] == home_id), "player_id": ath["id"], "player": ath["displayName"],
+                         "home": int(t["team"]["id"] == home_id),
+                         # a few ESPN entries have no id or full name; key them by short name and team
+                         "player_id": ath.get("id") or f"x-{abbr[i]}-{ath.get('shortName', '?')}",
+                         "player": ath.get("displayName") or ath.get("shortName", "?"),
                          "position": (ath.get("position") or {}).get("abbreviation", ""), "starter": int(bool(a.get("starter"))),
                          "minutes": mins, "played": int(not dnp and mins > 0), "dnp": int(dnp),
                          "dnp_reason": (a.get("reason") or "") if dnp else "", "ejected": int(bool(a.get("ejected")))})
