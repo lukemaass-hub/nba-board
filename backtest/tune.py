@@ -13,7 +13,7 @@ from sklearn.preprocessing import StandardScaler
 import lightgbm as lgb
 import backtest as bt
 
-GAIN = float(sys.argv[1]) if len(sys.argv) > 1 else 1.0
+GAIN = 1.0                                   # set from the command line in main()
 BASE = bt.FEATURES
 NEW = ["last1_vs_base", "std10", "cd_last5", "b2b", "home"]
 PLUS = BASE + NEW
@@ -90,6 +90,8 @@ def run(tr, te, lr_cfg, gbm_cfg):
 
 
 def main():
+    global GAIN
+    GAIN = float(sys.argv[1]) if len(sys.argv) > 1 else 1.0
     C = pd.read_csv(os.path.join(bt.DATA, "candidates.csv"), dtype={"game_id": str, "player_id": str})
     C[PLUS] = C[PLUS].fillna(0)
     C["gainer"] = (C["truth"] >= GAIN).astype(int)

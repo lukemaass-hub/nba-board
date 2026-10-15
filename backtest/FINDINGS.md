@@ -91,6 +91,29 @@ These have **little or no effect**: playing the same position as the missing pla
 - **Traded players are left out.** Players who changed teams were excluded, which removes many rotation players on teams that made deadline trades.
 - **It ranks players, it doesn't predict minutes.** It says who is most likely to play more, not by how much.
 
+## Weight experiment: more weight on last game, less on coach's-decision benchings
+
+I took the tuned simple model and multiplied two weights by hand, then re-ran both tests (#1 pick hit rate, +1 minute):
+
+| Last game weight | Bench weight | Test 2025-26 | Test 2024-25 |
+|---|---|---|---|
+| x1 (as trained) | x1 (as trained) | 62.7% | 62.9% |
+| x1.5 | x1 | 62.1% | 62.8% |
+| x2 | x1 | 62.4% | 62.8% |
+| x3 | x1 | 62.1% | 63.5% |
+| x1 | x0.5 | 61.9% | 62.8% |
+| x1 | x0 (ignored) | 60.5% | 61.5% |
+| x2 | x0.5 | 62.0% | 62.8% |
+| x3 | x0 | 60.9% | 61.6% |
+
+- **More weight on the last game** changes little: between 0.6 points worse and 0.6 points better.
+- **Less weight on coach's-decision benchings** hurts. Ignoring it costs 1.4 to 2.2 points, and the ranking's correlation with real changes drops from about 0.27 to 0.22.
+- **Conclusion:** the trained weights are close to the best. The live test uses them as the default, and both can be changed in `backtest/live/settings.json`.
+
+## Live test on 2026-27
+
+From opening night (Oct 20), for every game where a rotation player is listed Out or Doubtful on the board, the model ranks his healthy teammates before tip-off. The picks lock when the game starts. The next morning they are scored against the real box score. The running results are in `backtest/live/SCORECARD.md`: the model against next man up and random, overall and by confidence.
+
 ## What I'd suggest next
 
 - **Only act on confident picks.** The top half of confidence is right about 70% of the time.
