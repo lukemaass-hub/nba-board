@@ -193,6 +193,21 @@ def cmd_predict():
                     "baseline", "score", "confidence", "nextman", "top_group", "predicted_at"]
             pd.concat(frames)[cols].round(3).to_csv(path, index=False); n += 1
     print(f"predict: {n} games ranked")
+    write_picks_all()
+
+
+PICK_COLS = ["date", "tip", "team", "opponent", "out_players", "rank", "player", "status", "baseline", "confidence", "predicted_at"]
+SCORE_COLS = ["date", "game_id", "team", "opponent", "out_players", "confidence", "pick", "pick_change", "hit", "top3_hits",
+              "rank_corr", "nextman_hit", "random_hit"]
+
+
+def write_picks_all():
+    """All picks in one file, newest first (the Google Sheet reads this)."""
+    files = [os.path.join(PRED, f) for f in sorted(os.listdir(PRED)) if f.endswith(".csv")]
+    P = pd.concat([pd.read_csv(f, dtype={"game_id": str}) for f in files]) if files else pd.DataFrame(columns=PICK_COLS)
+    if len(P):
+        P = P.sort_values(["date", "tip", "team", "rank"], ascending=[False, False, True, True])
+    P[PICK_COLS].round(1).to_csv(os.path.join(LIVE, "picks_all.csv"), index=False)
 
 
 # ---------------------------------------------------------------- scoring
@@ -228,7 +243,7 @@ def cmd_score():
                           "random_hit": round(u["gainer"].mean(), 3)})
             cands.append(u[["date", "game_id", "team", "player_id", "player", "rank", "baseline", "minutes", "truth", "gainer", "top_group"]])
     if units:
-        pd.DataFrame(units).to_csv(sc_path, mode="a", header=not os.path.exists(sc_path), index=False)
+        pd.DataFrame(units)[SCORE_COLS].to_csv(sc_path, mode="a", header=not os.path.exists(sc_path), index=False)
         pd.concat(cands).to_csv(cand_path, mode="a", header=not os.path.exists(cand_path), index=False)
     print(f"score: {len(units)} team-games scored")
     write_scorecard()
@@ -236,13 +251,15 @@ def cmd_score():
 
 def write_scorecard():
     sc_path = os.path.join(LIVE, "scorecard.csv")
+    if not os.path.exists(sc_path):
+        pd.DataFrame(columns=SCORE_COLS).to_csv(sc_path, index=False)      # header only, so the Google Sheet has a file to read
     lines = ["# Live test, 2026-27: who gains minutes when a teammate is out", "",
              f"Gain = {SET['gain']:g}+ minutes above the player's last-10-game average. Weights: last game x{SET['last_game_x']:g}, "
              f"coach's-decision benchings x{SET['bench_x']:g}. Picks lock at tip-off.", ""]
-    if not os.path.exists(sc_path):
+    S = pd.read_csv(sc_path)
+    if not len(S):
         lines.append("No games scored yet.")
     else:
-        S = pd.read_csv(sc_path)
         lines += [f"**{len(S)} team-games scored** ({S['date'].min()} to {S['date'].max()})", "",
                   "| | #1 pick gained minutes |", "|---|---|",
                   f"| Model | {100 * S['hit'].mean():.1f}% |", f"| Next man up (same position) | {100 * S['nextman_hit'].mean():.1f}% |",
