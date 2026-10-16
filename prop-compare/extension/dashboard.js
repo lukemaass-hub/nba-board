@@ -186,7 +186,7 @@ async function attachOurGames() {
   await Promise.all(recent.map(async ([id]) => {
     if (found.has(id)) return;
     try {
-      const r = await fetch(`https://content.1.betfanatics.com/page/event/${encodeURIComponent(id)}`, { credentials: 'include' });
+      const r = await fetch(`https://content.1.betfanatics.com/page/event/${encodeURIComponent(id)}`, { credentials: 'omit' });
       const ev = parseOurSlate(await r.json()).find(x => x.eventId === id);
       if (ev) found.set(id, ev);
     } catch (e) { errs.push(String(e.message || e)); }
@@ -479,7 +479,7 @@ $('ours-test').addEventListener('click', async () => {
     L.push('', evs.length ? 'Events found in our feed (use one of these ids):' : 'No events from our feed found yet. Open our sportsbook site\'s NBA page in this Chrome (no need to click a game), then press ↻ Games and Test ours again.');
     for (const e of evs) L.push(`   ${e.eventId}  ${e.name}  ${e.participants.map(p => p[0]).join(' / ')}`);
     const urls = (oursLearned.urls || []).filter(u => !/\/page\/event\/|\/cardpack\//.test(u)).slice(0, 15);
-    if (urls.length) L.push('', 'Other addresses our sites and Dolly asked for (helps me find where event ids live):', ...urls.map(u => `   ${decodeURIComponent(u).slice(0, 200)}`));
+    if (urls.length) L.push('', 'Other content-feed addresses our sportsbook site asked for:', ...urls.map(u => `   ${decodeURIComponent(u).slice(0, 200)}`));
   }
   else {
     L.push('', `Game in the answer: ${r.event}`, `Markets: ${r.marketCount}   Player-points prices read: ${r.pointsPrices}`);
