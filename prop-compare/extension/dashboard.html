@@ -18,6 +18,7 @@
 <section class="controls">
   <label>Game <select id="game"><option>Loading games…</option></select></label>
   <label>Our event id <input id="ours-id" size="12" placeholder="auto"></label>
+  <button id="ours-test" title="Ask our feed for this event now and show what comes back">Test ours</button>
   <button id="refresh" title="Reload today's games from every book">↻ Games</button>
   <button id="start" class="primary">▶ Start</button>
   <button id="stop" disabled>■ Stop</button>
@@ -41,6 +42,12 @@
     <label class="check"><input name="autoSheet" type="checkbox"> Send every pull to the Google Sheet automatically</label>
     <div class="wide"><button type="submit" class="primary">Save settings</button> <span id="saved" class="muted"></span></div>
   </form>
+</details>
+
+<details id="ours-box" hidden>
+  <summary>Our feed test <span id="ours-summary" class="muted"></span></summary>
+  <pre id="ours-out"></pre>
+  <button id="ours-save">⬇ Save what our feed sent (send me this file)</button>
 </details>
 
 <details id="diag-box">

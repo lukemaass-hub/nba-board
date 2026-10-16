@@ -14,14 +14,49 @@ const TIMEOUT_MS = 12_000;
 export const DEFAULT_SLATE_PARAMS = { eventStateOptions: 'All', eventsFromDay: 3, eventLimit: 30, enableStreamingEvents: false, orderEventsChronologically: true };
 export const DEFAULT_CARDPACK_QUERY = 'channel=AMELCO_TN_MASTER&segment=AMELCO_TN&stateCode=TN';   // the MLB suite's (TN)
 
-async function getFeed(url) {
+/** What the last feed request did (for the Test button / Diagnostics). */
+export let lastFeed = null;
+
+async function directFetch(url) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
-  let res;
-  try { res = await fetch(url, { credentials: 'include', signal: ctrl.signal, cache: 'no-store' }); }
-  finally { clearTimeout(timer); }
-  if (!res.ok) throw new Error(`our feed HTTP ${res.status}${res.status === 401 || res.status === 403 ? ' (log in to our sportsbook in this browser)' : ''}`);
-  return res.json();
+  try {
+    const res = await fetch(url, { credentials: 'include', signal: ctrl.signal, cache: 'no-store' });
+    return { status: res.status, text: await res.text(), type: res.headers.get('content-type') || '' };
+  } finally { clearTimeout(timer); }
+}
+// The MLB suite fetches the feed from its background service worker; do the same as a fallback.
+const viaBackground = (url) => new Promise((resolve, reject) =>
+  chrome.runtime.sendMessage({ type: 'OURS_FETCH', url }, (r) => chrome.runtime.lastError ? reject(new Error(chrome.runtime.lastError.message)) : r?.error ? reject(new Error(r.error)) : resolve(r)));
+
+async function getFeed(url) {
+  const tries = [];
+  for (const [via, fn] of [['dashboard', directFetch], ['background', viaBackground]]) {
+    try {
+      const r = await fn(url);
+      let json = null; try { json = JSON.parse(r.text); } catch { /* not JSON */ }
+      tries.push(`${via}: HTTP ${r.status}, ${r.text.length} bytes${json ? '' : `, not JSON (${r.type}) starts "${r.text.slice(0, 80).replace(/\s+/g, ' ')}"`}`);
+      lastFeed = { url, at: Date.now(), tries, text: r.text };
+      if (r.status >= 200 && r.status < 300 && json) return json;
+    } catch (e) { tries.push(`${via}: ${String(e.message || e)}`); lastFeed = { url, at: Date.now(), tries, text: '' }; }
+  }
+  throw new Error(`our feed failed: ${tries.join(' | ')}`);
+}
+
+/** Look at one event in our feed: what came back, which markets, what we could read. */
+export async function testOurEvent(eventId) {
+  const url = `${FEED}/page/event/${encodeURIComponent(eventId)}`;
+  const out = { eventId, url };
+  try {
+    const json = await getFeed(url);
+    const ev = parseOurSlate(json).find(x => x.eventId === String(eventId)) || parseOurSlate(json)[0];
+    const parsed = parseOurQuotes(json);
+    Object.assign(out, { ok: true, event: ev ? `${ev.name} (${ev.participants.map(p => p[0]).join(' / ')})` : 'no event object found in the answer',
+      marketCount: Object.keys(parsed.types).length, types: parsed.types, pointsPrices: parsed.quotes.length,
+      sample: parsed.quotes.slice(0, 4), unread: parsed.unread, topKeys: Object.keys(json || {}).slice(0, 20) });
+  } catch (e) { Object.assign(out, { ok: false, error: String(e.message || e) }); }
+  out.tries = lastFeed?.tries;
+  return out;
 }
 
 export const americanFromDecimal = (d) => {

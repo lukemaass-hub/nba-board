@@ -27,7 +27,7 @@ summary { cursor: pointer; color: var(--ink-2); }
 .grid label { display: flex; flex-direction: column; gap: 4px; color: var(--ink-2); font-size: 12px; }
 .grid label.check { flex-direction: row; align-items: center; gap: 8px; }
 .grid .wide { grid-column: 1 / -1; }
-#diag { white-space: pre-wrap; font: 12px/1.5 ui-monospace, Menlo, monospace; color: var(--ink-2); max-height: 260px; overflow: auto; margin: 8px 0 0; }
+#ours-out, #diag { white-space: pre-wrap; font: 12px/1.5 ui-monospace, Menlo, monospace; color: var(--ink-2); max-height: 260px; overflow: auto; margin: 8px 0 0; }
 main { display: grid; gap: 12px; padding: 0 18px 24px; }
 .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; position: relative; }
 .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
