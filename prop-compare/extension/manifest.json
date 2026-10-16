@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Prop Price Compare (DK / FD / Ours)",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Pulls NBA player points and alternate points from DraftKings and FanDuel every 15 seconds, lines them up tick by tick, graphs them, and exports to CSV / Google Sheets.",
   "permissions": [
     "storage",
@@ -14,6 +14,7 @@
     "https://*.sportsbook.fanduel.com/*",
     "https://content.1.betfanatics.com/*",
     "https://trading.1.betfanatics.com/*",
+    "https://*.oddsfactorytrading.com/*",
     "https://script.google.com/*",
     "https://script.googleusercontent.com/*"
   ],

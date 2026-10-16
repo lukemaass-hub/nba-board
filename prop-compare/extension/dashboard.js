@@ -174,6 +174,7 @@ $('refresh').addEventListener('click', loadGames);
 // user opened there (their teams read from the event page itself). Paired with the DK/FD
 // game that has the same two team nicknames (order-free: our feed may list home first).
 const nickSet = (names) => names.map(teamNick).sort().join('|');
+let lastOurEvents = [];
 async function attachOurGames() {
   const found = new Map();
   const errs = [];
@@ -190,6 +191,7 @@ async function attachOurGames() {
       if (ev) found.set(id, ev);
     } catch (e) { errs.push(String(e.message || e)); }
   }));
+  lastOurEvents = [...found.values()];
   let n = 0;
   for (const ev of found.values()) {
     const forms = ev.participants;
@@ -466,7 +468,19 @@ $('ours-test').addEventListener('click', async () => {
   $('ours-summary').textContent = '· asking…'; $('ours-out').textContent = '';
   const r = await testOurEvent(id);
   const L = [`Event id ${id}`, `Address: ${r.url}`, ...(r.tries || []).map(t => `   ${t}`)];
-  if (!r.ok) L.push('', `Problem: ${r.error}`);
+  if (!r.ok) {
+    L.push('', `Problem: ${r.error}`);
+    if (/HTTP 404/.test(r.error)) {
+      L.push('', 'Our feed has no event with this id. Our feed uses its own event id, not Dolly\'s game id',
+        '(Dolly ids look like 30 + the Betradar number, e.g. 3073863908).');
+      if (/^30\d{7,}$/.test(id)) L.push('This one looks like a Dolly id.');
+    }
+    const evs = lastOurEvents.slice(0, 40);
+    L.push('', evs.length ? 'Events found in our feed (use one of these ids):' : 'No events from our feed found yet. Open our sportsbook site\'s NBA page in this Chrome (no need to click a game), then press ↻ Games and Test ours again.');
+    for (const e of evs) L.push(`   ${e.eventId}  ${e.name}  ${e.participants.map(p => p[0]).join(' / ')}`);
+    const urls = (oursLearned.urls || []).filter(u => !/\/page\/event\/|\/cardpack\//.test(u)).slice(0, 15);
+    if (urls.length) L.push('', 'Other addresses our sites and Dolly asked for (helps me find where event ids live):', ...urls.map(u => `   ${decodeURIComponent(u).slice(0, 200)}`));
+  }
   else {
     L.push('', `Game in the answer: ${r.event}`, `Markets: ${r.marketCount}   Player-points prices read: ${r.pointsPrices}`);
     if (r.sample.length) L.push(`   e.g. ${r.sample.map(q => `${q.player} ${q.kind === 'alt' ? `${q.line + 0.5}+` : `${q.side} ${q.line}`} ${q.american}`).join(' · ')}`);
