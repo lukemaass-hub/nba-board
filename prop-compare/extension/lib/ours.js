@@ -1,6 +1,6 @@
 // OUR prices, from the Fanatics content feed: the same source and method as the MLB
 // In-Play Suite's background/ml-injector.js (fetchOurFeed / resolveEventId):
-//   event prices:  https://content.1.betfanatics.com/page/event/{eventId}   (credentials: include)
+//   event prices:  https://content.1.betfanatics.com/page/event/{eventId}   (sent WITHOUT the user's login, by the user's choice)
 //   slate lookup:  https://content.1.betfanatics.com/cardpack/INS/<base64 JSON {paths,...}>?channel=..&segment=..&stateCode=..
 // MLB's slate paths are known ('8:1255:1257'); NBA's are not, so background.js learns the
 // paths, query and event ids from our own sportsbook site while the user browses it.
@@ -21,7 +21,7 @@ async function directFetch(url) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
   try {
-    const res = await fetch(url, { credentials: 'include', signal: ctrl.signal, cache: 'no-store' });
+    const res = await fetch(url, { credentials: 'omit', signal: ctrl.signal, cache: 'no-store' });
     return { status: res.status, text: await res.text(), type: res.headers.get('content-type') || '' };
   } finally { clearTimeout(timer); }
 }
