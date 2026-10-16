@@ -54,6 +54,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 const learnOurs = async (details) => {
   if (details.tabId < 0 || /^chrome-extension:/.test(details.initiator || '')) return;
   let u; try { u = new URL(details.url); } catch { return; }
+  if (/\.(js|css|png|jpe?g|svg|woff2?|ico)$/i.test(u.pathname)) return;
   const { oursLearned: O = { cardpacks: [], events: {}, query: null, urls: [] } } = await chrome.storage.local.get('oursLearned');
   let tabUrl = '';
   try { tabUrl = (await chrome.tabs.get(details.tabId)).url || ''; } catch { /* closed */ }
@@ -72,13 +73,14 @@ const learnOurs = async (details) => {
   }
   const ev = u.pathname.match(/\/page\/event\/([^/?]+)/);
   if (ev) O.events[decodeURIComponent(ev[1])] = { at: Date.now(), page: tabUrl };
-  if (!cp && !ev) return;
-  O.urls = [details.url, ...O.urls.filter(x => x !== details.url)].slice(0, 10);
+  // every betfanatics API address any of our pages asks for (newest 40), so Diagnostics can show
+  // where event ids live when the slate/event patterns above don't appear
+  O.urls = [details.url, ...O.urls.filter(x => x !== details.url)].slice(0, 40);
   await chrome.storage.local.set({ oursLearned: O });
 };
 chrome.webRequest.onBeforeRequest.addListener(
   (d) => { chain = chain.then(() => learnOurs(d)).catch(() => {}); },
-  { urls: ['https://*.betfanatics.com/*'], types: ['xmlhttprequest'] },
+  { urls: ['https://*.betfanatics.com/*', 'https://*.oddsfactorytrading.com/*'], types: ['xmlhttprequest'] },
 );
 
 // Our feed can also be fetched from here (how the MLB suite does it), if the dashboard's own request fails.
