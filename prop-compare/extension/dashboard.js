@@ -1,7 +1,8 @@
 import { fdGames, fdPointsTabs, fdQuotes, dkGames, dkQuotes, isBackingOff, setDkHost } from './lib/books.js';
 import * as books from './lib/books.js';
 import { sameGame, teamNick } from './lib/match.js';
-import { ourGames, ourQuotes, parseOurSlate, DEFAULT_SLATE_PARAMS, DEFAULT_CARDPACK_QUERY } from './lib/ours.js';
+import { ourGames, ourQuotes, parseOurSlate, testOurEvent, DEFAULT_SLATE_PARAMS, DEFAULT_CARDPACK_QUERY } from './lib/ours.js';
+import * as ours from './lib/ours.js';
 import { BOOKS, alignTick, buildRows, marketLabel, tickToRecords, toCsv, CSV_HEADERS, etTime } from './lib/compare.js';
 import { saveTick, ticksFor } from './lib/store.js';
 import { renderChart } from './lib/chart.js';
@@ -455,6 +456,33 @@ $('sheet').addEventListener('click', async () => {
   btn.disabled = false;
   btn.textContent = n == null ? 'Send to Google Sheet' : n === 0 ? 'Already up to date' : `Sent ${n} pulls ✓`;
   setTimeout(() => { btn.textContent = 'Send to Google Sheet'; }, 4000);
+});
+
+// ---------------------------------------------------------------- our feed test
+$('ours-test').addEventListener('click', async () => {
+  const id = $('ours-id').value.trim() || games.find(g => g.key === $('game').value)?.ours?.eventId;
+  const box = $('ours-box'); box.hidden = false; box.open = true;
+  if (!id) { $('ours-out').textContent = 'Type our event id in the box first.'; return; }
+  $('ours-summary').textContent = '· asking…'; $('ours-out').textContent = '';
+  const r = await testOurEvent(id);
+  const L = [`Event id ${id}`, `Address: ${r.url}`, ...(r.tries || []).map(t => `   ${t}`)];
+  if (!r.ok) L.push('', `Problem: ${r.error}`);
+  else {
+    L.push('', `Game in the answer: ${r.event}`, `Markets: ${r.marketCount}   Player-points prices read: ${r.pointsPrices}`);
+    if (r.sample.length) L.push(`   e.g. ${r.sample.map(q => `${q.player} ${q.kind === 'alt' ? `${q.line + 0.5}+` : `${q.side} ${q.line}`} ${q.american}`).join(' · ')}`);
+    L.push('', 'Market codes in the answer:', ...Object.entries(r.types).sort().map(([k, v]) => `   ${k}  ${v}`));
+    if (!r.marketCount) L.push('', `Top-level fields: ${r.topKeys.join(', ')}`);
+    if (r.unread?.length) L.push('', `Points markets we could not read: ${JSON.stringify(r.unread).slice(0, 1500)}`);
+  }
+  $('ours-summary').textContent = r.ok ? `· ${r.pointsPrices} points prices read` : '· failed';
+  $('ours-out').textContent = L.join('\n');
+});
+$('ours-save').addEventListener('click', () => {
+  const f = ours.lastFeed;
+  if (!f) { alert('Press "Test ours" first.'); return; }
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify({ url: f.url, at: new Date(f.at).toISOString(), tries: f.tries, body: f.text }, null, 1)], { type: 'application/json' }));
+  a.download = `our-feed-${f.url.split('/').pop()}.json`; a.click();
 });
 
 // ---------------------------------------------------------------- boot
