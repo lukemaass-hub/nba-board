@@ -1,4 +1,5 @@
 import { fdGames, fdPointsTabs, fdQuotes, dkGames, dkQuotes, isBackingOff, setDkHost } from './lib/books.js';
+import * as books from './lib/books.js';
 import { sameGame } from './lib/match.js';
 import { alignTick, buildRows, marketLabel, tickToRecords, toCsv, CSV_HEADERS, etTime } from './lib/compare.js';
 import { saveTick, ticksFor } from './lib/store.js';
@@ -88,6 +89,7 @@ function renderDiag() {
     lines.push(`\nLast pull #${t.id}: ${t.aligned ? 'aligned' : 'NOT aligned'}${t.spreadMs != null ? `, books answered ${t.spreadMs} ms apart` : ''}`);
     for (const b of ['DK', 'FD']) lines.push(`   ${b}: ${t.used[b] ? `used (${t.ms[b]} ms, ${t.counts[b]} prices)` : (t.errors[b] || 'not used')}`);
   }
+  if (books.lastDkSample) lines.push('\nDraftKings answer we could not read (send a screenshot):', JSON.stringify(books.lastDkSample).slice(0, 1500));
   if (diag.errors.length) lines.push('\nRecent problems:', ...diag.errors.map(e => `   ${e}`));
   $('diag').textContent = lines.join('\n');
   const dkOk = run?.dkPerSub && Object.values(run.dkPerSub).some(v => typeof v === 'number' && v > 0);
@@ -107,17 +109,30 @@ async function loadGames() {
 
   games = [];
   for (const g of fdList) games.push({ key: `fd${g.eventId}`, name: g.name, startTime: g.startTime, fd: g, dk: null });
-  for (const d of dkRes.games) {   // nearest FD game with the same teams (repeat matchups on other dates)
-    const cands = games.filter(g => g.fd && !g.dk && sameGame([d.away, d.home], [g.fd.away, g.fd.home]));
-    cands.sort((a, b) => Math.abs((a.startTime || 0) - (d.startTime || a.startTime || 0)) - Math.abs((b.startTime || 0) - (d.startTime || b.startTime || 0)));
-    if (cands[0]) { cands[0].dk = d; if (!cands[0].startTime) cands[0].startTime = d.startTime; }
-  }
+  // DK events seen in the user's own DK tabs count too (they may be missing from the slate call)
   for (const [eventId, v] of Object.entries(learned.events || {})) {
     if (!v.name || dkRes.games.some(d => d.eventId === eventId)) continue;
     const [away, home] = v.name.split(' @ ');
-    if (away && home) dkRes.games.push({ eventId, name: v.name, away, home, startTime: null });
+    if (away && home) dkRes.games.push({ eventId, name: v.name, away, home, startTime: null, learned: true });
   }
-  for (const d of dkRes.games) if (!games.some(g => g.dk === d)) games.push({ key: `dk${d.eventId}`, name: d.name, startTime: d.startTime, fd: null, dk: d });
+  // Pair DK and FD games: same teams, then closest start time (the same matchup comes up on several
+  // dates). A DK event you opened on DraftKings wins over one only found in the slate.
+  const pairs = [];
+  for (const d of dkRes.games) for (const g of games) {
+    if (!g.fd || !sameGame([d.away, d.home], [g.fd.away, g.fd.home])) continue;
+    const gap = d.startTime && g.startTime ? Math.abs(d.startTime - g.startTime) : null;
+    if (gap != null && gap > 18 * 3600_000) continue;            // different day: not the same game
+    const seen = learned.events?.[d.eventId]?.at || 0;
+    pairs.push({ d, g, score: (gap ?? 6 * 3600_000) - (seen ? 1e12 + seen : 0) });
+  }
+  pairs.sort((a, b) => a.score - b.score);
+  const usedDk = new Set();
+  for (const { d, g } of pairs) {
+    if (g.dk || usedDk.has(d.eventId)) continue;
+    g.dk = d; usedDk.add(d.eventId); if (!g.startTime) g.startTime = d.startTime;
+  }
+  for (const d of dkRes.games) if (!usedDk.has(d.eventId) && d.startTime && d.startTime < Date.now() + 36 * 3600_000 || d.learned && !usedDk.has(d.eventId))
+    games.push({ key: `dk${d.eventId}`, name: d.name, startTime: d.startTime, fd: null, dk: d });
   games.sort((a, b) => (a.startTime || 0) - (b.startTime || 0));
 
   const sel = $('game'); sel.textContent = '';
