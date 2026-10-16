@@ -1,10 +1,9 @@
-# Prop Price Compare (DraftKings / FanDuel, ours later)
+# Prop Price Compare (DraftKings / FanDuel / Ours)
 
 A Chrome extension, separate from the injury board. Pick an NBA game and press **Start**. Every 15 seconds it
 pulls player points and alternate points ("20+ points") from DraftKings and FanDuel, lines the prices up, and
 shows a table and a live graph. Everything it pulls is saved, and you can export it to CSV or a Google Sheet.
 
-Our own (Dolly) prices are not in yet. That is the next step.
 
 ## How the prices are lined up
 
@@ -59,6 +58,23 @@ If the DraftKings light stays red, open **Diagnostics** and send me a screenshot
 last DraftKings requests it saw.
 
 Settings still has the DraftKings IDs as a backup. The ones learned from your browser are used first.
+
+## Our prices: connect them (once)
+
+Our prices come from our own sportsbook's price feed (`content.1.betfanatics.com`), using your login. This is
+the same source and method the MLB In-Play Suite uses for its "FBG" price. It is the price customers see.
+
+1. Make sure you're logged in to our sportsbook in this Chrome.
+2. With the dashboard open, open our sportsbook site in another tab, then open the **NBA** page and tonight's
+   game. The extension learns the NBA game list and the game's ID from the requests the page makes.
+3. Back on the dashboard, games show "+ Ours" and the Ours light turns green.
+4. If a game doesn't pick up our ID, paste our event ID into **Our event id** before pressing Start.
+
+Diagnostics lists every market code our feed sent for the game. If our points markets aren't read, send a
+screenshot of it.
+
+Graphs: the top graph shows each book's chance of the over, with ours in green. The second graph shows our gap
+to DraftKings and to FanDuel over time.
 
 ## Google Sheet (optional)
 

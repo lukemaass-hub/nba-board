@@ -46,3 +46,37 @@ chrome.webRequest.onBeforeRequest.addListener(
   (d) => { chain = chain.then(() => learn(d)).catch(() => {}); },
   { urls: ['https://*.draftkings.com/*'], types: ['xmlhttprequest'] },
 );
+
+// ---------------------------------------------------------------- learn OUR feed ids
+// Same idea for our own sportsbook: while the user browses it, note the slate ("cardpack")
+// requests it makes (their paths + query decode from the URL, exactly as the MLB suite builds
+// them) and the event pages it opens. The dashboard uses these to find tonight's NBA games.
+const learnOurs = async (details) => {
+  if (details.tabId < 0 || /^chrome-extension:/.test(details.initiator || '')) return;
+  let u; try { u = new URL(details.url); } catch { return; }
+  const { oursLearned: O = { cardpacks: [], events: {}, query: null, urls: [] } } = await chrome.storage.local.get('oursLearned');
+  let tabUrl = '';
+  try { tabUrl = (await chrome.tabs.get(details.tabId)).url || ''; } catch { /* closed */ }
+  const cp = u.pathname.match(/^\/cardpack\/INS\/([^/?]+)/);
+  if (cp) {
+    try {
+      const b64 = decodeURIComponent(cp[1]);
+      const body = JSON.parse(atob(b64));
+      if (Array.isArray(body.paths) && body.paths.length) {
+        const key = JSON.stringify(body.paths);
+        O.cardpacks = [{ paths: body.paths, params: { ...body, paths: undefined }, query: u.search.slice(1), page: tabUrl, at: Date.now() },
+          ...O.cardpacks.filter(c => JSON.stringify(c.paths) !== key)].slice(0, 12);
+        O.query = u.search.slice(1) || O.query;
+      }
+    } catch { /* not base64 JSON */ }
+  }
+  const ev = u.pathname.match(/^\/page\/event\/([^/?]+)/);
+  if (ev) O.events[decodeURIComponent(ev[1])] = { at: Date.now(), page: tabUrl };
+  if (!cp && !ev) return;
+  O.urls = [details.url, ...O.urls.filter(x => x !== details.url)].slice(0, 10);
+  await chrome.storage.local.set({ oursLearned: O });
+};
+chrome.webRequest.onBeforeRequest.addListener(
+  (d) => { chain = chain.then(() => learnOurs(d)).catch(() => {}); },
+  { urls: ['https://content.1.betfanatics.com/*'], types: ['xmlhttprequest'] },
+);
