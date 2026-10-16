@@ -61,14 +61,16 @@ Settings still has the DraftKings IDs as a backup. The ones learned from your br
 
 ## Our prices: connect them (once)
 
-Our prices come from our own sportsbook's price feed (`content.1.betfanatics.com`), using your login. This is
-the same source and method the MLB In-Play Suite uses for its "FBG" price. It is the price customers see.
+Our prices come from our price feed (`content.1.betfanatics.com/page/event/<event id>`), using your login. This
+is the same source the MLB In-Play Suite uses for its "FBG" price, and it's the price customers see. The only
+thing needed is our event ID for each game. As in the MLB suite, that comes from the trading portal.
 
-1. Make sure you're logged in to our sportsbook in this Chrome.
-2. With the dashboard open, open our sportsbook site in another tab, then open the **NBA** page and tonight's
-   game. The extension learns the NBA game list and the game's ID from the requests the page makes.
-3. Back on the dashboard, games show "+ Ours" and the Ours light turns green.
-4. If a game doesn't pick up our ID, paste our event ID into **Our event id** before pressing Start.
+1. With the dashboard open, open **trading.1.betfanatics.com/trading/portal** in another tab and show tonight's
+   NBA games. You don't need to click anything.
+   - The extension reads each game row's event ID, the same way the MLB suite's set-limits tool does.
+2. Back on the dashboard, games show "+ Ours" within a few seconds. Diagnostics lists which ID each game got.
+3. If a game still has no ID, paste it into **Our event id** before pressing Start. It's the number in the
+   portal's address when that game is open (`/trading/portal/<id>`), or the ID you link in the MLB panel on Dolly.
 
 Diagnostics lists every market code our feed sent for the game. If our points markets aren't read, send a
 screenshot of it.
