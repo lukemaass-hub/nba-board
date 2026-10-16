@@ -1,0 +1,19 @@
+{
+  "_note": "SYNTHETIC. Shape copied from the DK eventSubcategory responses the MLB suite parses; NBA values made up. Replace with a real capture once DK is checked in a browser.",
+  "markets": [
+    { "id": "m1", "name": "Cade Cunningham Points O/U" },
+    { "id": "m2", "name": "Points Milestones" },
+    { "id": "m3", "name": "Cade Cunningham Rebounds O/U" },
+    { "id": "m4", "name": "Jayson Tatum Points O/U" }
+  ],
+  "selections": [
+    { "marketId": "m1", "participants": [{ "name": "Cade Cunningham" }], "outcomeType": "Over",  "points": 24.5, "displayOdds": { "american": "−110" } },
+    { "marketId": "m1", "participants": [{ "name": "Cade Cunningham" }], "outcomeType": "Under", "points": 24.5, "displayOdds": { "american": "−120" } },
+    { "marketId": "m2", "participants": [{ "name": "Cade Cunningham" }], "label": "40+", "milestoneValue": 40, "displayOdds": { "american": "+1200" } },
+    { "marketId": "m2", "participants": [{ "name": "Jayson Tatum" }], "label": "40+", "displayOdds": { "american": "+750" } },
+    { "marketId": "m2", "participants": [{ "name": "Jayson Tatum" }], "label": "45+", "status": "SUSPENDED", "displayOdds": { "american": "+1500" } },
+    { "marketId": "m3", "participants": [{ "name": "Cade Cunningham" }], "outcomeType": "Over", "points": 6.5, "displayOdds": { "american": "−105" } },
+    { "marketId": "m4", "participants": [{ "name": "Jayson Tatum" }], "outcomeType": "Over",  "points": 26.5, "displayOdds": { "american": "−115" } },
+    { "marketId": "m4", "participants": [{ "name": "Jayson Tatum" }], "outcomeType": "Under", "points": 26.5, "displayOdds": { "american": "−105" } }
+  ]
+}
