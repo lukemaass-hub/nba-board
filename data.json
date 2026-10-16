@@ -15081,6 +15081,17 @@
  },
  "news": [
   {
+   "id": "nba534702",
+   "player": "Mikel Brown",
+   "headline": "Will have restrictions",
+   "text": "Brown will remain on a minutes restriction for Wednesday's regular-season opener against Charlotte, Brian Lewis of the New York Post reports.",
+   "reporter": "Brian Lewis",
+   "outlet": "New York Post",
+   "url": "https://www.rotowire.com/basketball/player/mikel-brown-6929",
+   "at": "2026-10-16T18:07:00+00:00",
+   "team": "BKN"
+  },
+  {
    "id": "nba534700",
    "player": "Moses Moody",
    "headline": "Could return by December",
@@ -22633,7 +22644,19 @@
    "from_news": true
   }
  ],
- "restrictions": [],
+ "restrictions": [
+  {
+   "team": "BKN",
+   "player": "Mikel Brown",
+   "from": "2026-10-16",
+   "through": "2026-10-17",
+   "text": "Brown will remain on a minutes restriction for Wednesday's regular-season opener against Charlotte, Brian Lewis of the New York Post reports.",
+   "reporter": "Brian Lewis",
+   "outlet": "New York Post",
+   "url": "https://www.rotowire.com/basketball/player/mikel-brown-6929",
+   "at": "2026-10-16T18:07:00+00:00"
+  }
+ ],
  "generated_at": "2026-10-16T17:18:40+00:00",
  "sources": {
   "schedule": {
@@ -22683,8 +22706,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-16T17:18:40+00:00",
-   "count": 87
+   "at": "2026-10-16T18:22:16+00:00",
+   "count": 88
   }
  }
 }
