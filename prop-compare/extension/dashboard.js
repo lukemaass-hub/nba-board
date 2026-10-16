@@ -1,4 +1,4 @@
-import { fdGames, fdPointsTabs, fdQuotes, dkGames, dkQuotes, isBackingOff } from './lib/books.js';
+import { fdGames, fdPointsTabs, fdQuotes, dkGames, dkQuotes, isBackingOff, setDkHost } from './lib/books.js';
 import { sameGame } from './lib/match.js';
 import { alignTick, buildRows, marketLabel, tickToRecords, toCsv, CSV_HEADERS, etTime } from './lib/compare.js';
 import { saveTick, ticksFor } from './lib/store.js';
@@ -37,7 +37,25 @@ $('settings').addEventListener('submit', async (e) => {
   $('saved').textContent = run ? 'Saved. Press Stop then Start to use the new settings.' : 'Saved.';
   setTimeout(() => { $('saved').textContent = ''; }, 5000);
 });
-const subIds = () => String(settings.dkSubcats).split(/[\s,]+/).filter(Boolean);
+// DK ids: what background.js saw DraftKings' own page use comes first, then Settings.
+let learned = { host: null, site: null, leagues: {}, subs: {}, events: {}, urls: [] };
+const uniq = (a) => [...new Set(a.filter(Boolean).map(String))];
+const learnedPointSubs = () => Object.entries(learned.subs || {})
+  .filter(([, v]) => /point/i.test(v.page || '') && !/combo|\+|rebound|assist/i.test(v.page || '')).map(([k]) => k);
+const subIds = () => uniq([...learnedPointSubs(), ...String(settings.dkSubcats).split(/[\s,]+/)]);
+const dkSite = () => learned.site || settings.dkSite;
+const dkLeagues = () => uniq([...Object.keys(learned.leagues || {}), settings.dkLeague]);
+async function loadLearned() {
+  ({ dkLearned: learned = learned } = await chrome.storage.local.get('dkLearned'));
+  setDkHost(learned.host);
+}
+let relearnTimer = null;
+chrome.storage.onChanged.addListener((ch) => {
+  if (!ch.dkLearned) return;
+  learned = ch.dkLearned.newValue || learned; setDkHost(learned.host); renderDiag();
+  // new DK ids seen and DK has no games yet: reload the list (not while a game is running)
+  if (!run && !games.some(g => g.dk)) { clearTimeout(relearnTimer); relearnTimer = setTimeout(loadGames, 3000); }
+});
 
 // ---------------------------------------------------------------- lights + diagnostics
 function light(book, cls, text) { const l = $(`light-${book}`); l.className = `light ${cls}`; l.querySelector('b').textContent = text; }
@@ -45,8 +63,20 @@ function logErr(msg) { diag.errors.unshift(`${etTime(Date.now())}  ${msg}`); dia
 function renderDiag() {
   const lines = [];
   lines.push(`FanDuel games: ${diag.fdGames}`);
-  lines.push('DraftKings games (tried subcategory → result):');
-  for (const t of diag.dkGames) lines.push(`   ${t.subId} → ${t.status === 'ok' ? `${t.events} games` : t.status}`);
+  lines.push('DraftKings games (tried league / subcategory → result):');
+  for (const t of diag.dkGames) lines.push(`   ${t.league} / ${t.subId} → ${t.status === 'ok' ? `${t.events} games` : t.status}`);
+  const ls = Object.entries(learned.subs || {});
+  lines.push(`\nLearned from your DraftKings tabs: ${ls.length ? '' : 'nothing yet. Open a game\'s Player Points tab on sportsbook.draftkings.com.'}`);
+  if (ls.length) {
+    lines.push(`   site ${learned.site || '?'}, API host ${learned.host || '?'}, leagues ${Object.keys(learned.leagues || {}).join(', ') || '—'}`);
+    for (const [k, v] of ls) lines.push(`   subcategory ${k}  (${v.page || 'page unknown'})${learnedPointSubs().includes(k) ? '  ← used for points' : ''}`);
+    for (const [k, v] of Object.entries(learned.events || {})) lines.push(`   event ${k}  ${v.name || ''}`);
+  }
+  if (!learnedPointSubs().length && learned.urls?.length) {
+    lines.push('   Last DraftKings page requests seen (send a screenshot of this if DK stays red):');
+    for (const x of learned.urls.slice(0, 8)) lines.push(`     ${decodeURIComponent(x).replace(/^https:\/\/[^/]+/, '').slice(0, 220)}`);
+  }
+  lines.push(`   DK ids in use: site ${dkSite()}, leagues ${dkLeagues().join(', ')}, points subcategories ${subIds().join(', ')}`);
   if (run) {
     lines.push(`\nRunning: ${run.game.name}`);
     lines.push(`   FD event ${run.game.fd?.eventId ?? '—'}, tabs: ${run.fdTabs?.join(', ') || '—'}`);
@@ -67,7 +97,7 @@ function renderDiag() {
 // ---------------------------------------------------------------- games
 async function loadGames() {
   $('game').innerHTML = '<option>Loading games…</option>';
-  const [fd, dk] = await Promise.allSettled([fdGames(settings.fdState), dkGames(settings.dkSite, settings.dkLeague, [settings.dkGameSubcat, ...subIds()])]);
+  const [fd, dk] = await Promise.allSettled([fdGames(settings.fdState), dkGames(dkSite(), dkLeagues(), uniq([...learnedPointSubs(), settings.dkGameSubcat, ...subIds()]))]);
   const fdList = fd.status === 'fulfilled' ? fd.value : [];
   const dkRes = dk.status === 'fulfilled' ? dk.value : { games: [], tried: [{ subId: '-', status: String(dk.reason?.message || dk.reason) }] };
   diag.fdGames = fd.status === 'fulfilled' ? `${fdList.length} found` : `failed: ${fd.reason?.message || fd.reason}`;
@@ -76,7 +106,17 @@ async function loadGames() {
   light('DK', dkRes.games.length ? 'ok' : 'bad', dkRes.games.length ? `${dkRes.games.length} games` : 'no games (see Diagnostics)');
 
   games = [];
-  for (const g of fdList) games.push({ key: `fd${g.eventId}`, name: g.name, startTime: g.startTime, fd: g, dk: dkRes.games.find(d => sameGame([d.away, d.home], [g.away, g.home])) || null });
+  for (const g of fdList) games.push({ key: `fd${g.eventId}`, name: g.name, startTime: g.startTime, fd: g, dk: null });
+  for (const d of dkRes.games) {   // nearest FD game with the same teams (repeat matchups on other dates)
+    const cands = games.filter(g => g.fd && !g.dk && sameGame([d.away, d.home], [g.fd.away, g.fd.home]));
+    cands.sort((a, b) => Math.abs((a.startTime || 0) - (d.startTime || a.startTime || 0)) - Math.abs((b.startTime || 0) - (d.startTime || b.startTime || 0)));
+    if (cands[0]) { cands[0].dk = d; if (!cands[0].startTime) cands[0].startTime = d.startTime; }
+  }
+  for (const [eventId, v] of Object.entries(learned.events || {})) {
+    if (!v.name || dkRes.games.some(d => d.eventId === eventId)) continue;
+    const [away, home] = v.name.split(' @ ');
+    if (away && home) dkRes.games.push({ eventId, name: v.name, away, home, startTime: null });
+  }
   for (const d of dkRes.games) if (!games.some(g => g.dk === d)) games.push({ key: `dk${d.eventId}`, name: d.name, startTime: d.startTime, fd: null, dk: d });
   games.sort((a, b) => (a.startTime || 0) - (b.startTime || 0));
 
@@ -147,7 +187,7 @@ async function pull() {
     const [DK, FD] = await Promise.all([
       !g.dk ? Promise.resolve({ ok: false, error: 'no DK match for this game' })
         : isBackingOff('DK') ? Promise.resolve({ ok: false, error: 'DK backing off after an error' })
-        : fetchBook('DK', async () => { const x = await dkQuotes(settings.dkSite, g.dk.eventId, subs); return { quotes: x.quotes, perSub: x.perSub }; }),
+        : fetchBook('DK', async () => { const x = await dkQuotes(dkSite(), g.dk.eventId, subs); return { quotes: x.quotes, perSub: x.perSub }; }),
       !g.fd ? Promise.resolve({ ok: false, error: 'no FD match for this game' })
         : isBackingOff('FD') ? Promise.resolve({ ok: false, error: 'FD backing off after an error' })
         : !r.fdTabs?.length ? Promise.resolve({ ok: false, error: 'FanDuel has no player points for this game yet (preseason games usually have none)' })
@@ -197,7 +237,10 @@ function renderTable() {
   $('latest-time').textContent = last ? `· pull #${last.id}, ${etTime(last.t).slice(11)} ET${last.aligned ? '' : ' (not aligned: one book missing)'}` : '';
   $('empty').hidden = !!last?.rows.length;
   if (!last) return;
-  const q = $('filter').value.trim().toLowerCase(), bothOnly = $('both-only').checked;
+  const q = $('filter').value.trim().toLowerCase();
+  const oneBook = !(last.rows.some(r => r.books.DK) && last.rows.some(r => r.books.FD));
+  const bothOnly = $('both-only').checked && !oneBook;   // with one book in, "both" would hide everything
+  $('both-note').textContent = oneBook && last.rows.length ? `Only ${last.rows.some(r => r.books.DK) ? 'DraftKings' : 'FanDuel'} has prices this pull, so all of its lines are shown.` : '';
   let rows = last.rows.filter(r => (!q || r.player.toLowerCase().includes(q)) && (!bothOnly || (r.books.DK && r.books.FD)));
   if ($('sort').value === 'gap') rows = rows.slice().sort((a, b) => Math.abs(b.gapPts ?? -1) - Math.abs(a.gapPts ?? -1));
   for (const r of rows) {
@@ -294,5 +337,6 @@ $('sheet').addEventListener('click', async () => {
 
 // ---------------------------------------------------------------- boot
 await loadSettings();
+await loadLearned();
 await loadGames();
 if (games[0]) await showGame(games.find(g => g.key === $('game').value) || games[0]);

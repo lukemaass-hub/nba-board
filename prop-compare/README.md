@@ -38,31 +38,27 @@ Our own (Dolly) prices are not in yet. That is the next step.
 4. Use **Export CSV** for a spreadsheet file, or **Send to Google Sheet** (setup below).
 
 Notes:
-- Preseason games usually have no player props on FanDuel. The dashboard tells you when that is the case.
+- Preseason: FanDuel has no player props (checked Oct 16 in 5 states), but DraftKings does. The table then shows
+  DraftKings' lines alone.
 - Lines for games several days out are thin (only a few stars). The full board appears closer to tip.
 
-## DraftKings: one check needed in your browser
+## DraftKings: let the extension learn its IDs (once)
 
-DraftKings blocks requests from cloud servers, so DraftKings could not be tested while this was built. FanDuel
-was tested end to end. DraftKings uses the same method as the MLB In-Play Suite, so it should work in your
-browser. The only unknowns are DraftKings' ID numbers for the NBA player-points pages.
+DraftKings blocks cloud servers, so its ID numbers could not be checked while this was built. The extension
+learns them from your browser instead. It only watches which addresses DraftKings' own page asks for; it doesn't
+change or block anything.
 
-**If the DraftKings light is red, or games say "(FD only)":**
+1. Keep the dashboard open.
+2. In another tab, open sportsbook.draftkings.com → NBA → a game → **Player Points** tab.
+   - Click the **Points** and **Points Milestones** sub-tabs if you see them.
+3. Go back to the dashboard. Within a few seconds the game list reloads, and DraftKings games show "(DK + FD)" or
+   "(DK only)".
+4. Pick the game and press **Start**.
 
-1. Open **Diagnostics** on the dashboard. Each ID tried is listed with its result.
-2. Open sportsbook.draftkings.com → NBA → any game → the **Player Points** tab.
-3. Press **F12** → **Network** tab → type `subCategoryId` in the filter box → reload the page.
-4. Click a request. In its URL, find `subCategoryId eq 'NNNNN'` and note the number.
-   - Do this on both the Points tab and the Points Milestones (alt) tab.
-5. On the dashboard, open **Settings** and put those numbers in "DraftKings player-points subcategory ids"
-   (comma separated). Click **Save settings**, then **↻ Games**.
+If the DraftKings light stays red, open **Diagnostics** and send me a screenshot. It lists what was learned and the
+last DraftKings requests it saw.
 
-You can also just send me the numbers and I'll make them the default.
-
-Other DraftKings settings:
-- The NBA league ID is 42648.
-- The game-lines subcategory is 4511, used only to list the games.
-- The site is US-CO-SB.
+Settings still has the DraftKings IDs as a backup. The ones learned from your browser are used first.
 
 ## Google Sheet (optional)
 
