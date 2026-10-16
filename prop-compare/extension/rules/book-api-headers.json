@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [
+        { "header": "origin", "operation": "set", "value": "https://sportsbook.fanduel.com" },
+        { "header": "referer", "operation": "set", "value": "https://sportsbook.fanduel.com/" }
+      ]
+    },
+    "condition": {
+      "requestDomains": ["fanduel.com"],
+      "resourceTypes": ["xmlhttprequest", "other"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [
+        { "header": "origin", "operation": "set", "value": "https://sportsbook.draftkings.com" },
+        { "header": "referer", "operation": "set", "value": "https://sportsbook.draftkings.com/" }
+      ]
+    },
+    "condition": {
+      "requestDomains": ["draftkings.com"],
+      "resourceTypes": ["xmlhttprequest", "other"]
+    }
+  }
+]
