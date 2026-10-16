@@ -89,7 +89,10 @@ function renderDiag() {
   }
   lines.push(`   DK ids in use: site ${dkSite()}, leagues ${dkLeagues().join(', ')}, points subcategories ${subIds().join(', ')}`);
   lines.push(`\nOur prices: ${diag.ourGames}`);
-  lines.push(`   Learned from our sportsbook site: ${oursLearned.cardpacks.length} slate request(s), ${Object.keys(oursLearned.events).length} event page(s)${oursLearned.cardpacks.length || Object.keys(oursLearned.events).length ? '' : '. Open tonight\'s NBA games on our sportsbook site.'}`);
+  const np = Object.keys(oursLearned.portal || {}).length;
+  lines.push(`   Trading portal: ${np ? `${np} game rows read` : 'nothing yet. Open trading.1.betfanatics.com/trading/portal and show tonight\'s NBA games.'}`);
+  lines.push(`   Our sportsbook site: ${oursLearned.cardpacks.length} slate request(s), ${Object.keys(oursLearned.events).length} event page(s) seen`);
+  for (const g of games.filter(x => x.ours)) lines.push(`   ${g.name} → our event ${g.ours.eventId}${g.ours.fromPortal ? `  (portal row: ${g.ours.name.slice(0, 90)})` : ''}`);
   for (const c of oursLearned.cardpacks.slice(0, 4)) lines.push(`   slate paths ${c.paths.join(', ')}  (${(c.page || '').replace(/^https?:\/\//, '').slice(0, 80)})`);
   if (run) {
     lines.push(`\nRunning: ${run.game.name}`);
@@ -196,7 +199,21 @@ async function attachOurGames() {
       .sort((a, b) => Math.abs((a.startTime || 0) - (ev.startTime || 0)) - Math.abs((b.startTime || 0) - (ev.startTime || 0)));
     if (cands[0]) { cands[0].ours = ev; n++; }
   }
-  diag.ourGames = `${found.size} of our events found, ${n} matched to DK/FD games${errs.length ? ` · problems: ${uniq(errs).join('; ')}` : ''}`;
+  // Trading-portal rows (content/portal-ids.js): "id + row text". A row matches a game when its
+  // text names both teams (by nickname) and, if it shows a date, the game's date.
+  const portal = Object.entries(oursLearned.portal || {});
+  const dd = (ms) => { const [y, m, d] = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(ms).split('-'); return `${d}-${m}-${y}`; };
+  const hasWord = (text, w) => new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(text);
+  for (const g of games) {
+    if (g.ours) continue;
+    const nicks = [g.fd?.away || g.dk?.away, g.fd?.home || g.dk?.home].map(teamNick);
+    const day = g.startTime ? dd(g.startTime) : null;
+    const hits = portal.filter(([, v]) => nicks.every(nk => nk && hasWord(v.text, nk)))
+      .filter(([, v]) => !day || !/\b\d{2}-\d{2}-\d{4}\b/.test(v.text) || v.text.includes(day))
+      .sort((a, b) => Number(!!day && b[1].text.includes(day)) - Number(!!day && a[1].text.includes(day)) || b[1].at - a[1].at);
+    if (hits[0]) { g.ours = { eventId: hits[0][0], name: hits[0][1].text, fromPortal: true }; n++; }
+  }
+  diag.ourGames = `${found.size} of our events found in the feed slate, ${portal.length} trading-portal rows read, ${n} matched to DK/FD games${errs.length ? ` · problems: ${uniq(errs).join('; ')}` : ''}`;
   light('OURS', n ? 'ok' : found.size ? 'warn' : 'bad', n ? `${n} games` : found.size ? 'games found, none matched' : 'no games yet (see Diagnostics)');
 }
 $('game').addEventListener('change', async () => { if (run) return; const g = games.find(x => x.key === $('game').value); if (g) await showGame(g); });

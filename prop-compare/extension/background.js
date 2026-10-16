@@ -57,7 +57,7 @@ const learnOurs = async (details) => {
   const { oursLearned: O = { cardpacks: [], events: {}, query: null, urls: [] } } = await chrome.storage.local.get('oursLearned');
   let tabUrl = '';
   try { tabUrl = (await chrome.tabs.get(details.tabId)).url || ''; } catch { /* closed */ }
-  const cp = u.pathname.match(/^\/cardpack\/INS\/([^/?]+)/);
+  const cp = u.pathname.match(/\/cardpack\/INS\/([^/?]+)/);
   if (cp) {
     try {
       const b64 = decodeURIComponent(cp[1]);
@@ -70,7 +70,7 @@ const learnOurs = async (details) => {
       }
     } catch { /* not base64 JSON */ }
   }
-  const ev = u.pathname.match(/^\/page\/event\/([^/?]+)/);
+  const ev = u.pathname.match(/\/page\/event\/([^/?]+)/);
   if (ev) O.events[decodeURIComponent(ev[1])] = { at: Date.now(), page: tabUrl };
   if (!cp && !ev) return;
   O.urls = [details.url, ...O.urls.filter(x => x !== details.url)].slice(0, 10);
@@ -78,5 +78,5 @@ const learnOurs = async (details) => {
 };
 chrome.webRequest.onBeforeRequest.addListener(
   (d) => { chain = chain.then(() => learnOurs(d)).catch(() => {}); },
-  { urls: ['https://content.1.betfanatics.com/*'], types: ['xmlhttprequest'] },
+  { urls: ['https://*.betfanatics.com/*'], types: ['xmlhttprequest'] },
 );
