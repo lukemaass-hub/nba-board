@@ -1,7 +1,7 @@
 import { fdGames, fdPointsTabs, fdQuotes, dkGames, dkQuotes, isBackingOff, setDkHost } from './lib/books.js';
 import * as books from './lib/books.js';
 import { sameGame, teamNick } from './lib/match.js';
-import { ourGames, ourQuotes, parseOurSlate, testOurEvent, DEFAULT_SLATE_PARAMS, DEFAULT_CARDPACK_QUERY } from './lib/ours.js';
+import { ourGames, ourQuotes, parseOurSlate, testOurEvent, findNbaSlate, DEFAULT_SLATE_PARAMS, DEFAULT_CARDPACK_QUERY } from './lib/ours.js';
 import * as ours from './lib/ours.js';
 import { BOOKS, alignTick, buildRows, marketLabel, tickToRecords, toCsv, CSV_HEADERS, etTime } from './lib/compare.js';
 import { saveTick, ticksFor } from './lib/store.js';
@@ -12,6 +12,7 @@ import { renderChart } from './lib/chart.js';
 const DEFAULTS = {
   pollSeconds: 15, alignToleranceMs: 2000, fdState: 'az', dkSite: 'US-CO-SB', dkLeague: '42648',
   dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', sheetsUrl: '', autoSheet: false,
+  ourSlatePaths: '', ourCardpackQuery: 'channel=AMELCO_TN_MASTER&segment=AMELCO_TN&stateCode=TN',
 };
 const SERIES = [{ book: 'DK', name: 'DK', long: 'DraftKings', color: '#3987e5' }, { book: 'FD', name: 'FD', long: 'FanDuel', color: '#d95926' },
   { book: 'OURS', name: 'Ours', long: 'Ours', color: '#199e70' }];
@@ -178,8 +179,10 @@ let lastOurEvents = [];
 async function attachOurGames() {
   const found = new Map();
   const errs = [];
-  for (const c of oursLearned.cardpacks.slice(0, 6)) {
-    try { for (const e of await ourGames(c.paths, c.params || DEFAULT_SLATE_PARAMS, c.query || oursLearned.query || DEFAULT_CARDPACK_QUERY)) found.set(e.eventId, e); }
+  const setPaths = String(settings.ourSlatePaths || '').split(/[\s,]+/).filter(Boolean);
+  const packs = [...(setPaths.length ? [{ paths: setPaths, query: settings.ourCardpackQuery }] : []), ...oursLearned.cardpacks.slice(0, 6)];
+  for (const c of packs) {
+    try { for (const e of await ourGames(c.paths, c.params || DEFAULT_SLATE_PARAMS, c.query || oursLearned.query || settings.ourCardpackQuery || DEFAULT_CARDPACK_QUERY)) found.set(e.eventId, e); }
     catch (e) { errs.push(String(e.message || e)); }
   }
   const recent = Object.entries(oursLearned.events).sort((a, b) => b[1].at - a[1].at).slice(0, 10);
@@ -497,6 +500,20 @@ $('ours-save').addEventListener('click', () => {
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([JSON.stringify({ url: f.url, at: new Date(f.at).toISOString(), tries: f.tries, body: f.text }, null, 1)], { type: 'application/json' }));
   a.download = `our-feed-${f.url.split('/').pop()}.json`; a.click();
+});
+
+$('find-slate').addEventListener('click', async () => {
+  const box = $('ours-box'); box.hidden = false; box.open = true;
+  $('ours-summary').textContent = '· looking for the NBA slate…'; $('ours-out').textContent = '';
+  const r = await findNbaSlate(settings.ourCardpackQuery || DEFAULT_CARDPACK_QUERY);
+  const L = ['Looking for our NBA slate (only our public feed is asked, no login):', ...r.log.map(x => `   ${x}`), ''];
+  if (r.best) {
+    L.push(`Found: ${r.best.join(', ')}. It's now saved in Settings, and the game list is reloading.`);
+    settings.ourSlatePaths = r.best.join(', '); $('settings').elements.ourSlatePaths.value = settings.ourSlatePaths;
+    await chrome.storage.local.set({ settings }); loadGames();
+  } else L.push('Not found. Ask whoever built the MLB extension for the NBA slate code (like MLB\'s 8:1255:1257) and paste it in Settings.');
+  $('ours-summary').textContent = r.best ? `· NBA slate ${r.best.join(', ')}` : '· not found';
+  $('ours-out').textContent = L.join('\n');
 });
 
 // ---------------------------------------------------------------- boot

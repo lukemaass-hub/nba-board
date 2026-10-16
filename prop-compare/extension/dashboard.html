@@ -38,6 +38,9 @@
     <label>DraftKings NBA league id <input name="dkLeague" size="8"></label>
     <label>DraftKings game-lines subcategory <input name="dkGameSubcat" size="8"></label>
     <label class="wide">DraftKings player-points subcategory ids (comma separated) <input name="dkSubcats"></label>
+    <label class="wide">Our NBA slate code(s), like MLB's 8:1255:1257 <input name="ourSlatePaths" placeholder="blank = not known yet"></label>
+    <label class="wide">Our slate settings (from the MLB suite) <input name="ourCardpackQuery"></label>
+    <div class="wide"><button type="button" id="find-slate">Find NBA slate</button> <span class="muted small">Looks for the code in our public price feed (no login).</span></div>
     <label class="wide">Google Sheet web app URL (from Apps Script, ends in /exec) <input name="sheetsUrl" placeholder="https://script.google.com/a/macros/betfanatics.com/s/…/exec"></label>
     <label class="check"><input name="autoSheet" type="checkbox"> Send every pull to the Google Sheet automatically</label>
     <div class="wide"><button type="submit" class="primary">Save settings</button> <span id="saved" class="muted"></span></div>

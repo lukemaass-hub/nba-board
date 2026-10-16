@@ -143,3 +143,50 @@ export function parseOurQuotes(json) {
   }
   return { quotes, types, unread };
 }
+
+// ---------------------------------------------------------------- find the NBA slate (no login)
+// The MLB suite's slate paths are hard-coded for baseball ('8:1255:1257', '8:1255:967050'). For
+// NBA we look for the path: ask the feed's slate for MLB (to check it answers at all without a
+// login) and for broader roots, collect every path-like code ("8:1255:1257") the answers carry,
+// then try each and keep the ones that list NBA teams. Only our public feed is asked; no login.
+export const MLB_SLATE_PATHS = ['8:1255:1257', '8:1255:967050'];
+const NBA_NICKS = ['hawks', 'celtics', 'nets', 'hornets', 'bulls', 'cavaliers', 'mavericks', 'nuggets', 'pistons', 'warriors',
+  'rockets', 'pacers', 'clippers', 'lakers', 'grizzlies', 'heat', 'bucks', 'timberwolves', 'pelicans', 'knicks', 'thunder',
+  'magic', '76ers', 'suns', 'trail blazers', 'kings', 'spurs', 'raptors', 'jazz', 'wizards'];
+const nbaCount = (evs) => evs.filter(e => e.participants.filter(f => f.some(x => NBA_NICKS.some(n => String(x).toLowerCase().includes(n)))).length === 2).length;
+
+function pathCodes(json) {
+  const out = new Set();
+  (function walk(n) {
+    if (Array.isArray(n)) return n.forEach(walk);
+    if (n && typeof n === 'object') { for (const v of Object.values(n)) walk(v); return; }
+    if (typeof n === 'string' && /^\d{1,6}(:\d{1,9}){1,3}$/.test(n)) out.add(n);
+  })(json);
+  return out;
+}
+
+export async function findNbaSlate(query = DEFAULT_CARDPACK_QUERY) {
+  const log = [], found = [];
+  const codes = new Set();
+  const ask = async (paths) => {
+    const json = await getFeed(cardpackUrl(paths, DEFAULT_SLATE_PARAMS, query));
+    for (const c of pathCodes(json)) codes.add(c);
+    return parseOurSlate(json);
+  };
+  try {
+    const mlb = await ask(MLB_SLATE_PATHS);
+    log.push(`Check: MLB slate (${MLB_SLATE_PATHS.join(', ')}) → ${mlb.length} events. ${mlb.length ? 'Our feed answers without a login.' : 'No events (off-season, or it needs something else).'}`);
+  } catch (e) { log.push(`Check: MLB slate → ${String(e.message || e).slice(0, 160)}`); }
+  for (const root of [['8'], ['8:1255']]) {
+    try { const evs = await ask(root); log.push(`Slate ${root} → ${evs.length} events, ${nbaCount(evs)} NBA`); if (nbaCount(evs)) found.push({ paths: root, nba: nbaCount(evs) }); }
+    catch (e) { log.push(`Slate ${root} → ${String(e.message || e).slice(0, 100)}`); }
+  }
+  const tryCodes = [...codes].filter(c => !MLB_SLATE_PATHS.includes(c)).slice(0, 40);
+  log.push(`Codes seen in the answers: ${[...codes].join(', ') || 'none'}`);
+  for (const c of tryCodes) {
+    try { const evs = await ask([c]); const n = nbaCount(evs); if (evs.length) log.push(`   ${c} → ${evs.length} events, ${n} NBA`); if (n) found.push({ paths: [c], nba: n }); }
+    catch (e) { /* not a slate */ }
+  }
+  found.sort((a, b) => b.nba - a.nba);
+  return { best: found[0]?.paths || null, found, log };
+}
