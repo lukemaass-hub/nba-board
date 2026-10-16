@@ -17,6 +17,9 @@
 
 export const FD_AK = 'FhMFpcPWXMeyZxOx';   // FD's public web key; if FD rotates it every FD call 401s (see README)
 export const DK_HOST = 'sportsbook-nash.draftkings.com';
+let dkHost = DK_HOST;
+/** Use the API host DraftKings' own page was seen using (see background.js). */
+export function setDkHost(h) { dkHost = h || DK_HOST; }
 const REQUEST_TIMEOUT_MS = 12_000;
 const DK_HEADERS = { accept: '*/*', 'x-client-name': 'web', 'x-client-page': 'event' };
 
@@ -140,29 +143,29 @@ export function parseFdQuotes(markets) {
 function dkLeagueUrl(site, league, subId) {
   const eventsQuery = `$filter=leagueId eq '${league}' AND clientMetadata/Subcategories/any(s: s/Id eq '${subId}')`;
   const marketsQuery = `$filter=clientMetadata/subCategoryId eq '${subId}' AND tags/all(t: t ne 'SportcastBetBuilder')`;
-  return `https://${DK_HOST}/sites/${site}/api/sportscontent/controldata/league/leagueSubcategory/v1/markets`
+  return `https://${dkHost}/sites/${site}/api/sportscontent/controldata/league/leagueSubcategory/v1/markets`
     + `?isBatchable=false&templateVars=${league}&eventsQuery=${encodeURIComponent(eventsQuery)}`
     + `&marketsQuery=${encodeURIComponent(marketsQuery)}&include=Events&entity=events&${bust()}`;
 }
 function dkEventUrl(site, eventId, subId) {
   const marketsQuery = `$filter=eventId eq '${eventId}' AND clientMetadata/subCategoryId eq '${subId}' AND tags/all(t: t ne 'SportcastBetBuilder')`;
-  return `https://${DK_HOST}/sites/${site}/api/sportscontent/controldata/event/eventSubcategory/v1/markets`
+  return `https://${dkHost}/sites/${site}/api/sportscontent/controldata/event/eventSubcategory/v1/markets`
     + `?isBatchable=false&templateVars=${eventId}%2C${subId}&marketsQuery=${encodeURIComponent(marketsQuery)}&entity=markets&${bust()}`;
 }
 
-/** NBA games on DraftKings, found through whichever configured subcategory answers.
- *  Returns { games: [{eventId, name, away, home, startTime}], tried: [{subId, status, events}] } */
-export async function dkGames(site, league, subIds) {
+/** NBA games on DraftKings, found through whichever league + subcategory answers first.
+ *  Returns { games: [{eventId, name, away, home, startTime}], tried: [{league, subId, status, events}] } */
+export async function dkGames(site, leagues, subIds) {
   const tried = [];
-  for (const subId of subIds) {
+  for (const league of leagues) for (const subId of subIds) {
     try {
       const json = await getJson(dkLeagueUrl(site, league, subId), 'DK', { ...DK_HEADERS, 'x-client-page': 'league' });
       const games = parseDkGames(json);
-      tried.push({ subId, status: 'ok', events: games.length });
+      tried.push({ league, subId, status: 'ok', events: games.length });
       if (games.length) return { games, tried };
     } catch (e) {
-      tried.push({ subId, status: String(e.message || e), events: 0 });
-      if (isBackingOff('DK')) break;
+      tried.push({ league, subId, status: String(e.message || e), events: 0 });
+      if (isBackingOff('DK')) return { games: [], tried };
     }
   }
   return { games: [], tried };
