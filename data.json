@@ -9200,7 +9200,7 @@
    "time": "22:00",
    "vs": "PHX",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9212,15 +9212,15 @@
     },
     {
      "pos": "SF",
-     "name": "Ace Bailey"
-    },
-    {
-     "pos": "PF",
      "name": "Lauri Markkanen"
     },
     {
-     "pos": "C",
+     "pos": "PF",
      "name": "Jaren Jackson"
+    },
+    {
+     "pos": "C",
+     "name": "Jaxson Hayes"
     }
    ]
   },
@@ -16157,61 +16157,6 @@
    "url": "https://www.rotowire.com/basketball/player/kawhi-leonard-3195",
    "at": "2026-10-14T01:54:00+00:00",
    "team": "TOR"
-  },
-  {
-   "id": "nba534333",
-   "player": "Ja Morant",
-   "headline": "Sliding to second unit Tuesday",
-   "text": "Morant won't start Tuesday's preseason game against Portland, Frankie Cartoscelli of KHTK Sactown Sports 1140 reports.",
-   "reporter": "Frankie Cartoscelli",
-   "outlet": "KHTK Sactown Sports 1140",
-   "url": "https://www.rotowire.com/basketball/player/ja-morant-4761",
-   "at": "2026-10-14T01:47:00+00:00",
-   "team": "POR"
-  },
-  {
-   "id": "nba534329",
-   "player": "Jrue Holiday",
-   "headline": "Not starting Tuesday",
-   "text": "Holiday won't start Tuesday's preseason game against the Kings, Frankie Cartoscelli of KHTK Sactown Sports 1140 reports.",
-   "reporter": "Frankie Cartoscelli",
-   "outlet": "KHTK Sactown Sports 1140",
-   "url": "https://www.rotowire.com/basketball/player/jrue-holiday-3029",
-   "at": "2026-10-14T01:42:00+00:00",
-   "team": "POR"
-  },
-  {
-   "id": "nba534327",
-   "player": "Draymond Green",
-   "headline": "Won't play Tuesday",
-   "text": "Green (rest) has been ruled out for Tuesday's preseason game against the Lakers, Law Murray of The Athletic reports.",
-   "reporter": "Law Murray",
-   "outlet": "The Athletic",
-   "url": "https://www.rotowire.com/basketball/player/draymond-green-3299",
-   "at": "2026-10-14T01:40:00+00:00",
-   "team": "GSW"
-  },
-  {
-   "id": "nba534321",
-   "player": "Paolo Banchero",
-   "headline": "Drops 24 points in preseason win",
-   "text": "Banchero supplied 24 points (10-13 FG, 2-3 3Pt, 2-2 FT), eight rebounds, three assists and one steal across 28 minutes in Tuesday's 132-116 preseason win over Cleveland.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/paolo-banchero-5700",
-   "at": "2026-10-14T01:31:00+00:00",
-   "team": "ORL"
-  },
-  {
-   "id": "nba534322",
-   "player": "Donovan Mitchell",
-   "headline": "Solid showing in win",
-   "text": "Mitchell recorded 15 points (7-15 FG, 1-5 3Pt, 0-1 FT), eight assists and two rebounds across 25 minutes in Tuesday's 132-116 preseason loss to Orlando.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/donovan-mitchell-4166",
-   "at": "2026-10-14T01:31:00+00:00",
-   "team": "CLE"
   }
  ],
  "matchup_alerts": [
@@ -19887,11 +19832,23 @@
    "src": "ESPN",
    "kind": "G",
    "injury": "Left Hip",
-   "upd": "2026-10-13",
+   "upd": "2026-10-17",
    "until": "",
-   "note": "Hinson (adductor) has been ruled out for Monday's preseason game against San Antonio.",
+   "note": "Hinson (hamstring) is listed as out for Friday's preseason game against Phoenix.",
    "through": "2026-10-18",
    "url": "https://www.espn.com/nba/injuries#:~:text=Blake%20Hinson"
+  },
+  {
+   "team": "UTA",
+   "player": "Trey Alexander",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Left Knee",
+   "upd": "2026-10-17",
+   "until": "",
+   "note": "Alexander is out for Friday's preseason finale in Phoenix due to a left knee injury.",
+   "through": "2026-10-18",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Trey%20Alexander"
   },
   {
    "team": "UTA",
@@ -19916,6 +19873,18 @@
    "note": "Nurkic will miss at least the next four weeks due to a partial plantar plate tear of second toe in right foot, Chris Haynes of NBA TV reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jusuf%20Nurkic"
+  },
+  {
+   "team": "WAS",
+   "player": "AJ Dybantsa",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Ankle",
+   "upd": "2026-10-17",
+   "until": "",
+   "note": "Dybantsa exited to the locker room in the second quarter of Friday's preseason game against the Pelicans due to an apparent ankle injury, Josh Robbins of The Athletic reports.",
+   "through": "2026-10-18",
+   "url": "https://www.espn.com/nba/injuries#:~:text=AJ%20Dybantsa"
   },
   {
    "team": "WAS",
@@ -20082,19 +20051,6 @@
    "through": "2026-10-16",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Ament"
-  },
-  {
-   "team": "MIL",
-   "player": "AJ Green",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-16",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-16",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Green"
   },
   {
    "team": "MIL",
@@ -20325,7 +20281,7 @@
    "injury": "",
    "upd": "2026-10-16",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Prob",
    "through": "2026-10-16",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20George"
@@ -20351,7 +20307,7 @@
    "injury": "",
    "upd": "2026-10-16",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Prob",
    "through": "2026-10-16",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Pritchard"
@@ -20390,7 +20346,7 @@
    "injury": "",
    "upd": "2026-10-16",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Prob",
    "through": "2026-10-16",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Tatum"
@@ -20403,7 +20359,7 @@
    "injury": "",
    "upd": "2026-10-16",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Prob",
    "through": "2026-10-16",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20White"
@@ -21174,6 +21130,19 @@
    "through": "2026-10-16",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Porzingis"
+  },
+  {
+   "team": "UTA",
+   "player": "Trey Alexander",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-16",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-16",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20Alexander"
   },
   {
    "team": "UTA",
@@ -22350,57 +22319,6 @@
    "override": true,
    "at": "2026-10-14T16:36:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "POR",
-   "player": "Ja Morant",
-   "src": "Frankie Cartoscelli",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-10-13",
-   "until": "",
-   "note": "Morant won't start Tuesday's preseason game against Portland, Frankie Cartoscelli of KHTK Sactown Sports 1140 reports.",
-   "through": "2026-10-13",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/ja-morant-4761",
-   "from": "2026-10-13",
-   "override": true,
-   "at": "2026-10-14T01:47:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "POR",
-   "player": "Jrue Holiday",
-   "src": "Frankie Cartoscelli",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-10-13",
-   "until": "",
-   "note": "Holiday won't start Tuesday's preseason game against the Kings, Frankie Cartoscelli of KHTK Sactown Sports 1140 reports.",
-   "through": "2026-10-13",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/jrue-holiday-3029",
-   "from": "2026-10-13",
-   "override": true,
-   "at": "2026-10-14T01:42:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "GSW",
-   "player": "Draymond Green",
-   "src": "Law Murray",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-10-13",
-   "until": "",
-   "note": "Green (rest) has been ruled out for Tuesday's preseason game against the Lakers, Law Murray of The Athletic reports.",
-   "through": "2026-10-13",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/draymond-green-3299",
-   "from": "2026-10-13",
-   "override": true,
-   "at": "2026-10-14T01:40:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -22416,27 +22334,27 @@
    "at": "2026-10-16T18:07:00+00:00"
   }
  ],
- "generated_at": "2026-10-17T01:19:21+00:00",
+ "generated_at": "2026-10-17T01:49:47+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-17T01:19:07+00:00",
+   "at": "2026-10-17T01:49:32+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-17T01:19:19+00:00",
+   "at": "2026-10-17T01:49:45+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-17T01:19:20+00:00",
+   "at": "2026-10-17T01:49:46+00:00",
    "teams": 24,
    "injuries": 106
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-17T01:19:20+00:00",
+   "at": "2026-10-17T01:49:46+00:00",
    "current_players": 0,
    "last_players": 582
   },
@@ -22446,18 +22364,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-17T01:19:20+00:00",
+   "at": "2026-10-17T01:49:46+00:00",
    "count": 121
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-17T01:19:20+00:00",
+   "at": "2026-10-17T01:49:47+00:00",
    "count": 30
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-17T01:19:21+00:00",
-   "count": 123
+   "at": "2026-10-17T01:49:47+00:00",
+   "count": 125
   },
   "x": {
    "ok": null,
@@ -22465,8 +22383,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-17T01:19:21+00:00",
-   "count": 103
+   "at": "2026-10-17T01:49:47+00:00",
+   "count": 98
   }
  }
 }
