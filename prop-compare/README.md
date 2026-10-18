@@ -1,5 +1,7 @@
 # Prop Price Compare (DraftKings / FanDuel / Ours)
 
+Shows **odds only**: the American odds each book shows customers. No chance-of-over lines.
+
 A Chrome extension, separate from the injury board. Pick an NBA game and press **Start**. Every 15 seconds it
 pulls player points and alternate points ("20+ points") from DraftKings and FanDuel, lines the prices up, and
 shows a table and a live graph. Everything it pulls is saved, and you can export it to CSV or a Google Sheet.
@@ -7,15 +9,14 @@ shows a table and a live graph. Everything it pulls is saved, and you can export
 
 ## How the prices are lined up
 
-- Both books are asked at the same moment, once every 15 seconds. Each of those is one **pull**.
-- A pull is **aligned** when both books answered within 2 seconds of each other (you can change this in Settings).
-- If a book answers late or fails, it is left **blank for that pull**. A price is never compared with a price
-  from a different pull.
-- Each line is turned into the **chance of the over**:
-  - When the book offers both over and under, the vig is removed.
-  - For one-sided "N+" lines, it is the plain implied chance.
-  - **Gap** = DraftKings % minus FanDuel %, in percentage points.
-  - A gap is only shown when both books price the line the same way.
+- DraftKings, FanDuel and our test Dolly screen are all asked at the same moment, once every 15 seconds. Each of
+  those is one **pull**.
+- A pull is **aligned** when every source answered within 2 seconds of the first one (you can change this in
+  Settings).
+- If a source answers late or fails, it is left **blank for that pull**. Odds are never compared with odds from a
+  different pull.
+- The table and graph show **American odds** as customers see them. The graph plots the over odds over time.
+- "Biggest difference" sorts by how far our over odds are from DraftKings' or FanDuel's.
 
 ## Install (about 2 minutes)
 
@@ -59,26 +60,25 @@ last DraftKings requests it saw.
 
 Settings still has the DraftKings IDs as a backup. The ones learned from your browser are used first.
 
-## Our prices: from the Dolly screen
+## Our prices: from the Dolly TEST screen (App column)
 
-Our prices are read off the **Dolly Market Manager** screen, the same way the In-Play Trading Guard reads Dolly.
-It finds the **Selection**, **App**, **Trading** and **OF** column headers by their text and reads the numbers under them.
-It makes no data requests, uses no logins, and never clicks or types anything.
+Our prices are the **App** odds (what the app shows customers), read off the Market Manager screen of **Dolly's
+test environment** (`dolly.uat.oddsfactorytrading.bet`). Prod Dolly is not read at all.
 
-- **Ours** (green line) is the price on offer: **Trading** when a trader has typed a price, otherwise **App**.
-- **OF** (Odds Factory) is its own yellow line.
-- The gaps are ours (Trading) minus DraftKings and minus FanDuel.
+- It only reads text. It never clicks, types, changes or sends anything, and it doesn't measure the page
+  (measuring is what froze Dolly in earlier versions).
+- It reads only when the dashboard asks, once per pull.
 
 To use it:
-1. Open the game's **Market Manager** in Dolly. If Dolly was already open when you installed or updated the
+1. Open the game's **Market Manager** in test Dolly. If it was already open when you installed or updated the
    extension, reload it once.
-2. **Expand ALTERNATE PLAYER POINTS and PLAYER TOTAL POINTS.** As with the Trading Guard, Dolly doesn't show the rows of a collapsed
-   market, so they can't be read.
+2. **Expand ALTERNATE PLAYER POINTS** (and PLAYER TOTAL POINTS for over/unders). Dolly doesn't show the rows of a
+   collapsed market.
 3. Keep Dolly in **its own window**, not a hidden tab, so its prices keep updating.
 4. On the dashboard, pick the game and press **Start**.
 
-If our prices stay blank, open **Diagnostics**. Under "Our prices (Dolly screen)" it lists each market it saw
-and its first rows. Send me a screenshot.
+If our odds stay blank, open **Diagnostics**. Under "Our prices" it shows how many rows it saw, how many App prices
+it read, and examples. Send me a screenshot.
 
 ## Google Sheet (optional)
 
@@ -99,14 +99,11 @@ Each game gets its own tab in the sheet. **Send to Google Sheet** only sends pul
 | Column | Meaning |
 |---|---|
 | tick_time_et / tick_time_utc / tick_id | When the pull started, and its number |
-| aligned | yes = both books answered within the limit |
-| spread_ms | How far apart the two books answered |
+| aligned | yes = every source answered within the limit |
+| spread_ms | How far apart the sources answered |
 | game, player, market, line | e.g. "Points O/U 24.5" (line 24.5) or "25+ points" (line 24.5) |
-| dk_over, dk_under, fd_over, fd_under | American odds. Blank = not offered, or that book was late or failed on this pull |
-| dk_over_prob, fd_over_prob | Chance of the over, % |
-| dk_fetched_utc, fd_fetched_utc | When each book's answer arrived |
-| prob_kind | "no-vig" (both sides) or "implied (one-sided)" |
-| gap_pts_dk_minus_fd | DK % minus FD %, in percentage points |
+| dk_over, dk_under, fd_over, fd_under, ours_over, ours_under | American odds. Blank = not offered, or that source was late or failed on this pull |
+| dk_fetched_utc, fd_fetched_utc, ours_fetched_utc | When each source's answer arrived |
 
 ## How much traffic this sends
 
@@ -120,7 +117,8 @@ game, far below what the MLB suite sends. After an error, the book is paused for
 - Code:
   - `extension/lib/books.js`: DK/FD requests and parsing. Request handling is ported from the MLB suite's
     `background/book-api.js`.
-  - `lib/compare.js`: alignment, no-vig, rows, CSV.
+  - `lib/compare.js`: alignment, rows, CSV.
+  - `content/dolly-props.js`: reads the App odds off the test Dolly Market Manager (text only).
   - `lib/match.js`: player and team name matching.
   - `lib/chart.js`: the graph.
   - `lib/store.js`: saved pulls (IndexedDB).

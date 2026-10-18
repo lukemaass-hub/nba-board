@@ -2,7 +2,7 @@ import { fdGames, fdPointsTabs, fdQuotes, dkGames, dkQuotes, isBackingOff, setDk
 import * as books from './lib/books.js';
 import { sameGame, teamNick } from './lib/match.js';
 import { tokenScore } from './lib/match.js';
-import { BOOKS, alignTick, buildRows, marketLabel, tickToRecords, toCsv, CSV_HEADERS, etTime } from './lib/compare.js';
+import { BOOKS, alignTick, buildRows, oddsScale, oddsLabel, marketLabel, tickToRecords, toCsv, CSV_HEADERS, etTime } from './lib/compare.js';
 import { saveTick, ticksFor } from './lib/store.js';
 import { renderChart } from './lib/chart.js';
 
@@ -13,9 +13,10 @@ const DEFAULTS = {
   dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', sheetsUrl: '', autoSheet: false,
 };
 const SERIES = [{ book: 'DK', name: 'DK', long: 'DraftKings', color: '#3987e5' }, { book: 'FD', name: 'FD', long: 'FanDuel', color: '#d95926' },
-  { book: 'OURS', name: 'Ours', long: 'Ours (Dolly App / Trading)', color: '#199e70' }, { book: 'OF', name: 'OF', long: 'Odds Factory (Dolly OF)', color: '#c98500' }];
-const GAP_SERIES = [{ book: 'OURS_DK', name: 'vs DK', long: 'Ours − DraftKings', color: '#3987e5' }, { book: 'OURS_FD', name: 'vs FD', long: 'Ours − FanDuel', color: '#d95926' }];
-const BOOK_NAME = { DK: 'DraftKings', FD: 'FanDuel', OURS: 'Ours', OF: 'Odds Factory' };
+  { book: 'OURS', name: 'Ours', long: 'Ours (app price)', color: '#199e70' }];
+// Dolly TEST environment (UAT) only, by the user's choice: prod Dolly is not read at all.
+const DOLLY_URL = 'https://dolly.uat.oddsfactorytrading.bet/*';
+const BOOK_NAME = { DK: 'DraftKings', FD: 'FanDuel', OURS: 'Ours' };
 const REPROBE_EVERY = 20;   // pulls; re-try DK subcategories that returned nothing
 
 const $ = (id) => document.getElementById(id);
@@ -82,8 +83,8 @@ function renderDiag() {
     for (const x of learned.urls.slice(0, 8)) lines.push(`     ${decodeURIComponent(x).replace(/^https:\/\/[^/]+/, '').slice(0, 220)}`);
   }
   lines.push(`   DK ids in use: site ${dkSite()}, leagues ${dkLeagues().join(', ')}, points subcategories ${subIds().join(', ')}`);
-  lines.push(`\nOur prices (Dolly screen): ${diag.dolly || 'not read yet'}`);
-  for (const t of diag.dollyTables || []) lines.push(`   "${t.title}" ${t.rows} rows, ${t.points ?? '?'} points rows read${t.sample.length ? `  e.g. ${t.sample.join('  ·  ')}` : ''}`);
+  lines.push(`\nOur prices (Dolly TEST screen, App column): ${diag.dolly || 'not read yet'}`);
+  for (const x of diag.dollySample || []) lines.push(`   e.g. ${x}`);
   if (run) {
     lines.push(`\nRunning: ${run.game.name}`);
     lines.push(`   FD event ${run.game.fd?.eventId ?? '—'}, tabs: ${run.fdTabs?.join(', ') || '—'}`);
@@ -187,15 +188,15 @@ async function findFdTabs(r) {
 // Our prices: ask the open Dolly Market Manager tab(s) to read the screen (content/dolly-props.js).
 // The tab for this game is the one whose teams match (the MLB suite's tokenScore), or the only one open.
 async function readDolly(g) {
-  const tabs = (await chrome.tabs.query({ url: 'https://dolly.1.oddsfactorytrading.com/*' })).filter(t => /market-manager/.test(t.url || ''));
-  if (!tabs.length) return { ok: false, error: 'no Dolly Market Manager tab open' };
+  const tabs = (await chrome.tabs.query({ url: DOLLY_URL })).filter(t => /market-manager/.test(t.url || ''));
+  if (!tabs.length) return { ok: false, error: 'no Dolly TEST (UAT) Market Manager tab open' };
   const sent = Date.now();
   // ask every frame of each Dolly tab (the market table may sit in a frame); per tab keep the frame that read most
   const ask = (tabId, frameId) => new Promise(res => chrome.tabs.sendMessage(tabId, { type: 'DOLLY_READ' }, { frameId }, (r) => res(chrome.runtime.lastError ? null : r)));
   const answers = await Promise.all(tabs.map(async (t) => {
     const frames = (await chrome.webNavigation.getAllFrames({ tabId: t.id }).catch(() => null)) || [{ frameId: 0 }];
     const rs = (await Promise.all(frames.map(f => ask(t.id, f.frameId)))).filter(r => r?.ok);
-    rs.sort((a, b) => b.quotes.length - a.quotes.length || (b.heads.selection + b.heads.of) - (a.heads.selection + a.heads.of));
+    rs.sort((a, b) => b.quotes.length - a.quotes.length);
     const top = rs.find(r => r.frame === 'top');
     return rs[0] ? { ...rs[0], teams: rs[0].teams?.length ? rs[0].teams : top?.teams, url: top?.url || rs[0].url } : null;
   }));
@@ -205,9 +206,8 @@ async function readDolly(g) {
   const score = (a) => a.teams?.length === 2 ? Math.min(...want.map(w => Math.max(...a.teams.map(t => tokenScore(w, t))))) : 0;
   const best = ok.length === 1 ? ok[0] : ok.slice().sort((a, b) => score(b) - score(a))[0];
   if (ok.length > 1 && score(best) < 0.5) return { ok: false, error: `${ok.length} Dolly tabs open and none shows ${want.join(' @ ')}` };
-  diag.dolly = `${tabs.length} Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · headers found: Selection ${best.heads.selection}, App ${best.heads.app}, Trading ${best.heads.trading}, OF ${best.heads.of} · ${best.quotes.length} prices read in ${best.readMs ?? '?'} ms${best.unread ? `, ${best.unread} points rows not understood (e.g. ${(best.unreadSample || []).join(' / ')})` : ''}${best.frame && best.frame !== 'top' ? ' (in a frame)' : ''}`
-  + `${best.quotes.some(q => q.src === 'Trading') ? ' · ours = Trading where typed, else App' : ' · ours = App'}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}`;
-  diag.dollyTables = best.tables;
+  diag.dolly = `${tabs.length} TEST Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · ${best.rows} points/prop rows seen, ${best.quotes.length} App prices read in ${best.readMs ?? '?'} ms${best.frame && best.frame !== 'top' ? ' (in a frame)' : ''}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}`;
+  diag.dollySample = best.sample || [];
   return { ok: true, at: best.at || Date.now(), ms: Date.now() - sent, quotes: best.quotes };
 }
 
@@ -249,15 +249,10 @@ async function pull() {
       if (subs.length === subIds().length) r.dkActive = good;   // learn from a full probe
       if (!DK.quotes.length) { DK.ok = false; DK.error = 'DK answered but had no player-points prices (check the subcategory ids)'; }
     }
-    // one Dolly read carries both our columns: Trading (ours) and OF (Odds Factory), same moment
-    const split = (book) => {
-      if (!DOLLY.ok) return { ...DOLLY };
-      const q = DOLLY.quotes.filter(x => x.book === book);
-      return q.length ? { ok: true, at: DOLLY.at, ms: DOLLY.ms, quotes: q } : { ok: false, at: DOLLY.at, error: `Dolly screen showed no player-points ${book === 'OF' ? 'OF' : 'App/Trading'} prices (expand ALTERNATE PLAYER POINTS / PLAYER TOTAL POINTS in Dolly; see Diagnostics)` };
-    };
-    const OURS = split('OURS'), OF = split('OF');
-    const res = { DK, FD, OURS, OF };
-    const expected = [g.dk && 'DK', g.fd && r.fdTabs?.length && 'FD', DOLLY.ok && 'OURS', DOLLY.ok && 'OF'].filter(Boolean);
+    const OURS = !DOLLY.ok ? DOLLY : DOLLY.quotes.length ? DOLLY
+      : { ok: false, at: DOLLY.at, error: 'Dolly screen showed no player-points App prices (expand ALTERNATE PLAYER POINTS / PLAYER TOTAL POINTS in Dolly; see Diagnostics)' };
+    const res = { DK, FD, OURS };
+    const expected = [g.dk && 'DK', g.fd && r.fdTabs?.length && 'FD', DOLLY.ok && 'OURS'].filter(Boolean);
     const al = alignTick(res, settings.alignToleranceMs, expected);
     const errors = {};
     for (const b of BOOKS) {
@@ -277,7 +272,7 @@ async function pull() {
     for (const b of BOOKS) {
       if (al.used[b]) light(b, 'ok', `${res[b].ms} ms · ${tick.counts[b]} prices`);
       else light(b, res[b].ok ? 'warn' : 'bad', res[b].ok ? 'late this pull' : 'missing this pull');
-      if (errors[b] && (b === 'OURS' || b === 'OF' ? b === 'OURS' : g[b.toLowerCase()])) logErr(`pull #${id} ${b}: ${errors[b]}`);
+      if (errors[b] && (b === 'OURS' || g[b.toLowerCase()])) logErr(`pull #${id} ${b}: ${errors[b]}`);
     }
     const alignedN = history.filter(x => x.aligned).length;
     $('tickinfo').textContent = `Pull #${id} at ${etTime(t).slice(11)} ET · ${alignedN}/${history.length} aligned${r.skipped ? ` · ${r.skipped} skipped (book slower than ${settings.pollSeconds}s)` : ''}`;
@@ -287,10 +282,7 @@ async function pull() {
 }
 
 // ---------------------------------------------------------------- table
-const fmtP = (p) => p == null ? '–' : `${(p * 100).toFixed(1)}%`;
-const fmtG = (g) => g == null ? '–' : `${g > 0 ? '+' : ''}${g.toFixed(1)}`;
 const odds = (b) => b ? `${b.over?.american ?? '–'} / ${b.under?.american ?? '–'}` : null;
-const bigGap = (r) => Math.max(...['OURS_DK', 'OURS_FD', 'DK_FD'].map(k => Math.abs(r.gaps?.[k] ?? -1)));
 function renderTable() {
   const tb = $('table').tBodies[0]; tb.textContent = '';
   const last = history.at(-1);
@@ -299,20 +291,17 @@ function renderTable() {
   if (!last) return;
   const q = $('filter').value.trim().toLowerCase();
   const withPrices = BOOKS.filter(b => last.rows.some(r => r.books[b]));
-  const multiOnly = $('both-only').checked && withPrices.filter(b => b !== 'OF').length > 1;   // with one book in, this would hide everything
+  const multiOnly = $('both-only').checked && withPrices.length > 1;   // with one book in, this would hide everything
   $('both-note').textContent = withPrices.length === 1 ? `Only ${BOOK_NAME[withPrices[0]]} has prices this pull, so all of its lines are shown.` : '';
-  let rows = last.rows.filter(r => (!q || r.player.toLowerCase().includes(q)) && (!multiOnly || Object.keys(r.books).filter(b => b !== 'OF').length > 1));
-  if ($('sort').value === 'gap') rows = rows.slice().sort((a, b) => bigGap(b) - bigGap(a));
+  let rows = last.rows.filter(r => (!q || r.player.toLowerCase().includes(q)) && (!multiOnly || Object.keys(r.books).length > 1));
+  if ($('sort').value === 'gap') rows = rows.slice().sort((a, b) => (b.diff ?? -1) - (a.diff ?? -1));
   for (const r of rows) {
     const tr = document.createElement('tr'); if (r.key === selectedKey) tr.className = 'sel';
-    const g = r.gaps || {};
-    const cells = [r.player, marketLabel(r), odds(r.books.DK), odds(r.books.FD), odds(r.books.OURS), odds(r.books.OF),
-      fmtP(r.books.DK?.p), fmtP(r.books.FD?.p), fmtP(r.books.OURS?.p), fmtP(r.books.OF?.p), fmtG(g.OURS_DK), fmtG(g.OURS_FD), fmtG(g.DK_FD)];
+    const cells = [r.player, marketLabel(r), odds(r.books.DK), odds(r.books.FD), odds(r.books.OURS)];
     cells.forEach((c, i) => {
       const td = document.createElement('td'); td.textContent = c ?? '–';
       if (i >= 2) td.className = 'num';
-      if (c == null || c === '–') td.classList.add('na');
-      if (i >= 10) { const v = [g.OURS_DK, g.OURS_FD, g.DK_FD][i - 10]; if (v != null && Math.abs(v) >= 3) td.classList.add('big'); }
+      if (c == null) td.classList.add('na');
       tr.appendChild(td);
     });
     tr.addEventListener('click', () => { selectedKey = r.key; renderTable(); renderSelected(); });
@@ -328,37 +317,22 @@ function legendFor(el, series) {
   for (const s of series) { const sp = document.createElement('span'); sp.style.setProperty('--c', s.color); sp.textContent = s.long; el.appendChild(sp); }
 }
 function renderSelected() {
-  if (!selectedKey) {
-    $('chart').textContent = ''; $('gapchart').textContent = ''; $('legend').textContent = ''; $('gaplegend').textContent = '';
-    $('chart-title').textContent = 'Click a row below to graph it'; $('gap-panel').hidden = true; return;
-  }
+  if (!selectedKey) { $('chart').textContent = ''; $('legend').textContent = ''; $('chart-title').textContent = 'Click a row below to graph it'; return; }
   const any = history.findLast(t => t.rows.some(r => r.key === selectedKey));
   const row = any?.rows.find(r => r.key === selectedKey);
-  $('chart-title').textContent = row ? `${row.player} · ${marketLabel(row)}` : 'Line no longer offered';
+  $('chart-title').textContent = row ? `${row.player} · ${marketLabel(row)} · over odds` : 'Line no longer offered';
   const rowsAt = history.map(t => ({ t, r: t.rows.find(x => x.key === selectedKey) }));
-  const shown = SERIES.filter(s => rowsAt.some(({ r }) => r?.books[s.book]?.p != null));
+  const shown = SERIES.filter(s => rowsAt.some(({ r }) => r?.books[s.book]?.over?.american));
   legendFor($('legend'), shown.length ? shown : SERIES);
+  // American odds on one continuous scale (oddsScale), labelled back as American odds
   const points = rowsAt.map(({ t, r }) => {
     const values = {};
-    for (const s of SERIES) { const b = r?.books[s.book]; values[s.book] = b?.p != null ? { p: b.p, over: b.over?.american, under: b.under?.american } : null; }
+    for (const s of SERIES) { const b = r?.books[s.book]; const v = oddsScale(b?.over?.american); values[s.book] = v != null ? { p: v / 100, over: b.over.american, under: b.under?.american } : null; }
     return { t: t.t, id: t.id, aligned: t.aligned, values };
   });
-  renderChart($('chart'), $('tooltip'), points, shown.length ? shown : SERIES);
-
-  // our gap to each book, in percentage points (0 = same price); only pulls where both were in
-  const gapShown = GAP_SERIES.filter(s => rowsAt.some(({ r }) => r?.gaps?.[s.book] != null));
-  $('gap-panel').hidden = false;
-  legendFor($('gaplegend'), gapShown.length ? gapShown : GAP_SERIES);
-  const gpoints = rowsAt.map(({ t, r }) => {
-    const values = {};
-    for (const s of GAP_SERIES) { const v = r?.gaps?.[s.book]; values[s.book] = v != null ? { p: v / 100 } : null; }
-    return { t: t.t, id: t.id, aligned: t.aligned, values };
-  });
-  renderChart($('gapchart'), $('gaptooltip'), gpoints, gapShown.length ? gapShown : GAP_SERIES, {
-    clamp: false, zero: true,
-    fmt: (v) => `${v > 0 ? '+' : ''}${(v * 100).toFixed(1)} pts`, axisFmt: (v) => `${v > 0 ? '+' : ''}${+v.toFixed(1)}`,
-    tipFmt: (s, v) => `Ours − ${s.book === 'OURS_DK' ? 'DK' : 'FD'}: ${v.p > 0 ? '+' : ''}${(v.p * 100).toFixed(1)} pts`,
-    empty: 'Needs our price and a book price on the same pull.',
+  renderChart($('chart'), $('tooltip'), points, shown.length ? shown : SERIES, {
+    clamp: false, fmt: (v) => oddsLabel(v * 100), axisFmt: (v) => oddsLabel(v),
+    tipFmt: (s, v) => `${s.name}: over ${v.over ?? '–'}${v.under ? ` · under ${v.under}` : ''}`,
   });
 }
 window.addEventListener('resize', () => renderSelected());

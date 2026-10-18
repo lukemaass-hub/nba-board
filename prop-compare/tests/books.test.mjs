@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { parseFdGames, parseFdQuotes, parseDkQuotes, parseDkGames, decimalFromAmerican } from '../extension/lib/books.js';
-import { alignTick, buildRows, tickToRecords, toCsv, CSV_HEADERS } from '../extension/lib/compare.js';
+import { alignTick, buildRows, tickToRecords, toCsv, CSV_HEADERS, oddsScale, oddsLabel } from '../extension/lib/compare.js';
 import { playerMatch, sameGame, tokenScore } from '../extension/lib/match.js';
 
 const fx = (n) => JSON.parse(fs.readFileSync(new URL(`./fixtures/${n}`, import.meta.url)));
@@ -61,35 +61,24 @@ test('alignment: late or failed book is left out, never mixed in', () => {
   assert.deepEqual([fail.aligned, fail.used.DK, fail.used.FD], [false, false, true]);
 });
 
-test('rows: no-vig gap on shared lines, CSV export', () => {
+test('rows line up DK, FD and ours by player + line; CSV is odds only', () => {
   const FD = parseFdQuotes(Object.values(fx('fd_points_tab.json').attachments.markets));
   const DK = parseDkQuotes(fx('dk_points_synthetic.json'));
-  const rows = buildRows({ DK, FD });
+  const OURS = [{ book: 'OURS', player: 'Cade Cunningham', kind: 'ou', line: 24.5, side: 'over', american: '-104', decimal: 1.961 },
+                { book: 'OURS', player: 'CADE CUNNINGHAM', kind: 'alt', line: 39.5, side: 'over', american: '+1100', decimal: 12 }];
+  const rows = buildRows({ DK, FD, OURS });
   const cade = rows.find(r => r.player === 'Cade Cunningham' && r.kind === 'ou' && r.line === 24.5);
-  assert.ok(cade.books.DK.novig && cade.books.FD.novig);
-  const nv = (o, u) => (1 / decimalFromAmerican(o)) / (1 / decimalFromAmerican(o) + 1 / decimalFromAmerican(u));
-  assert.ok(Math.abs(cade.gapPts - (nv(-110, -120) - nv(-106, -125)) * 100) < 1e-9);
-  const tat = rows.find(r => r.player === 'Jayson Tatum' && r.kind === 'alt' && r.line === 39.5);
-  assert.ok(Math.abs(tat.gapPts - (1 / decimalFromAmerican(750) - 1 / decimalFromAmerican(800)) * 100) < 1e-9);
+  assert.deepEqual([cade.books.DK.over.american, cade.books.FD.over.american, cade.books.OURS.over.american], ['-110', '-106', '-104']);
+  assert.ok(rows.find(r => r.kind === 'alt' && r.line === 39.5 && r.player === 'Cade Cunningham').books.OURS, 'upper-case Dolly name matches');
+  assert.equal(cade.diff, 6);   // ours -104 vs DK -110 = 6 cents (vs FD -106 = 2)
+  assert.equal(oddsScale('+110') - oddsScale('-110'), 20);
+  assert.equal(oddsLabel(oddsScale('-104')), '-104'); assert.equal(oddsLabel(oddsScale('+250')), '+250');
   const tick = { id: 7, t: Date.UTC(2026, 9, 21, 23, 30), game: 'Boston Celtics @ Detroit Pistons', aligned: true, spreadMs: 120,
-    used: { DK: true, FD: true }, at: { DK: Date.UTC(2026, 9, 21, 23, 30, 1), FD: Date.UTC(2026, 9, 21, 23, 30, 1) }, rows };
+    used: { DK: true, FD: true, OURS: true }, at: { DK: 1, FD: 1, OURS: 1 }, rows };
   const recs = tickToRecords(tick);
-  assert.equal(recs.length, rows.length);
   assert.ok(recs.every(r => r.length === CSV_HEADERS.length));
-  const csv = toCsv(recs);
-  assert.match(csv, /^tick_time_et,/);
-  assert.match(csv, /10\/21\/2026 19:30:00,2026-10-21T23:30:00.000Z,7,yes,120,Boston Celtics @ Detroit Pistons,Cade Cunningham,Points O\/U 24.5,24.5,-110,-120/);
-});
-
-test('three-book rows: gaps ours-DK, ours-FD, DK-FD', () => {
-  const q = (book, american, line = 24.5, side = 'over', kind = 'ou') => ({ book, player: 'Cade Cunningham', kind, line, side, american, decimal: decimalFromAmerican(american) });
-  const rows = buildRows({ DK: [q('DK', '-110'), q('DK', '-110', 24.5, 'under')], FD: [q('FD', '-120'), q('FD', '-100', 24.5, 'under')], OURS: [q('OURS', '+100', 24.5, 'over'), q('OURS', '-120', 24.5, 'under')] });
-  const r = rows[0];
-  assert.ok(Math.abs(r.gaps.DK_FD - (50 - r.books.FD.p * 100)) < 1e-9);
-  assert.ok(r.gaps.OURS_DK < 0 && r.gaps.OURS_FD < 0);
-  const recs = tickToRecords({ id: 1, t: 0, game: 'g', aligned: true, spreadMs: 5, used: { DK: true, FD: true, OURS: true }, at: { DK: 1, FD: 1, OURS: 1 }, rows });
-  assert.equal(recs[0].length, CSV_HEADERS.length);
-  assert.equal(recs[0][CSV_HEADERS.indexOf('ours_over')], '+100');
+  assert.ok(!CSV_HEADERS.some(h => /prob|gap|of_/.test(h)));
+  assert.match(toCsv(recs), /Cade Cunningham,Points O\/U 24.5,24.5,-110,-120,[^,]*,-106,-125,[^,]*,-104,/);
 });
 
 test('MLB suite team matching (tokenScore) on NBA names', () => {

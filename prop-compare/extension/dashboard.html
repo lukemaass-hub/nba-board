@@ -7,12 +7,11 @@
 </head>
 <body>
 <header>
-  <h1>Prop Price Compare <span class="sub">NBA player points · DraftKings · FanDuel · Ours</span></h1>
+  <h1>Prop Price Compare <span class="sub">NBA player points odds · DraftKings · FanDuel · Ours (Dolly TEST)</span></h1>
   <div class="lights">
     <span class="light" id="light-DK"><i></i>DraftKings <b>idle</b></span>
     <span class="light" id="light-FD"><i></i>FanDuel <b>idle</b></span>
-    <span class="light" id="light-OURS"><i></i>Ours (Dolly) <b>…</b></span>
-    <span class="light" id="light-OF"><i></i>OF <b>…</b></span>
+    <span class="light" id="light-OURS"><i></i>Ours (Dolly TEST) <b>…</b></span>
   </div>
 </header>
 
@@ -54,19 +53,9 @@
       <h2 id="chart-title">Click a row below to graph it</h2>
       <div class="legend" id="legend"></div>
     </div>
-    <p class="muted small" id="chart-note">Line = chance of the over, with the vig removed when the book offers both sides. Only prices pulled in the same moment are shown; a book that answered late or not at all is left blank for that pull.</p>
+    <p class="muted small" id="chart-note">Over odds as shown to customers (American). Only odds pulled in the same moment are shown; a book that answered late or not at all is left blank for that pull.</p>
     <div id="chart" class="chart"></div>
     <div id="tooltip" class="tooltip" hidden></div>
-  </section>
-
-  <section class="panel" id="gap-panel" hidden>
-    <div class="panel-head">
-      <h2>Our gap to each book</h2>
-      <div class="legend" id="gaplegend"></div>
-    </div>
-    <p class="muted small">Our chance of the over minus the book's, in percentage points, from prices pulled at the same moment. Above 0 = we price the over higher than that book.</p>
-    <div id="gapchart" class="chart short"></div>
-    <div id="gaptooltip" class="tooltip" hidden></div>
   </section>
 
   <section class="panel">
@@ -76,12 +65,12 @@
         <input id="filter" placeholder="Filter player…" size="18">
         <label class="small"><input type="checkbox" id="both-only" checked> Only lines 2+ books have</label>
         <span id="both-note" class="muted small"></span>
-        <label class="small">Sort <select id="sort"><option value="gap">Biggest gap</option><option value="player">Player</option></select></label>
+        <label class="small">Sort <select id="sort"><option value="gap">Biggest difference (ours vs books)</option><option value="player">Player</option></select></label>
       </div>
     </div>
     <div class="table-wrap">
       <table id="table">
-        <thead><tr><th>Player</th><th>Market</th><th class="num">DK over / under</th><th class="num">FD over / under</th><th class="num">Ours over / under</th><th class="num">OF over / under</th><th class="num">DK %</th><th class="num">FD %</th><th class="num">Ours %</th><th class="num">OF %</th><th class="num">Ours − DK</th><th class="num">Ours − FD</th><th class="num">DK − FD</th></tr></thead>
+        <thead><tr><th>Player</th><th>Market</th><th class="num">DraftKings over / under</th><th class="num">FanDuel over / under</th><th class="num">Ours (app) over / under</th></tr></thead>
         <tbody></tbody>
       </table>
       <p id="empty" class="muted">Pick a game and press Start.</p>

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Prop Price Compare (DK / FD / Dolly)",
-  "version": "0.12.0",
-  "description": "Pulls NBA player points and alternate points from DraftKings, FanDuel and the Dolly Market Manager screen every 15 seconds, lines them up, graphs them, and exports to CSV / Google Sheets.",
+  "version": "0.13.0",
+  "description": "Pulls NBA player points and alternate points from DraftKings, FanDuel and the Dolly TEST (UAT) Market Manager screen every 15 seconds, lines them up, graphs them, and exports to CSV / Google Sheets.",
   "permissions": [
     "storage",
     "unlimitedStorage",
@@ -13,7 +13,7 @@
   "host_permissions": [
     "https://*.draftkings.com/*",
     "https://*.sportsbook.fanduel.com/*",
-    "https://dolly.1.oddsfactorytrading.com/*",
+    "https://dolly.uat.oddsfactorytrading.bet/*",
     "https://script.google.com/*",
     "https://script.googleusercontent.com/*"
   ],
@@ -36,7 +36,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://dolly.1.oddsfactorytrading.com/*"
+        "https://dolly.uat.oddsfactorytrading.bet/*"
       ],
       "js": [
         "content/dolly-props.js"
