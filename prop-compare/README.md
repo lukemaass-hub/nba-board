@@ -91,16 +91,17 @@ odds pulled at the same moment. It compares the chance each price implies. A sid
 
 Both numbers can be changed in Settings. **15%+ off** is marked large in red.
 
-Each row is one stretch of being off. It shows:
-- start time (MT, to the second);
+**Every pull adds a new row** for each line that is off, newest first. Each row shows:
+- the time of that pull (MT, to the second);
 - the player and team;
 - the line (over/under lines say Over or Under);
 - which rule fired;
-- our, DK's and FD's odds and the DK/FD average at the start;
-- % off the average, off DK and off FD;
-- the biggest gap and when it happened.
+- that pull's odds for ours, DK and FD, and the DK/FD average;
+- % off the average, off DK and off FD.
 
-**Red** rows were 15%+ off at some point; **white** rows were flagged but stayed under 15%.
+A line that stays off for 10 pulls gets 10 rows. The screen shows the newest 500; the CSV has all of them.
+
+**Red** = 15%+ off; **white** = flagged but under 15%.
 
 Click a row to graph that line. **Export anomalies CSV** downloads the list. Anomalies are saved with the game,
 so they're still there after lines come down or the dashboard is closed.

@@ -8,7 +8,7 @@ function open() {
     req.onupgradeneeded = (ev) => {
       const db = req.result;
       if (ev.oldVersion < 1) db.createObjectStore(STORE, { keyPath: ['gameKey', 'id'] }).createIndex('gameKey', 'gameKey');
-      // v2: anomaly episodes (lib/anomaly.js), one record per side per stretch of being off the market
+      // v2: anomaly log (lib/anomaly.js), one record per side that is off the market, per pull
       if (ev.oldVersion < 2) db.createObjectStore(ANOM, { keyPath: 'id' }).createIndex('gameKey', 'gameKey');
     };
     req.onsuccess = () => resolve(req.result);
@@ -60,7 +60,7 @@ export async function saveAnomalies(list) {
   const db = await dbp;
   return new Promise((resolve, reject) => {
     const tx = db.transaction(ANOM, 'readwrite');
-    for (const e of list) tx.objectStore(ANOM).put({ ...e, id: `${e.gameKey}|${e.key}|${e.startT}` });
+    for (const e of list) tx.objectStore(ANOM).put(e);
     tx.oncomplete = resolve; tx.onerror = () => reject(tx.error);
   });
 }
@@ -69,7 +69,8 @@ export async function anomaliesFor(gameKey) {
   const db = await dbp;
   return new Promise((resolve, reject) => {
     const req = db.transaction(ANOM).objectStore(ANOM).index('gameKey').getAll(gameKey);
-    req.onsuccess = () => resolve(req.result.sort((a, b) => b.startT - a.startT));
+    // newest first; skips records from the earlier one-row-per-stretch format
+    req.onsuccess = () => resolve(req.result.filter(e => e.t != null).sort((a, b) => b.t - a.t || a.player.localeCompare(b.player)));
     req.onerror = () => reject(req.error);
   });
 }

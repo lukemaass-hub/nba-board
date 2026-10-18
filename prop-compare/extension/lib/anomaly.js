@@ -43,42 +43,20 @@ export function findAnomalies(rows, avgPct = 10, bookPct = 20) {
   return out;
 }
 
-/**
- * Turns each pull's anomalies into episodes: one record from the first pull a side is off until the
- * pull it comes back inside the threshold (or the line disappears). The record keeps the odds at the
- * start, the latest odds, and the biggest gap seen.
- *   open: Map key -> episode (mutated);  returns { changed: [episodes to save] }
- */
-const snap = (a) => ({ ours: a.ours, dk: a.dk, fd: a.fd, avg: a.avg, pct: a.pct, pctDk: a.pctDk, pctFd: a.pctFd });
-
-export function updateEpisodes(open, found, tick, extra = {}) {
-  const changed = [];
-  const now = new Map(found.map(a => [a.key, a]));
-  for (const a of found) {
-    let e = open.get(a.key);
-    if (!e) {
-      e = { gameKey: tick.gameKey, game: tick.game, key: a.key, player: a.player, team: extra.teamFn?.(a.player) || '', kind: a.kind, line: a.line, side: a.side,
-            startT: tick.t, startTick: tick.id, start: snap(a), peakPct: a.size, peakT: tick.t, peak: snap(a), why: a.why, pulls: 0 };
-      open.set(a.key, e);
-    }
-    e.lastT = tick.t; e.lastTick = tick.id; e.pulls++; e.ongoing = true;
-    e.latest = snap(a);
-    if (!e.why.split(', ').includes(a.why)) e.why = [...new Set([...e.why.split(', '), ...a.why.split(', ')])].join(', ');
-    if (Math.abs(a.size) > Math.abs(e.peakPct)) { e.peakPct = a.size; e.peakT = tick.t; e.peak = snap(a); }
-    changed.push(e);
-  }
-  // a side that is no longer off on an ALIGNED pull: the episode ends
-  if (tick.aligned) for (const [k, e] of open) if (!now.has(k)) { e.ongoing = false; e.endT = tick.t; open.delete(k); changed.push(e); }
-  return { changed };
+/** One log row per anomaly per pull: the time of that pull and that pull's prices. */
+export function anomalyRows(found, tick, teamFn = () => '') {
+  return found.map(a => ({
+    id: `${tick.gameKey}|${tick.id}|${a.key}`, gameKey: tick.gameKey, game: tick.game, t: tick.t, tickId: tick.id,
+    key: a.key, player: a.player, team: teamFn(a.player) || '', kind: a.kind, line: a.line, side: a.side, why: a.why,
+    ours: a.ours, dk: a.dk, fd: a.fd, avg: a.avg, pct: a.pct, pctDk: a.pctDk, pctFd: a.pctFd, size: a.size,
+  }));
 }
 
-export const ANOMALY_HEADERS = ['start_mt', 'end_mt', 'ongoing', 'pulls', 'game', 'team', 'player', 'market', 'line', 'side', 'why',
-  'ours_start', 'dk_start', 'fd_start', 'avg_start', 'pct_off_avg_start', 'pct_off_dk_start', 'pct_off_fd_start',
-  'biggest_pct_off', 'biggest_mt', 'ours_latest', 'dk_latest', 'fd_latest', 'pct_off_avg_latest'];
+export const ANOMALY_HEADERS = ['time_mt', 'pull', 'game', 'team', 'player', 'market', 'line', 'side', 'why',
+  'ours', 'dk', 'fd', 'dk_fd_avg', 'pct_off_avg', 'pct_off_dk', 'pct_off_fd'];
 
 export function anomalyRecord(e, marketLabel) {
   const pct = (v) => v == null ? '' : v.toFixed(1);
-  return [mtTime(e.startT), e.endT ? mtTime(e.endT) : '', e.ongoing ? 'yes' : 'no', e.pulls, e.game, e.team, e.player, marketLabel(e), e.line, e.side, e.why || '',
-    e.start.ours, e.start.dk ?? '', e.start.fd ?? '', e.start.avg ?? '', pct(e.start.pct), pct(e.start.pctDk), pct(e.start.pctFd),
-    pct(e.peakPct), mtTime(e.peakT), e.latest?.ours ?? '', e.latest?.dk ?? '', e.latest?.fd ?? '', pct(e.latest?.pct)];
+  return [mtTime(e.t), e.tickId, e.game, e.team, e.player, marketLabel(e), e.line, e.side, e.why || '',
+    e.ours, e.dk ?? '', e.fd ?? '', e.avg ?? '', pct(e.pct), pct(e.pctDk), pct(e.pctFd)];
 }

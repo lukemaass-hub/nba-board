@@ -5,7 +5,7 @@ import { tokenScore } from './lib/match.js';
 import { BOOKS, alignTick, buildRows, oddsScale, oddsLabel, marketLabel, tickToRecords, toCsv, toTsv, CSV_HEADERS, mtTime } from './lib/compare.js';
 import { gameRosters, teamOf } from './lib/rosters.js';
 import { saveTick, ticksFor, saveAnomalies, anomaliesFor } from './lib/store.js';
-import { findAnomalies, updateEpisodes, anomalyRecord, ANOMALY_HEADERS } from './lib/anomaly.js';
+import { findAnomalies, anomalyRows, anomalyRecord, ANOMALY_HEADERS } from './lib/anomaly.js';
 import { renderChart } from './lib/chart.js';
 
 // DK player-points subcategory ids are guesses until checked in a real browser (DK blocks
@@ -213,7 +213,7 @@ $('start').addEventListener('click', async () => {
   const g = games.find(x => x.key === $('game').value);
   if (!g) return;
   await showGame(g);
-  run = { game: g, busy: false, skipped: 0, openAnoms: new Map(), nextId: (history.at(-1)?.id || 0) + 1, fdTabs: null, dkActive: null, dkPerSub: null, n: 0 };
+  run = { game: g, busy: false, skipped: 0, nextId: (history.at(-1)?.id || 0) + 1, fdTabs: null, dkActive: null, dkPerSub: null, n: 0 };
   if (g.fd) await findFdTabs(run);
   $('start').disabled = true; $('stop').disabled = false; $('game').disabled = true;
   worker.postMessage({ cmd: 'start', ms: settings.pollSeconds * 1000 });
@@ -317,12 +317,11 @@ async function pull() {
     await saveTick(tick);
     history.push(tick);
     // anomalies: our odds vs the DK/FD average, same pull only
-    const { changed } = updateEpisodes(r.openAnoms, findAnomalies(rows, Number(settings.anomalyPct) || 10, Number(settings.anomalyBookPct) || 20), tick, { teamFn });
-    if (changed.length) {
-      await saveAnomalies(changed);
-      for (const e of changed) { const i = anomalies.findIndex(x => x.key === e.key && x.startT === e.startT); if (i >= 0) anomalies[i] = { ...e }; else anomalies.unshift({ ...e }); }
-      renderAnomalies();
-    }
+    // every pull: each side that is off the market gets its own new row
+    const newRows = anomalyRows(findAnomalies(rows, Number(settings.anomalyPct) || 10, Number(settings.anomalyBookPct) || 20), tick, teamFn);
+    lastAnomPull = { id, n: newRows.length };
+    if (newRows.length) { await saveAnomalies(newRows); anomalies.unshift(...newRows); }
+    renderAnomalies();
     diag.lastTick = tick;
 
     for (const b of BOOKS) {
@@ -394,21 +393,24 @@ function renderTable() {
 let anomalies = [];
 const tsec = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Denver', hour: 'numeric', minute: '2-digit', second: '2-digit' });
 const LARGE = 15;   // % off: "large"
+let lastAnomPull = null;
+const SHOW_MAX = 500;   // rows drawn on screen (the CSV has all of them)
 function renderAnomalies() {
-  const n = anomalies.length, live = anomalies.filter(e => e.ongoing).length;
-  $('tab-anoms').textContent = `Anomalies (${n}${live ? `, ${live} live` : ''})`;
+  const n = anomalies.length;
+  $('tab-anoms').textContent = `Anomalies (${n})`;
   const tb = $('anoms').tBodies[0]; tb.textContent = '';
   $('anoms-empty').hidden = !!n;
   const thr = Number(settings.anomalyPct) || 10, bthr = Number(settings.anomalyBookPct) || 20;
-  $('anoms-note').textContent = `Flagged when our odds are ${thr}%+ off the DraftKings/FanDuel average, or ${bthr}%+ off either book on its own (by implied chance, same pull only). Red = ${LARGE}%+ off (large); white = flagged but under ${LARGE}%. One row per stretch of being off; newest first.`;
+  $('anoms-note').textContent = `A new row every pull for each line where our odds are ${thr}%+ off the DraftKings/FanDuel average, or ${bthr}%+ off either book on its own (by implied chance, same pull only). Newest first. Red = ${LARGE}%+ off; white = flagged but under ${LARGE}%.`
+    + (lastAnomPull ? ` Last pull #${lastAnomPull.id}: ${lastAnomPull.n} flagged.` : '') + (n > SHOW_MAX ? ` Showing the newest ${SHOW_MAX} of ${n}; Export has all.` : '');
   const f = (v) => v == null ? '–' : `${v > 0 ? '+' : ''}${v.toFixed(1)}%`;
-  for (const e of anomalies) {
+  for (const e of anomalies.slice(0, SHOW_MAX)) {
     const tr = document.createElement('tr');
-    if (Math.abs(e.peakPct) >= LARGE) tr.className = 'large';
+    if (Math.abs(e.size) >= LARGE) tr.className = 'large';
     // over/under lines say which side in the market; N+ lines are always the over
     const market = e.kind === 'ou' ? `${marketLabel(e)} ${e.side === 'over' ? 'Over' : 'Under'}` : marketLabel(e);
-    const cells = [tsec.format(e.startT), `${e.player}${e.team ? `  ·  ${e.team}` : ''}`, market, e.why || '',
-      e.start.ours, e.start.dk, e.start.fd, e.start.avg, f(e.start.pct), f(e.start.pctDk), f(e.start.pctFd), `${f(e.peakPct)} at ${tsec.format(e.peakT)}`];
+    const cells = [tsec.format(e.t), `${e.player}${e.team ? `  ·  ${e.team}` : ''}`, market, e.why || '',
+      e.ours, e.dk, e.fd, e.avg, f(e.pct), f(e.pctDk), f(e.pctFd)];
     cells.forEach((c, i) => { const td = document.createElement('td'); td.textContent = c ?? '–'; if (i >= 4) td.className = 'num'; tr.appendChild(td); });
     tr.title = 'Click to graph this line';
     tr.addEventListener('click', () => { selectedKey = e.key.replace(/\|(over|under)$/, ''); showTab('live'); renderTable(); renderSelected(); });

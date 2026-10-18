@@ -87,8 +87,8 @@ test('MLB suite team matching (tokenScore) on NBA names', () => {
   assert.equal(tokenScore('Portland Trail Blazers', 'Trail Blazers'), 1);
 });
 
-test('anomalies: ours vs DK/FD average by implied chance; episodes open, track peak, close', async () => {
-  const { findAnomalies, updateEpisodes, impliedProb, americanFromProb } = await import('../extension/lib/anomaly.js');
+test('anomalies: ours vs DK/FD average by implied chance; a new row every pull', async () => {
+  const { findAnomalies, anomalyRows, impliedProb, americanFromProb } = await import('../extension/lib/anomaly.js');
   assert.ok(Math.abs(impliedProb('-110') - 0.5238) < 1e-4); assert.equal(americanFromProb(0.5238095), '-110');
   const row = (ours, dk, fd) => ({ key: 'tatum|alt|24.5', player: 'Jayson Tatum', kind: 'alt', line: 24.5,
     books: { OURS: { over: { american: ours } }, DK: { over: { american: dk } }, FD: { over: { american: fd } } } });
@@ -101,12 +101,10 @@ test('anomalies: ours vs DK/FD average by implied chance; episodes open, track p
   // only one book has the line: the either-book rule still applies, the average rule can't
   const solo = findAnomalies([{ ...row('+120', '-178', '-174'), books: { OURS: { over: { american: '+120' } }, DK: { over: { american: '-178' } } } }], 10, 20)[0];
   assert.ok(solo && solo.pct == null && solo.why === '20%+ off DK');
-  const open = new Map();
-  const t = (id, aligned = true) => ({ gameKey: 'g', game: 'BOS @ DET', id, t: id * 15000, aligned });
-  updateEpisodes(open, findAnomalies([row('+120', '-178', '-174')], 10), t(1));
-  updateEpisodes(open, findAnomalies([row('+150', '-178', '-174')], 10), t(2));
-  const { changed } = updateEpisodes(open, findAnomalies([row('-170', '-178', '-174')], 10), t(3));
-  const e = changed[0];
-  assert.deepEqual([e.ongoing, e.pulls, e.start.ours, e.peak.ours, e.endT], [false, 2, '+120', '+150', 45000]);
-  assert.equal(open.size, 0);
+  // a log: every pull adds a row for each side that is off, with that pull's time and prices
+  const t = (id) => ({ gameKey: 'g', game: 'BOS @ DET', id, t: id * 15000, aligned: true });
+  const log = [];
+  for (const [id, ours] of [[1, '+120'], [2, '+150'], [3, '-170']]) log.push(...anomalyRows(findAnomalies([row(ours, '-178', '-174')], 10, 20), t(id)));
+  assert.deepEqual(log.map(e => [e.tickId, e.t, e.ours, e.dk, e.fd]), [[1, 15000, '+120', '-178', '-174'], [2, 30000, '+150', '-178', '-174']]);
+  assert.equal(new Set(log.map(e => e.id)).size, 2);
 });
