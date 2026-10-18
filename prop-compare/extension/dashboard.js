@@ -207,6 +207,8 @@ async function readDolly(g) {
   const score = (a) => a.teams?.length === 2 ? Math.min(...want.map(w => Math.max(...a.teams.map(t => tokenScore(w, t))))) : 0;
   const best = ok.length === 1 ? ok[0] : ok.slice().sort((a, b) => score(b) - score(a))[0];
   if (ok.length > 1 && score(best) < 0.5) return { ok: false, error: `${ok.length} Dolly tabs open and none shows ${want.join(' @ ')}` };
+  const mine = chrome.runtime.getManifest().version;
+  if (best.version !== mine) return { ok: false, error: `the Dolly tab is still running an older copy of the extension (${best.version || 'before 0.14.1'}). Reload the Dolly tab (F5).` };
   diag.dolly = `${tabs.length} TEST Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · ${best.rows} selection rows seen, ${best.quotes.length} App prices read in ${best.readMs ?? '?'} ms${best.frame && best.frame !== 'top' ? ' (in a frame)' : ''}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}`;
   diag.dollySample = best.sample || [];
   diag.dollyMarkets = best.markets || [];
@@ -397,6 +399,7 @@ $('sheet').addEventListener('click', async () => {
 });
 
 // ---------------------------------------------------------------- boot
+$('version').textContent = `version ${chrome.runtime.getManifest().version}`;
 await loadSettings();
 await loadLearned();
 await loadGames();

@@ -83,7 +83,7 @@
       const t0 = performance.now();
       const r = read();
       if (window.top !== window && !r.quotes.length) return false;   // sub-frames answer only if they hold the prices
-      sendResponse({ ok: true, at: Date.now(), readMs: Math.round(performance.now() - t0), url: location.href,
+      sendResponse({ ok: true, version: chrome.runtime.getManifest().version, at: Date.now(), readMs: Math.round(performance.now() - t0), url: location.href,
         frame: window.top === window ? 'top' : location.href, teams: teams(), hidden: document.hidden, ...r });
     } catch (e) { sendResponse({ ok: false, error: String(e.message || e) }); }
     return false;
