@@ -1,8 +1,7 @@
 import { fdGames, fdPointsTabs, fdQuotes, dkGames, dkQuotes, isBackingOff, setDkHost } from './lib/books.js';
 import * as books from './lib/books.js';
 import { sameGame, teamNick } from './lib/match.js';
-import { ourGames, ourQuotes, parseOurSlate, testOurEvent, findNbaSlate, eventMatchScore, DEFAULT_SLATE_PARAMS, DEFAULT_CARDPACK_QUERY } from './lib/ours.js';
-import * as ours from './lib/ours.js';
+import { tokenScore } from './lib/match.js';
 import { BOOKS, alignTick, buildRows, marketLabel, tickToRecords, toCsv, CSV_HEADERS, etTime } from './lib/compare.js';
 import { saveTick, ticksFor } from './lib/store.js';
 import { renderChart } from './lib/chart.js';
@@ -12,12 +11,11 @@ import { renderChart } from './lib/chart.js';
 const DEFAULTS = {
   pollSeconds: 15, alignToleranceMs: 2000, fdState: 'az', dkSite: 'US-CO-SB', dkLeague: '42648',
   dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', sheetsUrl: '', autoSheet: false,
-  ourSlatePaths: '', ourCardpackQuery: 'channel=AMELCO_TN_MASTER&segment=AMELCO_TN&stateCode=TN',
 };
 const SERIES = [{ book: 'DK', name: 'DK', long: 'DraftKings', color: '#3987e5' }, { book: 'FD', name: 'FD', long: 'FanDuel', color: '#d95926' },
-  { book: 'OURS', name: 'Ours', long: 'Ours', color: '#199e70' }];
+  { book: 'OURS', name: 'Ours', long: 'Ours (Dolly Trading)', color: '#199e70' }, { book: 'OF', name: 'OF', long: 'Odds Factory (Dolly OF)', color: '#c98500' }];
 const GAP_SERIES = [{ book: 'OURS_DK', name: 'vs DK', long: 'Ours − DraftKings', color: '#3987e5' }, { book: 'OURS_FD', name: 'vs FD', long: 'Ours − FanDuel', color: '#d95926' }];
-const BOOK_NAME = { DK: 'DraftKings', FD: 'FanDuel', OURS: 'Ours' };
+const BOOK_NAME = { DK: 'DraftKings', FD: 'FanDuel', OURS: 'Ours (Trading)', OF: 'Odds Factory' };
 const REPROBE_EVERY = 20;   // pulls; re-try DK subcategories that returned nothing
 
 const $ = (id) => document.getElementById(id);
@@ -52,18 +50,12 @@ const learnedPointSubs = () => Object.entries(learned.subs || {})
 const subIds = () => uniq([...learnedPointSubs(), ...String(settings.dkSubcats).split(/[\s,]+/)]);
 const dkSite = () => learned.site || settings.dkSite;
 const dkLeagues = () => uniq([...Object.keys(learned.leagues || {}), settings.dkLeague]);
-// Our feed: slate requests ("cardpacks") and event pages seen on our own sportsbook site.
-let oursLearned = { cardpacks: [], events: {}, query: null, urls: [] };
 async function loadLearned() {
-  ({ dkLearned: learned = learned, oursLearned = oursLearned } = await chrome.storage.local.get(['dkLearned', 'oursLearned']));
+  ({ dkLearned: learned = learned } = await chrome.storage.local.get('dkLearned'));
   setDkHost(learned.host);
 }
 let relearnTimer = null;
 chrome.storage.onChanged.addListener((ch) => {
-  if (ch.oursLearned) {
-    oursLearned = ch.oursLearned.newValue || oursLearned; renderDiag();
-    if (!run && !games.some(g => g.ours)) { clearTimeout(relearnTimer); relearnTimer = setTimeout(loadGames, 3000); }
-  }
   if (!ch.dkLearned) return;
   learned = ch.dkLearned.newValue || learned; setDkHost(learned.host); renderDiag();
   // new DK ids seen and DK has no games yet: reload the list (not while a game is running)
@@ -90,18 +82,13 @@ function renderDiag() {
     for (const x of learned.urls.slice(0, 8)) lines.push(`     ${decodeURIComponent(x).replace(/^https:\/\/[^/]+/, '').slice(0, 220)}`);
   }
   lines.push(`   DK ids in use: site ${dkSite()}, leagues ${dkLeagues().join(', ')}, points subcategories ${subIds().join(', ')}`);
-  lines.push(`\nOur prices: ${diag.ourGames}`);
-  lines.push(`   Our sportsbook site: ${oursLearned.cardpacks.length} slate request(s), ${Object.keys(oursLearned.events).length} event page(s) seen`);
-  for (const g of games.filter(x => x.ours)) lines.push(`   ${g.name} → our event ${g.ours.eventId}  ${g.ours.name || ''}`);
-  for (const c of oursLearned.cardpacks.slice(0, 4)) lines.push(`   slate paths ${c.paths.join(', ')}  (${(c.page || '').replace(/^https?:\/\//, '').slice(0, 80)})`);
+  lines.push(`\nOur prices (Dolly screen): ${diag.dolly || 'not read yet'}`);
+  for (const t of diag.dollyTables || []) lines.push(`   "${t.title}" ${t.rows} rows  e.g. ${t.sample.join('  ·  ')}`);
   if (run) {
     lines.push(`\nRunning: ${run.game.name}`);
     lines.push(`   FD event ${run.game.fd?.eventId ?? '—'}, tabs: ${run.fdTabs?.join(', ') || '—'}`);
     lines.push(`   DK event ${run.game.dk?.eventId ?? '— (no DK match)'}`);
     if (run.dkPerSub) for (const [k, v] of Object.entries(run.dkPerSub)) lines.push(`   DK subcategory ${k} → ${typeof v === 'number' ? `${v} prices` : v}`);
-    lines.push(`   Our event ${run.oursId || '— (none: type it in "Our event id")'}`);
-    if (run.ourTypes) lines.push(`   Our market codes in this game: ${Object.entries(run.ourTypes).map(([k, v]) => `${k}${v ? ` (${v})` : ''}`).sort().join('  ·  ').slice(0, 1500)}`);
-    if (run.ourUnread?.length) lines.push(`   Our points markets we could not read (send a screenshot): ${JSON.stringify(run.ourUnread).slice(0, 1200)}`);
   }
   if (diag.lastTick) {
     const t = diag.lastTick;
@@ -152,7 +139,6 @@ async function loadGames() {
   }
   for (const d of dkRes.games) if (!usedDk.has(d.eventId) && d.startTime && d.startTime < Date.now() + 36 * 3600_000 || d.learned && !usedDk.has(d.eventId))
     games.push({ key: `dk${d.eventId}`, name: d.name, startTime: d.startTime, fd: null, dk: d });
-  await attachOurGames();
   games.sort((a, b) => (a.startTime || 0) - (b.startTime || 0));
 
   const sel = $('game'); sel.textContent = '';
@@ -160,7 +146,7 @@ async function loadGames() {
   const dfmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'short', month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit' });
   for (const g of games) {
     const o = document.createElement('option'); o.value = g.key;
-    const books = [g.dk && 'DK', g.fd && 'FD', g.ours && 'Ours'].filter(Boolean).join(' + ');
+    const books = [g.dk && 'DK', g.fd && 'FD'].filter(Boolean).join(' + ');
     o.textContent = `${g.startTime ? dfmt.format(g.startTime) : ''}  ${g.name}  (${books})`;
     sel.appendChild(o);
   }
@@ -169,48 +155,7 @@ async function loadGames() {
 }
 $('refresh').addEventListener('click', loadGames);
 
-// Our games: every slate request learned from our site (newest first), plus event pages the
-// user opened there (their teams read from the event page itself). Paired with the DK/FD
-// game that has the same two team nicknames (order-free: our feed may list home first).
-let lastOurEvents = [];
-async function attachOurGames() {
-  const found = new Map();
-  const errs = [];
-  const setPaths = String(settings.ourSlatePaths || '').split(/[\s,]+/).filter(Boolean);
-  const packs = [...(setPaths.length ? [{ paths: setPaths, query: settings.ourCardpackQuery }] : []), ...oursLearned.cardpacks.slice(0, 6)];
-  for (const c of packs) {
-    try { for (const e of await ourGames(c.paths, c.params || DEFAULT_SLATE_PARAMS, c.query || oursLearned.query || settings.ourCardpackQuery || DEFAULT_CARDPACK_QUERY)) found.set(e.eventId, e); }
-    catch (e) { errs.push(String(e.message || e)); }
-  }
-  const recent = Object.entries(oursLearned.events).sort((a, b) => b[1].at - a[1].at).slice(0, 10);
-  await Promise.all(recent.map(async ([id]) => {
-    if (found.has(id)) return;
-    try {
-      const r = await fetch(`https://content.1.betfanatics.com/page/event/${encodeURIComponent(id)}`, { credentials: 'include' });
-      const ev = parseOurSlate(await r.json()).find(x => x.eventId === id);
-      if (ev) found.set(id, ev);
-    } catch (e) { errs.push(String(e.message || e)); }
-  }));
-  lastOurEvents = [...found.values()];
-  // Link each game to our event the MLB suite's way (resolveEventId): best eventMatchScore, linked at >= 0.5.
-  let n = 0;
-  for (const g of games) {
-    const teams = [g.fd?.away || g.dk?.away, g.fd?.home || g.dk?.home].filter(Boolean);
-    let best = null, bestScore = 0;
-    for (const ev of found.values()) {
-      if (ev.startTime && g.startTime && Math.abs(ev.startTime - g.startTime) > 18 * 3600_000) continue;   // same matchup, other day
-      const sc = eventMatchScore(ev, teams);
-      if (sc > bestScore) { bestScore = sc; best = ev; }
-    }
-    if (best && bestScore >= 0.5) { g.ours = best; n++; }
-  }
-  diag.ourGames = `${found.size} of our events found in the feed slate, ${n} matched to DK/FD games${errs.length ? ` · problems: ${uniq(errs).join('; ')}` : ''}`;
-  light('OURS', n ? 'ok' : found.size ? 'warn' : 'bad', n ? `${n} games` : found.size ? 'games found, none matched' : 'no games yet (see Diagnostics)');
-}
-$('game').addEventListener('change', async () => { if (run) return; const g = games.find(x => x.key === $('game').value); if (g) await showGame(g); });
-
 async function showGame(g) {
-  $('ours-id').value = g.ours?.eventId || '';
   history = await ticksFor(g.key); selectedKey = null;
   renderTable(); renderSelected();
 }
@@ -223,22 +168,38 @@ $('start').addEventListener('click', async () => {
   const g = games.find(x => x.key === $('game').value);
   if (!g) return;
   await showGame(g);
-  run = { game: g, busy: false, skipped: 0, nextId: (history.at(-1)?.id || 0) + 1, fdTabs: null, dkActive: null, dkPerSub: null, n: 0,
-          oursId: $('ours-id').value.trim() || g.ours?.eventId || null, ourTypes: null, ourUnread: null };
-  $('ours-id').disabled = true;
+  run = { game: g, busy: false, skipped: 0, nextId: (history.at(-1)?.id || 0) + 1, fdTabs: null, dkActive: null, dkPerSub: null, n: 0 };
   if (g.fd) await findFdTabs(run);
   $('start').disabled = true; $('stop').disabled = false; $('game').disabled = true;
   worker.postMessage({ cmd: 'start', ms: settings.pollSeconds * 1000 });
 });
 $('stop').addEventListener('click', () => {
   worker.postMessage({ cmd: 'stop' });
-  run = null; $('start').disabled = false; $('stop').disabled = true; $('game').disabled = false; $('ours-id').disabled = false;
+  run = null; $('start').disabled = false; $('stop').disabled = true; $('game').disabled = false;
   $('tickinfo').textContent = 'Stopped.'; renderDiag();
 });
 
 async function findFdTabs(r) {
   try { r.fdTabs = await fdPointsTabs(settings.fdState, r.game.fd.eventId); }
   catch (e) { r.fdTabs = ['player-points']; logErr(`FD tab lookup: ${e.message}`); }
+}
+
+// Our prices: ask the open Dolly Market Manager tab(s) to read the screen (content/dolly-props.js).
+// The tab for this game is the one whose teams match (the MLB suite's tokenScore), or the only one open.
+async function readDolly(g) {
+  const tabs = (await chrome.tabs.query({ url: 'https://dolly.1.oddsfactorytrading.com/*' })).filter(t => /market-manager/.test(t.url || ''));
+  if (!tabs.length) return { ok: false, error: 'no Dolly Market Manager tab open' };
+  const sent = Date.now();
+  const answers = await Promise.all(tabs.map(t => new Promise(res => chrome.tabs.sendMessage(t.id, { type: 'DOLLY_READ' }, (r) => res(chrome.runtime.lastError ? null : r)))));
+  const ok = answers.filter(a => a?.ok);
+  if (!ok.length) return { ok: false, error: 'Dolly tab did not answer (reload the Dolly tab once after installing the extension)' };
+  const want = [g.fd?.away || g.dk?.away, g.fd?.home || g.dk?.home];
+  const score = (a) => a.teams?.length === 2 ? Math.min(...want.map(w => Math.max(...a.teams.map(t => tokenScore(w, t))))) : 0;
+  const best = ok.length === 1 ? ok[0] : ok.slice().sort((a, b) => score(b) - score(a))[0];
+  if (ok.length > 1 && score(best) < 0.5) return { ok: false, error: `${ok.length} Dolly tabs open and none shows ${want.join(' @ ')}` };
+  diag.dolly = `${tabs.length} Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · headers found: Selection ${best.heads.Selection ?? best.heads.selection}, Trading ${best.heads.trading}, OF ${best.heads.of}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}`;
+  diag.dollyTables = best.tables;
+  return { ok: true, at: best.at || Date.now(), ms: Date.now() - sent, quotes: best.quotes };
 }
 
 async function fetchBook(book, fn) {
@@ -261,7 +222,7 @@ async function pull() {
     const subs = (!r.dkActive?.length || r.n % REPROBE_EVERY === 0) ? subIds() : r.dkActive;
     if (g.fd && !r.fdTabs?.length && r.n % REPROBE_EVERY === 0 && r.n) await findFdTabs(r);   // FD posts props later
     r.n++;
-    const [DK, FD, OURS] = await Promise.all([
+    const [DK, FD, DOLLY] = await Promise.all([
       !g.dk ? Promise.resolve({ ok: false, error: 'no DK match for this game' })
         : isBackingOff('DK') ? Promise.resolve({ ok: false, error: 'DK backing off after an error' })
         : fetchBook('DK', async () => { const x = await dkQuotes(dkSite(), g.dk.eventId, subs); return { quotes: x.quotes, perSub: x.perSub }; }),
@@ -269,8 +230,7 @@ async function pull() {
         : isBackingOff('FD') ? Promise.resolve({ ok: false, error: 'FD backing off after an error' })
         : !r.fdTabs?.length ? Promise.resolve({ ok: false, error: 'FanDuel has no player points for this game yet (preseason games usually have none)' })
         : fetchBook('FD', async () => ({ quotes: await fdQuotes(settings.fdState, g.fd.eventId, r.fdTabs) })),
-      !r.oursId ? Promise.resolve({ ok: false, error: 'no event of ours for this game' })
-        : fetchBook('OURS', async () => { const x = await ourQuotes(r.oursId); return { quotes: x.quotes, types: x.types, unread: x.unread }; }),
+      readDolly(g).catch(e => ({ ok: false, error: String(e.message || e) })),
     ]);
     if (run !== r) return;   // stopped while waiting
 
@@ -280,12 +240,15 @@ async function pull() {
       if (subs.length === subIds().length) r.dkActive = good;   // learn from a full probe
       if (!DK.quotes.length) { DK.ok = false; DK.error = 'DK answered but had no player-points prices (check the subcategory ids)'; }
     }
-    if (OURS.types) {
-      r.ourTypes = OURS.types; r.ourUnread = OURS.unread;
-      if (!OURS.quotes.length) { OURS.ok = false; OURS.error = 'our feed answered but had no player-points prices (see "Our market codes" in Diagnostics)'; }
-    }
-    const res = { DK, FD, OURS };
-    const expected = [g.dk && 'DK', g.fd && r.fdTabs?.length && 'FD', r.oursId && 'OURS'].filter(Boolean);
+    // one Dolly read carries both our columns: Trading (ours) and OF (Odds Factory), same moment
+    const split = (book) => {
+      if (!DOLLY.ok) return { ...DOLLY };
+      const q = DOLLY.quotes.filter(x => x.book === book);
+      return q.length ? { ok: true, at: DOLLY.at, ms: DOLLY.ms, quotes: q } : { ok: false, at: DOLLY.at, error: `Dolly screen showed no player-points ${book === 'OF' ? 'OF' : 'Trading'} prices (open the points markets; see Diagnostics)` };
+    };
+    const OURS = split('OURS'), OF = split('OF');
+    const res = { DK, FD, OURS, OF };
+    const expected = [g.dk && 'DK', g.fd && r.fdTabs?.length && 'FD', DOLLY.ok && 'OURS', DOLLY.ok && 'OF'].filter(Boolean);
     const al = alignTick(res, settings.alignToleranceMs, expected);
     const errors = {};
     for (const b of BOOKS) {
@@ -305,7 +268,7 @@ async function pull() {
     for (const b of BOOKS) {
       if (al.used[b]) light(b, 'ok', `${res[b].ms} ms · ${tick.counts[b]} prices`);
       else light(b, res[b].ok ? 'warn' : 'bad', res[b].ok ? 'late this pull' : 'missing this pull');
-      if (errors[b] && (b === 'OURS' ? r.oursId : g[b.toLowerCase()])) logErr(`pull #${id} ${b}: ${errors[b]}`);
+      if (errors[b] && (b === 'OURS' || b === 'OF' ? b === 'OURS' : g[b.toLowerCase()])) logErr(`pull #${id} ${b}: ${errors[b]}`);
     }
     const alignedN = history.filter(x => x.aligned).length;
     $('tickinfo').textContent = `Pull #${id} at ${etTime(t).slice(11)} ET · ${alignedN}/${history.length} aligned${r.skipped ? ` · ${r.skipped} skipped (book slower than ${settings.pollSeconds}s)` : ''}`;
@@ -327,20 +290,20 @@ function renderTable() {
   if (!last) return;
   const q = $('filter').value.trim().toLowerCase();
   const withPrices = BOOKS.filter(b => last.rows.some(r => r.books[b]));
-  const multiOnly = $('both-only').checked && withPrices.length > 1;   // with one book in, this would hide everything
+  const multiOnly = $('both-only').checked && withPrices.filter(b => b !== 'OF').length > 1;   // with one book in, this would hide everything
   $('both-note').textContent = withPrices.length === 1 ? `Only ${BOOK_NAME[withPrices[0]]} has prices this pull, so all of its lines are shown.` : '';
-  let rows = last.rows.filter(r => (!q || r.player.toLowerCase().includes(q)) && (!multiOnly || Object.keys(r.books).length > 1));
+  let rows = last.rows.filter(r => (!q || r.player.toLowerCase().includes(q)) && (!multiOnly || Object.keys(r.books).filter(b => b !== 'OF').length > 1));
   if ($('sort').value === 'gap') rows = rows.slice().sort((a, b) => bigGap(b) - bigGap(a));
   for (const r of rows) {
     const tr = document.createElement('tr'); if (r.key === selectedKey) tr.className = 'sel';
     const g = r.gaps || {};
-    const cells = [r.player, marketLabel(r), odds(r.books.DK), odds(r.books.FD), odds(r.books.OURS),
-      fmtP(r.books.DK?.p), fmtP(r.books.FD?.p), fmtP(r.books.OURS?.p), fmtG(g.OURS_DK), fmtG(g.OURS_FD), fmtG(g.DK_FD)];
+    const cells = [r.player, marketLabel(r), odds(r.books.DK), odds(r.books.FD), odds(r.books.OURS), odds(r.books.OF),
+      fmtP(r.books.DK?.p), fmtP(r.books.FD?.p), fmtP(r.books.OURS?.p), fmtP(r.books.OF?.p), fmtG(g.OURS_DK), fmtG(g.OURS_FD), fmtG(g.DK_FD)];
     cells.forEach((c, i) => {
       const td = document.createElement('td'); td.textContent = c ?? '–';
       if (i >= 2) td.className = 'num';
       if (c == null || c === '–') td.classList.add('na');
-      if (i >= 8) { const v = [g.OURS_DK, g.OURS_FD, g.DK_FD][i - 8]; if (v != null && Math.abs(v) >= 3) td.classList.add('big'); }
+      if (i >= 10) { const v = [g.OURS_DK, g.OURS_FD, g.DK_FD][i - 10]; if (v != null && Math.abs(v) >= 3) td.classList.add('big'); }
       tr.appendChild(td);
     });
     tr.addEventListener('click', () => { selectedKey = r.key; renderTable(); renderSelected(); });
@@ -446,59 +409,6 @@ $('sheet').addEventListener('click', async () => {
   btn.disabled = false;
   btn.textContent = n == null ? 'Send to Google Sheet' : n === 0 ? 'Already up to date' : `Sent ${n} pulls ✓`;
   setTimeout(() => { btn.textContent = 'Send to Google Sheet'; }, 4000);
-});
-
-// ---------------------------------------------------------------- our feed test
-$('ours-test').addEventListener('click', async () => {
-  const id = $('ours-id').value.trim() || games.find(g => g.key === $('game').value)?.ours?.eventId;
-  const box = $('ours-box'); box.hidden = false; box.open = true;
-  if (!id) { $('ours-out').textContent = 'Type our event id in the box first.'; return; }
-  $('ours-summary').textContent = '· asking…'; $('ours-out').textContent = '';
-  const r = await testOurEvent(id);
-  const L = [`Event id ${id}`, `Address: ${r.url}`, ...(r.tries || []).map(t => `   ${t}`)];
-  if (!r.ok) {
-    L.push('', `Problem: ${r.error}`);
-    if (/HTTP 404/.test(r.error)) {
-      L.push('', 'Our feed has no event with this id. Our feed uses its own event id, not Dolly\'s game id',
-        '(Dolly ids look like 30 + the Betradar number, e.g. 3073863908).');
-      if (/^30\d{7,}$/.test(id)) L.push('This one looks like a Dolly id.');
-    }
-    const evs = lastOurEvents.slice(0, 40);
-    L.push('', evs.length ? 'Events found in our feed (use one of these ids):' : 'No events from our feed found yet. Open our sportsbook site\'s NBA page in this Chrome (no need to click a game), then press ↻ Games and Test ours again.');
-    for (const e of evs) L.push(`   ${e.eventId}  ${e.name}  ${e.participants.map(p => p[0]).join(' / ')}`);
-    const urls = (oursLearned.urls || []).filter(u => !/\/page\/event\/|\/cardpack\//.test(u)).slice(0, 15);
-    if (urls.length) L.push('', 'Other content-feed addresses our sportsbook site asked for:', ...urls.map(u => `   ${decodeURIComponent(u).slice(0, 200)}`));
-  }
-  else {
-    L.push('', `Game in the answer: ${r.event}`, `Markets: ${r.marketCount}   Player-points prices read: ${r.pointsPrices}`);
-    if (r.sample.length) L.push(`   e.g. ${r.sample.map(q => `${q.player} ${q.kind === 'alt' ? `${q.line + 0.5}+` : `${q.side} ${q.line}`} ${q.american}`).join(' · ')}`);
-    L.push('', 'Market codes in the answer:', ...Object.entries(r.types).sort().map(([k, v]) => `   ${k}  ${v}`));
-    if (!r.marketCount) L.push('', `Top-level fields: ${r.topKeys.join(', ')}`);
-    if (r.unread?.length) L.push('', `Points markets we could not read: ${JSON.stringify(r.unread).slice(0, 1500)}`);
-  }
-  $('ours-summary').textContent = r.ok ? `· ${r.pointsPrices} points prices read` : '· failed';
-  $('ours-out').textContent = L.join('\n');
-});
-$('ours-save').addEventListener('click', () => {
-  const f = ours.lastFeed;
-  if (!f) { alert('Press "Test ours" first.'); return; }
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([JSON.stringify({ url: f.url, at: new Date(f.at).toISOString(), tries: f.tries, body: f.text }, null, 1)], { type: 'application/json' }));
-  a.download = `our-feed-${f.url.split('/').pop()}.json`; a.click();
-});
-
-$('find-slate').addEventListener('click', async () => {
-  const box = $('ours-box'); box.hidden = false; box.open = true;
-  $('ours-summary').textContent = '· looking for the NBA slate…'; $('ours-out').textContent = '';
-  const r = await findNbaSlate(settings.ourCardpackQuery || DEFAULT_CARDPACK_QUERY);
-  const L = ['Looking for our NBA slate (our feed is asked the MLB way):', ...r.log.map(x => `   ${x}`), ''];
-  if (r.best) {
-    L.push(`Found: ${r.best.join(', ')}. It's now saved in Settings, and the game list is reloading.`);
-    settings.ourSlatePaths = r.best.join(', '); $('settings').elements.ourSlatePaths.value = settings.ourSlatePaths;
-    await chrome.storage.local.set({ settings }); loadGames();
-  } else L.push('Not found. Ask whoever built the MLB extension for the NBA slate code (like MLB\'s 8:1255:1257) and paste it in Settings.');
-  $('ours-summary').textContent = r.best ? `· NBA slate ${r.best.join(', ')}` : '· not found';
-  $('ours-out').textContent = L.join('\n');
 });
 
 // ---------------------------------------------------------------- boot

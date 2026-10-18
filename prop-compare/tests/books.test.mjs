@@ -4,8 +4,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { parseFdGames, parseFdQuotes, parseDkQuotes, parseDkGames, decimalFromAmerican } from '../extension/lib/books.js';
 import { alignTick, buildRows, tickToRecords, toCsv, CSV_HEADERS } from '../extension/lib/compare.js';
-import { playerMatch, sameGame } from '../extension/lib/match.js';
-import { parseOurQuotes, parseOurSlate, americanFromDecimal, cardpackUrl } from '../extension/lib/ours.js';
+import { playerMatch, sameGame, tokenScore } from '../extension/lib/match.js';
 
 const fx = (n) => JSON.parse(fs.readFileSync(new URL(`./fixtures/${n}`, import.meta.url)));
 
@@ -54,7 +53,7 @@ test('player matching', () => {
 test('alignment: late or failed book is left out, never mixed in', () => {
   assert.equal(alignTick({ DK: { ok: true, at: 1000 }, FD: { ok: true, at: 2500 } }, 2000, ['DK', 'FD']).aligned, true);
   assert.equal(alignTick({ DK: { ok: true, at: 1000 }, FD: { ok: true, at: 2500 } }, 2000).aligned, false, 'ours expected but missing');
-  const three = alignTick({ DK: { ok: true, at: 1000 }, FD: { ok: true, at: 1200 }, OURS: { ok: true, at: 1900 } }, 2000);
+  const three = alignTick({ DK: { ok: true, at: 1000 }, FD: { ok: true, at: 1200 }, OURS: { ok: true, at: 1900 } }, 2000, ['DK', 'FD', 'OURS']);
   assert.deepEqual([three.aligned, three.spreadMs], [true, 900]);
   const late = alignTick({ DK: { ok: true, at: 1000 }, FD: { ok: true, at: 3500 } }, 2000, ['DK', 'FD']);
   assert.deepEqual([late.aligned, late.used.DK, late.used.FD, late.spreadMs], [false, true, false, 2500]);
@@ -82,26 +81,6 @@ test('rows: no-vig gap on shared lines, CSV export', () => {
   assert.match(csv, /10\/21\/2026 19:30:00,2026-10-21T23:30:00.000Z,7,yes,120,Boston Celtics @ Detroit Pistons,Cade Cunningham,Points O\/U 24.5,24.5,-110,-120/);
 });
 
-test('our feed (shape from the MLB suite; NBA codes synthetic): alt + O/U points, game lines and other stats skipped', () => {
-  const feed = { page: { groups: [{ markets: [
-    { id: 'a', type: 'BASKETBALL:FT:PROPALTPTS', name: 'Player Points', selection: [
-      { id: 1, name: 'Cade Cunningham 25+', decimalOdds: '2.05', state: 'ACTIVE' },
-      { id: 2, name: 'Jayson Tatum 40+', decimalOdds: '9.0', state: 'SUSPENDED' }] },
-    { id: 'b', type: 'BASKETBALL:FT:PROPPTS', name: 'Cade Cunningham Points', line: 24.5, selection: [
-      { id: 3, name: 'Over 24.5', type: 'Over', decimalOdds: '1.91' }, { id: 4, name: 'Under 24.5', type: 'Under', decimalOdds: '1.87' }] },
-    { id: 'c', type: 'BASKETBALL:FT:PROPALTREB', name: 'Player Rebounds', selection: [{ id: 5, name: 'Cade Cunningham 6+', decimalOdds: '1.5' }] },
-    { id: 'd', type: 'BASKETBALL:FTOT:OU', name: 'Total Points', line: 222.5, selection: [{ id: 6, name: 'Over', type: 'Over', decimalOdds: '1.9' }] },
-  ] }, { markets: [{ id: 'a', type: 'BASKETBALL:FT:PROPALTPTS', name: 'Player Points', selection: [] }] }] } };
-  const { quotes, types } = parseOurQuotes(feed);
-  assert.deepEqual(quotes.map(q => [q.player, q.kind, q.line, q.side, q.american]), [
-    ['Cade Cunningham', 'alt', 24.5, 'over', '+105'], ['Cade Cunningham', 'ou', 24.5, 'over', '-110'], ['Cade Cunningham', 'ou', 24.5, 'under', '-115']]);
-  assert.ok(types['BASKETBALL:FTOT:OU'] && types['BASKETBALL:FT:PROPALTREB']);
-  assert.equal(americanFromDecimal(1.5), '-200');
-  const slate = parseOurSlate({ cards: [{ event: { id: 99, name: 'Raptors @ Pistons', participants: [{ name: 'Toronto Raptors', abbreviation: 'TOR' }, { name: 'Detroit Pistons' }] } }] });
-  assert.equal(slate[0].eventId, '99');
-  assert.match(cardpackUrl(['8:1:2']), /^https:\/\/content\.1\.betfanatics\.com\/cardpack\/INS\/[A-Za-z0-9+/=]+\?channel=/);
-});
-
 test('three-book rows: gaps ours-DK, ours-FD, DK-FD', () => {
   const q = (book, american, line = 24.5, side = 'over', kind = 'ou') => ({ book, player: 'Cade Cunningham', kind, line, side, american, decimal: decimalFromAmerican(american) });
   const rows = buildRows({ DK: [q('DK', '-110'), q('DK', '-110', 24.5, 'under')], FD: [q('FD', '-120'), q('FD', '-100', 24.5, 'under')], OURS: [q('OURS', '+100', 24.5, 'over'), q('OURS', '-120', 24.5, 'under')] });
@@ -111,4 +90,10 @@ test('three-book rows: gaps ours-DK, ours-FD, DK-FD', () => {
   const recs = tickToRecords({ id: 1, t: 0, game: 'g', aligned: true, spreadMs: 5, used: { DK: true, FD: true, OURS: true }, at: { DK: 1, FD: 1, OURS: 1 }, rows });
   assert.equal(recs[0].length, CSV_HEADERS.length);
   assert.equal(recs[0][CSV_HEADERS.indexOf('ours_over')], '+100');
+});
+
+test('MLB suite team matching (tokenScore) on NBA names', () => {
+  assert.equal(tokenScore('Boston Celtics', 'BOS Celtics'), 1);
+  assert.equal(tokenScore('Los Angeles Lakers', 'LA Clippers'), 0);
+  assert.equal(tokenScore('Portland Trail Blazers', 'Trail Blazers'), 1);
 });

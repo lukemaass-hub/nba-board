@@ -11,14 +11,13 @@
   <div class="lights">
     <span class="light" id="light-DK"><i></i>DraftKings <b>idle</b></span>
     <span class="light" id="light-FD"><i></i>FanDuel <b>idle</b></span>
-    <span class="light" id="light-OURS"><i></i>Ours <b>…</b></span>
+    <span class="light" id="light-OURS"><i></i>Ours (Dolly) <b>…</b></span>
+    <span class="light" id="light-OF"><i></i>OF <b>…</b></span>
   </div>
 </header>
 
 <section class="controls">
   <label>Game <select id="game"><option>Loading games…</option></select></label>
-  <label>Our event id <input id="ours-id" size="12" placeholder="auto"></label>
-  <button id="ours-test" title="Ask our feed for this event now and show what comes back">Test ours</button>
   <button id="refresh" title="Reload today's games from every book">↻ Games</button>
   <button id="start" class="primary">▶ Start</button>
   <button id="stop" disabled>■ Stop</button>
@@ -38,19 +37,10 @@
     <label>DraftKings NBA league id <input name="dkLeague" size="8"></label>
     <label>DraftKings game-lines subcategory <input name="dkGameSubcat" size="8"></label>
     <label class="wide">DraftKings player-points subcategory ids (comma separated) <input name="dkSubcats"></label>
-    <label class="wide">Our NBA slate code(s), like MLB's 8:1255:1257 <input name="ourSlatePaths" placeholder="blank = not known yet"></label>
-    <label class="wide">Our slate settings (from the MLB suite) <input name="ourCardpackQuery"></label>
-    <div class="wide"><button type="button" id="find-slate">Find NBA slate</button> <span class="muted small">Looks for the code in our price feed.</span></div>
     <label class="wide">Google Sheet web app URL (from Apps Script, ends in /exec) <input name="sheetsUrl" placeholder="https://script.google.com/a/macros/betfanatics.com/s/…/exec"></label>
     <label class="check"><input name="autoSheet" type="checkbox"> Send every pull to the Google Sheet automatically</label>
     <div class="wide"><button type="submit" class="primary">Save settings</button> <span id="saved" class="muted"></span></div>
   </form>
-</details>
-
-<details id="ours-box" hidden>
-  <summary>Our feed test <span id="ours-summary" class="muted"></span></summary>
-  <pre id="ours-out"></pre>
-  <button id="ours-save">⬇ Save what our feed sent (send me this file)</button>
 </details>
 
 <details id="diag-box">
@@ -91,7 +81,7 @@
     </div>
     <div class="table-wrap">
       <table id="table">
-        <thead><tr><th>Player</th><th>Market</th><th class="num">DK over / under</th><th class="num">FD over / under</th><th class="num">Ours over / under</th><th class="num">DK %</th><th class="num">FD %</th><th class="num">Ours %</th><th class="num">Ours − DK</th><th class="num">Ours − FD</th><th class="num">DK − FD</th></tr></thead>
+        <thead><tr><th>Player</th><th>Market</th><th class="num">DK over / under</th><th class="num">FD over / under</th><th class="num">Ours over / under</th><th class="num">OF over / under</th><th class="num">DK %</th><th class="num">FD %</th><th class="num">Ours %</th><th class="num">OF %</th><th class="num">Ours − DK</th><th class="num">Ours − FD</th><th class="num">DK − FD</th></tr></thead>
         <tbody></tbody>
       </table>
       <p id="empty" class="muted">Pick a game and press Start.</p>

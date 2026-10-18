@@ -59,25 +59,25 @@ last DraftKings requests it saw.
 
 Settings still has the DraftKings IDs as a backup. The ones learned from your browser are used first.
 
-## Our prices: connect them (once)
+## Our prices: from the Dolly screen
 
-Our prices are pulled exactly the way the MLB In-Play Suite pulls its "FBG" price:
-- our price feed `content.1.betfanatics.com/page/event/<event id>`, sent with your login;
-- the event ID found through our feed's game list ("slate"), matched by team name with the MLB suite's own
-  matching.
+Our prices are read off the **Dolly Market Manager** screen, the same way the In-Play Trading Guard reads Dolly.
+It finds the **Selection**, **Trading** and **OF** column headers by their text and reads the numbers under them.
+It makes no data requests, uses no logins, and never clicks or types anything.
 
-The MLB suite has only baseball's slate code built in (`8:1255:1257`). NBA needs its own code:
+- **Trading** shows as "Ours" (green line). **OF** (Odds Factory) shows as "OF" (yellow line).
+- The gaps are ours (Trading) minus DraftKings and minus FanDuel.
 
-1. Open **Settings** and click **Find NBA slate**. If it finds the code, the code is saved and games show "+ Ours".
-2. If it doesn't, ask whoever built the MLB suite for the NBA slate code and paste it into
-   **Our NBA slate code(s)**.
-3. To check one game by hand, paste our event ID into **Our event id** and click **Test ours**.
+To use it:
+1. Open the game's **Market Manager** in Dolly. If Dolly was already open when you installed or updated the
+   extension, reload it once.
+2. **Expand the player-points markets.** As with the Trading Guard, Dolly doesn't show the rows of a collapsed
+   market, so they can't be read.
+3. Keep Dolly in **its own window**, not a hidden tab, so its prices keep updating.
+4. On the dashboard, pick the game and press **Start**.
 
-Diagnostics lists every market code our feed sent for the game. If our points markets aren't read, send a
-screenshot of it.
-
-Graphs: the top graph shows each book's chance of the over, with ours in green. The second graph shows our gap
-to DraftKings and to FanDuel over time.
+If our prices stay blank, open **Diagnostics**. Under "Our prices (Dolly screen)" it lists each market it saw
+and its first rows. Send me a screenshot.
 
 ## Google Sheet (optional)
 

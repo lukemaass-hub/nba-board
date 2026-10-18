@@ -7,7 +7,7 @@
 
 import { playerMatch, playerKey } from './match.js';
 
-export const BOOKS = ['DK', 'FD', 'OURS'];
+export const BOOKS = ['DK', 'FD', 'OURS', 'OF'];   // OURS = Dolly Trading column, OF = Dolly Odds Factory column
 export const GAPS = [['OURS', 'DK'], ['OURS', 'FD'], ['DK', 'FD']];   // gap = first minus second, in % points
 export const gapKey = ([a, b]) => `${a}_${b}`;
 
@@ -42,7 +42,7 @@ export function buildRows(quotesByBook) {
     names.push(name); return name;
   };
   const rows = new Map();
-  for (const book of ['FD', 'DK', 'OURS']) {
+  for (const book of ['FD', 'DK', 'OURS', 'OF']) {
     for (const q of quotesByBook[book] || []) {
       const player = canon(q.player);
       const key = `${playerKey(player)}|${q.kind}|${q.line}`;
@@ -69,7 +69,7 @@ export const marketLabel = (r) => r.kind === 'ou' ? `Points O/U ${r.line}` : `${
 // ---------------------------------------------------------------- export
 export const CSV_HEADERS = ['tick_time_et', 'tick_time_utc', 'tick_id', 'aligned', 'spread_ms', 'game', 'player', 'market', 'line',
   'dk_over', 'dk_under', 'dk_over_prob', 'dk_fetched_utc', 'fd_over', 'fd_under', 'fd_over_prob', 'fd_fetched_utc',
-  'ours_over', 'ours_under', 'ours_over_prob', 'ours_fetched_utc',
+  'ours_over', 'ours_under', 'ours_over_prob', 'ours_fetched_utc', 'of_over', 'of_under', 'of_over_prob', 'of_fetched_utc',
   'prob_kind', 'gap_pts_ours_minus_dk', 'gap_pts_ours_minus_fd', 'gap_pts_dk_minus_fd'];
 
 const etFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit',
@@ -86,7 +86,7 @@ export function tickToRecords(tick) {
     const kind = Object.values(r.books).some(x => x.novig) ? 'no-vig' : 'implied (one-sided)';
     const gaps = r.gaps || { DK_FD: r.gapPts };
     return [etTime(tick.t), iso(tick.t), tick.id, tick.aligned ? 'yes' : 'no', tick.spreadMs ?? '', tick.game, r.player, marketLabel(r), r.line,
-      ...bk('DK'), ...bk('FD'), ...bk('OURS'), kind, fmt(gaps.OURS_DK), fmt(gaps.OURS_FD), fmt(gaps.DK_FD)];
+      ...bk('DK'), ...bk('FD'), ...bk('OURS'), ...bk('OF'), kind, fmt(gaps.OURS_DK), fmt(gaps.OURS_FD), fmt(gaps.DK_FD)];
   });
 }
 
