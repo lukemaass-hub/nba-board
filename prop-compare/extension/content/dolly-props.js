@@ -7,69 +7,79 @@
   if (window.__propCompareDolly) return;
   window.__propCompareDolly = true;
 
-  const rect = (el) => el.getBoundingClientRect();
-  const cx = (el) => { const r = rect(el); return r.left + r.width / 2; };
-  // row position = middle of the FIRST line of the box, so a name that wraps onto two lines still lines up with its row
-  const cy = (el) => { const r = rect(el); return r.top + Math.min(r.height, 24) / 2 + window.scrollY; };
-  const vis = (el) => { const r = rect(el); return r.width > 0 && r.height > 0; };
   const pnum = (s) => { const m = String(s ?? '').replace('−', '-').trim().match(/^[+-]?\d+(?:\.\d+)?$/); return m ? parseFloat(m[0]) : null; };
-  const ownText = (el) => { let t = ''; for (const n of el.childNodes) if (n.nodeType === 3) t += n.textContent; return t.replace(/\s+/g, ' ').trim(); };
+  const ownText = (el) => { let t = ''; for (const n of el.childNodes) if (n.nodeType === 3) t += n.textContent; return t.trim(); };
   const strip = (s) => s.replace(/[^A-Za-z ]/g, '').trim();   // drops sort-arrow glyphs ("OF ↑↓" / "OFswap_vert")
+  const HEADS = new Set(['Selection', 'Trading', 'OF', 'App']);
+  const SKIP = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'SVG', 'PATH', 'IMG', 'TEMPLATE']);
+  const B = 6;   // row index bucket height (px)
 
-  // headers: an element whose own text is the header, or a small box whose whole text is (a header
-  // with a sort icon, "Selection ↑↓", can keep its words in a child element)
-  function heads(txt) {
-    const hits = [];
+  // ONE pass over the page: every element is measured at most once (Dolly has thousands of cells;
+  // re-measuring per row is what froze it in v0.11). Only text leaves, inputs and header candidates
+  // are measured at all. Row position = middle of the FIRST text line, so a wrapped name lines up.
+  function snapshot() {
+    const sy = window.scrollY;
+    const heads = { Selection: [], Trading: [], OF: [], App: [] }, texts = [], nums = new Map();
+    const addNum = (x, y, v) => { const k = Math.floor(y / B); (nums.get(k) || nums.set(k, []).get(k)).push({ x, y, v }); };
     for (const el of document.body.getElementsByTagName('*')) {
-      if (!vis(el)) continue;
-      if (strip(ownText(el)) === txt || (el.children.length <= 3 && strip(el.textContent || '') === txt && rect(el).width < 260)) hits.push(el);
+      if (SKIP.has(el.tagName.toUpperCase())) continue;
+      const kids = el.children.length;
+      if (el.tagName === 'INPUT') {
+        const v = pnum(el.value);
+        if (v == null) continue;
+        const r = el.getBoundingClientRect(); if (!r.width) continue;
+        addNum(r.left + r.width / 2, r.top + Math.min(r.height, 24) / 2 + sy, v);
+        continue;
+      }
+      let t = null, head = null;
+      if (!kids) { t = (el.textContent || '').replace(/\s+/g, ' ').trim(); if (!t) continue; if (t.length < 24 && HEADS.has(strip(t))) head = strip(t); }
+      else if (kids <= 3) { const o = ownText(el); if (o && o.length < 24 && HEADS.has(strip(o))) head = strip(o); else continue; }
+      else continue;
+      const r = el.getBoundingClientRect(); if (!r.width || !r.height) continue;
+      const x = r.left + r.width / 2, y = r.top + Math.min(r.height, 24) / 2 + sy;
+      if (head) { heads[head].push({ x, y, left: r.left }); continue; }
+      const v = pnum(t);
+      if (v != null) addNum(x, y, v); else texts.push({ t, x, y, left: r.left });
     }
-    return hits.filter(el => !hits.some(o => o !== el && el.contains(o)));
+    return { heads, texts, nums };
   }
-  function leaves() {
-    const out = [];
-    for (const el of document.body.getElementsByTagName('*')) {
-      if (el.children.length || !vis(el)) continue;
-      const t = (el.textContent || '').replace(/\s+/g, ' ').trim();
-      if (t) out.push({ el, t, x: cx(el), y: cy(el), left: rect(el).left });
-    }
-    return out;
-  }
-  // a numeric cell (an <input> or text) under column x on row y
-  function cellAt(x, y, inputs, leafs) {   // the closest cell on that row, never just the first one found
-    const c = [];
-    for (const n of inputs) if (Math.abs(cx(n) - x) < 55 && Math.abs(cy(n) - y) < 14) c.push({ d: Math.abs(cy(n) - y), v: pnum(n.value) });
-    for (const n of leafs) if (Math.abs(n.x - x) < 55 && Math.abs(n.y - y) < 14 && pnum(n.t) != null) c.push({ d: Math.abs(n.y - y), v: pnum(n.t) });
-    c.sort((a, b) => a.d - b.d);
-    return c.length ? c[0].v : null;
+  function cellAt(nums, x, y) {   // the closest number in that column on that row
+    let best = null, bd = 14;
+    for (let k = Math.floor((y - 14) / B); k <= Math.floor((y + 14) / B); k++)
+      for (const n of nums.get(k) || []) { const d = Math.abs(n.y - y); if (Math.abs(n.x - x) < 55 && d < bd) { bd = d; best = n.v; } }
+    return best;
   }
 
   function readTables() {
-    const sel = heads('Selection'), tr = heads('Trading'), of = heads('OF'), app = heads('App');
-    const all = leaves(), inputs = [...document.querySelectorAll('input')].filter(vis);
+    const { heads, texts, nums } = snapshot();
+    const sels = heads.Selection.slice().sort((a, b) => a.y - b.y);
     const tables = [];
-    const selSorted = sel.map(h => ({ h, y: cy(h) })).sort((a, b) => a.y - b.y);
-    selSorted.forEach(({ h, y: hy }, idx) => {
-      const near = (list) => list.find(t => Math.abs(cy(t) - hy) < 16);
-      const tH = near(tr), oH = near(of), aH = near(app);
+    let unread = 0, unreadSample = [];
+    sels.forEach((h, idx) => {
+      const near = (list) => list.find(t => Math.abs(t.y - h.y) < 16);
+      const tH = near(heads.Trading), oH = near(heads.OF), aH = near(heads.App);
       if (!tH && !oH && !aH) return;
-      const nextY = selSorted[idx + 1]?.y ?? Infinity;
-      const left = rect(h).left, tX = tH ? cx(tH) : null, oX = oH ? cx(oH) : null, aX = aH ? cx(aH) : null;
-      // market title: the closest text above the header row
-      const above = all.filter(l => l.y < hy - 6 && l.y > hy - 160 && pnum(l.t) == null && !/^(selection|trading|of|af|app|hard|soft|pricing|active|displayed|suspension|result|uncertainty)$/i.test(l.t));
-      const title = above.sort((a, b) => b.y - a.y)[0]?.t || '';
-      const rows = [];
-      for (const l of all) {
-        if (l.y <= hy + 6 || l.y >= nextY - 6 || Math.abs(l.left - left) > 60 || pnum(l.t) != null) continue;
-        if (rows.some(r => Math.abs(r.y - l.y) < 10)) continue;
-        const trading = tX != null ? cellAt(tX, l.y, inputs, all) : null, ofv = oX != null ? cellAt(oX, l.y, inputs, all) : null;
-        const appv = aX != null ? cellAt(aX, l.y, inputs, all) : null;
-        if (trading == null && ofv == null && appv == null) continue;   // a label (e.g. the next market's title), not a selection
-        rows.push({ y: l.y, sel: l.t, trading, app: appv, of: ofv });
+      const nextY = sels[idx + 1]?.y ?? Infinity;
+      let title = '', ty = -Infinity;
+      const rows = [], seenRow = new Set();
+      let seen = 0;
+      for (const l of texts) {
+        if (l.y < h.y - 6 && l.y > h.y - 160 && l.y > ty && !HEADS.has(strip(l.t))) { title = l.t; ty = l.y; }
+        if (l.y <= h.y + 6 || l.y >= nextY - 6 || Math.abs(l.left - h.left) > 60) continue;
+        const rk = Math.round(l.y / 10);
+        if (seenRow.has(rk)) continue;
+        seenRow.add(rk); seen++;
+        const q = parseSel(l.t, title);
+        if (!q) { if (/point/i.test(l.t) && !NOT_POINTS.test(l.t)) { unread++; if (unreadSample.length < 4) unreadSample.push(l.t); } continue; }
+        // only points rows get their prices read
+        const trading = tH ? cellAt(nums, tH.x, l.y) : null, app = aH ? cellAt(nums, aH.x, l.y) : null, of = oH ? cellAt(nums, oH.x, l.y) : null;
+        if (trading == null && app == null && of == null) continue;
+        rows.push({ y: l.y, sel: l.t, q, trading, app, of });
       }
-      tables.push({ title, rows: rows.sort((a, b) => a.y - b.y) });
+      tables.push({ title, seen, rows });
     });
-    return { tables, heads: { selection: sel.length, trading: tr.length, of: of.length, app: app.length } };
+    const hc = Object.fromEntries(Object.entries(heads).map(([k, v]) => [k.toLowerCase(), v.length]));
+    return { tables, heads: hc, unread, unreadSample };
   }
 
   // ------------------------------------------------------------ rows -> quotes
@@ -98,23 +108,23 @@
 
   function toQuotes(tables) {
     const out = [];
-    let unread = 0;
     for (const t of tables) for (const r of t.rows) {
-      const q = parseSel(r.sel, t.title);
-      if (!q) { if (/point/i.test(r.sel)) unread++; continue; }
       // ours = the price on offer: Trading when a trader has typed one, else App
       const ours = r.trading > 1 ? r.trading : r.app;
       for (const [book, d, src] of [['OURS', ours, r.trading > 1 ? 'Trading' : 'App'], ['OF', r.of, 'OF']])
-        if (d > 1) out.push({ book, ...q, american: american(d), decimal: d, src });
+        if (d > 1) out.push({ book, ...r.q, american: american(d), decimal: d, src });
     }
-    return { quotes: out, unread };
+    return out;
   }
 
   function teams() {
     const m = (document.title || '').match(/(.+?)\s+(?:v|vs\.?|@)\s+(.+?)(?:\s+[-|–]|$)/i);
     if (m) return [m[1].trim(), m[2].trim()];
-    for (const l of leaves()) {
-      const x = l.t.match(/^([A-Za-z0-9 .'&-]{3,40})\s+(?:v|vs\.?|@)\s+([A-Za-z0-9 .'&-]{3,40})$/i);
+    const els = document.body.getElementsByTagName('*');
+    for (let i = 0; i < els.length && i < 4000; i++) {
+      const el = els[i];
+      if (el.children.length) continue;
+      const x = (el.textContent || '').trim().match(/^([A-Za-z0-9 .'&-]{3,40})\s+(?:v|vs\.?|@)\s+([A-Za-z0-9 .'&-]{3,40})$/i);
       if (x) return [x[1].trim(), x[2].trim()];
     }
     return [];
@@ -124,14 +134,15 @@
     if (msg?.type !== 'DOLLY_READ') return false;
     if (window.top === window && !/market-manager/.test(location.href)) { sendResponse({ ok: false, error: 'not a Market Manager page' }); return false; }
     try {
-      const { tables, heads } = readTables();
-      const { quotes, unread } = toQuotes(tables);
+      const t0 = performance.now();
+      const { tables, heads, unread, unreadSample } = readTables();
+      const quotes = toQuotes(tables);
       // in a sub-frame, only answer if this frame actually holds the market table
-      if (window.top !== window && !heads.selection && !heads.trading && !heads.of) return false;
-      sendResponse({ unread, frame: window.top === window ? 'top' : location.href,
+      if (window.top !== window && !heads.selection) return false;
+      sendResponse({ unread, unreadSample, frame: window.top === window ? 'top' : location.href, readMs: Math.round(performance.now() - t0),
         ok: true, at: Date.now(), url: location.href, fixtureId: (location.pathname.match(/\/fixture\/(\d+)/) || [])[1] || null,
         teams: teams(), quotes, heads, hidden: document.hidden,
-        tables: tables.map(t => ({ title: t.title, rows: t.rows.length, sample: t.rows.slice(0, 3).map(r => `${r.sel} | App ${r.app ?? '–'} | Trading ${r.trading ?? '–'} | OF ${r.of ?? '–'}`) })).slice(0, 12),
+        tables: tables.map(t => ({ title: t.title, rows: t.seen, points: t.rows.length, sample: t.rows.slice(0, 2).map(r => `${r.sel} | App ${r.app ?? '–'} | Trading ${r.trading ?? '–'} | OF ${r.of ?? '–'}`) })).slice(0, 12),
       });
     } catch (e) { sendResponse({ ok: false, error: String(e.message || e) }); }
     return false;

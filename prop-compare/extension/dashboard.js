@@ -83,7 +83,7 @@ function renderDiag() {
   }
   lines.push(`   DK ids in use: site ${dkSite()}, leagues ${dkLeagues().join(', ')}, points subcategories ${subIds().join(', ')}`);
   lines.push(`\nOur prices (Dolly screen): ${diag.dolly || 'not read yet'}`);
-  for (const t of diag.dollyTables || []) lines.push(`   "${t.title}" ${t.rows} rows  e.g. ${t.sample.join('  ·  ')}`);
+  for (const t of diag.dollyTables || []) lines.push(`   "${t.title}" ${t.rows} rows, ${t.points ?? '?'} points rows read${t.sample.length ? `  e.g. ${t.sample.join('  ·  ')}` : ''}`);
   if (run) {
     lines.push(`\nRunning: ${run.game.name}`);
     lines.push(`   FD event ${run.game.fd?.eventId ?? '—'}, tabs: ${run.fdTabs?.join(', ') || '—'}`);
@@ -205,7 +205,7 @@ async function readDolly(g) {
   const score = (a) => a.teams?.length === 2 ? Math.min(...want.map(w => Math.max(...a.teams.map(t => tokenScore(w, t))))) : 0;
   const best = ok.length === 1 ? ok[0] : ok.slice().sort((a, b) => score(b) - score(a))[0];
   if (ok.length > 1 && score(best) < 0.5) return { ok: false, error: `${ok.length} Dolly tabs open and none shows ${want.join(' @ ')}` };
-  diag.dolly = `${tabs.length} Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · headers found: Selection ${best.heads.selection}, App ${best.heads.app}, Trading ${best.heads.trading}, OF ${best.heads.of} · ${best.quotes.length} prices read${best.unread ? `, ${best.unread} points rows not understood` : ''}${best.frame && best.frame !== 'top' ? ' (in a frame)' : ''}`
+  diag.dolly = `${tabs.length} Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · headers found: Selection ${best.heads.selection}, App ${best.heads.app}, Trading ${best.heads.trading}, OF ${best.heads.of} · ${best.quotes.length} prices read in ${best.readMs ?? '?'} ms${best.unread ? `, ${best.unread} points rows not understood (e.g. ${(best.unreadSample || []).join(' / ')})` : ''}${best.frame && best.frame !== 'top' ? ' (in a frame)' : ''}`
   + `${best.quotes.some(q => q.src === 'Trading') ? ' · ours = Trading where typed, else App' : ' · ours = App'}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}`;
   diag.dollyTables = best.tables;
   return { ok: true, at: best.at || Date.now(), ms: Date.now() - sent, quotes: best.quotes };
