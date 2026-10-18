@@ -392,6 +392,7 @@ function renderTable() {
 
 // ---------------------------------------------------------------- anomalies tab
 let anomalies = [];
+const tsec = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Denver', hour: 'numeric', minute: '2-digit', second: '2-digit' });
 const LARGE = 15;   // % off: "large"
 function renderAnomalies() {
   const n = anomalies.length, live = anomalies.filter(e => e.ongoing).length;
@@ -399,16 +400,16 @@ function renderAnomalies() {
   const tb = $('anoms').tBodies[0]; tb.textContent = '';
   $('anoms-empty').hidden = !!n;
   const thr = Number(settings.anomalyPct) || 10, bthr = Number(settings.anomalyBookPct) || 20;
-  $('anoms-note').textContent = `Flagged when our odds are ${thr}%+ off the DraftKings/FanDuel average, or ${bthr}%+ off either book on its own (by implied chance, same pull only). ${LARGE}%+ off is marked large. One row per stretch of being off; newest first.`;
+  $('anoms-note').textContent = `Flagged when our odds are ${thr}%+ off the DraftKings/FanDuel average, or ${bthr}%+ off either book on its own (by implied chance, same pull only). Red = ${LARGE}%+ off (large); white = flagged but under ${LARGE}%. One row per stretch of being off; newest first.`;
   const f = (v) => v == null ? '–' : `${v > 0 ? '+' : ''}${v.toFixed(1)}%`;
   for (const e of anomalies) {
     const tr = document.createElement('tr');
     if (Math.abs(e.peakPct) >= LARGE) tr.className = 'large';
-    const status = e.ongoing ? 'live now' : e.endT ? `ended ${tmt.format(e.endT)}` : 'ended';
-    const cells = [tmt.format(e.startT), status, `${e.player}${e.team ? `  ·  ${e.team}` : ''}`, marketLabel(e), e.side, e.why || '',
-      e.start.ours, e.start.dk, e.start.fd, e.start.avg, f(e.start.pct), f(e.start.pctDk), f(e.start.pctFd), `${f(e.peakPct)} at ${tmt.format(e.peakT)}`,
-      e.latest ? `${e.latest.ours} / ${e.latest.dk ?? '–'} / ${e.latest.fd ?? '–'}` : '–'];
-    cells.forEach((c, i) => { const td = document.createElement('td'); td.textContent = c ?? '–'; if (i >= 6) td.className = 'num'; tr.appendChild(td); });
+    // over/under lines say which side in the market; N+ lines are always the over
+    const market = e.kind === 'ou' ? `${marketLabel(e)} ${e.side === 'over' ? 'Over' : 'Under'}` : marketLabel(e);
+    const cells = [tsec.format(e.startT), `${e.player}${e.team ? `  ·  ${e.team}` : ''}`, market, e.why || '',
+      e.start.ours, e.start.dk, e.start.fd, e.start.avg, f(e.start.pct), f(e.start.pctDk), f(e.start.pctFd), `${f(e.peakPct)} at ${tsec.format(e.peakT)}`];
+    cells.forEach((c, i) => { const td = document.createElement('td'); td.textContent = c ?? '–'; if (i >= 4) td.className = 'num'; tr.appendChild(td); });
     tr.title = 'Click to graph this line';
     tr.addEventListener('click', () => { selectedKey = e.key.replace(/\|(over|under)$/, ''); showTab('live'); renderTable(); renderSelected(); });
     tb.appendChild(tr);

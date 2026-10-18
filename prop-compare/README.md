@@ -92,13 +92,15 @@ odds pulled at the same moment. It compares the chance each price implies. A sid
 Both numbers can be changed in Settings. **15%+ off** is marked large in red.
 
 Each row is one stretch of being off. It shows:
-- start time (MT);
-- when it ended, or "live now";
-- the player and team, the line and the side;
+- start time (MT, to the second);
+- the player and team;
+- the line (over/under lines say Over or Under);
 - which rule fired;
 - our, DK's and FD's odds and the DK/FD average at the start;
 - % off the average, off DK and off FD;
 - the biggest gap and when it happened.
+
+**Red** rows were 15%+ off at some point; **white** rows were flagged but stayed under 15%.
 
 Click a row to graph that line. **Export anomalies CSV** downloads the list. Anomalies are saved with the game,
 so they're still there after lines come down or the dashboard is closed.
