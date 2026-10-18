@@ -84,6 +84,7 @@ function renderDiag() {
   }
   lines.push(`   DK ids in use: site ${dkSite()}, leagues ${dkLeagues().join(', ')}, points subcategories ${subIds().join(', ')}`);
   lines.push(`\nOur prices (Dolly TEST screen, App column): ${diag.dolly || 'not read yet'}`);
+  if (diag.dollyMarkets?.length) lines.push(`   markets seen: ${diag.dollyMarkets.join(' · ')}`);
   for (const x of diag.dollySample || []) lines.push(`   e.g. ${x}`);
   if (run) {
     lines.push(`\nRunning: ${run.game.name}`);
@@ -206,8 +207,9 @@ async function readDolly(g) {
   const score = (a) => a.teams?.length === 2 ? Math.min(...want.map(w => Math.max(...a.teams.map(t => tokenScore(w, t))))) : 0;
   const best = ok.length === 1 ? ok[0] : ok.slice().sort((a, b) => score(b) - score(a))[0];
   if (ok.length > 1 && score(best) < 0.5) return { ok: false, error: `${ok.length} Dolly tabs open and none shows ${want.join(' @ ')}` };
-  diag.dolly = `${tabs.length} TEST Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · ${best.rows} points/prop rows seen, ${best.quotes.length} App prices read in ${best.readMs ?? '?'} ms${best.frame && best.frame !== 'top' ? ' (in a frame)' : ''}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}`;
+  diag.dolly = `${tabs.length} TEST Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · ${best.rows} selection rows seen, ${best.quotes.length} App prices read in ${best.readMs ?? '?'} ms${best.frame && best.frame !== 'top' ? ' (in a frame)' : ''}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}`;
   diag.dollySample = best.sample || [];
+  diag.dollyMarkets = best.markets || [];
   return { ok: true, at: best.at || Date.now(), ms: Date.now() - sent, quotes: best.quotes };
 }
 
