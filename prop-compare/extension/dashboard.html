@@ -16,6 +16,7 @@
 </header>
 
 <section class="controls">
+  <label>Day <input type="date" id="day"></label>
   <label>Game <select id="game"><option>Loading games…</option></select></label>
   <button id="refresh" title="Reload today's games from every book">↻ Games</button>
   <button id="start" class="primary">▶ Start</button>
@@ -23,7 +24,7 @@
   <span id="tickinfo" class="muted"></span>
   <span class="spacer"></span>
   <button id="csv">⬇ Export CSV</button>
-  <button id="sheet">Send to Google Sheet</button>
+  <button id="sheet" title="Opens a new Google Sheet and copies all the data; press Ctrl+V in it">New Google Sheet</button>
 </section>
 
 <details id="settings-box">
@@ -38,8 +39,6 @@
     <label>DraftKings NBA league id <input name="dkLeague" size="8"></label>
     <label>DraftKings game-lines subcategory <input name="dkGameSubcat" size="8"></label>
     <label class="wide">DraftKings player-points subcategory ids (comma separated) <input name="dkSubcats"></label>
-    <label class="wide">Google Sheet web app URL (from Apps Script, ends in /exec) <input name="sheetsUrl" placeholder="https://script.google.com/a/macros/betfanatics.com/s/…/exec"></label>
-    <label class="check"><input name="autoSheet" type="checkbox"> Send every pull to the Google Sheet automatically</label>
     <div class="wide"><button type="submit" class="primary">Save settings</button> <span id="saved" class="muted"></span></div>
   </form>
 </details>
@@ -64,15 +63,16 @@
     <div class="panel-head">
       <h2>Latest pull <span id="latest-time" class="muted"></span></h2>
       <div>
+        <span id="teams" class="teams"></span>
         <input id="filter" placeholder="Filter player…" size="18">
         <label class="small"><input type="checkbox" id="both-only" checked> Only lines 2+ books have</label>
         <span id="both-note" class="muted small"></span>
-        <label class="small">Sort <select id="sort"><option value="gap">Biggest difference (ours vs books)</option><option value="player">Player</option></select></label>
+        <label class="small">Sort <select id="sort"><option value="player">Player, then line (lowest first)</option><option value="gap">Biggest difference (ours vs books)</option></select></label>
       </div>
     </div>
     <div class="table-wrap">
       <table id="table">
-        <thead><tr><th>Player</th><th>Market</th><th class="num">DraftKings over / under</th><th class="num">FanDuel over / under</th><th class="num">Ours (app) over / under</th></tr></thead>
+        <thead><tr><th>Player</th><th>Market</th><th class="num">DraftKings</th><th class="num">FanDuel</th><th class="num">Ours</th></tr></thead>
         <tbody></tbody>
       </table>
       <p id="empty" class="muted">Pick a game and press Start.</p>

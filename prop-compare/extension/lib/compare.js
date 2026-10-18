@@ -57,21 +57,27 @@ export function buildRows(quotesByBook) {
 export const marketLabel = (r) => r.kind === 'ou' ? `Points O/U ${r.line}` : `${r.line + 0.5}+ points`;
 
 // ---------------------------------------------------------------- export
-export const CSV_HEADERS = ['tick_time_et', 'tick_time_utc', 'tick_id', 'aligned', 'spread_ms', 'game', 'player', 'market', 'line',
+export const CSV_HEADERS = ['tick_time_mt', 'tick_time_utc', 'tick_id', 'aligned', 'spread_ms', 'game', 'team', 'player', 'market', 'line',
   'dk_over', 'dk_under', 'dk_fetched_utc', 'fd_over', 'fd_under', 'fd_fetched_utc', 'ours_over', 'ours_under', 'ours_fetched_utc'];
 
-const etFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit',
+const mtFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Denver', year: 'numeric', month: '2-digit', day: '2-digit',
   hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
-export const etTime = (ms) => etFmt.format(new Date(ms)).replace(',', '');
+/** All times are Mountain Time (the user's choice). */
+export const mtTime = (ms) => mtFmt.format(new Date(ms)).replace(',', '');
 const iso = (ms) => ms ? new Date(ms).toISOString() : '';
 
 /** One flat array per row per tick: what goes to CSV and to Google Sheets. */
-export function tickToRecords(tick) {
+export function tickToRecords(tick, teamFn = () => '') {
   return tick.rows.map(r => {
     const bk = (b) => { const x = r.books[b] || {}; return [x.over?.american ?? '', x.under?.american ?? '', tick.used[b] ? iso(tick.at?.[b]) : '']; };
-    return [etTime(tick.t), iso(tick.t), tick.id, tick.aligned ? 'yes' : 'no', tick.spreadMs ?? '', tick.game, r.player, marketLabel(r), r.line,
+    return [mtTime(tick.t), iso(tick.t), tick.id, tick.aligned ? 'yes' : 'no', tick.spreadMs ?? '', tick.game, teamFn(r.player) || '', r.player, marketLabel(r), r.line,
       ...bk('DK'), ...bk('FD'), ...bk('OURS')];
   });
+}
+
+/** Tab-separated text (for pasting into a new Google Sheet). */
+export function toTsv(rows) {
+  return [CSV_HEADERS, ...rows].map(r => r.map(v => String(v ?? '').replace(/[\t\n]/g, ' ')).join('\t')).join('\n') + '\n';
 }
 
 export function toCsv(rows) {

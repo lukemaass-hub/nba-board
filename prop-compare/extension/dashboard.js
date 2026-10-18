@@ -2,7 +2,8 @@ import { fdGames, fdPointsTabs, fdQuotes, dkGames, dkQuotes, isBackingOff, setDk
 import * as books from './lib/books.js';
 import { sameGame, teamNick } from './lib/match.js';
 import { tokenScore } from './lib/match.js';
-import { BOOKS, alignTick, buildRows, oddsScale, oddsLabel, marketLabel, tickToRecords, toCsv, CSV_HEADERS, etTime } from './lib/compare.js';
+import { BOOKS, alignTick, buildRows, oddsScale, oddsLabel, marketLabel, tickToRecords, toCsv, toTsv, CSV_HEADERS, mtTime } from './lib/compare.js';
+import { gameRosters, teamOf } from './lib/rosters.js';
 import { saveTick, ticksFor } from './lib/store.js';
 import { renderChart } from './lib/chart.js';
 
@@ -10,7 +11,7 @@ import { renderChart } from './lib/chart.js';
 // non-browser traffic, so they couldn't be verified while building). Edit them in Settings.
 const DEFAULTS = {
   pollSeconds: 15, alignToleranceMs: 2000, fdState: 'az', dkSite: 'US-CO-SB', dkLeague: '42648',
-  dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', sheetsUrl: '', autoSheet: false, dollyEnv: 'test',
+  dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', dollyEnv: 'test',
 };
 const SERIES = [{ book: 'DK', name: 'DK', long: 'DraftKings', color: '#3987e5' }, { book: 'FD', name: 'FD', long: 'FanDuel', color: '#d95926' },
   { book: 'OURS', name: 'Ours', long: 'Ours (app price)', color: '#199e70' }];
@@ -75,7 +76,7 @@ chrome.storage.onChanged.addListener((ch) => {
 
 // ---------------------------------------------------------------- lights + diagnostics
 function light(book, cls, text) { const l = $(`light-${book}`); l.className = `light ${cls}`; l.querySelector('b').textContent = text; }
-function logErr(msg) { diag.errors.unshift(`${etTime(Date.now())}  ${msg}`); diag.errors.length = Math.min(diag.errors.length, 30); renderDiag(); }
+function logErr(msg) { diag.errors.unshift(`${mtTime(Date.now())}  ${msg}`); diag.errors.length = Math.min(diag.errors.length, 30); renderDiag(); }
 function renderDiag() {
   const lines = [];
   lines.push(`FanDuel games: ${diag.fdGames}`);
@@ -153,21 +154,51 @@ async function loadGames() {
     games.push({ key: `dk${d.eventId}`, name: d.name, startTime: d.startTime, fd: null, dk: d });
   games.sort((a, b) => (a.startTime || 0) - (b.startTime || 0));
 
-  const sel = $('game'); sel.textContent = '';
-  if (!games.length) { const o = document.createElement('option'); o.textContent = 'No games found: see Diagnostics'; sel.appendChild(o); }
-  const dfmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'short', month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-  for (const g of games) {
-    const o = document.createElement('option'); o.value = g.key;
-    const books = [g.dk && 'DK', g.fd && 'FD'].filter(Boolean).join(' + ');
-    o.textContent = `${g.startTime ? dfmt.format(g.startTime) : ''}  ${g.name}  (${books})`;
-    sel.appendChild(o);
-  }
-  if (run) sel.value = run.game.key;
+  renderGameList();
   renderDiag();
 }
+// Games are listed for the day picked in the date box (Mountain Time); the box opens on today.
+const mtDay = (ms) => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Denver' }).format(ms);
+const tmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Denver', hour: 'numeric', minute: '2-digit' });
+function renderGameList() {
+  const sel = $('game'), day = $('day').value || mtDay(Date.now());
+  const keep = run?.game.key || sel.value;
+  sel.textContent = '';
+  const list = games.filter(g => g.startTime && mtDay(g.startTime) === day);
+  if (!list.length) { const o = document.createElement('option'); o.value = ''; o.textContent = games.length ? 'No games on this day' : 'No games found: see Diagnostics'; sel.appendChild(o); }
+  for (const g of list) {
+    const o = document.createElement('option'); o.value = g.key;
+    const books = [g.dk && 'DK', g.fd && 'FD'].filter(Boolean).join(' + ');
+    o.textContent = `${tmt.format(g.startTime)} MT  ${g.name}  (${books})`;
+    sel.appendChild(o);
+  }
+  if (list.some(g => g.key === keep)) sel.value = keep;
+}
+$('day').value = mtDay(Date.now());
+$('day').addEventListener('change', async () => { renderGameList(); const g = games.find(x => x.key === $('game').value); if (g && !run) await showGame(g); });
 $('refresh').addEventListener('click', loadGames);
 
+// team buttons: All / away / home (players' teams from ESPN rosters)
+let rosters = [], teamPick = 'ALL';
+const teamFn = (player) => teamOf(player, rosters);
+function renderTeamButtons() {
+  const box = $('teams'); box.textContent = '';
+  for (const t of [{ abbr: 'ALL', name: 'All' }, ...rosters]) {
+    const b = document.createElement('button'); b.type = 'button'; b.textContent = t.abbr === 'ALL' ? 'All' : t.name;
+    b.className = t.abbr === teamPick ? 'on' : '';
+    b.addEventListener('click', () => { teamPick = t.abbr; renderTeamButtons(); renderTable(); });
+    box.appendChild(b);
+  }
+}
+async function loadRosters(g) {
+  rosters = []; teamPick = 'ALL'; renderTeamButtons();
+  try { rosters = await gameRosters(g.fd?.away || g.dk?.away, g.fd?.home || g.dk?.home); }
+  catch (e) { logErr(`team rosters (ESPN): ${e.message || e}`); }
+  renderTeamButtons(); renderTable();
+}
+
 async function showGame(g) {
+  loadRosters(g);
   history = await ticksFor(g.key); selectedKey = null;
   renderTable(); renderSelected();
 }
@@ -291,39 +322,62 @@ async function pull() {
       if (errors[b] && (b === 'OURS' || g[b.toLowerCase()])) logErr(`pull #${id} ${b}: ${errors[b]}`);
     }
     const alignedN = history.filter(x => x.aligned).length;
-    $('tickinfo').textContent = `Pull #${id} at ${etTime(t).slice(11)} ET · ${alignedN}/${history.length} aligned${r.skipped ? ` · ${r.skipped} skipped (book slower than ${settings.pollSeconds}s)` : ''}`;
+    $('tickinfo').textContent = `Pull #${id} at ${mtTime(t).slice(11)} MT · ${alignedN}/${history.length} aligned${r.skipped ? ` · ${r.skipped} skipped (book slower than ${settings.pollSeconds}s)` : ''}`;
     renderTable(); renderSelected(); renderDiag();
-    if (settings.autoSheet && settings.sheetsUrl) sendNewTicks(g.key, true);
   } finally { r.busy = false; }
 }
 
 // ---------------------------------------------------------------- table
-const odds = (b) => b ? `${b.over?.american ?? '–'} / ${b.under?.american ?? '–'}` : null;
+// one price per cell: "over / under" for O/U lines, just the price for N+ lines
+const odds = (b, kind) => !b ? null : kind === 'alt' ? (b.over?.american ?? null) : `${b.over?.american ?? '–'} / ${b.under?.american ?? '–'}`;
+
+// Every line seen in this game, each book's odds from the last pull that had them. A line that
+// came down (a player hit it, so Dolly / the book pulled it) stays, greyed, with when it was last seen.
+function mergedRows() {
+  const m = new Map();
+  for (const t of history) for (const r of t.rows) {
+    const cur = m.get(r.key) || { key: r.key, player: r.player, kind: r.kind, line: r.line, books: {}, seen: {} };
+    for (const [b, v] of Object.entries(r.books)) { cur.books[b] = v; cur.seen[b] = t.t; }
+    cur.diff = r.diff ?? cur.diff;
+    m.set(r.key, cur);
+  }
+  return [...m.values()];
+}
+
 function renderTable() {
   const tb = $('table').tBodies[0]; tb.textContent = '';
   const last = history.at(-1);
-  $('latest-time').textContent = last ? `· pull #${last.id}, ${etTime(last.t).slice(11)} ET${last.aligned ? '' : ' (not aligned: a book was missing or late)'}` : '';
-  $('empty').hidden = !!last?.rows.length;
+  $('latest-time').textContent = last ? `· pull #${last.id}, ${mtTime(last.t).slice(11)} MT${last.aligned ? '' : ' (not aligned: a book was missing or late)'}` : '';
+  const all = mergedRows();
+  $('empty').hidden = !!all.length;
   if (!last) return;
   const q = $('filter').value.trim().toLowerCase();
   const withPrices = BOOKS.filter(b => last.rows.some(r => r.books[b]));
   const multiOnly = $('both-only').checked && withPrices.length > 1;   // with one book in, this would hide everything
   $('both-note').textContent = withPrices.length === 1 ? `Only ${BOOK_NAME[withPrices[0]]} has prices this pull, so all of its lines are shown.` : '';
-  let rows = last.rows.filter(r => (!q || r.player.toLowerCase().includes(q)) && (!multiOnly || Object.keys(r.books).length > 1));
-  if ($('sort').value === 'gap') rows = rows.slice().sort((a, b) => (b.diff ?? -1) - (a.diff ?? -1));
+  let rows = all.filter(r => (!q || r.player.toLowerCase().includes(q)) && (!multiOnly || Object.keys(r.books).length > 1)
+    && (teamPick === 'ALL' || teamFn(r.player) === teamPick));
+  // default: player A-Z, then line lowest first; or biggest difference between ours and the books
+  rows.sort($('sort').value === 'gap' ? (a, b) => (b.diff ?? -1) - (a.diff ?? -1)
+    : (a, b) => a.player.localeCompare(b.player) || a.line - b.line || a.kind.localeCompare(b.kind));
   for (const r of rows) {
     const tr = document.createElement('tr'); if (r.key === selectedKey) tr.className = 'sel';
-    const cells = [r.player, marketLabel(r), odds(r.books.DK), odds(r.books.FD), odds(r.books.OURS)];
-    cells.forEach((c, i) => {
+    const team = teamFn(r.player);
+    const cells = [[`${r.player}${team ? `  ·  ${team}` : ''}`], [marketLabel(r)], ...['DK', 'FD', 'OURS'].map(b => [odds(r.books[b], r.kind), b])];
+    cells.forEach(([c, book], i) => {
       const td = document.createElement('td'); td.textContent = c ?? '–';
       if (i >= 2) td.className = 'num';
       if (c == null) td.classList.add('na');
+      if (book && c != null && r.seen[book] < last.t) {   // not in the latest pull: came down
+        td.classList.add('gone'); td.title = `No longer offered. Last seen ${mtTime(r.seen[book]).slice(11)} MT`;
+        td.textContent = `${c}  (off ${tmt.format(r.seen[book])})`;
+      }
       tr.appendChild(td);
     });
     tr.addEventListener('click', () => { selectedKey = r.key; renderTable(); renderSelected(); });
     tb.appendChild(tr);
   }
-  if (!rows.length) { $('empty').hidden = false; $('empty').textContent = multiOnly ? 'No line is offered by 2 or more books in this pull. Untick "Only lines 2+ books have" to see everything.' : 'No prices in this pull.'; }
+  if (!rows.length) { $('empty').hidden = false; $('empty').textContent = multiOnly ? 'No line is offered by 2 or more books. Untick "Only lines 2+ books have" to see everything.' : 'No lines for this filter.'; }
 }
 ['filter', 'both-only', 'sort'].forEach(id => $(id).addEventListener('input', renderTable));
 
@@ -334,8 +388,7 @@ function legendFor(el, series) {
 }
 function renderSelected() {
   if (!selectedKey) { $('chart').textContent = ''; $('legend').textContent = ''; $('chart-title').textContent = 'Click a row below to graph it'; return; }
-  const any = history.findLast(t => t.rows.some(r => r.key === selectedKey));
-  const row = any?.rows.find(r => r.key === selectedKey);
+  const row = mergedRows().find(r => r.key === selectedKey);
   $('chart-title').textContent = row ? `${row.player} · ${marketLabel(row)} · over odds` : 'Line no longer offered';
   const rowsAt = history.map(t => ({ t, r: t.rows.find(x => x.key === selectedKey) }));
   const shown = SERIES.filter(s => rowsAt.some(({ r }) => r?.books[s.book]?.over?.american));
@@ -358,56 +411,23 @@ function currentGameKey() { return run?.game.key || $('game').value; }
 $('csv').addEventListener('click', async () => {
   const key = currentGameKey(); const ticks = await ticksFor(key);
   if (!ticks.length) { alert('Nothing saved for this game yet.'); return; }
-  const csv = toCsv(ticks.flatMap(tickToRecords));
+  const csv = toCsv(ticks.flatMap(t => tickToRecords(t, teamFn)));
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
-  a.download = `prop-compare_${ticks[0].game.replace(/[^A-Za-z0-9]+/g, '-')}_${etTime(ticks[0].t).slice(0, 10).replace(/\//g, '-')}.csv`;
+  a.download = `prop-compare_${ticks[0].game.replace(/[^A-Za-z0-9]+/g, '-')}_${mtTime(ticks[0].t).slice(0, 10).replace(/\//g, '-')}.csv`;
   a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 5000);
 });
 
-let sheetWarned = false;
-async function sendToSheet(records, game, quiet) {
-  if (!settings.sheetsUrl) { if (!quiet) alert('Add the Google Sheet web app URL in Settings first (see README).'); return false; }
-  const date = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
-  try {
-    for (let i = 0; i < records.length; i += 2000) {
-      const resp = await fetch(settings.sheetsUrl, {
-        method: 'POST', credentials: 'include',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },    // text/plain avoids a CORS preflight
-        body: JSON.stringify({ tab: `${date} ${game}`, headers: CSV_HEADERS, rows: records.slice(i, i + 2000) }),
-      });
-      const text = await resp.text();
-      let ok = false; try { ok = JSON.parse(text).ok === true; } catch { /* Google sign-in page instead of JSON */ }
-      if (!ok) throw new Error(`the sheet did not accept the rows (HTTP ${resp.status}). Open the web app URL once in this browser and click Allow, then try again.`);
-    }
-    return true;
-  } catch (e) {
-    if (!quiet || !sheetWarned) logErr(`Google Sheet: ${e.message || e}`);
-    if (!quiet) alert(`Google Sheet: ${e.message || e}`);
-    sheetWarned = true; return false;
-  }
-}
-// Only pulls not sent before go to the sheet, so pressing the button twice (or having
-// auto-send on) never writes the same row twice.
-let sending = false;
-async function sendNewTicks(key, quiet) {
-  if (sending) return null;
-  sending = true;
-  try {
-    const { sheetSent = {} } = await chrome.storage.local.get('sheetSent');
-    const ticks = (await ticksFor(key)).filter(t => t.id > (sheetSent[key] || 0));
-    if (!ticks.length) return 0;
-    if (!await sendToSheet(ticks.flatMap(tickToRecords), ticks[0].game, quiet)) return null;
-    sheetSent[key] = ticks.at(-1).id; await chrome.storage.local.set({ sheetSent });
-    return ticks.length;
-  } finally { sending = false; }
-}
+// New Google Sheet: every pull of this game is copied (tab-separated) and a blank sheet opens
+// (sheets.new, in the user's own Google account); one Ctrl+V fills it. Creating the sheet with no
+// paste at all would need a Google sign-in app registered for the extension.
 $('sheet').addEventListener('click', async () => {
-  const btn = $('sheet'); btn.disabled = true; btn.textContent = 'Sending…';
-  const n = await sendNewTicks(currentGameKey(), false);
-  btn.disabled = false;
-  btn.textContent = n == null ? 'Send to Google Sheet' : n === 0 ? 'Already up to date' : `Sent ${n} pulls ✓`;
-  setTimeout(() => { btn.textContent = 'Send to Google Sheet'; }, 4000);
+  const key = currentGameKey(); const ticks = await ticksFor(key);
+  if (!ticks.length) { alert('Nothing saved for this game yet.'); return; }
+  await navigator.clipboard.writeText(toTsv(ticks.flatMap(t => tickToRecords(t, teamFn))));
+  window.open('https://sheets.new', '_blank');
+  const btn = $('sheet'); btn.textContent = 'Copied: press Ctrl+V in the new sheet';
+  setTimeout(() => { btn.textContent = 'New Google Sheet'; }, 8000);
 });
 
 // ---------------------------------------------------------------- boot
@@ -421,4 +441,4 @@ await loadSettings();
 showEnv();
 await loadLearned();
 await loadGames();
-if (games[0]) await showGame(games.find(g => g.key === $('game').value) || games[0]);
+{ const g = games.find(x => x.key === $('game').value); if (g) await showGame(g); }

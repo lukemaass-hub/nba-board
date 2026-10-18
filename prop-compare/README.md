@@ -28,19 +28,14 @@ shows a table and a live graph. Everything it pulls is saved, and you can export
 
 ## Use
 
-1. Pick a game.
-   - "(DK + FD)" means both books have it.
-   - "(FD only)" means DraftKings wasn't found yet. See the next section.
-2. Press **Start**.
-   - Leave the tab open. It keeps pulling in the background.
-   - Closing the tab stops it.
-3. Click any row to graph it. Hover over the graph to see the exact prices at each pull.
-4. Use **Export CSV** for a spreadsheet file, or **Send to Google Sheet** (setup below).
-
-Notes:
-- Preseason: FanDuel has no player props (checked Oct 16 in 5 states), but DraftKings does. The table then shows
-  DraftKings' lines alone.
-- Lines for games several days out are thin (only a few stars). The full board appears closer to tip.
+1. Pick the **Day**. It opens on today. Then pick a **Game**. All times are Mountain Time.
+2. Press **Start**. Leave the tab open; it keeps pulling in the background. Closing the tab stops it.
+3. The table is sorted by player, then line from lowest up. **Sort → Biggest difference** puts the lines where our
+   odds differ most from DraftKings/FanDuel first.
+4. The **team buttons** (All / away / home) show one team's players. Teams come from ESPN's public rosters.
+5. Click any row to graph its over odds. Hover over the graph for the exact odds at each pull.
+6. When a line comes down (e.g. a player hits it and Dolly or a book pulls it), the row stays with its last odds,
+   greyed, marked "(off 3:49 PM)". Its graph and every saved pull are kept.
 
 ## DraftKings: let the extension learn its IDs (once)
 
@@ -86,28 +81,21 @@ To use it:
 If our odds stay blank, open **Diagnostics**. Under "Our prices" it shows how many rows it saw, how many App prices
 it read, and examples. Send me a screenshot.
 
-## Google Sheet (optional)
+## Export
 
-1. Make a new Google Sheet → **Extensions → Apps Script**.
-2. Replace the code with `extension/apps-script/prop-compare-handler.gs` and save.
-3. Click **Deploy → New deployment → Web app**:
-   - **Execute as:** Me
-   - **Who has access:** Anyone within betfanatics.com
-4. Copy the URL that ends in `/exec`.
-5. Open that URL once in Chrome and click **Allow** if asked. It should show `{"ok":true,...}`.
-6. On the dashboard, go to **Settings** and paste the URL into "Google Sheet web app URL", then save.
-
-Each game gets its own tab in the sheet. **Send to Google Sheet** only sends pulls that weren't sent before. Tick
-"Send every pull automatically" to have it add rows live.
+- **Export CSV** downloads every pull of the selected game as a file.
+- **New Google Sheet** copies every pull of the game, then opens a brand-new blank Google Sheet in your account.
+  Click cell A1 and press **Ctrl+V**. There's nothing to set up.
+  (Making the sheet with no paste at all would need a Google sign-in app registered for the extension.)
 
 ## Columns (CSV and Sheet), one row per line per pull
 
 | Column | Meaning |
 |---|---|
-| tick_time_et / tick_time_utc / tick_id | When the pull started, and its number |
+| tick_time_mt / tick_time_utc / tick_id | When the pull started (Mountain Time / UTC), and its number |
 | aligned | yes = every source answered within the limit |
 | spread_ms | How far apart the sources answered |
-| game, player, market, line | e.g. "Points O/U 24.5" (line 24.5) or "25+ points" (line 24.5) |
+| game, team, player, market, line | e.g. "Points O/U 24.5" (line 24.5) or "25+ points" (line 24.5) |
 | dk_over, dk_under, fd_over, fd_under, ours_over, ours_under | American odds. Blank = not offered, or that source was late or failed on this pull |
 | dk_fetched_utc, fd_fetched_utc, ours_fetched_utc | When each source's answer arrived |
 

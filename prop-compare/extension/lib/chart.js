@@ -3,7 +3,7 @@
 // late/failed on that pull) breaks the line instead of being bridged.
 const NS = 'http://www.w3.org/2000/svg';
 const el = (tag, attrs = {}, parent) => { const n = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); parent?.appendChild(n); return n; };
-const tfmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit', second: '2-digit' });
+const tfmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Denver', hour: 'numeric', minute: '2-digit', second: '2-digit' });
 
 /**
  * points: [{ t, id, aligned, values: { DK: {p, over, under} | null, FD: ... } }]   (p in 0..1)
@@ -82,7 +82,7 @@ export function renderChart(box, tip, points, series, opts = {}) {
     const pt = points[best], px = x(pt.t);
     cross.setAttribute('x1', px); cross.setAttribute('x2', px); cross.setAttribute('visibility', 'visible');
     tip.textContent = '';
-    const head = document.createElement('div'); head.textContent = `${tfmt.format(pt.t)} ET · pull #${pt.id}${pt.aligned ? '' : ' · not aligned'}`; tip.appendChild(head);
+    const head = document.createElement('div'); head.textContent = `${tfmt.format(pt.t)} MT · pull #${pt.id}${pt.aligned ? '' : ' · not aligned'}`; tip.appendChild(head);
     series.forEach((s, i) => {
       const v = pt.values[s.book];
       if (v?.p != null) { dots[i].setAttribute('cx', px); dots[i].setAttribute('cy', y(v.p)); dots[i].setAttribute('visibility', 'visible'); }
