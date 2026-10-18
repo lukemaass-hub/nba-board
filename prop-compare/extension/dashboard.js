@@ -10,12 +10,12 @@ import { renderChart } from './lib/chart.js';
 // non-browser traffic, so they couldn't be verified while building). Edit them in Settings.
 const DEFAULTS = {
   pollSeconds: 15, alignToleranceMs: 2000, fdState: 'az', dkSite: 'US-CO-SB', dkLeague: '42648',
-  dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', sheetsUrl: '', autoSheet: false,
+  dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', sheetsUrl: '', autoSheet: false, dollyEnv: 'test',
 };
 const SERIES = [{ book: 'DK', name: 'DK', long: 'DraftKings', color: '#3987e5' }, { book: 'FD', name: 'FD', long: 'FanDuel', color: '#d95926' },
   { book: 'OURS', name: 'Ours', long: 'Ours (app price)', color: '#199e70' }];
-// Dolly TEST environment (UAT) only, by the user's choice: prod Dolly is not read at all.
-const DOLLY_URL = 'https://dolly.uat.oddsfactorytrading.bet/*';
+import { DOLLY_ENVS, dollyEnv } from './lib/dolly-env.js';
+const env = () => DOLLY_ENVS[dollyEnv(settings)];
 const BOOK_NAME = { DK: 'DraftKings', FD: 'FanDuel', OURS: 'Ours' };
 const REPROBE_EVERY = 20;   // pulls; re-try DK subcategories that returned nothing
 
@@ -36,11 +36,21 @@ async function loadSettings() {
 }
 $('settings').addEventListener('submit', async (e) => {
   e.preventDefault();
+  // Prod Dolly: ask Chrome for access first (must happen right on the click); Test: give prod access back
+  const wantProd = e.target.elements.dollyEnv.value === 'prod';
+  const prodOrigin = DOLLY_ENVS.prod.origin;
+  if (wantProd && !(await chrome.permissions.request({ origins: [prodOrigin] }))) {
+    e.target.elements.dollyEnv.value = 'test';
+    $('saved').textContent = 'Prod Dolly was not allowed, so Test stays selected.';
+  }
+  if (!wantProd || e.target.elements.dollyEnv.value === 'test') await chrome.permissions.remove({ origins: [prodOrigin] }).catch(() => false);
   const f = e.target, s = {};
   for (const k of Object.keys(DEFAULTS)) { const i = f.elements[k]; s[k] = i.type === 'checkbox' ? i.checked : i.type === 'number' ? Number(i.value) : i.value.trim(); }
   s.pollSeconds = Math.max(5, s.pollSeconds || 15);
   settings = s; await chrome.storage.local.set({ settings });
-  $('saved').textContent = run ? 'Saved. Press Stop then Start to use the new settings.' : 'Saved.';
+  if (!$('saved').textContent) $('saved').textContent = run ? 'Saved. Press Stop then Start to use the new settings.' : 'Saved.';
+  showEnv();
+  if (env().label === 'PROD' || wantProd) $('saved').textContent += ' Reload the Dolly tab (F5) once so it is read.';
   setTimeout(() => { $('saved').textContent = ''; }, 5000);
 });
 // DK ids: what background.js saw DraftKings' own page use comes first, then Settings.
@@ -83,7 +93,7 @@ function renderDiag() {
     for (const x of learned.urls.slice(0, 8)) lines.push(`     ${decodeURIComponent(x).replace(/^https:\/\/[^/]+/, '').slice(0, 220)}`);
   }
   lines.push(`   DK ids in use: site ${dkSite()}, leagues ${dkLeagues().join(', ')}, points subcategories ${subIds().join(', ')}`);
-  lines.push(`\nOur prices (Dolly TEST screen, App column): ${diag.dolly || 'not read yet'}`);
+  lines.push(`\nOur prices (Dolly ${env().label} screen, App column): ${diag.dolly || 'not read yet'}`);
   if (diag.dollyMarkets?.length) lines.push(`   markets seen: ${diag.dollyMarkets.join(' · ')}`);
   for (const x of diag.dollySample || []) lines.push(`   e.g. ${x}`);
   if (run) {
@@ -189,8 +199,10 @@ async function findFdTabs(r) {
 // Our prices: ask the open Dolly Market Manager tab(s) to read the screen (content/dolly-props.js).
 // The tab for this game is the one whose teams match (the MLB suite's tokenScore), or the only one open.
 async function readDolly(g) {
-  const tabs = (await chrome.tabs.query({ url: DOLLY_URL })).filter(t => /market-manager/.test(t.url || ''));
-  if (!tabs.length) return { ok: false, error: 'no Dolly TEST (UAT) Market Manager tab open' };
+  const E = env();
+  if (!(await chrome.permissions.contains({ origins: [E.origin] }))) return { ok: false, error: `Dolly ${E.name} is selected but not allowed: open Settings and click Save settings` };
+  const tabs = (await chrome.tabs.query({ url: E.origin })).filter(t => /market-manager/.test(t.url || ''));
+  if (!tabs.length) return { ok: false, error: `no Dolly ${E.name} Market Manager tab open` };
   const sent = Date.now();
   // ask every frame of each Dolly tab (the market table may sit in a frame); per tab keep the frame that read most
   const ask = (tabId, frameId) => new Promise(res => chrome.tabs.sendMessage(tabId, { type: 'DOLLY_READ' }, { frameId }, (r) => res(chrome.runtime.lastError ? null : r)));
@@ -209,7 +221,7 @@ async function readDolly(g) {
   if (ok.length > 1 && score(best) < 0.5) return { ok: false, error: `${ok.length} Dolly tabs open and none shows ${want.join(' @ ')}` };
   const mine = chrome.runtime.getManifest().version;
   if (best.version !== mine) return { ok: false, error: `the Dolly tab is still running an older copy of the extension (${best.version || 'before 0.14.1'}). Reload the Dolly tab (F5).` };
-  diag.dolly = `${tabs.length} TEST Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · ${best.rows} selection rows seen, ${best.quotes.length} App prices read in ${best.readMs ?? '?'} ms${best.frame && best.frame !== 'top' ? ' (in a frame)' : ''}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}`;
+  diag.dolly = `${tabs.length} ${E.label} Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · ${best.rows} selection rows seen, ${best.quotes.length} App prices read in ${best.readMs ?? '?'} ms${best.frame && best.frame !== 'top' ? ' (in a frame)' : ''}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}`;
   diag.dollySample = best.sample || [];
   diag.dollyMarkets = best.markets || [];
   return { ok: true, at: best.at || Date.now(), ms: Date.now() - sent, quotes: best.quotes };
@@ -400,7 +412,13 @@ $('sheet').addEventListener('click', async () => {
 
 // ---------------------------------------------------------------- boot
 $('version').textContent = `version ${chrome.runtime.getManifest().version}`;
+function showEnv() {
+  const L = env().label;
+  $('env-label').textContent = L; $('env-light').textContent = L;
+  document.body.classList.toggle('prod', L === 'PROD');
+}
 await loadSettings();
+showEnv();
 await loadLearned();
 await loadGames();
 if (games[0]) await showGame(games.find(g => g.key === $('game').value) || games[0]);

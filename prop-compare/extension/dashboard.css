@@ -48,3 +48,7 @@ td { padding: 5px 8px; border-bottom: 1px solid var(--grid); }
 tbody tr { cursor: pointer; } tbody tr:hover { background: var(--raise); } tbody tr.sel { background: #24324a; }
 td.big { font-weight: 700; }
 td.na { color: var(--ink-3); }
+
+/* prod Dolly selected: a red bar so it is never mistaken for test */
+body.prod header { border-bottom: 3px solid #f85149; }
+body.prod #env-label, body.prod #env-light { color: #f85149; font-weight: 700; }

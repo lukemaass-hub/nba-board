@@ -60,10 +60,16 @@ last DraftKings requests it saw.
 
 Settings still has the DraftKings IDs as a backup. The ones learned from your browser are used first.
 
-## Our prices: from the Dolly TEST screen (App column)
+## Our prices: from the Dolly screen (App column)
 
-Our prices are the **App** odds (what the app shows customers), read off the Market Manager screen of **Dolly's
-test environment** (`dolly.uat.oddsfactorytrading.bet`). Prod Dolly is not read at all.
+Our prices are the **App** odds (what the app shows customers), read off the Dolly Market Manager screen.
+
+**Which Dolly:** Settings → **Dolly environment**.
+- **Test (UAT)** is the default (`dolly.uat.oddsfactorytrading.bet`). While Test is selected, the extension has
+  **no permission for prod Dolly** and loads **nothing** into prod pages.
+- **Prod**: pick it and click **Save settings**. Chrome asks you to allow `dolly.1.oddsfactorytrading.com`; say
+  Allow, then reload the prod Dolly tab once. The header turns red and says PROD so it can't be mistaken for test.
+- Going back to Test removes the prod permission again.
 
 - It only reads text. It never clicks, types, changes or sends anything, and it doesn't measure the page
   (measuring is what froze Dolly in earlier versions).

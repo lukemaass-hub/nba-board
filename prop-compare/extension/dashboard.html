@@ -7,11 +7,11 @@
 </head>
 <body>
 <header>
-  <h1>Prop Price Compare <span class="sub">NBA player points odds · DraftKings · FanDuel · Ours (Dolly TEST) · <span id="version"></span></span></h1>
+  <h1>Prop Price Compare <span class="sub">NBA player points odds · DraftKings · FanDuel · Ours (Dolly <span id="env-label">TEST</span>) · <span id="version"></span></span></h1>
   <div class="lights">
     <span class="light" id="light-DK"><i></i>DraftKings <b>idle</b></span>
     <span class="light" id="light-FD"><i></i>FanDuel <b>idle</b></span>
-    <span class="light" id="light-OURS"><i></i>Ours (Dolly TEST) <b>…</b></span>
+    <span class="light" id="light-OURS"><i></i>Ours (Dolly <span id="env-light">TEST</span>) <b>…</b></span>
   </div>
 </header>
 
@@ -29,6 +29,8 @@
 <details id="settings-box">
   <summary>Settings</summary>
   <form id="settings" class="grid">
+    <label>Dolly environment (where our prices are read)
+      <select name="dollyEnv"><option value="test">Test (UAT): default</option><option value="prod">Prod: Chrome will ask to allow it</option></select></label>
     <label>Seconds between pulls <input name="pollSeconds" type="number" min="5" step="1"></label>
     <label>Max gap between books (ms) <input name="alignToleranceMs" type="number" min="100" step="100"></label>
     <label>FanDuel state <input name="fdState" size="4"></label>

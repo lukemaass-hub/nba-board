@@ -1,3 +1,5 @@
+import { DOLLY_ENVS, dollyEnv } from './lib/dolly-env.js';
+
 // Clicking the toolbar icon opens the dashboard. All polling happens in the dashboard tab
 // itself, so closing that tab stops every request to the books.
 chrome.action.onClicked.addListener(() => chrome.tabs.create({ url: chrome.runtime.getURL('dashboard.html') }));
@@ -46,3 +48,23 @@ chrome.webRequest.onBeforeRequest.addListener(
   (d) => { chain = chain.then(() => learn(d)).catch(() => {}); },
   { urls: ['https://*.draftkings.com/*'], types: ['xmlhttprequest'] },
 );
+
+// ---------------------------------------------------------------- Dolly reader: selected environment only
+// The read-only Dolly reader (content/dolly-props.js) is loaded ONLY into the Dolly environment
+// chosen in Settings. With Test selected nothing is loaded into prod Dolly (and the extension holds
+// no prod permission at all); prod needs the user to pick it and grant it.
+let syncing = Promise.resolve();
+async function syncDollyScript() {
+  const { settings } = await chrome.storage.local.get('settings');
+  const env = dollyEnv(settings), origin = DOLLY_ENVS[env].origin;
+  await chrome.scripting.unregisterContentScripts({ ids: ['dolly-reader'] }).catch(() => {});
+  if (!(await chrome.permissions.contains({ origins: [origin] }))) return;   // prod chosen but not granted: load nothing
+  await chrome.scripting.registerContentScripts([{ id: 'dolly-reader', matches: [origin], js: ['content/dolly-props.js'],
+    allFrames: true, runAt: 'document_idle', persistAcrossSessions: true }]);
+}
+const resync = () => { syncing = syncing.then(syncDollyScript).catch(() => {}); };
+chrome.runtime.onInstalled.addListener(resync);
+chrome.runtime.onStartup.addListener(resync);
+chrome.storage.onChanged.addListener((ch) => { if (ch.settings) resync(); });
+chrome.permissions.onAdded.addListener(resync);
+chrome.permissions.onRemoved.addListener(resync);
