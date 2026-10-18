@@ -83,12 +83,12 @@ chrome.webRequest.onBeforeRequest.addListener(
   { urls: ['https://content.1.betfanatics.com/*'], types: ['xmlhttprequest'] },
 );
 
-// Our feed can also be fetched from here (how the MLB suite does it), if the dashboard's own request fails.
+// Our feed fetched from the background service worker, the way the MLB suite does it (credentials: include).
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (msg?.type !== 'OURS_FETCH' || !/^https:\/\/content\.1\.betfanatics\.com\//.test(msg.url || '')) return false;
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 12_000);
-  fetch(msg.url, { credentials: 'omit', cache: 'no-store', signal: ctrl.signal })
+  fetch(msg.url, { credentials: 'include', signal: ctrl.signal })
     .then(async (r) => sendResponse({ status: r.status, text: await r.text(), type: r.headers.get('content-type') || '' }))
     .catch((e) => sendResponse({ error: String(e.message || e) }))
     .finally(() => clearTimeout(timer));

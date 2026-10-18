@@ -1,6 +1,6 @@
 // OUR prices, from the Fanatics content feed: the same source and method as the MLB
 // In-Play Suite's background/ml-injector.js (fetchOurFeed / resolveEventId):
-//   event prices:  https://content.1.betfanatics.com/page/event/{eventId}   (sent WITHOUT the user's login, by the user's choice)
+//   event prices:  https://content.1.betfanatics.com/page/event/{eventId}   (credentials: include, exactly as the MLB suite)
 //   slate lookup:  https://content.1.betfanatics.com/cardpack/INS/<base64 JSON {paths,...}>?channel=..&segment=..&stateCode=..
 // MLB's slate paths are known ('8:1255:1257'); NBA's are not, so background.js learns the
 // paths, query and event ids from our own sportsbook site while the user browses it.
@@ -21,7 +21,7 @@ async function directFetch(url) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
   try {
-    const res = await fetch(url, { credentials: 'omit', signal: ctrl.signal, cache: 'no-store' });
+    const res = await fetch(url, { credentials: 'include', signal: ctrl.signal });   // same request as the MLB suite's fetchOurFeed / resolveEventId
     return { status: res.status, text: await res.text(), type: res.headers.get('content-type') || '' };
   } finally { clearTimeout(timer); }
 }
@@ -144,11 +144,11 @@ export function parseOurQuotes(json) {
   return { quotes, types, unread };
 }
 
-// ---------------------------------------------------------------- find the NBA slate (no login)
+// ---------------------------------------------------------------- find the NBA slate
 // The MLB suite's slate paths are hard-coded for baseball ('8:1255:1257', '8:1255:967050'). For
-// NBA we look for the path: ask the feed's slate for MLB (to check it answers at all without a
-// login) and for broader roots, collect every path-like code ("8:1255:1257") the answers carry,
-// then try each and keep the ones that list NBA teams. Only our public feed is asked; no login.
+// NBA we look for the path: ask the feed's slate for MLB (to check it answers at all, same
+// request as the MLB suite) and for broader roots, collect every path-like code ("8:1255:1257") the answers carry,
+// then try each and keep the ones that list NBA teams.
 export const MLB_SLATE_PATHS = ['8:1255:1257', '8:1255:967050'];
 const NBA_NICKS = ['hawks', 'celtics', 'nets', 'hornets', 'bulls', 'cavaliers', 'mavericks', 'nuggets', 'pistons', 'warriors',
   'rockets', 'pacers', 'clippers', 'lakers', 'grizzlies', 'heat', 'bucks', 'timberwolves', 'pelicans', 'knicks', 'thunder',
@@ -175,7 +175,7 @@ export async function findNbaSlate(query = DEFAULT_CARDPACK_QUERY) {
   };
   try {
     const mlb = await ask(MLB_SLATE_PATHS);
-    log.push(`Check: MLB slate (${MLB_SLATE_PATHS.join(', ')}) → ${mlb.length} events. ${mlb.length ? 'Our feed answers without a login.' : 'No events (off-season, or it needs something else).'}`);
+    log.push(`Check: MLB slate (${MLB_SLATE_PATHS.join(', ')}) → ${mlb.length} events. ${mlb.length ? 'Our feed answers.' : 'No events (off-season, or it needs something else).'}`);
   } catch (e) { log.push(`Check: MLB slate → ${String(e.message || e).slice(0, 160)}`); }
   for (const root of [['8'], ['8:1255']]) {
     try { const evs = await ask(root); log.push(`Slate ${root} → ${evs.length} events, ${nbaCount(evs)} NBA`); if (nbaCount(evs)) found.push({ paths: root, nba: nbaCount(evs) }); }
@@ -189,4 +189,37 @@ export async function findNbaSlate(query = DEFAULT_CARDPACK_QUERY) {
   }
   found.sort((a, b) => b.nba - a.nba);
   return { best: found[0]?.paths || null, found, log };
+}
+
+// ---------------------------------------------------------------- MLB suite team matching (verbatim)
+// Ported unchanged from background/ml-injector.js: normalizeTeam, tokenScore, eventMatchScore.
+function normalizeTeam(s) {
+  return (s || '')
+    .toLowerCase()
+    .replace(/\b(fc|sc|cf)\b/g, '')
+    .replace(/[^a-z0-9 ]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export function tokenScore(a, b) {
+  const ta = normalizeTeam(a).split(' ').filter(Boolean);
+  const tb = normalizeTeam(b).split(' ').filter(Boolean);
+  if (!ta.length || !tb.length) return 0;
+  const la = ta[ta.length - 1], lb = tb[tb.length - 1];
+  if (la === lb) {
+    if (la === 'sox') return ta[ta.length - 2] === tb[tb.length - 2] ? 1 : 0;
+    return 1;
+  }
+  let hits = 0;
+  for (const t of ta) if (tb.includes(t)) hits++;
+  return hits / Math.max(ta.length, tb.length);
+}
+
+// Each team is matched to its best participant across ALL of that participant's name forms;
+// the event score is the lower of the two team scores (both must match well). MLB links at >= 0.5.
+export function eventMatchScore(ev, teams) {
+  if (!teams || teams.length < 2) return 0;
+  const scoreTeam = (dt) => Math.max(0, ...ev.participants.map(forms => Math.max(0, ...forms.map(nf => tokenScore(dt, nf)))));
+  return Math.min(...teams.map(scoreTeam));
 }

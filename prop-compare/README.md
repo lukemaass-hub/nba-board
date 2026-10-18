@@ -61,16 +61,17 @@ Settings still has the DraftKings IDs as a backup. The ones learned from your br
 
 ## Our prices: connect them (once)
 
-Our prices come from our price feed (`content.1.betfanatics.com/page/event/<event id>`), using your login. This
-is the same source the MLB In-Play Suite uses for its "FBG" price, and it's the price customers see. The only
-thing needed is our event ID for each game. As in the MLB suite, that comes from the trading portal.
+Our prices are pulled exactly the way the MLB In-Play Suite pulls its "FBG" price:
+- our price feed `content.1.betfanatics.com/page/event/<event id>`, sent with your login;
+- the event ID found through our feed's game list ("slate"), matched by team name with the MLB suite's own
+  matching.
 
-1. With the dashboard open, open **trading.1.betfanatics.com/trading/portal** in another tab and show tonight's
-   NBA games. You don't need to click anything.
-   - The extension reads each game row's event ID, the same way the MLB suite's set-limits tool does.
-2. Back on the dashboard, games show "+ Ours" within a few seconds. Diagnostics lists which ID each game got.
-3. If a game still has no ID, paste it into **Our event id** before pressing Start. It's the number in the
-   portal's address when that game is open (`/trading/portal/<id>`), or the ID you link in the MLB panel on Dolly.
+The MLB suite has only baseball's slate code built in (`8:1255:1257`). NBA needs its own code:
+
+1. Open **Settings** and click **Find NBA slate**. If it finds the code, the code is saved and games show "+ Ours".
+2. If it doesn't, ask whoever built the MLB suite for the NBA slate code and paste it into
+   **Our NBA slate code(s)**.
+3. To check one game by hand, paste our event ID into **Our event id** and click **Test ours**.
 
 Diagnostics lists every market code our feed sent for the game. If our points markets aren't read, send a
 screenshot of it.

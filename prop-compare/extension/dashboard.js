@@ -1,7 +1,7 @@
 import { fdGames, fdPointsTabs, fdQuotes, dkGames, dkQuotes, isBackingOff, setDkHost } from './lib/books.js';
 import * as books from './lib/books.js';
 import { sameGame, teamNick } from './lib/match.js';
-import { ourGames, ourQuotes, parseOurSlate, testOurEvent, findNbaSlate, DEFAULT_SLATE_PARAMS, DEFAULT_CARDPACK_QUERY } from './lib/ours.js';
+import { ourGames, ourQuotes, parseOurSlate, testOurEvent, findNbaSlate, eventMatchScore, DEFAULT_SLATE_PARAMS, DEFAULT_CARDPACK_QUERY } from './lib/ours.js';
 import * as ours from './lib/ours.js';
 import { BOOKS, alignTick, buildRows, marketLabel, tickToRecords, toCsv, CSV_HEADERS, etTime } from './lib/compare.js';
 import { saveTick, ticksFor } from './lib/store.js';
@@ -91,10 +91,8 @@ function renderDiag() {
   }
   lines.push(`   DK ids in use: site ${dkSite()}, leagues ${dkLeagues().join(', ')}, points subcategories ${subIds().join(', ')}`);
   lines.push(`\nOur prices: ${diag.ourGames}`);
-  const np = Object.keys(oursLearned.portal || {}).length;
-  lines.push(`   Trading portal: ${np ? `${np} game rows read` : 'nothing yet. Open trading.1.betfanatics.com/trading/portal and show tonight\'s NBA games.'}`);
   lines.push(`   Our sportsbook site: ${oursLearned.cardpacks.length} slate request(s), ${Object.keys(oursLearned.events).length} event page(s) seen`);
-  for (const g of games.filter(x => x.ours)) lines.push(`   ${g.name} → our event ${g.ours.eventId}${g.ours.fromPortal ? `  (portal row: ${g.ours.name.slice(0, 90)})` : ''}`);
+  for (const g of games.filter(x => x.ours)) lines.push(`   ${g.name} → our event ${g.ours.eventId}  ${g.ours.name || ''}`);
   for (const c of oursLearned.cardpacks.slice(0, 4)) lines.push(`   slate paths ${c.paths.join(', ')}  (${(c.page || '').replace(/^https?:\/\//, '').slice(0, 80)})`);
   if (run) {
     lines.push(`\nRunning: ${run.game.name}`);
@@ -174,7 +172,6 @@ $('refresh').addEventListener('click', loadGames);
 // Our games: every slate request learned from our site (newest first), plus event pages the
 // user opened there (their teams read from the event page itself). Paired with the DK/FD
 // game that has the same two team nicknames (order-free: our feed may list home first).
-const nickSet = (names) => names.map(teamNick).sort().join('|');
 let lastOurEvents = [];
 async function attachOurGames() {
   const found = new Map();
@@ -189,37 +186,25 @@ async function attachOurGames() {
   await Promise.all(recent.map(async ([id]) => {
     if (found.has(id)) return;
     try {
-      const r = await fetch(`https://content.1.betfanatics.com/page/event/${encodeURIComponent(id)}`, { credentials: 'omit' });
+      const r = await fetch(`https://content.1.betfanatics.com/page/event/${encodeURIComponent(id)}`, { credentials: 'include' });
       const ev = parseOurSlate(await r.json()).find(x => x.eventId === id);
       if (ev) found.set(id, ev);
     } catch (e) { errs.push(String(e.message || e)); }
   }));
   lastOurEvents = [...found.values()];
+  // Link each game to our event the MLB suite's way (resolveEventId): best eventMatchScore, linked at >= 0.5.
   let n = 0;
-  for (const ev of found.values()) {
-    const forms = ev.participants;
-    if (forms.length !== 2) continue;
-    const key = nickSet(forms.map(f => f[0]));
-    const cands = games.filter(g => !g.ours && nickSet([g.fd?.away || g.dk?.away, g.fd?.home || g.dk?.home]) === key)
-      .filter(g => !ev.startTime || !g.startTime || Math.abs(ev.startTime - g.startTime) < 18 * 3600_000)
-      .sort((a, b) => Math.abs((a.startTime || 0) - (ev.startTime || 0)) - Math.abs((b.startTime || 0) - (ev.startTime || 0)));
-    if (cands[0]) { cands[0].ours = ev; n++; }
-  }
-  // Trading-portal rows (content/portal-ids.js): "id + row text". A row matches a game when its
-  // text names both teams (by nickname) and, if it shows a date, the game's date.
-  const portal = Object.entries(oursLearned.portal || {});
-  const dd = (ms) => { const [y, m, d] = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(ms).split('-'); return `${d}-${m}-${y}`; };
-  const hasWord = (text, w) => new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(text);
   for (const g of games) {
-    if (g.ours) continue;
-    const nicks = [g.fd?.away || g.dk?.away, g.fd?.home || g.dk?.home].map(teamNick);
-    const day = g.startTime ? dd(g.startTime) : null;
-    const hits = portal.filter(([, v]) => nicks.every(nk => nk && hasWord(v.text, nk)))
-      .filter(([, v]) => !day || !/\b\d{2}-\d{2}-\d{4}\b/.test(v.text) || v.text.includes(day))
-      .sort((a, b) => Number(!!day && b[1].text.includes(day)) - Number(!!day && a[1].text.includes(day)) || b[1].at - a[1].at);
-    if (hits[0]) { g.ours = { eventId: hits[0][0], name: hits[0][1].text, fromPortal: true }; n++; }
+    const teams = [g.fd?.away || g.dk?.away, g.fd?.home || g.dk?.home].filter(Boolean);
+    let best = null, bestScore = 0;
+    for (const ev of found.values()) {
+      if (ev.startTime && g.startTime && Math.abs(ev.startTime - g.startTime) > 18 * 3600_000) continue;   // same matchup, other day
+      const sc = eventMatchScore(ev, teams);
+      if (sc > bestScore) { bestScore = sc; best = ev; }
+    }
+    if (best && bestScore >= 0.5) { g.ours = best; n++; }
   }
-  diag.ourGames = `${found.size} of our events found in the feed slate, ${portal.length} trading-portal rows read, ${n} matched to DK/FD games${errs.length ? ` · problems: ${uniq(errs).join('; ')}` : ''}`;
+  diag.ourGames = `${found.size} of our events found in the feed slate, ${n} matched to DK/FD games${errs.length ? ` · problems: ${uniq(errs).join('; ')}` : ''}`;
   light('OURS', n ? 'ok' : found.size ? 'warn' : 'bad', n ? `${n} games` : found.size ? 'games found, none matched' : 'no games yet (see Diagnostics)');
 }
 $('game').addEventListener('change', async () => { if (run) return; const g = games.find(x => x.key === $('game').value); if (g) await showGame(g); });
@@ -506,7 +491,7 @@ $('find-slate').addEventListener('click', async () => {
   const box = $('ours-box'); box.hidden = false; box.open = true;
   $('ours-summary').textContent = '· looking for the NBA slate…'; $('ours-out').textContent = '';
   const r = await findNbaSlate(settings.ourCardpackQuery || DEFAULT_CARDPACK_QUERY);
-  const L = ['Looking for our NBA slate (only our public feed is asked, no login):', ...r.log.map(x => `   ${x}`), ''];
+  const L = ['Looking for our NBA slate (our feed is asked the MLB way):', ...r.log.map(x => `   ${x}`), ''];
   if (r.best) {
     L.push(`Found: ${r.best.join(', ')}. It's now saved in Settings, and the game list is reloading.`);
     settings.ourSlatePaths = r.best.join(', '); $('settings').elements.ourSlatePaths.value = settings.ourSlatePaths;
