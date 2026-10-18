@@ -401,7 +401,7 @@ function renderAnomalies() {
   const tb = $('anoms').tBodies[0]; tb.textContent = '';
   $('anoms-empty').hidden = !!n;
   const thr = Number(settings.anomalyPct) || 10, bthr = Number(settings.anomalyBookPct) || 20;
-  $('anoms-note').textContent = `A new row every pull for each line where our odds are ${thr}%+ off the DraftKings/FanDuel average, or ${bthr}%+ off either book on its own (by implied chance, same pull only). Newest first. Red = ${LARGE}%+ off; white = flagged but under ${LARGE}%.`
+  $('anoms-note').textContent = `A new row every pull for each line where our odds are ${thr}%+ off the DraftKings/FanDuel average, or ${bthr}%+ off either book on its own (by payout, the profit on a $1 win; + = we pay more, − = we pay less; same pull only). Newest first. Red = ${LARGE}%+ off; white = flagged but under ${LARGE}%.`
     + (lastAnomPull ? ` Last pull #${lastAnomPull.id}: ${lastAnomPull.n} flagged.` : '') + (n > SHOW_MAX ? ` Showing the newest ${SHOW_MAX} of ${n}; Export has all.` : '');
   const f = (v) => v == null ? '–' : `${v > 0 ? '+' : ''}${v.toFixed(1)}%`;
   for (const e of anomalies.slice(0, SHOW_MAX)) {

@@ -84,10 +84,11 @@ it read, and examples. Send me a screenshot.
 ## Anomalies tab
 
 Lists every time our odds were far from the market. Each side (over / under) is checked on every pull, using only
-odds pulled at the same moment. It compares the chance each price implies. A side is flagged when:
+odds pulled at the same moment. It compares **payout**, the profit on a $1 win: −225 pays $0.44 and +150 pays
+$1.50. **+** means we pay more than the book; **−** means we pay less. A side is flagged when:
 
-- our odds are **10%+ off the average of DraftKings and FanDuel**, or
-- our odds are **20%+ off DraftKings or FanDuel on its own**. This also catches lines only one book offers.
+- our payout is **10%+ off the average of DraftKings and FanDuel**, or
+- our payout is **20%+ off DraftKings or FanDuel on its own**. This also catches lines only one book offers.
 
 Both numbers can be changed in Settings. **15%+ off** is marked large in red.
 

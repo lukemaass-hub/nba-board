@@ -87,20 +87,21 @@ test('MLB suite team matching (tokenScore) on NBA names', () => {
   assert.equal(tokenScore('Portland Trail Blazers', 'Trail Blazers'), 1);
 });
 
-test('anomalies: ours vs DK/FD average by implied chance; a new row every pull', async () => {
-  const { findAnomalies, anomalyRows, impliedProb, americanFromProb } = await import('../extension/lib/anomaly.js');
-  assert.ok(Math.abs(impliedProb('-110') - 0.5238) < 1e-4); assert.equal(americanFromProb(0.5238095), '-110');
+test('anomalies: ours vs DK/FD by payout (profit on a $1 win); a new row every pull', async () => {
+  const { findAnomalies, anomalyRows, payout, americanFromPayout } = await import('../extension/lib/anomaly.js');
+  assert.ok(Math.abs(payout('-225') - 0.4444) < 1e-4); assert.equal(payout('+150'), 1.5);
+  assert.equal(americanFromPayout(0.4444444), '-225'); assert.equal(americanFromPayout(1.5), '+150');
   const row = (ours, dk, fd) => ({ key: 'tatum|alt|24.5', player: 'Jayson Tatum', kind: 'alt', line: 24.5,
-    books: { OURS: { over: { american: ours } }, DK: { over: { american: dk } }, FD: { over: { american: fd } } } });
-  assert.equal(findAnomalies([row('-150', '-178', '-174')], 10).length, 0);            // ~6% off: fine
-  const a = findAnomalies([row('+120', '-178', '-174')], 10)[0];                       // 45.5% vs 63.8%
-  assert.ok(a.pct < -28 && a.pct > -29 && a.avg === '-176' && a.side === 'over');
-  // one book way off on a pull: the average looks fine (ours 60% vs avg ~59%) but DK alone is 25% away
-  const one = findAnomalies([row('-150', '+108', '-233')], 10, 20)[0];
-  assert.ok(one && Math.abs(one.pct) < 10 && one.pctDk > 20 && one.why === '20%+ off DK', JSON.stringify(one));
-  // only one book has the line: the either-book rule still applies, the average rule can't
-  const solo = findAnomalies([{ ...row('+120', '-178', '-174'), books: { OURS: { over: { american: '+120' } }, DK: { over: { american: '-178' } } } }], 10, 20)[0];
-  assert.ok(solo && solo.pct == null && solo.why === '20%+ off DK');
+    books: { OURS: { over: { american: ours } }, ...(dk ? { DK: { over: { american: dk } } } : {}), ...(fd ? { FD: { over: { american: fd } } } : {}) } });
+  assert.equal(findAnomalies([row('-110', '-112', '-108')], 10, 20).length, 0);        // normal spread: fine
+  // the user's case: -225 vs FD -5000 is not "29% off": we pay 22x as much
+  const fav = findAnomalies([row('-225', null, '-5000')], 10, 20)[0];
+  assert.ok(fav && Math.round(fav.pctFd) === 2122 && fav.why === '20%+ off FD');
+  const a = findAnomalies([row('+120', '-178', '-174')], 10, 20)[0];                 // we pay 1.20 vs avg 0.57
+  assert.ok(a.pct > 110 && a.pct < 112 && a.avg === '-176', JSON.stringify(a));
+  // one book way off on a pull: the average can look fine while one book alone is 20%+ away
+  const one = findAnomalies([row('-150', '-115', '-175')], 10, 20)[0];               // ours 0.667 vs avg 0.72 (-7%), DK 0.87 (-23%)
+  assert.ok(one && Math.abs(one.pct) < 10 && one.pctDk < -20 && one.why === '20%+ off DK', JSON.stringify(one));
   // a log: every pull adds a row for each side that is off, with that pull's time and prices
   const t = (id) => ({ gameKey: 'g', game: 'BOS @ DET', id, t: id * 15000, aligned: true });
   const log = [];
