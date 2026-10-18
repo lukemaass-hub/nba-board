@@ -104,6 +104,8 @@ A line that stays off for 10 pulls gets 10 rows. The screen shows the newest 500
 
 **Red** = 15%+ off; **white** = flagged but under 15%.
 
+**Sort** switches between newest first and biggest % off first (the largest of % off the average, DK or FD).
+
 Click a row to graph that line. **Export anomalies CSV** downloads the list. Anomalies are saved with the game,
 so they're still there after lines come down or the dashboard is closed.
 

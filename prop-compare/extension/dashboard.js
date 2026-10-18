@@ -401,10 +401,13 @@ function renderAnomalies() {
   const tb = $('anoms').tBodies[0]; tb.textContent = '';
   $('anoms-empty').hidden = !!n;
   const thr = Number(settings.anomalyPct) || 10, bthr = Number(settings.anomalyBookPct) || 20;
-  $('anoms-note').textContent = `A new row every pull for each line where our odds are ${thr}%+ off the DraftKings/FanDuel average, or ${bthr}%+ off either book on its own (by payout, the profit on a $1 win; + = we pay more, − = we pay less; same pull only). Newest first. Red = ${LARGE}%+ off; white = flagged but under ${LARGE}%.`
+  $('anoms-note').textContent = `A new row every pull for each line where our odds are ${thr}%+ off the DraftKings/FanDuel average, or ${bthr}%+ off either book on its own (by payout, the profit on a $1 win; + = we pay more, − = we pay less; same pull only). Red = ${LARGE}%+ off; white = flagged but under ${LARGE}%.`
     + (lastAnomPull ? ` Last pull #${lastAnomPull.id}: ${lastAnomPull.n} flagged.` : '') + (n > SHOW_MAX ? ` Showing the newest ${SHOW_MAX} of ${n}; Export has all.` : '');
   const f = (v) => v == null ? '–' : `${v > 0 ? '+' : ''}${v.toFixed(1)}%`;
-  for (const e of anomalies.slice(0, SHOW_MAX)) {
+  // newest first (as logged), or biggest % off first: the larger of % off the average and % off either book
+  const big = (e) => Math.max(...[e.pct, e.pctDk, e.pctFd].filter(v => v != null).map(Math.abs));
+  const list = $('anoms-sort').value === 'big' ? anomalies.slice().sort((a, b) => big(b) - big(a) || b.t - a.t) : anomalies;
+  for (const e of list.slice(0, SHOW_MAX)) {
     const tr = document.createElement('tr');
     if (Math.abs(e.size) >= LARGE) tr.className = 'large';
     // over/under lines say which side in the market; N+ lines are always the over
@@ -424,6 +427,7 @@ function showTab(t) {
 }
 $('tab-live').addEventListener('click', () => showTab('live'));
 $('tab-anoms').addEventListener('click', () => showTab('anoms'));
+$('anoms-sort').addEventListener('input', renderAnomalies);
 $('anoms-csv').addEventListener('click', async () => {
   const list = await anomaliesFor(currentGameKey());
   if (!list.length) { alert('No anomalies for this game yet.'); return; }

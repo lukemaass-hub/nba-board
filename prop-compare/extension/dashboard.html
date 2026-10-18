@@ -91,7 +91,10 @@
   <section class="panel">
     <div class="panel-head">
       <h2>Anomalies</h2>
-      <button id="anoms-csv">⬇ Export anomalies CSV</button>
+      <div>
+        <label class="small">Sort <select id="anoms-sort"><option value="new">Newest first</option><option value="big">Biggest % off first</option></select></label>
+        <button id="anoms-csv">⬇ Export anomalies CSV</button>
+      </div>
     </div>
     <p class="muted small" id="anoms-note"></p>
     <div class="table-wrap">
