@@ -62,16 +62,17 @@ Settings still has the DraftKings IDs as a backup. The ones learned from your br
 ## Our prices: from the Dolly screen
 
 Our prices are read off the **Dolly Market Manager** screen, the same way the In-Play Trading Guard reads Dolly.
-It finds the **Selection**, **Trading** and **OF** column headers by their text and reads the numbers under them.
+It finds the **Selection**, **App**, **Trading** and **OF** column headers by their text and reads the numbers under them.
 It makes no data requests, uses no logins, and never clicks or types anything.
 
-- **Trading** shows as "Ours" (green line). **OF** (Odds Factory) shows as "OF" (yellow line).
+- **Ours** (green line) is the price on offer: **Trading** when a trader has typed a price, otherwise **App**.
+- **OF** (Odds Factory) is its own yellow line.
 - The gaps are ours (Trading) minus DraftKings and minus FanDuel.
 
 To use it:
 1. Open the game's **Market Manager** in Dolly. If Dolly was already open when you installed or updated the
    extension, reload it once.
-2. **Expand the player-points markets.** As with the Trading Guard, Dolly doesn't show the rows of a collapsed
+2. **Expand ALTERNATE PLAYER POINTS and PLAYER TOTAL POINTS.** As with the Trading Guard, Dolly doesn't show the rows of a collapsed
    market, so they can't be read.
 3. Keep Dolly in **its own window**, not a hidden tab, so its prices keep updating.
 4. On the dashboard, pick the game and press **Start**.

@@ -1,13 +1,14 @@
 {
   "manifest_version": 3,
   "name": "Prop Price Compare (DK / FD / Dolly)",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Pulls NBA player points and alternate points from DraftKings, FanDuel and the Dolly Market Manager screen every 15 seconds, lines them up, graphs them, and exports to CSV / Google Sheets.",
   "permissions": [
     "storage",
     "unlimitedStorage",
     "declarativeNetRequestWithHostAccess",
-    "webRequest"
+    "webRequest",
+    "webNavigation"
   ],
   "host_permissions": [
     "https://*.draftkings.com/*",
@@ -40,7 +41,8 @@
       "js": [
         "content/dolly-props.js"
       ],
-      "run_at": "document_idle"
+      "run_at": "document_idle",
+      "all_frames": true
     }
   ]
 }

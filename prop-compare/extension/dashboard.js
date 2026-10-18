@@ -13,9 +13,9 @@ const DEFAULTS = {
   dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', sheetsUrl: '', autoSheet: false,
 };
 const SERIES = [{ book: 'DK', name: 'DK', long: 'DraftKings', color: '#3987e5' }, { book: 'FD', name: 'FD', long: 'FanDuel', color: '#d95926' },
-  { book: 'OURS', name: 'Ours', long: 'Ours (Dolly Trading)', color: '#199e70' }, { book: 'OF', name: 'OF', long: 'Odds Factory (Dolly OF)', color: '#c98500' }];
+  { book: 'OURS', name: 'Ours', long: 'Ours (Dolly App / Trading)', color: '#199e70' }, { book: 'OF', name: 'OF', long: 'Odds Factory (Dolly OF)', color: '#c98500' }];
 const GAP_SERIES = [{ book: 'OURS_DK', name: 'vs DK', long: 'Ours − DraftKings', color: '#3987e5' }, { book: 'OURS_FD', name: 'vs FD', long: 'Ours − FanDuel', color: '#d95926' }];
-const BOOK_NAME = { DK: 'DraftKings', FD: 'FanDuel', OURS: 'Ours (Trading)', OF: 'Odds Factory' };
+const BOOK_NAME = { DK: 'DraftKings', FD: 'FanDuel', OURS: 'Ours', OF: 'Odds Factory' };
 const REPROBE_EVERY = 20;   // pulls; re-try DK subcategories that returned nothing
 
 const $ = (id) => document.getElementById(id);
@@ -190,14 +190,23 @@ async function readDolly(g) {
   const tabs = (await chrome.tabs.query({ url: 'https://dolly.1.oddsfactorytrading.com/*' })).filter(t => /market-manager/.test(t.url || ''));
   if (!tabs.length) return { ok: false, error: 'no Dolly Market Manager tab open' };
   const sent = Date.now();
-  const answers = await Promise.all(tabs.map(t => new Promise(res => chrome.tabs.sendMessage(t.id, { type: 'DOLLY_READ' }, (r) => res(chrome.runtime.lastError ? null : r)))));
+  // ask every frame of each Dolly tab (the market table may sit in a frame); per tab keep the frame that read most
+  const ask = (tabId, frameId) => new Promise(res => chrome.tabs.sendMessage(tabId, { type: 'DOLLY_READ' }, { frameId }, (r) => res(chrome.runtime.lastError ? null : r)));
+  const answers = await Promise.all(tabs.map(async (t) => {
+    const frames = (await chrome.webNavigation.getAllFrames({ tabId: t.id }).catch(() => null)) || [{ frameId: 0 }];
+    const rs = (await Promise.all(frames.map(f => ask(t.id, f.frameId)))).filter(r => r?.ok);
+    rs.sort((a, b) => b.quotes.length - a.quotes.length || (b.heads.selection + b.heads.of) - (a.heads.selection + a.heads.of));
+    const top = rs.find(r => r.frame === 'top');
+    return rs[0] ? { ...rs[0], teams: rs[0].teams?.length ? rs[0].teams : top?.teams, url: top?.url || rs[0].url } : null;
+  }));
   const ok = answers.filter(a => a?.ok);
   if (!ok.length) return { ok: false, error: 'Dolly tab did not answer (reload the Dolly tab once after installing the extension)' };
   const want = [g.fd?.away || g.dk?.away, g.fd?.home || g.dk?.home];
   const score = (a) => a.teams?.length === 2 ? Math.min(...want.map(w => Math.max(...a.teams.map(t => tokenScore(w, t))))) : 0;
   const best = ok.length === 1 ? ok[0] : ok.slice().sort((a, b) => score(b) - score(a))[0];
   if (ok.length > 1 && score(best) < 0.5) return { ok: false, error: `${ok.length} Dolly tabs open and none shows ${want.join(' @ ')}` };
-  diag.dolly = `${tabs.length} Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · headers found: Selection ${best.heads.Selection ?? best.heads.selection}, Trading ${best.heads.trading}, OF ${best.heads.of}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}`;
+  diag.dolly = `${tabs.length} Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · headers found: Selection ${best.heads.selection}, App ${best.heads.app}, Trading ${best.heads.trading}, OF ${best.heads.of} · ${best.quotes.length} prices read${best.unread ? `, ${best.unread} points rows not understood` : ''}${best.frame && best.frame !== 'top' ? ' (in a frame)' : ''}`
+  + `${best.quotes.some(q => q.src === 'Trading') ? ' · ours = Trading where typed, else App' : ' · ours = App'}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}`;
   diag.dollyTables = best.tables;
   return { ok: true, at: best.at || Date.now(), ms: Date.now() - sent, quotes: best.quotes };
 }
@@ -244,7 +253,7 @@ async function pull() {
     const split = (book) => {
       if (!DOLLY.ok) return { ...DOLLY };
       const q = DOLLY.quotes.filter(x => x.book === book);
-      return q.length ? { ok: true, at: DOLLY.at, ms: DOLLY.ms, quotes: q } : { ok: false, at: DOLLY.at, error: `Dolly screen showed no player-points ${book === 'OF' ? 'OF' : 'Trading'} prices (open the points markets; see Diagnostics)` };
+      return q.length ? { ok: true, at: DOLLY.at, ms: DOLLY.ms, quotes: q } : { ok: false, at: DOLLY.at, error: `Dolly screen showed no player-points ${book === 'OF' ? 'OF' : 'App/Trading'} prices (expand ALTERNATE PLAYER POINTS / PLAYER TOTAL POINTS in Dolly; see Diagnostics)` };
     };
     const OURS = split('OURS'), OF = split('OF');
     const res = { DK, FD, OURS, OF };
