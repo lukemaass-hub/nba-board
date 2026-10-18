@@ -58,3 +58,10 @@ body.prod #env-label, body.prod #env-light { color: #f85149; font-weight: 700; }
 .teams button.on { background: #2d5f9e; border-color: #2d5f9e; }
 td.gone { color: var(--ink-3); font-style: italic; }
 input[type=date] { color-scheme: dark; }
+
+.tabs { display: flex; gap: 6px; padding: 0 18px 8px; }
+.tabs button { border-radius: 6px 6px 0 0; }
+.tabs button.on { background: #2d5f9e; border-color: #2d5f9e; }
+#anoms tr.large td { color: #f85149; font-weight: 600; }
+#anoms tr.large td:first-child::before { content: "▲ "; }
+[hidden] { display: none !important; }

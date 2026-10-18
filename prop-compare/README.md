@@ -81,6 +81,28 @@ To use it:
 If our odds stay blank, open **Diagnostics**. Under "Our prices" it shows how many rows it saw, how many App prices
 it read, and examples. Send me a screenshot.
 
+## Anomalies tab
+
+Lists every time our odds were far from the market. Each side (over / under) is checked on every pull, using only
+odds pulled at the same moment. It compares the chance each price implies. A side is flagged when:
+
+- our odds are **10%+ off the average of DraftKings and FanDuel**, or
+- our odds are **20%+ off DraftKings or FanDuel on its own**. This also catches lines only one book offers.
+
+Both numbers can be changed in Settings. **15%+ off** is marked large in red.
+
+Each row is one stretch of being off. It shows:
+- start time (MT);
+- when it ended, or "live now";
+- the player and team, the line and the side;
+- which rule fired;
+- our, DK's and FD's odds and the DK/FD average at the start;
+- % off the average, off DK and off FD;
+- the biggest gap and when it happened.
+
+Click a row to graph that line. **Export anomalies CSV** downloads the list. Anomalies are saved with the game,
+so they're still there after lines come down or the dashboard is closed.
+
 ## Export
 
 - **Export CSV** downloads every pull of the selected game as a file.

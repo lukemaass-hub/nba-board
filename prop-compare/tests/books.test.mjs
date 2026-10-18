@@ -86,3 +86,27 @@ test('MLB suite team matching (tokenScore) on NBA names', () => {
   assert.equal(tokenScore('Los Angeles Lakers', 'LA Clippers'), 0);
   assert.equal(tokenScore('Portland Trail Blazers', 'Trail Blazers'), 1);
 });
+
+test('anomalies: ours vs DK/FD average by implied chance; episodes open, track peak, close', async () => {
+  const { findAnomalies, updateEpisodes, impliedProb, americanFromProb } = await import('../extension/lib/anomaly.js');
+  assert.ok(Math.abs(impliedProb('-110') - 0.5238) < 1e-4); assert.equal(americanFromProb(0.5238095), '-110');
+  const row = (ours, dk, fd) => ({ key: 'tatum|alt|24.5', player: 'Jayson Tatum', kind: 'alt', line: 24.5,
+    books: { OURS: { over: { american: ours } }, DK: { over: { american: dk } }, FD: { over: { american: fd } } } });
+  assert.equal(findAnomalies([row('-150', '-178', '-174')], 10).length, 0);            // ~6% off: fine
+  const a = findAnomalies([row('+120', '-178', '-174')], 10)[0];                       // 45.5% vs 63.8%
+  assert.ok(a.pct < -28 && a.pct > -29 && a.avg === '-176' && a.side === 'over');
+  // one book way off on a pull: the average looks fine (ours 60% vs avg ~59%) but DK alone is 25% away
+  const one = findAnomalies([row('-150', '+108', '-233')], 10, 20)[0];
+  assert.ok(one && Math.abs(one.pct) < 10 && one.pctDk > 20 && one.why === '20%+ off DK', JSON.stringify(one));
+  // only one book has the line: the either-book rule still applies, the average rule can't
+  const solo = findAnomalies([{ ...row('+120', '-178', '-174'), books: { OURS: { over: { american: '+120' } }, DK: { over: { american: '-178' } } } }], 10, 20)[0];
+  assert.ok(solo && solo.pct == null && solo.why === '20%+ off DK');
+  const open = new Map();
+  const t = (id, aligned = true) => ({ gameKey: 'g', game: 'BOS @ DET', id, t: id * 15000, aligned });
+  updateEpisodes(open, findAnomalies([row('+120', '-178', '-174')], 10), t(1));
+  updateEpisodes(open, findAnomalies([row('+150', '-178', '-174')], 10), t(2));
+  const { changed } = updateEpisodes(open, findAnomalies([row('-170', '-178', '-174')], 10), t(3));
+  const e = changed[0];
+  assert.deepEqual([e.ongoing, e.pulls, e.start.ours, e.peak.ours, e.endT], [false, 2, '+120', '+150', 45000]);
+  assert.equal(open.size, 0);
+});

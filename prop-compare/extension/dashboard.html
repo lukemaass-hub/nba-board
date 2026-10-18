@@ -32,6 +32,8 @@
   <form id="settings" class="grid">
     <label>Dolly environment (where our prices are read)
       <select name="dollyEnv"><option value="test">Test (UAT): default</option><option value="prod">Prod: Chrome will ask to allow it</option></select></label>
+    <label>Anomaly: % off the DK/FD average <input name="anomalyPct" type="number" min="1" step="0.5"></label>
+    <label>Anomaly: % off either book alone <input name="anomalyBookPct" type="number" min="1" step="0.5"></label>
     <label>Seconds between pulls <input name="pollSeconds" type="number" min="5" step="1"></label>
     <label>Max gap between books (ms) <input name="alignToleranceMs" type="number" min="100" step="100"></label>
     <label>FanDuel state <input name="fdState" size="4"></label>
@@ -48,7 +50,12 @@
   <pre id="diag"></pre>
 </details>
 
-<main>
+<nav class="tabs">
+  <button id="tab-live" class="on">Live board</button>
+  <button id="tab-anoms">Anomalies (0)</button>
+</nav>
+
+<main id="view-live">
   <section class="panel">
     <div class="panel-head">
       <h2 id="chart-title">Click a row below to graph it</h2>
@@ -76,6 +83,23 @@
         <tbody></tbody>
       </table>
       <p id="empty" class="muted">Pick a game and press Start.</p>
+    </div>
+  </section>
+</main>
+
+<main id="view-anoms" hidden>
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Anomalies</h2>
+      <button id="anoms-csv">⬇ Export anomalies CSV</button>
+    </div>
+    <p class="muted small" id="anoms-note"></p>
+    <div class="table-wrap">
+      <table id="anoms">
+        <thead><tr><th>Start (MT)</th><th>Status</th><th>Player</th><th>Market</th><th>Side</th><th>Why</th><th class="num">Ours</th><th class="num">DK</th><th class="num">FD</th><th class="num">DK/FD avg</th><th class="num">% off avg</th><th class="num">% off DK</th><th class="num">% off FD</th><th class="num">Biggest</th><th class="num">Last while off (ours / DK / FD)</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p id="anoms-empty" class="muted">None yet for this game. They appear here while it runs.</p>
     </div>
   </section>
 </main>

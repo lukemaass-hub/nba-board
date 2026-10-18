@@ -4,14 +4,15 @@ import { sameGame, teamNick } from './lib/match.js';
 import { tokenScore } from './lib/match.js';
 import { BOOKS, alignTick, buildRows, oddsScale, oddsLabel, marketLabel, tickToRecords, toCsv, toTsv, CSV_HEADERS, mtTime } from './lib/compare.js';
 import { gameRosters, teamOf } from './lib/rosters.js';
-import { saveTick, ticksFor } from './lib/store.js';
+import { saveTick, ticksFor, saveAnomalies, anomaliesFor } from './lib/store.js';
+import { findAnomalies, updateEpisodes, anomalyRecord, ANOMALY_HEADERS } from './lib/anomaly.js';
 import { renderChart } from './lib/chart.js';
 
 // DK player-points subcategory ids are guesses until checked in a real browser (DK blocks
 // non-browser traffic, so they couldn't be verified while building). Edit them in Settings.
 const DEFAULTS = {
   pollSeconds: 15, alignToleranceMs: 2000, fdState: 'az', dkSite: 'US-CO-SB', dkLeague: '42648',
-  dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', dollyEnv: 'test',
+  dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', dollyEnv: 'test', anomalyPct: 10, anomalyBookPct: 20,
 };
 const SERIES = [{ book: 'DK', name: 'DK', long: 'DraftKings', color: '#3987e5' }, { book: 'FD', name: 'FD', long: 'FanDuel', color: '#d95926' },
   { book: 'OURS', name: 'Ours', long: 'Ours (app price)', color: '#199e70' }];
@@ -199,6 +200,7 @@ async function loadRosters(g) {
 
 async function showGame(g) {
   loadRosters(g);
+  anomalies = await anomaliesFor(g.key); renderAnomalies();
   history = await ticksFor(g.key); selectedKey = null;
   renderTable(); renderSelected();
 }
@@ -211,7 +213,7 @@ $('start').addEventListener('click', async () => {
   const g = games.find(x => x.key === $('game').value);
   if (!g) return;
   await showGame(g);
-  run = { game: g, busy: false, skipped: 0, nextId: (history.at(-1)?.id || 0) + 1, fdTabs: null, dkActive: null, dkPerSub: null, n: 0 };
+  run = { game: g, busy: false, skipped: 0, openAnoms: new Map(), nextId: (history.at(-1)?.id || 0) + 1, fdTabs: null, dkActive: null, dkPerSub: null, n: 0 };
   if (g.fd) await findFdTabs(run);
   $('start').disabled = true; $('stop').disabled = false; $('game').disabled = true;
   worker.postMessage({ cmd: 'start', ms: settings.pollSeconds * 1000 });
@@ -314,6 +316,13 @@ async function pull() {
     };
     await saveTick(tick);
     history.push(tick);
+    // anomalies: our odds vs the DK/FD average, same pull only
+    const { changed } = updateEpisodes(r.openAnoms, findAnomalies(rows, Number(settings.anomalyPct) || 10, Number(settings.anomalyBookPct) || 20), tick, { teamFn });
+    if (changed.length) {
+      await saveAnomalies(changed);
+      for (const e of changed) { const i = anomalies.findIndex(x => x.key === e.key && x.startT === e.startT); if (i >= 0) anomalies[i] = { ...e }; else anomalies.unshift({ ...e }); }
+      renderAnomalies();
+    }
     diag.lastTick = tick;
 
     for (const b of BOOKS) {
@@ -380,6 +389,48 @@ function renderTable() {
   if (!rows.length) { $('empty').hidden = false; $('empty').textContent = multiOnly ? 'No line is offered by 2 or more books. Untick "Only lines 2+ books have" to see everything.' : 'No lines for this filter.'; }
 }
 ['filter', 'both-only', 'sort'].forEach(id => $(id).addEventListener('input', renderTable));
+
+// ---------------------------------------------------------------- anomalies tab
+let anomalies = [];
+const LARGE = 15;   // % off: "large"
+function renderAnomalies() {
+  const n = anomalies.length, live = anomalies.filter(e => e.ongoing).length;
+  $('tab-anoms').textContent = `Anomalies (${n}${live ? `, ${live} live` : ''})`;
+  const tb = $('anoms').tBodies[0]; tb.textContent = '';
+  $('anoms-empty').hidden = !!n;
+  const thr = Number(settings.anomalyPct) || 10, bthr = Number(settings.anomalyBookPct) || 20;
+  $('anoms-note').textContent = `Flagged when our odds are ${thr}%+ off the DraftKings/FanDuel average, or ${bthr}%+ off either book on its own (by implied chance, same pull only). ${LARGE}%+ off is marked large. One row per stretch of being off; newest first.`;
+  const f = (v) => v == null ? '–' : `${v > 0 ? '+' : ''}${v.toFixed(1)}%`;
+  for (const e of anomalies) {
+    const tr = document.createElement('tr');
+    if (Math.abs(e.peakPct) >= LARGE) tr.className = 'large';
+    const status = e.ongoing ? 'live now' : e.endT ? `ended ${tmt.format(e.endT)}` : 'ended';
+    const cells = [tmt.format(e.startT), status, `${e.player}${e.team ? `  ·  ${e.team}` : ''}`, marketLabel(e), e.side, e.why || '',
+      e.start.ours, e.start.dk, e.start.fd, e.start.avg, f(e.start.pct), f(e.start.pctDk), f(e.start.pctFd), `${f(e.peakPct)} at ${tmt.format(e.peakT)}`,
+      e.latest ? `${e.latest.ours} / ${e.latest.dk ?? '–'} / ${e.latest.fd ?? '–'}` : '–'];
+    cells.forEach((c, i) => { const td = document.createElement('td'); td.textContent = c ?? '–'; if (i >= 6) td.className = 'num'; tr.appendChild(td); });
+    tr.title = 'Click to graph this line';
+    tr.addEventListener('click', () => { selectedKey = e.key.replace(/\|(over|under)$/, ''); showTab('live'); renderTable(); renderSelected(); });
+    tb.appendChild(tr);
+  }
+}
+function showTab(t) {
+  $('view-live').hidden = t !== 'live'; $('view-anoms').hidden = t !== 'anoms';
+  $('tab-live').classList.toggle('on', t === 'live'); $('tab-anoms').classList.toggle('on', t === 'anoms');
+  if (t === 'live') renderSelected();
+}
+$('tab-live').addEventListener('click', () => showTab('live'));
+$('tab-anoms').addEventListener('click', () => showTab('anoms'));
+$('anoms-csv').addEventListener('click', async () => {
+  const list = await anomaliesFor(currentGameKey());
+  if (!list.length) { alert('No anomalies for this game yet.'); return; }
+  const cell = (v) => { const t = String(v ?? ''); return /[",\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t; };
+  const csv = [ANOMALY_HEADERS, ...list.map(e => anomalyRecord(e, marketLabel))].map(r => r.map(cell).join(',')).join('\n') + '\n';
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+  a.download = `prop-compare_anomalies_${list[0].game.replace(/[^A-Za-z0-9]+/g, '-')}.csv`;
+  a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+});
 
 // ---------------------------------------------------------------- charts
 function legendFor(el, series) {
