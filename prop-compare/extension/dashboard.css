@@ -27,13 +27,14 @@ summary { cursor: pointer; color: var(--ink-2); }
 .grid label { display: flex; flex-direction: column; gap: 4px; color: var(--ink-2); font-size: 12px; }
 .grid label.check { flex-direction: row; align-items: center; gap: 8px; }
 .grid .wide { grid-column: 1 / -1; }
-#diag { white-space: pre-wrap; font: 12px/1.5 ui-monospace, Menlo, monospace; color: var(--ink-2); max-height: 260px; overflow: auto; margin: 8px 0 0; }
+#ours-out, #diag { white-space: pre-wrap; font: 12px/1.5 ui-monospace, Menlo, monospace; color: var(--ink-2); max-height: 260px; overflow: auto; margin: 8px 0 0; }
 main { display: grid; gap: 12px; padding: 0 18px 24px; }
 .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; position: relative; }
 .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
 .legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-2); }
 .legend span::before { content: ""; display: inline-block; width: 14px; height: 2px; vertical-align: middle; margin-right: 6px; background: var(--c); }
 .chart { width: 100%; height: 300px; }
+.chart.short { height: 220px; }
 .chart svg { width: 100%; height: 100%; display: block; }
 .chart text { fill: var(--ink-3); font-size: 11px; }
 .chart .label { fill: var(--ink-2); font-size: 12px; }
@@ -47,3 +48,20 @@ td { padding: 5px 8px; border-bottom: 1px solid var(--grid); }
 tbody tr { cursor: pointer; } tbody tr:hover { background: var(--raise); } tbody tr.sel { background: #24324a; }
 td.big { font-weight: 700; }
 td.na { color: var(--ink-3); }
+
+/* prod Dolly selected: a red bar so it is never mistaken for test */
+body.prod header { border-bottom: 3px solid #f85149; }
+body.prod #env-label, body.prod #env-light { color: #f85149; font-weight: 700; }
+
+.teams { display: inline-flex; gap: 4px; margin-right: 8px; }
+.teams button { padding: 4px 10px; font-size: 12px; }
+.teams button.on { background: #2d5f9e; border-color: #2d5f9e; }
+td.gone { color: var(--ink-3); font-style: italic; }
+input[type=date] { color-scheme: dark; }
+
+.tabs { display: flex; gap: 6px; padding: 0 18px 8px; }
+.tabs button { border-radius: 6px 6px 0 0; }
+.tabs button.on { background: #2d5f9e; border-color: #2d5f9e; }
+#anoms tr.large td { color: #f85149; font-weight: 600; }
+#anoms tr.large td:first-child::before { content: "▲ "; }
+[hidden] { display: none !important; }

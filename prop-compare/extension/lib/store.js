@@ -1,13 +1,15 @@
 // Every tick is saved in IndexedDB (browser storage that survives restarts), so an export
 // covers the whole session, not just what's on screen.
-const DB = 'prop-compare', STORE = 'ticks';
+const DB = 'prop-compare', STORE = 'ticks', ANOM = 'anomalies';
 
 function open() {
   return new Promise((resolve, reject) => {
-    const req = indexedDB.open(DB, 1);
-    req.onupgradeneeded = () => {
-      const s = req.result.createObjectStore(STORE, { keyPath: ['gameKey', 'id'] });
-      s.createIndex('gameKey', 'gameKey');
+    const req = indexedDB.open(DB, 2);
+    req.onupgradeneeded = (ev) => {
+      const db = req.result;
+      if (ev.oldVersion < 1) db.createObjectStore(STORE, { keyPath: ['gameKey', 'id'] }).createIndex('gameKey', 'gameKey');
+      // v2: anomaly log (lib/anomaly.js), one record per side that is off the market, per pull
+      if (ev.oldVersion < 2) db.createObjectStore(ANOM, { keyPath: 'id' }).createIndex('gameKey', 'gameKey');
     };
     req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
@@ -50,5 +52,25 @@ export async function clearGame(gameKey) {
     const tx = db.transaction(STORE, 'readwrite');
     for (const t of ticks) tx.objectStore(STORE).delete([gameKey, t.id]);
     tx.oncomplete = resolve; tx.onerror = () => reject(tx.error);
+  });
+}
+
+export async function saveAnomalies(list) {
+  if (!list.length) return;
+  const db = await dbp;
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(ANOM, 'readwrite');
+    for (const e of list) tx.objectStore(ANOM).put(e);
+    tx.oncomplete = resolve; tx.onerror = () => reject(tx.error);
+  });
+}
+
+export async function anomaliesFor(gameKey) {
+  const db = await dbp;
+  return new Promise((resolve, reject) => {
+    const req = db.transaction(ANOM).objectStore(ANOM).index('gameKey').getAll(gameKey);
+    // newest first; skips records from the earlier one-row-per-stretch format
+    req.onsuccess = () => resolve(req.result.filter(e => e.t != null).sort((a, b) => b.t - a.t || a.player.localeCompare(b.player)));
+    req.onerror = () => reject(req.error);
   });
 }

@@ -17,6 +17,9 @@
 
 export const FD_AK = 'FhMFpcPWXMeyZxOx';   // FD's public web key; if FD rotates it every FD call 401s (see README)
 export const DK_HOST = 'sportsbook-nash.draftkings.com';
+let dkHost = DK_HOST;
+/** Use the API host DraftKings' own page was seen using (see background.js). */
+export function setDkHost(h) { dkHost = h || DK_HOST; }
 const REQUEST_TIMEOUT_MS = 12_000;
 const DK_HEADERS = { accept: '*/*', 'x-client-name': 'web', 'x-client-page': 'event' };
 
@@ -140,29 +143,29 @@ export function parseFdQuotes(markets) {
 function dkLeagueUrl(site, league, subId) {
   const eventsQuery = `$filter=leagueId eq '${league}' AND clientMetadata/Subcategories/any(s: s/Id eq '${subId}')`;
   const marketsQuery = `$filter=clientMetadata/subCategoryId eq '${subId}' AND tags/all(t: t ne 'SportcastBetBuilder')`;
-  return `https://${DK_HOST}/sites/${site}/api/sportscontent/controldata/league/leagueSubcategory/v1/markets`
+  return `https://${dkHost}/sites/${site}/api/sportscontent/controldata/league/leagueSubcategory/v1/markets`
     + `?isBatchable=false&templateVars=${league}&eventsQuery=${encodeURIComponent(eventsQuery)}`
     + `&marketsQuery=${encodeURIComponent(marketsQuery)}&include=Events&entity=events&${bust()}`;
 }
 function dkEventUrl(site, eventId, subId) {
   const marketsQuery = `$filter=eventId eq '${eventId}' AND clientMetadata/subCategoryId eq '${subId}' AND tags/all(t: t ne 'SportcastBetBuilder')`;
-  return `https://${DK_HOST}/sites/${site}/api/sportscontent/controldata/event/eventSubcategory/v1/markets`
+  return `https://${dkHost}/sites/${site}/api/sportscontent/controldata/event/eventSubcategory/v1/markets`
     + `?isBatchable=false&templateVars=${eventId}%2C${subId}&marketsQuery=${encodeURIComponent(marketsQuery)}&entity=markets&${bust()}`;
 }
 
-/** NBA games on DraftKings, found through whichever configured subcategory answers.
- *  Returns { games: [{eventId, name, away, home, startTime}], tried: [{subId, status, events}] } */
-export async function dkGames(site, league, subIds) {
+/** NBA games on DraftKings, found through whichever league + subcategory answers first.
+ *  Returns { games: [{eventId, name, away, home, startTime}], tried: [{league, subId, status, events}] } */
+export async function dkGames(site, leagues, subIds) {
   const tried = [];
-  for (const subId of subIds) {
+  for (const league of leagues) for (const subId of subIds) {
     try {
       const json = await getJson(dkLeagueUrl(site, league, subId), 'DK', { ...DK_HEADERS, 'x-client-page': 'league' });
       const games = parseDkGames(json);
-      tried.push({ subId, status: 'ok', events: games.length });
+      tried.push({ league, subId, status: 'ok', events: games.length });
       if (games.length) return { games, tried };
     } catch (e) {
-      tried.push({ subId, status: String(e.message || e), events: 0 });
-      if (isBackingOff('DK')) break;
+      tried.push({ league, subId, status: String(e.message || e), events: 0 });
+      if (isBackingOff('DK')) return { games: [], tried };
     }
   }
   return { games: [], tried };
@@ -179,14 +182,22 @@ export function parseDkGames(json) {
   return out;
 }
 
+/** Raw sample of the last DK answer we couldn't read (for Diagnostics). */
+export let lastDkSample = null;
+
 /** Player-points quotes for one DK event. Returns { quotes, perSub: {subId: count | error} } */
 export async function dkQuotes(site, eventId, subIds) {
   const quotes = [], perSub = {};
   const lists = await Promise.all(subIds.map(subId =>
-    getJson(dkEventUrl(site, eventId, subId), 'DK', DK_HEADERS).then(j => parseDkQuotes(j)).catch(e => e)));
+    getJson(dkEventUrl(site, eventId, subId), 'DK', DK_HEADERS).then(j => ({ j, q: parseDkQuotes(j) })).catch(e => e)));
   lists.forEach((r, i) => {
     if (r instanceof Error) { perSub[subIds[i]] = String(r.message || r); return; }
-    perSub[subIds[i]] = r.length; quotes.push(...r);
+    const sels = r.j?.selections?.length || 0;
+    if (!r.q.length && sels) {   // DK answered with prices we couldn't read: say what it sent
+      lastDkSample = { subId: subIds[i], markets: (r.j.markets || []).slice(0, 3), selections: r.j.selections.slice(0, 3) };
+      perSub[subIds[i]] = `0 prices read from ${sels} selections (markets: ${(r.j.markets || []).slice(0, 4).map(m => m.name || m.marketType?.name).join(' | ')})`;
+    } else perSub[subIds[i]] = r.q.length;
+    quotes.push(...r.q);
   });
   const seen = new Set();
   return { quotes: quotes.filter(q => { const k = `${q.player}|${q.kind}|${q.line}|${q.side}`; if (seen.has(k)) return false; seen.add(k); return true; }), perSub };

@@ -143,7 +143,7 @@ def matchup_alerts_for(data, team, opp, inj, starters):
 
 
 NEWS_HOURS = 36
-CUR_MIN_GAMES = 3          # games this season before its average replaces last season's
+CUR_MIN_GAMES = 15         # games this season before its average replaces last season's (the user's rule)
 CHANGE_MIN = 5.0           # minutes up/down vs last season that counts as a big change
 CHANGE_CUR_GAMES = 5       # games this season needed before we call a change
 CHANGE_BASE_GAMES = 10     # games in the comparison season needed
@@ -152,17 +152,16 @@ CHANGE_BASE_GAMES = 10     # games in the comparison season needed
 def _season_index(data):
     sm = data.get("season_minutes") or {}
     if "_idx" not in sm:
-        sm["_idx"] = {k: {norm_name(n): v for n, v in (sm.get(k) or {}).items()} for k in ("current", "last", "prior")}
+        sm["_idx"] = {k: {norm_name(n): v for n, v in (sm.get(k) or {}).items()} for k in ("current", "last")}
     return sm, sm["_idx"]
 
 
 def avg_minutes(data, player):
-    """(minutes per game, season label) from this season once he has CUR_MIN_GAMES games, else the last season
-    he played. None if we have nothing."""
+    """(minutes per game, season label) from this season once he has CUR_MIN_GAMES games, else last season.
+    None if we have nothing (seasons before last are never used)."""
     sm, idx = _season_index(data)
     k = norm_name(player)
-    for key, need, label in (("current", CUR_MIN_GAMES, sm.get("season")), ("last", 1, sm.get("last_season")),
-                             ("prior", 1, sm.get("prior_season"))):
+    for key, need, label in (("current", CUR_MIN_GAMES, sm.get("season")), ("last", 1, sm.get("last_season"))):
         v = idx[key].get(k)
         if v and v[0] >= need:
             return v[1], label
@@ -170,13 +169,13 @@ def avg_minutes(data, player):
 
 
 def minutes_change(data, player):
-    """Big change this season vs the last season he played: (difference, this season mpg, earlier mpg, label) or None."""
+    """Big change this season vs last season only: (difference, this season mpg, last season mpg, label) or None."""
     sm, idx = _season_index(data)
     k = norm_name(player)
     cur = idx["current"].get(k)
     if not cur or cur[0] < CHANGE_CUR_GAMES:
         return None
-    for key in ("last", "prior"):
+    for key in ("last",):
         base = idx[key].get(k)
         if base and base[0] >= CHANGE_BASE_GAMES:
             diff = cur[1] - base[1]
@@ -201,6 +200,32 @@ def change_html(data, player):
 def change_text(data, player):
     c = minutes_change(data, player)
     return f" [{'+' if c[0] > 0 else ''}{round(c[0])} min vs {c[3]}]" if c else ""
+
+
+EXPECTED_DIFF = 3.0         # Dolly expected minutes this far above/below the average gets a note (the user's rule)
+EXPECTED_MAX_AGE_H = 36     # ignore Dolly numbers older than this
+
+
+def expected_minutes_for(data, team, date, now=None, skip=()):
+    """Dolly's prematch expected minutes (expected_minutes.json, saved by the prop-compare extension from the Dolly
+    Rosters screen) that are EXPECTED_DIFF+ above or below the player's average (avg_minutes: last season until 15
+    games this season). -> [(player, expected, average, diff, season label)], biggest first."""
+    em = data.get("expected_minutes") or {}
+    now = now or dt.datetime.now(dt.timezone.utc)
+    out = []
+    for p in em.get("players", []):
+        if p.get("team") != team or (p.get("game_date") and p["game_date"] != date) or norm_name(p["name"]) in skip:
+            continue
+        try:
+            if now - dt.datetime.fromisoformat(p["at"]) > dt.timedelta(hours=EXPECTED_MAX_AGE_H):
+                continue
+            exp = float(p["expected"])
+        except (KeyError, ValueError, TypeError):
+            continue
+        avg = avg_minutes(data, p["name"])
+        if avg and abs(exp - avg[0]) >= EXPECTED_DIFF:
+            out.append((p["name"], exp, avg[0], round(exp - avg[0], 1), avg[1]))
+    return sorted(out, key=lambda x: -abs(x[3]))
 
 
 def restrictions_for(data, teams, date):
@@ -304,7 +329,18 @@ def build(data, games, date):
                                    f'<b style="color:{"#1e8449" if d == "up" else "#c0392b"}">{"more" if d == "up" else "fewer"}</b>'
                                    f' minutes vs {e(name(opp).split()[-1])}</div>' for n, d in alerts) + "</div>")
                 t.append("    Matchup minutes: " + ", ".join(f"{n} {'more' if d == 'up' else 'fewer'} vs {opp}" for n, d in alerts))
-            # 4. beat-writer news (RotoWire feed)
+            # 4. Dolly expected minutes vs the player's average
+            out_now = {k for k, st in status.items() if st in ("out", "doubt")}
+            exp = expected_minutes_for(data, team, date, skip=out_now)
+            if exp:
+                h.append(f'<div style="{label_css}">Dolly expected minutes</div><div style="font-size:13px;line-height:1.6">'
+                         + "".join(f'<div>{"📈" if d > 0 else "📉"} <b>{e(n)}</b> expected to play '
+                                   f'<b style="color:{"#1e8449" if d > 0 else "#c0392b"}">{"more" if d > 0 else "less"}</b>: '
+                                   f'{x:.1f} min vs {a:.1f} avg ({"+" if d > 0 else ""}{d:.1f}) '
+                                   f'<span style="{light};font-size:11.5px">{e(lab)} avg</span></div>' for n, x, a, d, lab in exp) + "</div>")
+                t.append("    Dolly expected minutes: " + ", ".join(f"{n} {'more' if d > 0 else 'less'}: {x:.1f} vs {a:.1f} avg ({'+' if d > 0 else ''}{d:.1f})"
+                                                              for n, x, a, d, _ in exp))
+            # 5. beat-writer news (RotoWire feed)
             news = news_for(data, team)
             if news:
                 h.append(f'<div style="{label_css}">Beat-writer news</div>')
@@ -314,7 +350,7 @@ def build(data, games, date):
                              f'<span style="{light};font-size:11.5px">{e(i.get("reporter") or "RotoWire")} · {ago(i["at"])}</span>'
                              f'<div style="{grey};font-size:12.5px">{e(short(i["text"]))}</div></div>')
                 t.append("    News: " + " | ".join(f"{i['player']}: {i['headline']} ({news_credit(i)})" for i in news[:4]))
-            # 5. injuries
+            # 6. injuries
             h.append(f'<div style="{label_css}">Injuries</div>')
             if not inj:
                 h.append(f'<div style="font-size:13px;{grey}">None listed</div>')
@@ -334,8 +370,8 @@ def build(data, games, date):
         h.append("</div>")
         t.append("")
     h.append(f'<div style="font-size:11px;{light};margin:12px 4px 0;line-height:1.5">'
-             '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · (Number) = average minutes per game, this season after 3 games, '
-             'otherwise last season · Highlighted = 5+ minutes more or fewer than last season · Click a player for the source.</div></div></div>')
+             '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · (Number) = average minutes per game, this season after 15 games, '
+             'otherwise last season · Dolly expected minutes shown when 3+ more or less than that average · Highlighted = 5+ minutes more or fewer than last season · Click a player for the source.</div></div></div>')
     return title, "".join(h), "\n".join(t)
 
 
@@ -377,6 +413,11 @@ def build_slack(data, game, date, test=False):
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(
                 f"{'📈' if d == 'up' else '📉'} *{e(n)}* usually plays *{'more' if d == 'up' else 'fewer'}* minutes vs "
                 f"{e(name(opp).split()[-1])}" for n, d in alerts)}})
+        exp = expected_minutes_for(data, team, date, skip={k for k, st in status.items() if st in ("out", "doubt")})
+        if exp:
+            blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "*Dolly expected minutes*\n" + "\n".join(
+                f"{'📈' if d > 0 else '📉'} *{e(n)}* expected to play *{'more' if d > 0 else 'less'}*: {x:.1f} min vs {a:.1f} avg "
+                f"({'+' if d > 0 else ''}{d:.1f})" for n, x, a, d, _ in exp)}})
         news = news_for(data, team)
         if news:
             blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": ("*Beat-writer news*\n" + "\n".join(
@@ -424,7 +465,7 @@ def next_games(data, now):
 
 
 def weekly_changes(data):
-    """Every player whose minutes this season are CHANGE_MIN+ above or below the last season he played."""
+    """Every player whose minutes this season are CHANGE_MIN+ above or below last season."""
     sm = data.get("season_minutes") or {}
     rows = []
     for player, (gp, mpg, team) in (sm.get("current") or {}).items():
@@ -442,7 +483,7 @@ def build_weekly(data, rows):
     h = [f'<div style="font-family:Arial,Helvetica,sans-serif;color:#1d1c1d;max-width:640px">'
          f'<div style="font-size:18px;font-weight:bold">Weekly minutes changes</div>'
          f'<div style="font-size:12px;{grey};margin:2px 0 10px">Players averaging {CHANGE_MIN:g}+ minutes more or fewer than the '
-         f'last season they played ({CHANGE_CUR_GAMES}+ games this season). Stats through {e(sm.get("fetched_at", "?")[:10])} (ESPN). '
+         f'last season, {e(sm.get("last_season", ""))} ({CHANGE_CUR_GAMES}+ games this season, {CHANGE_BASE_GAMES}+ last season). Stats through {e(sm.get("fetched_at", "?")[:10])} (ESPN). '
          f'<a href="{SITE}" style="color:#1264a3">Open the board</a></div>']
     t = [title, ""]
     for label, part in (("📈 Playing more", [r for r in rows if r["diff"] > 0]), ("📉 Playing less", [r for r in rows if r["diff"] < 0])):

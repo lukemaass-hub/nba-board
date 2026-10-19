@@ -7,28 +7,33 @@
 </head>
 <body>
 <header>
-  <h1>Prop Price Compare <span class="sub">NBA player points · DraftKings vs FanDuel</span></h1>
+  <h1>Prop Price Compare <span class="sub">NBA player points odds · DraftKings · FanDuel · Ours (Dolly <span id="env-label">TEST</span>) · <span id="version"></span></span></h1>
   <div class="lights">
     <span class="light" id="light-DK"><i></i>DraftKings <b>idle</b></span>
     <span class="light" id="light-FD"><i></i>FanDuel <b>idle</b></span>
-    <span class="light" id="light-OURS" title="Dolly prices come next"><i></i>Ours <b>not connected yet</b></span>
+    <span class="light" id="light-OURS"><i></i>Ours (Dolly <span id="env-light">TEST</span>) <b>…</b></span>
   </div>
 </header>
 
 <section class="controls">
+  <label>Day <input type="date" id="day"></label>
   <label>Game <select id="game"><option>Loading games…</option></select></label>
-  <button id="refresh" title="Reload today's games from both books">↻ Games</button>
+  <button id="refresh" title="Reload today's games from every book">↻ Games</button>
   <button id="start" class="primary">▶ Start</button>
   <button id="stop" disabled>■ Stop</button>
   <span id="tickinfo" class="muted"></span>
   <span class="spacer"></span>
   <button id="csv">⬇ Export CSV</button>
-  <button id="sheet">Send to Google Sheet</button>
+  <button id="sheet" title="Opens a new Google Sheet and copies all the data; press Ctrl+V in it">New Google Sheet</button>
 </section>
 
 <details id="settings-box">
   <summary>Settings</summary>
   <form id="settings" class="grid">
+    <label>Dolly environment (where our prices are read)
+      <select name="dollyEnv"><option value="test">Test (UAT): default</option><option value="prod">Prod: Chrome will ask to allow it</option></select></label>
+    <label>Anomaly: % off the DK/FD average <input name="anomalyPct" type="number" min="1" step="0.5"></label>
+    <label>Anomaly: % off either book alone <input name="anomalyBookPct" type="number" min="1" step="0.5"></label>
     <label>Seconds between pulls <input name="pollSeconds" type="number" min="5" step="1"></label>
     <label>Max gap between books (ms) <input name="alignToleranceMs" type="number" min="100" step="100"></label>
     <label>FanDuel state <input name="fdState" size="4"></label>
@@ -36,8 +41,6 @@
     <label>DraftKings NBA league id <input name="dkLeague" size="8"></label>
     <label>DraftKings game-lines subcategory <input name="dkGameSubcat" size="8"></label>
     <label class="wide">DraftKings player-points subcategory ids (comma separated) <input name="dkSubcats"></label>
-    <label class="wide">Google Sheet web app URL (from Apps Script, ends in /exec) <input name="sheetsUrl" placeholder="https://script.google.com/a/macros/betfanatics.com/s/…/exec"></label>
-    <label class="check"><input name="autoSheet" type="checkbox"> Send every pull to the Google Sheet automatically</label>
     <div class="wide"><button type="submit" class="primary">Save settings</button> <span id="saved" class="muted"></span></div>
   </form>
 </details>
@@ -47,13 +50,18 @@
   <pre id="diag"></pre>
 </details>
 
-<main>
+<nav class="tabs">
+  <button id="tab-live" class="on">Live board</button>
+  <button id="tab-anoms">Anomalies (0)</button>
+</nav>
+
+<main id="view-live">
   <section class="panel">
     <div class="panel-head">
       <h2 id="chart-title">Click a row below to graph it</h2>
       <div class="legend" id="legend"></div>
     </div>
-    <p class="muted small" id="chart-note">Line = chance of the over, with the vig removed when the book offers both sides. Only prices pulled in the same moment are shown; a book that answered late or not at all is left blank for that pull.</p>
+    <p class="muted small" id="chart-note">Over odds as shown to customers (American). Only odds pulled in the same moment are shown; a book that answered late or not at all is left blank for that pull.</p>
     <div id="chart" class="chart"></div>
     <div id="tooltip" class="tooltip" hidden></div>
   </section>
@@ -62,17 +70,39 @@
     <div class="panel-head">
       <h2>Latest pull <span id="latest-time" class="muted"></span></h2>
       <div>
+        <span id="teams" class="teams"></span>
         <input id="filter" placeholder="Filter player…" size="18">
-        <label class="small"><input type="checkbox" id="both-only" checked> Only lines both books have</label>
-        <label class="small">Sort <select id="sort"><option value="gap">Biggest gap</option><option value="player">Player</option></select></label>
+        <label class="small"><input type="checkbox" id="both-only" checked> Only lines 2+ books have</label>
+        <span id="both-note" class="muted small"></span>
+        <label class="small">Sort <select id="sort"><option value="player">Player, then line (lowest first)</option><option value="gap">Biggest difference (ours vs books)</option></select></label>
       </div>
     </div>
     <div class="table-wrap">
       <table id="table">
-        <thead><tr><th>Player</th><th>Market</th><th class="num">DK over</th><th class="num">DK under</th><th class="num">FD over</th><th class="num">FD under</th><th class="num">DK %</th><th class="num">FD %</th><th class="num">Gap (DK−FD)</th></tr></thead>
+        <thead><tr><th>Player</th><th>Market</th><th class="num">DraftKings</th><th class="num">FanDuel</th><th class="num">Ours</th></tr></thead>
         <tbody></tbody>
       </table>
       <p id="empty" class="muted">Pick a game and press Start.</p>
+    </div>
+  </section>
+</main>
+
+<main id="view-anoms" hidden>
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Anomalies</h2>
+      <div>
+        <label class="small">Sort <select id="anoms-sort"><option value="new">Newest first</option><option value="big">Biggest % off first</option></select></label>
+        <button id="anoms-csv">⬇ Export anomalies CSV</button>
+      </div>
+    </div>
+    <p class="muted small" id="anoms-note"></p>
+    <div class="table-wrap">
+      <table id="anoms">
+        <thead><tr><th>Time (MT)</th><th>Player</th><th>Market</th><th>Why</th><th class="num">Ours</th><th class="num">DK</th><th class="num">FD</th><th class="num">DK/FD avg</th><th class="num">% off avg</th><th class="num">% off DK</th><th class="num">% off FD</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p id="anoms-empty" class="muted">None yet for this game. They appear here while it runs.</p>
     </div>
   </section>
 </main>

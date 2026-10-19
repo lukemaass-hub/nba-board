@@ -285,18 +285,51 @@ def test_season_minutes_and_weekly():
                        "categories": [{"name": "general", "totals": ["74", "35.0", "2.1"]}]}]}
     assert u.parse_season_stats(j) == {"Jalen Brunson": [74, 35.0, "NYK"]}
     assert u.espn_season(dt.date(2026, 10, 9)) == 2027 and u.season_label(2027) == "2026-27"
-    sm = {"season": "2026-27", "last_season": "2025-26", "prior_season": "2024-25", "fetched_at": "2026-11-02T11:00:00+00:00",
-          "current": {"Jalen Brunson": [2, 30.0, "NYK"], "Miles McBride": [8, 29.0, "NYK"], "Josh Hart": [8, 33.0, "NYK"]},
+    # ESPN answers a season that hasn't started with the last finished one: that must count as no data
+    real_get = u.get
+    class R:
+        def __init__(self, year): self.year = year
+        def json(self): return {**j, "requestedSeason": {"year": self.year}}
+    try:
+        u.get = lambda url: R(2026)
+        assert u.season_stats(2027) == {} and u.season_stats(2026) == {"Jalen Brunson": [74, 35.0, "NYK"]}
+    finally:
+        u.get = real_get
+    sm = {"season": "2026-27", "last_season": "2025-26", "fetched_at": "2026-11-20T11:00:00+00:00",
+          "current": {"Jalen Brunson": [2, 30.0, "NYK"], "Miles McBride": [16, 29.0, "NYK"], "Josh Hart": [8, 33.0, "NYK"],
+                      "Mitchell Robinson": [9, 25.0, "NYK"]},
           "last": {"Jalen Brunson": [74, 35.0, "NYK"], "Miles McBride": [70, 20.0, "NYK"], "Josh Hart": [77, 32.0, "NYK"]},
-          "prior": {"Mitchell Robinson": [17, 22.0, "NYK"]}}
+          "prior": {"Mitchell Robinson": [17, 22.0, "NYK"]}}   # an old 2024-25 entry must be ignored
     data = {"season_minutes": sm}
-    assert e.avg_minutes(data, "Jalen Brunson") == (35.0, "2025-26")       # only 2 games this season: last season
-    assert e.avg_minutes(data, "Miles McBride") == (29.0, "2026-27")       # 8 games: this season
-    assert e.avg_minutes(data, "Mitchell Robinson") == (22.0, "2024-25")   # missed last season: the one before
+    assert e.avg_minutes(data, "Jalen Brunson") == (35.0, "2025-26")       # 2 games this season: last season
+    assert e.avg_minutes(data, "Josh Hart") == (32.0, "2025-26")           # 8 games: still last season (needs 15)
+    assert e.avg_minutes(data, "Miles McBride") == (29.0, "2026-27")       # 16 games: this season
+    assert e.avg_minutes(data, "Mitchell Robinson") is None                # not in last season: 2024-25 is never used
+    assert e.minutes_change(data, "Mitchell Robinson") is None
     assert e.mins_tag(data, "Nobody") == ""
     assert e.minutes_change(data, "Miles McBride") == (9.0, 29.0, 20.0, "2025-26")
     assert e.minutes_change(data, "Josh Hart") is None and e.minutes_change(data, "Jalen Brunson") is None
     rows = e.weekly_changes(data)
     assert [(r["player"], r["diff"]) for r in rows] == [("Miles McBride", 9.0)]
     title, body, text = e.build_weekly(data, rows)
-    assert "1 players" in title and "Miles McBride (NYK): 29.0 vs 20.0 in 2025-26 (+9.0), 8 games" in text
+    assert "1 players" in title and "Miles McBride (NYK): 29.0 vs 20.0 in 2025-26 (+9.0), 16 games" in text
+
+
+def test_dolly_expected_minutes():
+    import email_report as e
+    now = dt.datetime(2026, 10, 20, 18, 0, tzinfo=dt.timezone.utc)
+    at = "2026-10-20T15:00:00+00:00"
+    data = {"season_minutes": {"season": "2026-27", "last_season": "2025-26",
+                               "current": {"Cade Cunningham": [3, 36.0, "DET"]},
+                               "last": {"Cade Cunningham": [64, 33.9, "DET"], "Jalen Duren": [70, 26.0, "DET"],
+                                        "Daniss Jenkins": [40, 27.5, "DET"], "Ausar Thompson": [60, 24.0, "DET"]}},
+            "expected_minutes": {"players": [
+                {"name": "Cade Cunningham", "team": "DET", "expected": 31.6, "game_date": "2026-10-20", "at": at},   # -2.3: no note
+                {"name": "Jalen Duren", "team": "DET", "expected": 20.1, "game_date": "2026-10-20", "at": at},       # -5.9
+                {"name": "Daniss Jenkins", "team": "DET", "expected": 30.5, "game_date": "2026-10-20", "at": at},    # +3.0: exactly 3
+                {"name": "Ausar Thompson", "team": "DET", "expected": 30.0, "game_date": "2026-10-19", "at": at},    # other day
+                {"name": "Jaylen Brown", "team": "BOS", "expected": 40.0, "game_date": "2026-10-20", "at": at}]}}
+    got = e.expected_minutes_for(data, "DET", "2026-10-20", now=now)
+    assert [(n, x, a, d) for n, x, a, d, _ in got] == [("Jalen Duren", 20.1, 26.0, -5.9), ("Daniss Jenkins", 30.5, 27.5, 3.0)]
+    assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now, skip={"jalen duren"})[0][0] == "Daniss Jenkins"
+    assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now + dt.timedelta(hours=40)) == []   # stale

@@ -1,22 +1,22 @@
-# Prop Price Compare (DraftKings / FanDuel, ours later)
+# Prop Price Compare (DraftKings / FanDuel / Ours)
+
+Shows **odds only**: the American odds each book shows customers. No chance-of-over lines.
 
 A Chrome extension, separate from the injury board. Pick an NBA game and press **Start**. Every 15 seconds it
 pulls player points and alternate points ("20+ points") from DraftKings and FanDuel, lines the prices up, and
 shows a table and a live graph. Everything it pulls is saved, and you can export it to CSV or a Google Sheet.
 
-Our own (Dolly) prices are not in yet. That is the next step.
 
 ## How the prices are lined up
 
-- Both books are asked at the same moment, once every 15 seconds. Each of those is one **pull**.
-- A pull is **aligned** when both books answered within 2 seconds of each other (you can change this in Settings).
-- If a book answers late or fails, it is left **blank for that pull**. A price is never compared with a price
-  from a different pull.
-- Each line is turned into the **chance of the over**:
-  - When the book offers both over and under, the vig is removed.
-  - For one-sided "N+" lines, it is the plain implied chance.
-  - **Gap** = DraftKings % minus FanDuel %, in percentage points.
-  - A gap is only shown when both books price the line the same way.
+- DraftKings, FanDuel and our test Dolly screen are all asked at the same moment, once every 15 seconds. Each of
+  those is one **pull**.
+- A pull is **aligned** when every source answered within 2 seconds of the first one (you can change this in
+  Settings).
+- If a source answers late or fails, it is left **blank for that pull**. Odds are never compared with odds from a
+  different pull.
+- The table and graph show **American odds** as customers see them. The graph plots the over odds over time.
+- "Biggest difference" sorts by how far our over odds are from DraftKings' or FanDuel's.
 
 ## Install (about 2 minutes)
 
@@ -28,69 +28,104 @@ Our own (Dolly) prices are not in yet. That is the next step.
 
 ## Use
 
-1. Pick a game.
-   - "(DK + FD)" means both books have it.
-   - "(FD only)" means DraftKings wasn't found yet. See the next section.
-2. Press **Start**.
-   - Leave the tab open. It keeps pulling in the background.
-   - Closing the tab stops it.
-3. Click any row to graph it. Hover over the graph to see the exact prices at each pull.
-4. Use **Export CSV** for a spreadsheet file, or **Send to Google Sheet** (setup below).
+1. Pick the **Day**. It opens on today. Then pick a **Game**. All times are Mountain Time.
+2. Press **Start**. Leave the tab open; it keeps pulling in the background. Closing the tab stops it.
+3. The table is sorted by player, then line from lowest up. **Sort → Biggest difference** puts the lines where our
+   odds differ most from DraftKings/FanDuel first.
+4. The **team buttons** (All / away / home) show one team's players. Teams come from ESPN's public rosters.
+5. Click any row to graph its over odds. Hover over the graph for the exact odds at each pull.
+6. When a line comes down (e.g. a player hits it and Dolly or a book pulls it), the row stays with its last odds,
+   greyed, marked "(off 3:49 PM)". Its graph and every saved pull are kept.
 
-Notes:
-- Preseason games usually have no player props on FanDuel. The dashboard tells you when that is the case.
-- Lines for games several days out are thin (only a few stars). The full board appears closer to tip.
+## DraftKings: let the extension learn its IDs (once)
 
-## DraftKings: one check needed in your browser
+DraftKings blocks cloud servers, so its ID numbers could not be checked while this was built. The extension
+learns them from your browser instead. It only watches which addresses DraftKings' own page asks for; it doesn't
+change or block anything.
 
-DraftKings blocks requests from cloud servers, so DraftKings could not be tested while this was built. FanDuel
-was tested end to end. DraftKings uses the same method as the MLB In-Play Suite, so it should work in your
-browser. The only unknowns are DraftKings' ID numbers for the NBA player-points pages.
+1. Keep the dashboard open.
+2. In another tab, open sportsbook.draftkings.com → NBA → a game → **Player Points** tab.
+   - Click the **Points** and **Points Milestones** sub-tabs if you see them.
+3. Go back to the dashboard. Within a few seconds the game list reloads, and DraftKings games show "(DK + FD)" or
+   "(DK only)".
+4. Pick the game and press **Start**.
 
-**If the DraftKings light is red, or games say "(FD only)":**
+If the DraftKings light stays red, open **Diagnostics** and send me a screenshot. It lists what was learned and the
+last DraftKings requests it saw.
 
-1. Open **Diagnostics** on the dashboard. Each ID tried is listed with its result.
-2. Open sportsbook.draftkings.com → NBA → any game → the **Player Points** tab.
-3. Press **F12** → **Network** tab → type `subCategoryId` in the filter box → reload the page.
-4. Click a request. In its URL, find `subCategoryId eq 'NNNNN'` and note the number.
-   - Do this on both the Points tab and the Points Milestones (alt) tab.
-5. On the dashboard, open **Settings** and put those numbers in "DraftKings player-points subcategory ids"
-   (comma separated). Click **Save settings**, then **↻ Games**.
+Settings still has the DraftKings IDs as a backup. The ones learned from your browser are used first.
 
-You can also just send me the numbers and I'll make them the default.
+## Our prices: from the Dolly screen (App column)
 
-Other DraftKings settings:
-- The NBA league ID is 42648.
-- The game-lines subcategory is 4511, used only to list the games.
-- The site is US-CO-SB.
+Our prices are the **App** odds (what the app shows customers), read off the Dolly Market Manager screen.
 
-## Google Sheet (optional)
+**Which Dolly:** Settings → **Dolly environment**.
+- **Test (UAT)** is the default (`dolly.uat.oddsfactorytrading.bet`). While Test is selected, the extension has
+  **no permission for prod Dolly** and loads **nothing** into prod pages.
+- **Prod**: pick it and click **Save settings**. Chrome asks you to allow `dolly.1.oddsfactorytrading.com`; say
+  Allow, then reload the prod Dolly tab once. The header turns red and says PROD so it can't be mistaken for test.
+- Going back to Test removes the prod permission again.
 
-1. Make a new Google Sheet → **Extensions → Apps Script**.
-2. Replace the code with `extension/apps-script/prop-compare-handler.gs` and save.
-3. Click **Deploy → New deployment → Web app**:
-   - **Execute as:** Me
-   - **Who has access:** Anyone within betfanatics.com
-4. Copy the URL that ends in `/exec`.
-5. Open that URL once in Chrome and click **Allow** if asked. It should show `{"ok":true,...}`.
-6. On the dashboard, go to **Settings** and paste the URL into "Google Sheet web app URL", then save.
+- It only reads text. It never clicks, types, changes or sends anything, and it doesn't measure the page
+  (measuring is what froze Dolly in earlier versions).
+- It reads only when the dashboard asks, once per pull.
 
-Each game gets its own tab in the sheet. **Send to Google Sheet** only sends pulls that weren't sent before. Tick
-"Send every pull automatically" to have it add rows live.
+To use it:
+1. Open the game's **Market Manager** in test Dolly. If it was already open when you installed or updated the
+   extension, reload it once.
+2. **Expand ALTERNATE PLAYER POINTS** (and PLAYER TOTAL POINTS for over/unders). Dolly doesn't show the rows of a
+   collapsed market.
+3. Keep Dolly in **its own window**, not a hidden tab, so its prices keep updating.
+4. On the dashboard, pick the game and press **Start**.
+
+If our odds stay blank, open **Diagnostics**. Under "Our prices" it shows how many rows it saw, how many App prices
+it read, and examples. Send me a screenshot.
+
+## Anomalies tab
+
+Lists every time our odds were far from the market. Each side (over / under) is checked on every pull, using only
+odds pulled at the same moment. It compares **payout**, the profit on a $1 win: −225 pays $0.44 and +150 pays
+$1.50. **+** means we pay more than the book; **−** means we pay less. A side is flagged when:
+
+- our payout is **10%+ off the average of DraftKings and FanDuel**, or
+- our payout is **20%+ off DraftKings or FanDuel on its own**. This also catches lines only one book offers.
+
+Both numbers can be changed in Settings. **15%+ off** is marked large in red.
+
+**Every pull adds a new row** for each line that is off, newest first. Each row shows:
+- the time of that pull (MT, to the second);
+- the player and team;
+- the line (over/under lines say Over or Under);
+- which rule fired;
+- that pull's odds for ours, DK and FD, and the DK/FD average;
+- % off the average, off DK and off FD.
+
+A line that stays off for 10 pulls gets 10 rows. The screen shows the newest 500; the CSV has all of them.
+
+**Red** = 15%+ off; **white** = flagged but under 15%.
+
+**Sort** switches between newest first and biggest % off first (the largest of % off the average, DK or FD).
+
+Click a row to graph that line. **Export anomalies CSV** downloads the list. Anomalies are saved with the game,
+so they're still there after lines come down or the dashboard is closed.
+
+## Export
+
+- **Export CSV** downloads every pull of the selected game as a file.
+- **New Google Sheet** copies every pull of the game, then opens a brand-new blank Google Sheet in your account.
+  Click cell A1 and press **Ctrl+V**. There's nothing to set up.
+  (Making the sheet with no paste at all would need a Google sign-in app registered for the extension.)
 
 ## Columns (CSV and Sheet), one row per line per pull
 
 | Column | Meaning |
 |---|---|
-| tick_time_et / tick_time_utc / tick_id | When the pull started, and its number |
-| aligned | yes = both books answered within the limit |
-| spread_ms | How far apart the two books answered |
-| game, player, market, line | e.g. "Points O/U 24.5" (line 24.5) or "25+ points" (line 24.5) |
-| dk_over, dk_under, fd_over, fd_under | American odds. Blank = not offered, or that book was late or failed on this pull |
-| dk_over_prob, fd_over_prob | Chance of the over, % |
-| dk_fetched_utc, fd_fetched_utc | When each book's answer arrived |
-| prob_kind | "no-vig" (both sides) or "implied (one-sided)" |
-| gap_pts_dk_minus_fd | DK % minus FD %, in percentage points |
+| tick_time_mt / tick_time_utc / tick_id | When the pull started (Mountain Time / UTC), and its number |
+| aligned | yes = every source answered within the limit |
+| spread_ms | How far apart the sources answered |
+| game, team, player, market, line | e.g. "Points O/U 24.5" (line 24.5) or "25+ points" (line 24.5) |
+| dk_over, dk_under, fd_over, fd_under, ours_over, ours_under | American odds. Blank = not offered, or that source was late or failed on this pull |
+| dk_fetched_utc, fd_fetched_utc, ours_fetched_utc | When each source's answer arrived |
 
 ## How much traffic this sends
 
@@ -104,7 +139,8 @@ game, far below what the MLB suite sends. After an error, the book is paused for
 - Code:
   - `extension/lib/books.js`: DK/FD requests and parsing. Request handling is ported from the MLB suite's
     `background/book-api.js`.
-  - `lib/compare.js`: alignment, no-vig, rows, CSV.
+  - `lib/compare.js`: alignment, rows, CSV.
+  - `content/dolly-props.js`: reads the App odds off the test Dolly Market Manager (text only).
   - `lib/match.js`: player and team name matching.
   - `lib/chart.js`: the graph.
   - `lib/store.js`: saved pulls (IndexedDB).

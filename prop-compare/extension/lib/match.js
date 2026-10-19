@@ -44,3 +44,26 @@ export function sameGame(a, b) {
   if (ta.length !== 2 || tb.length !== 2) return false;
   return teamNick(ta[0]) === teamNick(tb[0]) && teamNick(ta[1]) === teamNick(tb[1]);
 }
+
+// The MLB In-Play Suite's team matching, unchanged (background/ml-injector.js).
+function normalizeTeam(s) {
+  return (s || '')
+    .toLowerCase()
+    .replace(/\b(fc|sc|cf)\b/g, '')
+    .replace(/[^a-z0-9 ]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+export function tokenScore(a, b) {
+  const ta = normalizeTeam(a).split(' ').filter(Boolean);
+  const tb = normalizeTeam(b).split(' ').filter(Boolean);
+  if (!ta.length || !tb.length) return 0;
+  const la = ta[ta.length - 1], lb = tb[tb.length - 1];
+  if (la === lb) {
+    if (la === 'sox') return ta[ta.length - 2] === tb[tb.length - 2] ? 1 : 0;
+    return 1;
+  }
+  let hits = 0;
+  for (const t of ta) if (tb.includes(t)) hits++;
+  return hits / Math.max(ta.length, tb.length);
+}

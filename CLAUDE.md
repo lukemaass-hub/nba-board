@@ -42,7 +42,8 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   "Minutes restriction" phrases -> data["restrictions"] -> big red warning at the top of that game everywhere.
 - Season minutes (Oct 9 2026): ESPN byathlete stats (regular season) -> data["season_minutes"]: current season
   refreshed every 12 h (morning run picks up last night), last + prior season fetched once. Email/Slack show
-  "Name (35)" = this season's MPG once 3+ games, else the last season he played. Big change = 5+ min vs the last
+  "Name (35)" = this season's MPG once 15+ games, else last season (Oct 19 2026: only this + last season are used, never
+  older; ESPN answers an unstarted season with the last one, so that counts as no data). Big change = 5+ min vs the last
   season he played (5+ games now, 10+ then): yellow highlight + "+N min vs 2025-26" badge in the pre-game email,
   and a weekly email (Mondays 9 AM ET, or Run workflow > weekly_email) listing all of them. Nothing until 2026-27
   games are played.
@@ -86,3 +87,13 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 
 ## Style preferences
 Plain language, no jargon, short answers. The user is not a developer: say exactly where to click.
+
+- Dolly expected minutes (Oct 19 2026, UAT for now; prod later): its OWN extension, dolly-minutes/ (kept separate
+  from the prop-compare DK/FD props extension, user's choice), reads "Expected Mins." off Dolly's Rosters screen
+  (text only) and saves expected_minutes.json to the repo with the user's own fine-grained GitHub key (this repo
+  only, typed into the extension's popup). update_data.py copies it into
+  data.json; email/Slack/board show "Dolly expected minutes" when 3+ above/below the average (last season until 15
+  games this season). Oct 19 2026, user chose option A: the user opens each game's Rosters screen; the extension does
+  NOT use the Dolly sign-in token to fetch anything (Dolly's API needs a bearer token; capture removed). A fully
+  unattended version would need a feed from the Dolly team.
+

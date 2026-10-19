@@ -3,23 +3,28 @@
 // late/failed on that pull) breaks the line instead of being bridged.
 const NS = 'http://www.w3.org/2000/svg';
 const el = (tag, attrs = {}, parent) => { const n = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); parent?.appendChild(n); return n; };
-const tfmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit', second: '2-digit' });
+const tfmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Denver', hour: 'numeric', minute: '2-digit', second: '2-digit' });
 
 /**
  * points: [{ t, id, aligned, values: { DK: {p, over, under} | null, FD: ... } }]   (p in 0..1)
  * series: [{ book, name, color }]
  */
-export function renderChart(box, tip, points, series) {
+export function renderChart(box, tip, points, series, opts = {}) {
+  const valFmt = opts.fmt || ((v) => `${(v * 100).toFixed(1)}%`);
+  const axisFmt = opts.axisFmt || ((v) => `${+v.toFixed(1)}%`);
+  const tipFmt = opts.tipFmt || ((s, v) => `${s.name}: ${valFmt(v.p)}  (${v.over ?? '–'} / ${v.under ?? '–'})`);
   box.textContent = '';
   tip.hidden = true;
   const W = box.clientWidth || 800, H = box.clientHeight || 300;
   const m = { l: 44, r: 96, t: 10, b: 26 };
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img' }, box);
   const vals = points.flatMap(pt => series.map(s => pt.values[s.book]?.p).filter(v => v != null));
-  if (!vals.length) { const t = el('text', { x: W / 2, y: H / 2, 'text-anchor': 'middle' }, svg); t.textContent = 'No prices for this line yet.'; return; }
+  if (!vals.length) { const t = el('text', { x: W / 2, y: H / 2, 'text-anchor': 'middle' }, svg); t.textContent = opts.empty || 'No prices for this line yet.'; return; }
 
   let lo = Math.min(...vals) * 100, hi = Math.max(...vals) * 100;
-  const pad = Math.max(1, (hi - lo) * 0.15); lo = Math.max(0, lo - pad); hi = Math.min(100, hi + pad);
+  if (opts.zero) { lo = Math.min(lo, 0); hi = Math.max(hi, 0); }
+  const pad = Math.max(1, (hi - lo) * 0.15); lo -= pad; hi += pad;
+  if (opts.clamp !== false) { lo = Math.max(0, lo); hi = Math.min(100, hi); }
   const step = niceStep((hi - lo) / 5); lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
   const t0 = points[0].t, t1 = Math.max(points[points.length - 1].t, t0 + 1000);
   const x = (t) => m.l + (t - t0) / (t1 - t0) * (W - m.l - m.r);
@@ -28,8 +33,9 @@ export function renderChart(box, tip, points, series) {
   // recessive grid + axes
   for (let v = lo; v <= hi + 1e-9; v += step) {
     el('line', { x1: m.l, x2: W - m.r, y1: y(v / 100), y2: y(v / 100), stroke: '#2a2a27' }, svg);
-    const t = el('text', { x: m.l - 6, y: y(v / 100) + 4, 'text-anchor': 'end' }, svg); t.textContent = `${+v.toFixed(1)}%`;
+    const t = el('text', { x: m.l - 6, y: y(v / 100) + 4, 'text-anchor': 'end' }, svg); t.textContent = axisFmt(v);
   }
+  if (opts.zero && lo < 0 && hi > 0) el('line', { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: '#85857f' }, svg);
   const nx = Math.max(2, Math.min(6, Math.floor((W - m.l - m.r) / 110)));
   for (let i = 0; i <= nx; i++) {
     const tt = t0 + (t1 - t0) * i / nx;
@@ -60,7 +66,7 @@ export function renderChart(box, tip, points, series) {
   for (const e of ends) {
     el('circle', { cx: e.x, cy: y(e.v), r: 4, fill: e.s.color, stroke: '#1a1a19', 'stroke-width': 2 }, svg);
     const t = el('text', { x: W - m.r + 8, y: e.yv + 4, class: 'label' }, svg);
-    t.textContent = `${e.s.name} ${(e.v * 100).toFixed(1)}%`;
+    t.textContent = `${e.s.name} ${valFmt(e.v)}`;
   }
 
   // hover layer: crosshair snaps to the nearest pull
@@ -76,16 +82,14 @@ export function renderChart(box, tip, points, series) {
     const pt = points[best], px = x(pt.t);
     cross.setAttribute('x1', px); cross.setAttribute('x2', px); cross.setAttribute('visibility', 'visible');
     tip.textContent = '';
-    const head = document.createElement('div'); head.textContent = `${tfmt.format(pt.t)} ET · pull #${pt.id}${pt.aligned ? '' : ' · not aligned'}`; tip.appendChild(head);
+    const head = document.createElement('div'); head.textContent = `${tfmt.format(pt.t)} MT · pull #${pt.id}${pt.aligned ? '' : ' · not aligned'}`; tip.appendChild(head);
     series.forEach((s, i) => {
       const v = pt.values[s.book];
       if (v?.p != null) { dots[i].setAttribute('cx', px); dots[i].setAttribute('cy', y(v.p)); dots[i].setAttribute('visibility', 'visible'); }
       else dots[i].setAttribute('visibility', 'hidden');
       const row = document.createElement('div');
       const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = s.color; row.appendChild(sw);
-      row.appendChild(document.createTextNode(v?.p != null
-        ? `${s.name}: ${(v.p * 100).toFixed(1)}%  (${v.over ?? '–'} / ${v.under ?? '–'})`
-        : `${s.name}: no price this pull`));
+      row.appendChild(document.createTextNode(v?.p != null ? tipFmt(s, v) : `${s.name}: no price this pull`));
       tip.appendChild(row);
     });
     tip.hidden = false;

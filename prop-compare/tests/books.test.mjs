@@ -3,8 +3,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { parseFdGames, parseFdQuotes, parseDkQuotes, parseDkGames, decimalFromAmerican } from '../extension/lib/books.js';
-import { alignTick, buildRows, tickToRecords, toCsv, CSV_HEADERS } from '../extension/lib/compare.js';
-import { playerMatch, sameGame } from '../extension/lib/match.js';
+import { alignTick, buildRows, tickToRecords, toCsv, CSV_HEADERS, oddsScale, oddsLabel } from '../extension/lib/compare.js';
+import { playerMatch, sameGame, tokenScore } from '../extension/lib/match.js';
 
 const fx = (n) => JSON.parse(fs.readFileSync(new URL(`./fixtures/${n}`, import.meta.url)));
 
@@ -51,29 +51,61 @@ test('player matching', () => {
 });
 
 test('alignment: late or failed book is left out, never mixed in', () => {
-  assert.equal(alignTick({ DK: { ok: true, at: 1000 }, FD: { ok: true, at: 2500 } }, 2000).aligned, true);
-  const late = alignTick({ DK: { ok: true, at: 1000 }, FD: { ok: true, at: 3500 } }, 2000);
+  assert.equal(alignTick({ DK: { ok: true, at: 1000 }, FD: { ok: true, at: 2500 } }, 2000, ['DK', 'FD']).aligned, true);
+  assert.equal(alignTick({ DK: { ok: true, at: 1000 }, FD: { ok: true, at: 2500 } }, 2000).aligned, false, 'ours expected but missing');
+  const three = alignTick({ DK: { ok: true, at: 1000 }, FD: { ok: true, at: 1200 }, OURS: { ok: true, at: 1900 } }, 2000, ['DK', 'FD', 'OURS']);
+  assert.deepEqual([three.aligned, three.spreadMs], [true, 900]);
+  const late = alignTick({ DK: { ok: true, at: 1000 }, FD: { ok: true, at: 3500 } }, 2000, ['DK', 'FD']);
   assert.deepEqual([late.aligned, late.used.DK, late.used.FD, late.spreadMs], [false, true, false, 2500]);
-  const fail = alignTick({ DK: { ok: false }, FD: { ok: true, at: 1 } }, 2000);
+  const fail = alignTick({ DK: { ok: false }, FD: { ok: true, at: 1 } }, 2000, ['DK', 'FD']);
   assert.deepEqual([fail.aligned, fail.used.DK, fail.used.FD], [false, false, true]);
 });
 
-test('rows: no-vig gap on shared lines, CSV export', () => {
+test('rows line up DK, FD and ours by player + line; CSV is odds only', () => {
   const FD = parseFdQuotes(Object.values(fx('fd_points_tab.json').attachments.markets));
   const DK = parseDkQuotes(fx('dk_points_synthetic.json'));
-  const rows = buildRows({ DK, FD });
+  const OURS = [{ book: 'OURS', player: 'Cade Cunningham', kind: 'ou', line: 24.5, side: 'over', american: '-104', decimal: 1.961 },
+                { book: 'OURS', player: 'CADE CUNNINGHAM', kind: 'alt', line: 39.5, side: 'over', american: '+1100', decimal: 12 }];
+  const rows = buildRows({ DK, FD, OURS });
   const cade = rows.find(r => r.player === 'Cade Cunningham' && r.kind === 'ou' && r.line === 24.5);
-  assert.ok(cade.books.DK.novig && cade.books.FD.novig);
-  const nv = (o, u) => (1 / decimalFromAmerican(o)) / (1 / decimalFromAmerican(o) + 1 / decimalFromAmerican(u));
-  assert.ok(Math.abs(cade.gapPts - (nv(-110, -120) - nv(-106, -125)) * 100) < 1e-9);
-  const tat = rows.find(r => r.player === 'Jayson Tatum' && r.kind === 'alt' && r.line === 39.5);
-  assert.ok(Math.abs(tat.gapPts - (1 / decimalFromAmerican(750) - 1 / decimalFromAmerican(800)) * 100) < 1e-9);
+  assert.deepEqual([cade.books.DK.over.american, cade.books.FD.over.american, cade.books.OURS.over.american], ['-110', '-106', '-104']);
+  assert.ok(rows.find(r => r.kind === 'alt' && r.line === 39.5 && r.player === 'Cade Cunningham').books.OURS, 'upper-case Dolly name matches');
+  assert.equal(cade.diff, 6);   // ours -104 vs DK -110 = 6 cents (vs FD -106 = 2)
+  assert.equal(oddsScale('+110') - oddsScale('-110'), 20);
+  assert.equal(oddsLabel(oddsScale('-104')), '-104'); assert.equal(oddsLabel(oddsScale('+250')), '+250');
   const tick = { id: 7, t: Date.UTC(2026, 9, 21, 23, 30), game: 'Boston Celtics @ Detroit Pistons', aligned: true, spreadMs: 120,
-    used: { DK: true, FD: true }, at: { DK: Date.UTC(2026, 9, 21, 23, 30, 1), FD: Date.UTC(2026, 9, 21, 23, 30, 1) }, rows };
+    used: { DK: true, FD: true, OURS: true }, at: { DK: 1, FD: 1, OURS: 1 }, rows };
   const recs = tickToRecords(tick);
-  assert.equal(recs.length, rows.length);
   assert.ok(recs.every(r => r.length === CSV_HEADERS.length));
-  const csv = toCsv(recs);
-  assert.match(csv, /^tick_time_et,/);
-  assert.match(csv, /10\/21\/2026 19:30:00,2026-10-21T23:30:00.000Z,7,yes,120,Boston Celtics @ Detroit Pistons,Cade Cunningham,Points O\/U 24.5,24.5,-110,-120/);
+  assert.ok(!CSV_HEADERS.some(h => /prob|gap|of_/.test(h)));
+  assert.match(toCsv(recs), /Cade Cunningham,Points O\/U 24.5,24.5,-110,-120,[^,]*,-106,-125,[^,]*,-104,/);
+});
+
+test('MLB suite team matching (tokenScore) on NBA names', () => {
+  assert.equal(tokenScore('Boston Celtics', 'BOS Celtics'), 1);
+  assert.equal(tokenScore('Los Angeles Lakers', 'LA Clippers'), 0);
+  assert.equal(tokenScore('Portland Trail Blazers', 'Trail Blazers'), 1);
+});
+
+test('anomalies: ours vs DK/FD by payout (profit on a $1 win); a new row every pull', async () => {
+  const { findAnomalies, anomalyRows, payout, americanFromPayout } = await import('../extension/lib/anomaly.js');
+  assert.ok(Math.abs(payout('-225') - 0.4444) < 1e-4); assert.equal(payout('+150'), 1.5);
+  assert.equal(americanFromPayout(0.4444444), '-225'); assert.equal(americanFromPayout(1.5), '+150');
+  const row = (ours, dk, fd) => ({ key: 'tatum|alt|24.5', player: 'Jayson Tatum', kind: 'alt', line: 24.5,
+    books: { OURS: { over: { american: ours } }, ...(dk ? { DK: { over: { american: dk } } } : {}), ...(fd ? { FD: { over: { american: fd } } } : {}) } });
+  assert.equal(findAnomalies([row('-110', '-112', '-108')], 10, 20).length, 0);        // normal spread: fine
+  // the user's case: -225 vs FD -5000 is not "29% off": we pay 22x as much
+  const fav = findAnomalies([row('-225', null, '-5000')], 10, 20)[0];
+  assert.ok(fav && Math.round(fav.pctFd) === 2122 && fav.why === '20%+ off FD');
+  const a = findAnomalies([row('+120', '-178', '-174')], 10, 20)[0];                 // we pay 1.20 vs avg 0.57
+  assert.ok(a.pct > 110 && a.pct < 112 && a.avg === '-176', JSON.stringify(a));
+  // one book way off on a pull: the average can look fine while one book alone is 20%+ away
+  const one = findAnomalies([row('-150', '-115', '-175')], 10, 20)[0];               // ours 0.667 vs avg 0.72 (-7%), DK 0.87 (-23%)
+  assert.ok(one && Math.abs(one.pct) < 10 && one.pctDk < -20 && one.why === '20%+ off DK', JSON.stringify(one));
+  // a log: every pull adds a row for each side that is off, with that pull's time and prices
+  const t = (id) => ({ gameKey: 'g', game: 'BOS @ DET', id, t: id * 15000, aligned: true });
+  const log = [];
+  for (const [id, ours] of [[1, '+120'], [2, '+150'], [3, '-170']]) log.push(...anomalyRows(findAnomalies([row(ours, '-178', '-174')], 10, 20), t(id)));
+  assert.deepEqual(log.map(e => [e.tickId, e.t, e.ours, e.dk, e.fd]), [[1, 15000, '+120', '-178', '-174'], [2, 30000, '+150', '-178', '-174']]);
+  assert.equal(new Set(log.map(e => e.id)).size, 2);
 });
