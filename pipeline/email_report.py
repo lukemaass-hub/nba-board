@@ -273,7 +273,7 @@ def exp_html(tags, player):
 
 def exp_text(tags, player):
     t = tags.get(norm_name(player))
-    return f" [Exp {t[0]:.1f} ({'+' if t[1] > 0 else '-'}{abs(t[1]):.1f})]" if t else ""
+    return f" {'📈' if t[1] > 0 else '📉'} Exp {t[0]:.1f} ({'+' if t[1] > 0 else '-'}{abs(t[1]):.1f})" if t else ""
 
 
 def restrictions_for(data, teams, date):
@@ -373,7 +373,7 @@ def build(data, games, date):
                                          f' <span style="font-size:12px;font-weight:bold;color:#1e8449">Exp {x:.1f}{f" (+{d:.1f})" if d is not None else ""}</span>'
                                          for n, x, d in up) + "</div>")
                 t.append("    Bench: " + ", ".join(f"{n}{mins_tag(data, n)}{exp_text(xt, n)}{change_text(data, n)}" for _, n, _ in bench)
-                         + (f" | Deep bench, expected up: {', '.join(f'{n}{mins_tag(data, n)} [Exp {x:.1f}' + (f' (+{d:.1f})' if d is not None else '') + ']' for n, x, d in up)}" if up else ""))
+                         + (f" | Deep bench, expected up: {', '.join(f'{n}{mins_tag(data, n)} 📈 Exp {x:.1f}' + (f' (+{d:.1f})' if d is not None else '') for n, x, d in up)}" if up else ""))
             # 3. matchup minutes alerts (minutes-vs-teams workbook)
             alerts = matchup_alerts_for(data, team, opp, inj, starters)
             if alerts:
@@ -452,7 +452,7 @@ def build_slack(data, game, date, test=False):
             up = deep_bench_up(data, team, date, deep, skip={k for k, st in status.items() if st in ("out", "doubt")})
             if up:
                 txt += "\n*Deep bench, expected up:* " + ", ".join(
-                    f"{e(n)}{mins_tag(data, n)} [Exp {x:.1f}" + (f" (+{d:.1f})" if d is not None else "") + "]" for n, x, d in up)
+                    f"{e(n)}{mins_tag(data, n)} 📈 Exp {x:.1f}" + (f" (+{d:.1f})" if d is not None else "") for n, x, d in up)
             blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": txt[:2900]}]})
         if alerts:
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(
@@ -478,12 +478,28 @@ def build_slack(data, game, date, test=False):
     return title, blocks
 
 
+def blocks_to_text(title, blocks):
+    """One plain message from the Block Kit blocks, for Slack Workflow Builder webhooks (they take a single text
+    variable, no blocks). Slack still renders *bold*, _italics_ and <url|links> in it."""
+    out = []
+    for b in blocks:
+        if b.get("type") == "divider":
+            out.append("────────────")
+        elif b.get("type") in ("section", "header"):
+            out.append((b.get("text") or {}).get("text", ""))
+        elif b.get("type") == "context":
+            out.append(" ".join(el.get("text", "") for el in b.get("elements", []) if el.get("type") in ("mrkdwn", "plain_text")))
+    return "\n".join(x for x in out if x).strip() or title
+
+
 def post_slack(url, text, blocks):
-    req = urllib.request.Request(url, data=json.dumps({"text": text, "blocks": blocks}).encode(),
-                                 headers={"Content-Type": "application/json"})
+    workflow = "/triggers/" in url    # Workflow Builder webhook ("From a webhook" with a "text" variable)
+    payload = {"text": blocks_to_text(text, blocks)[:39000]} if workflow else {"text": text, "blocks": blocks}
+    req = urllib.request.Request(url, data=json.dumps(payload).encode(), headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=30) as r:
         body = r.read().decode()
-    if body.strip() != "ok":
+    ok = body.strip() == "ok" or (workflow and '"ok":true' in body.replace(" ", ""))
+    if not ok:
         raise RuntimeError(f"Slack said: {body[:200]}")
 
 
