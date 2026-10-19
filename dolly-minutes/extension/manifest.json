@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "NBA Board: Dolly Expected Minutes",
+  "version": "1.0.0",
+  "description": "Reads Expected Mins off Dolly's (test) Rosters screen and saves them to the nba-board repo for the daily NBA email. Read-only in Dolly.",
+  "permissions": ["storage", "alarms", "webRequest"],
+  "host_permissions": [
+    "https://dolly.uat.oddsfactorytrading.bet/*",
+    "https://api.github.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    { "matches": ["https://dolly.uat.oddsfactorytrading.bet/*"], "js": ["content.js"], "run_at": "document_idle" }
+  ],
+  "action": { "default_title": "Dolly expected minutes", "default_popup": "popup.html" }
+}

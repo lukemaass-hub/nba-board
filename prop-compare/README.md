@@ -109,30 +109,6 @@ A line that stays off for 10 pulls gets 10 rows. The screen shows the newest 500
 Click a row to graph that line. **Export anomalies CSV** downloads the list. Anomalies are saved with the game,
 so they're still there after lines come down or the dashboard is closed.
 
-## Dolly expected minutes → the daily NBA report
-
-While a game's **Rosters** screen is open in TEST Dolly, the extension reads **Expected Mins.** for every player,
-about once a minute. It reads text only; nothing is clicked or changed. It saves the numbers to
-`expected_minutes.json` in the nba-board repo, at most every 10 minutes. The daily report then says when Dolly
-expects a player to play **3+ minutes more or less** than his average.
-
-**One-time setup: a GitHub key that can only edit the nba-board repo**
-1. On github.com, click your picture (top right), then **Settings → Developer settings → Personal access tokens →
-   Fine-grained tokens → Generate new token**.
-2. Name it "prop-compare". Pick an expiration. Under **Repository access**, choose **Only select repositories →
-   nba-board**.
-3. Under **Permissions → Repository permissions → Contents**, choose **Read and write**. Leave everything else as is.
-4. Click **Generate token** and copy it.
-5. On the dashboard, open **Settings**, paste it into **GitHub key**, and click **Save settings**. Don't paste it
-   anywhere else, and never into a chat.
-
-**Status:** Diagnostics → "Dolly expected minutes" shows how many players are kept, when they were last read, and
-when they were last saved to GitHub.
-
-**Every game without opening Rosters (coming next):** open one game's Rosters screen in TEST Dolly, then click
-**Capture Dolly data** in Diagnostics. It saves a file of what that screen loaded. Send that file over; it shows
-how to fetch every game's Rosters automatically on a computer left on.
-
 ## Export
 
 - **Export CSV** downloads every pull of the selected game as a file.

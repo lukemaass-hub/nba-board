@@ -12,7 +12,7 @@ import { renderChart } from './lib/chart.js';
 // non-browser traffic, so they couldn't be verified while building). Edit them in Settings.
 const DEFAULTS = {
   pollSeconds: 15, alignToleranceMs: 2000, fdState: 'az', dkSite: 'US-CO-SB', dkLeague: '42648',
-  dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', dollyEnv: 'test', anomalyPct: 10, anomalyBookPct: 20, githubToken: '', githubRepo: 'lukemaass-hub/nba-board',
+  dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', dollyEnv: 'test', anomalyPct: 10, anomalyBookPct: 20,
 };
 const SERIES = [{ book: 'DK', name: 'DK', long: 'DraftKings', color: '#3987e5' }, { book: 'FD', name: 'FD', long: 'FanDuel', color: '#d95926' },
   { book: 'OURS', name: 'Ours', long: 'Ours (app price)', color: '#199e70' }];
@@ -110,7 +110,6 @@ function renderDiag() {
     for (const b of BOOKS) lines.push(`   ${b}: ${t.used[b] ? `used (${t.ms[b]} ms, ${t.counts[b]} prices)` : (t.errors[b] || 'not used')}`);
   }
   if (books.lastDkSample) lines.push('\nDraftKings answer we could not read (send a screenshot):', JSON.stringify(books.lastDkSample).slice(0, 1500));
-  if (diag.em) lines.push(`\nDolly expected minutes (Rosters screen): ${diag.em}`);
   if (diag.errors.length) lines.push('\nRecent problems:', ...diag.errors.map(e => `   ${e}`));
   $('diag').textContent = lines.join('\n');
   const dkOk = run?.dkPerSub && Object.values(run.dkPerSub).some(v => typeof v === 'number' && v > 0);
@@ -489,36 +488,6 @@ $('sheet').addEventListener('click', async () => {
   setTimeout(() => { btn.textContent = 'New Google Sheet'; }, 8000);
 });
 
-// ---------------------------------------------------------------- Dolly expected minutes status + capture
-async function showEm() {
-  const { expectedMins: S } = await chrome.storage.local.get('expectedMins');
-  diag.em = !S ? 'nothing read yet: open a game\'s Rosters screen in TEST Dolly'
-    : `${Object.keys(S.players).length} players kept · last read ${S.lastRead ? mtTime(S.lastRead).slice(11) + ' MT' : '–'}`
-      + ` · last saved to GitHub ${S.lastUpload ? mtTime(S.lastUpload).slice(11) + ' MT' : 'never'}${S.status ? ` · ${S.status}` : ''}${settings.githubToken ? '' : ' · add the GitHub key in Settings'}`;
-  renderDiag();
-}
-chrome.storage.onChanged.addListener((ch) => { if (ch.expectedMins) showEm(); });
-$('capture').addEventListener('click', async () => {
-  const btn = $('capture'); btn.disabled = true; btn.textContent = 'Capturing…';
-  try {
-    const { dollySeen = [] } = await chrome.storage.local.get('dollySeen');
-    const recent = dollySeen.filter(x => Date.now() - x.at < 30 * 60_000);
-    const answers = await Promise.all(recent.slice(0, 40).map(async (x) => {
-      if (x.method !== 'GET' && !x.body) return { ...x, answer: '(not repeated: no body recorded)' };
-      try {
-        const r = await fetch(x.url, { method: x.method, body: x.method === 'GET' ? undefined : x.body, credentials: 'include',
-          headers: x.method === 'GET' ? {} : { 'content-type': 'application/json' } });
-        const t = await r.text();
-        return { ...x, status: r.status, answer: t.slice(0, 200000) };
-      } catch (e) { return { ...x, answer: `(failed: ${e.message || e})` }; }
-    }));
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([JSON.stringify({ captured: new Date().toISOString(), env: 'uat', requests: answers }, null, 1)], { type: 'application/json' }));
-    a.download = `dolly-capture-${mtTime(Date.now()).slice(0, 10).replace(/\//g, '-')}.json`; a.click();
-    btn.textContent = `Saved ${answers.length} requests`;
-  } finally { btn.disabled = false; setTimeout(() => { btn.textContent = 'Capture Dolly data'; }, 6000); }
-});
-
 // ---------------------------------------------------------------- boot
 $('version').textContent = `version ${chrome.runtime.getManifest().version}`;
 function showEnv() {
@@ -528,7 +497,6 @@ function showEnv() {
 }
 await loadSettings();
 showEnv();
-showEm();
 await loadLearned();
 await loadGames();
 { const g = games.find(x => x.key === $('game').value); if (g) await showGame(g); }

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Dolly expected minutes</title>
+<style>
+  body { width: 380px; margin: 0; padding: 14px; font: 13px/1.45 system-ui, sans-serif; background: #1a1a19; color: #ececea; color-scheme: dark; }
+  h1 { font-size: 15px; margin: 0 0 4px; } .muted { color: #9a9a94; } label { display: block; margin: 10px 0 4px; color: #b4b4ae; }
+  input { width: 100%; box-sizing: border-box; padding: 6px 8px; background: #232321; color: #ececea; border: 1px solid #33332f; border-radius: 6px; }
+  button { margin-top: 10px; padding: 6px 12px; background: #2d5f9e; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+  button.plain { background: #232321; border: 1px solid #33332f; }
+  #status { white-space: pre-wrap; background: #232321; border-radius: 6px; padding: 8px; margin-top: 10px; }
+</style></head>
+<body>
+  <h1>Dolly expected minutes</h1>
+  <div class="muted">For the daily NBA email. While a game's <b>Rosters</b> screen is open in <b>test Dolly</b>, Expected Mins are read (text only) and saved to the nba-board repo every 10 minutes.</div>
+  <div id="status">…</div>
+  <label>GitHub key (fine-grained, nba-board only, Contents: read and write)</label>
+  <input id="token" type="password" autocomplete="off" placeholder="github_pat_…">
+  <label>GitHub repo</label>
+  <input id="repo" placeholder="lukemaass-hub/nba-board">
+  <button id="save">Save</button> <button id="now" class="plain">Save to GitHub now</button>
+  <div style="margin-top:14px" class="muted">For the hands-off version: open one game's Rosters screen in test Dolly, then
+    <button id="capture" class="plain">Capture Dolly data</button> and send the saved file to Claude.</div>
+  <script src="popup.js"></script>
+</body></html>
