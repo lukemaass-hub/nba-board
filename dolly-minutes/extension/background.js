@@ -68,18 +68,3 @@ chrome.alarms.onAlarm.addListener((a) => {
     await chrome.storage.local.set({ [EM_KEY]: S });
   }).catch(() => {});
 });
-
-// ---------------------------------------------------------------- one-time capture (for the hands-off version)
-// To fetch every game's Rosters without the screen open, we need to know which addresses Dolly's own Rosters
-// screen loads. While the user has TEST Dolly open, record those addresses (only the test host this extension is
-// allowed on). The dashboard's "Capture Dolly data" button saves them, plus their answers, to a file for review.
-chrome.webRequest.onBeforeRequest.addListener((d) => {
-  if (d.tabId < 0 || /^chrome-extension:/.test(d.initiator || '')) return;
-  if (/\.(js|css|png|jpe?g|svg|woff2?|ico|map)(\?|$)/i.test(d.url)) return;
-  let body = null;
-  try { if (d.requestBody?.raw?.[0]?.bytes) body = new TextDecoder().decode(d.requestBody.raw[0].bytes).slice(0, 4000); } catch { /* binary */ }
-  chrome.storage.local.get('dollySeen').then(({ dollySeen = [] }) => {
-    const rec = { at: Date.now(), method: d.method, url: d.url, body, type: d.type };
-    chrome.storage.local.set({ dollySeen: [rec, ...dollySeen.filter(x => !(x.url === d.url && x.method === d.method))].slice(0, 60) });
-  });
-}, { urls: ['https://dolly.uat.oddsfactorytrading.bet/*'], types: ['xmlhttprequest'] }, ['requestBody']);

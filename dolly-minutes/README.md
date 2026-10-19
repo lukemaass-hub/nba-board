@@ -30,7 +30,7 @@ already logged in, so this small extension passes the numbers on.
 4. Open a game's **Rosters** screen in test Dolly. Within a minute or so, the icon's window shows "players kept" and
    "Last saved to GitHub".
 
-## Every game without opening Rosters (next step)
-Open one game's Rosters screen in test Dolly, click the icon, then click **Capture Dolly data**, and send the saved
-file. It shows which data the Rosters screen loads, so the extension can fetch every game's minutes by itself on a
-computer left on.
+## Daily use
+Before games, open each game's **Rosters** screen in test Dolly and leave the tabs open. Each open Rosters screen is
+read about once a minute and saved every 10 minutes. The extension never uses your Dolly sign-in to fetch anything
+itself (the user's choice); a fully hands-off version would need a data feed from the Dolly team.

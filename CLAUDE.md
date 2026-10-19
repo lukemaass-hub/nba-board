@@ -93,7 +93,7 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   (text only) and saves expected_minutes.json to the repo with the user's own fine-grained GitHub key (this repo
   only, typed into the extension's popup). update_data.py copies it into
   data.json; email/Slack/board show "Dolly expected minutes" when 3+ above/below the average (last season until 15
-  games this season). Fully unattended for every game needs a computer left on + a capture of the Rosters screen's
-  data requests (Capture Dolly data button) so the extension can fetch them itself; the user may later ask the
-  Dolly team for a proper feed.
+  games this season). Oct 19 2026, user chose option A: the user opens each game's Rosters screen; the extension does
+  NOT use the Dolly sign-in token to fetch anything (Dolly's API needs a bearer token; capture removed). A fully
+  unattended version would need a feed from the Dolly team.
 
