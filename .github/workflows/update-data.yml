@@ -104,6 +104,7 @@ jobs:
             echo "No changes."
           else
             git commit -m "Update data.json"
-            git pull --rebase origin "${GITHUB_REF_NAME}"
+            # another run may have saved data.json meanwhile: keep this run's (newer) copy instead of failing
+            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}"
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
