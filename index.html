@@ -765,7 +765,7 @@ function expTag(name){
   if(!e||avg==null) return "";
   const x=Number(e.expected), d=x-avg;
   if(Math.abs(d)<5-1e-9||x<5||Math.max(x,avg)<15) return "";
-  return `<span class="dx ${d>0?"up":"dn"}" title="Dolly expected minutes vs average (${esc(MIN_LABEL[k]||"")})">Dolly ${x.toFixed(1)} (${d>0?"+":"−"}${Math.abs(d).toFixed(1)})</span>`;
+  return `<span class="dx ${d>0?"up":"dn"}" title="Expected minutes (Dolly) vs average (${esc(MIN_LABEL[k]||"")})">Exp ${x.toFixed(1)} (${d>0?"+":"−"}${Math.abs(d).toFixed(1)})</span>`;
 }
 /* Beat-writer news (RotoWire news feed) about this team's players from the last 36 hours */
 let NEWS=[], RESTRICTIONS=[];

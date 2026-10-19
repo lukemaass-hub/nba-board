@@ -339,7 +339,7 @@ def test_dolly_expected_minutes():
     assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now, skip={"jalen duren"})[0][0] == "Daniss Jenkins"
     # shown next to the name: green with +, red with a minus sign
     tags = {e.norm_name(n): (x, d) for n, x, a, d, _ in got}
-    assert "#1e8449" in e.exp_html(tags, "Daniss Jenkins") and "Dolly 32.5 (+5.0)" in e.exp_html(tags, "Daniss Jenkins")
-    assert "#c0392b" in e.exp_html(tags, "Jalen Duren") and "Dolly 20.1 (−5.9)" in e.exp_html(tags, "Jalen Duren")
-    assert e.exp_html(tags, "Cade Cunningham") == "" and e.exp_text(tags, "Jalen Duren") == " [Dolly 20.1 (-5.9)]"
+    assert "#1e8449" in e.exp_html(tags, "Daniss Jenkins") and "Exp 32.5 (+5.0)" in e.exp_html(tags, "Daniss Jenkins")
+    assert "#c0392b" in e.exp_html(tags, "Jalen Duren") and "Exp 20.1 (−5.9)" in e.exp_html(tags, "Jalen Duren")
+    assert e.exp_html(tags, "Cade Cunningham") == "" and e.exp_text(tags, "Jalen Duren") == " [Exp 20.1 (-5.9)]"
     assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now + dt.timedelta(hours=40)) == []   # stale
