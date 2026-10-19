@@ -783,6 +783,8 @@ def main():
     try:
         with open(em_path) as f:
             data["expected_minutes"] = json.load(f)
+        for p in data["expected_minutes"].get("players", []):   # the extension sends full team names
+            p["team"] = p.get("team") or team_code(p.get("teamName")) or ""
     except FileNotFoundError:
         data["expected_minutes"] = {}
     except (OSError, ValueError) as ex:

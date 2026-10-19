@@ -41,6 +41,9 @@
     <label>DraftKings NBA league id <input name="dkLeague" size="8"></label>
     <label>DraftKings game-lines subcategory <input name="dkGameSubcat" size="8"></label>
     <label class="wide">DraftKings player-points subcategory ids (comma separated) <input name="dkSubcats"></label>
+    <label class="wide">GitHub key for saving Dolly expected minutes to the nba-board repo (fine-grained, this repo only, Contents: read and write)
+      <input name="githubToken" type="password" autocomplete="off" placeholder="github_pat_…"></label>
+    <label>GitHub repo <input name="githubRepo"></label>
     <div class="wide"><button type="submit" class="primary">Save settings</button> <span id="saved" class="muted"></span></div>
   </form>
 </details>
@@ -48,6 +51,8 @@
 <details id="diag-box">
   <summary>Diagnostics <span id="diag-summary" class="muted"></span></summary>
   <pre id="diag"></pre>
+  <p class="small"><button id="capture" type="button">Capture Dolly data</button>
+    <span class="muted">One-time, for the hands-off version: open a game's Rosters screen in TEST Dolly first, then click. Saves a file of what that screen loaded (send it to Claude).</span></p>
 </details>
 
 <nav class="tabs">

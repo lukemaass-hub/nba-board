@@ -87,3 +87,12 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 
 ## Style preferences
 Plain language, no jargon, short answers. The user is not a developer: say exactly where to click.
+
+- Dolly expected minutes (Oct 19 2026, UAT for now; prod later): the prop-compare extension reads "Expected Mins."
+  off Dolly's Rosters screen (text only) and saves expected_minutes.json to the repo with the user's own
+  fine-grained GitHub key (this repo only, typed into the extension's Settings). update_data.py copies it into
+  data.json; email/Slack/board show "Dolly expected minutes" when 3+ above/below the average (last season until 15
+  games this season). Fully unattended for every game needs a computer left on + a capture of the Rosters screen's
+  data requests (Capture Dolly data button) so the extension can fetch them itself; the user may later ask the
+  Dolly team for a proper feed.
+
