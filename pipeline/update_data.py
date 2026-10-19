@@ -557,21 +557,27 @@ def parse_season_stats(j):
     return out
 
 
+def season_stats(year):
+    """One season's stats. ESPN answers a season that hasn't started yet with the latest finished one (asked for
+    2026-27 in October 2026, it sent 2025-26), so an answer for a different season counts as no data."""
+    j = get(SEASON_STATS_URL.format(year)).json()
+    got = (j.get("requestedSeason") or {}).get("year")
+    return parse_season_stats(j) if got in (None, year) else {}
+
+
 def fetch_season_minutes(prev):
-    """This season's numbers every SEASON_REFRESH_HOURS (the morning run picks up last night's games); the two
-    previous seasons only once."""
+    """This season's numbers every SEASON_REFRESH_HOURS (the morning run picks up last night's games); last season
+    only once. Only this season and last season are used (the user's rule)."""
     now = dt.datetime.now(dt.timezone.utc)
     cur = espn_season(today_et())
-    old = prev if prev.get("year") == cur else {}
-    out = {"year": cur, "season": season_label(cur), "last_season": season_label(cur - 1),
-           "prior_season": season_label(cur - 2)}
-    for key, year in (("last", cur - 1), ("prior", cur - 2)):
-        out[key] = old.get(key) or parse_season_stats(get(SEASON_STATS_URL.format(year)).json())
+    old = prev if prev.get("year") == cur and "prior" not in prev else {}
+    out = {"year": cur, "season": season_label(cur), "last_season": season_label(cur - 1)}
+    out["last"] = old.get("last") or season_stats(cur - 1)
     fresh = old.get("fetched_at") and now - dt.datetime.fromisoformat(old["fetched_at"]) < dt.timedelta(hours=SEASON_REFRESH_HOURS)
     if fresh:
         out["current"], out["fetched_at"] = old.get("current", {}), old["fetched_at"]
     else:
-        out["current"] = parse_season_stats(get(SEASON_STATS_URL.format(cur)).json())
+        out["current"] = season_stats(cur)
         out["fetched_at"] = now.isoformat(timespec="seconds")
     if len(out["last"]) < 300:
         raise RuntimeError(f"last season looks incomplete: {len(out['last'])} players")

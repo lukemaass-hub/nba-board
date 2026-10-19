@@ -285,18 +285,31 @@ def test_season_minutes_and_weekly():
                        "categories": [{"name": "general", "totals": ["74", "35.0", "2.1"]}]}]}
     assert u.parse_season_stats(j) == {"Jalen Brunson": [74, 35.0, "NYK"]}
     assert u.espn_season(dt.date(2026, 10, 9)) == 2027 and u.season_label(2027) == "2026-27"
-    sm = {"season": "2026-27", "last_season": "2025-26", "prior_season": "2024-25", "fetched_at": "2026-11-02T11:00:00+00:00",
-          "current": {"Jalen Brunson": [2, 30.0, "NYK"], "Miles McBride": [8, 29.0, "NYK"], "Josh Hart": [8, 33.0, "NYK"]},
+    # ESPN answers a season that hasn't started with the last finished one: that must count as no data
+    real_get = u.get
+    class R:
+        def __init__(self, year): self.year = year
+        def json(self): return {**j, "requestedSeason": {"year": self.year}}
+    try:
+        u.get = lambda url: R(2026)
+        assert u.season_stats(2027) == {} and u.season_stats(2026) == {"Jalen Brunson": [74, 35.0, "NYK"]}
+    finally:
+        u.get = real_get
+    sm = {"season": "2026-27", "last_season": "2025-26", "fetched_at": "2026-11-20T11:00:00+00:00",
+          "current": {"Jalen Brunson": [2, 30.0, "NYK"], "Miles McBride": [16, 29.0, "NYK"], "Josh Hart": [8, 33.0, "NYK"],
+                      "Mitchell Robinson": [9, 25.0, "NYK"]},
           "last": {"Jalen Brunson": [74, 35.0, "NYK"], "Miles McBride": [70, 20.0, "NYK"], "Josh Hart": [77, 32.0, "NYK"]},
-          "prior": {"Mitchell Robinson": [17, 22.0, "NYK"]}}
+          "prior": {"Mitchell Robinson": [17, 22.0, "NYK"]}}   # an old 2024-25 entry must be ignored
     data = {"season_minutes": sm}
-    assert e.avg_minutes(data, "Jalen Brunson") == (35.0, "2025-26")       # only 2 games this season: last season
-    assert e.avg_minutes(data, "Miles McBride") == (29.0, "2026-27")       # 8 games: this season
-    assert e.avg_minutes(data, "Mitchell Robinson") == (22.0, "2024-25")   # missed last season: the one before
+    assert e.avg_minutes(data, "Jalen Brunson") == (35.0, "2025-26")       # 2 games this season: last season
+    assert e.avg_minutes(data, "Josh Hart") == (32.0, "2025-26")           # 8 games: still last season (needs 15)
+    assert e.avg_minutes(data, "Miles McBride") == (29.0, "2026-27")       # 16 games: this season
+    assert e.avg_minutes(data, "Mitchell Robinson") is None                # not in last season: 2024-25 is never used
+    assert e.minutes_change(data, "Mitchell Robinson") is None
     assert e.mins_tag(data, "Nobody") == ""
     assert e.minutes_change(data, "Miles McBride") == (9.0, 29.0, 20.0, "2025-26")
     assert e.minutes_change(data, "Josh Hart") is None and e.minutes_change(data, "Jalen Brunson") is None
     rows = e.weekly_changes(data)
     assert [(r["player"], r["diff"]) for r in rows] == [("Miles McBride", 9.0)]
     title, body, text = e.build_weekly(data, rows)
-    assert "1 players" in title and "Miles McBride (NYK): 29.0 vs 20.0 in 2025-26 (+9.0), 8 games" in text
+    assert "1 players" in title and "Miles McBride (NYK): 29.0 vs 20.0 in 2025-26 (+9.0), 16 games" in text

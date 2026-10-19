@@ -943,18 +943,18 @@ document.querySelectorAll("[data-clear]").forEach(b=>b.onclick=()=>{
 
 /* ---------- data.json (written by pipeline/update_data.py) ---------- */
 let dataMeta=null, noGamesNote="";
-/* Average minutes (ESPN season stats), same rules as the email: this season once he has 3+ games, else the last
-   season he played. CHANGES = 5+ minutes more or fewer than that last season (5+ games now, 10+ then). */
+/* Average minutes (ESPN season stats), same rules as the email: this season once he has 15+ games, else last
+   season. CHANGES = 5+ minutes more or fewer than last season (5+ games now, 10+ then). Older seasons aren't used. */
 let MIN_LABEL={}, CHANGES={};
 function loadSeasonMinutes(sm){
   if(!sm) return;
   const idx=k=>{ const o={}; Object.entries(sm[k]||{}).forEach(([n,v])=>o[normName(n)]=v); return o; };
-  const cur=idx("current"), last=idx("last"), prior=idx("prior");
-  new Set([...Object.keys(cur),...Object.keys(last),...Object.keys(prior)]).forEach(k=>{
-    const c=cur[k], l=last[k], p=prior[k];
-    const pick=c&&c[0]>=3?[c,sm.season]:l&&l[0]>=1?[l,sm.last_season]:p&&p[0]>=1?[p,sm.prior_season]:null;
+  const cur=idx("current"), last=idx("last");
+  new Set([...Object.keys(cur),...Object.keys(last)]).forEach(k=>{
+    const c=cur[k], l=last[k];
+    const pick=c&&c[0]>=15?[c,sm.season]:l&&l[0]>=1?[l,sm.last_season]:null;
     if(pick){ mins[k]=pick[0][1]; MIN_LABEL[k]=pick[1]; }
-    const base=l&&l[0]>=10?[l,sm.last_season]:p&&p[0]>=10?[p,sm.prior_season]:null;
+    const base=l&&l[0]>=10?[l,sm.last_season]:null;
     if(c&&c[0]>=5&&base&&Math.abs(c[1]-base[0][1])>=5) CHANGES[k]={diff:c[1]-base[0][1],vs:base[1]};
   });
 }

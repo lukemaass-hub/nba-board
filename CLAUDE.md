@@ -42,7 +42,8 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   "Minutes restriction" phrases -> data["restrictions"] -> big red warning at the top of that game everywhere.
 - Season minutes (Oct 9 2026): ESPN byathlete stats (regular season) -> data["season_minutes"]: current season
   refreshed every 12 h (morning run picks up last night), last + prior season fetched once. Email/Slack show
-  "Name (35)" = this season's MPG once 3+ games, else the last season he played. Big change = 5+ min vs the last
+  "Name (35)" = this season's MPG once 15+ games, else last season (Oct 19 2026: only this + last season are used, never
+  older; ESPN answers an unstarted season with the last one, so that counts as no data). Big change = 5+ min vs the last
   season he played (5+ games now, 10+ then): yellow highlight + "+N min vs 2025-26" badge in the pre-game email,
   and a weekly email (Mondays 9 AM ET, or Run workflow > weekly_email) listing all of them. Nothing until 2026-27
   games are played.
