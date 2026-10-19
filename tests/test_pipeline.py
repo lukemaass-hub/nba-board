@@ -332,8 +332,14 @@ def test_dolly_expected_minutes():
     data["season_minutes"]["last"].update({"Tolu Smith": [30, 9.1, "DET"], "Isaac Jones": [20, 5.1, "DET"]})
     data["expected_minutes"]["players"] += [
         {"name": "Tolu Smith", "team": "DET", "expected": 0.0, "game_date": "2026-10-20", "at": at},     # under 5 expected
-        {"name": "Isaac Jones", "team": "DET", "expected": 9.5, "game_date": "2026-10-20", "at": at}]    # +4.4 but not rotation
+        {"name": "Isaac Jones", "team": "DET", "expected": 11.0, "game_date": "2026-10-20", "at": at}]   # +5.9 but not rotation
+    data["expected_minutes"]["players"][2]["expected"] = 32.5   # Jenkins +5.0 (exactly 5); Cade -2.3 stays untagged
     got = e.expected_minutes_for(data, "DET", "2026-10-20", now=now)
-    assert [(n, x, a, d) for n, x, a, d, _ in got] == [("Jalen Duren", 20.1, 26.0, -5.9), ("Daniss Jenkins", 30.5, 27.5, 3.0)]
+    assert [(n, x, a, d) for n, x, a, d, _ in got] == [("Jalen Duren", 20.1, 26.0, -5.9), ("Daniss Jenkins", 32.5, 27.5, 5.0)]
     assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now, skip={"jalen duren"})[0][0] == "Daniss Jenkins"
+    # shown next to the name: green with +, red with a minus sign
+    tags = {e.norm_name(n): (x, d) for n, x, a, d, _ in got}
+    assert "#1e8449" in e.exp_html(tags, "Daniss Jenkins") and "Dolly 32.5 (+5.0)" in e.exp_html(tags, "Daniss Jenkins")
+    assert "#c0392b" in e.exp_html(tags, "Jalen Duren") and "Dolly 20.1 (−5.9)" in e.exp_html(tags, "Jalen Duren")
+    assert e.exp_html(tags, "Cade Cunningham") == "" and e.exp_text(tags, "Jalen Duren") == " [Dolly 20.1 (-5.9)]"
     assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now + dt.timedelta(hours=40)) == []   # stale

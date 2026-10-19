@@ -129,6 +129,7 @@
   .tg{font-size:10.5px;font-weight:900;border-radius:4px;padding:0 5px;color:#fff}
   .tg.out{background:var(--out)} .tg.doubt{background:var(--doubt)} .tg.q{background:var(--q);color:#3A2C00} .tg.prob{background:var(--prob)}
   .chip .up{color:#256B45;font-weight:900;font-size:11.5px}
+  .dx{font-size:11.5px;font-weight:800;margin-left:4px} .dx.up{color:#1e8449} .dx.dn{color:#c0392b}
   .chip .pp{font-size:10.5px;color:var(--muted);font-weight:700}
   .lim{font-size:12.5px;color:var(--muted);margin-top:5px}
   .next.beat{background:#F3F0FF;border-radius:6px;padding:3px 8px;margin-top:3px}
@@ -699,11 +700,11 @@ function rotationHTML(code,date){
   const st={}; injuriesFor(code,date).forEach(i=>st[normName(i.player)]=i.k);
   return POS.map(p=>`<div class="rrow"><span class="pl">${p}</span><div class="chips">${ch[p].map(c=>{
     const s=st[normName(c.n)], m=mins[normName(c.n)];
-    return `<span class="chip ${c.t} ${s||""}">${esc(c.n)}${m!=null?`<span class="mp">${m}</span>`:""}${s?`<span class="tg">${s==="out"?"OUT":s==="doubt"?"DTD":"GTD"}</span>`:""}</span>`;
+    return `<span class="chip ${c.t} ${s||""}">${esc(c.n)}${m!=null?`<span class="mp">${m}</span>`:""}${expTag(c.n)}${s?`<span class="tg">${s==="out"?"OUT":s==="doubt"?"DTD":"GTD"}</span>`:""}</span>`;
   }).join("")||'<span class="chip L">—</span>'}</div></div>`).join("");
 }
 function tagFor(k){ return k?`<span class="tg ${k}">${k==="out"?"OUT":k==="doubt"?"DTD":k==="q"?"GTD":"PROB"}</span>`:""; }
-function mpHTML(name){ const k=normName(name), m=mins[k]; return (m!=null?`<span class="mp" title="Average minutes per game (${esc(MIN_LABEL[k]||"your sheet")})">(${Number(m).toFixed(1)})</span>`:"")+changeHTML(name); }
+function mpHTML(name){ const k=normName(name), m=mins[k]; return (m!=null?`<span class="mp" title="Average minutes per game (${esc(MIN_LABEL[k]||"your sheet")})">(${Number(m).toFixed(1)})</span>`:"")+expTag(name)+changeHTML(name); }
 /* RotoWire's expected or confirmed starting five for this team on this date, if the refresh found one */
 function lineupFor(code,date){ const l=LINEUPS[code]; return l&&l.date===date&&l.starters&&l.starters.length?l:null; }
 function startersHTML(code,imp,date){
@@ -754,19 +755,17 @@ function matchupAlertsHTML(code,opp,date,imp){
     .map(a=>`<div class="ma ${a.dir}" title="${esc(`${a.vs} min vs ${opp}, usual ${a.avg}`)}">${a.dir==="up"?"📈":"📉"} <b>${esc(names[normName(a.player)])}</b> usually plays <b class="d">${a.dir==="up"?"more":"fewer"}</b> minutes vs ${esc(oppName)}</div>`);
   return rows.length?`<div class="sech" style="margin-top:8px">Matchup minutes alert</div>${rows.join("")}`:"";
 }
-/* Dolly prematch expected minutes (expected_minutes.json, saved by the prop-compare extension from the Dolly
-   Rosters screen), shown when 3+ above or below the player's average, rotation players only: Dolly 15+ or average
-   15+, and Dolly 5+ (same rule as the email). */
+/* Dolly prematch expected minutes (expected_minutes.json, saved by the dolly-minutes extension from the Dolly
+   Rosters screen): a green "Dolly 32.8 (+5.1)" / red "Dolly 15.2 (−5.0)" next to the player when 5+ above or below
+   his average; rotation players only (Dolly 15+ or average 15+, and Dolly 5+). Same rule as the email. */
 let EXPECTED=[];
-function expectedHTML(code,date,imp){
-  const st={}; imp.items.forEach(i=>st[normName(i.rec.player)]=i.rec.k);
-  const rows=EXPECTED.filter(p=>p.team===code&&(!p.game_date||p.game_date===date)&&Date.now()-Date.parse(p.at)<36*3600e3
-      &&st[normName(p.name)]!=="out"&&st[normName(p.name)]!=="doubt")
-    .map(p=>({p,avg:mins[normName(p.name)],x:Number(p.expected)})).filter(r=>r.avg!=null&&Math.abs(r.x-r.avg)>=3-1e-9&&r.x>=5&&Math.max(r.x,r.avg)>=15)
-    .sort((a,b)=>Math.abs(b.x-b.avg)-Math.abs(a.x-a.avg))
-    .map(({p,avg,x})=>{ const d=x-avg, up=d>0;
-      return `<div class="ma ${up?"up":"down"}" title="${esc(`Dolly expected ${x.toFixed(1)} min; average ${avg.toFixed(1)} (${MIN_LABEL[normName(p.name)]||""})`)}">${up?"📈":"📉"} <b>${esc(p.name)}</b> expected to play <b class="d">${up?"more":"less"}</b>: ${x.toFixed(1)} min vs ${avg.toFixed(1)} avg (${up?"+":""}${d.toFixed(1)})</div>`; });
-  return rows.length?`<div class="sech" style="margin-top:8px">Dolly expected minutes</div>${rows.join("")}`:"";
+function expTag(name){
+  const k=normName(name), avg=mins[k];
+  const e=EXPECTED.find(p=>normName(p.name)===k&&Date.now()-Date.parse(p.at)<36*3600e3);
+  if(!e||avg==null) return "";
+  const x=Number(e.expected), d=x-avg;
+  if(Math.abs(d)<5-1e-9||x<5||Math.max(x,avg)<15) return "";
+  return `<span class="dx ${d>0?"up":"dn"}" title="Dolly expected minutes vs average (${esc(MIN_LABEL[k]||"")})">Dolly ${x.toFixed(1)} (${d>0?"+":"−"}${Math.abs(d).toFixed(1)})</span>`;
 }
 /* Beat-writer news (RotoWire news feed) about this team's players from the last 36 hours */
 let NEWS=[], RESTRICTIONS=[];
@@ -787,7 +786,7 @@ function teamBlockHTML(code,date,opp){
   else h+=imp.items.map(it=>injLineHTML(it,date)).join("");
   if(imp.items.length && !imp.hasChart) h+=`<div class="clear" style="margin-left:22px">Depth chart not loaded, so no replacements yet.</div>`;
   const lu=lineupFor(code,date);
-  h+=(opp?matchupAlertsHTML(code,opp,date,imp):"")+expectedHTML(code,date,imp)+newsHTML(code);
+  h+=(opp?matchupAlertsHTML(code,opp,date,imp):"")+newsHTML(code);
   if(DEPTH_P[code]||lu) h+=`<details class="lineup"><summary>Starters &amp; bench <small>${lu?(lu.confirmed?"confirmed (RotoWire)":"expected (RotoWire)"):"from the depth chart"}</small></summary>${startersHTML(code,imp,date)}${rotationBlockHTML(code,imp,date)}</details>`;
   h+=`</div>`;
   return h;
