@@ -26,6 +26,10 @@ on:
         description: "Send a TEST pre-game email for the next game now"
         type: boolean
         default: false
+      test_game:
+        description: "With test_email: a team in the game to send instead of the next one (e.g. NYK)"
+        type: string
+        default: ""
   push:
     branches: [main]
     paths: ["pipeline/**", "tests/**", ".github/workflows/update-data.yml"]
@@ -84,7 +88,8 @@ jobs:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
-        run: python pipeline/email_report.py --data data.json --test-email
+          TEST_GAME: ${{ inputs.test_game }}
+        run: python pipeline/email_report.py --data data.json --test-email --game "$TEST_GAME"
 
       - name: Weekly minutes-changes email (Mondays, or when you tick the box)
         if: ${{ github.event.schedule == '0 13 * * 1' || (github.event_name == 'workflow_dispatch' && inputs.weekly_email) }}

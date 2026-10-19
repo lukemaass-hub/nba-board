@@ -237,18 +237,18 @@ def expected_tags(data, team, date, skip=()):
 
 
 def exp_html(tags, player):
-    """Green "Dolly 32.8 (+5.1)" when Dolly expects more than his average, red "Dolly 15.2 (−5.0)" when less."""
+    """Green "Exp 32.8 (+5.1)" when Dolly expects more than his average, red "Exp 15.2 (−5.0)" when less."""
     t = tags.get(norm_name(player))
     if not t:
         return ""
     x, d = t
     return (f' <span style="font-size:12px;font-weight:bold;color:{"#1e8449" if d > 0 else "#c0392b"}" '
-            f'title="Dolly expected minutes vs average">Dolly {x:.1f} ({"+" if d > 0 else "−"}{abs(d):.1f})</span>')
+            f'title="Expected minutes (Dolly) vs average">Exp {x:.1f} ({"+" if d > 0 else "−"}{abs(d):.1f})</span>')
 
 
 def exp_text(tags, player):
     t = tags.get(norm_name(player))
-    return f" [Dolly {t[0]:.1f} ({'+' if t[1] > 0 else '-'}{abs(t[1]):.1f})]" if t else ""
+    return f" [Exp {t[0]:.1f} ({'+' if t[1] > 0 else '-'}{abs(t[1]):.1f})]" if t else ""
 
 
 def restrictions_for(data, teams, date):
@@ -384,7 +384,7 @@ def build(data, games, date):
         t.append("")
     h.append(f'<div style="font-size:11px;{light};margin:12px 4px 0;line-height:1.5">'
              '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · (Number) = average minutes per game, this season after 15 games, '
-             'otherwise last season · Green / red "Dolly N (+/−)" = Dolly expects 5+ minutes more / fewer than that average (rotation players) · Highlighted = 5+ minutes more or fewer than last season · Click a player for the source.</div></div></div>')
+             'otherwise last season · Green / red "Exp N (+/−)" = expected minutes 5+ more / fewer than that average · Highlighted = 5+ minutes more or fewer than last season · Click a player for the source.</div></div></div>')
     return title, "".join(h), "\n".join(t)
 
 
@@ -540,6 +540,7 @@ def main():
     ap.add_argument("--test-slack", action="store_true", help="post the next game's report to Slack now, marked TEST")
     ap.add_argument("--weekly", action="store_true", help="send the weekly minutes-changes email")
     ap.add_argument("--test-email", action="store_true", help="email the next game's report now, marked TEST (not logged)")
+    ap.add_argument("--game", default="", help="with --test-email: a team in the game to send instead, e.g. NYK")
     args = ap.parse_args()
 
     data = json.load(open(args.data))
@@ -562,6 +563,11 @@ def main():
 
     if args.test_email:
         games = next_games(data, now)
+        if args.game.strip():   # a named game instead: the next one (or one under way) with that team
+            want = args.game.strip().upper()
+            soon = [g for g in all_games(data) if want in (g["away"], g["home"])
+                    and dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=ET) >= now - dt.timedelta(hours=4)]
+            games = soon[:1]
         if not games:
             sys.exit("No upcoming games in data.json to test with.")
         subject, body_html, body_text = build(data, games, games[0]["date"])
