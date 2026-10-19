@@ -11,7 +11,7 @@ Without them, that channel is skipped. --out writes the email to files instead o
 
 Usage:  python pipeline/email_report.py --data data.json --window 25
 """
-import argparse, datetime as dt, html, json, os, smtplib, sys
+import argparse, datetime as dt, html, json, os, re, smtplib, sys
 import urllib.request
 from email.message import EmailMessage
 
@@ -492,6 +492,15 @@ def blocks_to_text(title, blocks):
     return "\n".join(x for x in out if x).strip() or title
 
 
+def slack_markdown(title, blocks):
+    """The Slack report as standard markdown, for the scheduled Claude agent that posts it with the Slack
+    connector (which takes **bold** and [text](url), not Slack's own *bold* / <url|text>)."""
+    t = blocks_to_text(title, blocks)
+    t = re.sub(r"<(https?://[^|>]+)\|([^>]+)>", r"[\2](\1)", t)         # <url|text> -> [text](url)
+    t = re.sub(r"(?<![\w*])\*([^*\n]+?)\*(?![\w*])", r"**\1**", t)       # *bold* -> **bold**
+    return t
+
+
 def post_slack(url, text, blocks):
     workflow = "/triggers/" in url    # Workflow Builder webhook ("From a webhook" with a "text" variable)
     payload = {"text": blocks_to_text(text, blocks)[:39000]} if workflow else {"text": text, "blocks": blocks}
@@ -587,7 +596,10 @@ def main():
     ap.add_argument("--test-slack", action="store_true", help="post the next game's report to Slack now, marked TEST")
     ap.add_argument("--weekly", action="store_true", help="send the weekly minutes-changes email")
     ap.add_argument("--test-email", action="store_true", help="email the next game's report now, marked TEST (not logged)")
-    ap.add_argument("--game", default="", help="with --test-email: a team in the game to send instead, e.g. NYK")
+    ap.add_argument("--game", default="", help="with --test-email / --agent: a team in the game, e.g. NYK")
+    ap.add_argument("--agent-due", type=int, metavar="MIN", help="print JSON of the Slack markdown for games tipping "
+                    "off within MIN minutes (for the scheduled Claude agent that posts to Slack)")
+    ap.add_argument("--agent-test", action="store_true", help="like --agent-due but for the next game (or --game), marked TEST")
     args = ap.parse_args()
 
     data = json.load(open(args.data))
@@ -606,6 +618,22 @@ def main():
             print(f"Wrote {args.out}.*  ({len(rows)} players)")
         else:
             send_email(subject, body_html, body_text)
+        return
+
+    if args.agent_due is not None or args.agent_test:
+        if args.agent_test:
+            games = next_games(data, now)
+            if args.game.strip():
+                games = [g for g in all_games(data) if args.game.strip().upper() in (g["away"], g["home"])
+                         and dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=ET) >= now - dt.timedelta(hours=4)][:1]
+            due = [(f"{g['date']} {g['away']}@{g['home']}", g) for g in games]
+        else:
+            due = due_games(data, now, args.agent_due, {})
+        out = []
+        for key, g in due:
+            title, blocks = build_slack(data, g, g["date"], test=args.agent_test)
+            out.append({"key": key, "title": title, "markdown": slack_markdown(title, blocks)})
+        print(json.dumps(out, ensure_ascii=False, indent=1))
         return
 
     if args.test_email:
