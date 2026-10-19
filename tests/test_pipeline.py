@@ -343,3 +343,18 @@ def test_dolly_expected_minutes():
     assert "#c0392b" in e.exp_html(tags, "Jalen Duren") and "Exp 20.1 (−5.9)" in e.exp_html(tags, "Jalen Duren")
     assert e.exp_html(tags, "Cade Cunningham") == "" and e.exp_text(tags, "Jalen Duren") == " [Exp 20.1 (-5.9)]"
     assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now + dt.timedelta(hours=40)) == []   # stale
+
+
+def test_deep_bench_only_when_expected_up():
+    import email_report as e
+    now = dt.datetime(2026, 10, 20, 18, 0, tzinfo=dt.timezone.utc)
+    at = "2026-10-20T15:00:00+00:00"
+    data = {"season_minutes": {"season": "2026-27", "last_season": "2025-26", "current": {},
+                               "last": {"Paul Reed": [60, 13.9, "DET"], "Tolu Smith": [30, 9.1, "DET"], "Chaz Lanier": [20, 7.7, "DET"]}},
+            "expected_minutes": {"players": [
+                {"name": "Paul Reed", "team": "DET", "expected": 14.5, "game_date": "2026-10-20", "at": at},     # +0.6: any increase counts
+                {"name": "Tolu Smith", "team": "DET", "expected": 0.0, "game_date": "2026-10-20", "at": at},     # down: hidden
+                {"name": "Ugonna Onyenso", "team": "DET", "expected": 6.0, "game_date": "2026-10-20", "at": at}]}}   # no average, 5+
+    deep = [("C", "Tolu Smith", ""), ("C", "Paul Reed", ""), ("SG", "Chaz Lanier", ""), ("C", "Ugonna Onyenso", "")]
+    assert e.deep_bench_up(data, "DET", "2026-10-20", deep, now=now) == [("Paul Reed", 14.5, 0.6), ("Ugonna Onyenso", 6.0, None)]
+    assert e.deep_bench_up(data, "DET", "2026-10-20", deep, skip={"paul reed"}, now=now) == [("Ugonna Onyenso", 6.0, None)]
