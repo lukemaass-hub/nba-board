@@ -202,6 +202,32 @@ def change_text(data, player):
     return f" [{'+' if c[0] > 0 else ''}{round(c[0])} min vs {c[3]}]" if c else ""
 
 
+EXPECTED_DIFF = 3.0         # Dolly expected minutes this far above/below the average gets a note (the user's rule)
+EXPECTED_MAX_AGE_H = 36     # ignore Dolly numbers older than this
+
+
+def expected_minutes_for(data, team, date, now=None, skip=()):
+    """Dolly's prematch expected minutes (expected_minutes.json, saved by the prop-compare extension from the Dolly
+    Rosters screen) that are EXPECTED_DIFF+ above or below the player's average (avg_minutes: last season until 15
+    games this season). -> [(player, expected, average, diff, season label)], biggest first."""
+    em = data.get("expected_minutes") or {}
+    now = now or dt.datetime.now(dt.timezone.utc)
+    out = []
+    for p in em.get("players", []):
+        if p.get("team") != team or (p.get("game_date") and p["game_date"] != date) or norm_name(p["name"]) in skip:
+            continue
+        try:
+            if now - dt.datetime.fromisoformat(p["at"]) > dt.timedelta(hours=EXPECTED_MAX_AGE_H):
+                continue
+            exp = float(p["expected"])
+        except (KeyError, ValueError, TypeError):
+            continue
+        avg = avg_minutes(data, p["name"])
+        if avg and abs(exp - avg[0]) >= EXPECTED_DIFF:
+            out.append((p["name"], exp, avg[0], round(exp - avg[0], 1), avg[1]))
+    return sorted(out, key=lambda x: -abs(x[3]))
+
+
 def restrictions_for(data, teams, date):
     """Minutes-restriction warnings from beat-writer news for these teams on this date."""
     return [w for w in data.get("restrictions", []) if w["team"] in teams and w["from"] <= date <= w["through"]]
@@ -303,7 +329,18 @@ def build(data, games, date):
                                    f'<b style="color:{"#1e8449" if d == "up" else "#c0392b"}">{"more" if d == "up" else "fewer"}</b>'
                                    f' minutes vs {e(name(opp).split()[-1])}</div>' for n, d in alerts) + "</div>")
                 t.append("    Matchup minutes: " + ", ".join(f"{n} {'more' if d == 'up' else 'fewer'} vs {opp}" for n, d in alerts))
-            # 4. beat-writer news (RotoWire feed)
+            # 4. Dolly expected minutes vs the player's average
+            out_now = {k for k, st in status.items() if st in ("out", "doubt")}
+            exp = expected_minutes_for(data, team, date, skip=out_now)
+            if exp:
+                h.append(f'<div style="{label_css}">Dolly expected minutes</div><div style="font-size:13px;line-height:1.6">'
+                         + "".join(f'<div>{"📈" if d > 0 else "📉"} <b>{e(n)}</b> expected to play '
+                                   f'<b style="color:{"#1e8449" if d > 0 else "#c0392b"}">{"more" if d > 0 else "less"}</b>: '
+                                   f'{x:.1f} min vs {a:.1f} avg ({"+" if d > 0 else ""}{d:.1f}) '
+                                   f'<span style="{light};font-size:11.5px">{e(lab)} avg</span></div>' for n, x, a, d, lab in exp) + "</div>")
+                t.append("    Dolly expected minutes: " + ", ".join(f"{n} {'more' if d > 0 else 'less'}: {x:.1f} vs {a:.1f} avg ({'+' if d > 0 else ''}{d:.1f})"
+                                                              for n, x, a, d, _ in exp))
+            # 5. beat-writer news (RotoWire feed)
             news = news_for(data, team)
             if news:
                 h.append(f'<div style="{label_css}">Beat-writer news</div>')
@@ -313,7 +350,7 @@ def build(data, games, date):
                              f'<span style="{light};font-size:11.5px">{e(i.get("reporter") or "RotoWire")} · {ago(i["at"])}</span>'
                              f'<div style="{grey};font-size:12.5px">{e(short(i["text"]))}</div></div>')
                 t.append("    News: " + " | ".join(f"{i['player']}: {i['headline']} ({news_credit(i)})" for i in news[:4]))
-            # 5. injuries
+            # 6. injuries
             h.append(f'<div style="{label_css}">Injuries</div>')
             if not inj:
                 h.append(f'<div style="font-size:13px;{grey}">None listed</div>')
@@ -333,8 +370,8 @@ def build(data, games, date):
         h.append("</div>")
         t.append("")
     h.append(f'<div style="font-size:11px;{light};margin:12px 4px 0;line-height:1.5">'
-             '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · (Number) = average minutes per game, this season after 3 games, '
-             'otherwise last season · Highlighted = 5+ minutes more or fewer than last season · Click a player for the source.</div></div></div>')
+             '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · (Number) = average minutes per game, this season after 15 games, '
+             'otherwise last season · Dolly expected minutes shown when 3+ more or less than that average · Highlighted = 5+ minutes more or fewer than last season · Click a player for the source.</div></div></div>')
     return title, "".join(h), "\n".join(t)
 
 
@@ -376,6 +413,11 @@ def build_slack(data, game, date, test=False):
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(
                 f"{'📈' if d == 'up' else '📉'} *{e(n)}* usually plays *{'more' if d == 'up' else 'fewer'}* minutes vs "
                 f"{e(name(opp).split()[-1])}" for n, d in alerts)}})
+        exp = expected_minutes_for(data, team, date, skip={k for k, st in status.items() if st in ("out", "doubt")})
+        if exp:
+            blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "*Dolly expected minutes*\n" + "\n".join(
+                f"{'📈' if d > 0 else '📉'} *{e(n)}* expected to play *{'more' if d > 0 else 'less'}*: {x:.1f} min vs {a:.1f} avg "
+                f"({'+' if d > 0 else ''}{d:.1f})" for n, x, a, d, _ in exp)}})
         news = news_for(data, team)
         if news:
             blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": ("*Beat-writer news*\n" + "\n".join(

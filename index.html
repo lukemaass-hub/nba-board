@@ -754,6 +754,19 @@ function matchupAlertsHTML(code,opp,date,imp){
     .map(a=>`<div class="ma ${a.dir}" title="${esc(`${a.vs} min vs ${opp}, usual ${a.avg}`)}">${a.dir==="up"?"📈":"📉"} <b>${esc(names[normName(a.player)])}</b> usually plays <b class="d">${a.dir==="up"?"more":"fewer"}</b> minutes vs ${esc(oppName)}</div>`);
   return rows.length?`<div class="sech" style="margin-top:8px">Matchup minutes alert</div>${rows.join("")}`:"";
 }
+/* Dolly prematch expected minutes (expected_minutes.json, saved by the prop-compare extension from the Dolly
+   Rosters screen), shown when 3+ above or below the player's average (same rule as the email). */
+let EXPECTED=[];
+function expectedHTML(code,date,imp){
+  const st={}; imp.items.forEach(i=>st[normName(i.rec.player)]=i.rec.k);
+  const rows=EXPECTED.filter(p=>p.team===code&&(!p.game_date||p.game_date===date)&&Date.now()-Date.parse(p.at)<36*3600e3
+      &&st[normName(p.name)]!=="out"&&st[normName(p.name)]!=="doubt")
+    .map(p=>({p,avg:mins[normName(p.name)],x:Number(p.expected)})).filter(r=>r.avg!=null&&Math.abs(r.x-r.avg)>=3-1e-9)
+    .sort((a,b)=>Math.abs(b.x-b.avg)-Math.abs(a.x-a.avg))
+    .map(({p,avg,x})=>{ const d=x-avg, up=d>0;
+      return `<div class="ma ${up?"up":"down"}" title="${esc(`Dolly expected ${x.toFixed(1)} min; average ${avg.toFixed(1)} (${MIN_LABEL[normName(p.name)]||""})`)}">${up?"📈":"📉"} <b>${esc(p.name)}</b> expected to play <b class="d">${up?"more":"less"}</b>: ${x.toFixed(1)} min vs ${avg.toFixed(1)} avg (${up?"+":""}${d.toFixed(1)})</div>`; });
+  return rows.length?`<div class="sech" style="margin-top:8px">Dolly expected minutes</div>${rows.join("")}`:"";
+}
 /* Beat-writer news (RotoWire news feed) about this team's players from the last 36 hours */
 let NEWS=[], RESTRICTIONS=[];
 function agoText(iso){ const m=Math.max(1,Math.round((Date.now()-Date.parse(iso))/60000)); return m<60?`${m}m ago`:m<2880?`${Math.round(m/60)}h ago`:`${Math.round(m/1440)}d ago`; }
@@ -773,7 +786,7 @@ function teamBlockHTML(code,date,opp){
   else h+=imp.items.map(it=>injLineHTML(it,date)).join("");
   if(imp.items.length && !imp.hasChart) h+=`<div class="clear" style="margin-left:22px">Depth chart not loaded, so no replacements yet.</div>`;
   const lu=lineupFor(code,date);
-  h+=(opp?matchupAlertsHTML(code,opp,date,imp):"")+newsHTML(code);
+  h+=(opp?matchupAlertsHTML(code,opp,date,imp):"")+expectedHTML(code,date,imp)+newsHTML(code);
   if(DEPTH_P[code]||lu) h+=`<details class="lineup"><summary>Starters &amp; bench <small>${lu?(lu.confirmed?"confirmed (RotoWire)":"expected (RotoWire)"):"from the depth chart"}</small></summary>${startersHTML(code,imp,date)}${rotationBlockHTML(code,imp,date)}</details>`;
   h+=`</div>`;
   return h;
@@ -972,6 +985,7 @@ async function loadData(){
     if(d.depth) Object.entries(d.depth).forEach(([t,o])=>DEPTH_RAW[t]=o);
     if(d.lineups) LINEUPS=d.lineups;
     if(Array.isArray(d.matchup_alerts)) MATCHUP_ALERTS=d.matchup_alerts;
+    if(Array.isArray(d.expected_minutes?.players)) EXPECTED=d.expected_minutes.players;
     if(Array.isArray(d.news)) NEWS=d.news;
     if(Array.isArray(d.restrictions)) RESTRICTIONS=d.restrictions;
     if(d.minutes) Object.entries(d.minutes).forEach(([n,v])=>{ mins[normName(n)]=v; });

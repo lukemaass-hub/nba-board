@@ -313,3 +313,23 @@ def test_season_minutes_and_weekly():
     assert [(r["player"], r["diff"]) for r in rows] == [("Miles McBride", 9.0)]
     title, body, text = e.build_weekly(data, rows)
     assert "1 players" in title and "Miles McBride (NYK): 29.0 vs 20.0 in 2025-26 (+9.0), 16 games" in text
+
+
+def test_dolly_expected_minutes():
+    import email_report as e
+    now = dt.datetime(2026, 10, 20, 18, 0, tzinfo=dt.timezone.utc)
+    at = "2026-10-20T15:00:00+00:00"
+    data = {"season_minutes": {"season": "2026-27", "last_season": "2025-26",
+                               "current": {"Cade Cunningham": [3, 36.0, "DET"]},
+                               "last": {"Cade Cunningham": [64, 33.9, "DET"], "Jalen Duren": [70, 26.0, "DET"],
+                                        "Daniss Jenkins": [40, 27.5, "DET"], "Ausar Thompson": [60, 24.0, "DET"]}},
+            "expected_minutes": {"players": [
+                {"name": "Cade Cunningham", "team": "DET", "expected": 31.6, "game_date": "2026-10-20", "at": at},   # -2.3: no note
+                {"name": "Jalen Duren", "team": "DET", "expected": 20.1, "game_date": "2026-10-20", "at": at},       # -5.9
+                {"name": "Daniss Jenkins", "team": "DET", "expected": 30.5, "game_date": "2026-10-20", "at": at},    # +3.0: exactly 3
+                {"name": "Ausar Thompson", "team": "DET", "expected": 30.0, "game_date": "2026-10-19", "at": at},    # other day
+                {"name": "Jaylen Brown", "team": "BOS", "expected": 40.0, "game_date": "2026-10-20", "at": at}]}}
+    got = e.expected_minutes_for(data, "DET", "2026-10-20", now=now)
+    assert [(n, x, a, d) for n, x, a, d, _ in got] == [("Jalen Duren", 20.1, 26.0, -5.9), ("Daniss Jenkins", 30.5, 27.5, 3.0)]
+    assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now, skip={"jalen duren"})[0][0] == "Daniss Jenkins"
+    assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now + dt.timedelta(hours=40)) == []   # stale
