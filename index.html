@@ -755,13 +755,14 @@ function matchupAlertsHTML(code,opp,date,imp){
   return rows.length?`<div class="sech" style="margin-top:8px">Matchup minutes alert</div>${rows.join("")}`:"";
 }
 /* Dolly prematch expected minutes (expected_minutes.json, saved by the prop-compare extension from the Dolly
-   Rosters screen), shown when 3+ above or below the player's average (same rule as the email). */
+   Rosters screen), shown when 3+ above or below the player's average, rotation players only: Dolly 15+ or average
+   15+, and Dolly 5+ (same rule as the email). */
 let EXPECTED=[];
 function expectedHTML(code,date,imp){
   const st={}; imp.items.forEach(i=>st[normName(i.rec.player)]=i.rec.k);
   const rows=EXPECTED.filter(p=>p.team===code&&(!p.game_date||p.game_date===date)&&Date.now()-Date.parse(p.at)<36*3600e3
       &&st[normName(p.name)]!=="out"&&st[normName(p.name)]!=="doubt")
-    .map(p=>({p,avg:mins[normName(p.name)],x:Number(p.expected)})).filter(r=>r.avg!=null&&Math.abs(r.x-r.avg)>=3-1e-9)
+    .map(p=>({p,avg:mins[normName(p.name)],x:Number(p.expected)})).filter(r=>r.avg!=null&&Math.abs(r.x-r.avg)>=3-1e-9&&r.x>=5&&Math.max(r.x,r.avg)>=15)
     .sort((a,b)=>Math.abs(b.x-b.avg)-Math.abs(a.x-a.avg))
     .map(({p,avg,x})=>{ const d=x-avg, up=d>0;
       return `<div class="ma ${up?"up":"down"}" title="${esc(`Dolly expected ${x.toFixed(1)} min; average ${avg.toFixed(1)} (${MIN_LABEL[normName(p.name)]||""})`)}">${up?"📈":"📉"} <b>${esc(p.name)}</b> expected to play <b class="d">${up?"more":"less"}</b>: ${x.toFixed(1)} min vs ${avg.toFixed(1)} avg (${up?"+":""}${d.toFixed(1)})</div>`; });

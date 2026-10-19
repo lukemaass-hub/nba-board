@@ -204,12 +204,15 @@ def change_text(data, player):
 
 EXPECTED_DIFF = 3.0         # Dolly expected minutes this far above/below the average gets a note (the user's rule)
 EXPECTED_MAX_AGE_H = 36     # ignore Dolly numbers older than this
+EXPECTED_ROLE_MIN = 15.0    # only rotation players: Dolly expects 15+ minutes, or he averaged 15+ (cuts deep-bench noise)
+EXPECTED_FLOOR = 5.0        # and never players Dolly expects for under 5 minutes
 
 
 def expected_minutes_for(data, team, date, now=None, skip=()):
     """Dolly's prematch expected minutes (expected_minutes.json, saved by the prop-compare extension from the Dolly
     Rosters screen) that are EXPECTED_DIFF+ above or below the player's average (avg_minutes: last season until 15
-    games this season). -> [(player, expected, average, diff, season label)], biggest first."""
+    games this season), for rotation players only (EXPECTED_ROLE_MIN, EXPECTED_FLOOR).
+    -> [(player, expected, average, diff, season label)], biggest first."""
     em = data.get("expected_minutes") or {}
     now = now or dt.datetime.now(dt.timezone.utc)
     out = []
@@ -223,7 +226,7 @@ def expected_minutes_for(data, team, date, now=None, skip=()):
         except (KeyError, ValueError, TypeError):
             continue
         avg = avg_minutes(data, p["name"])
-        if avg and abs(exp - avg[0]) >= EXPECTED_DIFF:
+        if avg and abs(exp - avg[0]) >= EXPECTED_DIFF and exp >= EXPECTED_FLOOR and max(exp, avg[0]) >= EXPECTED_ROLE_MIN:
             out.append((p["name"], exp, avg[0], round(exp - avg[0], 1), avg[1]))
     return sorted(out, key=lambda x: -abs(x[3]))
 
@@ -371,7 +374,7 @@ def build(data, games, date):
         t.append("")
     h.append(f'<div style="font-size:11px;{light};margin:12px 4px 0;line-height:1.5">'
              '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · (Number) = average minutes per game, this season after 15 games, '
-             'otherwise last season · Dolly expected minutes shown when 3+ more or less than that average · Highlighted = 5+ minutes more or fewer than last season · Click a player for the source.</div></div></div>')
+             'otherwise last season · Dolly expected minutes shown when 3+ more or less than that average (rotation players: 15+ min expected or averaged) · Highlighted = 5+ minutes more or fewer than last season · Click a player for the source.</div></div></div>')
     return title, "".join(h), "\n".join(t)
 
 
@@ -530,6 +533,7 @@ def main():
     ap.add_argument("--out", help="write subject/html/text to files with this prefix instead of sending")
     ap.add_argument("--test-slack", action="store_true", help="post the next game's report to Slack now, marked TEST")
     ap.add_argument("--weekly", action="store_true", help="send the weekly minutes-changes email")
+    ap.add_argument("--test-email", action="store_true", help="email the next game's report now, marked TEST (not logged)")
     args = ap.parse_args()
 
     data = json.load(open(args.data))
@@ -548,6 +552,14 @@ def main():
             print(f"Wrote {args.out}.*  ({len(rows)} players)")
         else:
             send_email(subject, body_html, body_text)
+        return
+
+    if args.test_email:
+        games = next_games(data, now)
+        if not games:
+            sys.exit("No upcoming games in data.json to test with.")
+        subject, body_html, body_text = build(data, games, games[0]["date"])
+        send_email("[TEST] " + subject, body_html, body_text)   # not logged: the real one still goes out before tip
         return
 
     if args.test_slack:

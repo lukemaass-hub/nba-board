@@ -329,6 +329,10 @@ def test_dolly_expected_minutes():
                 {"name": "Daniss Jenkins", "team": "DET", "expected": 30.5, "game_date": "2026-10-20", "at": at},    # +3.0: exactly 3
                 {"name": "Ausar Thompson", "team": "DET", "expected": 30.0, "game_date": "2026-10-19", "at": at},    # other day
                 {"name": "Jaylen Brown", "team": "BOS", "expected": 40.0, "game_date": "2026-10-20", "at": at}]}}
+    data["season_minutes"]["last"].update({"Tolu Smith": [30, 9.1, "DET"], "Isaac Jones": [20, 5.1, "DET"]})
+    data["expected_minutes"]["players"] += [
+        {"name": "Tolu Smith", "team": "DET", "expected": 0.0, "game_date": "2026-10-20", "at": at},     # under 5 expected
+        {"name": "Isaac Jones", "team": "DET", "expected": 9.5, "game_date": "2026-10-20", "at": at}]    # +4.4 but not rotation
     got = e.expected_minutes_for(data, "DET", "2026-10-20", now=now)
     assert [(n, x, a, d) for n, x, a, d, _ in got] == [("Jalen Duren", 20.1, 26.0, -5.9), ("Daniss Jenkins", 30.5, 27.5, 3.0)]
     assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now, skip={"jalen duren"})[0][0] == "Daniss Jenkins"
