@@ -213,6 +213,15 @@ def expected_minutes_for(data, team, date, now=None, skip=()):
     Rosters screen) that are EXPECTED_DIFF+ above or below the player's average (avg_minutes: last season until 15
     games this season), for rotation players only (EXPECTED_ROLE_MIN, EXPECTED_FLOOR).
     -> [(player, expected, average, diff, season label)], biggest first."""
+    out = []
+    for name, exp, avg in expected_raw(data, team, date, now, skip):
+        if avg and abs(exp - avg[0]) >= EXPECTED_DIFF and exp >= EXPECTED_FLOOR and max(exp, avg[0]) >= EXPECTED_ROLE_MIN:
+            out.append((name, exp, avg[0], round(exp - avg[0], 1), avg[1]))
+    return sorted(out, key=lambda x: -abs(x[3]))
+
+
+def expected_raw(data, team, date, now=None, skip=()):
+    """Every fresh Dolly number for this team and date: [(player, expected, avg_minutes result or None)]."""
     em = data.get("expected_minutes") or {}
     now = now or dt.datetime.now(dt.timezone.utc)
     out = []
@@ -222,13 +231,29 @@ def expected_minutes_for(data, team, date, now=None, skip=()):
         try:
             if now - dt.datetime.fromisoformat(p["at"]) > dt.timedelta(hours=EXPECTED_MAX_AGE_H):
                 continue
-            exp = float(p["expected"])
+            out.append((p["name"], float(p["expected"]), avg_minutes(data, p["name"])))
         except (KeyError, ValueError, TypeError):
             continue
-        avg = avg_minutes(data, p["name"])
-        if avg and abs(exp - avg[0]) >= EXPECTED_DIFF and exp >= EXPECTED_FLOOR and max(exp, avg[0]) >= EXPECTED_ROLE_MIN:
-            out.append((p["name"], exp, avg[0], round(exp - avg[0], 1), avg[1]))
-    return sorted(out, key=lambda x: -abs(x[3]))
+    return out
+
+
+DEEP_NEW_MIN = 5.0          # a deep-bench player with no average yet shows if Dolly expects at least this
+
+
+def deep_bench_up(data, team, date, deep, skip=(), now=None):
+    """Deep bench is left out of the email, except (the user's rule) any deep-bench player Dolly expects to play MORE
+    than his average, by any amount (or DEEP_NEW_MIN+ minutes when he has no average yet).
+    -> [(player, expected, diff or None)] in depth-chart order."""
+    raw = {norm_name(n): (x, a) for n, x, a in expected_raw(data, team, date, now, skip)}
+    out = []
+    for _, n, _ in deep:
+        r = raw.get(norm_name(n))
+        if not r:
+            continue
+        x, a = r
+        if (a and x > a[0]) or (not a and x >= DEEP_NEW_MIN):
+            out.append((n, x, round(x - a[0], 1) if a else None))
+    return out
 
 
 def expected_tags(data, team, date, skip=()):
@@ -335,16 +360,20 @@ def build(data, games, date):
                 h.append("</table>")
                 t.append(f"    {label}: " + ", ".join(f"{p} {n}{mins_tag(data, n)}{exp_text(xt, n)}{change_text(data, n)}{f' ({why})' if why else ''}"
                                                        for p, n, why in starters))
-            # 2. bench
+            # 2. bench (deep bench only when expected up)
+            up = []
             if bench or deep:
                 h.append(f'<div style="{label_css}">Bench</div><div style="font-size:13px;line-height:1.7">'
                          + " &nbsp;·&nbsp; ".join(f'<span style="{"background:#fff4c2;" if minutes_change(data, n) else ""}">{e(n)} {mins(n)}</span>'
                                                   f'{exp_html(xt, n)}{tag(st)}{change_html(data, n)}' for p, n, st in bench) + "</div>")
-                if deep:
-                    h.append(f'<div style="font-size:12px;{light};line-height:1.6;margin-top:2px">Deep bench: '
-                             + ", ".join(f'{e(n)}{mins_tag(data, n)}{exp_html(xt, n)}{change_html(data, n)}' for _, n, _ in deep) + "</div>")
+                up = deep_bench_up(data, team, date, deep, skip={k for k, st in status.items() if st in ("out", "doubt")})
+                if up:   # deep bench only when Dolly expects him to play more than usual
+                    h.append(f'<div style="font-size:12px;{light};line-height:1.6;margin-top:2px">Deep bench, expected up: '
+                             + ", ".join(f'{e(n)}{mins_tag(data, n)}'
+                                         f' <span style="font-size:12px;font-weight:bold;color:#1e8449">Exp {x:.1f}{f" (+{d:.1f})" if d is not None else ""}</span>'
+                                         for n, x, d in up) + "</div>")
                 t.append("    Bench: " + ", ".join(f"{n}{mins_tag(data, n)}{exp_text(xt, n)}{change_text(data, n)}" for _, n, _ in bench)
-                         + (f" | Deep bench: {', '.join(n + mins_tag(data, n) + exp_text(xt, n) for _, n, _ in deep)}" if deep else ""))
+                         + (f" | Deep bench, expected up: {', '.join(f'{n}{mins_tag(data, n)} [Exp {x:.1f}' + (f' (+{d:.1f})' if d is not None else '') + ']' for n, x, d in up)}" if up else ""))
             # 3. matchup minutes alerts (minutes-vs-teams workbook)
             alerts = matchup_alerts_for(data, team, opp, inj, starters)
             if alerts:
@@ -420,8 +449,10 @@ def build_slack(data, game, date, test=False):
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": f"_{e(label)}_\n" + "\n".join(rows)}})
         if bench or deep:
             txt = "*Bench:* " + " · ".join(f"{e(n)}{mins_tag(data, n)}{exp_text(xt, n)}{tag.get(st, '')}{change_text(data, n)}" for _, n, st in bench)
-            if deep:
-                txt += "\n*Deep bench:* " + ", ".join(e(n) + mins_tag(data, n) for _, n, _ in deep)
+            up = deep_bench_up(data, team, date, deep, skip={k for k, st in status.items() if st in ("out", "doubt")})
+            if up:
+                txt += "\n*Deep bench, expected up:* " + ", ".join(
+                    f"{e(n)}{mins_tag(data, n)} [Exp {x:.1f}" + (f" (+{d:.1f})" if d is not None else "") + "]" for n, x, d in up)
             blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": txt[:2900]}]})
         if alerts:
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(
