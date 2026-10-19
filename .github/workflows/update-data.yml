@@ -22,6 +22,10 @@ on:
         description: "Send the weekly minutes-changes email now"
         type: boolean
         default: false
+      test_email:
+        description: "Send a TEST pre-game email for the next game now"
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths: ["pipeline/**", "tests/**", ".github/workflows/update-data.yml"]
@@ -73,6 +77,14 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: python pipeline/email_report.py --data data.json --test-slack
+
+      - name: Pre-game test email (only when you tick the box on "Run workflow")
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.test_email }}
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python pipeline/email_report.py --data data.json --test-email
 
       - name: Weekly minutes-changes email (Mondays, or when you tick the box)
         if: ${{ github.event.schedule == '0 13 * * 1' || (github.event_name == 'workflow_dispatch' && inputs.weekly_email) }}
