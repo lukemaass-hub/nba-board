@@ -358,3 +358,17 @@ def test_deep_bench_only_when_expected_up():
     deep = [("C", "Tolu Smith", ""), ("C", "Paul Reed", ""), ("SG", "Chaz Lanier", ""), ("C", "Ugonna Onyenso", "")]
     assert e.deep_bench_up(data, "DET", "2026-10-20", deep, now=now) == [("Paul Reed", 14.5, 0.6), ("Ugonna Onyenso", 6.0, None)]
     assert e.deep_bench_up(data, "DET", "2026-10-20", deep, skip={"paul reed"}, now=now) == [("Ugonna Onyenso", 6.0, None)]
+
+
+def test_news_only_injuries_suspensions_restrictions():
+    import email_report as e
+    keep = ["Bona (foot) is questionable for Tuesday's meeting in New York.",
+            "Murray (toe) said Monday he'll be fine to play in Wednesday's season opener.",
+            "Smith was suspended three games for leaving the bench.",
+            "Head coach Ime Udoka said Sunday that VanVleet won't face any minutes restrictions."]
+    drop = ["The 76ers exercised the third-year team option on Edgecombe's contract.",
+            "Miller agreed to a five-year, $209 million rookie-scale contract extension with Charlotte.",
+            "Queta will come off the bench for Tuesday's season opener against Detroit.",
+            "Head coach Steve Kerr confirmed Monday that Lendeborg will start Wednesday's opener."]
+    assert all(e.news_relevant({"headline": "", "text": t}) for t in keep)
+    assert not any(e.news_relevant({"headline": "", "text": t}) for t in drop)
