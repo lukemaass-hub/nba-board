@@ -7,11 +7,12 @@
 </head>
 <body>
 <header>
-  <h1>Prop Price Compare <span class="sub">NBA player points odds · DraftKings · FanDuel · Ours (Dolly <span id="env-label">TEST</span>) · <span id="version"></span></span></h1>
+  <h1>Prop Price Compare <span class="sub">NBA player points odds · DraftKings · FanDuel · Ours (Dolly <span id="env-label">UAT</span>) · <span id="version"></span></span></h1>
   <div class="lights">
     <span class="light" id="light-DK"><i></i>DraftKings <b>idle</b></span>
     <span class="light" id="light-FD"><i></i>FanDuel <b>idle</b></span>
-    <span class="light" id="light-OURS"><i></i>Ours (Dolly <span id="env-light">TEST</span>) <b>…</b></span>
+    <span class="light" id="light-OURS"><i></i>Ours UAT <b>…</b></span>
+    <span class="light prodlight" id="light-PROD" hidden><i></i>Ours PROD <b>…</b></span>
   </div>
 </header>
 
@@ -30,8 +31,9 @@
 <details id="settings-box">
   <summary>Settings</summary>
   <form id="settings" class="grid">
-    <label>Dolly environment (where our prices are read)
-      <select name="dollyEnv"><option value="test">Test (UAT): default</option><option value="prod">Prod: Chrome will ask to allow it</option></select></label>
+    <fieldset class="wide envs"><legend>Dolly: where our prices are read (tick both to compare UAT and Prod side by side)</legend>
+      <label class="small"><input type="checkbox" name="dollyTest"> Test (UAT)</label>
+      <label class="small"><input type="checkbox" name="dollyProd"> Prod (Chrome will ask to allow it)</label></fieldset>
     <label>Anomaly: % off the DK/FD average <input name="anomalyPct" type="number" min="1" step="0.5"></label>
     <label>Anomaly: % off either book alone <input name="anomalyBookPct" type="number" min="1" step="0.5"></label>
     <label>Seconds between pulls <input name="pollSeconds" type="number" min="5" step="1"></label>
@@ -74,12 +76,12 @@
         <input id="filter" placeholder="Filter player…" size="18">
         <label class="small"><input type="checkbox" id="both-only" checked> Only lines 2+ books have</label>
         <span id="both-note" class="muted small"></span>
-        <label class="small">Sort <select id="sort"><option value="player">Player, then line (lowest first)</option><option value="gap">Biggest difference (ours vs books)</option></select></label>
+        <label class="small">Sort <select id="sort"><option value="player">Player, then line (lowest first)</option><option value="gap">Biggest difference (ours vs books)</option><option value="env">Biggest difference (UAT vs Prod)</option></select></label>
       </div>
     </div>
     <div class="table-wrap">
       <table id="table">
-        <thead><tr><th>Player</th><th>Market</th><th class="num">DraftKings</th><th class="num">FanDuel</th><th class="num">Ours</th></tr></thead>
+        <thead><tr><th>Player</th><th>Market</th><th class="num">DraftKings</th><th class="num">FanDuel</th><th class="num">Ours UAT</th></tr></thead>
         <tbody></tbody>
       </table>
       <p id="empty" class="muted">Pick a game and press Start.</p>
@@ -99,7 +101,7 @@
     <p class="muted small" id="anoms-note"></p>
     <div class="table-wrap">
       <table id="anoms">
-        <thead><tr><th>Time (MT)</th><th>Player</th><th>Market</th><th>Why</th><th class="num">Ours</th><th class="num">DK</th><th class="num">FD</th><th class="num">DK/FD avg</th><th class="num">% off avg</th><th class="num">% off DK</th><th class="num">% off FD</th></tr></thead>
+        <thead><tr><th>Time (MT)</th><th>Dolly</th><th>Player</th><th>Market</th><th>Why</th><th class="num">Ours</th><th class="num">DK</th><th class="num">FD</th><th class="num">DK/FD avg</th><th class="num">% off avg</th><th class="num">% off DK</th><th class="num">% off FD</th></tr></thead>
         <tbody></tbody>
       </table>
       <p id="anoms-empty" class="muted">None yet for this game. They appear here while it runs.</p>

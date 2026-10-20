@@ -1,4 +1,4 @@
-import { DOLLY_ENVS, dollyEnv } from './lib/dolly-env.js';
+import { activeEnvs } from './lib/dolly-env.js';
 
 // Clicking the toolbar icon opens the dashboard. All polling happens in the dashboard tab
 // itself, so closing that tab stops every request to the books.
@@ -49,17 +49,18 @@ chrome.webRequest.onBeforeRequest.addListener(
   { urls: ['https://*.draftkings.com/*'], types: ['xmlhttprequest'] },
 );
 
-// ---------------------------------------------------------------- Dolly reader: selected environment only
-// The read-only Dolly reader (content/dolly-props.js) is loaded ONLY into the Dolly environment
-// chosen in Settings. With Test selected nothing is loaded into prod Dolly (and the extension holds
-// no prod permission at all); prod needs the user to pick it and grant it.
+// ---------------------------------------------------------------- Dolly reader: ticked environments only
+// The read-only Dolly reader (content/dolly-props.js) is loaded ONLY into the Dolly environments
+// ticked in Settings. With prod unticked nothing is loaded into prod Dolly (and the extension holds
+// no prod permission at all); prod needs the user to tick it and grant it.
 let syncing = Promise.resolve();
 async function syncDollyScript() {
   const { settings } = await chrome.storage.local.get('settings');
-  const env = dollyEnv(settings), origin = DOLLY_ENVS[env].origin;
   await chrome.scripting.unregisterContentScripts({ ids: ['dolly-reader'] }).catch(() => {});
-  if (!(await chrome.permissions.contains({ origins: [origin] }))) return;   // prod chosen but not granted: load nothing
-  await chrome.scripting.registerContentScripts([{ id: 'dolly-reader', matches: [origin], js: ['content/dolly-props.js'],
+  const origins = [];
+  for (const e of activeEnvs(settings)) if (await chrome.permissions.contains({ origins: [e.origin] })) origins.push(e.origin);
+  if (!origins.length) return;   // prod ticked but not granted (and test off): load nothing
+  await chrome.scripting.registerContentScripts([{ id: 'dolly-reader', matches: origins, js: ['content/dolly-props.js'],
     allFrames: true, runAt: 'document_idle', persistAcrossSessions: true }]);
 }
 const resync = () => { syncing = syncing.then(syncDollyScript).catch(() => {}); };
