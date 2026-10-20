@@ -282,10 +282,27 @@ def restrictions_for(data, teams, date):
     return [w for w in data.get("restrictions", []) if w["team"] in teams and w["from"] <= date <= w["through"]]
 
 
+# Beat-writer news is shown only for injuries, suspensions and minutes restrictions (user's rule, Oct 20 2026):
+# no contracts, team options or starting-lineup notes. RotoWire marks injury items with "(ankle)" after the name.
+# Same rule in index.html (NEWS_KEEP / NEWS_SKIP).
+NEWS_KEEP = re.compile(r"\((?!\d)[a-z][a-z /-]{1,25}\)|\b(injur\w*|ruled out|out (for|indefinitely|at least|another)|won'?t (play|debut|travel)"
+                       r"|will not (play|debut|be ready)|not (play|travel|ready)\w*|(expected|planning|plans|hopeful|fine|cleared) to play|questionable"
+                       r"|doubtful|probable|day-to-day|game-time|miss(es|ed|ing)?|sidelined|illness|surgery|torn|tear|sprain\w*|strain\w*"
+                       r"|fractur\w*|concussion|sore\w*|rehab\w*|recover\w*|return\w*|injury report|availab\w*|cleared|suspen\w+"
+                       r"|restriction\w*|minutes|will play|limited|workload|ramp\w*|load management)\b", re.I)
+NEWS_SKIP = re.compile(r"\b(extension|contract|team option|signs|inks|agrees)\b", re.I)
+
+
+def news_relevant(i):
+    t = f"{i.get('headline', '')} {i.get('text', '')}"
+    return bool(NEWS_KEEP.search(t)) and not (NEWS_SKIP.search(t) and not re.search(r"suspen", t, re.I))
+
+
 def news_for(data, team, now=None):
-    """Beat-writer news (RotoWire feed) about this team's players from the last 36 hours, newest first."""
+    """Beat-writer news (RotoWire feed) about this team's players from the last 36 hours, newest first:
+    injuries, suspensions and minutes restrictions only (news_relevant)."""
     now = now or dt.datetime.now(dt.timezone.utc)
-    return [i for i in data.get("news", []) if i.get("team") == team
+    return [i for i in data.get("news", []) if i.get("team") == team and news_relevant(i)
             and dt.datetime.fromisoformat(i["at"]) >= now - dt.timedelta(hours=NEWS_HOURS)]
 
 
