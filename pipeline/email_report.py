@@ -530,6 +530,42 @@ def post_slack(url, text, blocks):
         raise RuntimeError(f"Slack said: {body[:200]}")
 
 
+def dm_traders(data, token, now, window, sent, stamp):
+    """DM each game's report to the traders listed for it in today's #in-play-trading schedule (slack_assign.py).
+    SLACK_DM_MODE: off = only print who would get it; test = all to the owner, marked [TEST]; on = to the traders."""
+    import slack_assign as sa
+    due = due_games(data, now, window, sent, prefix="dm ")
+    if not due:
+        return
+    m = sa.mode()
+    try:
+        text = sa.fetch_schedule(token, now.date())
+    except Exception as ex:   # no access to the channel yet, Slack down: try again on the next run
+        print(f"Slack DMs: could not read the schedule ({ex})")
+        return
+    if not text:
+        print("Slack DMs: today's IP Trader Schedule isn't posted yet; trying again next run.")
+        return
+    sched = sa.parse_schedule(text)
+    for key, g in due:
+        people = sched.get((g["away"], g["home"]), [])
+        who = sa.plan(people)
+        title, blocks = build_slack(data, g, g["date"], test=(m == "test"))
+        if m == "off" or not people:
+            print(f"Slack DMs ({m}): {g['away']}@{g['home']} would go to {who}")
+        else:
+            for p in ([{"user": sa.OWNER, "role": ""}] if m == "test" else people):
+                role = f" ({p['role']})" if p["role"] else ""
+                note = f"[TEST] Would go to: {who}" if m == "test" else f"📋 You're on this game{role} in today's IP Trader Schedule"
+                try:
+                    sa.dm(token, p["user"], title, [{"type": "context", "elements": [{"type": "mrkdwn", "text": slack_escape(note)}]}] + blocks)
+                except Exception as ex:
+                    print(f"Slack DM to {p.get('name') or p['user']} failed: {ex}")
+            print(f"Slack DMs ({m}): {g['away']}@{g['home']} sent to {'owner (test)' if m == 'test' else who}")
+        if m != "off":
+            sent["dm " + key] = stamp
+
+
 def due_games(data, now, window, sent, prefix=""):
     out = []
     for g in all_games(data):
@@ -703,8 +739,12 @@ def main():
             sent["slack " + key] = stamp
             print(f"Slack sent: {title}")
 
+    bot = os.environ.get("SLACK_BOT_TOKEN")
+    if bot and not args.out:
+        dm_traders(data, bot, now, args.window, sent, stamp)
+
     cutoff = (dt.date.today() - dt.timedelta(days=7)).isoformat()
-    sent = {k: v for k, v in sent.items() if k.removeprefix("slack ")[:10] >= cutoff}
+    sent = {k: v for k, v in sent.items() if re.sub(r"^(slack|dm) ", "", k)[:10] >= cutoff}
     if sent or os.path.exists(args.log):
         json.dump(sent, open(args.log, "w"), indent=1)
 
