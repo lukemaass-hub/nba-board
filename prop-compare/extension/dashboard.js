@@ -247,13 +247,20 @@ async function readDolly(g, E) {
   const ask = (tabId, frameId) => new Promise(res => chrome.tabs.sendMessage(tabId, { type: 'DOLLY_READ' }, { frameId }, (r) => res(chrome.runtime.lastError ? null : r)));
   const answers = await Promise.all(tabs.map(async (t) => {
     const frames = (await chrome.webNavigation.getAllFrames({ tabId: t.id }).catch(() => null)) || [{ frameId: 0 }];
+    // a Dolly tab opened before the extension was installed or allowed has no reader yet: load the
+    // (read-only) reader into it now, so the tab never needs a reload. Nothing in Dolly is changed.
+    if (!(await ask(t.id, 0))) {
+      // clear the "already loaded" flag first: a copy left from before an extension update can't answer any more
+      await chrome.scripting.executeScript({ target: { tabId: t.id, allFrames: true }, func: () => { window.__propCompareDolly = false; } })
+        .then(() => chrome.scripting.executeScript({ target: { tabId: t.id, allFrames: true }, files: ['content/dolly-props.js'] })).catch(e => logErr(`Dolly ${E.label}: could not load the reader into the open tab: ${e.message || e}`));
+    }
     const rs = (await Promise.all(frames.map(f => ask(t.id, f.frameId)))).filter(r => r?.ok);
     rs.sort((a, b) => b.quotes.length - a.quotes.length);
     const top = rs.find(r => r.frame === 'top');
     return rs[0] ? { ...rs[0], teams: rs[0].teams?.length ? rs[0].teams : top?.teams, url: top?.url || rs[0].url } : null;
   }));
   const ok = answers.filter(a => a?.ok);
-  if (!ok.length) return { ok: false, error: 'Dolly tab did not answer (reload the Dolly tab once after installing the extension)' };
+  if (!ok.length) return { ok: false, error: `Dolly ${E.label} tab did not answer (see Recent problems in Diagnostics)` };
   const want = [g.fd?.away || g.dk?.away, g.fd?.home || g.dk?.home];
   const score = (a) => a.teams?.length === 2 ? Math.min(...want.map(w => Math.max(...a.teams.map(t => tokenScore(w, t))))) : 0;
   const best = ok.length === 1 ? ok[0] : ok.slice().sort((a, b) => score(b) - score(a))[0];
