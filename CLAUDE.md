@@ -70,6 +70,16 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   SLACK_WEBHOOK_URL (secret), same layout as the email; tracked in email_log.json as "slack <date> A@H". Workflow
   "Run workflow" has a test_slack checkbox that posts the next game now, marked [TEST]. Don't point it at a shared
   channel until the user says testing is over.
+- Trader DMs (Oct 20 2026, built, NOT sending yet): pipeline/slack_assign.py reads the daily "<m/d> IP Trader
+  Schedule" message (posted ~8:30 AM MT by the team's existing IP Trader Bot app in #in-play-trading, C06U8AW81K2),
+  takes the NBA section ("7:00 PM - A @ B - <@U..|Name> Cores / <@U..|Name> Props") and email_report.dm_traders() DMs
+  each listed trader that game's Slack report ~20 min before tip (logged as "dm <date> A@H"). Needs the user's own new
+  app (also named IP Trader Bot, App ID A0CALRVPDBM, install awaiting admin approval) with bot scopes chat:write,
+  im:write, channels:history, added to #in-play-trading, token in secret SLACK_BOT_TOKEN. Repository variable
+  SLACK_DM_MODE: off (default: only logs who would get it) / test (all to the user, marked [TEST]) / on. The user
+  said: don't send anything until approved; turn on test first. The schedule channel lives in workspace T04DVTM1BB6
+  (FBG Enterprises Opco); the new app was created in "Fanatics Betting and Gaming" (T030UFQJYEL): it must be
+  installed where #in-play-trading is.
 
 - Teammate-minutes backtest (Oct 15 2026, separate from the site; nothing on the site uses it): backtest/.
   fetch_espn.py (ESPN scoreboard + summary box scores, 2024-25 and 2025-26 regular season; NBA cdn/stats block us,

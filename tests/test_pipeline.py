@@ -372,3 +372,30 @@ def test_news_only_injuries_suspensions_restrictions():
             "Head coach Steve Kerr confirmed Monday that Lendeborg will start Wednesday's opener."]
     assert all(e.news_relevant({"headline": "", "text": t}) for t in keep)
     assert not any(e.news_relevant({"headline": "", "text": t}) for t in drop)
+
+
+def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
+    import email_report as e, slack_assign as sa
+    text = open(os.path.join(os.path.dirname(__file__), "fixtures", "schedule_1020.txt")).read()
+    assert sa.is_schedule(text, dt.date(2026, 10, 20)) and not sa.is_schedule(text, dt.date(2026, 10, 21))
+    s = sa.parse_schedule(text)
+    assert set(s) == {("BOS", "DET"), ("PHI", "NYK"), ("OKC", "SAS")}          # NHL / NCAAF lines ignored
+    assert s[("PHI", "NYK")] == [{"user": "U09BNHCQD5Z", "name": "Evan Finger", "role": "Cores"},
+                                 {"user": "U0ACFA2QDFF", "name": "Amol Singh", "role": "Props"}]
+    assert s[("BOS", "DET")] == [{"user": "U07P8A9C5N0", "name": "Ben Fortney", "role": ""}]
+    assert sa.team_code("LA Clippers") == "LAC" and sa.team_code("Portland Trail Blazers") == "POR"
+
+    game = {"date": "2026-10-20", "time": "19:00", "away": "PHI", "home": "NYK", "venue": ""}
+    now = dt.datetime(2026, 10, 20, 18, 45, tzinfo=e.ET)
+    sentto = []
+    monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: text)
+    monkeypatch.setattr(sa, "dm", lambda token, user, title, blocks: sentto.append((user, blocks[0]["elements"][0]["text"])))
+    monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
+    monkeypatch.setattr(e, "all_games", lambda data: [game])
+    for m, want in (("off", []), ("test", ["U0B5EP4PV3M"]), ("on", ["U09BNHCQD5Z", "U0ACFA2QDFF"])):
+        monkeypatch.setenv("SLACK_DM_MODE", m)
+        sentto.clear(); log = {}
+        e.dm_traders({}, "xoxb", now, 25, log, "now")
+        assert [u for u, _ in sentto] == want, m
+        assert ("dm 2026-10-20 PHI@NYK" in log) == (m != "off")
+    assert "(Props)" in sentto[1][1]

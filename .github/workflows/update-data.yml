@@ -74,6 +74,10 @@ jobs:
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          # DM each game to the traders in #in-play-trading's IP Trader Schedule (pipeline/slack_assign.py).
+          # Nothing is sent unless the repository variable SLACK_DM_MODE is "test" (owner only) or "on".
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_DM_MODE: ${{ vars.SLACK_DM_MODE || 'off' }}
         run: python pipeline/email_report.py --data data.json --window 25
 
       - name: Slack test message (only when you tick the box on "Run workflow")
