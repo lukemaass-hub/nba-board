@@ -73,7 +73,7 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 - Trader DMs (Oct 20 2026, built, NOT sending yet): pipeline/slack_assign.py reads the daily "<m/d> IP Trader
   Schedule" message (posted ~8:30 AM MT by the team's existing IP Trader Bot app in #in-play-trading, C06U8AW81K2),
   takes the NBA section ("7:00 PM - A @ B - <@U..|Name> Cores / <@U..|Name> Props") and email_report.dm_traders() DMs
-  each listed trader that game's Slack report ~20 min before tip (logged as "dm <date> A@H"). Needs the user's own new
+  each listed trader that game's Slack report ~20 min before tip (just the report, no extra line; user's choice) (logged as "dm <date> A@H"). Needs the user's own new
   app (also named IP Trader Bot, App ID A0CALRVPDBM, install awaiting admin approval) with bot scopes chat:write,
   im:write, channels:history, added to #in-play-trading, token in secret SLACK_BOT_TOKEN. Repository variable
   SLACK_DM_MODE: off (default: only logs who would get it) / test (all to the user, marked [TEST]) / on. The user
