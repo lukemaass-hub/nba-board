@@ -555,10 +555,10 @@ def dm_traders(data, token, now, window, sent, stamp):
             print(f"Slack DMs ({m}): {g['away']}@{g['home']} would go to {who}")
         else:
             for p in ([{"user": sa.OWNER, "role": ""}] if m == "test" else people):
-                role = f" ({p['role']})" if p["role"] else ""
-                note = f"[TEST] Would go to: {who}" if m == "test" else f"📋 You're on this game{role} in today's IP Trader Schedule"
+                # traders get just the report (user's choice); the owner's test copy says who it would go to
+                head = [{"type": "context", "elements": [{"type": "mrkdwn", "text": slack_escape(f"[TEST] Would go to: {who}")}]}] if m == "test" else []
                 try:
-                    sa.dm(token, p["user"], title, [{"type": "context", "elements": [{"type": "mrkdwn", "text": slack_escape(note)}]}] + blocks)
+                    sa.dm(token, p["user"], title, head + blocks)
                 except Exception as ex:
                     print(f"Slack DM to {p.get('name') or p['user']} failed: {ex}")
             print(f"Slack DMs ({m}): {g['away']}@{g['home']} sent to {'owner (test)' if m == 'test' else who}")

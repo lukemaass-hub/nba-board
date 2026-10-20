@@ -389,7 +389,7 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
     now = dt.datetime(2026, 10, 20, 18, 45, tzinfo=e.ET)
     sentto = []
     monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: text)
-    monkeypatch.setattr(sa, "dm", lambda token, user, title, blocks: sentto.append((user, blocks[0]["elements"][0]["text"])))
+    monkeypatch.setattr(sa, "dm", lambda token, user, title, blocks: sentto.append((user, blocks)))
     monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
     monkeypatch.setattr(e, "all_games", lambda data: [game])
     for m, want in (("off", []), ("test", ["U0B5EP4PV3M"]), ("on", ["U09BNHCQD5Z", "U0ACFA2QDFF"])):
@@ -398,4 +398,7 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
         e.dm_traders({}, "xoxb", now, 25, log, "now")
         assert [u for u, _ in sentto] == want, m
         assert ("dm 2026-10-20 PHI@NYK" in log) == (m != "off")
-    assert "(Props)" in sentto[1][1]
+    assert sentto[0][1] == [] and sentto[1][1] == []   # traders get just the report, no extra line
+    monkeypatch.setenv("SLACK_DM_MODE", "test"); sentto.clear()
+    e.dm_traders({}, "xoxb", now, 25, {}, "now")
+    assert "Would go to: Evan Finger (Cores), Amol Singh (Props)" in sentto[0][1][0]["elements"][0]["text"]
