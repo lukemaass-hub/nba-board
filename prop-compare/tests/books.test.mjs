@@ -109,3 +109,26 @@ test('anomalies: ours vs DK/FD by payout (profit on a $1 win); a new row every p
   assert.deepEqual(log.map(e => [e.tickId, e.t, e.ours, e.dk, e.fd]), [[1, 15000, '+120', '-178', '-174'], [2, 30000, '+150', '-178', '-174']]);
   assert.equal(new Set(log.map(e => e.id)).size, 2);
 });
+
+test('UAT and Prod side by side: own columns, UAT-vs-Prod gap, anomalies per Dolly, old setting kept', async () => {
+  const { findAnomalies, anomalyRows } = await import('../extension/lib/anomaly.js');
+  const { envOn, activeEnvs } = await import('../extension/lib/dolly-env.js');
+  const q = (book, american) => ({ book, player: 'Cade Cunningham', kind: 'ou', line: 24.5, side: 'over', american, decimal: decimalFromAmerican(american) });
+  const rows = buildRows({ DK: [q('DK', '-110')], FD: [q('FD', '-110')], OURS: [q('OURS', '-110')], PROD: [q('PROD', '+150')] });
+  assert.equal(rows.length, 1);
+  assert.deepEqual([rows[0].books.OURS.over.american, rows[0].books.PROD.over.american], ['-110', '+150']);
+  assert.equal(rows[0].envDiff, 60);   // -110 -> -10, +150 -> +50
+  const tick = { gameKey: 'g', game: 'A @ B', id: 1, t: 0, aligned: true, used: { DK: true, FD: true, OURS: true, PROD: true }, at: {}, rows };
+  const rec = tickToRecords(tick);
+  assert.equal(rec[0].length, CSV_HEADERS.length);
+  assert.deepEqual(rec[0].slice(-6, -4), ['-110', '']);
+  assert.deepEqual(rec[0].slice(-3, -1), ['+150', '']);
+  assert.equal(findAnomalies(rows, 10, 20, 'OURS').length, 0, 'UAT matches the books');
+  const prod = anomalyRows(findAnomalies(rows, 10, 20, 'PROD'), tick);
+  assert.equal(prod.length, 1); assert.equal(prod[0].env, 'prod'); assert.match(prod[0].id, /\|prod$/);
+  // settings
+  assert.deepEqual(activeEnvs({}).map(e => e.key), ['test']);
+  assert.deepEqual(activeEnvs({ dollyEnv: 'prod' }).map(e => e.key), ['prod']);
+  assert.deepEqual(activeEnvs({ dollyTest: true, dollyProd: true }).map(e => e.key), ['test', 'prod']);
+  assert.equal(envOn({ dollyTest: false, dollyProd: false }, 'test'), false);
+});

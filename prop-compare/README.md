@@ -59,12 +59,17 @@ Settings still has the DraftKings IDs as a backup. The ones learned from your br
 
 Our prices are the **App** odds (what the app shows customers), read off the Dolly Market Manager screen.
 
-**Which Dolly:** Settings → **Dolly environment**.
-- **Test (UAT)** is the default (`dolly.uat.oddsfactorytrading.bet`). While Test is selected, the extension has
-  **no permission for prod Dolly** and loads **nothing** into prod pages.
-- **Prod**: pick it and click **Save settings**. Chrome asks you to allow `dolly.1.oddsfactorytrading.com`; say
-  Allow, then reload the prod Dolly tab once. The header turns red and says PROD so it can't be mistaken for test.
-- Going back to Test removes the prod permission again.
+**Which Dolly:** Settings → **Dolly** has two tick boxes, **Test (UAT)** and **Prod**.
+- **Test (UAT)** is ticked by default (`dolly.uat.oddsfactorytrading.bet`). While Prod is unticked, the extension
+  has **no permission for prod Dolly** and loads **nothing** into prod pages.
+- **Prod**: tick it and click **Save settings**. Chrome asks you to allow `dolly.1.oddsfactorytrading.com`; say
+  Allow, then reload the prod Dolly tab once. The header gets a red bar and says PROD.
+- **Both ticked = UAT vs Prod at the same time.** Open the game's Market Manager in both Dollys (each in its own
+  window). The table gets two columns, **Ours UAT** and **Ours Prod**, read in the same pull. A Prod cell is
+  highlighted purple when its odds differ from UAT (hover it to see the UAT odds). **Sort → Biggest difference (UAT
+  vs Prod)** puts those lines first. The graph shows both lines, and the CSV has `ours_uat_*` and `ours_prod_*`
+  columns. Anomalies are checked for each one separately; the **Dolly** column says which.
+- Unticking Prod removes the prod permission again.
 
 - It only reads text. It never clicks, types, changes or sends anything, and it doesn't measure the page
   (measuring is what froze Dolly in earlier versions).

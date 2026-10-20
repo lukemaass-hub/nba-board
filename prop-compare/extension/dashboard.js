@@ -2,7 +2,7 @@ import { fdGames, fdPointsTabs, fdQuotes, dkGames, dkQuotes, isBackingOff, setDk
 import * as books from './lib/books.js';
 import { sameGame, teamNick } from './lib/match.js';
 import { tokenScore } from './lib/match.js';
-import { BOOKS, alignTick, buildRows, oddsScale, oddsLabel, marketLabel, tickToRecords, toCsv, toTsv, CSV_HEADERS, mtTime } from './lib/compare.js';
+import { BOOKS, OUR_BOOKS, alignTick, buildRows, oddsScale, oddsLabel, marketLabel, tickToRecords, toCsv, toTsv, CSV_HEADERS, mtTime } from './lib/compare.js';
 import { gameRosters, teamOf } from './lib/rosters.js';
 import { saveTick, ticksFor, saveAnomalies, anomaliesFor } from './lib/store.js';
 import { findAnomalies, anomalyRows, anomalyRecord, ANOMALY_HEADERS } from './lib/anomaly.js';
@@ -12,13 +12,13 @@ import { renderChart } from './lib/chart.js';
 // non-browser traffic, so they couldn't be verified while building). Edit them in Settings.
 const DEFAULTS = {
   pollSeconds: 15, alignToleranceMs: 2000, fdState: 'az', dkSite: 'US-CO-SB', dkLeague: '42648',
-  dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', dollyEnv: 'test', anomalyPct: 10, anomalyBookPct: 20,
+  dkGameSubcat: '4511', dkSubcats: '12488, 16413, 16477', dollyTest: true, dollyProd: false, anomalyPct: 10, anomalyBookPct: 20,
 };
 const SERIES = [{ book: 'DK', name: 'DK', long: 'DraftKings', color: '#3987e5' }, { book: 'FD', name: 'FD', long: 'FanDuel', color: '#d95926' },
-  { book: 'OURS', name: 'Ours', long: 'Ours (app price)', color: '#199e70' }];
-import { DOLLY_ENVS, dollyEnv } from './lib/dolly-env.js';
-const env = () => DOLLY_ENVS[dollyEnv(settings)];
-const BOOK_NAME = { DK: 'DraftKings', FD: 'FanDuel', OURS: 'Ours' };
+  { book: 'OURS', name: 'UAT', long: 'Ours UAT (app price)', color: '#199e70' }, { book: 'PROD', name: 'Prod', long: 'Ours Prod (app price)', color: '#c74fd1' }];
+import { DOLLY_ENVS, activeEnvs, envOn, envOfBook } from './lib/dolly-env.js';
+const envs = () => activeEnvs(settings);
+const BOOK_NAME = { DK: 'DraftKings', FD: 'FanDuel', OURS: 'Ours UAT', PROD: 'Ours Prod' };
 const REPROBE_EVERY = 20;   // pulls; re-try DK subcategories that returned nothing
 
 const $ = (id) => document.getElementById(id);
@@ -27,32 +27,35 @@ let games = [];                 // [{ key, name, fd, dk }]
 let run = null;                 // active game run state
 let history = [];               // ticks of the shown game (oldest first)
 let selectedKey = null;
-const diag = { fdGames: '', dkGames: [], ourGames: '', lastTick: null, errors: [] };
+const diag = { fdGames: '', dkGames: [], ourGames: '', lastTick: null, errors: [], dolly: {} };
 
 // ---------------------------------------------------------------- settings
 async function loadSettings() {
   const { settings: s } = await chrome.storage.local.get('settings');
   settings = { ...DEFAULTS, ...(s || {}) };
+  // before 0.22 there was one choice (dollyEnv); keep what was picked
+  if (s && typeof s.dollyTest !== 'boolean') { settings.dollyTest = envOn(s, 'test'); settings.dollyProd = envOn(s, 'prod'); }
   const f = $('settings');
   for (const [k, v] of Object.entries(settings)) { const i = f.elements[k]; if (!i) continue; if (i.type === 'checkbox') i.checked = !!v; else i.value = v; }
 }
 $('settings').addEventListener('submit', async (e) => {
   e.preventDefault();
-  // Prod Dolly: ask Chrome for access first (must happen right on the click); Test: give prod access back
-  const wantProd = e.target.elements.dollyEnv.value === 'prod';
+  // Prod Dolly ticked: ask Chrome for access first (must happen right on the click); unticked: give prod access back
+  const wantProd = e.target.elements.dollyProd.checked;
   const prodOrigin = DOLLY_ENVS.prod.origin;
   if (wantProd && !(await chrome.permissions.request({ origins: [prodOrigin] }))) {
-    e.target.elements.dollyEnv.value = 'test';
-    $('saved').textContent = 'Prod Dolly was not allowed, so Test stays selected.';
+    e.target.elements.dollyProd.checked = false;
+    $('saved').textContent = 'Prod Dolly was not allowed, so it stays off.';
   }
-  if (!wantProd || e.target.elements.dollyEnv.value === 'test') await chrome.permissions.remove({ origins: [prodOrigin] }).catch(() => false);
+  if (!e.target.elements.dollyProd.checked) await chrome.permissions.remove({ origins: [prodOrigin] }).catch(() => false);
   const f = e.target, s = {};
   for (const k of Object.keys(DEFAULTS)) { const i = f.elements[k]; s[k] = i.type === 'checkbox' ? i.checked : i.type === 'number' ? Number(i.value) : i.value.trim(); }
   s.pollSeconds = Math.max(5, s.pollSeconds || 15);
   settings = s; await chrome.storage.local.set({ settings });
   if (!$('saved').textContent) $('saved').textContent = run ? 'Saved. Press Stop then Start to use the new settings.' : 'Saved.';
   showEnv();
-  if (env().label === 'PROD' || wantProd) $('saved').textContent += ' Reload the Dolly tab (F5) once so it is read.';
+  if (!envs().length) $('saved').textContent += ' No Dolly is ticked, so our prices will not be read.';
+  else $('saved').textContent += ' Reload the Dolly tab(s) (F5) once so they are read.';
   setTimeout(() => { $('saved').textContent = ''; }, 5000);
 });
 // DK ids: what background.js saw DraftKings' own page use comes first, then Settings.
@@ -95,9 +98,13 @@ function renderDiag() {
     for (const x of learned.urls.slice(0, 8)) lines.push(`     ${decodeURIComponent(x).replace(/^https:\/\/[^/]+/, '').slice(0, 220)}`);
   }
   lines.push(`   DK ids in use: site ${dkSite()}, leagues ${dkLeagues().join(', ')}, points subcategories ${subIds().join(', ')}`);
-  lines.push(`\nOur prices (Dolly ${env().label} screen, App column): ${diag.dolly || 'not read yet'}`);
-  if (diag.dollyMarkets?.length) lines.push(`   markets seen: ${diag.dollyMarkets.join(' · ')}`);
-  for (const x of diag.dollySample || []) lines.push(`   e.g. ${x}`);
+  if (!envs().length) lines.push('\nOur prices: no Dolly ticked in Settings');
+  for (const E of envs()) {
+    const d = diag.dolly[E.key] || {};
+    lines.push(`\nOur prices (Dolly ${E.label} screen, App column): ${d.text || 'not read yet'}`);
+    if (d.markets?.length) lines.push(`   markets seen: ${d.markets.join(' · ')}`);
+    for (const x of d.sample || []) lines.push(`   e.g. ${x}`);
+  }
   if (run) {
     lines.push(`\nRunning: ${run.game.name}`);
     lines.push(`   FD event ${run.game.fd?.eventId ?? '—'}, tabs: ${run.fdTabs?.join(', ') || '—'}`);
@@ -107,7 +114,7 @@ function renderDiag() {
   if (diag.lastTick) {
     const t = diag.lastTick;
     lines.push(`\nLast pull #${t.id}: ${t.aligned ? 'aligned' : 'NOT aligned'}${t.spreadMs != null ? `, books answered ${t.spreadMs} ms apart` : ''}`);
-    for (const b of BOOKS) lines.push(`   ${b}: ${t.used[b] ? `used (${t.ms[b]} ms, ${t.counts[b]} prices)` : (t.errors[b] || 'not used')}`);
+    for (const b of activeBooks()) lines.push(`   ${BOOK_NAME[b]}: ${t.used[b] ? `used (${t.ms[b]} ms, ${t.counts[b]} prices)` : (t.errors[b] || 'not used')}`);
   }
   if (books.lastDkSample) lines.push('\nDraftKings answer we could not read (send a screenshot):', JSON.stringify(books.lastDkSample).slice(0, 1500));
   if (diag.errors.length) lines.push('\nRecent problems:', ...diag.errors.map(e => `   ${e}`));
@@ -231,8 +238,7 @@ async function findFdTabs(r) {
 
 // Our prices: ask the open Dolly Market Manager tab(s) to read the screen (content/dolly-props.js).
 // The tab for this game is the one whose teams match (the MLB suite's tokenScore), or the only one open.
-async function readDolly(g) {
-  const E = env();
+async function readDolly(g, E) {
   if (!(await chrome.permissions.contains({ origins: [E.origin] }))) return { ok: false, error: `Dolly ${E.name} is selected but not allowed: open Settings and click Save settings` };
   const tabs = (await chrome.tabs.query({ url: E.origin })).filter(t => /market-manager/.test(t.url || ''));
   if (!tabs.length) return { ok: false, error: `no Dolly ${E.name} Market Manager tab open` };
@@ -254,10 +260,9 @@ async function readDolly(g) {
   if (ok.length > 1 && score(best) < 0.5) return { ok: false, error: `${ok.length} Dolly tabs open and none shows ${want.join(' @ ')}` };
   const mine = chrome.runtime.getManifest().version;
   if (best.version !== mine) return { ok: false, error: `the Dolly tab is still running an older copy of the extension (${best.version || 'before 0.14.1'}). Reload the Dolly tab (F5).` };
-  diag.dolly = `${tabs.length} ${E.label} Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · ${best.rows} selection rows seen, ${best.quotes.length} App prices read in ${best.readMs ?? '?'} ms${best.frame && best.frame !== 'top' ? ' (in a frame)' : ''}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}`;
-  diag.dollySample = best.sample || [];
-  diag.dollyMarkets = best.markets || [];
-  return { ok: true, at: best.at || Date.now(), ms: Date.now() - sent, quotes: best.quotes };
+  diag.dolly[E.key] = { sample: best.sample || [], markets: best.markets || [],
+    text: `${tabs.length} ${E.label} Market Manager tab(s); reading ${best.teams?.join(' v ') || best.url} · ${best.rows} selection rows seen, ${best.quotes.length} App prices read in ${best.readMs ?? '?'} ms${best.frame && best.frame !== 'top' ? ' (in a frame)' : ''}${best.hidden ? ' · ⚠ Dolly tab is hidden: keep it in its own window so its prices keep updating' : ''}` };
+  return { ok: true, at: best.at || Date.now(), ms: Date.now() - sent, quotes: best.quotes.map(q => ({ ...q, book: E.book })) };
 }
 
 async function fetchBook(book, fn) {
@@ -280,7 +285,8 @@ async function pull() {
     const subs = (!r.dkActive?.length || r.n % REPROBE_EVERY === 0) ? subIds() : r.dkActive;
     if (g.fd && !r.fdTabs?.length && r.n % REPROBE_EVERY === 0 && r.n) await findFdTabs(r);   // FD posts props later
     r.n++;
-    const [DK, FD, DOLLY] = await Promise.all([
+    const on = envs();
+    const [DK, FD, ...DOLLY] = await Promise.all([
       !g.dk ? Promise.resolve({ ok: false, error: 'no DK match for this game' })
         : isBackingOff('DK') ? Promise.resolve({ ok: false, error: 'DK backing off after an error' })
         : fetchBook('DK', async () => { const x = await dkQuotes(dkSite(), g.dk.eventId, subs); return { quotes: x.quotes, perSub: x.perSub }; }),
@@ -288,7 +294,7 @@ async function pull() {
         : isBackingOff('FD') ? Promise.resolve({ ok: false, error: 'FD backing off after an error' })
         : !r.fdTabs?.length ? Promise.resolve({ ok: false, error: 'FanDuel has no player points for this game yet (preseason games usually have none)' })
         : fetchBook('FD', async () => ({ quotes: await fdQuotes(settings.fdState, g.fd.eventId, r.fdTabs) })),
-      readDolly(g).catch(e => ({ ok: false, error: String(e.message || e) })),
+      ...on.map(E => readDolly(g, E).catch(e => ({ ok: false, error: String(e.message || e) }))),
     ]);
     if (run !== r) return;   // stopped while waiting
 
@@ -298,10 +304,14 @@ async function pull() {
       if (subs.length === subIds().length) r.dkActive = good;   // learn from a full probe
       if (!DK.quotes.length) { DK.ok = false; DK.error = 'DK answered but had no player-points prices (check the subcategory ids)'; }
     }
-    const OURS = !DOLLY.ok ? DOLLY : DOLLY.quotes.length ? DOLLY
-      : { ok: false, at: DOLLY.at, error: 'Dolly screen showed no player-points App prices (expand ALTERNATE PLAYER POINTS / PLAYER TOTAL POINTS in Dolly; see Diagnostics)' };
-    const res = { DK, FD, OURS };
-    const expected = [g.dk && 'DK', g.fd && r.fdTabs?.length && 'FD', DOLLY.ok && 'OURS'].filter(Boolean);
+    const res = { DK, FD };
+    for (const b of OUR_BOOKS) res[b] = { ok: false, error: `Dolly ${envOfBook(b).name} is not ticked in Settings` };
+    on.forEach((E, i) => {
+      const D = DOLLY[i];
+      res[E.book] = !D.ok ? D : D.quotes.length ? D
+        : { ok: false, at: D.at, error: `Dolly ${E.label} screen showed no player-points App prices (expand ALTERNATE PLAYER POINTS / PLAYER TOTAL POINTS in Dolly; see Diagnostics)` };
+    });
+    const expected = [g.dk && 'DK', g.fd && r.fdTabs?.length && 'FD', ...on.map((E, i) => DOLLY[i].ok && E.book)].filter(Boolean);
     const al = alignTick(res, settings.alignToleranceMs, expected);
     const errors = {};
     for (const b of BOOKS) {
@@ -318,16 +328,17 @@ async function pull() {
     history.push(tick);
     // anomalies: our odds vs the DK/FD average, same pull only
     // every pull: each side that is off the market gets its own new row
-    const newRows = anomalyRows(findAnomalies(rows, Number(settings.anomalyPct) || 10, Number(settings.anomalyBookPct) || 20), tick, teamFn);
+    const newRows = on.flatMap(E => anomalyRows(findAnomalies(rows, Number(settings.anomalyPct) || 10, Number(settings.anomalyBookPct) || 20, E.book), tick, teamFn));
     lastAnomPull = { id, n: newRows.length };
     if (newRows.length) { await saveAnomalies(newRows); anomalies.unshift(...newRows); }
     renderAnomalies();
     diag.lastTick = tick;
 
     for (const b of BOOKS) {
+      if (OUR_BOOKS.includes(b) && !on.some(E => E.book === b)) continue;
       if (al.used[b]) light(b, 'ok', `${res[b].ms} ms · ${tick.counts[b]} prices`);
       else light(b, res[b].ok ? 'warn' : 'bad', res[b].ok ? 'late this pull' : 'missing this pull');
-      if (errors[b] && (b === 'OURS' || g[b.toLowerCase()])) logErr(`pull #${id} ${b}: ${errors[b]}`);
+      if (errors[b] && (OUR_BOOKS.includes(b) || g[b.toLowerCase()])) logErr(`pull #${id} ${b}: ${errors[b]}`);
     }
     const alignedN = history.filter(x => x.aligned).length;
     $('tickinfo').textContent = `Pull #${id} at ${mtTime(t).slice(11)} MT · ${alignedN}/${history.length} aligned${r.skipped ? ` · ${r.skipped} skipped (book slower than ${settings.pollSeconds}s)` : ''}`;
@@ -347,6 +358,7 @@ function mergedRows() {
     const cur = m.get(r.key) || { key: r.key, player: r.player, kind: r.kind, line: r.line, books: {}, seen: {} };
     for (const [b, v] of Object.entries(r.books)) { cur.books[b] = v; cur.seen[b] = t.t; }
     cur.diff = r.diff ?? cur.diff;
+    cur.envDiff = r.envDiff ?? cur.envDiff;
     m.set(r.key, cur);
   }
   return [...m.values()];
@@ -354,6 +366,8 @@ function mergedRows() {
 
 function renderTable() {
   const tb = $('table').tBodies[0]; tb.textContent = '';
+  const cols = tableBooks();
+  renderTableHead(cols);
   const last = history.at(-1);
   $('latest-time').textContent = last ? `· pull #${last.id}, ${mtTime(last.t).slice(11)} MT${last.aligned ? '' : ' (not aligned: a book was missing or late)'}` : '';
   const all = mergedRows();
@@ -366,16 +380,20 @@ function renderTable() {
   let rows = all.filter(r => (!q || r.player.toLowerCase().includes(q)) && (!multiOnly || Object.keys(r.books).length > 1)
     && (teamPick === 'ALL' || teamFn(r.player) === teamPick));
   // default: player A-Z, then line lowest first; or biggest difference between ours and the books
-  rows.sort($('sort').value === 'gap' ? (a, b) => (b.diff ?? -1) - (a.diff ?? -1)
+  const sortBy = $('sort').value;
+  rows.sort(sortBy === 'gap' ? (a, b) => (b.diff ?? -1) - (a.diff ?? -1)
+    : sortBy === 'env' ? (a, b) => (b.envDiff ?? -1) - (a.envDiff ?? -1) || a.player.localeCompare(b.player) || a.line - b.line
     : (a, b) => a.player.localeCompare(b.player) || a.line - b.line || a.kind.localeCompare(b.kind));
   for (const r of rows) {
     const tr = document.createElement('tr'); if (r.key === selectedKey) tr.className = 'sel';
     const team = teamFn(r.player);
-    const cells = [[`${r.player}${team ? `  ·  ${team}` : ''}`], [marketLabel(r)], ...['DK', 'FD', 'OURS'].map(b => [odds(r.books[b], r.kind), b])];
+    const cells = [[`${r.player}${team ? `  ·  ${team}` : ''}`], [marketLabel(r)], ...cols.map(b => [odds(r.books[b], r.kind), b])];
     cells.forEach(([c, book], i) => {
       const td = document.createElement('td'); td.textContent = c ?? '–';
       if (i >= 2) td.className = 'num';
       if (c == null) td.classList.add('na');
+      // UAT and prod show different odds for this line: prod cell marked
+      if (book === 'PROD' && c != null && r.books.OURS && odds(r.books.OURS, r.kind) !== c) { td.classList.add('envdiff'); td.title = `UAT shows ${odds(r.books.OURS, r.kind)}`; }
       if (book && c != null && r.seen[book] < last.t) {   // not in the latest pull: came down
         td.classList.add('gone'); td.title = `No longer offered. Last seen ${mtTime(r.seen[book]).slice(11)} MT`;
         td.textContent = `${c}  (off ${tmt.format(r.seen[book])})`;
@@ -401,7 +419,7 @@ function renderAnomalies() {
   const tb = $('anoms').tBodies[0]; tb.textContent = '';
   $('anoms-empty').hidden = !!n;
   const thr = Number(settings.anomalyPct) || 10, bthr = Number(settings.anomalyBookPct) || 20;
-  $('anoms-note').textContent = `A new row every pull for each line where our odds are ${thr}%+ off the DraftKings/FanDuel average, or ${bthr}%+ off either book on its own (by payout, the profit on a $1 win; + = we pay more, − = we pay less; same pull only). Red = ${LARGE}%+ off; white = flagged but under ${LARGE}%.`
+  $('anoms-note').textContent = `A new row every pull for each line where our odds (UAT and Prod checked separately) are ${thr}%+ off the DraftKings/FanDuel average, or ${bthr}%+ off either book on its own (by payout, the profit on a $1 win; + = we pay more, − = we pay less; same pull only). Red = ${LARGE}%+ off; white = flagged but under ${LARGE}%.`
     + (lastAnomPull ? ` Last pull #${lastAnomPull.id}: ${lastAnomPull.n} flagged.` : '') + (n > SHOW_MAX ? ` Showing the newest ${SHOW_MAX} of ${n}; Export has all.` : '');
   const f = (v) => v == null ? '–' : `${v > 0 ? '+' : ''}${v.toFixed(1)}%`;
   // newest first (as logged), or biggest % off first: the larger of % off the average and % off either book
@@ -412,9 +430,9 @@ function renderAnomalies() {
     if (Math.abs(e.size) >= LARGE) tr.className = 'large';
     // over/under lines say which side in the market; N+ lines are always the over
     const market = e.kind === 'ou' ? `${marketLabel(e)} ${e.side === 'over' ? 'Over' : 'Under'}` : marketLabel(e);
-    const cells = [tsec.format(e.t), `${e.player}${e.team ? `  ·  ${e.team}` : ''}`, market, e.why || '',
+    const cells = [tsec.format(e.t), e.env === 'prod' ? 'PROD' : 'UAT', `${e.player}${e.team ? `  ·  ${e.team}` : ''}`, market, e.why || '',
       e.ours, e.dk, e.fd, e.avg, f(e.pct), f(e.pctDk), f(e.pctFd)];
-    cells.forEach((c, i) => { const td = document.createElement('td'); td.textContent = c ?? '–'; if (i >= 4) td.className = 'num'; tr.appendChild(td); });
+    cells.forEach((c, i) => { const td = document.createElement('td'); td.textContent = c ?? '–'; if (i >= 5) td.className = 'num'; if (i === 1 && c === 'PROD') td.className = 'prodtag'; tr.appendChild(td); });
     tr.title = 'Click to graph this line';
     tr.addEventListener('click', () => { selectedKey = e.key.replace(/\|(over|under)$/, ''); showTab('live'); renderTable(); renderSelected(); });
     tb.appendChild(tr);
@@ -491,9 +509,20 @@ $('sheet').addEventListener('click', async () => {
 // ---------------------------------------------------------------- boot
 $('version').textContent = `version ${chrome.runtime.getManifest().version}`;
 function showEnv() {
-  const L = env().label;
-  $('env-label').textContent = L; $('env-light').textContent = L;
-  document.body.classList.toggle('prod', L === 'PROD');
+  const on = envs();
+  $('env-label').textContent = on.map(E => E.label).join(' + ') || 'none';
+  for (const E of Object.values(DOLLY_ENVS)) $(`light-${E.book}`).hidden = !on.includes(E);
+  document.body.classList.toggle('prod', on.some(E => E.key === 'prod'));
+  renderTable(); renderSelected();
+}
+// books shown as columns: DK, FD, then each ticked Dolly
+const tableBooks = () => ['DK', 'FD', ...envs().map(E => E.book)];
+const activeBooks = tableBooks;
+function renderTableHead(cols) {
+  const tr = $('table').tHead.rows[0]; tr.textContent = '';
+  for (const [t, num] of [['Player'], ['Market'], ...cols.map(b => [BOOK_NAME[b], true])]) {
+    const th = document.createElement('th'); th.textContent = t; if (num) th.className = 'num'; tr.appendChild(th);
+  }
 }
 await loadSettings();
 showEnv();

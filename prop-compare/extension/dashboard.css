@@ -65,3 +65,7 @@ input[type=date] { color-scheme: dark; }
 #anoms tr.large td { color: #f85149; font-weight: 600; }
 #anoms tr.large td:first-child::before { content: "▲ "; }
 [hidden] { display: none !important; }
+/* UAT vs Prod */
+.prodlight b, td.prodtag { color: #f85149; font-weight: 700; }
+td.envdiff { background: rgba(199, 79, 209, .18); font-weight: 600; }
+fieldset.envs { border: 1px solid var(--ink-3); border-radius: 6px; padding: 6px 10px; display: flex; gap: 18px; }

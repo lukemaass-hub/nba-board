@@ -7,7 +7,9 @@
 
 import { playerMatch, playerKey } from './match.js';
 
-export const BOOKS = ['DK', 'FD', 'OURS'];   // OURS = the App price on the Dolly Market Manager screen
+// OURS = the App price on the test (UAT) Dolly Market Manager screen, PROD = the same on prod Dolly
+export const BOOKS = ['DK', 'FD', 'OURS', 'PROD'];
+export const OUR_BOOKS = ['OURS', 'PROD'];
 
 // American odds on one continuous scale, for graphs and sorting: -110 -> -10, +110 -> +10, -100 / +100 -> 0
 // (so the jump between -100 and +100 doesn't distort a line that crosses even money)
@@ -15,7 +17,7 @@ export const oddsScale = (a) => { const n = Number(String(a).replace('+', '')); 
 export const oddsLabel = (v) => v >= 0 ? `+${Math.round(v + 100)}` : String(Math.round(v - 100));
 
 /** Decide which books count for this tick.
- *  results: { DK: {ok, at}, FD: {...}, OURS: {...} }; expected = the books this game has.
+ *  results: { DK: {ok, at}, FD: {...}, OURS: {...}, PROD: {...} }; expected = the books this game has.
  *  -> { aligned (every expected book used), used: {book: bool}, spreadMs, firstAt } */
 export function alignTick(results, toleranceMs, expected = BOOKS) {
   const ok = BOOKS.filter(b => results[b]?.ok);
@@ -28,7 +30,7 @@ export function alignTick(results, toleranceMs, expected = BOOKS) {
 }
 
 /** Rows for the table / export. One row per player + market kind + line.
- *  quotesByBook: { DK: [quote], FD: [...], OURS: [...] } (books not used this tick: [] or missing) */
+ *  quotesByBook: { DK: [quote], FD: [...], OURS: [...], PROD: [...] } (books not used this tick: [] or missing) */
 export function buildRows(quotesByBook) {
   // Canonical player names: FD first (its names are full), then DK, then ours.
   const names = [];
@@ -37,7 +39,7 @@ export function buildRows(quotesByBook) {
     names.push(name); return name;
   };
   const rows = new Map();
-  for (const book of ['FD', 'DK', 'OURS']) {
+  for (const book of ['FD', 'DK', 'OURS', 'PROD']) {
     for (const q of quotesByBook[book] || []) {
       const player = canon(q.player);
       const key = `${playerKey(player)}|${q.kind}|${q.line}`;
@@ -46,10 +48,12 @@ export function buildRows(quotesByBook) {
       (r.books[book] ||= {})[q.side] = { american: q.american, decimal: q.decimal };
     }
   }
-  // how far our over price is from each book's, on the continuous odds scale (used for sorting only)
+  // how far our over price (UAT or prod) is from each book's, and UAT from prod, on the continuous
+  // odds scale (used for sorting only; -1 = can't compare)
+  const gap = (a, b) => { const x = oddsScale(a?.over?.american), y = oddsScale(b?.over?.american); return x != null && y != null ? Math.abs(x - y) : -1; };
   for (const r of rows.values()) {
-    const o = oddsScale(r.books.OURS?.over?.american);
-    r.diff = Math.max(...['DK', 'FD'].map(b => { const x = oddsScale(r.books[b]?.over?.american); return o != null && x != null ? Math.abs(o - x) : -1; }));
+    r.diff = Math.max(...OUR_BOOKS.flatMap(o => ['DK', 'FD'].map(b => gap(r.books[o], r.books[b]))));
+    r.envDiff = gap(r.books.OURS, r.books.PROD);
   }
   return [...rows.values()].sort((a, b) => a.player.localeCompare(b.player) || a.kind.localeCompare(b.kind) || a.line - b.line);
 }
@@ -58,7 +62,8 @@ export const marketLabel = (r) => r.kind === 'ou' ? `Points O/U ${r.line}` : `${
 
 // ---------------------------------------------------------------- export
 export const CSV_HEADERS = ['tick_time_mt', 'tick_time_utc', 'tick_id', 'aligned', 'spread_ms', 'game', 'team', 'player', 'market', 'line',
-  'dk_over', 'dk_under', 'dk_fetched_utc', 'fd_over', 'fd_under', 'fd_fetched_utc', 'ours_over', 'ours_under', 'ours_fetched_utc'];
+  'dk_over', 'dk_under', 'dk_fetched_utc', 'fd_over', 'fd_under', 'fd_fetched_utc', 'ours_uat_over', 'ours_uat_under', 'ours_uat_fetched_utc',
+  'ours_prod_over', 'ours_prod_under', 'ours_prod_fetched_utc'];
 
 const mtFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Denver', year: 'numeric', month: '2-digit', day: '2-digit',
   hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
@@ -69,9 +74,9 @@ const iso = (ms) => ms ? new Date(ms).toISOString() : '';
 /** One flat array per row per tick: what goes to CSV and to Google Sheets. */
 export function tickToRecords(tick, teamFn = () => '') {
   return tick.rows.map(r => {
-    const bk = (b) => { const x = r.books[b] || {}; return [x.over?.american ?? '', x.under?.american ?? '', tick.used[b] ? iso(tick.at?.[b]) : '']; };
+    const bk = (b) => { const x = r.books[b] || {}; return [x.over?.american ?? '', x.under?.american ?? '', tick.used?.[b] ? iso(tick.at?.[b]) : '']; };
     return [mtTime(tick.t), iso(tick.t), tick.id, tick.aligned ? 'yes' : 'no', tick.spreadMs ?? '', tick.game, teamFn(r.player) || '', r.player, marketLabel(r), r.line,
-      ...bk('DK'), ...bk('FD'), ...bk('OURS')];
+      ...bk('DK'), ...bk('FD'), ...bk('OURS'), ...bk('PROD')];
   });
 }
 

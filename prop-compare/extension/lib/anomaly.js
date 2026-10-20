@@ -30,11 +30,12 @@ export const americanFromProb = (p) => {
 
 const rel = (po, px) => (po - px) / px * 100;
 
-/** -> [{ key, side, player, kind, line, ours, dk, fd, avg, pct, pctDk, pctFd, why }] for this tick's rows */
-export function findAnomalies(rows, avgPct = 10, bookPct = 20) {
+/** -> [{ key, side, player, kind, line, ours, dk, fd, avg, pct, pctDk, pctFd, why }] for this tick's rows.
+ *  oursBook: which of our prices to check, 'OURS' (UAT Dolly) or 'PROD' (prod Dolly) */
+export function findAnomalies(rows, avgPct = 10, bookPct = 20, oursBook = 'OURS') {
   const out = [];
   for (const r of rows) for (const side of ['over', 'under']) {
-    const o = r.books.OURS?.[side]?.american, d = r.books.DK?.[side]?.american, f = r.books.FD?.[side]?.american;
+    const o = r.books[oursBook]?.[side]?.american, d = r.books.DK?.[side]?.american, f = r.books.FD?.[side]?.american;
     const po = payout(o), pd = payout(d), pf = payout(f);
     if (po == null || (pd == null && pf == null)) continue;
     const avg = pd != null && pf != null ? (pd + pf) / 2 : null;
@@ -47,7 +48,7 @@ export function findAnomalies(rows, avgPct = 10, bookPct = 20) {
     if (!why.length) continue;
     // the size used for "biggest": % off the average when there is one, else the larger single-book gap
     const size = pct ?? [pctDk, pctFd].filter(v => v != null).sort((x, y) => Math.abs(y) - Math.abs(x))[0];
-    out.push({ key: `${r.key}|${side}`, side, player: r.player, kind: r.kind, line: r.line, ours: o, dk: d ?? null, fd: f ?? null,
+    out.push({ key: `${r.key}|${side}`, side, env: oursBook === 'PROD' ? 'prod' : 'test', player: r.player, kind: r.kind, line: r.line, ours: o, dk: d ?? null, fd: f ?? null,
                avg: avg != null ? americanFromPayout(avg) : null, pct, pctDk, pctFd, size, why: why.join(', ') });
   }
   return out;
@@ -56,17 +57,17 @@ export function findAnomalies(rows, avgPct = 10, bookPct = 20) {
 /** One log row per anomaly per pull: the time of that pull and that pull's prices. */
 export function anomalyRows(found, tick, teamFn = () => '') {
   return found.map(a => ({
-    id: `${tick.gameKey}|${tick.id}|${a.key}`, gameKey: tick.gameKey, game: tick.game, t: tick.t, tickId: tick.id,
+    id: `${tick.gameKey}|${tick.id}|${a.key}${a.env === 'prod' ? '|prod' : ''}`, env: a.env, gameKey: tick.gameKey, game: tick.game, t: tick.t, tickId: tick.id,
     key: a.key, player: a.player, team: teamFn(a.player) || '', kind: a.kind, line: a.line, side: a.side, why: a.why,
     ours: a.ours, dk: a.dk, fd: a.fd, avg: a.avg, pct: a.pct, pctDk: a.pctDk, pctFd: a.pctFd, size: a.size,
   }));
 }
 
-export const ANOMALY_HEADERS = ['time_mt', 'pull', 'game', 'team', 'player', 'market', 'line', 'side', 'why',
+export const ANOMALY_HEADERS = ['time_mt', 'pull', 'dolly', 'game', 'team', 'player', 'market', 'line', 'side', 'why',
   'ours', 'dk', 'fd', 'dk_fd_avg', 'pct_off_avg', 'pct_off_dk', 'pct_off_fd'];
 
 export function anomalyRecord(e, marketLabel) {
   const pct = (v) => v == null ? '' : v.toFixed(1);
-  return [mtTime(e.t), e.tickId, e.game, e.team, e.player, marketLabel(e), e.line, e.side, e.why || '',
+  return [mtTime(e.t), e.tickId, e.env === 'prod' ? 'PROD' : 'UAT', e.game, e.team, e.player, marketLabel(e), e.line, e.side, e.why || '',
     e.ours, e.dk ?? '', e.fd ?? '', e.avg ?? '', pct(e.pct), pct(e.pctDk), pct(e.pctFd)];
 }
