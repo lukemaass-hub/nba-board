@@ -183,9 +183,10 @@ def minutes_change(data, player):
     return None
 
 
-def mins_tag(data, player):
+def mins_tag(data, player, unit=False):
+    """" (34.1)", or " (34.1 MPG)" with unit=True (Slack: makes clear it is minutes per game)."""
     m = avg_minutes(data, player)
-    return f" ({m[0]:.1f})" if m else ""
+    return f" ({m[0]:.1f}{' MPG' if unit else ''})" if m else ""
 
 
 def change_html(data, player):
@@ -273,7 +274,7 @@ def exp_html(tags, player):
 
 def exp_text(tags, player):
     t = tags.get(norm_name(player))
-    return f" {'📈' if t[1] > 0 else '📉'} Exp {t[0]:.1f} ({'+' if t[1] > 0 else '-'}{abs(t[1]):.1f})" if t else ""
+    return f" {'📈' if t[1] > 0 else '📉'} Expected {t[0]:.1f} ({'+' if t[1] > 0 else '-'}{abs(t[1]):.1f})" if t else ""
 
 
 def restrictions_for(data, teams, date):
@@ -373,7 +374,7 @@ def build(data, games, date):
                                          f' <span style="font-size:12px;font-weight:bold;color:#1e8449">Exp {x:.1f}{f" (+{d:.1f})" if d is not None else ""}</span>'
                                          for n, x, d in up) + "</div>")
                 t.append("    Bench: " + ", ".join(f"{n}{mins_tag(data, n)}{exp_text(xt, n)}{change_text(data, n)}" for _, n, _ in bench)
-                         + (f" | Deep bench, expected up: {', '.join(f'{n}{mins_tag(data, n)} 📈 Exp {x:.1f}' + (f' (+{d:.1f})' if d is not None else '') for n, x, d in up)}" if up else ""))
+                         + (f" | Deep bench, expected up: {', '.join(f'{n}{mins_tag(data, n)} 📈 Expected {x:.1f}' + (f' (+{d:.1f})' if d is not None else '') for n, x, d in up)}" if up else ""))
             # 3. matchup minutes alerts (minutes-vs-teams workbook)
             alerts = matchup_alerts_for(data, team, opp, inj, starters)
             if alerts:
@@ -444,15 +445,15 @@ def build_slack(data, game, date, test=False):
             {"type": "image", "image_url": logo_url, "alt_text": team},
             {"type": "mrkdwn", "text": f"*{e(name(team))}*"}]})
         if starters:
-            rows = [f"`{p:<2}` *{e(n)}*{mins_tag(data, n)}{exp_text(xt, n)}{tag.get(status.get(norm_name(n)), '')}{change_text(data, n)}{f'  _in for {e(why[7:])}_' if why else ''}"
+            rows = [f"`{p:<2}` *{e(n)}*{mins_tag(data, n, True)}{exp_text(xt, n)}{tag.get(status.get(norm_name(n)), '')}{change_text(data, n)}{f'  _in for {e(why[7:])}_' if why else ''}"
                     for p, n, why in starters]
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": f"_{e(label)}_\n" + "\n".join(rows)}})
         if bench or deep:
-            txt = "*Bench:* " + " · ".join(f"{e(n)}{mins_tag(data, n)}{exp_text(xt, n)}{tag.get(st, '')}{change_text(data, n)}" for _, n, st in bench)
+            txt = "*Bench:* " + " · ".join(f"{e(n)}{mins_tag(data, n, True)}{exp_text(xt, n)}{tag.get(st, '')}{change_text(data, n)}" for _, n, st in bench)
             up = deep_bench_up(data, team, date, deep, skip={k for k, st in status.items() if st in ("out", "doubt")})
             if up:
                 txt += "\n*Deep bench, expected up:* " + ", ".join(
-                    f"{e(n)}{mins_tag(data, n)} 📈 Exp {x:.1f}" + (f" (+{d:.1f})" if d is not None else "") for n, x, d in up)
+                    f"{e(n)}{mins_tag(data, n, True)} 📈 Expected {x:.1f}" + (f" (+{d:.1f})" if d is not None else "") for n, x, d in up)
             blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": txt[:2900]}]})
         if alerts:
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(
@@ -467,7 +468,7 @@ def build_slack(data, game, date, test=False):
         for i in inj:
             who = f"<{i['link']}|{e(i['player'])}>" if i["link"] else e(i["player"])
             per = f" _(per {e(i['beat'])})_" if i["beat"] else ""
-            lines.append(f"{DOT[i['st']]} *{who}*{mins_tag(data, i['player'])} {LABEL[i['st']]}{per}"
+            lines.append(f"{DOT[i['st']]} *{who}*{mins_tag(data, i['player'], True)} {LABEL[i['st']]}{per}"
                          f"{' · ' + e(i['injury']) if i['injury'] else ''}"
                          f" · {', '.join(e(x['src']) for x in i['srcs'])}{' · sources differ' if i['differ'] else ''}")
         blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
