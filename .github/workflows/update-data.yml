@@ -65,7 +65,7 @@ jobs:
           MINUTES_CSV_URL: ${{ secrets.MINUTES_CSV_URL }}
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          PREGAME: ${{ github.event.schedule == '*/10 15-23,0-5 * * *' && '45' || '' }}
+          PREGAME: ${{ github.event.schedule == '*/10 15-23,0-5 * * *' && '90' || '' }}
         run: python pipeline/update_data.py --out data.json ${PREGAME:+--pregame "$PREGAME"}
 
       - name: Email / Slack the report for games tipping off soon

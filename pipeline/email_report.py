@@ -530,11 +530,30 @@ def post_slack(url, text, blocks):
         raise RuntimeError(f"Slack said: {body[:200]}")
 
 
+PROPS_FALLBACK_MIN = 15     # no confirmed lineups by this many minutes before tip: send anyway
+
+
+def lineups_confirmed(data, g):
+    """Both teams' RotoWire starting lineups for this game are confirmed."""
+    lu = data.get("lineups") or {}
+    return all((lu.get(t) or {}).get("date") == g["date"] and (lu.get(t) or {}).get("confirmed") for t in (g["away"], g["home"]))
+
+
 def dm_traders(data, token, now, window, sent, stamp):
-    """DM each game's report to the traders listed for it in today's #in-play-trading schedule (slack_assign.py).
+    """DM each game's report to the PROPS traders listed for it in today's #in-play-trading schedule (slack_assign.py),
+    as soon as both teams' lineups are confirmed (RotoWire), or PROPS_FALLBACK_MIN minutes before tip if they never are
+    (the user's rule, Oct 21 2026). Sent once per game ("dm <date> A@H").
     SLACK_DM_MODE: off = only print who would get it; test = all to the owner, marked [TEST]; on = to the traders."""
     import slack_assign as sa
-    due = due_games(data, now, window, sent, prefix="dm ")
+    due = []
+    for g in all_games(data):
+        tip = dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=ET)
+        key = f"{g['date']} {g['away']}@{g['home']}"
+        if "dm " + key in sent or not (now <= tip <= now + dt.timedelta(hours=3)):
+            continue
+        confirmed = lineups_confirmed(data, g)
+        if confirmed or tip - now <= dt.timedelta(minutes=PROPS_FALLBACK_MIN):
+            due.append((key, g, confirmed))
     if not due:
         return
     m = sa.mode()
@@ -547,23 +566,39 @@ def dm_traders(data, token, now, window, sent, stamp):
         print("Slack DMs: today's IP Trader Schedule isn't posted yet; trying again next run.")
         return
     sched = sa.parse_schedule(text)
-    for key, g in due:
-        people = sched.get((g["away"], g["home"]), [])
+    for key, g, confirmed in due:
+        people = [p for p in sched.get((g["away"], g["home"]), []) if re.search(r"prop", p["role"], re.I)]
         who = sa.plan(people)
+        why = "lineups confirmed" if confirmed else f"lineups not confirmed {PROPS_FALLBACK_MIN} min before tip"
         title, blocks = build_slack(data, g, g["date"], test=(m == "test"))
         if m == "off" or not people:
-            print(f"Slack DMs ({m}): {g['away']}@{g['home']} would go to {who}")
+            print(f"Slack DMs ({m}, {why}): {g['away']}@{g['home']} would go to {who}")
         else:
             for p in ([{"user": sa.OWNER, "role": ""}] if m == "test" else people):
                 # traders get just the report (user's choice); the owner's test copy says who it would go to
-                head = [{"type": "context", "elements": [{"type": "mrkdwn", "text": slack_escape(f"[TEST] Would go to: {who}")}]}] if m == "test" else []
+                head = [{"type": "context", "elements": [{"type": "mrkdwn", "text": slack_escape(f"[TEST] Would go to: {who} ({why})")}]}] if m == "test" else []
                 try:
                     sa.dm(token, p["user"], title, head + blocks)
                 except Exception as ex:
                     print(f"Slack DM to {p.get('name') or p['user']} failed: {ex}")
-            print(f"Slack DMs ({m}): {g['away']}@{g['home']} sent to {'owner (test)' if m == 'test' else who}")
+            print(f"Slack DMs ({m}, {why}): {g['away']}@{g['home']} sent to {'owner (test)' if m == 'test' else who}")
         if m != "off":
             sent["dm " + key] = stamp
+
+
+def fresh_expected_minutes(data, path):
+    """Use expected_minutes.json (saved by the Dolly Minutes extension) when it is newer than data.json's copy, so the
+    report always has the latest Dolly read, even between data refreshes."""
+    try:
+        em = json.load(open(path))
+    except (OSError, ValueError):
+        return
+    if (em.get("updated_at") or "") <= ((data.get("expected_minutes") or {}).get("updated_at") or ""):
+        return
+    from update_data import team_code
+    for p in em.get("players", []):
+        p["team"] = p.get("team") or team_code(p.get("teamName")) or ""
+    data["expected_minutes"] = em
 
 
 def due_games(data, now, window, sent, prefix=""):
@@ -657,6 +692,7 @@ def main():
     args = ap.parse_args()
 
     data = json.load(open(args.data))
+    fresh_expected_minutes(data, os.path.join(os.path.dirname(os.path.abspath(args.data)), "expected_minutes.json"))
     now = dt.datetime.now(ET)
     slack_url = os.environ.get("SLACK_WEBHOOK_URL")
 
