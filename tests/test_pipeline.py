@@ -386,19 +386,43 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
     assert sa.team_code("LA Clippers") == "LAC" and sa.team_code("Portland Trail Blazers") == "POR"
 
     game = {"date": "2026-10-20", "time": "19:00", "away": "PHI", "home": "NYK", "venue": ""}
-    now = dt.datetime(2026, 10, 20, 18, 45, tzinfo=e.ET)
     sentto = []
     monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: text)
     monkeypatch.setattr(sa, "dm", lambda token, user, title, blocks: sentto.append((user, blocks)))
     monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
     monkeypatch.setattr(e, "all_games", lambda data: [game])
-    for m, want in (("off", []), ("test", ["U0B5EP4PV3M"]), ("on", ["U09BNHCQD5Z", "U0ACFA2QDFF"])):
-        monkeypatch.setenv("SLACK_DM_MODE", m)
-        sentto.clear(); log = {}
-        e.dm_traders({}, "xoxb", now, 25, log, "now")
-        assert [u for u, _ in sentto] == want, m
-        assert ("dm 2026-10-20 PHI@NYK" in log) == (m != "off")
-    assert sentto[0][1] == [] and sentto[1][1] == []   # traders get just the report, no extra line
-    monkeypatch.setenv("SLACK_DM_MODE", "test"); sentto.clear()
-    e.dm_traders({}, "xoxb", now, 25, {}, "now")
-    assert "Would go to: Evan Finger (Cores), Amol Singh (Props)" in sentto[0][1][0]["elements"][0]["text"]
+    lineups = lambda c: {"lineups": {t: {"date": "2026-10-20", "confirmed": c} for t in ("PHI", "NYK")}}
+    early, late = dt.datetime(2026, 10, 20, 18, 20, tzinfo=e.ET), dt.datetime(2026, 10, 20, 18, 47, tzinfo=e.ET)
+
+    def run(mode, data, now):
+        monkeypatch.setenv("SLACK_DM_MODE", mode); sentto.clear(); log = {}
+        e.dm_traders(data, "xoxb", now, 25, log, "now")
+        return [u for u, _ in sentto], log
+
+    # 40 min out, lineups not confirmed yet: wait
+    assert run("on", lineups(False), early) == ([], {})
+    # lineups confirmed: only the Props trader (Amol), just the report
+    users, log = run("on", lineups(True), early)
+    assert users == ["U0ACFA2QDFF"] and "dm 2026-10-20 PHI@NYK" in log and sentto[0][1] == []
+    # never confirmed: sent anyway 15 min before tip
+    assert run("on", lineups(False), late)[0] == ["U0ACFA2QDFF"]
+    # off: nothing sent, nothing logged; test: owner only, says who and why
+    assert run("off", lineups(True), early) == ([], {})
+    assert run("test", lineups(True), early)[0] == ["U0B5EP4PV3M"]
+    assert "Would go to: Amol Singh (Props) (lineups confirmed)" in sentto[0][1][0]["elements"][0]["text"]
+    # already sent: not again
+    monkeypatch.setenv("SLACK_DM_MODE", "on"); sentto.clear()
+    e.dm_traders(lineups(True), "xoxb", early, 25, {"dm 2026-10-20 PHI@NYK": "x"}, "now")
+    assert sentto == []
+
+
+def test_newest_dolly_minutes_used(tmp_path):
+    import email_report as e
+    p = tmp_path / "expected_minutes.json"
+    p.write_text(json.dumps({"updated_at": "2026-10-21T21:00:00Z", "players": [{"name": "A B", "teamName": "Boston Celtics", "expected": 30}]}))
+    data = {"expected_minutes": {"updated_at": "2026-10-21T20:00:00Z", "players": []}}
+    e.fresh_expected_minutes(data, str(p))
+    assert data["expected_minutes"]["players"][0]["team"] == "BOS"
+    old = {"expected_minutes": {"updated_at": "2026-10-21T22:00:00Z", "players": []}}
+    e.fresh_expected_minutes(old, str(p))
+    assert old["expected_minutes"]["players"] == []
