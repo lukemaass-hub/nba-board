@@ -8910,7 +8910,7 @@
    "time": "20:00",
    "vs": "NOP",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8939,7 +8939,7 @@
    "time": "20:00",
    "vs": "IND",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8947,11 +8947,11 @@
     },
     {
      "pos": "SG",
-     "name": "Trey Murphy"
+     "name": "Jeremiah Fears"
     },
     {
      "pos": "SF",
-     "name": "Herbert Jones"
+     "name": "Trey Murphy"
     },
     {
      "pos": "PF",
@@ -8968,7 +8968,7 @@
    "time": "20:00",
    "vs": "MEM",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8997,7 +8997,7 @@
    "time": "20:00",
    "vs": "UTA",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -15979,6 +15979,28 @@
  },
  "news": [
   {
+   "id": "nba535396",
+   "player": "Jeremiah Fears",
+   "headline": "Starting regular-season opener",
+   "text": "Fears will start Wednesday's game against the Pacers.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/jeremiah-fears-6546",
+   "at": "2026-10-21T23:41:00+00:00",
+   "team": "NOP"
+  },
+  {
+   "id": "nba535395",
+   "player": "Herbert Jones",
+   "headline": "Not starting Wednesday",
+   "text": "Jones is not in the starting lineup for Wednesday's regular-season opener against the Pacers.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/herbert-jones-5414",
+   "at": "2026-10-21T23:40:00+00:00",
+   "team": "NOP"
+  },
+  {
    "id": "nba535382",
    "player": "Isaiah Stewart",
    "headline": "Ruled out Wednesday",
@@ -16736,17 +16758,6 @@
    "url": "https://www.rotowire.com/basketball/player/cason-wallace-5898",
    "at": "2026-10-19T02:51:00+00:00",
    "team": "OKC"
-  },
-  {
-   "id": "nba535139",
-   "player": "Stephen Curry",
-   "headline": "Suffers minor ankle injury",
-   "text": "Curry sustained a right ankle injury during Sunday's practice but is expected to be fine, Dalton Johnson of NBC Sports Bay Area reports.",
-   "reporter": "Dalton Johnson",
-   "outlet": "NBC Sports Bay Area",
-   "url": "https://www.rotowire.com/basketball/player/stephen-curry-3014",
-   "at": "2026-10-18T23:45:00+00:00",
-   "team": "GSW"
   }
  ],
  "matchup_alerts": [
@@ -17298,18 +17309,6 @@
   },
   {
    "team": "CHI",
-   "player": "Dailyn Swain",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Illness",
-   "upd": "2026-10-21",
-   "until": "2026-10-24",
-   "note": "Expected to be out until at least Oct 24",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dailyn%20Swain"
-  },
-  {
-   "team": "CHI",
    "player": "Jordan Hawkins",
    "src": "CBS",
    "kind": "O",
@@ -17319,6 +17318,18 @@
    "note": "Expected to be out until at least Oct 24",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jordan%20Hawkins"
+  },
+  {
+   "team": "CHI",
+   "player": "Dailyn Swain",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Illness",
+   "upd": "2026-10-21",
+   "until": "2026-10-24",
+   "note": "Expected to be out until at least Oct 24",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dailyn%20Swain"
   },
   {
    "team": "CHI",
@@ -17334,18 +17345,6 @@
   },
   {
    "team": "CLE",
-   "player": "Khalifa Diop",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-10-21",
-   "until": "2026-10-24",
-   "note": "Expected to be out until at least Oct 24",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Khalifa%20Diop"
-  },
-  {
-   "team": "CLE",
    "player": "Jarrett Allen",
    "src": "CBS",
    "kind": "G",
@@ -17355,6 +17354,18 @@
    "note": "",
    "through": "2026-10-23",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jarrett%20Allen"
+  },
+  {
+   "team": "CLE",
+   "player": "Khalifa Diop",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-10-21",
+   "until": "2026-10-24",
+   "note": "Expected to be out until at least Oct 24",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Khalifa%20Diop"
   },
   {
    "team": "CLE",
@@ -17370,6 +17381,18 @@
   },
   {
    "team": "DAL",
+   "player": "Jett Howard",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Calf",
+   "upd": "2026-10-21",
+   "until": "2026-10-23",
+   "note": "Expected to be out until at least Oct 23",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jett%20Howard"
+  },
+  {
+   "team": "DAL",
    "player": "Dereck Lively II",
    "src": "CBS",
    "kind": "O",
@@ -17379,18 +17402,6 @@
    "note": "Expected to be out until at least Oct 23",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
-  },
-  {
-   "team": "DAL",
-   "player": "Jett Howard",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Calf",
-   "upd": "2026-10-20",
-   "until": "",
-   "note": "",
-   "through": "2026-10-23",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jett%20Howard"
   },
   {
    "team": "DAL",
@@ -17466,18 +17477,6 @@
   },
   {
    "team": "GSW",
-   "player": "Kristaps Porzingis",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Illness",
-   "upd": "2026-10-21",
-   "until": "2026-12-01",
-   "note": "Expected to be out until at least Dec 1",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kristaps%20Porzingis"
-  },
-  {
-   "team": "GSW",
    "player": "Charles Bassey",
    "src": "CBS",
    "kind": "O",
@@ -17487,6 +17486,18 @@
    "note": "Expected to be out until at least Oct 23",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Charles%20Bassey"
+  },
+  {
+   "team": "GSW",
+   "player": "Kristaps Porzingis",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Illness",
+   "upd": "2026-10-21",
+   "until": "2026-12-01",
+   "note": "Expected to be out until at least Dec 1",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kristaps%20Porzingis"
   },
   {
    "team": "GSW",
@@ -17696,12 +17707,12 @@
    "team": "MEM",
    "player": "Isaiah Stewart",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
-   "upd": "2026-10-20",
-   "until": "",
-   "note": "",
-   "through": "2026-10-23",
+   "upd": "2026-10-21",
+   "until": "2026-10-23",
+   "note": "Expected to be out until at least Oct 23",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Isaiah%20Stewart"
   },
   {
@@ -17718,18 +17729,6 @@
   },
   {
    "team": "OKC",
-   "player": "Thomas Sorber",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-10-21",
-   "until": "2026-10-26",
-   "note": "Expected to be out until at least Oct 26",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Thomas%20Sorber"
-  },
-  {
-   "team": "OKC",
    "player": "Nikola Topic",
    "src": "CBS",
    "kind": "O",
@@ -17739,6 +17738,18 @@
    "note": "Expected to be out until at least Oct 26",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nikola%20Topic"
+  },
+  {
+   "team": "OKC",
+   "player": "Thomas Sorber",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-10-21",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Thomas%20Sorber"
   },
   {
    "team": "OKC",
@@ -18198,54 +18209,6 @@
   },
   {
    "team": "CHI",
-   "player": "Isaac Okoro",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Patellar",
-   "upd": "2026-10-19",
-   "until": "",
-   "note": "The Bulls listed Okoro as Probable for Wednesday's (Oct. 21) game against Toronto.",
-   "through": "2026-10-23",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=I.%20Okoro"
-  },
-  {
-   "team": "CHI",
-   "player": "Zach Collins",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Quadriceps",
-   "upd": "2026-10-19",
-   "until": "",
-   "note": "The Bulls listed Collins as Probable for Wednesday's (Oct. 21) game against Toronto.",
-   "through": "2026-10-23",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=Z.%20Collins"
-  },
-  {
-   "team": "CHI",
-   "player": "Leonard Miller",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Adductor",
-   "upd": "2026-10-19",
-   "until": "",
-   "note": "The Bulls listed Miller as Probable for Wednesday's (Oct. 21) game against Toronto.",
-   "through": "2026-10-23",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=L.%20Miller"
-  },
-  {
-   "team": "CHI",
-   "player": "Tobe Awaka",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "MCL",
-   "upd": "2026-10-19",
-   "until": "",
-   "note": "The Bulls listed Awaka as Probable for Wednesday's (Oct. 21) game against Toronto.",
-   "through": "2026-10-23",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Awaka"
-  },
-  {
-   "team": "CHI",
    "player": "Nic Claxton",
    "src": "Covers",
    "kind": "O",
@@ -18356,13 +18319,37 @@
    "team": "GSW",
    "player": "Charles Bassey",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Patellar",
    "upd": "2026-10-20",
    "until": "",
-   "note": "The Warriors said that Bassey is Questionable for Wednesday's (Oct. 21) game versus the Lakers.",
-   "through": "2026-10-23",
+   "note": "The Warriors said that Bassey is OUT for Wednesday's (Oct. 21) game versus the Lakers.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=C.%20Bassey"
+  },
+  {
+   "team": "GSW",
+   "player": "Brandin Podziemski",
+   "src": "Covers",
+   "kind": "O",
+   "injury": "Back",
+   "upd": "2026-10-20",
+   "until": "",
+   "note": "The Warriors said that Podziemski is OUT for Wednesday's (Oct. 21) game versus the Lakers.",
+   "through": "",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=B.%20Podziemski"
+  },
+  {
+   "team": "GSW",
+   "player": "Kristaps Porzingis",
+   "src": "Covers",
+   "kind": "O",
+   "injury": "Illness",
+   "upd": "2026-10-20",
+   "until": "",
+   "note": "The Warriors reported on Wednesday (Oct. 21) that Porzingis is dealing with the autoimmune condition postural orthostatic tachycardia syndrome or POTS, per Shams Charania of ESPN.",
+   "through": "",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20Porzingis"
   },
   {
    "team": "GSW",
@@ -18375,30 +18362,6 @@
    "note": "The Warriors said that Curry is Probable for Wednesday's (Oct. 21) game versus the Lakers.",
    "through": "2026-10-23",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=S.%20Curry"
-  },
-  {
-   "team": "GSW",
-   "player": "Brandin Podziemski",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Back",
-   "upd": "2026-10-19",
-   "until": "",
-   "note": "The Warriors said that Podziemski is Questionable for Wednesday's (Oct. 21) game versus the Lakers.",
-   "through": "2026-10-23",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=B.%20Podziemski"
-  },
-  {
-   "team": "GSW",
-   "player": "Kristaps Porzingis",
-   "src": "Covers",
-   "kind": "O",
-   "injury": "Illness",
-   "upd": "2026-10-18",
-   "until": "",
-   "note": "The Warriors reported on Monday (Oct. 19) that Porzingis won't travel with the Warriors and remains out indefinitely, per Luca Evans of the San Francisco Chronicle.",
-   "through": "",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20Porzingis"
   },
   {
    "team": "GSW",
@@ -18548,12 +18511,12 @@
    "team": "LAL",
    "player": "Collin Sexton",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Soleus",
-   "upd": "2026-10-19",
+   "upd": "2026-10-20",
    "until": "",
-   "note": "The Lakers listed Sexton as Questionable for Wednesday's (Oct. 21 game against the Warriors.",
-   "through": "2026-10-23",
+   "note": "The Lakers listed Sexton as OUT for Wednesday's (Oct. 21 game against the Warriors.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=C.%20Sexton"
   },
   {
@@ -18591,30 +18554,6 @@
    "note": "The Grizzlies listed Stewart as Doubtful for Wednesday's (Oct. 21) game against Utah.",
    "through": "2026-10-23",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=I.%20Stewart"
-  },
-  {
-   "team": "MIA",
-   "player": "Vladislav Goldin",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-19",
-   "until": "",
-   "note": "The Heat listed Goldin as Questionable for Wednesday's (Oct. 21) game against Minnesota.",
-   "through": "2026-10-23",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=V.%20Goldin"
-  },
-  {
-   "team": "MIL",
-   "player": "Nate Ament",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-19",
-   "until": "",
-   "note": "The Bucks listed Ament as Probable as Wednesday's (Oct. 21) game against Wizards.",
-   "through": "2026-10-23",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=N.%20Ament"
   },
   {
    "team": "MIN",
@@ -18790,9 +18729,9 @@
    "src": "Covers",
    "kind": "G",
    "injury": "Illness",
-   "upd": "2026-10-19",
+   "upd": "2026-10-20",
    "until": "",
-   "note": "The Blazers listed Potter as Questionable for Wednesday's (Oct. 21) game against Phoenix.",
+   "note": "The Blazers listed Potter as Probable for Wednesday's (Oct. 21) game against Phoenix.",
    "through": "2026-10-23",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=M.%20Potter"
   },
@@ -19338,26 +19277,14 @@
   },
   {
    "team": "HOU",
-   "player": "Julian Phillips",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-10-20",
-   "until": "",
-   "note": "The Rockets converted Phillips' deal to a two-way contract Monday, per Michael Scotto of HoopsHype.com.",
-   "through": "2026-10-23",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Julian%20Phillips"
-  },
-  {
-   "team": "HOU",
    "player": "Steven Adams",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Right Calf Soreness",
-   "upd": "2026-10-20",
-   "until": "",
+   "upd": "2026-10-21",
+   "until": "2026-10-23",
    "note": "Adams (calf) is listed as questionable for Wednesday's game against the Mavericks.",
-   "through": "2026-10-23",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Steven%20Adams"
   },
   {
@@ -20308,27 +20235,14 @@
    "team": "HOU",
    "player": "Steven Adams",
    "src": "RotoWire",
-   "kind": "G",
+   "kind": "O",
    "injury": "",
    "upd": "2026-10-21",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Out",
    "through": "2026-10-21",
-   "st": "q",
+   "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Adams"
-  },
-  {
-   "team": "HOU",
-   "player": "Julian Phillips",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-21",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Phillips"
   },
   {
    "team": "GSW",
@@ -20680,6 +20594,40 @@
    "through": "2026-10-21",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Max%20Strus"
+  },
+  {
+   "team": "NOP",
+   "player": "Jeremiah Fears",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-21",
+   "until": "",
+   "note": "Fears will start Wednesday's game against the Pacers.",
+   "through": "2026-10-21",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/jeremiah-fears-6546",
+   "from": "2026-10-21",
+   "override": true,
+   "at": "2026-10-21T23:41:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "NOP",
+   "player": "Herbert Jones",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-21",
+   "until": "",
+   "note": "Jones is not in the starting lineup for Wednesday's regular-season opener against the Pacers.",
+   "through": "2026-10-21",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/herbert-jones-5414",
+   "from": "2026-10-21",
+   "override": true,
+   "at": "2026-10-21T23:40:00+00:00",
+   "from_news": true
   },
   {
    "team": "MEM",
@@ -21278,27 +21226,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-10-21T23:34:30+00:00",
+ "generated_at": "2026-10-21T23:59:45+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-21T23:34:09+00:00",
+   "at": "2026-10-21T23:59:23+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-21T23:34:20+00:00",
+   "at": "2026-10-21T23:59:38+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-21T23:34:20+00:00",
+   "at": "2026-10-21T23:59:39+00:00",
    "teams": 22,
-   "injuries": 61
+   "injuries": 60
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-21T23:34:20+00:00",
+   "at": "2026-10-21T23:59:39+00:00",
    "current_players": 68,
    "last_players": 582
   },
@@ -21308,18 +21256,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-21T23:34:21+00:00",
+   "at": "2026-10-21T23:59:39+00:00",
    "count": 74
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-21T23:34:30+00:00",
-   "count": 76
+   "at": "2026-10-21T23:59:45+00:00",
+   "count": 70
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-21T23:34:30+00:00",
-   "count": 74
+   "at": "2026-10-21T23:59:45+00:00",
+   "count": 73
   },
   "x": {
    "ok": null,
@@ -21327,8 +21275,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-21T23:34:30+00:00",
-   "count": 70
+   "at": "2026-10-21T23:59:45+00:00",
+   "count": 71
   }
  }
 }
