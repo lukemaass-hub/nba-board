@@ -100,6 +100,10 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 ## Style preferences
 Plain language, no jargon, short answers. The user is not a developer: say exactly where to click.
 
+- Oct 22 2026: DOLLY DISCONNECTED at the user's request (Dolly was lagging). dolly-minutes 1.2.0 has no Dolly host
+  permission or content script; prop-compare 0.23.0 has no Dolly permission and DOLLY_DISABLED=true (no Ours columns).
+  The user turned both off in Chrome. Don't reconnect anything to Dolly unless the user asks; if they do, make it lighter
+  first (dolly-minutes checked document.body.textContent on every Dolly page every 60 s).
 - Dolly expected minutes (Oct 19 2026, UAT for now; prod later): its OWN extension, dolly-minutes/ (kept separate
   from the prop-compare DK/FD props extension, user's choice), reads "Expected Mins." off Dolly's Rosters screen
   (text only) and saves expected_minutes.json to the repo with the user's own fine-grained GitHub key (this repo
