@@ -12,5 +12,8 @@ export const envOn = (settings, key) => {
   if (typeof v === 'boolean') return v;
   return (settings?.dollyEnv === 'prod') === (key === 'prod');
 };
-export const activeEnvs = (settings) => Object.values(DOLLY_ENVS).filter(e => envOn(settings, e.key));
+// Oct 22 2026: Dolly was lagging and the user had every NBA tool disconnected from it. Nothing reads Dolly:
+// no environment is ever active, so no reader is registered or injected and no Dolly tab is asked anything.
+export const DOLLY_DISABLED = true;
+export const activeEnvs = (settings) => DOLLY_DISABLED ? [] : Object.values(DOLLY_ENVS).filter(e => envOn(settings, e.key));
 export const envOfBook = (book) => Object.values(DOLLY_ENVS).find(e => e.book === book);

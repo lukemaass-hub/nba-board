@@ -127,8 +127,9 @@ test('UAT and Prod side by side: own columns, UAT-vs-Prod gap, anomalies per Dol
   const prod = anomalyRows(findAnomalies(rows, 10, 20, 'PROD'), tick);
   assert.equal(prod.length, 1); assert.equal(prod[0].env, 'prod'); assert.match(prod[0].id, /\|prod$/);
   // settings
-  assert.deepEqual(activeEnvs({}).map(e => e.key), ['test']);
-  assert.deepEqual(activeEnvs({ dollyEnv: 'prod' }).map(e => e.key), ['prod']);
-  assert.deepEqual(activeEnvs({ dollyTest: true, dollyProd: true }).map(e => e.key), ['test', 'prod']);
+  // Oct 22 2026: Dolly disconnected, so no environment is ever read whatever the settings say
+  assert.deepEqual(activeEnvs({}), []);
+  assert.deepEqual(activeEnvs({ dollyEnv: 'prod' }), []);
+  assert.deepEqual(activeEnvs({ dollyTest: true, dollyProd: true }), []);
   assert.equal(envOn({ dollyTest: false, dollyProd: false }, 'test'), false);
 });

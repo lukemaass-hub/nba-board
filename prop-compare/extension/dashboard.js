@@ -16,7 +16,7 @@ const DEFAULTS = {
 };
 const SERIES = [{ book: 'DK', name: 'DK', long: 'DraftKings', color: '#3987e5' }, { book: 'FD', name: 'FD', long: 'FanDuel', color: '#d95926' },
   { book: 'OURS', name: 'UAT', long: 'Ours UAT (app price)', color: '#199e70' }, { book: 'PROD', name: 'Prod', long: 'Ours Prod (app price)', color: '#c74fd1' }];
-import { DOLLY_ENVS, activeEnvs, envOn, envOfBook } from './lib/dolly-env.js';
+import { DOLLY_ENVS, DOLLY_DISABLED, activeEnvs, envOn, envOfBook } from './lib/dolly-env.js';
 const envs = () => activeEnvs(settings);
 const BOOK_NAME = { DK: 'DraftKings', FD: 'FanDuel', OURS: 'Ours UAT', PROD: 'Ours Prod' };
 const REPROBE_EVERY = 20;   // pulls; re-try DK subcategories that returned nothing
@@ -41,13 +41,13 @@ async function loadSettings() {
 $('settings').addEventListener('submit', async (e) => {
   e.preventDefault();
   // Prod Dolly ticked: ask Chrome for access first (must happen right on the click); unticked: give prod access back
-  const wantProd = e.target.elements.dollyProd.checked;
+  const wantProd = !DOLLY_DISABLED && e.target.elements.dollyProd.checked;
   const prodOrigin = DOLLY_ENVS.prod.origin;
   if (wantProd && !(await chrome.permissions.request({ origins: [prodOrigin] }))) {
     e.target.elements.dollyProd.checked = false;
     $('saved').textContent = 'Prod Dolly was not allowed, so it stays off.';
   }
-  if (!e.target.elements.dollyProd.checked) await chrome.permissions.remove({ origins: [prodOrigin] }).catch(() => false);
+  if (!DOLLY_DISABLED && !e.target.elements.dollyProd.checked) await chrome.permissions.remove({ origins: [prodOrigin] }).catch(() => false);
   const f = e.target, s = {};
   for (const k of Object.keys(DEFAULTS)) { const i = f.elements[k]; s[k] = i.type === 'checkbox' ? i.checked : i.type === 'number' ? Number(i.value) : i.value.trim(); }
   s.pollSeconds = Math.max(5, s.pollSeconds || 15);
@@ -98,7 +98,8 @@ function renderDiag() {
     for (const x of learned.urls.slice(0, 8)) lines.push(`     ${decodeURIComponent(x).replace(/^https:\/\/[^/]+/, '').slice(0, 220)}`);
   }
   lines.push(`   DK ids in use: site ${dkSite()}, leagues ${dkLeagues().join(', ')}, points subcategories ${subIds().join(', ')}`);
-  if (!envs().length) lines.push('\nOur prices: no Dolly ticked in Settings');
+  if (DOLLY_DISABLED) lines.push('\nOur prices: Dolly is disconnected (Oct 22 2026); DraftKings and FanDuel only');
+  else if (!envs().length) lines.push('\nOur prices: no Dolly ticked in Settings');
   for (const E of envs()) {
     const d = diag.dolly[E.key] || {};
     lines.push(`\nOur prices (Dolly ${E.label} screen, App column): ${d.text || 'not read yet'}`);
