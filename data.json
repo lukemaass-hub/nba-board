@@ -8620,7 +8620,7 @@
    "time": "19:00",
    "vs": "PHI",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8649,7 +8649,7 @@
    "time": "19:00",
    "vs": "CLE",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -15457,6 +15457,28 @@
  },
  "news": [
   {
+   "id": "nba535615",
+   "player": "Jarrett Allen",
+   "headline": "Good to go for season opener",
+   "text": "Allen (knee) is active for Thursday's game against the 76ers.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/jarrett-allen-4122",
+   "at": "2026-10-22T22:30:00+00:00",
+   "team": "CLE"
+  },
+  {
+   "id": "nba535614",
+   "player": "De'Aaron Fox",
+   "headline": "Questionable for Friday",
+   "text": "Fox (wrist) is questionable to play in Friday's game against the Rockets.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/deaaron-fox-4116",
+   "at": "2026-10-22T22:11:00+00:00",
+   "team": "SAS"
+  },
+  {
    "id": "nba535612",
    "player": "Tobias Harris",
    "headline": "Ruled out for Friday",
@@ -16533,50 +16555,6 @@
    "url": "https://www.rotowire.com/basketball/player/pelle-larsson-6013",
    "at": "2026-10-19T23:15:00+00:00",
    "team": "MIA"
-  },
-  {
-   "id": "nba535187",
-   "player": "Josh Hart",
-   "headline": "Ready for season opener",
-   "text": "Hart (ankle) isn't listed on the injury report ahead of Tuesday's game against the 76ers.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/josh-hart-4136",
-   "at": "2026-10-19T22:37:00+00:00",
-   "team": "NYK"
-  },
-  {
-   "id": "nba535186",
-   "player": "VJ Edgecombe",
-   "headline": "Team option picked up",
-   "text": "The 76ers exercised the third-year team option on Edgecombe's contract for the 2027-28 season Monday, Derek Bodner of AllPHLY.com reports.",
-   "reporter": "Derek Bodner",
-   "outlet": "AllPHLY.com",
-   "url": "https://www.rotowire.com/basketball/player/vj-edgecombe-6550",
-   "at": "2026-10-19T22:22:00+00:00",
-   "team": "PHI"
-  },
-  {
-   "id": "nba535185",
-   "player": "Cason Wallace",
-   "headline": "Not listed on injury report",
-   "text": "Wallace (undisclosed) is not listed on the injury report ahead of Tuesday's regular-season opener against the Spurs, Justin Martinez of The Oklahoman reports.",
-   "reporter": "Justin Martinez",
-   "outlet": "The Oklahoman",
-   "url": "https://www.rotowire.com/basketball/player/cason-wallace-5898",
-   "at": "2026-10-19T22:17:00+00:00",
-   "team": "OKC"
-  },
-  {
-   "id": "nba535181",
-   "player": "Chet Holmgren",
-   "headline": "Available to play",
-   "text": "Holmgren (quad) is available for Tuesday's regular-season opener against the Spurs, Justin Martinez of The Oklahoman reports.",
-   "reporter": "Justin Martinez",
-   "outlet": "The Oklahoman",
-   "url": "https://www.rotowire.com/basketball/player/chet-holmgren-5697",
-   "at": "2026-10-19T22:11:00+00:00",
-   "team": "OKC"
   }
  ],
  "matchup_alerts": [
@@ -18964,18 +18942,6 @@
   },
   {
    "team": "CLE",
-   "player": "Jarrett Allen",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Knee",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "Allen (knee) said he expects to play Thursday against the 76ers, Chris Fedor of The Cleveland Plain Dealer reports.",
-   "through": "2026-10-24",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Jarrett%20Allen"
-  },
-  {
-   "team": "CLE",
    "player": "Khalifa Diop",
    "src": "ESPN",
    "kind": "O",
@@ -19612,13 +19578,37 @@
   },
   {
    "team": "SAS",
+   "player": "De'Aaron Fox",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Right Wrist Sprain",
+   "upd": "2026-10-22",
+   "until": "",
+   "note": "Fox (wrist) is questionable to play in Friday's game against the Rockets.",
+   "through": "2026-10-24",
+   "url": "https://www.espn.com/nba/injuries#:~:text=De%27Aaron%20Fox"
+  },
+  {
+   "team": "SAS",
+   "player": "Keldon Johnson",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Mouth Laceration",
+   "upd": "2026-10-22",
+   "until": "",
+   "note": "Johnson is listed as questionable for Friday's game against the Rockets due to a mouth laceration.",
+   "through": "2026-10-24",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Keldon%20Johnson"
+  },
+  {
+   "team": "SAS",
    "player": "Tobias Harris",
    "src": "ESPN",
    "kind": "O",
    "injury": "Left Calf Strain",
-   "upd": "2026-10-21",
+   "upd": "2026-10-22",
    "until": "2026-10-24",
-   "note": "Harris (calf) will not be ready for the season opener Wednesday against the Thunder, Matt Guzman of SI.com reports.",
+   "note": "Harris (calf) is out for Friday's game against the Rockets.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Tobias%20Harris"
   },
@@ -19732,32 +19722,6 @@
   },
   {
    "team": "CLE",
-   "player": "Jarrett Allen",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-22",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Allen"
-  },
-  {
-   "team": "CLE",
-   "player": "Jarrett Allen",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-22",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Allen"
-  },
-  {
-   "team": "CLE",
    "player": "Khalifa Diop",
    "src": "RotoWire",
    "kind": "O",
@@ -19781,19 +19745,6 @@
    "through": "2026-10-22",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Tomlin"
-  },
-  {
-   "team": "PHI",
-   "player": "Dean Wade",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-22",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Wade"
   },
   {
    "team": "PHI",
@@ -19833,6 +19784,19 @@
    "through": "2026-10-22",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Hukporti"
+  },
+  {
+   "team": "PHI",
+   "player": "Dean Wade",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-22",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-22",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Dean%20Wade"
   },
   {
    "team": "DEN",
@@ -19898,6 +19862,23 @@
    "through": "2026-10-22",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Topic"
+  },
+  {
+   "team": "SAS",
+   "player": "De'Aaron Fox",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "Fox (wrist) is questionable to play in Friday's game against the Rockets.",
+   "through": "2026-10-23",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/deaaron-fox-4116",
+   "from": "2026-10-23",
+   "override": true,
+   "at": "2026-10-22T22:11:00+00:00",
+   "from_news": true
   },
   {
    "team": "SAS",
@@ -20578,47 +20559,30 @@
    "override": true,
    "at": "2026-10-20T15:11:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "OKC",
-   "player": "Chet Holmgren",
-   "src": "Justin Martinez",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-20",
-   "until": "",
-   "note": "Holmgren (quad) is available for Tuesday's regular-season opener against the Spurs, Justin Martinez of The Oklahoman reports.",
-   "through": "2026-10-20",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/chet-holmgren-5697",
-   "from": "2026-10-20",
-   "override": true,
-   "at": "2026-10-19T22:11:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [],
- "generated_at": "2026-10-22T22:09:31+00:00",
+ "generated_at": "2026-10-22T22:37:18+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-22T22:09:17+00:00",
+   "at": "2026-10-22T22:37:04+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-22T22:09:29+00:00",
+   "at": "2026-10-22T22:37:15+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-22T22:09:30+00:00",
+   "at": "2026-10-22T22:37:17+00:00",
    "teams": 4,
-   "injuries": 13
+   "injuries": 11
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-22T22:09:30+00:00",
+   "at": "2026-10-22T22:37:17+00:00",
    "current_players": 68,
    "last_players": 582
   },
@@ -20628,18 +20592,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-22T22:09:30+00:00",
+   "at": "2026-10-22T22:37:17+00:00",
    "count": 77
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-22T22:09:31+00:00",
+   "at": "2026-10-22T22:37:17+00:00",
    "count": 70
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-22T22:09:31+00:00",
-   "count": 78
+   "at": "2026-10-22T22:37:17+00:00",
+   "count": 79
   },
   "x": {
    "ok": null,
@@ -20647,8 +20611,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-22T22:09:31+00:00",
-   "count": 102
+   "at": "2026-10-22T22:37:18+00:00",
+   "count": 100
   }
  }
 }
