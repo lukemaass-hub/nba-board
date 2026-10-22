@@ -9229,7 +9229,7 @@
    "time": "22:30",
    "vs": "SAC",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9237,7 +9237,7 @@
     },
     {
      "pos": "SG",
-     "name": "Keaton Wagler"
+     "name": "Kris Dunn"
     },
     {
      "pos": "SF",
@@ -15979,6 +15979,39 @@
  },
  "news": [
   {
+   "id": "nba535410",
+   "player": "Stephen Curry",
+   "headline": "Cleared to play Wednesday",
+   "text": "Curry (ankle) is available for Wednesday's game against the Lakers.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/stephen-curry-3014",
+   "at": "2026-10-22T01:06:00+00:00",
+   "team": "GSW"
+  },
+  {
+   "id": "nba535411",
+   "player": "Deni Avdija",
+   "headline": "Good to go Wednesday",
+   "text": "Avdija (ankle) is available for Wednesday's game against the Suns, Jason Quick of The Athletic reports.",
+   "reporter": "Jason Quick",
+   "outlet": "The Athletic",
+   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
+   "at": "2026-10-22T01:06:00+00:00",
+   "team": "POR"
+  },
+  {
+   "id": "nba535404",
+   "player": "Collin Sexton",
+   "headline": "Sitting as precaution",
+   "text": "Head coach JJ Redick said that Sexton (calf) did not experience a setback, but the Lakers will sit him out of Wednesday's regular-season opener against the Warriors as a precaution, Daniel Starkland of Lakers Nation reports.",
+   "reporter": "Daniel Starkland",
+   "outlet": "Lakers Nation",
+   "url": "https://www.rotowire.com/basketball/player/collin-sexton-4412",
+   "at": "2026-10-22T00:29:00+00:00",
+   "team": "LAL"
+  },
+  {
    "id": "nba535396",
    "player": "Jeremiah Fears",
    "headline": "Starting regular-season opener",
@@ -17261,18 +17294,6 @@
   },
   {
    "team": "CHA",
-   "player": "Kylan Boswell",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-10-20",
-   "until": "2026-11-02",
-   "note": "Expected to be out until at least Nov 2",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kylan%20Boswell"
-  },
-  {
-   "team": "CHA",
    "player": "Kon Knueppel",
    "src": "CBS",
    "kind": "O",
@@ -17285,15 +17306,15 @@
   },
   {
    "team": "CHA",
-   "player": "Coby White",
+   "player": "Kylan Boswell",
    "src": "CBS",
    "kind": "O",
-   "injury": "Calf",
+   "injury": "Knee",
    "upd": "2026-10-20",
-   "until": "2026-10-23",
-   "note": "Expected to be out until at least Oct 23",
+   "until": "2026-11-02",
+   "note": "Expected to be out until at least Nov 2",
    "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Coby%20White"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kylan%20Boswell"
   },
   {
    "team": "CHA",
@@ -17308,16 +17329,16 @@
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Grant%20Williams"
   },
   {
-   "team": "CHI",
-   "player": "Jordan Hawkins",
+   "team": "CHA",
+   "player": "Coby White",
    "src": "CBS",
    "kind": "O",
-   "injury": "Illness",
-   "upd": "2026-10-21",
-   "until": "2026-10-24",
-   "note": "Expected to be out until at least Oct 24",
+   "injury": "Calf",
+   "upd": "2026-10-20",
+   "until": "2026-10-23",
+   "note": "Expected to be out until at least Oct 23",
    "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jordan%20Hawkins"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Coby%20White"
   },
   {
    "team": "CHI",
@@ -17330,6 +17351,18 @@
    "note": "Expected to be out until at least Oct 24",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dailyn%20Swain"
+  },
+  {
+   "team": "CHI",
+   "player": "Jordan Hawkins",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Illness",
+   "upd": "2026-10-21",
+   "until": "2026-10-24",
+   "note": "Expected to be out until at least Oct 24",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jordan%20Hawkins"
   },
   {
    "team": "CHI",
@@ -17393,18 +17426,6 @@
   },
   {
    "team": "DAL",
-   "player": "Dereck Lively II",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Foot",
-   "upd": "2026-10-20",
-   "until": "2026-10-23",
-   "note": "Expected to be out until at least Oct 23",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
-  },
-  {
-   "team": "DAL",
    "player": "Tarik Biberovic",
    "src": "CBS",
    "kind": "O",
@@ -17414,6 +17435,18 @@
    "note": "Expected to be out until at least Oct 23",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tarik%20Biberovic"
+  },
+  {
+   "team": "DAL",
+   "player": "Dereck Lively II",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Foot",
+   "upd": "2026-10-20",
+   "until": "2026-10-23",
+   "note": "Expected to be out until at least Oct 23",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
   },
   {
    "team": "DAL",
@@ -17549,26 +17582,14 @@
   },
   {
    "team": "HOU",
-   "player": "Julian Phillips",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-10-20",
-   "until": "",
-   "note": "",
-   "through": "2026-10-23",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Julian%20Phillips"
-  },
-  {
-   "team": "HOU",
    "player": "Steven Adams",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Calf",
-   "upd": "2026-10-20",
-   "until": "",
-   "note": "",
-   "through": "2026-10-23",
+   "upd": "2026-10-21",
+   "until": "2026-10-23",
+   "note": "Expected to be out until at least Oct 23",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Steven%20Adams"
   },
   {
@@ -17621,18 +17642,6 @@
   },
   {
    "team": "LAC",
-   "player": "Max Strus",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Foot",
-   "upd": "2026-10-15",
-   "until": "2026-11-08",
-   "note": "Expected to be out until at least Nov 8",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Max%20Strus"
-  },
-  {
-   "team": "LAC",
    "player": "Yanic Konan Niederhauser",
    "src": "CBS",
    "kind": "O",
@@ -17645,15 +17654,15 @@
   },
   {
    "team": "LAC",
-   "player": "Bradley Beal",
+   "player": "Max Strus",
    "src": "CBS",
    "kind": "O",
-   "injury": "Knee",
+   "injury": "Foot",
    "upd": "2026-10-15",
    "until": "2026-11-08",
    "note": "Expected to be out until at least Nov 8",
    "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Bradley%20Beal"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Max%20Strus"
   },
   {
    "team": "LAC",
@@ -17666,6 +17675,18 @@
    "note": "Expected to be out until at least Nov 8",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandon%20Ingram"
+  },
+  {
+   "team": "LAC",
+   "player": "Bradley Beal",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-10-15",
+   "until": "2026-11-08",
+   "note": "Expected to be out until at least Nov 8",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Bradley%20Beal"
   },
   {
    "team": "LAL",
@@ -17681,18 +17702,6 @@
   },
   {
    "team": "LAL",
-   "player": "Adou Thiero",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-10-20",
-   "until": "2026-10-23",
-   "note": "Expected to be out until at least Oct 23",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Adou%20Thiero"
-  },
-  {
-   "team": "LAL",
    "player": "Cameron Carr",
    "src": "CBS",
    "kind": "O",
@@ -17702,6 +17711,18 @@
    "note": "Expected to be out until at least Oct 23",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cameron%20Carr"
+  },
+  {
+   "team": "LAL",
+   "player": "Adou Thiero",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-10-20",
+   "until": "2026-10-23",
+   "note": "Expected to be out until at least Oct 23",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Adou%20Thiero"
   },
   {
    "team": "MEM",
@@ -17885,18 +17906,6 @@
   },
   {
    "team": "POR",
-   "player": "Deni Avdija",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-20",
-   "until": "",
-   "note": "",
-   "through": "2026-10-23",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Deni%20Avdija"
-  },
-  {
-   "team": "POR",
    "player": "Chris Youngblood",
    "src": "CBS",
    "kind": "O",
@@ -17906,6 +17915,18 @@
    "note": "Expected to be out until at least Oct 23",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Chris%20Youngblood"
+  },
+  {
+   "team": "POR",
+   "player": "Deni Avdija",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Ankle",
+   "upd": "2026-10-20",
+   "until": "",
+   "note": "",
+   "through": "2026-10-23",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Deni%20Avdija"
   },
   {
    "team": "POR",
@@ -19229,18 +19250,6 @@
   },
   {
    "team": "GSW",
-   "player": "Stephen Curry",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Ankle Sprain",
-   "upd": "2026-10-20",
-   "until": "",
-   "note": "Curry (ankle) is listed as probable for Wednesday's game against the Lakers.",
-   "through": "2026-10-23",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Stephen%20Curry"
-  },
-  {
-   "team": "GSW",
    "player": "Brandin Podziemski",
    "src": "ESPN",
    "kind": "O",
@@ -19583,7 +19592,7 @@
    "injury": "Left Knee Strain",
    "upd": "2026-10-22",
    "until": "2026-10-24",
-   "note": "Kennard (knee) is listed as questionable for Wednesday's game against Portland.",
+   "note": "Kennard (knee) won't play Wednesday versus Portland, Duane Rankin of The Arizona Republic reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Luke%20Kennard"
   },
@@ -19637,18 +19646,6 @@
   },
   {
    "team": "POR",
-   "player": "Deni Avdija",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Ankle",
-   "upd": "2026-10-20",
-   "until": "",
-   "note": "Avdija is questionable for Wednesday's game against the Suns due to right ankle soreness.",
-   "through": "2026-10-23",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Deni%20Avdija"
-  },
-  {
-   "team": "POR",
    "player": "Shaedon Sharpe",
    "src": "ESPN",
    "kind": "O",
@@ -19661,6 +19658,18 @@
   },
   {
    "team": "SAC",
+   "player": "Malik Monk",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Left Ankle Soreness",
+   "upd": "2026-10-22",
+   "until": "",
+   "note": "Monk (ankle) has been downgraded to doubtful for Wednesday's game against the Clippers.",
+   "through": "2026-10-23",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Malik%20Monk"
+  },
+  {
+   "team": "SAC",
    "player": "Ben Simmons",
    "src": "ESPN",
    "kind": "O",
@@ -19670,18 +19679,6 @@
    "note": "Simmons underwent successful surgery Tuesday to repair a torn right Achilles tendon, James Ham of ESPN 1320 Sacramento reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Ben%20Simmons"
-  },
-  {
-   "team": "SAC",
-   "player": "Malik Monk",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Ankle Soreness",
-   "upd": "2026-10-20",
-   "until": "",
-   "note": "Monk (ankle) is listed as questionable for Wednesday's game against the Clippers.",
-   "through": "2026-10-23",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Malik%20Monk"
   },
   {
    "team": "SAC",
@@ -20246,32 +20243,6 @@
   },
   {
    "team": "GSW",
-   "player": "Stephen Curry",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "RotoWire tag: Prob",
-   "through": "2026-10-21",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Curry"
-  },
-  {
-   "team": "GSW",
-   "player": "Stephen Curry",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "RotoWire tag: Prob",
-   "through": "2026-10-21",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Curry"
-  },
-  {
-   "team": "GSW",
    "player": "Charles Bassey",
    "src": "RotoWire",
    "kind": "O",
@@ -20402,19 +20373,6 @@
   },
   {
    "team": "POR",
-   "player": "Deni Avdija",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-21",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Avdija"
-  },
-  {
-   "team": "POR",
    "player": "Micah Potter",
    "src": "RotoWire",
    "kind": "G",
@@ -20425,19 +20383,6 @@
    "through": "2026-10-21",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Potter"
-  },
-  {
-   "team": "POR",
-   "player": "Deni Avdija",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-21",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Avdija"
   },
   {
    "team": "POR",
@@ -20499,7 +20444,7 @@
    "injury": "",
    "upd": "2026-10-21",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Doubt",
    "through": "2026-10-21",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Monk"
@@ -20594,6 +20539,57 @@
    "through": "2026-10-21",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Max%20Strus"
+  },
+  {
+   "team": "GSW",
+   "player": "Stephen Curry",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-21",
+   "until": "",
+   "note": "Curry (ankle) is available for Wednesday's game against the Lakers.",
+   "through": "2026-10-21",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/stephen-curry-3014",
+   "from": "2026-10-21",
+   "override": true,
+   "at": "2026-10-22T01:06:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "POR",
+   "player": "Deni Avdija",
+   "src": "Jason Quick",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-21",
+   "until": "",
+   "note": "Avdija (ankle) is available for Wednesday's game against the Suns, Jason Quick of The Athletic reports.",
+   "through": "2026-10-21",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
+   "from": "2026-10-21",
+   "override": true,
+   "at": "2026-10-22T01:06:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "LAL",
+   "player": "Collin Sexton",
+   "src": "Daniel Starkland",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-21",
+   "until": "",
+   "note": "Head coach JJ Redick said that Sexton (calf) did not experience a setback, but the Lakers will sit him out of Wednesday's regular-season opener against the Warriors as a precaution, Daniel Starkland of Lakers Nation reports.",
+   "through": "2026-10-21",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/collin-sexton-4412",
+   "from": "2026-10-21",
+   "override": true,
+   "at": "2026-10-22T00:29:00+00:00",
+   "from_news": true
   },
   {
    "team": "NOP",
@@ -21226,27 +21222,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-10-22T00:36:33+00:00",
+ "generated_at": "2026-10-22T01:15:22+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-22T00:36:18+00:00",
+   "at": "2026-10-22T01:15:06+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-22T00:36:31+00:00",
+   "at": "2026-10-22T01:15:20+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-22T00:36:32+00:00",
+   "at": "2026-10-22T01:15:21+00:00",
    "teams": 22,
-   "injuries": 60
+   "injuries": 56
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-22T00:36:32+00:00",
+   "at": "2026-10-22T01:15:21+00:00",
    "current_players": 68,
    "last_players": 582
   },
@@ -21256,18 +21252,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-22T00:36:33+00:00",
-   "count": 74
+   "at": "2026-10-22T01:15:21+00:00",
+   "count": 73
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-22T00:36:33+00:00",
+   "at": "2026-10-22T01:15:21+00:00",
    "count": 70
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-22T00:36:33+00:00",
-   "count": 73
+   "at": "2026-10-22T01:15:22+00:00",
+   "count": 71
   },
   "x": {
    "ok": null,
@@ -21275,8 +21271,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-22T00:36:33+00:00",
-   "count": 71
+   "at": "2026-10-22T01:15:22+00:00",
+   "count": 74
   }
  }
 }
