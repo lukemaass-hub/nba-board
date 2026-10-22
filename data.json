@@ -8446,7 +8446,7 @@
   },
   "DAL": {
    "PG": "Kyrie Irving/Marcus Sasser/Sergio de Larrea,Walter Clayton Jr.",
-   "SG": "Zaccharie Risacher/Max Christie/Caleb Martin,Jett Howard,Tarik Biberovic",
+   "SG": "Max Christie/Zaccharie Risacher/Caleb Martin,Jett Howard,Tarik Biberovic",
    "SF": "Cooper Flagg/Naji Marshall/",
    "PF": "P.J. Washington/Morez Johnson Jr./Santi Aldama,Tobi Lawal",
    "C": "Dereck Lively II/Daniel Gafford/Moussa Cisse"
@@ -9026,7 +9026,7 @@
    "time": "20:30",
    "vs": "HOU",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9034,7 +9034,7 @@
     },
     {
      "pos": "SG",
-     "name": "Zaccharie Risacher"
+     "name": "Max Christie"
     },
     {
      "pos": "SF",
@@ -9055,7 +9055,7 @@
    "time": "20:30",
    "vs": "DAL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -19283,7 +19283,7 @@
    "injury": "Right Calf Soreness",
    "upd": "2026-10-21",
    "until": "2026-10-23",
-   "note": "Adams (calf) is listed as questionable for Wednesday's game against the Mavericks.",
+   "note": "Adams (calf) won't play in Wednesday's game versus Dallas.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Steven%20Adams"
   },
@@ -19385,13 +19385,25 @@
   },
   {
    "team": "LAL",
+   "player": "Adou Thiero",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Knee",
+   "upd": "2026-10-22",
+   "until": "2026-10-23",
+   "note": "Head coach JJ Redick said Thiero (knee), who is out for Wednesday's game against Golden State, will begin ramping up soon and can be considered day-to-day moving forward, Daniel Starkand of LakersNation.com reports.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Adou%20Thiero"
+  },
+  {
+   "team": "LAL",
    "player": "Collin Sexton",
    "src": "ESPN",
    "kind": "O",
    "injury": "Right Calf",
-   "upd": "2026-10-21",
+   "upd": "2026-10-22",
    "until": "2026-10-23",
-   "note": "Sexton (calf) won't play in Wednesday's regular-season opener against the Warriors, per Khobi Price of The California Post.",
+   "note": "Head coach JJ Redick said that Sexton (calf) did not experience a setback, but the Lakers will sit him out of Wednesday's regular-season opener against the Warriors as a precaution, Daniel Starkland of Lakers Nation reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Collin%20Sexton"
   },
@@ -19401,23 +19413,11 @@
    "src": "ESPN",
    "kind": "O",
    "injury": "Right Oblique Strain",
-   "upd": "2026-10-21",
+   "upd": "2026-10-22",
    "until": "2026-10-23",
-   "note": "Carr (oblique) is listed as out for Wednesday's game against the Warriors.",
+   "note": "Head coach JJ Redick said Carr (oblique), who is out for Wednesday's game against Golden State, is \"ramping up\" and can be considered day-to-day moving forward, Daniel Starkand of LakersNation.com reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Cameron%20Carr"
-  },
-  {
-   "team": "LAL",
-   "player": "Adou Thiero",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Left Knee",
-   "upd": "2026-10-21",
-   "until": "2026-10-23",
-   "note": "Thiero (knee) has been ruled out for Wednesday's game against Golden State.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Adou%20Thiero"
   },
   {
    "team": "MEM",
@@ -19579,12 +19579,12 @@
    "team": "PHX",
    "player": "Luke Kennard",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Left Knee Strain",
-   "upd": "2026-10-21",
-   "until": "",
+   "upd": "2026-10-22",
+   "until": "2026-10-24",
    "note": "Kennard (knee) is listed as questionable for Wednesday's game against Portland.",
-   "through": "2026-10-23",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Luke%20Kennard"
   },
   {
@@ -20378,13 +20378,13 @@
    "team": "PHX",
    "player": "Luke Kennard",
    "src": "RotoWire",
-   "kind": "G",
+   "kind": "O",
    "injury": "",
    "upd": "2026-10-21",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Out",
    "through": "2026-10-21",
-   "st": "q",
+   "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=L.%20Kennard"
   },
   {
@@ -21226,27 +21226,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-10-21T23:59:45+00:00",
+ "generated_at": "2026-10-22T00:36:33+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-21T23:59:23+00:00",
+   "at": "2026-10-22T00:36:18+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-21T23:59:38+00:00",
+   "at": "2026-10-22T00:36:31+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-21T23:59:39+00:00",
+   "at": "2026-10-22T00:36:32+00:00",
    "teams": 22,
    "injuries": 60
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-21T23:59:39+00:00",
+   "at": "2026-10-22T00:36:32+00:00",
    "current_players": 68,
    "last_players": 582
   },
@@ -21256,17 +21256,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-21T23:59:39+00:00",
+   "at": "2026-10-22T00:36:33+00:00",
    "count": 74
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-21T23:59:45+00:00",
+   "at": "2026-10-22T00:36:33+00:00",
    "count": 70
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-21T23:59:45+00:00",
+   "at": "2026-10-22T00:36:33+00:00",
    "count": 73
   },
   "x": {
@@ -21275,7 +21275,7 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-21T23:59:45+00:00",
+   "at": "2026-10-22T00:36:33+00:00",
    "count": 71
   }
  }
