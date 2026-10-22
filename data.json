@@ -8568,7 +8568,7 @@
    "SG": "Jalen Green/Luke Kennard/",
    "SF": "Dillon Brooks/Jordan Goodwin/Koa Peat,Rasheer Fleming",
    "PF": "Miles Bridges/Ryan Dunn/",
-   "C": "Oso Ighodaro/Khaman Maluach/Drew Timme,Duop Reath,Mark Williams"
+   "C": "Khaman Maluach/Oso Ighodaro/Drew Timme,Duop Reath,Mark Williams"
   },
   "POR": {
    "PG": "Damian Lillard/Scoot Henderson/",
@@ -9084,7 +9084,7 @@
    "time": "22:00",
    "vs": "LAL",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9113,7 +9113,7 @@
    "time": "22:00",
    "vs": "GSW",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9125,11 +9125,11 @@
     },
     {
      "pos": "SF",
-     "name": "Quentin Grimes"
+     "name": "Ziaire Williams"
     },
     {
      "pos": "PF",
-     "name": "Jake LaRavia"
+     "name": "Matisse Thybulle"
     },
     {
      "pos": "C",
@@ -9142,7 +9142,7 @@
    "time": "22:00",
    "vs": "POR",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9162,7 +9162,7 @@
     },
     {
      "pos": "C",
-     "name": "Oso Ighodaro"
+     "name": "Khaman Maluach"
     }
    ]
   },
@@ -9171,7 +9171,7 @@
    "time": "22:00",
    "vs": "PHX",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -15979,6 +15979,39 @@
  },
  "news": [
   {
+   "id": "nba535417",
+   "player": "De'Anthony Melton",
+   "headline": "Starting Wednesday",
+   "text": "Melton will start Wednesday's game against the Lakers, Trevor Lane of LakersNation.com reports.",
+   "reporter": "Trevor Lane",
+   "outlet": "LakersNation.com",
+   "url": "https://www.rotowire.com/basketball/player/deanthony-melton-4368",
+   "at": "2026-10-22T01:43:00+00:00",
+   "team": "GSW"
+  },
+  {
+   "id": "nba535415",
+   "player": "Khaman Maluach",
+   "headline": "Starting Wednesday",
+   "text": "Maluach will start in Wednesday's regular-season opener against the Trail Blazers, Duane Rankin of The Arizona Republic reports.",
+   "reporter": "Duane Rankin",
+   "outlet": "The Arizona Republic",
+   "url": "https://www.rotowire.com/basketball/player/khaman-maluach-6542",
+   "at": "2026-10-22T01:37:00+00:00",
+   "team": "PHX"
+  },
+  {
+   "id": "nba535412",
+   "player": "Tari Eason",
+   "headline": "Ejected Wednesday",
+   "text": "Eason was ejected in the first quarter of Wednesday's game against Dallas after being assessed a Flagrant 2 foul, Brett Siegel of ClutchPoints.com reports. He'll finish with two points (1-2 FG), one rebound and one steal in three minutes.",
+   "reporter": "Brett Siegel",
+   "outlet": "ClutchPoints.com",
+   "url": "https://www.rotowire.com/basketball/player/tari-eason-5704",
+   "at": "2026-10-22T01:16:00+00:00",
+   "team": "HOU"
+  },
+  {
    "id": "nba535410",
    "player": "Stephen Curry",
    "headline": "Cleared to play Wednesday",
@@ -17294,18 +17327,6 @@
   },
   {
    "team": "CHA",
-   "player": "Kon Knueppel",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Hamstring",
-   "upd": "2026-10-20",
-   "until": "2026-10-23",
-   "note": "Expected to be out until at least Oct 23",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kon%20Knueppel"
-  },
-  {
-   "team": "CHA",
    "player": "Kylan Boswell",
    "src": "CBS",
    "kind": "O",
@@ -17318,18 +17339,6 @@
   },
   {
    "team": "CHA",
-   "player": "Grant Williams",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Hamstring",
-   "upd": "2026-10-20",
-   "until": "2026-10-23",
-   "note": "Expected to be out until at least Oct 23",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Grant%20Williams"
-  },
-  {
-   "team": "CHA",
    "player": "Coby White",
    "src": "CBS",
    "kind": "O",
@@ -17339,6 +17348,30 @@
    "note": "Expected to be out until at least Oct 23",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Coby%20White"
+  },
+  {
+   "team": "CHA",
+   "player": "Kon Knueppel",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Hamstring",
+   "upd": "2026-10-20",
+   "until": "2026-10-23",
+   "note": "Expected to be out until at least Oct 23",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kon%20Knueppel"
+  },
+  {
+   "team": "CHA",
+   "player": "Grant Williams",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Hamstring",
+   "upd": "2026-10-20",
+   "until": "2026-10-23",
+   "note": "Expected to be out until at least Oct 23",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Grant%20Williams"
   },
   {
    "team": "CHI",
@@ -17426,6 +17459,18 @@
   },
   {
    "team": "DAL",
+   "player": "Santi Aldama",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-10-20",
+   "until": "2026-10-23",
+   "note": "Expected to be out until at least Oct 23",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Santi%20Aldama"
+  },
+  {
+   "team": "DAL",
    "player": "Tarik Biberovic",
    "src": "CBS",
    "kind": "O",
@@ -17447,18 +17492,6 @@
    "note": "Expected to be out until at least Oct 23",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
-  },
-  {
-   "team": "DAL",
-   "player": "Santi Aldama",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-10-20",
-   "until": "2026-10-23",
-   "note": "Expected to be out until at least Oct 23",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Santi%20Aldama"
   },
   {
    "team": "DAL",
@@ -17546,18 +17579,6 @@
   },
   {
    "team": "GSW",
-   "player": "Stephen Curry",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-18",
-   "until": "",
-   "note": "",
-   "through": "2026-10-23",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Stephen%20Curry"
-  },
-  {
-   "team": "GSW",
    "player": "Jimmy Butler",
    "src": "CBS",
    "kind": "O",
@@ -17594,18 +17615,6 @@
   },
   {
    "team": "IND",
-   "player": "T.J. McConnell",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Hamstring",
-   "upd": "2026-10-20",
-   "until": "2026-10-23",
-   "note": "Expected to be out until at least Oct 23",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=T.J.%20McConnell"
-  },
-  {
-   "team": "IND",
    "player": "Aaron Nesmith",
    "src": "CBS",
    "kind": "O",
@@ -17615,6 +17624,18 @@
    "note": "Expected to be out until at least Oct 23",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Aaron%20Nesmith"
+  },
+  {
+   "team": "IND",
+   "player": "T.J. McConnell",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Hamstring",
+   "upd": "2026-10-20",
+   "until": "2026-10-23",
+   "note": "Expected to be out until at least Oct 23",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=T.J.%20McConnell"
   },
   {
    "team": "IND",
@@ -17884,12 +17905,12 @@
    "team": "PHX",
    "player": "Luke Kennard",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Knee",
-   "upd": "2026-10-15",
-   "until": "",
-   "note": "",
-   "through": "2026-10-23",
+   "upd": "2026-10-21",
+   "until": "2026-10-24",
+   "note": "Expected to be out until at least Oct 24",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Luke%20Kennard"
   },
   {
@@ -17918,18 +17939,6 @@
   },
   {
    "team": "POR",
-   "player": "Deni Avdija",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-20",
-   "until": "",
-   "note": "",
-   "through": "2026-10-23",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Deni%20Avdija"
-  },
-  {
-   "team": "POR",
    "player": "Branden Carlson",
    "src": "CBS",
    "kind": "O",
@@ -17939,18 +17948,6 @@
    "note": "Expected to be out until at least Oct 23",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Branden%20Carlson"
-  },
-  {
-   "team": "POR",
-   "player": "Micah Potter",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-10-16",
-   "until": "",
-   "note": "",
-   "through": "2026-10-23",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Micah%20Potter"
   },
   {
    "team": "POR",
@@ -17990,18 +17987,6 @@
   },
   {
    "team": "SAC",
-   "player": "Maxime Raynaud",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-10-15",
-   "until": "2026-11-02",
-   "note": "Expected to be out until at least Nov 2",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Maxime%20Raynaud"
-  },
-  {
-   "team": "SAC",
    "player": "Dylan Cardwell",
    "src": "CBS",
    "kind": "O",
@@ -18011,6 +17996,18 @@
    "note": "Expected to be out until at least Nov 2",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dylan%20Cardwell"
+  },
+  {
+   "team": "SAC",
+   "player": "Maxime Raynaud",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-10-15",
+   "until": "2026-11-02",
+   "note": "Expected to be out until at least Nov 2",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Maxime%20Raynaud"
   },
   {
    "team": "SAS",
@@ -19610,18 +19607,6 @@
   },
   {
    "team": "POR",
-   "player": "Micah Potter",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "Potter (illness) has been upgraded to probable for Wednesday's game against the Suns.",
-   "through": "2026-10-23",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Micah%20Potter"
-  },
-  {
-   "team": "POR",
    "player": "Branden Carlson",
    "src": "ESPN",
    "kind": "O",
@@ -19660,12 +19645,12 @@
    "team": "SAC",
    "player": "Malik Monk",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Left Ankle Soreness",
    "upd": "2026-10-22",
-   "until": "",
-   "note": "Monk (ankle) has been downgraded to doubtful for Wednesday's game against the Clippers.",
-   "through": "2026-10-23",
+   "until": "2026-10-23",
+   "note": "Monk (ankle) won't play Wednesday versus the Clippers.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Malik%20Monk"
   },
   {
@@ -20373,19 +20358,6 @@
   },
   {
    "team": "POR",
-   "player": "Micah Potter",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "RotoWire tag: Prob",
-   "through": "2026-10-21",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Potter"
-  },
-  {
-   "team": "POR",
    "player": "Branden Carlson",
    "src": "RotoWire",
    "kind": "O",
@@ -20438,19 +20410,6 @@
   },
   {
    "team": "SAC",
-   "player": "Malik Monk",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "RotoWire tag: Doubt",
-   "through": "2026-10-21",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Monk"
-  },
-  {
-   "team": "SAC",
    "player": "Dylan Cardwell",
    "src": "RotoWire",
    "kind": "O",
@@ -20461,6 +20420,19 @@
    "through": "2026-10-21",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Cardwell"
+  },
+  {
+   "team": "SAC",
+   "player": "Malik Monk",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-21",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-21",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Malik%20Monk"
   },
   {
    "team": "SAC",
@@ -20539,6 +20511,40 @@
    "through": "2026-10-21",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Max%20Strus"
+  },
+  {
+   "team": "GSW",
+   "player": "De'Anthony Melton",
+   "src": "Trevor Lane",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-21",
+   "until": "",
+   "note": "Melton will start Wednesday's game against the Lakers, Trevor Lane of LakersNation.com reports.",
+   "through": "2026-10-21",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/deanthony-melton-4368",
+   "from": "2026-10-21",
+   "override": true,
+   "at": "2026-10-22T01:43:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "PHX",
+   "player": "Khaman Maluach",
+   "src": "Duane Rankin",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-21",
+   "until": "",
+   "note": "Maluach will start in Wednesday's regular-season opener against the Trail Blazers, Duane Rankin of The Arizona Republic reports.",
+   "through": "2026-10-21",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/khaman-maluach-6542",
+   "from": "2026-10-21",
+   "override": true,
+   "at": "2026-10-22T01:37:00+00:00",
+   "from_news": true
   },
   {
    "team": "GSW",
@@ -21222,27 +21228,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-10-22T01:15:22+00:00",
+ "generated_at": "2026-10-22T01:50:34+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-22T01:15:06+00:00",
+   "at": "2026-10-22T01:50:16+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-22T01:15:20+00:00",
+   "at": "2026-10-22T01:50:30+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-22T01:15:21+00:00",
+   "at": "2026-10-22T01:50:33+00:00",
    "teams": 22,
-   "injuries": 56
+   "injuries": 55
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-22T01:15:21+00:00",
+   "at": "2026-10-22T01:50:33+00:00",
    "current_players": 68,
    "last_players": 582
   },
@@ -21252,18 +21258,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-22T01:15:21+00:00",
-   "count": 73
+   "at": "2026-10-22T01:50:33+00:00",
+   "count": 70
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-22T01:15:21+00:00",
+   "at": "2026-10-22T01:50:34+00:00",
    "count": 70
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-22T01:15:22+00:00",
-   "count": 71
+   "at": "2026-10-22T01:50:34+00:00",
+   "count": 70
   },
   "x": {
    "ok": null,
@@ -21271,8 +21277,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-22T01:15:22+00:00",
-   "count": 74
+   "at": "2026-10-22T01:50:34+00:00",
+   "count": 77
   }
  }
 }
