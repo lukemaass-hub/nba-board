@@ -8968,7 +8968,7 @@
    "time": "20:00",
    "vs": "MIA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8997,7 +8997,7 @@
    "time": "20:00",
    "vs": "DET",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17422,6 +17422,17 @@
  },
  "news": [
   {
+   "id": "nba535717",
+   "player": "De'Aaron Fox",
+   "headline": "Available to play",
+   "text": "Fox (wrist) is available for Friday's game against the Rockets, Matt Guzman of SI.com reports.",
+   "reporter": "Matt Guzman",
+   "outlet": "SI.com",
+   "url": "https://www.rotowire.com/basketball/player/deaaron-fox-4116",
+   "at": "2026-10-23T23:42:00+00:00",
+   "team": "SAS"
+  },
+  {
    "id": "nba535715",
    "player": "Cameron Johnson",
    "headline": "Won't play Saturday",
@@ -18498,17 +18509,6 @@
    "url": "https://www.rotowire.com/basketball/player/stephen-curry-3014",
    "at": "2026-10-20T23:51:00+00:00",
    "team": "GSW"
-  },
-  {
-   "id": "nba535279",
-   "player": "Deni Avdija",
-   "headline": "Questionable for Wednesday",
-   "text": "Avdija is questionable for Wednesday's game against the Suns due to right ankle soreness.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
-   "at": "2026-10-20T23:35:00+00:00",
-   "team": "POR"
   }
  ],
  "matchup_alerts": [
@@ -20932,13 +20932,25 @@
   },
   {
    "team": "DEN",
+   "player": "Spencer Jones",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Hamstring",
+   "upd": "2026-10-23",
+   "until": "2026-10-26",
+   "note": "Jones (hamstring) is out for Saturday's game against the Pelicans.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Spencer%20Jones"
+  },
+  {
+   "team": "DEN",
    "player": "Cameron Johnson",
    "src": "ESPN",
    "kind": "O",
    "injury": "Right Ankle Sprain",
    "upd": "2026-10-23",
    "until": "2026-10-26",
-   "note": "Johnson (ankle) didn't return to Thursday's game against Oklahoma City. He ended with five points (2-3 FG, 1-1 3Pt), two rebounds and one assist in 11 minutes.",
+   "note": "Johnson (ankle) has been ruled out for Saturday's game against New Orleans.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Cameron%20Johnson"
   },
@@ -20950,21 +20962,9 @@
    "injury": "Right Wrist",
    "upd": "2026-10-23",
    "until": "",
-   "note": "Diallo closed with four points (2-4 FG, 0-2 3Pt), two rebounds, three assists and one steal over 22 minutes during Thursday's 96-84 loss to the Thunder.",
+   "note": "Diallo is questionable for Saturday's game versus the Pelicans due to a right wrist sprain.",
    "through": "2026-10-25",
    "url": "https://www.espn.com/nba/injuries#:~:text=Alpha%20Diallo"
-  },
-  {
-   "team": "DEN",
-   "player": "Spencer Jones",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Hamstring",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "Jones (hamstring) has been ruled out for Thursday's game against Oklahoma City, Justin Martinez of The Oklahoman reports.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Spencer%20Jones"
   },
   {
    "team": "DEN",
@@ -21955,45 +21955,6 @@
   },
   {
    "team": "SAS",
-   "player": "De'Aaron Fox",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Fox"
-  },
-  {
-   "team": "SAS",
-   "player": "De'Aaron Fox",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Fox"
-  },
-  {
-   "team": "SAS",
-   "player": "Keldon Johnson",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Johnson"
-  },
-  {
-   "team": "SAS",
    "player": "Tobias Harris",
    "src": "RotoWire",
    "kind": "O",
@@ -22329,6 +22290,23 @@
    "through": "2026-10-23",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Raynaud"
+  },
+  {
+   "team": "SAS",
+   "player": "De'Aaron Fox",
+   "src": "Matt Guzman",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "Fox (wrist) is available for Friday's game against the Rockets, Matt Guzman of SI.com reports.",
+   "through": "2026-10-23",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/deaaron-fox-4116",
+   "from": "2026-10-23",
+   "override": true,
+   "at": "2026-10-23T23:42:00+00:00",
+   "from_news": true
   },
   {
    "team": "DEN",
@@ -22941,23 +22919,6 @@
    "override": true,
    "at": "2026-10-20T23:51:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "POR",
-   "player": "Deni Avdija",
-   "src": "RotoWire news",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "Avdija is questionable for Wednesday's game against the Suns due to right ankle soreness.",
-   "through": "2026-10-21",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
-   "from": "2026-10-21",
-   "override": true,
-   "at": "2026-10-20T23:35:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -22973,27 +22934,27 @@
    "at": "2026-10-23T21:45:00+00:00"
   }
  ],
- "generated_at": "2026-10-23T23:18:08+00:00",
+ "generated_at": "2026-10-23T23:47:04+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-23T23:17:55+00:00",
+   "at": "2026-10-23T23:46:51+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-23T23:18:07+00:00",
+   "at": "2026-10-23T23:47:02+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-23T23:18:07+00:00",
+   "at": "2026-10-23T23:47:03+00:00",
    "teams": 24,
-   "injuries": 56
+   "injuries": 53
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-23T23:18:07+00:00",
+   "at": "2026-10-23T23:47:03+00:00",
    "current_players": 345,
    "last_players": 582
   },
@@ -23003,17 +22964,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-23T23:18:08+00:00",
+   "at": "2026-10-23T23:47:03+00:00",
    "count": 71
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-23T23:18:08+00:00",
+   "at": "2026-10-23T23:47:04+00:00",
    "count": 79
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-23T23:18:08+00:00",
+   "at": "2026-10-23T23:47:04+00:00",
    "count": 70
   },
   "x": {
@@ -23022,7 +22983,7 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-23T23:18:08+00:00",
+   "at": "2026-10-23T23:47:04+00:00",
    "count": 99
   }
  }
