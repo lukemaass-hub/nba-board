@@ -8537,16 +8537,16 @@
   },
   "NYK": {
    "PG": "Jalen Brunson/Miles McBride,Jose Alvarado/Tyler Kolek,Jaden Akins",
-   "SG": "Josh Hart/Landry Shamet/Pacome Dadiet,Dalton Knecht",
-   "SF": "Mikal Bridges/Jordan Clarkson/Tyler Nickel",
-   "PF": "OG Anunoby//Mohamed Diawara,Kevin McCullar Jr.",
+   "SG": "Josh Hart/Landry Shamet/Pacome Dadiet",
+   "SF": "Mikal Bridges/Jordan Clarkson/Tyler Nickel,Dalton Knecht",
+   "PF": "OG Anunoby//Mohamed Diawara",
    "C": "Karl-Anthony Towns/Andre Drummond/James Wiseman"
   },
   "OKC": {
-   "PG": "Shai Gilgeous-Alexander/Ajay Mitchell,Bennett Stirtz/Nikola Topic,Otega Oweh",
+   "PG": "Shai Gilgeous-Alexander/Ajay Mitchell,Bennett Stirtz/Nikola Topic",
    "SG": "Cason Wallace/Jared McCain/",
    "SF": "Jalen Williams//Brooks Barnhizer,Josh Dix",
-   "PF": "Chet Holmgren/Alex Caruso/Kenrich Williams",
+   "PF": "Chet Holmgren/Alex Caruso/Kenrich Williams,Micah Peavy",
    "C": "Isaiah Hartenstein/Jaylin Williams/Aday Mara,Thomas Sorber"
   },
   "ORL": {
@@ -8578,7 +8578,7 @@
    "C": "Donovan Clingan/Robert Williams III/Branden Carlson,Yang Hansen"
   },
   "SAC": {
-   "PG": "Darius Acuff Jr./Malik Monk,Ben Simmons/",
+   "PG": "Darius Acuff Jr./Malik Monk,Sean Pedulla/Ben Simmons",
    "SG": "Zach LaVine/Nique Clifford/Emanuel Sharp,Daeqwon Plowden",
    "SF": "De'Andre Hunter//Alex Karaban,Leaky Black",
    "PF": "Keegan Murray/Precious Achiuwa/",
@@ -8620,7 +8620,7 @@
    "time": "16:00",
    "vs": "MIL",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8649,7 +8649,7 @@
    "time": "16:00",
    "vs": "CHI",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17422,6 +17422,28 @@
  },
  "news": [
   {
+   "id": "nba535706",
+   "player": "Kyrie Irving",
+   "headline": "Will be on minutes restriction Friday",
+   "text": "Irving (knee) will be on a minutes restriction in Friday's game against the Pacers, Tony East of Forbes.com reports.",
+   "reporter": "Tony East",
+   "outlet": "Forbes.com",
+   "url": "https://www.rotowire.com/basketball/player/kyrie-irving-3186",
+   "at": "2026-10-23T21:45:00+00:00",
+   "team": "DAL"
+  },
+  {
+   "id": "nba535705",
+   "player": "Aaron Nesmith",
+   "headline": "Good to go Friday",
+   "text": "Nesmith (hamstring) will play in Friday's game against Dallas, Tony East of Forbes.com reports.",
+   "reporter": "Tony East",
+   "outlet": "Forbes.com",
+   "url": "https://www.rotowire.com/basketball/player/aaron-nesmith-5120",
+   "at": "2026-10-23T21:30:00+00:00",
+   "team": "IND"
+  },
+  {
    "id": "nba535697",
    "player": "Joel Embiid",
    "headline": "Will play Saturday, expected to sit Sunday",
@@ -18465,50 +18487,6 @@
    "url": "https://www.rotowire.com/basketball/player/kyle-filipowski-6264",
    "at": "2026-10-20T22:07:00+00:00",
    "team": "UTA"
-  },
-  {
-   "id": "nba535261",
-   "player": "Cade Cunningham",
-   "headline": "Nets 22 points with eight dimes in win",
-   "text": "Cunningham posted 22 points (8-18 FG, 1-6 3Pt, 5-5 FT), eight assists, four rebounds, one steal, one block and five turnovers across 35 minutes in Tuesday's 121-113 win over the Celtics.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/cade-cunningham-5336",
-   "at": "2026-10-20T21:51:00+00:00",
-   "team": "DET"
-  },
-  {
-   "id": "nba535260",
-   "player": "Paul George",
-   "headline": "Dominates in regular-season opener",
-   "text": "George tallied 38 points (12-21 FG, 7-12 3Pt, 7-8 FT), five rebounds, five steals and three assists across 31 minutes in Tuesday's 121-113 loss to the Pistons.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/paul-george-3114",
-   "at": "2026-10-20T21:47:00+00:00",
-   "team": "BOS"
-  },
-  {
-   "id": "nba535259",
-   "player": "T.J. McConnell",
-   "headline": "Ruled out for Wednesday",
-   "text": "McConnell won't play Wednesday in New Orleans due to a right hamstring strain.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/tj-mcconnell-3760",
-   "at": "2026-10-20T21:38:00+00:00",
-   "team": "IND"
-  },
-  {
-   "id": "nba535258",
-   "player": "Aaron Nesmith",
-   "headline": "Ruled out for regular-season opener",
-   "text": "Nesmith (hamstring) has been ruled out for Wednesday's game against New Orleans.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/aaron-nesmith-5120",
-   "at": "2026-10-20T21:36:00+00:00",
-   "team": "IND"
   }
  ],
  "matchup_alerts": [
@@ -18988,18 +18966,6 @@
   },
   {
    "team": "BOS",
-   "player": "RJ Luis Jr.",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Not Injury Related",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=RJ%20Luis%20Jr."
-  },
-  {
-   "team": "BOS",
    "player": "Devin Carter",
    "src": "CBS",
    "kind": "O",
@@ -19072,54 +19038,6 @@
   },
   {
    "team": "CHI",
-   "player": "Josh Giddey",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Wrist",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Josh%20Giddey"
-  },
-  {
-   "team": "CHI",
-   "player": "Jordan Hawkins",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jordan%20Hawkins"
-  },
-  {
-   "team": "CHI",
-   "player": "Dailyn Swain",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dailyn%20Swain"
-  },
-  {
-   "team": "CHI",
-   "player": "Zach Collins",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Quadriceps",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Zach%20Collins"
-  },
-  {
-   "team": "CHI",
    "player": "Nicolas Claxton",
    "src": "CBS",
    "kind": "O",
@@ -19168,18 +19086,6 @@
   },
   {
    "team": "DAL",
-   "player": "Tarik Biberovic",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Heel",
-   "upd": "2026-10-22",
-   "until": "2026-10-24",
-   "note": "Expected to be out until at least Oct 24",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tarik%20Biberovic"
-  },
-  {
-   "team": "DAL",
    "player": "Dereck Lively II",
    "src": "CBS",
    "kind": "O",
@@ -19189,6 +19095,18 @@
    "note": "Expected to be out until at least Oct 26",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
+  },
+  {
+   "team": "DAL",
+   "player": "Tarik Biberovic",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Heel",
+   "upd": "2026-10-22",
+   "until": "2026-10-24",
+   "note": "Expected to be out until at least Oct 24",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tarik%20Biberovic"
   },
   {
    "team": "DAL",
@@ -19251,16 +19169,16 @@
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Julian%20Strawther"
   },
   {
-   "team": "DET",
-   "player": "Taurean Prince",
+   "team": "GSW",
+   "player": "Charles Bassey",
    "src": "CBS",
-   "kind": "G",
-   "injury": "Personal",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Taurean%20Prince"
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-10-23",
+   "until": "2026-10-24",
+   "note": "Expected to be out until at least Oct 24",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Charles%20Bassey"
   },
   {
    "team": "GSW",
@@ -19273,18 +19191,6 @@
    "note": "",
    "through": "2026-10-25",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandin%20Podziemski"
-  },
-  {
-   "team": "GSW",
-   "player": "Charles Bassey",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Charles%20Bassey"
   },
   {
    "team": "GSW",
@@ -19432,18 +19338,6 @@
   },
   {
    "team": "LAC",
-   "player": "Max Strus",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Foot",
-   "upd": "2026-10-15",
-   "until": "2026-11-08",
-   "note": "Expected to be out until at least Nov 8",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Max%20Strus"
-  },
-  {
-   "team": "LAC",
    "player": "Yanic Konan Niederhauser",
    "src": "CBS",
    "kind": "O",
@@ -19455,28 +19349,28 @@
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Yanic%20Konan%20Niederhauser"
   },
   {
-   "team": "LAL",
-   "player": "Jake LaRavia",
+   "team": "LAC",
+   "player": "Max Strus",
    "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jake%20LaRavia"
+   "kind": "O",
+   "injury": "Foot",
+   "upd": "2026-10-15",
+   "until": "2026-11-08",
+   "note": "Expected to be out until at least Nov 8",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Max%20Strus"
   },
   {
    "team": "LAL",
-   "player": "Cameron Carr",
+   "player": "Jake LaRavia",
    "src": "CBS",
    "kind": "O",
-   "injury": "Oblique",
-   "upd": "2026-10-22",
+   "injury": "Ankle",
+   "upd": "2026-10-23",
    "until": "2026-10-25",
    "note": "Expected to be out until at least Oct 25",
    "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cameron%20Carr"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jake%20LaRavia"
   },
   {
    "team": "LAL",
@@ -19489,6 +19383,18 @@
    "note": "Expected to be out until at least Oct 25",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Adou%20Thiero"
+  },
+  {
+   "team": "LAL",
+   "player": "Cameron Carr",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Oblique",
+   "upd": "2026-10-22",
+   "until": "2026-10-25",
+   "note": "Expected to be out until at least Oct 25",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cameron%20Carr"
   },
   {
    "team": "MEM",
@@ -19528,18 +19434,6 @@
   },
   {
    "team": "OKC",
-   "player": "Thomas Sorber",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-10-21",
-   "until": "2026-10-26",
-   "note": "Expected to be out until at least Oct 26",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Thomas%20Sorber"
-  },
-  {
-   "team": "OKC",
    "player": "Nikola Topic",
    "src": "CBS",
    "kind": "O",
@@ -19549,6 +19443,18 @@
    "note": "Expected to be out until at least Oct 26",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nikola%20Topic"
+  },
+  {
+   "team": "OKC",
+   "player": "Thomas Sorber",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-10-21",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Thomas%20Sorber"
   },
   {
    "team": "OKC",
@@ -19612,15 +19518,15 @@
   },
   {
    "team": "PHI",
-   "player": "Tacko Fall",
+   "player": "Joel Embiid",
    "src": "CBS",
    "kind": "G",
-   "injury": "Quadriceps",
+   "injury": "Rest",
    "upd": "2026-10-23",
    "until": "",
    "note": "",
    "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tacko%20Fall"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Joel%20Embiid"
   },
   {
    "team": "PHI",
@@ -19636,15 +19542,15 @@
   },
   {
    "team": "PHI",
-   "player": "Joel Embiid",
+   "player": "Tacko Fall",
    "src": "CBS",
    "kind": "G",
-   "injury": "Rest",
+   "injury": "Quadriceps",
    "upd": "2026-10-23",
    "until": "",
    "note": "",
    "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Joel%20Embiid"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tacko%20Fall"
   },
   {
    "team": "PHI",
@@ -19674,12 +19580,12 @@
    "team": "PHX",
    "player": "Oso Ighodaro",
    "src": "CBS",
-   "kind": "G",
-   "injury": "Hip",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
+   "kind": "O",
+   "injury": "Oblique",
+   "upd": "2026-10-23",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Oso%20Ighodaro"
   },
   {
@@ -19741,18 +19647,6 @@
    "note": "Expected to be out until at least Mar 2",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Shaedon%20Sharpe"
-  },
-  {
-   "team": "SAC",
-   "player": "Malik Monk",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Malik%20Monk"
   },
   {
    "team": "SAC",
@@ -19864,18 +19758,6 @@
   },
   {
    "team": "UTA",
-   "player": "Tony Bradley",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Quadriceps",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tony%20Bradley"
-  },
-  {
-   "team": "UTA",
    "player": "Jusuf Nurkic",
    "src": "CBS",
    "kind": "O",
@@ -19888,18 +19770,6 @@
   },
   {
    "team": "WAS",
-   "player": "Felix Okpara",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Felix%20Okpara"
-  },
-  {
-   "team": "WAS",
    "player": "AJ Dybantsa",
    "src": "CBS",
    "kind": "O",
@@ -19909,6 +19779,18 @@
    "note": "Expected to be out until at least Oct 24",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=AJ%20Dybantsa"
+  },
+  {
+   "team": "WAS",
+   "player": "Felix Okpara",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Illness",
+   "upd": "2026-10-22",
+   "until": "",
+   "note": "",
+   "through": "2026-10-25",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Felix%20Okpara"
   },
   {
    "team": "WAS",
@@ -20922,12 +20804,12 @@
    "team": "BKN",
    "player": "Tyler Bilodeau",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Shoulder",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "Bilodeau will miss the season opener against the Hornets on Wednesday due to a shoulder sprain, Sharif Phillips-Keaton of USA Today reports.",
-   "through": "2026-10-25",
+   "upd": "2026-10-23",
+   "until": "2026-10-25",
+   "note": "Bilodeau (shoulder) has been ruled out for Saturday's game in Cleveland.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Tyler%20Bilodeau"
   },
   {
@@ -20977,66 +20859,6 @@
    "note": "Boswell (knee) is out for Wednesday's season opener against the Nets.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Kylan%20Boswell"
-  },
-  {
-   "team": "CHI",
-   "player": "Jordan Hawkins",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "Hawkins (illness) is probable for Friday's game against the Hawks.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Jordan%20Hawkins"
-  },
-  {
-   "team": "CHI",
-   "player": "Dailyn Swain",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "Swain (illness) is now probable for Friday against the Bucks.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Dailyn%20Swain"
-  },
-  {
-   "team": "CHI",
-   "player": "Zach Collins",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Quadriceps",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "Collins (quadriceps) is probable for Friday's game against the Bucks.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Zach%20Collins"
-  },
-  {
-   "team": "CHI",
-   "player": "Tobe Awaka",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Knee Sprain",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "Awaka (knee) is probable for Friday's game against the Bucks.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Tobe%20Awaka"
-  },
-  {
-   "team": "CHI",
-   "player": "Josh Giddey",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Wrist",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "Giddey (wrist) is probable for Friday's game against the Bucks.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Josh%20Giddey"
   },
   {
    "team": "CHI",
@@ -21150,12 +20972,12 @@
    "team": "GSW",
    "player": "Charles Bassey",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Knee",
    "upd": "2026-10-23",
-   "until": "",
-   "note": "Bassey (knee) is listed as questionable for Friday's game against Memphis.",
-   "through": "2026-10-25",
+   "until": "2026-10-24",
+   "note": "Bassey (knee) is out for Friday's game versus the Grizzlies.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Charles%20Bassey"
   },
   {
@@ -21166,7 +20988,7 @@
    "injury": "Back Soreness",
    "upd": "2026-10-23",
    "until": "",
-   "note": "Podziemski (back) is questionable for Friday's game against the Grizzlies.",
+   "note": "Podziemski (back) is probable for Friday's game against the Grizzlies.",
    "through": "2026-10-25",
    "url": "https://www.espn.com/nba/injuries#:~:text=Brandin%20Podziemski"
   },
@@ -21234,25 +21056,13 @@
    "team": "IND",
    "player": "Ben Sheppard",
    "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Knee Soreness",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "Sheppard (knee) is listed as questionable for Friday's game against the Mavericks.",
-   "through": "2026-10-25",
+   "kind": "O",
+   "injury": "Left Knee",
+   "upd": "2026-10-23",
+   "until": "2026-10-28",
+   "note": "Sheppard (knee) is out for Friday's game against the Mavericks and there's no timetable for his return, according to head coach Rick Carlisle per Alex Golden of SI.com.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Ben%20Sheppard"
-  },
-  {
-   "team": "IND",
-   "player": "Aaron Nesmith",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Hamstring Strain",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "Nesmith (hamstring) is listed as questionable for Friday's game against the Mavericks.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Aaron%20Nesmith"
   },
   {
    "team": "IND",
@@ -21340,6 +21150,18 @@
   },
   {
    "team": "LAL",
+   "player": "Jake LaRavia",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Ankle Sprain",
+   "upd": "2026-10-23",
+   "until": "2026-10-25",
+   "note": "LaRavia (ankle) has been ruled out for Friday's game against the Clippers, Mark Medina of TheSportingTribune.com reports.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Jake%20LaRavia"
+  },
+  {
+   "team": "LAL",
    "player": "Adou Thiero",
    "src": "ESPN",
    "kind": "O",
@@ -21361,18 +21183,6 @@
    "note": "Carr (oblique) is out for Friday's game against the Clippers.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Cameron%20Carr"
-  },
-  {
-   "team": "LAL",
-   "player": "Jake LaRavia",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Ankle Sprain",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "LaRavia (ankle) is listed as questionable for Friday's game against the Clippers.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Jake%20LaRavia"
   },
   {
    "team": "MEM",
@@ -21412,6 +21222,18 @@
   },
   {
    "team": "OKC",
+   "player": "Otega Oweh",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Achilles Surgery",
+   "upd": "2026-10-23",
+   "until": "2027-07-01",
+   "note": "The Thunder plan to waive Oweh (Achilles) on Friday.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Otega%20Oweh"
+  },
+  {
+   "team": "OKC",
    "player": "Nikola Topic",
    "src": "ESPN",
    "kind": "O",
@@ -21433,18 +21255,6 @@
    "note": "Sorber (knee) is listed as out for Thursday's game against Denver.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Thomas%20Sorber"
-  },
-  {
-   "team": "OKC",
-   "player": "Otega Oweh",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Right Achilles Surgery",
-   "upd": "2026-10-15",
-   "until": "2027-07-01",
-   "note": "Oweh (Achilles) underwent surgery Wednesday and will miss the entirety of the 2026-27 season, Brandon Rahbar of DailyThunder.com reports.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Otega%20Oweh"
   },
   {
    "team": "ORL",
@@ -21496,26 +21306,14 @@
   },
   {
    "team": "PHI",
-   "player": "Joel Embiid",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Rest",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "Embiid recorded 24 points (8-16 FG, 1-4 3Pt, 7-9 FT), seven rebounds and one assist in 34 minutes during Thursday's 114-106 win over the Cavaliers.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Joel%20Embiid"
-  },
-  {
-   "team": "PHI",
    "player": "Tacko Fall",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Left Quadriceps Strain",
    "upd": "2026-10-23",
-   "until": "",
-   "note": "Fall (quadriceps) is out for Thursday's game against Cleveland.",
-   "through": "2026-10-25",
+   "until": "2026-10-25",
+   "note": "Fall (quadriceps) is out for Saturday's game against the Bucks.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Tacko%20Fall"
   },
   {
@@ -21526,9 +21324,21 @@
    "injury": "Left Ankle Sprain",
    "upd": "2026-10-23",
    "until": "",
-   "note": "Wade (ankle) is out for Thursday's game against the Cavaliers.",
+   "note": "Wade is listed as questionable for Saturday's game against the Bucks due to a left ankle sprain.",
    "through": "2026-10-25",
    "url": "https://www.espn.com/nba/injuries#:~:text=Dean%20Wade"
+  },
+  {
+   "team": "PHI",
+   "player": "LeBron James",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Back",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "James (back) is questionable for Saturday's game against the Bucks.",
+   "through": "2026-10-25",
+   "url": "https://www.espn.com/nba/injuries#:~:text=LeBron%20James"
   },
   {
    "team": "PHI",
@@ -21562,7 +21372,7 @@
    "injury": "Left Knee Strain",
    "upd": "2026-10-23",
    "until": "",
-   "note": "Kennard (knee) won't play Wednesday versus Portland, Duane Rankin of The Arizona Republic reports.",
+   "note": "Kennard (knee) practiced Friday, Duane Rankin of The Arizona Republic reports.",
    "through": "2026-10-25",
    "url": "https://www.espn.com/nba/injuries#:~:text=Luke%20Kennard"
   },
@@ -21570,12 +21380,12 @@
    "team": "PHX",
    "player": "Oso Ighodaro",
    "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Hip",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "Ighodaro (hip) didn't return to Wednesday's 124-83 loss to Portland, Duane Rankin reports. He finished with eight points (4-7 FG, 0-2 FT), three rebounds and three assists over 15 minutes.",
-   "through": "2026-10-25",
+   "kind": "O",
+   "injury": "Oblique Strain",
+   "upd": "2026-10-23",
+   "until": "2026-10-26",
+   "note": "Ighodaro has been ruled out for Saturday's game against the Warriors due to an oblique strain, Duane Rankin of The Arizona Republic reports.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Oso%20Ighodaro"
   },
   {
@@ -21628,18 +21438,6 @@
   },
   {
    "team": "SAC",
-   "player": "Malik Monk",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Ankle Soreness",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "Monk (ankle) is probable for Friday's game against Portland.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Malik%20Monk"
-  },
-  {
-   "team": "SAC",
    "player": "Ben Simmons",
    "src": "ESPN",
    "kind": "O",
@@ -21676,27 +21474,27 @@
   },
   {
    "team": "SAS",
-   "player": "De'Aaron Fox",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Wrist Sprain",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "Fox (wrist) is questionable to play in Friday's game against the Rockets.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=De%27Aaron%20Fox"
-  },
-  {
-   "team": "SAS",
    "player": "Keldon Johnson",
    "src": "ESPN",
    "kind": "G",
    "injury": "Mouth Laceration",
-   "upd": "2026-10-22",
+   "upd": "2026-10-23",
    "until": "",
-   "note": "Johnson is listed as questionable for Friday's game against the Rockets due to a mouth laceration.",
+   "note": "Johnson (mouth) participated in shooting drills after Friday's morning shootaround, per Tom Orsborn of the San Antonio Express-News.",
    "through": "2026-10-25",
    "url": "https://www.espn.com/nba/injuries#:~:text=Keldon%20Johnson"
+  },
+  {
+   "team": "SAS",
+   "player": "De'Aaron Fox",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Right Wrist Sprain",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "Fox (wrist) participated in Friday's morning shootaround, Tom Orsborn of the San Antonio Express-News reports.",
+   "through": "2026-10-25",
+   "url": "https://www.espn.com/nba/injuries#:~:text=De%27Aaron%20Fox"
   },
   {
    "team": "SAS",
@@ -21748,18 +21546,6 @@
   },
   {
    "team": "UTA",
-   "player": "Tony Bradley",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Quadriceps Strain",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "Bradley (quadriceps) is questionable for Friday's game against New Orleans.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Tony%20Bradley"
-  },
-  {
-   "team": "UTA",
    "player": "Jusuf Nurkic",
    "src": "ESPN",
    "kind": "O",
@@ -21769,18 +21555,6 @@
    "note": "Nurkic will miss at least the next four weeks due to a partial plantar plate tear of second toe in right foot, Chris Haynes of NBA TV reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jusuf%20Nurkic"
-  },
-  {
-   "team": "WAS",
-   "player": "Felix Okpara",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "Okpara (illness) is questionable for Friday's game against Toronto.",
-   "through": "2026-10-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Felix%20Okpara"
   },
   {
    "team": "WAS",
@@ -21817,19 +21591,6 @@
    "note": "The Wizards announced Thursday that Watkins has undergone surgery for a torn ACL.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jamir%20Watkins"
-  },
-  {
-   "team": "CHI",
-   "player": "Zach Collins",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "RotoWire tag: Prob",
-   "through": "2026-10-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Z.%20Collins"
   },
   {
    "team": "CHI",
@@ -21924,45 +21685,6 @@
   },
   {
    "team": "IND",
-   "player": "Aaron Nesmith",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Nesmith"
-  },
-  {
-   "team": "IND",
-   "player": "Aaron Nesmith",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Nesmith"
-  },
-  {
-   "team": "IND",
-   "player": "Ben Sheppard",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Sheppard"
-  },
-  {
-   "team": "IND",
    "player": "Johnny Furphy",
    "src": "RotoWire",
    "kind": "O",
@@ -21986,6 +21708,19 @@
    "through": "2026-10-23",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20McConnell"
+  },
+  {
+   "team": "IND",
+   "player": "Ben Sheppard",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-23",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Sheppard"
   },
   {
    "team": "MIN",
@@ -22064,19 +21799,6 @@
    "through": "2026-10-23",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Bittle"
-  },
-  {
-   "team": "WAS",
-   "player": "Felix Okpara",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=F.%20Okpara"
   },
   {
    "team": "WAS",
@@ -22288,19 +22010,6 @@
   },
   {
    "team": "UTA",
-   "player": "Tony Bradley",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20Bradley"
-  },
-  {
-   "team": "UTA",
    "player": "Jusuf Nurkic",
    "src": "RotoWire",
    "kind": "O",
@@ -22359,23 +22068,10 @@
    "injury": "",
    "upd": "2026-10-23",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Prob",
    "through": "2026-10-23",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Podziemski"
-  },
-  {
-   "team": "GSW",
-   "player": "Charles Bassey",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Bassey"
   },
   {
    "team": "GSW",
@@ -22385,10 +22081,23 @@
    "injury": "",
    "upd": "2026-10-23",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Prob",
    "through": "2026-10-23",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Podziemski"
+  },
+  {
+   "team": "GSW",
+   "player": "Charles Bassey",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-23",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Bassey"
   },
   {
    "team": "GSW",
@@ -22496,19 +22205,6 @@
   },
   {
    "team": "LAL",
-   "player": "Jake LaRavia",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20LaRavia"
-  },
-  {
-   "team": "LAL",
    "player": "Cameron Carr",
    "src": "RotoWire",
    "kind": "O",
@@ -22519,6 +22215,19 @@
    "through": "2026-10-23",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Carr"
+  },
+  {
+   "team": "LAL",
+   "player": "Jake LaRavia",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-23",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20LaRavia"
   },
   {
    "team": "LAL",
@@ -22587,19 +22296,6 @@
   },
   {
    "team": "SAC",
-   "player": "Malik Monk",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "RotoWire tag: Prob",
-   "through": "2026-10-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Monk"
-  },
-  {
-   "team": "SAC",
    "player": "Dylan Cardwell",
    "src": "RotoWire",
    "kind": "O",
@@ -22623,6 +22319,23 @@
    "through": "2026-10-23",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Raynaud"
+  },
+  {
+   "team": "IND",
+   "player": "Aaron Nesmith",
+   "src": "Tony East",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "Nesmith (hamstring) will play in Friday's game against Dallas, Tony East of Forbes.com reports.",
+   "through": "2026-10-23",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/aaron-nesmith-5120",
+   "from": "2026-10-23",
+   "override": true,
+   "at": "2026-10-23T21:30:00+00:00",
+   "from_news": true
   },
   {
    "team": "PHI",
@@ -23235,64 +22948,42 @@
    "override": true,
    "at": "2026-10-20T22:12:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "IND",
-   "player": "T.J. McConnell",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "McConnell won't play Wednesday in New Orleans due to a right hamstring strain.",
-   "through": "2026-10-21",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/tj-mcconnell-3760",
-   "from": "2026-10-21",
-   "override": true,
-   "at": "2026-10-20T21:38:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "IND",
-   "player": "Aaron Nesmith",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "Nesmith (hamstring) has been ruled out for Wednesday's game against New Orleans.",
-   "through": "2026-10-21",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/aaron-nesmith-5120",
-   "from": "2026-10-21",
-   "override": true,
-   "at": "2026-10-20T21:36:00+00:00",
-   "from_news": true
   }
  ],
- "restrictions": [],
- "generated_at": "2026-10-23T17:21:40+00:00",
+ "restrictions": [
+  {
+   "team": "DAL",
+   "player": "Kyrie Irving",
+   "from": "2026-10-23",
+   "through": "2026-10-23",
+   "text": "Irving (knee) will be on a minutes restriction in Friday's game against the Pacers, Tony East of Forbes.com reports.",
+   "reporter": "Tony East",
+   "outlet": "Forbes.com",
+   "url": "https://www.rotowire.com/basketball/player/kyrie-irving-3186",
+   "at": "2026-10-23T21:45:00+00:00"
+  }
+ ],
+ "generated_at": "2026-10-23T21:57:18+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-23T17:21:26+00:00",
+   "at": "2026-10-23T21:57:03+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-23T17:21:38+00:00",
+   "at": "2026-10-23T21:57:16+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-23T17:21:38+00:00",
+   "at": "2026-10-23T21:57:17+00:00",
    "teams": 24,
-   "injuries": 62
+   "injuries": 56
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-23T17:21:39+00:00",
+   "at": "2026-10-23T21:57:17+00:00",
    "current_players": 345,
    "last_players": 582
   },
@@ -23302,18 +22993,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-23T17:21:39+00:00",
-   "count": 81
+   "at": "2026-10-23T21:57:17+00:00",
+   "count": 73
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-23T17:21:39+00:00",
+   "at": "2026-10-23T21:57:17+00:00",
    "count": 79
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-23T17:21:39+00:00",
-   "count": 78
+   "at": "2026-10-23T21:57:17+00:00",
+   "count": 69
   },
   "x": {
    "ok": null,
@@ -23321,8 +23012,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-23T21:24:49+00:00",
-   "count": 99
+   "at": "2026-10-23T21:57:18+00:00",
+   "count": 97
   }
  }
 }
