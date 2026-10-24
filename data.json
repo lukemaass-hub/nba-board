@@ -8620,7 +8620,7 @@
    "time": "18:00",
    "vs": "CHA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8649,7 +8649,7 @@
    "time": "18:00",
    "vs": "MIA",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17190,6 +17190,17 @@
  },
  "news": [
   {
+   "id": "nba535879",
+   "player": "Aaron Nesmith",
+   "headline": "Probable for Sunday",
+   "text": "Nesmith (hamstring) is listed as probable for Sunday's game against Brooklyn.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/aaron-nesmith-5120",
+   "at": "2026-10-24T21:06:00+00:00",
+   "team": "IND"
+  },
+  {
    "id": "nba535873",
    "player": "Draymond Green",
    "headline": "Doubtful to play Saturday",
@@ -19320,18 +19331,6 @@
   },
   {
    "team": "CHA",
-   "player": "Christian Anderson",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Christian%20Anderson"
-  },
-  {
-   "team": "CHA",
    "player": "Coby White",
    "src": "CBS",
    "kind": "O",
@@ -19416,6 +19415,18 @@
   },
   {
    "team": "DAL",
+   "player": "Dereck Lively II",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Foot",
+   "upd": "2026-10-24",
+   "until": "2026-10-28",
+   "note": "Expected to be out until at least Oct 28",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
+  },
+  {
+   "team": "DAL",
    "player": "Santi Aldama",
    "src": "CBS",
    "kind": "O",
@@ -19437,18 +19448,6 @@
    "note": "",
    "through": "2026-10-26",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Max%20Christie"
-  },
-  {
-   "team": "DAL",
-   "player": "Dereck Lively II",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Foot",
-   "upd": "2026-10-24",
-   "until": "2026-10-28",
-   "note": "Expected to be out until at least Oct 28",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
   },
   {
    "team": "DAL",
@@ -19500,18 +19499,6 @@
   },
   {
    "team": "DAL",
-   "player": "Kyrie Irving",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kyrie%20Irving"
-  },
-  {
-   "team": "DAL",
    "player": "Caleb Martin",
    "src": "CBS",
    "kind": "O",
@@ -19521,6 +19508,18 @@
    "note": "Expected to be out until at least Nov 2",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Caleb%20Martin"
+  },
+  {
+   "team": "DAL",
+   "player": "Kyrie Irving",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Knee",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "",
+   "through": "2026-10-26",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kyrie%20Irving"
   },
   {
    "team": "DAL",
@@ -19599,12 +19598,24 @@
    "player": "Ausar Thompson",
    "src": "CBS",
    "kind": "G",
-   "injury": "Undisclosed",
-   "upd": "2026-10-23",
+   "injury": "Ankle",
+   "upd": "2026-10-24",
    "until": "",
    "note": "",
    "through": "2026-10-26",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Ausar%20Thompson"
+  },
+  {
+   "team": "GSW",
+   "player": "Al Horford",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Back",
+   "upd": "2026-10-24",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Al%20Horford"
   },
   {
    "team": "GSW",
@@ -19629,6 +19640,18 @@
    "note": "",
    "through": "2026-10-26",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Charles%20Bassey"
+  },
+  {
+   "team": "GSW",
+   "player": "Draymond Green",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Back",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "",
+   "through": "2026-10-26",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Draymond%20Green"
   },
   {
    "team": "GSW",
@@ -19692,15 +19715,15 @@
   },
   {
    "team": "HOU",
-   "player": "Steven Adams",
+   "player": "Fred VanVleet",
    "src": "CBS",
    "kind": "O",
-   "injury": "Ankle",
+   "injury": "Knee",
    "upd": "2026-10-24",
    "until": "2026-10-26",
    "note": "Expected to be out until at least Oct 26",
    "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Steven%20Adams"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Fred%20VanVleet"
   },
   {
    "team": "HOU",
@@ -19716,26 +19739,38 @@
   },
   {
    "team": "HOU",
-   "player": "Fred VanVleet",
+   "player": "Steven Adams",
    "src": "CBS",
    "kind": "O",
-   "injury": "Knee",
+   "injury": "Ankle",
    "upd": "2026-10-24",
    "until": "2026-10-26",
    "note": "Expected to be out until at least Oct 26",
    "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Fred%20VanVleet"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Steven%20Adams"
+  },
+  {
+   "team": "IND",
+   "player": "Aaron Nesmith",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Hamstring",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "",
+   "through": "2026-10-26",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Aaron%20Nesmith"
   },
   {
    "team": "IND",
    "player": "T.J. McConnell",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Hamstring",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
+   "upd": "2026-10-24",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=T.J.%20McConnell"
   },
   {
@@ -19800,18 +19835,6 @@
   },
   {
    "team": "LAC",
-   "player": "Yanic Konan Niederhauser",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Foot",
-   "upd": "2026-10-15",
-   "until": "2026-11-08",
-   "note": "Expected to be out until at least Nov 8",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Yanic%20Konan%20Niederhauser"
-  },
-  {
-   "team": "LAC",
    "player": "Max Strus",
    "src": "CBS",
    "kind": "O",
@@ -19821,6 +19844,18 @@
    "note": "Expected to be out until at least Nov 8",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Max%20Strus"
+  },
+  {
+   "team": "LAC",
+   "player": "Yanic Konan Niederhauser",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Foot",
+   "upd": "2026-10-15",
+   "until": "2026-11-08",
+   "note": "Expected to be out until at least Nov 8",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Yanic%20Konan%20Niederhauser"
   },
   {
    "team": "LAL",
@@ -19908,18 +19943,6 @@
   },
   {
    "team": "OKC",
-   "player": "Thomas Sorber",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-10-21",
-   "until": "2026-10-26",
-   "note": "Expected to be out until at least Oct 26",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Thomas%20Sorber"
-  },
-  {
-   "team": "OKC",
    "player": "Nikola Topic",
    "src": "CBS",
    "kind": "O",
@@ -19929,6 +19952,18 @@
    "note": "Expected to be out until at least Oct 26",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nikola%20Topic"
+  },
+  {
+   "team": "OKC",
+   "player": "Thomas Sorber",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-10-21",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Thomas%20Sorber"
   },
   {
    "team": "OKC",
@@ -20016,18 +20051,6 @@
   },
   {
    "team": "PHI",
-   "player": "Tacko Fall",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Quadriceps",
-   "upd": "2026-10-23",
-   "until": "2026-10-25",
-   "note": "Expected to be out until at least Oct 25",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tacko%20Fall"
-  },
-  {
-   "team": "PHI",
    "player": "Dean Wade",
    "src": "CBS",
    "kind": "G",
@@ -20037,6 +20060,18 @@
    "note": "",
    "through": "2026-10-26",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dean%20Wade"
+  },
+  {
+   "team": "PHI",
+   "player": "Tacko Fall",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Quadriceps",
+   "upd": "2026-10-23",
+   "until": "2026-10-25",
+   "note": "Expected to be out until at least Oct 25",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tacko%20Fall"
   },
   {
    "team": "PHI",
@@ -20066,12 +20101,12 @@
    "team": "PHX",
    "player": "Oso Ighodaro",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Oblique",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
+   "upd": "2026-10-24",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Oso%20Ighodaro"
   },
   {
@@ -21255,12 +21290,24 @@
    "player": "Noa Essengue",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Head",
+   "injury": "Head Bruise",
    "upd": "2026-10-24",
    "until": "",
-   "note": "Essengue (head) is probable for Saturday's game against the Wizards, Joel Lorenzi of The Athletic reports.",
+   "note": "Essengue (head) has been downgraded to questionable for Saturday's game against the Wizards.",
    "through": "2026-10-26",
    "url": "https://www.espn.com/nba/injuries#:~:text=Noa%20Essengue"
+  },
+  {
+   "team": "CHI",
+   "player": "Patrick Williams",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Right Groin Soreness",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "Williams (groin) is listed as questionable for Saturday's game against the Wizards.",
+   "through": "2026-10-26",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Patrick%20Williams"
   },
   {
    "team": "CHI",
@@ -21612,13 +21659,25 @@
   },
   {
    "team": "IND",
+   "player": "Aaron Nesmith",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Left Hamstring Strain",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "Nesmith (hamstring) is listed as probable for Sunday's game against Brooklyn.",
+   "through": "2026-10-26",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Aaron%20Nesmith"
+  },
+  {
+   "team": "IND",
    "player": "T.J. McConnell",
    "src": "ESPN",
    "kind": "O",
    "injury": "Right Hamstring",
    "upd": "2026-10-24",
    "until": "2026-10-26",
-   "note": "McConnell (hamstring) is out for Friday's game against Dallas.",
+   "note": "McConnell (hamstring) is out for Sunday's game against the Nets.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=T.J.%20McConnell"
   },
@@ -22151,19 +22210,6 @@
    "url": "https://www.espn.com/nba/injuries#:~:text=Jamir%20Watkins"
   },
   {
-   "team": "MIA",
-   "player": "Pelle Larsson",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "RotoWire tag: Prob",
-   "through": "2026-10-24",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Larsson"
-  },
-  {
    "team": "CHA",
    "player": "Kylan Boswell",
    "src": "RotoWire",
@@ -22379,10 +22425,23 @@
    "injury": "",
    "upd": "2026-10-24",
    "until": "",
-   "note": "RotoWire tag: Prob",
+   "note": "RotoWire tag: Ques",
    "through": "2026-10-24",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=N.%20Essengue"
+  },
+  {
+   "team": "CHI",
+   "player": "Patrick Williams",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-24",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Williams"
   },
   {
    "team": "CHI",
@@ -22877,6 +22936,23 @@
    "through": "2026-10-24",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Williams"
+  },
+  {
+   "team": "IND",
+   "player": "Aaron Nesmith",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "Nesmith (hamstring) is listed as probable for Sunday's game against Brooklyn.",
+   "through": "2026-10-25",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/aaron-nesmith-5120",
+   "from": "2026-10-25",
+   "override": true,
+   "at": "2026-10-24T21:06:00+00:00",
+   "from_news": true
   },
   {
    "team": "GSW",
@@ -23776,27 +23852,27 @@
    "at": "2026-10-23T21:45:00+00:00"
   }
  ],
- "generated_at": "2026-10-24T21:07:28+00:00",
+ "generated_at": "2026-10-24T21:34:24+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-24T21:07:16+00:00",
+   "at": "2026-10-24T21:34:11+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-24T21:07:26+00:00",
+   "at": "2026-10-24T21:34:23+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-24T21:07:27+00:00",
+   "at": "2026-10-24T21:34:23+00:00",
    "teams": 16,
    "injuries": 56
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-24T21:07:27+00:00",
+   "at": "2026-10-24T21:34:23+00:00",
    "current_players": 345,
    "last_players": 582
   },
@@ -23806,18 +23882,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-24T21:07:27+00:00",
-   "count": 85
+   "at": "2026-10-24T21:34:24+00:00",
+   "count": 87
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-24T21:07:28+00:00",
+   "at": "2026-10-24T21:34:24+00:00",
    "count": 73
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-24T21:07:28+00:00",
-   "count": 83
+   "at": "2026-10-24T21:34:24+00:00",
+   "count": 85
   },
   "x": {
    "ok": null,
@@ -23825,8 +23901,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-24T21:07:28+00:00",
-   "count": 147
+   "at": "2026-10-24T21:34:24+00:00",
+   "count": 148
   }
  }
 }
