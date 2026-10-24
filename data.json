@@ -17190,6 +17190,28 @@
  },
  "news": [
   {
+   "id": "nba535867",
+   "player": "Tobias Harris",
+   "headline": "Out vs. Dallas",
+   "text": "Harris (calf) is out for Saturday's game against the Mavericks.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/tobias-harris-3211",
+   "at": "2026-10-24T18:33:00+00:00",
+   "team": "SAS"
+  },
+  {
+   "id": "nba535862",
+   "player": "Kyrie Irving",
+   "headline": "Iffy to play Saturday",
+   "text": "Irving (knee) is listed as questionable for Saturday's game against San Antonio.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/kyrie-irving-3186",
+   "at": "2026-10-24T18:27:00+00:00",
+   "team": "DAL"
+  },
+  {
    "id": "nba535858",
    "player": "AJ Dybantsa",
    "headline": "Ruled out Saturday",
@@ -18739,17 +18761,6 @@
    "url": "https://www.rotowire.com/basketball/player/jarrett-allen-4122",
    "at": "2026-10-21T21:07:00+00:00",
    "team": "CLE"
-  },
-  {
-   "id": "nba535362",
-   "player": "Kristaps Porzingis",
-   "headline": "Mulls future amid health concerns",
-   "text": "Porzingis is contemplating his future in basketball as he deals with recurring symptoms from the autoimmune condition termed as postural orthostatic tachycardia syndrome, per Shams Charania of ESPN.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/kristaps-porzingis-3669",
-   "at": "2026-10-21T18:27:00+00:00",
-   "team": "GSW"
   }
  ],
  "matchup_alerts": [
@@ -22531,6 +22542,40 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Williams"
   },
   {
+   "team": "SAS",
+   "player": "Tobias Harris",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "Harris (calf) is out for Saturday's game against the Mavericks.",
+   "through": "2026-10-24",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/tobias-harris-3211",
+   "from": "2026-10-24",
+   "override": true,
+   "at": "2026-10-24T18:33:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "DAL",
+   "player": "Kyrie Irving",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "Irving (knee) is listed as questionable for Saturday's game against San Antonio.",
+   "through": "2026-10-24",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/kyrie-irving-3186",
+   "from": "2026-10-24",
+   "override": true,
+   "at": "2026-10-24T18:27:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "WAS",
    "player": "AJ Dybantsa",
    "src": "RotoWire news",
@@ -23375,8 +23420,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-24T18:05:58+00:00",
-   "count": 142
+   "at": "2026-10-24T18:34:55+00:00",
+   "count": 143
   }
  }
 }
