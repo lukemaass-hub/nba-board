@@ -9026,7 +9026,7 @@
    "time": "21:30",
    "vs": "SAS",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9055,7 +9055,7 @@
    "time": "21:30",
    "vs": "HOU",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9084,7 +9084,7 @@
    "time": "21:30",
    "vs": "UTA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9113,7 +9113,7 @@
    "time": "21:30",
    "vs": "NOP",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9125,15 +9125,15 @@
     },
     {
      "pos": "SF",
-     "name": "Lauri Markkanen"
+     "name": "Ace Bailey"
     },
     {
      "pos": "PF",
-     "name": "Jaren Jackson"
+     "name": "Lauri Markkanen"
     },
     {
      "pos": "C",
-     "name": "Jaxson Hayes"
+     "name": "Jaren Jackson"
     }
    ]
   },
@@ -9258,7 +9258,7 @@
    "time": "22:00",
    "vs": "SAC",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9287,7 +9287,7 @@
    "time": "22:00",
    "vs": "POR",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17422,6 +17422,61 @@
  },
  "news": [
   {
+   "id": "nba535734",
+   "player": "Paolo Banchero",
+   "headline": "Doubtful to return Friday",
+   "text": "Banchero is doubtful to return to Friday's game against the Timberwolves due to a sore right ankle, NBA reporter Marc Stein reports.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/paolo-banchero-5700",
+   "at": "2026-10-24T01:23:00+00:00",
+   "team": "ORL"
+  },
+  {
+   "id": "nba535732",
+   "player": "Ace Bailey",
+   "headline": "Moving to starting role",
+   "text": "Bailey is in the starting lineup for Friday's game against the Pelicans.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/ace-bailey-6551",
+   "at": "2026-10-24T01:18:00+00:00",
+   "team": "UTA"
+  },
+  {
+   "id": "nba535731",
+   "player": "Jalen Duren",
+   "headline": "Questionable to return Friday",
+   "text": "Duren is questionable to return to Friday's game in Miami due to a right thigh injury.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/jalen-duren-5703",
+   "at": "2026-10-24T01:16:00+00:00",
+   "team": "DET"
+  },
+  {
+   "id": "nba535730",
+   "player": "Cooper Flagg",
+   "headline": "Won't return Friday",
+   "text": "Flagg won't return to Friday's game against the Pacers due to left shoulder soreness, Brett Siegel of ClutchPoints.com reports.",
+   "reporter": "Brett Siegel",
+   "outlet": "ClutchPoints.com",
+   "url": "https://www.rotowire.com/basketball/player/cooper-flagg-6548",
+   "at": "2026-10-24T01:04:00+00:00",
+   "team": "DAL"
+  },
+  {
+   "id": "nba535729",
+   "player": "Jalen Duren",
+   "headline": "Leaves for locker room",
+   "text": "Duren exited to the locker room in the second quarter of Friday's game against the Heat due to an apparent right knee injury, Omari Sankofa II of the Detroit Free Press reports.",
+   "reporter": "Omari Sankofa II",
+   "outlet": "Detroit Free Press",
+   "url": "https://www.rotowire.com/basketball/player/jalen-duren-5703",
+   "at": "2026-10-24T01:03:00+00:00",
+   "team": "DET"
+  },
+  {
    "id": "nba535727",
    "player": "Paolo Banchero",
    "headline": "Returns to Friday's game",
@@ -18509,17 +18564,6 @@
    "url": "https://www.rotowire.com/basketball/player/tyrese-maxey-5158",
    "at": "2026-10-21T02:09:00+00:00",
    "team": "PHI"
-  },
-  {
-   "id": "nba535296",
-   "player": "Ajay Mitchell",
-   "headline": "Not starting Tuesday",
-   "text": "Mitchell won't start Tuesday's game against the Spurs, Clemente Almanza of USA Today reports.",
-   "reporter": "Clemente Almanza",
-   "outlet": "USA Today",
-   "url": "https://www.rotowire.com/basketball/player/ajay-mitchell-6289",
-   "at": "2026-10-21T01:25:00+00:00",
-   "team": "OKC"
   }
  ],
  "matchup_alerts": [
@@ -19119,15 +19163,15 @@
   },
   {
    "team": "DAL",
-   "player": "Dereck Lively II",
+   "player": "Cooper Flagg",
    "src": "CBS",
-   "kind": "O",
-   "injury": "Foot",
-   "upd": "2026-10-22",
-   "until": "2026-10-26",
-   "note": "Expected to be out until at least Oct 26",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
+   "kind": "G",
+   "injury": "Shoulder",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "",
+   "through": "2026-10-25",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cooper%20Flagg"
   },
   {
    "team": "DAL",
@@ -19140,6 +19184,18 @@
    "note": "Expected to be out until at least Oct 24",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tarik%20Biberovic"
+  },
+  {
+   "team": "DAL",
+   "player": "Dereck Lively II",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Foot",
+   "upd": "2026-10-22",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
   },
   {
    "team": "DAL",
@@ -19179,18 +19235,6 @@
   },
   {
    "team": "DEN",
-   "player": "Spencer Jones",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Hamstring",
-   "upd": "2026-10-23",
-   "until": "2026-10-26",
-   "note": "Expected to be out until at least Oct 26",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Spencer%20Jones"
-  },
-  {
-   "team": "DEN",
    "player": "Cameron Johnson",
    "src": "CBS",
    "kind": "O",
@@ -19200,6 +19244,18 @@
    "note": "Expected to be out until at least Oct 26",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cameron%20Johnson"
+  },
+  {
+   "team": "DEN",
+   "player": "Spencer Jones",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Hamstring",
+   "upd": "2026-10-23",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Spencer%20Jones"
   },
   {
    "team": "DEN",
@@ -19224,18 +19280,6 @@
    "note": "Expected to be out until at least Oct 24",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Charles%20Bassey"
-  },
-  {
-   "team": "GSW",
-   "player": "Brandin Podziemski",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Back",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandin%20Podziemski"
   },
   {
    "team": "GSW",
@@ -19277,25 +19321,13 @@
    "team": "HOU",
    "player": "Reed Sheppard",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Knee",
-   "upd": "2026-10-22",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
+   "upd": "2026-10-23",
+   "until": "2026-10-24",
+   "note": "Expected to be out until at least Oct 24",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Reed%20Sheppard"
-  },
-  {
-   "team": "HOU",
-   "player": "Steven Adams",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Calf",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Steven%20Adams"
   },
   {
    "team": "IND",
@@ -19467,18 +19499,6 @@
   },
   {
    "team": "OKC",
-   "player": "Thomas Sorber",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-10-21",
-   "until": "2026-10-26",
-   "note": "Expected to be out until at least Oct 26",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Thomas%20Sorber"
-  },
-  {
-   "team": "OKC",
    "player": "Nikola Topic",
    "src": "CBS",
    "kind": "O",
@@ -19488,6 +19508,18 @@
    "note": "Expected to be out until at least Oct 26",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nikola%20Topic"
+  },
+  {
+   "team": "OKC",
+   "player": "Thomas Sorber",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-10-21",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Thomas%20Sorber"
   },
   {
    "team": "OKC",
@@ -19563,18 +19595,6 @@
   },
   {
    "team": "PHI",
-   "player": "Dean Wade",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "",
-   "through": "2026-10-25",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dean%20Wade"
-  },
-  {
-   "team": "PHI",
    "player": "Tacko Fall",
    "src": "CBS",
    "kind": "O",
@@ -19584,6 +19604,18 @@
    "note": "Expected to be out until at least Oct 25",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tacko%20Fall"
+  },
+  {
+   "team": "PHI",
+   "player": "Dean Wade",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Ankle",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "",
+   "through": "2026-10-25",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dean%20Wade"
   },
   {
    "team": "PHI",
@@ -19613,12 +19645,12 @@
    "team": "PHX",
    "player": "Oso Ighodaro",
    "src": "CBS",
-   "kind": "O",
+   "kind": "G",
    "injury": "Oblique",
    "upd": "2026-10-23",
-   "until": "2026-10-26",
-   "note": "Expected to be out until at least Oct 26",
-   "through": "",
+   "until": "",
+   "note": "",
+   "through": "2026-10-25",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Oso%20Ighodaro"
   },
   {
@@ -20766,10 +20798,10 @@
    "player": "Cooper Flagg",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Left Shoulder",
+   "injury": "Left Shoulder Soreness",
    "upd": "2026-10-24",
    "until": "",
-   "note": "Flagg exited to the locker room in the second quarter of Friday's game against Indiana due to an apparent left shoulder injury, Grant Afseth of DallasHoopsJournal.com reports.",
+   "note": "Flagg won't return to Friday's game against the Pacers due to left shoulder soreness, Brett Siegel of ClutchPoints.com reports.",
    "through": "2026-10-25",
    "url": "https://www.espn.com/nba/injuries#:~:text=Cooper%20Flagg"
   },
@@ -20880,6 +20912,18 @@
    "note": "Strawther (knee) was diagnosed with a left knee sprain Friday and will be re-evaluated in six weeks, Vinny Benedetto of The Denver Gazette reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Julian%20Strawther"
+  },
+  {
+   "team": "DET",
+   "player": "Jalen Duren",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Right Thigh",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "Duren exited to the locker room in the second quarter of Friday's game against the Heat due to an apparent right knee injury, Omari Sankofa II of the Detroit Free Press reports.",
+   "through": "2026-10-25",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Jalen%20Duren"
   },
   {
    "team": "GSW",
@@ -21150,10 +21194,10 @@
    "player": "Paolo Banchero",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Ankle Sprain",
+   "injury": "Right Ankle Soreness",
    "upd": "2026-10-24",
    "until": "",
-   "note": "Banchero ended with 35 points (10-12 FG, 3-4 3Pt, 12-16 FT), seven rebounds, 10 assists and one steal over 41 minutes in Wednesday's 132-125 loss to Atlanta.",
+   "note": "Banchero (ankle) has checked back into Friday's game against the Timberwolves, Jason Beede of the Orlando Sentinel reports.",
    "through": "2026-10-25",
    "url": "https://www.espn.com/nba/injuries#:~:text=Paolo%20Banchero"
   },
@@ -21640,6 +21684,32 @@
   },
   {
    "team": "ORL",
+   "player": "Paolo Banchero",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-23",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Banchero"
+  },
+  {
+   "team": "ORL",
+   "player": "Paolo Banchero",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-23",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Banchero"
+  },
+  {
+   "team": "ORL",
    "player": "Anthony Black",
    "src": "RotoWire",
    "kind": "O",
@@ -21821,6 +21891,32 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=G.%20Williams"
   },
   {
+   "team": "DET",
+   "player": "Jalen Duren",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-23",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Duren"
+  },
+  {
+   "team": "DET",
+   "player": "Jalen Duren",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-23",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Duren"
+  },
+  {
    "team": "HOU",
    "player": "Reed Sheppard",
    "src": "RotoWire",
@@ -21889,13 +21985,13 @@
    "team": "MEM",
    "player": "Cedric Coward",
    "src": "RotoWire",
-   "kind": "G",
+   "kind": "O",
    "injury": "",
    "upd": "2026-10-23",
    "until": "",
-   "note": "RotoWire tag: Doubt",
+   "note": "RotoWire tag: Out",
    "through": "2026-10-23",
-   "st": "q",
+   "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Coward"
   },
   {
@@ -22144,6 +22240,74 @@
    "through": "2026-10-23",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Raynaud"
+  },
+  {
+   "team": "ORL",
+   "player": "Paolo Banchero",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "Banchero is doubtful to return to Friday's game against the Timberwolves due to a sore right ankle, NBA reporter Marc Stein reports.",
+   "through": "2026-10-23",
+   "st": "doubt",
+   "url": "https://www.rotowire.com/basketball/player/paolo-banchero-5700",
+   "from": "2026-10-23",
+   "override": true,
+   "at": "2026-10-24T01:23:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "UTA",
+   "player": "Ace Bailey",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "Bailey is in the starting lineup for Friday's game against the Pelicans.",
+   "through": "2026-10-23",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/ace-bailey-6551",
+   "from": "2026-10-23",
+   "override": true,
+   "at": "2026-10-24T01:18:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "DET",
+   "player": "Jalen Duren",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "Duren is questionable to return to Friday's game in Miami due to a right thigh injury.",
+   "through": "2026-10-23",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/jalen-duren-5703",
+   "from": "2026-10-23",
+   "override": true,
+   "at": "2026-10-24T01:16:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "DAL",
+   "player": "Cooper Flagg",
+   "src": "Brett Siegel",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-23",
+   "until": "",
+   "note": "Flagg won't return to Friday's game against the Pacers due to left shoulder soreness, Brett Siegel of ClutchPoints.com reports.",
+   "through": "2026-10-23",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/cooper-flagg-6548",
+   "from": "2026-10-23",
+   "override": true,
+   "at": "2026-10-24T01:04:00+00:00",
+   "from_news": true
   },
   {
    "team": "GSW",
@@ -22722,23 +22886,6 @@
    "override": true,
    "at": "2026-10-21T21:07:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "OKC",
-   "player": "Ajay Mitchell",
-   "src": "Clemente Almanza",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-10-20",
-   "until": "",
-   "note": "Mitchell won't start Tuesday's game against the Spurs, Clemente Almanza of USA Today reports.",
-   "through": "2026-10-20",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/ajay-mitchell-6289",
-   "from": "2026-10-20",
-   "override": true,
-   "at": "2026-10-21T01:25:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -22754,27 +22901,27 @@
    "at": "2026-10-23T21:45:00+00:00"
   }
  ],
- "generated_at": "2026-10-24T00:52:36+00:00",
+ "generated_at": "2026-10-24T01:33:24+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-24T00:52:22+00:00",
+   "at": "2026-10-24T01:33:10+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-24T00:52:34+00:00",
+   "at": "2026-10-24T01:33:22+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-24T00:52:35+00:00",
+   "at": "2026-10-24T01:33:22+00:00",
    "teams": 24,
-   "injuries": 52
+   "injuries": 56
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-24T00:52:35+00:00",
+   "at": "2026-10-24T01:33:22+00:00",
    "current_players": 345,
    "last_players": 582
   },
@@ -22784,18 +22931,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-24T00:52:35+00:00",
-   "count": 70
+   "at": "2026-10-24T01:33:23+00:00",
+   "count": 69
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-24T00:52:36+00:00",
+   "at": "2026-10-24T01:33:23+00:00",
    "count": 70
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-24T00:52:36+00:00",
-   "count": 68
+   "at": "2026-10-24T01:33:23+00:00",
+   "count": 69
   },
   "x": {
    "ok": null,
@@ -22803,8 +22950,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-24T00:52:36+00:00",
-   "count": 100
+   "at": "2026-10-24T01:33:23+00:00",
+   "count": 104
   }
  }
 }
