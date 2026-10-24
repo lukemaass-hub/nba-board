@@ -8678,7 +8678,7 @@
    "time": "19:30",
    "vs": "CLE",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8736,7 +8736,7 @@
    "time": "19:30",
    "vs": "PHI",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8765,7 +8765,7 @@
    "time": "19:30",
    "vs": "MIL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8914,7 +8914,7 @@
    "starters": [
     {
      "pos": "PG",
-     "name": "Marcus Smart"
+     "name": "Reed Sheppard"
     },
     {
      "pos": "SG",
@@ -17190,6 +17190,17 @@
  },
  "news": [
   {
+   "id": "nba535896",
+   "player": "Reed Sheppard",
+   "headline": "Will play Saturday",
+   "text": "Sheppard (knee) is good to go for Saturday's game in Atlanta, Varun Shankar of the Houston Chronicle reports.",
+   "reporter": "Varun Shankar",
+   "outlet": "Houston Chronicle",
+   "url": "https://www.rotowire.com/basketball/player/reed-sheppard-6257",
+   "at": "2026-10-24T23:11:00+00:00",
+   "team": "HOU"
+  },
+  {
    "id": "nba535889",
    "player": "Kyrie Irving",
    "headline": "Resting Saturday",
@@ -18805,17 +18816,6 @@
    "url": "https://www.rotowire.com/basketball/player/herbert-jones-5414",
    "at": "2026-10-21T23:40:00+00:00",
    "team": "NOP"
-  },
-  {
-   "id": "nba535382",
-   "player": "Isaiah Stewart",
-   "headline": "Ruled out Wednesday",
-   "text": "Stewart (ankle) has been ruled out for Wednesday's game against the Jazz.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/isaiah-stewart-5137",
-   "at": "2026-10-21T23:05:00+00:00",
-   "team": "MEM"
   }
  ],
  "matchup_alerts": [
@@ -21335,6 +21335,18 @@
   },
   {
    "team": "DAL",
+   "player": "Jett Howard",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Calf Soreness",
+   "upd": "2026-10-24",
+   "until": "2026-10-24",
+   "note": "Howard (calf) has been upgraded to probable ahead of Saturday's meeting with the Spurs.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Jett%20Howard"
+  },
+  {
+   "team": "DAL",
    "player": "Kyrie Irving",
    "src": "ESPN",
    "kind": "O",
@@ -21356,18 +21368,6 @@
    "note": "Martin (thumb) has been ruled out against San Antonio on Saturday.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Caleb%20Martin"
-  },
-  {
-   "team": "DAL",
-   "player": "Jett Howard",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Right Calf Soreness",
-   "upd": "2026-10-24",
-   "until": "2026-10-24",
-   "note": "Howard (calf) is listed as doubtful against the Spurs on Saturday.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Jett%20Howard"
   },
   {
    "team": "DAL",
@@ -21623,18 +21623,6 @@
   },
   {
    "team": "HOU",
-   "player": "Reed Sheppard",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Knee Bruise",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "Sheppard (knee) is listed as questionable for Saturday's game against the Hawks.",
-   "through": "2026-10-26",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Reed%20Sheppard"
-  },
-  {
-   "team": "HOU",
    "player": "Fred VanVleet",
    "src": "ESPN",
    "kind": "O",
@@ -21755,6 +21743,18 @@
   },
   {
    "team": "LAL",
+   "player": "Cameron Carr",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Oblique Strain",
+   "upd": "2026-10-24",
+   "until": "2026-10-27",
+   "note": "Carr (oblique) is out for Friday's game against the Clippers.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Cameron%20Carr"
+  },
+  {
+   "team": "LAL",
    "player": "Adou Thiero",
    "src": "ESPN",
    "kind": "G",
@@ -21776,18 +21776,6 @@
    "note": "LaRavia (ankle) has been ruled out for Friday's game against the Clippers, Mark Medina of TheSportingTribune.com reports.",
    "through": "2026-10-26",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jake%20LaRavia"
-  },
-  {
-   "team": "LAL",
-   "player": "Cameron Carr",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Oblique Strain",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "Carr (oblique) is out for Friday's game against the Clippers.",
-   "through": "2026-10-26",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Cameron%20Carr"
   },
   {
    "team": "MEM",
@@ -21956,18 +21944,6 @@
    "note": "Fall (quadriceps) is out for Saturday's game against the Bucks.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Tacko%20Fall"
-  },
-  {
-   "team": "PHI",
-   "player": "Dean Wade",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Ankle Sprain",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "Wade is listed as questionable for Saturday's game against the Bucks due to a left ankle sprain.",
-   "through": "2026-10-26",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Dean%20Wade"
   },
   {
    "team": "PHI",
@@ -22290,19 +22266,6 @@
   },
   {
    "team": "PHI",
-   "player": "Dean Wade",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-24",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Wade"
-  },
-  {
-   "team": "PHI",
    "player": "Ariel Hukporti",
    "src": "RotoWire",
    "kind": "O",
@@ -22313,19 +22276,6 @@
    "through": "2026-10-24",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Hukporti"
-  },
-  {
-   "team": "PHI",
-   "player": "Dean Wade",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-24",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Wade"
   },
   {
    "team": "PHI",
@@ -22504,7 +22454,7 @@
    "injury": "",
    "upd": "2026-10-24",
    "until": "",
-   "note": "RotoWire tag: Doubt",
+   "note": "RotoWire tag: Prob",
    "through": "2026-10-24",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Howard"
@@ -22589,45 +22539,6 @@
   },
   {
    "team": "HOU",
-   "player": "Marcus Smart",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-24",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Smart"
-  },
-  {
-   "team": "HOU",
-   "player": "Marcus Smart",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-24",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Smart"
-  },
-  {
-   "team": "HOU",
-   "player": "Reed Sheppard",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-24",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=R.%20Sheppard"
-  },
-  {
-   "team": "HOU",
    "player": "Steven Adams",
    "src": "RotoWire",
    "kind": "O",
@@ -22638,6 +22549,19 @@
    "through": "2026-10-24",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Adams"
+  },
+  {
+   "team": "HOU",
+   "player": "Marcus Smart",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-24",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Smart"
   },
   {
    "team": "HOU",
@@ -22885,6 +22809,23 @@
    "through": "2026-10-24",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Williams"
+  },
+  {
+   "team": "HOU",
+   "player": "Reed Sheppard",
+   "src": "Varun Shankar",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "Sheppard (knee) is good to go for Saturday's game in Atlanta, Varun Shankar of the Houston Chronicle reports.",
+   "through": "2026-10-24",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/reed-sheppard-6257",
+   "from": "2026-10-24",
+   "override": true,
+   "at": "2026-10-24T23:11:00+00:00",
+   "from_news": true
   },
   {
    "team": "DAL",
@@ -23769,23 +23710,6 @@
    "override": true,
    "at": "2026-10-21T23:40:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "MEM",
-   "player": "Isaiah Stewart",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "Stewart (ankle) has been ruled out for Wednesday's game against the Jazz.",
-   "through": "2026-10-21",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/isaiah-stewart-5137",
-   "from": "2026-10-21",
-   "override": true,
-   "at": "2026-10-21T23:05:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -23801,27 +23725,27 @@
    "at": "2026-10-23T21:45:00+00:00"
   }
  ],
- "generated_at": "2026-10-24T22:55:53+00:00",
+ "generated_at": "2026-10-24T23:14:28+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-24T22:55:38+00:00",
+   "at": "2026-10-24T23:14:15+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-24T22:55:51+00:00",
+   "at": "2026-10-24T23:14:27+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-24T22:55:52+00:00",
+   "at": "2026-10-24T23:14:28+00:00",
    "teams": 16,
-   "injuries": 53
+   "injuries": 49
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-24T22:55:52+00:00",
+   "at": "2026-10-24T23:14:28+00:00",
    "current_players": 345,
    "last_players": 582
   },
@@ -23831,18 +23755,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-24T22:55:52+00:00",
+   "at": "2026-10-24T23:14:28+00:00",
    "count": 88
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-24T22:55:53+00:00",
+   "at": "2026-10-24T23:14:28+00:00",
    "count": 73
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-24T22:55:53+00:00",
-   "count": 83
+   "at": "2026-10-24T23:14:28+00:00",
+   "count": 81
   },
   "x": {
    "ok": null,
@@ -23850,7 +23774,7 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-24T22:55:53+00:00",
+   "at": "2026-10-24T23:14:28+00:00",
    "count": 148
   }
  }
