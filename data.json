@@ -8794,7 +8794,7 @@
    "time": "20:00",
    "vs": "CHI",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8823,7 +8823,7 @@
    "time": "20:00",
    "vs": "WAS",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8852,7 +8852,7 @@
    "time": "20:00",
    "vs": "DAL",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8881,11 +8881,11 @@
    "time": "20:00",
    "vs": "SAS",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Marcus Sasser"
+     "name": "Naji Marshall"
     },
     {
      "pos": "SG",
@@ -8893,7 +8893,7 @@
     },
     {
      "pos": "SF",
-     "name": "Naji Marshall"
+     "name": "Zaccharie Risacher"
     },
     {
      "pos": "PF",
@@ -12667,11 +12667,6 @@
     25.0,
     "PHX"
    ],
-   "Jake LaRavia": [
-    1,
-    18.0,
-    "LAL"
-   ],
    "VJ Edgecombe": [
     2,
     34.0,
@@ -12756,11 +12751,6 @@
     2,
     25.5,
     "ATL"
-   ],
-   "LJ Cryer": [
-    1,
-    9.0,
-    "GSW"
    ],
    "Graham Ike": [
     2,
@@ -13012,11 +13002,6 @@
     15.5,
     "DAL"
    ],
-   "Cedric Coward": [
-    1,
-    28.0,
-    "MEM"
-   ],
    "Collin Murray-Boyles": [
     2,
     18.5,
@@ -13167,11 +13152,6 @@
     14.5,
     "BOS"
    ],
-   "Yang Hansen": [
-    1,
-    12.0,
-    "POR"
-   ],
    "Jakob Poeltl": [
     2,
     24.5,
@@ -13227,11 +13207,6 @@
     19.0,
     "DET"
    ],
-   "Micah Potter": [
-    1,
-    12.0,
-    "POR"
-   ],
    "Herbert Jones": [
     2,
     17.5,
@@ -13276,11 +13251,6 @@
     1,
     7.0,
     "PHX"
-   ],
-   "Baba Miller": [
-    1,
-    9.0,
-    "LAC"
    ],
    "Egor Demin": [
     1,
@@ -13352,16 +13322,6 @@
     7.0,
     "PHX"
    ],
-   "Jalen Pickett": [
-    1,
-    2.0,
-    "LAC"
-   ],
-   "Ben Sheppard": [
-    1,
-    12.0,
-    "IND"
-   ],
    "DaRon Holmes II": [
     1,
     2.0,
@@ -13377,11 +13337,6 @@
     7.0,
     "PHX"
    ],
-   "Isaiah Crawford": [
-    1,
-    3.0,
-    "HOU"
-   ],
    "Sion James": [
     2,
     25.0,
@@ -13392,35 +13347,15 @@
     24.0,
     "CLE"
    ],
-   "Moussa Cisse": [
-    1,
-    3.0,
-    "DAL"
-   ],
    "Nique Clifford": [
     2,
     9.5,
     "SAC"
    ],
-   "Reed Sheppard": [
-    1,
-    16.0,
-    "HOU"
-   ],
-   "Jaden Hardy": [
-    1,
-    7.0,
-    "LAL"
-   ],
    "Ryan Dunn": [
     1,
     14.0,
     "PHX"
-   ],
-   "Jaylin Sellers": [
-    1,
-    14.0,
-    "CHI"
    ],
    "Nolan Traore": [
     1,
@@ -13472,31 +13407,6 @@
     3.0,
     "MIA"
    ],
-   "Bronny James": [
-    1,
-    7.0,
-    "LAL"
-   ],
-   "Chris Manon": [
-    1,
-    6.0,
-    "LAL"
-   ],
-   "David Jones Garcia": [
-    1,
-    1.0,
-    "SAS"
-   ],
-   "Tobe Awaka": [
-    1,
-    14.0,
-    "CHI"
-   ],
-   "Ja'Kobi Gillespie": [
-    1,
-    1.0,
-    "SAS"
-   ],
    "Khaman Maluach": [
     1,
     17.0,
@@ -13532,11 +13442,6 @@
     3.5,
     "PHI"
    ],
-   "Alex Karaban": [
-    1,
-    5.0,
-    "SAC"
-   ],
    "Christian Anderson": [
     2,
     14.5,
@@ -13546,6 +13451,11 @@
     2,
     11.5,
     "PHI"
+   ],
+   "Felix Okpara": [
+    1,
+    1.0,
+    "WAS"
    ],
    "Rasheer Fleming": [
     1,
@@ -13567,6 +13477,176 @@
     9.5,
     "POR"
    ],
+   "Brandin Podziemski": [
+    1,
+    33.0,
+    "GSW"
+   ],
+   "Corey Kispert": [
+    1,
+    10.0,
+    "ATL"
+   ],
+   "Tidjane Salaun": [
+    1,
+    23.0,
+    "CHA"
+   ],
+   "Jake LaRavia": [
+    1,
+    18.0,
+    "LAL"
+   ],
+   "Aaron Nesmith": [
+    1,
+    20.0,
+    "IND"
+   ],
+   "LJ Cryer": [
+    1,
+    9.0,
+    "GSW"
+   ],
+   "Colin Castleton": [
+    1,
+    4.0,
+    "ORL"
+   ],
+   "Cedric Coward": [
+    1,
+    28.0,
+    "MEM"
+   ],
+   "Karlo Matkovic": [
+    1,
+    9.0,
+    "NOP"
+   ],
+   "Hannes Steinbach": [
+    1,
+    12.0,
+    "CHA"
+   ],
+   "Collin Sexton": [
+    1,
+    16.0,
+    "LAL"
+   ],
+   "Yang Hansen": [
+    1,
+    12.0,
+    "POR"
+   ],
+   "Steven Adams": [
+    1,
+    9.0,
+    "HOU"
+   ],
+   "Micah Potter": [
+    1,
+    12.0,
+    "POR"
+   ],
+   "Jalen Slawson": [
+    1,
+    16.0,
+    "IND"
+   ],
+   "Isaiah Stewart": [
+    1,
+    16.0,
+    "MEM"
+   ],
+   "Baba Miller": [
+    1,
+    9.0,
+    "LAC"
+   ],
+   "Dorian Finney-Smith": [
+    1,
+    8.0,
+    "ATL"
+   ],
+   "Dru Smith": [
+    1,
+    6.0,
+    "MIA"
+   ],
+   "Jalen Pickett": [
+    1,
+    2.0,
+    "LAC"
+   ],
+   "Ben Sheppard": [
+    1,
+    12.0,
+    "IND"
+   ],
+   "Isaiah Crawford": [
+    1,
+    3.0,
+    "HOU"
+   ],
+   "Moussa Cisse": [
+    1,
+    3.0,
+    "DAL"
+   ],
+   "Reed Sheppard": [
+    1,
+    16.0,
+    "HOU"
+   ],
+   "Jaden Hardy": [
+    1,
+    7.0,
+    "LAL"
+   ],
+   "Asa Newell": [
+    1,
+    8.0,
+    "ATL"
+   ],
+   "Jaylin Sellers": [
+    1,
+    14.0,
+    "CHI"
+   ],
+   "Zuby Ejiofor": [
+    1,
+    8.0,
+    "ATL"
+   ],
+   "Bronny James": [
+    1,
+    7.0,
+    "LAL"
+   ],
+   "Chris Manon": [
+    1,
+    6.0,
+    "LAL"
+   ],
+   "David Jones Garcia": [
+    1,
+    1.0,
+    "SAS"
+   ],
+   "Tobe Awaka": [
+    1,
+    14.0,
+    "CHI"
+   ],
+   "Ja'Kobi Gillespie": [
+    1,
+    1.0,
+    "SAS"
+   ],
+   "Alex Karaban": [
+    1,
+    5.0,
+    "SAC"
+   ],
    "Nikola Vucevic": [
     2,
     4.5,
@@ -13577,6 +13657,11 @@
     3.5,
     "IND"
    ],
+   "Anthony Gill": [
+    1,
+    1.0,
+    "WAS"
+   ],
    "Kyle Anderson": [
     1,
     5.0,
@@ -13586,6 +13671,11 @@
     1,
     8.0,
     "HOU"
+   ],
+   "Jevon Carter": [
+    1,
+    13.0,
+    "ORL"
    ],
    "Jae'Sean Tate": [
     1,
@@ -13601,6 +13691,16 @@
     1,
     8.0,
     "UTA"
+   ],
+   "Jay Huff": [
+    1,
+    5.0,
+    "IND"
+   ],
+   "Malik Monk": [
+    1,
+    12.0,
+    "SAC"
    ],
    "Zach Collins": [
     1,
@@ -13622,20 +13722,60 @@
     21.0,
     "PHX"
    ],
+   "Tolu Smith": [
+    1,
+    2.0,
+    "DET"
+   ],
+   "Kobe Brown": [
+    1,
+    1.0,
+    "IND"
+   ],
+   "Reece Beekman": [
+    1,
+    1.0,
+    "WAS"
+   ],
    "Jaden Bradley": [
     2,
     3.0,
     "TOR"
+   ],
+   "James Wiseman": [
+    1,
+    2.0,
+    "NYK"
+   ],
+   "Tre Mann": [
+    1,
+    1.0,
+    "WAS"
    ],
    "Bryce Hopkins": [
     1,
     2.0,
     "DEN"
    ],
+   "Alex Morales": [
+    1,
+    4.0,
+    "ORL"
+   ],
+   "Kris Murray": [
+    1,
+    13.0,
+    "MEM"
+   ],
    "Brooks Barnhizer": [
     2,
     1.5,
     "OKC"
+   ],
+   "PJ Hall": [
+    1,
+    10.0,
+    "CHA"
    ],
    "Craig Porter Jr.": [
     1,
@@ -13656,6 +13796,11 @@
     2,
     3.0,
     "MIN"
+   ],
+   "Walter Clayton Jr.": [
+    1,
+    1.0,
+    "DAL"
    ],
    "Malevy Leons": [
     1,
@@ -13697,10 +13842,20 @@
     3.0,
     "HOU"
    ],
+   "Tobi Lawal": [
+    1,
+    1.0,
+    "DAL"
+   ],
    "Jonathan Mogbo": [
     1,
     8.0,
     "SAC"
+   ],
+   "Will Riley": [
+    1,
+    1.0,
+    "WAS"
    ],
    "Chaney Johnson": [
     1,
@@ -13723,7 +13878,7 @@
     "DAL"
    ]
   },
-  "fetched_at": "2026-10-24T11:17:39+00:00"
+  "fetched_at": "2026-10-24T23:40:39+00:00"
  },
  "expected_minutes": {
   "env": "uat",
@@ -17190,6 +17345,28 @@
  },
  "news": [
   {
+   "id": "nba535902",
+   "player": "Naji Marshall",
+   "headline": "Starting Saturday",
+   "text": "Marshall will start Saturday's game against the Spurs.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/naji-marshall-5204",
+   "at": "2026-10-24T23:38:00+00:00",
+   "team": "DAL"
+  },
+  {
+   "id": "nba535899",
+   "player": "Max Christie",
+   "headline": "Available to play",
+   "text": "Christie (shin) is available for Saturday's game against the Spurs.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/max-christie-5723",
+   "at": "2026-10-24T23:19:00+00:00",
+   "team": "DAL"
+  },
+  {
    "id": "nba535896",
    "player": "Reed Sheppard",
    "headline": "Will play Saturday",
@@ -18805,17 +18982,6 @@
    "url": "https://www.rotowire.com/basketball/player/jeremiah-fears-6546",
    "at": "2026-10-21T23:41:00+00:00",
    "team": "NOP"
-  },
-  {
-   "id": "nba535395",
-   "player": "Herbert Jones",
-   "headline": "Not starting Wednesday",
-   "text": "Jones is not in the starting lineup for Wednesday's regular-season opener against the Pacers.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/herbert-jones-5414",
-   "at": "2026-10-21T23:40:00+00:00",
-   "team": "NOP"
   }
  ],
  "matchup_alerts": [
@@ -19319,18 +19485,6 @@
   },
   {
    "team": "CHA",
-   "player": "Coby White",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Calf",
-   "upd": "2026-10-24",
-   "until": "2026-10-26",
-   "note": "Expected to be out until at least Oct 26",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Coby%20White"
-  },
-  {
-   "team": "CHA",
    "player": "Kon Knueppel",
    "src": "CBS",
    "kind": "O",
@@ -19340,6 +19494,18 @@
    "note": "Expected to be out until at least Oct 26",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kon%20Knueppel"
+  },
+  {
+   "team": "CHA",
+   "player": "Coby White",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Calf",
+   "upd": "2026-10-24",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Coby%20White"
   },
   {
    "team": "CHA",
@@ -19369,24 +19535,24 @@
    "team": "CHI",
    "player": "Patrick Williams",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Groin",
    "upd": "2026-10-24",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Patrick%20Williams"
   },
   {
    "team": "CHI",
    "player": "Noa Essengue",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Head",
    "upd": "2026-10-24",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Noa%20Essengue"
   },
   {
@@ -19475,18 +19641,6 @@
   },
   {
    "team": "DAL",
-   "player": "Zaccharie Risacher",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Hip",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Zaccharie%20Risacher"
-  },
-  {
-   "team": "DAL",
    "player": "Cooper Flagg",
    "src": "CBS",
    "kind": "O",
@@ -19499,15 +19653,15 @@
   },
   {
    "team": "DAL",
-   "player": "Morez Johnson Jr.",
+   "player": "Kyrie Irving",
    "src": "CBS",
-   "kind": "G",
-   "injury": "Lower Leg",
+   "kind": "O",
+   "injury": "Knee",
    "upd": "2026-10-24",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Morez%20Johnson%20Jr."
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kyrie%20Irving"
   },
   {
    "team": "DAL",
@@ -19520,18 +19674,6 @@
    "note": "Expected to be out until at least Nov 2",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Caleb%20Martin"
-  },
-  {
-   "team": "DAL",
-   "player": "Kyrie Irving",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kyrie%20Irving"
   },
   {
    "team": "DAL",
@@ -19559,18 +19701,6 @@
   },
   {
    "team": "DEN",
-   "player": "Spencer Jones",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Hamstring",
-   "upd": "2026-10-23",
-   "until": "2026-10-26",
-   "note": "Expected to be out until at least Oct 26",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Spencer%20Jones"
-  },
-  {
-   "team": "DEN",
    "player": "Alpha Diallo",
    "src": "CBS",
    "kind": "G",
@@ -19580,6 +19710,18 @@
    "note": "",
    "through": "2026-10-26",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Alpha%20Diallo"
+  },
+  {
+   "team": "DEN",
+   "player": "Spencer Jones",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Hamstring",
+   "upd": "2026-10-23",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Spencer%20Jones"
   },
   {
    "team": "DEN",
@@ -19619,15 +19761,15 @@
   },
   {
    "team": "GSW",
-   "player": "Brandin Podziemski",
+   "player": "Charles Bassey",
    "src": "CBS",
-   "kind": "O",
-   "injury": "Back",
+   "kind": "G",
+   "injury": "Knee",
    "upd": "2026-10-24",
-   "until": "2026-10-26",
-   "note": "Expected to be out until at least Oct 26",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandin%20Podziemski"
+   "until": "",
+   "note": "",
+   "through": "2026-10-26",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Charles%20Bassey"
   },
   {
    "team": "GSW",
@@ -19643,27 +19785,15 @@
   },
   {
    "team": "GSW",
-   "player": "Charles Bassey",
+   "player": "Brandin Podziemski",
    "src": "CBS",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Charles%20Bassey"
-  },
-  {
-   "team": "GSW",
-   "player": "Draymond Green",
-   "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Back",
    "upd": "2026-10-24",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Draymond%20Green"
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandin%20Podziemski"
   },
   {
    "team": "GSW",
@@ -19676,6 +19806,18 @@
    "note": "Expected to be out until at least Oct 26",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Stephen%20Curry"
+  },
+  {
+   "team": "GSW",
+   "player": "Draymond Green",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Back",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "",
+   "through": "2026-10-26",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Draymond%20Green"
   },
   {
    "team": "GSW",
@@ -19739,18 +19881,6 @@
   },
   {
    "team": "HOU",
-   "player": "Marcus Smart",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Forearm",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Marcus%20Smart"
-  },
-  {
-   "team": "HOU",
    "player": "Steven Adams",
    "src": "CBS",
    "kind": "O",
@@ -19760,6 +19890,18 @@
    "note": "Expected to be out until at least Oct 26",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Steven%20Adams"
+  },
+  {
+   "team": "HOU",
+   "player": "Marcus Smart",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Forearm",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "",
+   "through": "2026-10-26",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Marcus%20Smart"
   },
   {
    "team": "IND",
@@ -19897,12 +20039,12 @@
    "team": "LAL",
    "player": "Cameron Carr",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Oblique",
    "upd": "2026-10-24",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
+   "until": "2026-10-27",
+   "note": "Expected to be out until at least Oct 27",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cameron%20Carr"
   },
   {
@@ -19936,8 +20078,8 @@
    "kind": "O",
    "injury": "Knee",
    "upd": "2026-10-24",
-   "until": "2026-10-28",
-   "note": "Expected to be out until at least Oct 28",
+   "until": "2026-11-02",
+   "note": "Expected to be out until at least Nov 2",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Yves%20Missi"
   },
@@ -20060,18 +20202,6 @@
    "note": "Expected to be out until at least Oct 25",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=LeBron%20James"
-  },
-  {
-   "team": "PHI",
-   "player": "Dean Wade",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "",
-   "through": "2026-10-26",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dean%20Wade"
   },
   {
    "team": "PHI",
@@ -21335,18 +21465,6 @@
   },
   {
    "team": "DAL",
-   "player": "Jett Howard",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Right Calf Soreness",
-   "upd": "2026-10-24",
-   "until": "2026-10-24",
-   "note": "Howard (calf) has been upgraded to probable ahead of Saturday's meeting with the Spurs.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Jett%20Howard"
-  },
-  {
-   "team": "DAL",
    "player": "Kyrie Irving",
    "src": "ESPN",
    "kind": "O",
@@ -21368,18 +21486,6 @@
    "note": "Martin (thumb) has been ruled out against San Antonio on Saturday.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Caleb%20Martin"
-  },
-  {
-   "team": "DAL",
-   "player": "Max Christie",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Leg",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "Christie (shin) is questionable for Saturday's game against the Spurs.",
-   "through": "2026-10-26",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Max%20Christie"
   },
   {
    "team": "DAL",
@@ -21601,12 +21707,12 @@
    "team": "HOU",
    "player": "Marcus Smart",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Left Forearm Strain",
    "upd": "2026-10-24",
-   "until": "",
-   "note": "Smart (forearm) is listed as questionable for Saturday's game against the Hawks.",
-   "through": "2026-10-26",
+   "until": "2026-10-26",
+   "note": "Smart (forearm) has been ruled out for Saturday's game against the Hawks, Varun Shankar of the Houston Chronicle reports.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Marcus%20Smart"
   },
   {
@@ -21743,39 +21849,27 @@
   },
   {
    "team": "LAL",
+   "player": "Adou Thiero",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Knee Inflammation",
+   "upd": "2026-10-24",
+   "until": "2026-10-27",
+   "note": "Thiero (knee) has been ruled out for Sunday's game against Utah, Khobi Price of The California Post reports.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Adou%20Thiero"
+  },
+  {
+   "team": "LAL",
    "player": "Cameron Carr",
    "src": "ESPN",
    "kind": "O",
    "injury": "Right Oblique Strain",
    "upd": "2026-10-24",
    "until": "2026-10-27",
-   "note": "Carr (oblique) is out for Friday's game against the Clippers.",
+   "note": "Carr (oblique) is out for Sunday's game in Utah, Khobi Price of The California Post reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Cameron%20Carr"
-  },
-  {
-   "team": "LAL",
-   "player": "Adou Thiero",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Knee Inflammation",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "Thiero (knee) is out for Friday's game against the Clippers.",
-   "through": "2026-10-26",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Adou%20Thiero"
-  },
-  {
-   "team": "LAL",
-   "player": "Jake LaRavia",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Ankle Sprain",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "LaRavia (ankle) has been ruled out for Friday's game against the Clippers, Mark Medina of TheSportingTribune.com reports.",
-   "through": "2026-10-26",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Jake%20LaRavia"
   },
   {
    "team": "MEM",
@@ -22117,12 +22211,12 @@
    "team": "UTA",
    "player": "Trey Alexander",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Left Knee Bruise",
    "upd": "2026-10-24",
-   "until": "",
+   "until": "2026-10-26",
    "note": "Alexander won't play Wednesday against the Grizzlies due to a left knee bone bruise.",
-   "through": "2026-10-26",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Trey%20Alexander"
   },
   {
@@ -22419,45 +22513,6 @@
    "through": "2026-10-24",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Quaintance"
-  },
-  {
-   "team": "DAL",
-   "player": "Max Christie",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-24",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Christie"
-  },
-  {
-   "team": "DAL",
-   "player": "Max Christie",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-24",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Christie"
-  },
-  {
-   "team": "DAL",
-   "player": "Jett Howard",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "RotoWire tag: Prob",
-   "through": "2026-10-24",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Howard"
   },
   {
    "team": "DAL",
@@ -22809,6 +22864,40 @@
    "through": "2026-10-24",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Williams"
+  },
+  {
+   "team": "DAL",
+   "player": "Naji Marshall",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "Marshall will start Saturday's game against the Spurs.",
+   "through": "2026-10-24",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/naji-marshall-5204",
+   "from": "2026-10-24",
+   "override": true,
+   "at": "2026-10-24T23:38:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "DAL",
+   "player": "Max Christie",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "Christie (shin) is available for Saturday's game against the Spurs.",
+   "through": "2026-10-24",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/max-christie-5723",
+   "from": "2026-10-24",
+   "override": true,
+   "at": "2026-10-24T23:19:00+00:00",
+   "from_news": true
   },
   {
    "team": "HOU",
@@ -23693,23 +23782,6 @@
    "override": true,
    "at": "2026-10-21T23:41:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "NOP",
-   "player": "Herbert Jones",
-   "src": "RotoWire news",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "Jones is not in the starting lineup for Wednesday's regular-season opener against the Pacers.",
-   "through": "2026-10-21",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/herbert-jones-5414",
-   "from": "2026-10-21",
-   "override": true,
-   "at": "2026-10-21T23:40:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -23725,28 +23797,28 @@
    "at": "2026-10-23T21:45:00+00:00"
   }
  ],
- "generated_at": "2026-10-24T23:14:28+00:00",
+ "generated_at": "2026-10-24T23:40:40+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-24T23:14:15+00:00",
+   "at": "2026-10-24T23:40:26+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-24T23:14:27+00:00",
+   "at": "2026-10-24T23:40:38+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-24T23:14:28+00:00",
+   "at": "2026-10-24T23:40:39+00:00",
    "teams": 16,
-   "injuries": 49
+   "injuries": 46
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-24T23:14:28+00:00",
-   "current_players": 345,
+   "at": "2026-10-24T23:40:39+00:00",
+   "current_players": 376,
    "last_players": 582
   },
   "minutes": {
@@ -23755,18 +23827,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-24T23:14:28+00:00",
-   "count": 88
+   "at": "2026-10-24T23:40:40+00:00",
+   "count": 85
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-24T23:14:28+00:00",
+   "at": "2026-10-24T23:40:40+00:00",
    "count": 73
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-24T23:14:28+00:00",
-   "count": 81
+   "at": "2026-10-24T23:40:40+00:00",
+   "count": 78
   },
   "x": {
    "ok": null,
@@ -23774,8 +23846,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-24T23:14:28+00:00",
-   "count": 148
+   "at": "2026-10-24T23:40:40+00:00",
+   "count": 149
   }
  }
 }
