@@ -8736,7 +8736,7 @@
    "time": "19:00",
    "vs": "MIN",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8748,7 +8748,7 @@
     },
     {
      "pos": "SF",
-     "name": "Allen Graves"
+     "name": "Ja'Kobe Walter"
     },
     {
      "pos": "PF",
@@ -8765,7 +8765,7 @@
    "time": "19:00",
    "vs": "TOR",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8794,7 +8794,7 @@
    "time": "19:00",
    "vs": "NYK",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8802,15 +8802,15 @@
     },
     {
      "pos": "SG",
-     "name": "Desmond Bane"
+     "name": "Jase Richardson"
     },
     {
      "pos": "SF",
-     "name": "Franz Wagner"
+     "name": "Desmond Bane"
     },
     {
      "pos": "PF",
-     "name": "Tristan da Silva"
+     "name": "Franz Wagner"
     },
     {
      "pos": "C",
@@ -8823,7 +8823,7 @@
    "time": "19:00",
    "vs": "ORL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8852,7 +8852,7 @@
    "time": "19:00",
    "vs": "OKC",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8881,7 +8881,7 @@
    "time": "19:00",
    "vs": "LAC",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17347,6 +17347,39 @@
  },
  "news": [
   {
+   "id": "nba536048",
+   "player": "Cameron Johnson",
+   "headline": "Doubtful for Monday",
+   "text": "Johnson (ankle) is doubtful to play Monday against the Warriors.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/cameron-johnson-4916",
+   "at": "2026-10-25T22:41:00+00:00",
+   "team": "DEN"
+  },
+  {
+   "id": "nba536044",
+   "player": "Ivica Zubac",
+   "headline": "Questionable to return Sunday",
+   "text": "Zubac is questionable to return to Sunday's game in Brooklyn due to a left ankle sprain, Pat Boylan of FanDuel Sports Network Indiana reports.",
+   "reporter": "Pat Boylan",
+   "outlet": "FanDuel Sports Network Indiana",
+   "url": "https://www.rotowire.com/basketball/player/ivica-zubac-3888",
+   "at": "2026-10-25T22:34:00+00:00",
+   "team": "IND"
+  },
+  {
+   "id": "nba536043",
+   "player": "Oso Ighodaro",
+   "headline": "Doubtful for Monday",
+   "text": "Ighodaro (oblique) is doubtful for Monday's matchup with the Thunder, Duane Rankin of The Arizona Republic reports.",
+   "reporter": "Duane Rankin",
+   "outlet": "The Arizona Republic",
+   "url": "https://www.rotowire.com/basketball/player/oso-ighodaro-6293",
+   "at": "2026-10-25T22:25:00+00:00",
+   "team": "PHX"
+  },
+  {
    "id": "nba536042",
    "player": "Ausar Thompson",
    "headline": "Ruled out vs. Philadelphia",
@@ -19072,17 +19105,6 @@
    "url": "https://www.rotowire.com/basketball/player/collin-sexton-4412",
    "at": "2026-10-23T00:03:00+00:00",
    "team": "LAL"
-  },
-  {
-   "id": "nba535615",
-   "player": "Jarrett Allen",
-   "headline": "Good to go for season opener",
-   "text": "Allen (knee) is active for Thursday's game against the 76ers.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/jarrett-allen-4122",
-   "at": "2026-10-22T22:30:00+00:00",
-   "team": "CLE"
   }
  ],
  "matchup_alerts": [
@@ -21688,12 +21710,12 @@
    "team": "DEN",
    "player": "Spencer Jones",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Hamstring",
    "upd": "2026-10-25",
-   "until": "",
+   "until": "2026-10-28",
    "note": "Jones (hamstring) is out for Saturday's game against the Pelicans.",
-   "through": "2026-10-27",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Spencer%20Jones"
   },
   {
@@ -21740,7 +21762,7 @@
    "injury": "Right Ankle Sprain",
    "upd": "2026-10-25",
    "until": "2026-10-27",
-   "note": "Thompson (ankle) did not participate in Sunday morning's shootaround, Coty M. Davis of The Detroit News reports.",
+   "note": "Thompson (ankle) is out for Sunday's game against the 76ers, Hunter Patterson of The Athletic reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Ausar%20Thompson"
   },
@@ -21851,6 +21873,18 @@
    "note": "Adams has been ruled out for Monday's game against the Hawks due to a right soleus strain.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Steven%20Adams"
+  },
+  {
+   "team": "IND",
+   "player": "Ivica Zubac",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Left Ankle Sprain",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "Zubac is questionable to return to Sunday's game in Brooklyn due to a left ankle sprain, Pat Boylan of FanDuel Sports Network Indiana reports.",
+   "through": "2026-10-27",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Ivica%20Zubac"
   },
   {
    "team": "IND",
@@ -22208,7 +22242,7 @@
    "injury": "Oblique Strain",
    "upd": "2026-10-25",
    "until": "",
-   "note": "Ighodaro (oblique) has been ruled out for Saturday's game against the Warriors, Duane Rankin of The Arizona Republic reports.",
+   "note": "Ighodaro (oblique) is doubtful for Monday's matchup with the Thunder, Duane Rankin of The Arizona Republic reports.",
    "through": "2026-10-27",
    "url": "https://www.espn.com/nba/injuries#:~:text=Oso%20Ighodaro"
   },
@@ -22454,6 +22488,32 @@
    "through": "2026-10-25",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Nurkic"
+  },
+  {
+   "team": "IND",
+   "player": "Ivica Zubac",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-25",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Zubac"
+  },
+  {
+   "team": "IND",
+   "player": "Ivica Zubac",
+   "src": "RotoWire",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "RotoWire tag: Ques",
+   "through": "2026-10-25",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Zubac"
   },
   {
    "team": "IND",
@@ -22935,6 +22995,57 @@
    "through": "2026-10-25",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Raynaud"
+  },
+  {
+   "team": "DEN",
+   "player": "Cameron Johnson",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-26",
+   "until": "",
+   "note": "Johnson (ankle) is doubtful to play Monday against the Warriors.",
+   "through": "2026-10-26",
+   "st": "doubt",
+   "url": "https://www.rotowire.com/basketball/player/cameron-johnson-4916",
+   "from": "2026-10-26",
+   "override": true,
+   "at": "2026-10-25T22:41:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "IND",
+   "player": "Ivica Zubac",
+   "src": "Pat Boylan",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "Zubac is questionable to return to Sunday's game in Brooklyn due to a left ankle sprain, Pat Boylan of FanDuel Sports Network Indiana reports.",
+   "through": "2026-10-25",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/ivica-zubac-3888",
+   "from": "2026-10-25",
+   "override": true,
+   "at": "2026-10-25T22:34:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "PHX",
+   "player": "Oso Ighodaro",
+   "src": "Duane Rankin",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-26",
+   "until": "",
+   "note": "Ighodaro (oblique) is doubtful for Monday's matchup with the Thunder, Duane Rankin of The Arizona Republic reports.",
+   "through": "2026-10-26",
+   "st": "doubt",
+   "url": "https://www.rotowire.com/basketball/player/oso-ighodaro-6293",
+   "from": "2026-10-26",
+   "override": true,
+   "at": "2026-10-25T22:25:00+00:00",
+   "from_news": true
   },
   {
    "team": "DET",
@@ -23987,27 +24098,27 @@
    "at": "2026-10-23T21:45:00+00:00"
   }
  ],
- "generated_at": "2026-10-25T22:21:35+00:00",
+ "generated_at": "2026-10-25T22:49:32+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-25T22:21:19+00:00",
+   "at": "2026-10-25T22:49:17+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-25T22:21:33+00:00",
+   "at": "2026-10-25T22:49:30+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-25T22:21:34+00:00",
+   "at": "2026-10-25T22:49:31+00:00",
    "teams": 14,
-   "injuries": 40
+   "injuries": 42
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-25T22:21:34+00:00",
+   "at": "2026-10-25T22:49:31+00:00",
    "current_players": 388,
    "last_players": 582
   },
@@ -24017,18 +24128,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-25T22:21:34+00:00",
+   "at": "2026-10-25T22:49:32+00:00",
    "count": 86
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-25T22:21:35+00:00",
+   "at": "2026-10-25T22:49:32+00:00",
    "count": 75
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-25T22:21:35+00:00",
-   "count": 79
+   "at": "2026-10-25T22:49:32+00:00",
+   "count": 80
   },
   "x": {
    "ok": null,
@@ -24036,8 +24147,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-25T22:21:35+00:00",
-   "count": 158
+   "at": "2026-10-25T22:49:32+00:00",
+   "count": 160
   }
  }
 }
