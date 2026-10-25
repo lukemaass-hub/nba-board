@@ -8678,7 +8678,7 @@
    "time": "18:00",
    "vs": "BKN",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17347,6 +17347,17 @@
  },
  "news": [
   {
+   "id": "nba536037",
+   "player": "Anthony Black",
+   "headline": "Will make season debut Sunday",
+   "text": "Black (ankle) is available for Sunday's game at New York, Jason Beede of the Orlando Sentinel reports.",
+   "reporter": "Jason Beede",
+   "outlet": "Orlando Sentinel",
+   "url": "https://www.rotowire.com/basketball/player/anthony-black-5910",
+   "at": "2026-10-25T21:32:00+00:00",
+   "team": "ORL"
+  },
+  {
    "id": "nba536031",
    "player": "Kon Knueppel",
    "headline": "Ruled out for Monday",
@@ -21519,6 +21530,18 @@
   },
   {
    "team": "CHA",
+   "player": "Kon Knueppel",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Hamstring",
+   "upd": "2026-10-25",
+   "until": "2026-10-28",
+   "note": "Knueppel (hamstring) has been ruled out for Monday's game against the Wizards.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Kon%20Knueppel"
+  },
+  {
+   "team": "CHA",
    "player": "Coby White",
    "src": "ESPN",
    "kind": "O",
@@ -21540,18 +21563,6 @@
    "note": "Williams (hamstring) has been ruled out for Saturday's game against the Heat.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Grant%20Williams"
-  },
-  {
-   "team": "CHA",
-   "player": "Kon Knueppel",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Left Hamstring",
-   "upd": "2026-10-24",
-   "until": "2026-10-28",
-   "note": "Knueppel (hamstring) has been ruled out for Saturday's game against the Heat.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Kon%20Knueppel"
   },
   {
    "team": "CHA",
@@ -22080,18 +22091,6 @@
    "note": "Isaac (knee) has been ruled out ahead of Sunday's game against the Knicks.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jonathan%20Isaac"
-  },
-  {
-   "team": "ORL",
-   "player": "Anthony Black",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Ankle Sprain",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "Black (ankle) is listed as questionable for Sunday's game against the Knicks.",
-   "through": "2026-10-27",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Anthony%20Black"
   },
   {
    "team": "ORL",
@@ -22924,6 +22923,23 @@
    "through": "2026-10-25",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Raynaud"
+  },
+  {
+   "team": "ORL",
+   "player": "Anthony Black",
+   "src": "Jason Beede",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "Black (ankle) is available for Sunday's game at New York, Jason Beede of the Orlando Sentinel reports.",
+   "through": "2026-10-25",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/anthony-black-5910",
+   "from": "2026-10-25",
+   "override": true,
+   "at": "2026-10-25T21:32:00+00:00",
+   "from_news": true
   },
   {
    "team": "CHA",
@@ -23959,27 +23975,27 @@
    "at": "2026-10-23T21:45:00+00:00"
   }
  ],
- "generated_at": "2026-10-25T21:35:15+00:00",
+ "generated_at": "2026-10-25T21:56:03+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-25T21:35:01+00:00",
+   "at": "2026-10-25T21:55:48+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-25T21:35:13+00:00",
+   "at": "2026-10-25T21:56:01+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-25T21:35:14+00:00",
+   "at": "2026-10-25T21:56:02+00:00",
    "teams": 14,
    "injuries": 40
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-25T21:35:14+00:00",
+   "at": "2026-10-25T21:56:02+00:00",
    "current_players": 388,
    "last_players": 582
   },
@@ -23989,18 +24005,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-25T21:35:14+00:00",
+   "at": "2026-10-25T21:56:02+00:00",
    "count": 86
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-25T21:35:14+00:00",
+   "at": "2026-10-25T21:56:03+00:00",
    "count": 75
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-25T21:35:14+00:00",
-   "count": 79
+   "at": "2026-10-25T21:56:03+00:00",
+   "count": 78
   },
   "x": {
    "ok": null,
@@ -24008,8 +24024,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-25T21:35:14+00:00",
-   "count": 157
+   "at": "2026-10-25T21:56:03+00:00",
+   "count": 158
   }
  }
 }
