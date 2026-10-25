@@ -8968,7 +8968,7 @@
    "time": "21:00",
    "vs": "DEN",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8988,7 +8988,7 @@
     },
     {
      "pos": "C",
-     "name": "Derik Queen"
+     "name": "DeAndre Jordan"
     }
    ]
   },
@@ -8997,7 +8997,7 @@
    "time": "21:00",
    "vs": "NOP",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9009,7 +9009,7 @@
     },
     {
      "pos": "SF",
-     "name": "DeMar DeRozan"
+     "name": "Bryce Hopkins"
     },
     {
      "pos": "PF",
@@ -17345,6 +17345,28 @@
  },
  "news": [
   {
+   "id": "nba535915",
+   "player": "DeAndre Jordan",
+   "headline": "Starting Saturday",
+   "text": "Jordan will start Saturday against the Nuggets.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/deandre-jordan-2929",
+   "at": "2026-10-25T00:47:00+00:00",
+   "team": "NOP"
+  },
+  {
+   "id": "nba535913",
+   "player": "Draymond Green",
+   "headline": "Ruled out for Saturday",
+   "text": "Green (back) won't play Saturday in Phoenix.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/draymond-green-3299",
+   "at": "2026-10-25T00:34:00+00:00",
+   "team": "GSW"
+  },
+  {
    "id": "nba535911",
    "player": "Keegan Murray",
    "headline": "Questionable to play Sunday",
@@ -19015,28 +19037,6 @@
    "url": "https://www.rotowire.com/basketball/player/tari-eason-5704",
    "at": "2026-10-22T01:16:00+00:00",
    "team": "HOU"
-  },
-  {
-   "id": "nba535410",
-   "player": "Stephen Curry",
-   "headline": "Cleared to play Wednesday",
-   "text": "Curry (ankle) is available for Wednesday's game against the Lakers.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/stephen-curry-3014",
-   "at": "2026-10-22T01:06:00+00:00",
-   "team": "GSW"
-  },
-  {
-   "id": "nba535411",
-   "player": "Deni Avdija",
-   "headline": "Good to go Wednesday",
-   "text": "Avdija (ankle) is available for Wednesday's game against the Suns, Jason Quick of The Athletic reports.",
-   "reporter": "Jason Quick",
-   "outlet": "The Athletic",
-   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
-   "at": "2026-10-22T01:06:00+00:00",
-   "team": "POR"
   }
  ],
  "matchup_alerts": [
@@ -21640,6 +21640,18 @@
   },
   {
    "team": "GSW",
+   "player": "Draymond Green",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Back",
+   "upd": "2026-10-25",
+   "until": "2026-10-26",
+   "note": "Green (back) won't play Saturday in Phoenix.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Draymond%20Green"
+  },
+  {
+   "team": "GSW",
    "player": "Charles Bassey",
    "src": "ESPN",
    "kind": "G",
@@ -21661,18 +21673,6 @@
    "note": "Horford (back) has been ruled out for Saturday's game against the Suns.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Al%20Horford"
-  },
-  {
-   "team": "GSW",
-   "player": "Draymond Green",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Back",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "Green is doubtful to play Saturday against the Suns due to bilateral low back soreness.",
-   "through": "2026-10-26",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Draymond%20Green"
   },
   {
    "team": "GSW",
@@ -22108,18 +22108,6 @@
   },
   {
    "team": "PHX",
-   "player": "Luke Kennard",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Knee Strain",
-   "upd": "2026-10-25",
-   "until": "",
-   "note": "Kennard (knee) is questionable to play Saturday against the Warriors.",
-   "through": "2026-10-26",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Luke%20Kennard"
-  },
-  {
-   "team": "PHX",
    "player": "Oso Ighodaro",
    "src": "ESPN",
    "kind": "O",
@@ -22177,6 +22165,18 @@
    "note": "Sharpe suffered a torn meniscus in his knee and is expected to miss six months, per Shams Charania of ESPN.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Shaedon%20Sharpe"
+  },
+  {
+   "team": "SAC",
+   "player": "Keegan Murray",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Ankle",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "Murray is questionable to play Sunday against the Grizzlies due to left ankle capsulitis.",
+   "through": "2026-10-26",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Keegan%20Murray"
   },
   {
    "team": "SAC",
@@ -22780,19 +22780,6 @@
   },
   {
    "team": "GSW",
-   "player": "Draymond Green",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "RotoWire tag: Doubt",
-   "through": "2026-10-24",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Green"
-  },
-  {
-   "team": "GSW",
    "player": "Jimmy Butler",
    "src": "RotoWire",
    "kind": "O",
@@ -22816,6 +22803,19 @@
    "through": "2026-10-24",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Curry"
+  },
+  {
+   "team": "GSW",
+   "player": "Draymond Green",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-24",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Green"
   },
   {
    "team": "GSW",
@@ -22894,6 +22894,40 @@
    "through": "2026-10-24",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Williams"
+  },
+  {
+   "team": "NOP",
+   "player": "DeAndre Jordan",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "Jordan will start Saturday against the Nuggets.",
+   "through": "2026-10-24",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/deandre-jordan-2929",
+   "from": "2026-10-24",
+   "override": true,
+   "at": "2026-10-25T00:47:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "GSW",
+   "player": "Draymond Green",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "Green (back) won't play Saturday in Phoenix.",
+   "through": "2026-10-24",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/draymond-green-3299",
+   "from": "2026-10-24",
+   "override": true,
+   "at": "2026-10-25T00:34:00+00:00",
+   "from_news": true
   },
   {
    "team": "SAC",
@@ -23846,40 +23880,6 @@
    "override": true,
    "at": "2026-10-22T01:37:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "GSW",
-   "player": "Stephen Curry",
-   "src": "RotoWire news",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "Curry (ankle) is available for Wednesday's game against the Lakers.",
-   "through": "2026-10-21",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/stephen-curry-3014",
-   "from": "2026-10-21",
-   "override": true,
-   "at": "2026-10-22T01:06:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "POR",
-   "player": "Deni Avdija",
-   "src": "Jason Quick",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-21",
-   "until": "",
-   "note": "Avdija (ankle) is available for Wednesday's game against the Suns, Jason Quick of The Athletic reports.",
-   "through": "2026-10-21",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
-   "from": "2026-10-21",
-   "override": true,
-   "at": "2026-10-22T01:06:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -23895,27 +23895,27 @@
    "at": "2026-10-23T21:45:00+00:00"
   }
  ],
- "generated_at": "2026-10-25T00:29:17+00:00",
+ "generated_at": "2026-10-25T01:10:30+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-25T00:29:03+00:00",
+   "at": "2026-10-25T01:10:16+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-25T00:29:16+00:00",
+   "at": "2026-10-25T01:10:28+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-25T00:29:16+00:00",
+   "at": "2026-10-25T01:10:29+00:00",
    "teams": 16,
    "injuries": 45
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-25T00:29:16+00:00",
+   "at": "2026-10-25T01:10:29+00:00",
    "current_players": 376,
    "last_players": 582
   },
@@ -23925,17 +23925,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-25T00:29:17+00:00",
+   "at": "2026-10-25T01:10:29+00:00",
    "count": 83
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-25T00:29:17+00:00",
+   "at": "2026-10-25T01:10:29+00:00",
    "count": 73
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-25T00:29:17+00:00",
+   "at": "2026-10-25T01:10:29+00:00",
    "count": 79
   },
   "x": {
@@ -23944,7 +23944,7 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-25T00:29:17+00:00",
+   "at": "2026-10-25T01:10:30+00:00",
    "count": 154
   }
  }
