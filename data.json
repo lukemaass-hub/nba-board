@@ -8620,7 +8620,7 @@
    "time": "17:00",
    "vs": "UTA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8649,7 +8649,7 @@
    "time": "17:00",
    "vs": "LAL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17347,6 +17347,39 @@
  },
  "news": [
   {
+   "id": "nba536020",
+   "player": "Cooper Flagg",
+   "headline": "Questionable to play Monday",
+   "text": "Flagg (shoulder) is questionable to play Monday against the Heat.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/cooper-flagg-6548",
+   "at": "2026-10-25T20:27:00+00:00",
+   "team": "DAL"
+  },
+  {
+   "id": "nba536019",
+   "player": "Naji Marshall",
+   "headline": "Out for Monday",
+   "text": "Marshall (illness) has been ruled out for Monday's game against the Heat.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/naji-marshall-5204",
+   "at": "2026-10-25T20:26:00+00:00",
+   "team": "DAL"
+  },
+  {
+   "id": "nba536018",
+   "player": "Kyrie Irving",
+   "headline": "Omitted from injury report",
+   "text": "Irving (knee) isn't listed on the injury report for Monday's game against the Heat.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/kyrie-irving-3186",
+   "at": "2026-10-25T20:24:00+00:00",
+   "team": "DAL"
+  },
+  {
    "id": "nba536015",
    "player": "Keegan Murray",
    "headline": "Downgraded to doubtful",
@@ -19006,17 +19039,6 @@
    "url": "https://www.rotowire.com/basketball/player/aaron-nesmith-5120",
    "at": "2026-10-22T20:51:00+00:00",
    "team": "IND"
-  },
-  {
-   "id": "nba535584",
-   "player": "Anthony Black",
-   "headline": "Won't suit up Friday",
-   "text": "Black (ankle) has been ruled out for Friday's game against the Timberwolves.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/anthony-black-5910",
-   "at": "2026-10-22T20:22:00+00:00",
-   "team": "ORL"
   }
  ],
  "matchup_alerts": [
@@ -19496,6 +19518,18 @@
   },
   {
    "team": "BOS",
+   "player": "RJ Luis Jr.",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Not Injury Related",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "",
+   "through": "2026-10-27",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=RJ%20Luis%20Jr."
+  },
+  {
+   "team": "BOS",
    "player": "Devin Carter",
    "src": "CBS",
    "kind": "O",
@@ -19532,18 +19566,6 @@
   },
   {
    "team": "CHA",
-   "player": "Kon Knueppel",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Hamstring",
-   "upd": "2026-10-25",
-   "until": "",
-   "note": "",
-   "through": "2026-10-27",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kon%20Knueppel"
-  },
-  {
-   "team": "CHA",
    "player": "Coby White",
    "src": "CBS",
    "kind": "G",
@@ -19553,6 +19575,18 @@
    "note": "",
    "through": "2026-10-27",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Coby%20White"
+  },
+  {
+   "team": "CHA",
+   "player": "Kon Knueppel",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Hamstring",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "",
+   "through": "2026-10-27",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kon%20Knueppel"
   },
   {
    "team": "CHA",
@@ -19580,18 +19614,6 @@
   },
   {
    "team": "CHI",
-   "player": "Noa Essengue",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Head",
-   "upd": "2026-10-25",
-   "until": "",
-   "note": "",
-   "through": "2026-10-27",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Noa%20Essengue"
-  },
-  {
-   "team": "CHI",
    "player": "Patrick Williams",
    "src": "CBS",
    "kind": "G",
@@ -19601,6 +19623,18 @@
    "note": "",
    "through": "2026-10-27",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Patrick%20Williams"
+  },
+  {
+   "team": "CHI",
+   "player": "Noa Essengue",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Head",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "",
+   "through": "2026-10-27",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Noa%20Essengue"
   },
   {
    "team": "CHI",
@@ -19640,6 +19674,42 @@
   },
   {
    "team": "DAL",
+   "player": "Cooper Flagg",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Shoulder",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "",
+   "through": "2026-10-27",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cooper%20Flagg"
+  },
+  {
+   "team": "DAL",
+   "player": "Naji Marshall",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Illness",
+   "upd": "2026-10-25",
+   "until": "2026-10-28",
+   "note": "Expected to be out until at least Oct 28",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Naji%20Marshall"
+  },
+  {
+   "team": "DAL",
+   "player": "Caleb Martin",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Thumb",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "",
+   "through": "2026-10-27",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Caleb%20Martin"
+  },
+  {
+   "team": "DAL",
    "player": "Kyrie Irving",
    "src": "CBS",
    "kind": "G",
@@ -19649,18 +19719,6 @@
    "note": "",
    "through": "2026-10-27",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kyrie%20Irving"
-  },
-  {
-   "team": "DAL",
-   "player": "Tarik Biberovic",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Heel",
-   "upd": "2026-10-24",
-   "until": "2026-11-02",
-   "note": "Expected to be out until at least Nov 2",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tarik%20Biberovic"
   },
   {
    "team": "DAL",
@@ -19676,15 +19734,15 @@
   },
   {
    "team": "DAL",
-   "player": "Cooper Flagg",
+   "player": "Tarik Biberovic",
    "src": "CBS",
    "kind": "O",
-   "injury": "Shoulder",
+   "injury": "Heel",
    "upd": "2026-10-24",
    "until": "2026-11-02",
    "note": "Expected to be out until at least Nov 2",
    "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cooper%20Flagg"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tarik%20Biberovic"
   },
   {
    "team": "DAL",
@@ -19697,18 +19755,6 @@
    "note": "Expected to be out until at least Oct 28",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Santi%20Aldama"
-  },
-  {
-   "team": "DAL",
-   "player": "Caleb Martin",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Thumb",
-   "upd": "2026-10-24",
-   "until": "2026-11-02",
-   "note": "Expected to be out until at least Nov 2",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Caleb%20Martin"
   },
   {
    "team": "DEN",
@@ -19796,18 +19842,6 @@
   },
   {
    "team": "GSW",
-   "player": "Gui Santos",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Undisclosed",
-   "upd": "2026-10-25",
-   "until": "",
-   "note": "",
-   "through": "2026-10-27",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Gui%20Santos"
-  },
-  {
-   "team": "GSW",
    "player": "Brandin Podziemski",
    "src": "CBS",
    "kind": "G",
@@ -19817,6 +19851,18 @@
    "note": "",
    "through": "2026-10-27",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandin%20Podziemski"
+  },
+  {
+   "team": "GSW",
+   "player": "Gui Santos",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Undisclosed",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "",
+   "through": "2026-10-27",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Gui%20Santos"
   },
   {
    "team": "GSW",
@@ -19892,18 +19938,6 @@
   },
   {
    "team": "HOU",
-   "player": "Steven Adams",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-25",
-   "until": "",
-   "note": "",
-   "through": "2026-10-27",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Steven%20Adams"
-  },
-  {
-   "team": "HOU",
    "player": "Marcus Smart",
    "src": "CBS",
    "kind": "G",
@@ -19913,6 +19947,18 @@
    "note": "",
    "through": "2026-10-27",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Marcus%20Smart"
+  },
+  {
+   "team": "HOU",
+   "player": "Steven Adams",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Ankle",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "",
+   "through": "2026-10-27",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Steven%20Adams"
   },
   {
    "team": "IND",
@@ -20048,15 +20094,15 @@
   },
   {
    "team": "MEM",
-   "player": "Zach Edey",
+   "player": "Karim Lopez",
    "src": "CBS",
-   "kind": "O",
-   "injury": "Ankle",
-   "upd": "2026-10-24",
-   "until": "2026-10-26",
-   "note": "Expected to be out until at least Oct 26",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Zach%20Edey"
+   "kind": "G",
+   "injury": "Knee",
+   "upd": "2026-10-25",
+   "until": "",
+   "note": "",
+   "through": "2026-10-27",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Karim%20Lopez"
   },
   {
    "team": "MEM",
@@ -20069,6 +20115,18 @@
    "note": "",
    "through": "2026-10-27",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cedric%20Coward"
+  },
+  {
+   "team": "MEM",
+   "player": "Zach Edey",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Ankle",
+   "upd": "2026-10-24",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Zach%20Edey"
   },
   {
    "team": "MIN",
@@ -20108,18 +20166,6 @@
   },
   {
    "team": "OKC",
-   "player": "Thomas Sorber",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-10-21",
-   "until": "2026-10-26",
-   "note": "Expected to be out until at least Oct 26",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Thomas%20Sorber"
-  },
-  {
-   "team": "OKC",
    "player": "Nikola Topic",
    "src": "CBS",
    "kind": "O",
@@ -20129,6 +20175,18 @@
    "note": "Expected to be out until at least Oct 26",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nikola%20Topic"
+  },
+  {
+   "team": "OKC",
+   "player": "Thomas Sorber",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-10-21",
+   "until": "2026-10-26",
+   "note": "Expected to be out until at least Oct 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Thomas%20Sorber"
   },
   {
    "team": "ORL",
@@ -20192,18 +20250,6 @@
   },
   {
    "team": "PHI",
-   "player": "Tacko Fall",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Quadriceps",
-   "upd": "2026-10-25",
-   "until": "2026-10-28",
-   "note": "Expected to be out until at least Oct 28",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tacko%20Fall"
-  },
-  {
-   "team": "PHI",
    "player": "Jabari Walker",
    "src": "CBS",
    "kind": "O",
@@ -20225,6 +20271,18 @@
    "note": "Expected to be out until at least Oct 28",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Joel%20Embiid"
+  },
+  {
+   "team": "PHI",
+   "player": "Tacko Fall",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Quadriceps",
+   "upd": "2026-10-25",
+   "until": "2026-10-28",
+   "note": "Expected to be out until at least Oct 28",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tacko%20Fall"
   },
   {
    "team": "PHI",
@@ -20276,18 +20334,6 @@
   },
   {
    "team": "POR",
-   "player": "Chris Youngblood",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-10-24",
-   "until": "",
-   "note": "",
-   "through": "2026-10-27",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Chris%20Youngblood"
-  },
-  {
-   "team": "POR",
    "player": "Branden Carlson",
    "src": "CBS",
    "kind": "G",
@@ -20297,6 +20343,18 @@
    "note": "",
    "through": "2026-10-27",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Branden%20Carlson"
+  },
+  {
+   "team": "POR",
+   "player": "Chris Youngblood",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Ankle",
+   "upd": "2026-10-24",
+   "until": "",
+   "note": "",
+   "through": "2026-10-27",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Chris%20Youngblood"
   },
   {
    "team": "POR",
@@ -20336,18 +20394,6 @@
   },
   {
    "team": "SAC",
-   "player": "Maxime Raynaud",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-10-15",
-   "until": "2026-11-02",
-   "note": "Expected to be out until at least Nov 2",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Maxime%20Raynaud"
-  },
-  {
-   "team": "SAC",
    "player": "Dylan Cardwell",
    "src": "CBS",
    "kind": "O",
@@ -20357,6 +20403,18 @@
    "note": "Expected to be out until at least Nov 2",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dylan%20Cardwell"
+  },
+  {
+   "team": "SAC",
+   "player": "Maxime Raynaud",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-10-15",
+   "until": "2026-11-02",
+   "note": "Expected to be out until at least Nov 2",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Maxime%20Raynaud"
   },
   {
    "team": "SAS",
@@ -21500,27 +21558,39 @@
   },
   {
    "team": "DAL",
-   "player": "Kyrie Irving",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Knee",
-   "upd": "2026-10-25",
-   "until": "",
-   "note": "Irving is out for Saturday's game against the Spurs due to rest, Christian Clark of The Athletic reports.",
-   "through": "2026-10-27",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Kyrie%20Irving"
-  },
-  {
-   "team": "DAL",
    "player": "Caleb Martin",
    "src": "ESPN",
    "kind": "O",
    "injury": "Right Thumb Sprain",
-   "upd": "2026-10-24",
-   "until": "2026-11-02",
-   "note": "Martin (thumb) has been ruled out against San Antonio on Saturday.",
+   "upd": "2026-10-25",
+   "until": "2026-10-26",
+   "note": "Martin (thumb) is listed as doubtful for Monday's game against the Heat.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Caleb%20Martin"
+  },
+  {
+   "team": "DAL",
+   "player": "Cooper Flagg",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Shoulder Sprain",
+   "upd": "2026-10-25",
+   "until": "2026-10-26",
+   "note": "Flagg (shoulder) is questionable to play Monday against the Heat.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Cooper%20Flagg"
+  },
+  {
+   "team": "DAL",
+   "player": "Naji Marshall",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Illness",
+   "upd": "2026-10-25",
+   "until": "2026-10-28",
+   "note": "Marshall (illness) has been ruled out for Monday's game against the Heat.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Naji%20Marshall"
   },
   {
    "team": "DAL",
@@ -21545,18 +21615,6 @@
    "note": "Aldama (knee) has been ruled out for Saturday's game against the Spurs.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Santi%20Aldama"
-  },
-  {
-   "team": "DAL",
-   "player": "Cooper Flagg",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Left Shoulder Sprain",
-   "upd": "2026-10-24",
-   "until": "2026-11-02",
-   "note": "The Mavericks diagnosed Flagg with a mild left shoulder sprain, and the second-year forward will be re-evaluated by medical staff next week, Brett Siegel of ClutchPoints.com reports.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Cooper%20Flagg"
   },
   {
    "team": "DAL",
@@ -22872,6 +22930,40 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Raynaud"
   },
   {
+   "team": "DAL",
+   "player": "Cooper Flagg",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-26",
+   "until": "",
+   "note": "Flagg (shoulder) is questionable to play Monday against the Heat.",
+   "through": "2026-10-26",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/cooper-flagg-6548",
+   "from": "2026-10-26",
+   "override": true,
+   "at": "2026-10-25T20:27:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "DAL",
+   "player": "Naji Marshall",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-26",
+   "until": "",
+   "note": "Marshall (illness) has been ruled out for Monday's game against the Heat.",
+   "through": "2026-10-26",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/naji-marshall-5204",
+   "from": "2026-10-26",
+   "override": true,
+   "at": "2026-10-25T20:26:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "SAC",
    "player": "Keegan Murray",
    "src": "RotoWire news",
@@ -23822,23 +23914,6 @@
    "override": true,
    "at": "2026-10-22T20:51:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "ORL",
-   "player": "Anthony Black",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-10-23",
-   "until": "",
-   "note": "Black (ankle) has been ruled out for Friday's game against the Timberwolves.",
-   "through": "2026-10-23",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/anthony-black-5910",
-   "from": "2026-10-23",
-   "override": true,
-   "at": "2026-10-22T20:22:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -23854,27 +23929,27 @@
    "at": "2026-10-23T21:45:00+00:00"
   }
  ],
- "generated_at": "2026-10-25T20:16:39+00:00",
+ "generated_at": "2026-10-25T20:46:02+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-25T20:16:27+00:00",
+   "at": "2026-10-25T20:45:48+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-25T20:16:38+00:00",
+   "at": "2026-10-25T20:46:01+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-25T20:16:39+00:00",
+   "at": "2026-10-25T20:46:02+00:00",
    "teams": 14,
    "injuries": 41
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-25T20:16:39+00:00",
+   "at": "2026-10-25T20:46:02+00:00",
    "current_players": 388,
    "last_players": 582
   },
@@ -23884,17 +23959,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-25T20:16:39+00:00",
-   "count": 82
+   "at": "2026-10-25T20:46:02+00:00",
+   "count": 85
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-25T20:16:39+00:00",
+   "at": "2026-10-25T20:46:02+00:00",
    "count": 75
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-25T20:16:39+00:00",
+   "at": "2026-10-25T20:46:02+00:00",
    "count": 82
   },
   "x": {
@@ -23903,8 +23978,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-25T20:16:39+00:00",
-   "count": 152
+   "at": "2026-10-25T20:46:02+00:00",
+   "count": 154
   }
  }
 }
