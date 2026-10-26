@@ -413,6 +413,10 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
     assert users == ["U09BNHCQD5Z,U0ACFA2QDFF"] and "dm 2026-10-20 PHI@NYK" in log and sentto[0][1] == []
     # never confirmed: sent anyway 15 min before tip
     assert run("on", lineups(False), late)[0] == ["U09BNHCQD5Z,U0ACFA2QDFF"]
+    # extra people for a date (the owner on Oct 26 2026) join the group
+    monkeypatch.setattr(sa, "ALSO_INCLUDE", {"2026-10-20": ["U0B5EP4PV3M"]})
+    assert run("on", lineups(True), early)[0] == ["U09BNHCQD5Z,U0ACFA2QDFF,U0B5EP4PV3M"]
+    monkeypatch.setattr(sa, "ALSO_INCLUDE", {})
     # off: nothing sent, nothing logged; test: owner only, says who and why
     assert run("off", lineups(True), early) == ([], {})
     assert run("test", lineups(True), early)[0] == ["U0B5EP4PV3M"]
