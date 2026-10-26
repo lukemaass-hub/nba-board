@@ -397,7 +397,7 @@ def build(data, games, date):
     label_css = f"font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;{grey};font-weight:bold;margin:12px 0 4px"
 
     def tag(st):
-        if not st:
+        if not st or st not in TAG:     # e.g. "avail" (Available): no tag
             return ""
         t, c = TAG[st]
         return (f' <span style="font-size:10px;font-weight:bold;color:#fff;background:{c};border-radius:3px;'
@@ -504,7 +504,7 @@ def build(data, games, date):
                 srcs = ", ".join(e(x["src"]) for x in i["srcs"]) + (" · sources differ" if i["differ"] else "")
                 what = f' <span style="{grey}">{e(i["injury"])}</span>' if i["injury"] else ""
                 h.append(f'<div style="font-size:13px;line-height:1.4;margin:0 0 6px">{DOT[i["st"]]} <b>{who}</b> {mins(i["player"])} '
-                         f'<b style="color:{TAG[i["st"]][1]}">{LABEL[i["st"]]}</b>{per}{what}'
+                         f'<b style="color:{TAG.get(i["st"], ("", "#5B8DB8"))[1]}">{LABEL[i["st"]]}</b>{per}{what}'
                          f'<div style="font-size:11px;{light};margin-left:20px">{srcs}</div></div>')
                 t.append(f"    {DOT[i['st']]} {i['player']}{mins_tag(data, i['player'])}: {LABEL[i['st']]}{' | ' + i['injury'] if i['injury'] else ''}"
                          f" ({', '.join(x['src'] for x in i['srcs'])})")
@@ -854,7 +854,15 @@ def main():
 
     sent = json.load(open(args.log)) if os.path.exists(args.log) else {}
     stamp = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
-    due = due_games(data, now, args.window, sent)
+    # Slack group DMs first, so nothing in the email part can stop them (Oct 26 2026: an email crash blocked them)
+    bot = os.environ.get("SLACK_BOT_TOKEN")
+    if bot and not args.out:
+        try:
+            dm_traders(data, bot, now, args.window, sent, stamp)
+        except Exception as ex:
+            print(f"Slack DMs failed: {ex}")
+        bot = None
+    due = due_games(data, now, args.window, sent) if (PREGAME_EMAIL or args.out) else []
     if due:
         games = [g for _, g in due]
         subject, body_html, body_text = build(data, games, games[0]["date"])
@@ -877,9 +885,6 @@ def main():
             sent["slack " + key] = stamp
             print(f"Slack sent: {title}")
 
-    bot = os.environ.get("SLACK_BOT_TOKEN")
-    if bot and not args.out:
-        dm_traders(data, bot, now, args.window, sent, stamp)
 
     cutoff = (dt.date.today() - dt.timedelta(days=7)).isoformat()
     sent = {k: v for k, v in sent.items() if re.sub(r"^(slack|dm) ", "", k)[:10] >= cutoff}

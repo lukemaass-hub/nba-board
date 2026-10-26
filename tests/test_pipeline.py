@@ -515,3 +515,12 @@ def test_official_report_filters_stale_sites_and_box_scores_hidden():
     box = {"headline": "Scores 19", "text": "Davis supplied 19 points (8-21 FG, 0-1 3Pt), six rebounds and four assists in 31 minutes."}
     hurt = {"headline": "Exits early", "text": "Davis (ankle) had 19 points (8-21 FG) in 21 minutes before leaving."}
     assert not e.news_relevant(box) and e.news_relevant(hurt)
+
+
+def test_available_status_does_not_break_email():
+    import email_report as e, update_data as u
+    r = u.rec("MIA", "Pelle Larsson", "NBA report", "G", st="avail", through="2026-10-26")
+    r.update({"from": "2026-10-26", "override": True, "at": "x"})
+    g = {"date": "2026-10-26", "time": "19:30", "away": "DAL", "home": "MIA", "venue": ""}
+    data = {"injuries": [r], "schedule": [g]}
+    assert "Available" in e.build(data, [g], "2026-10-26")[1]
