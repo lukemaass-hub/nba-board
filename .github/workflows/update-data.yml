@@ -6,10 +6,11 @@ on:
     - cron: "0 11 * * *"
     - cron: "0 17 * * *"
     - cron: "30 21 * * *"
-    # Every 5 minutes from 11 AM to 1 AM Eastern (was 10; Oct 26 2026): refreshes only when a game tips within
-    # 90 minutes, then sends each game's Slack group DM once (lineups confirmed, or 10 min before tip).
-    # GitHub sometimes starts these late or skips them, hence the frequent schedule and the catch-up rules.
-    - cron: "*/5 15-23,0-5 * * *"
+    # Every 5 minutes during game hours, but a run only does anything when a game tips within the next 90 minutes
+    # (the "gate" job; user, Oct 26 2026: check before games, not all day). It sends each game's Slack group DM once:
+    # when both lineups are confirmed, else 10 minutes before tip, and never after tip. A run that starts within
+    # ~20 minutes of a tip waits for the 10-minute mark itself, so a late or skipped GitHub run still delivers.
+    - cron: "*/5 14-23,0-3 * * *"
     # Mondays 9 AM Eastern: weekly minutes-changes email
     - cron: "0 13 * * 1"
   workflow_dispatch:
@@ -42,9 +43,29 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  update:
+  gate:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 3
+    outputs:
+      go: ${{ steps.gate.outputs.go }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: |
+            data.json
+            pipeline/gate.py
+          sparse-checkout-cone-mode: false
+      - id: gate
+        env:
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+        run: python3 pipeline/gate.py data.json
+
+  update:
+    needs: gate
+    if: ${{ needs.gate.outputs.go == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v5
 
@@ -71,7 +92,7 @@ jobs:
           MINUTES_CSV_URL: ${{ secrets.MINUTES_CSV_URL }}
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          PREGAME: ${{ github.event.schedule == '*/5 15-23,0-5 * * *' && '90' || '' }}
+          PREGAME: ${{ github.event.schedule == '*/5 14-23,0-3 * * *' && '90' || '' }}
         run: python pipeline/update_data.py --out data.json ${PREGAME:+--pregame "$PREGAME"}
 
       - name: Email / Slack the report for games tipping off soon

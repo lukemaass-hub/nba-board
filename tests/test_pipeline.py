@@ -545,13 +545,26 @@ def test_unattended_catch_up_watchdog_and_alerts(monkeypatch):
     e.dm_traders({}, "x", at(18, 50), 25, log, "s")        # 10 min before tip: the fallback sends
     assert len(sends) == 1 and "dm 2026-10-20 PHI@NYK" in log
     sends.clear(); log = {}
-    e.dm_traders({}, "x", at(19, 6), 25, log, "s")         # a run that started late still catches up after tip
-    assert len(sends) == 1
-    sends.clear(); log = {}
+    e.dm_traders({}, "x", at(19, 1), 25, log, "s")         # never after tip (user's rule): nothing sent, owner alerted
+    assert sends == [] and len(mails) == 1
+    mails.clear(); log = {}
+    assert e.next_fallback({}, at(18, 43), {}) == at(18, 50)   # a run at 18:43 waits for the 18:50 mark
+    assert e.next_fallback({}, at(18, 51), {}) is None
     monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: None)   # schedule never posted
-    e.dm_traders({}, "x", at(19, 15), 25, log, "s")
-    e.dm_traders({}, "x", at(19, 20), 25, log, "s")
+    e.dm_traders({}, "x", at(19, 0), 25, log, "s")
+    e.dm_traders({}, "x", at(19, 5), 25, log, "s")
     assert sends == [] and len(mails) == 1 and "No Slack group DM for PHI @ NYK" in mails[0]   # alerted once
     mails.clear(); sent = {}
     e.alert(sent, "alert run 2026-10-20T19", "A run had a problem", "x"); e.alert(sent, "alert run 2026-10-20T19", "A run had a problem", "x")
     assert len(mails) == 1
+
+
+def test_gate_only_runs_before_games():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("gate", os.path.join(os.path.dirname(__file__), "..", "pipeline", "gate.py"))
+    gate = importlib.util.module_from_spec(spec); spec.loader.exec_module(gate)
+    data = {"schedule": [{"date": "2026-10-26", "time": "19:00", "away": "WAS", "home": "CHA"}]}
+    utc = lambda h, m: dt.datetime(2026, 10, 26, h, m, tzinfo=dt.timezone.utc)     # 19:00 ET = 23:00 UTC
+    assert gate.go(data, utc(21, 45)) and gate.go(data, utc(22, 59))
+    assert gate.go(data, utc(23, 10))          # just after tip: only to alert if it went unsent (never sends after tip)
+    assert not gate.go(data, utc(20, 0)) and not gate.go(data, utc(23, 20))
