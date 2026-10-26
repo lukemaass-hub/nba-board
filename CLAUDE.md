@@ -78,7 +78,8 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   one-on-one bot DMs are invisible because the bot's Messages tab is off) the game's Slack report as soon as both teams' RotoWire lineups are confirmed, else 15 min before tip (Oct 21 2026, user's rule; Cores etc. get nothing; just the report, no extra line) (logged as "dm <date> A@H"). Needs the user's own new
   app (also named IP Trader Bot, App ID A0CALRVPDBM, install awaiting admin approval) with bot scopes chat:write,
   im:write, channels:history, added to #in-play-trading, token in secret SLACK_BOT_TOKEN. Repository variable
-  SLACK_DM_MODE: off (default: only logs who would get it) / test (all to the user, marked [TEST]) / on. The user
+  SLACK_DM_MODE: on by default since Oct 26 2026 (user switched it on; variable can set off / test).
+  slack_assign.ALSO_INCLUDE adds people to every group DM on a date (the user on Oct 26 2026). The user
   said: don't send anything until approved; turn on test first. The schedule channel lives in workspace T04DVTM1BB6
   (FBG Enterprises Opco); the new app was created in "Fanatics Betting and Gaming" (T030UFQJYEL): it must be
   installed where #in-play-trading is.

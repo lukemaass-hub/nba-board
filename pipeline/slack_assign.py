@@ -123,6 +123,11 @@ def post_channel(token, channel, text, blocks):
     _api(token, "chat.postMessage", body={"channel": channel, "text": text, "blocks": blocks, "unfurl_links": False})
 
 
+# People added to every NBA game's group DM on these dates, on top of that game's Props and Cores traders
+# (user's request: "for all of the games tonight include me", Oct 26 2026).
+ALSO_INCLUDE = {"2026-10-26": [OWNER]}
+
+
 def mode():
     m = (os.environ.get("SLACK_DM_MODE") or "off").strip().lower()
     return m if m in ("off", "test", "on") else "off"
