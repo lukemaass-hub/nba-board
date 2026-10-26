@@ -78,7 +78,7 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   Schedule" message (posted ~8:30 AM MT by the team's existing IP Trader Bot app in #in-play-trading, C06U8AW81K2),
   takes the NBA section ("7:00 PM - A @ B - <@U..|Name> Cores / <@U..|Name> Props") and email_report.dm_traders() DMs
   (Oct 26 2026: one GROUP DM per game with the bot + that game's Props AND Cores traders, like the football reports;
-  one-on-one bot DMs are invisible because the bot's Messages tab is off) the game's Slack report as soon as both teams' RotoWire lineups are confirmed, else 30 min before tip (was 15) (Oct 21 2026, user's rule; Cores etc. get nothing; just the report, no extra line) (logged as "dm <date> A@H"). Needs the user's own new
+  one-on-one bot DMs are invisible because the bot's Messages tab is off) the game's Slack report as soon as both teams' RotoWire lineups are confirmed, else 10 min before tip (user's rule, Oct 26 2026) (Oct 21 2026, user's rule; Cores etc. get nothing; just the report, no extra line) (logged as "dm <date> A@H"). Needs the user's own new
   app (also named IP Trader Bot, App ID A0CALRVPDBM, install awaiting admin approval) with bot scopes chat:write,
   im:write, channels:history, added to #in-play-trading, token in secret SLACK_BOT_TOKEN. Repository variable
   SLACK_DM_MODE: on by default since Oct 26 2026 (user switched it on; variable can set off / test).
@@ -108,7 +108,7 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
 - Unattended safety (Oct 26 2026, user: must run without them watching): workflow runs every 5 min 11 AM-1 AM ET;
   tests / data refresh / send steps are continue-on-error so one failure can't block the Slack group DMs; the save
   step always runs and retries the push (email_log.json must be saved or a DM would repeat). Group DMs go when
-  lineups are confirmed, else 30 min before tip (PROPS_FALLBACK_MIN), and a late run still sends up to 10 min after
+  lineups are confirmed, else 10 min before tip (PROPS_FALLBACK_MIN, user's rule), and a late run still sends up to 10 min after
   tip. The owner gets an email (alert(), EMAIL_TO) if a run step fails (at most once an hour) or a game is 10+ min
   past tip with no group DM (once per game).
 - Presser Wire (Oct 26 2026, user's choice; the user's company OK'd the use): update_data.fetch_presserwire reads two

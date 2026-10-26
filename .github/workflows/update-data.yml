@@ -7,7 +7,7 @@ on:
     - cron: "0 17 * * *"
     - cron: "30 21 * * *"
     # Every 5 minutes from 11 AM to 1 AM Eastern (was 10; Oct 26 2026): refreshes only when a game tips within
-    # 90 minutes, then sends each game's Slack group DM once (lineups confirmed, or 30 min before tip).
+    # 90 minutes, then sends each game's Slack group DM once (lineups confirmed, or 10 min before tip).
     # GitHub sometimes starts these late or skips them, hence the frequent schedule and the catch-up rules.
     - cron: "*/5 15-23,0-5 * * *"
     # Mondays 9 AM Eastern: weekly minutes-changes email

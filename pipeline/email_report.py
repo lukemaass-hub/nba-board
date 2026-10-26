@@ -620,8 +620,8 @@ def post_slack(url, text, blocks):
         raise RuntimeError(f"Slack said: {body[:200]}")
 
 
-PROPS_FALLBACK_MIN = 30     # no confirmed lineups by this many minutes before tip: send anyway (was 15; Oct 26 2026,
-                            # so a skipped GitHub run still leaves several more chances)
+PROPS_FALLBACK_MIN = 10     # no confirmed lineups by this many minutes before tip: send anyway (user's rule, Oct 26 2026:
+                            # "send once lineups confirm, and at the very least 10 min before the game")
 DM_LATE_MIN = 10            # a run that starts late can still send up to this many minutes after tip
 WATCH_MIN = 10              # this long after tip with no group DM sent: email the owner (alert)
 
