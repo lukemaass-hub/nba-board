@@ -587,7 +587,7 @@ def build_slack(data, game, date, test=False):
                        "text": ("*Injuries*\n" + "\n".join(lines))[:2900] if lines else "✅ No injuries listed"}]})
         blocks.append({"type": "divider"})
     blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text":
-                   f"🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · ✅ Available (NBA report) · <{SITE}|Open the full board>"}]})
+                   f"🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · ✅ Available (NBA report)"}]})
     return title, blocks
 
 
