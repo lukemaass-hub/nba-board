@@ -750,7 +750,10 @@ function rotationBlockHTML(code,imp,date){
 /* Matchup minutes alerts (from the minutes-vs-teams workbook): players on this team, not out or doubtful, whose
    average minutes vs this opponent are 5+ above or below their usual. */
 let MATCHUP_ALERTS=[];
+/* "usually plays more/fewer minutes vs X": removed for now (user, Oct 26 2026); set MATCHUP_ALERTS=true to bring back */
+const MATCHUP_ALERTS=false;
 function matchupAlertsHTML(code,opp,date,imp){
+  if(!MATCHUP_ALERTS) return "";
   const names={}; const ch=DEPTH_P[code]||{};
   POS.forEach(p=>(ch[p]||[]).forEach(c=>names[normName(c.n)]=c.n));
   const lu=lineupFor(code,date); if(lu) lu.starters.forEach(s=>names[normName(s.name)]=names[normName(s.name)]||s.name);

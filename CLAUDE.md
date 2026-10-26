@@ -69,6 +69,7 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   Top100_vs_Opponent sheet, whose averages match the grid exactly) -> pipeline/matchup_alerts.json (top 100 players). Shown on page and in email as "usually plays more/fewer minutes vs X" (no numbers, user's
   choice).
   The xlsx itself is not in the repo; re-run the builder when the user sends a new copy.
+  Oct 26 2026: REMOVED for now at the user's request (MATCHUP_ALERTS=False in email_report.py and index.html); kept for later.
 
 - Slack (Oct 9 2026, TESTING ONLY, user's DMs): pipeline/email_report.py also posts one Block Kit message per game to
   SLACK_WEBHOOK_URL (secret), same layout as the email; tracked in email_log.json as "slack <date> A@H". Workflow

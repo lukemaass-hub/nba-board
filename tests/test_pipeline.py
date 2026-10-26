@@ -165,7 +165,9 @@ def test_email_due_and_build():
     assert "PG Miles McBride (in for Jalen Brunson)" in text and "Expected starters (RotoWire" in text
 
 
-def test_matchup_alerts():
+def test_matchup_alerts(monkeypatch):
+    import email_report as _e
+    monkeypatch.setattr(_e, 'MATCHUP_ALERTS', True)   # switched off on the site for now; the feature is kept
     import build_matchup_alerts as b, email_report as e
     opps = ["ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GS", "HOU", "IND", "LAC", "LAL", "MEM",
             "MIA", "MIL", "MIN", "NO", "NY", "OKC", "ORL", "PHI", "PHX", "POR", "SA", "SAC", "TOR", "UTAH", "WSH"]
@@ -188,6 +190,8 @@ def test_matchup_alerts():
 
 
 def test_slack_message_and_once_per_game(tmp_path, monkeypatch):
+    import email_report as _e
+    monkeypatch.setattr(_e, 'MATCHUP_ALERTS', True)   # switched off on the site for now; the feature is kept
     import email_report as e, http.server, threading
     got = []
 

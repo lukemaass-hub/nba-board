@@ -133,9 +133,14 @@ def bench_for(data, team, inj, starters):
     return bench, deep
 
 
+MATCHUP_ALERTS = False   # "usually plays more/fewer minutes vs X": removed for now (user, Oct 26 2026); True brings it back
+
+
 def matchup_alerts_for(data, team, opp, inj, starters):
     """Players on this team today (depth chart or lineup, not out/doubtful) whose minutes vs this opponent are
     well above or below their usual, from the minutes-vs-teams workbook."""
+    if not MATCHUP_ALERTS:
+        return []
     names = {norm_name(n): n for _, n, _ in starters}
     for col in ((data.get("depth") or {}).get(team) or {}).values():
         for n in col.replace("/", ",").split(","):
