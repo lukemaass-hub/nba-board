@@ -503,3 +503,15 @@ def test_one_news_item_per_player_and_name_spellings_merge():
     now = dt.datetime(2026, 10, 26, 22, 0, tzinfo=dt.timezone.utc)
     assert [i["headline"] for i in e.news_for(data, "MIN", now)] == ["Upgraded to available"]
     assert len(e.injuries_for(data, "CLE", "2026-10-26")) == 1
+
+
+def test_official_report_filters_stale_sites_and_box_scores_hidden():
+    import email_report as e, update_data as u
+    nba = u.rec("DAL", "Caleb Martin", "NBA report", "O", through="2026-10-26")
+    nba.update({"from": "2026-10-26", "override": True, "at": "2026-10-26T22:00:00+00:00"})
+    data = {"injuries": [nba, u.rec("DAL", "Caleb Martin", "CBS", "O"), u.rec("DAL", "Kyrie Irving", "Covers", "O")]}
+    assert [i["player"] for i in e.injuries_for(data, "DAL", "2026-10-26")] == ["Caleb Martin"]
+    assert len(e.injuries_for(data, "DAL", "2026-10-27")) == 2          # no official report for that day yet
+    box = {"headline": "Scores 19", "text": "Davis supplied 19 points (8-21 FG, 0-1 3Pt), six rebounds and four assists in 31 minutes."}
+    hurt = {"headline": "Exits early", "text": "Davis (ankle) had 19 points (8-21 FG) in 21 minutes before leaving."}
+    assert not e.news_relevant(box) and e.news_relevant(hurt)

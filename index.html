@@ -591,7 +591,12 @@ function gamesOn(d){ return games.filter(g=>g.date===d); }
 
 /* ---------- injuries (merged per player) ---------- */
 function injuriesFor(code,date){
-  const recs=injuries.concat(importedInj).filter(r=>r.team===code && (!r.through || date<=r.through) && (!r.from || date>=r.from));
+  let recs=injuries.concat(importedInj).filter(r=>r.team===code && (!r.through || date<=r.through) && (!r.from || date>=r.from));
+  // once the NBA's official report is out for this date, only players it lists (or a beat writer covers) are shown
+  if(injuries.some(r=>r.src==="NBA report"&&r.from===date)){
+    const official=new Set(recs.filter(r=>r.src==="NBA report"||r.override).map(r=>normName(r.player)));
+    recs=recs.filter(r=>official.has(normName(r.player)));
+  }
   const groups={};
   recs.forEach(r=>{
     let st, stale=false;
@@ -773,7 +778,8 @@ let NEWS=[], RESTRICTIONS=[];
 function agoText(iso){ const m=Math.max(1,Math.round((Date.now()-Date.parse(iso))/60000)); return m<60?`${m}m ago`:m<2880?`${Math.round(m/60)}h ago`:`${Math.round(m/1440)}d ago`; }
 /* injuries, suspensions and minutes restrictions only (same rule as news_relevant() in pipeline/email_report.py) */
 const NEWS_KEEP=/\((?!\d)[a-z][a-z \/-]{1,25}\)|\b(injur\w*|ruled out|out (for|indefinitely|at least|another)|won'?t (play|debut|travel)|will not (play|debut|be ready)|not (play|travel|ready)\w*|(expected|planning|plans|hopeful|fine|cleared) to play|questionable|doubtful|probable|day-to-day|game-time|miss(es|ed|ing)?|sidelined|illness|surgery|torn|tear|sprain\w*|strain\w*|fractur\w*|concussion|sore\w*|rehab\w*|recover\w*|return\w*|injury report|availab\w*|cleared|suspen\w+|restriction\w*|minutes|will play|limited|workload|ramp\w*|load management)\b/i, NEWS_SKIP=/\b(extension|contract|team option|signs|inks|agrees)\b/i;
-function newsRelevant(i){ const t=`${i.headline||""} ${i.text||""}`; return NEWS_KEEP.test(t)&&!(NEWS_SKIP.test(t)&&!/suspen/i.test(t)); }
+const NEWS_BOX=/\b\d+ points? \(\d+-\d+ FG|\b\d+ points\b[^.]*\b(rebounds|assists)\b/i, NEWS_HURT=/\((?!\d)[a-z][a-z \/-]{1,25}\)|injur|left (the game|early)|exited|did not return|restriction|suspen/i;
+function newsRelevant(i){ const t=`${i.headline||""} ${i.text||""}`; if(NEWS_BOX.test(t)&&!NEWS_HURT.test(t)) return false; return NEWS_KEEP.test(t)&&!(NEWS_SKIP.test(t)&&!/suspen/i.test(t)); }
 function newsHTML(code){
   // one item per player: only his newest (user's rule, Oct 26 2026)
   const seen=new Set();
