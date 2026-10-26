@@ -8578,17 +8578,17 @@
    "C": "Donovan Clingan/Robert Williams III/Yang Hansen,Branden Carlson"
   },
   "SAC": {
-   "PG": "Darius Acuff Jr./Malik Monk,Sean Pedulla/Ben Simmons",
-   "SG": "Zach LaVine/Nique Clifford/Emanuel Sharp,Daeqwon Plowden",
-   "SF": "De'Andre Hunter//Alex Karaban,Leaky Black",
-   "PF": "Keegan Murray/Precious Achiuwa/",
-   "C": "Domantas Sabonis/Maxime Raynaud/Dylan Cardwell,Jonathan Mogbo"
+   "PG": "Darius Acuff Jr./Malik Monk/Sean Pedulla,Ben Simmons",
+   "SG": "Zach LaVine/Emanuel Sharp/Nique Clifford",
+   "SF": "De'Andre Hunter/Daeqwon Plowden/Leaky Black",
+   "PF": "Keegan Murray/Precious Achiuwa/Jonathan Mogbo,Alex Karaban",
+   "C": "Domantas Sabonis/Maxime Raynaud/Dylan Cardwell"
   },
   "SAS": {
-   "PG": "De'Aaron Fox/Dylan Harper,Jordan McLaughlin/Ja'Kobi Gillespie,David Jones Garcia",
-   "SG": "Stephon Castle//",
-   "SF": "Devin Vassell/Carter Bryant/Keldon Johnson",
-   "PF": "Tobias Harris/Julian Champagnie/Harrison Barnes,Maliq Brown",
+   "PG": "De'Aaron Fox/Jordan McLaughlin/Ja'Kobi Gillespie,David Jones Garcia",
+   "SG": "Stephon Castle/Julian Champagnie/",
+   "SF": "Dylan Harper/Keldon Johnson/Carter Bryant,Harrison Barnes",
+   "PF": "Devin Vassell/Tobias Harris/Maliq Brown",
    "C": "Victor Wembanyama/Luke Kornet/Tarris Reed Jr.,Jayden Quaintance"
   },
   "UTA": {
@@ -8600,9 +8600,9 @@
   },
   "WAS": {
    "PG": "Trae Young/Bub Carrington/Tre Mann,Reece Beekman",
-   "SG": "Kyshawn George/Tre Johnson/Jamir Watkins",
-   "SF": "AJ Dybantsa/Bilal Coulibaly/Will Riley",
-   "PF": "Anthony Davis/Khris Middleton/Justin Champagnie",
+   "SG": "Kyshawn George/Tre Johnson/Will Riley,Jamir Watkins",
+   "SF": "AJ Dybantsa/Bilal Coulibaly/",
+   "PF": "Anthony Davis/Justin Champagnie/Khris Middleton",
    "C": "Alex Sarr/Deandre Ayton/Tristan Vukcevic,Anthony Gill,Felix Okpara"
   },
   "TOR": {
@@ -14001,6 +14001,39 @@
  "expected_minutes": {},
  "news": [
   {
+   "id": "nba536193",
+   "player": "Tobias Harris",
+   "headline": "Won't play Tuesday",
+   "text": "Harris (calf) has been ruled out for Tuesday's game against the Kings.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/tobias-harris-3211",
+   "at": "2026-10-26T21:49:00+00:00",
+   "team": "SAS"
+  },
+  {
+   "id": "nba536192",
+   "player": "Anthony Edwards",
+   "headline": "Upgraded to available",
+   "text": "Edwards (knee) is available for Monday's game against Cleveland.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/anthony-edwards-5110",
+   "at": "2026-10-26T21:46:00+00:00",
+   "team": "MIN"
+  },
+  {
+   "id": "nba536191",
+   "player": "AJ Dybantsa",
+   "headline": "Participating in on-court drills Tuesday",
+   "text": "Dybantsa, who has been ruled out for Monday's game against the Hornets, is progressing well from a left ankle sprain and will take part in on-court activities Tuesday, Josh Robbins of The Athletic reports.",
+   "reporter": "Josh Robbins",
+   "outlet": "The Athletic",
+   "url": "https://www.rotowire.com/basketball/player/aj-dybantsa-6925",
+   "at": "2026-10-26T21:44:00+00:00",
+   "team": "WAS"
+  },
+  {
    "id": "nba536187",
    "player": "Ausar Thompson",
    "headline": "Iffy for Tuesday",
@@ -15847,17 +15880,6 @@
    "url": "https://www.rotowire.com/basketball/player/kelly-oubre-3721",
    "at": "2026-10-23T22:42:00+00:00",
    "team": "IND"
-  },
-  {
-   "id": "nba535706",
-   "player": "Kyrie Irving",
-   "headline": "Will be on minutes restriction Friday",
-   "text": "Irving (knee) will be on a minutes restriction in Friday's game against the Pacers, Tony East of Forbes.com reports.",
-   "reporter": "Tony East",
-   "outlet": "Forbes.com",
-   "url": "https://www.rotowire.com/basketball/player/kyrie-irving-3186",
-   "at": "2026-10-23T21:45:00+00:00",
-   "team": "DAL"
   }
  ],
  "matchup_alerts": [
@@ -16363,12 +16385,12 @@
    "team": "BKN",
    "player": "Tyler Bilodeau",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Shoulder",
    "upd": "2026-10-26",
-   "until": "",
-   "note": "",
-   "through": "2026-10-28",
+   "until": "2026-10-30",
+   "note": "Expected to be out until at least Oct 30",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tyler%20Bilodeau"
   },
   {
@@ -16963,12 +16985,12 @@
    "team": "NYK",
    "player": "Jose Alvarado",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
    "upd": "2026-10-26",
-   "until": "",
-   "note": "",
-   "through": "2026-10-28",
+   "until": "2026-10-28",
+   "note": "Expected to be out until at least Oct 28",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jose%20Alvarado"
   },
   {
@@ -18415,25 +18437,13 @@
    "team": "CHI",
    "player": "Patrick Williams",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Right Groin Soreness",
-   "upd": "2026-10-25",
-   "until": "",
-   "note": "Williams (groin) is listed as questionable for Monday's game against Boston.",
-   "through": "2026-10-28",
+   "upd": "2026-10-26",
+   "until": "2026-10-28",
+   "note": "Williams (groin) has been ruled out for Monday's game against the Celtics.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Patrick%20Williams"
-  },
-  {
-   "team": "CHI",
-   "player": "Noa Essengue",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "day-to-day",
-   "upd": "2026-10-25",
-   "until": "",
-   "note": "Essengue (head) is listed as questionable for Monday's game against Boston.",
-   "through": "2026-10-28",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Noa%20Essengue"
   },
   {
    "team": "CHI",
@@ -20062,6 +20072,57 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Strawther"
   },
   {
+   "team": "SAS",
+   "player": "Tobias Harris",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-27",
+   "until": "",
+   "note": "Harris (calf) has been ruled out for Tuesday's game against the Kings.",
+   "through": "2026-10-27",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/tobias-harris-3211",
+   "from": "2026-10-27",
+   "override": true,
+   "at": "2026-10-26T21:49:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "MIN",
+   "player": "Anthony Edwards",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-26",
+   "until": "",
+   "note": "Edwards (knee) is available for Monday's game against Cleveland.",
+   "through": "2026-10-26",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/anthony-edwards-5110",
+   "from": "2026-10-26",
+   "override": true,
+   "at": "2026-10-26T21:46:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "WAS",
+   "player": "AJ Dybantsa",
+   "src": "Josh Robbins",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-26",
+   "until": "",
+   "note": "Dybantsa, who has been ruled out for Monday's game against the Hornets, is progressing well from a left ankle sprain and will take part in on-court activities Tuesday, Josh Robbins of The Athletic reports.",
+   "through": "2026-10-26",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/aj-dybantsa-6925",
+   "from": "2026-10-26",
+   "override": true,
+   "at": "2026-10-26T21:44:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "DET",
    "player": "Ausar Thompson",
    "src": "RotoWire news",
@@ -21167,40 +21228,28 @@
    "from_news": true
   }
  ],
- "restrictions": [
-  {
-   "team": "DAL",
-   "player": "Kyrie Irving",
-   "from": "2026-10-23",
-   "through": "2026-10-23",
-   "text": "Irving (knee) will be on a minutes restriction in Friday's game against the Pacers, Tony East of Forbes.com reports.",
-   "reporter": "Tony East",
-   "outlet": "Forbes.com",
-   "url": "https://www.rotowire.com/basketball/player/kyrie-irving-3186",
-   "at": "2026-10-23T21:45:00+00:00"
-  }
- ],
- "generated_at": "2026-10-26T21:44:01+00:00",
+ "restrictions": [],
+ "generated_at": "2026-10-26T21:49:15+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-26T21:43:48+00:00",
+   "at": "2026-10-26T21:48:59+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-26T21:43:59+00:00",
+   "at": "2026-10-26T21:49:13+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-26T21:44:00+00:00",
+   "at": "2026-10-26T21:49:14+00:00",
    "teams": 18,
    "injuries": 54
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-26T21:44:00+00:00",
+   "at": "2026-10-26T21:49:14+00:00",
    "current_players": 388,
    "last_players": 582
   },
@@ -21210,18 +21259,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-26T21:44:01+00:00",
+   "at": "2026-10-26T21:49:15+00:00",
    "count": 90
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-26T21:44:01+00:00",
+   "at": "2026-10-26T21:49:15+00:00",
    "count": 75
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-26T21:44:01+00:00",
-   "count": 89
+   "at": "2026-10-26T21:49:15+00:00",
+   "count": 88
   },
   "x": {
    "ok": null,
@@ -21229,8 +21278,8 @@
   },
   "news": {
    "ok": true,
-   "at": "2026-10-26T21:44:01+00:00",
-   "count": 169
+   "at": "2026-10-26T21:49:15+00:00",
+   "count": 171
   }
  }
 }
