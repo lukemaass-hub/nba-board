@@ -353,8 +353,14 @@ def news_for(data, team, now=None):
     """Beat-writer news (RotoWire feed) about this team's players from the last 36 hours, newest first:
     injuries, suspensions and minutes restrictions only (news_relevant)."""
     now = now or dt.datetime.now(dt.timezone.utc)
-    return [i for i in data.get("news", []) if i.get("team") == team and news_relevant(i)
-            and dt.datetime.fromisoformat(i["at"]) >= now - dt.timedelta(hours=NEWS_HOURS)]
+    items = sorted((i for i in data.get("news", []) if i.get("team") == team and news_relevant(i)
+                    and dt.datetime.fromisoformat(i["at"]) >= now - dt.timedelta(hours=NEWS_HOURS)), key=lambda i: i["at"], reverse=True)
+    out, seen = [], set()
+    for i in items:                   # one item per player: only his newest (user's rule, Oct 26 2026)
+        if norm_name(i["player"]) not in seen:
+            seen.add(norm_name(i["player"]))
+            out.append(i)
+    return out
 
 
 def ago(iso, now=None):

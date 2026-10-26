@@ -343,7 +343,7 @@ def test_dolly_expected_minutes(monkeypatch):
     data["expected_minutes"]["players"][2]["expected"] = 32.5   # Jenkins +5.0 (exactly 5); Cade -2.3 stays untagged
     got = e.expected_minutes_for(data, "DET", "2026-10-20", now=now)
     assert [(n, x, a, d) for n, x, a, d, _ in got] == [("Jalen Duren", 20.1, 26.0, -5.9), ("Daniss Jenkins", 32.5, 27.5, 5.0)]
-    assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now, skip={"jalen duren"})[0][0] == "Daniss Jenkins"
+    assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now, skip={e.norm_name("Jalen Duren")})[0][0] == "Daniss Jenkins"
     # shown next to the name: green with +, red with a minus sign
     tags = {e.norm_name(n): (x, d) for n, x, a, d, _ in got}
     assert "#1e8449" in e.exp_html(tags, "Daniss Jenkins") and "Exp 32.5 (+5.0)" in e.exp_html(tags, "Daniss Jenkins")
@@ -366,7 +366,7 @@ def test_deep_bench_only_when_expected_up(monkeypatch):
                 {"name": "Ugonna Onyenso", "team": "DET", "expected": 6.0, "game_date": "2026-10-20", "at": at}]}}   # no average, 5+
     deep = [("C", "Tolu Smith", ""), ("C", "Paul Reed", ""), ("SG", "Chaz Lanier", ""), ("C", "Ugonna Onyenso", "")]
     assert e.deep_bench_up(data, "DET", "2026-10-20", deep, now=now) == [("Paul Reed", 14.5, 0.6), ("Ugonna Onyenso", 6.0, None)]
-    assert e.deep_bench_up(data, "DET", "2026-10-20", deep, skip={"paul reed"}, now=now) == [("Ugonna Onyenso", 6.0, None)]
+    assert e.deep_bench_up(data, "DET", "2026-10-20", deep, skip={e.norm_name("Paul Reed")}, now=now) == [("Ugonna Onyenso", 6.0, None)]
 
 
 def test_news_only_injuries_suspensions_restrictions():
@@ -491,3 +491,15 @@ def test_presserwire_official_report_and_notes():
     assert inj["Henri Veesaar"]["st"] == "out" and inj["Henri Veesaar"]["beat"] == ""
     now = dt.datetime(2026, 10, 26, 23, 0, tzinfo=dt.timezone.utc)
     assert e.pressers_for(data, "NOP", now) and e.pressers_for(data, "NOP", now + dt.timedelta(days=3)) == []
+
+
+def test_one_news_item_per_player_and_name_spellings_merge():
+    import email_report as e, update_data as u
+    assert u.norm_name("Nae Qwan Tomlin") == u.norm_name("Nae'Qwan Tomlin")
+    data = {"news": [
+        {"team": "MIN", "player": "Anthony Edwards", "headline": "Listed as questionable", "text": "Edwards (knee) is questionable.", "at": "2026-10-26T17:00:00+00:00"},
+        {"team": "MIN", "player": "Anthony Edwards", "headline": "Upgraded to available", "text": "Edwards (knee) is available.", "at": "2026-10-26T21:45:00+00:00"}],
+        "injuries": [u.rec("CLE", "Nae Qwan Tomlin", "Covers", "O"), u.rec("CLE", "Nae'Qwan Tomlin", "CBS", "O")]}
+    now = dt.datetime(2026, 10, 26, 22, 0, tzinfo=dt.timezone.utc)
+    assert [i["headline"] for i in e.news_for(data, "MIN", now)] == ["Upgraded to available"]
+    assert len(e.injuries_for(data, "CLE", "2026-10-26")) == 1

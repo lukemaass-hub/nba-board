@@ -36,6 +36,8 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   keeps items for 3 days in data.json "news", tagged with the team from the depth chart. Shown per team (last 36 h)
   on the board, email and Slack as "Beat-writer news" with the writer and outlet. Oct 20 2026 (user): only items about
   injuries, suspensions, minutes/restrictions are shown (news_relevant / newsRelevant); contracts and lineup notes are hidden.
+  Oct 26 2026 (user): one item per player, his newest only. Name keys (norm_name / normName) have no spaces, so
+  "Nae Qwan" (Covers) and "NaeQwan" (CBS) are the same player.
 - News -> status (Oct 9 2026, user's rule): apply_news() reads status words (out / doubtful / questionable /
   will play = probable) and turns them into injury records with "override": a beat writer's status beats CBS/ESPN/
   Covers/RotoWire on the page, email and Slack ("per <writer>"); the newest writer report wins. The day comes from
