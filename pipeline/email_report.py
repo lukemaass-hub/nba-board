@@ -42,9 +42,14 @@ def injuries_for(data, team, date):
     """Same merge as the page: one entry per player, every source listed. The worst status wins, except that a
     beat writer's status (from the news feed) overrides the injury sites; the newest beat-writer report counts."""
     groups = {}
-    for r in data.get("injuries", []):
-        if r["team"] != team or (r.get("through") and date > r["through"]) or (r.get("from") and date < r["from"]):
-            continue
+    recs = [r for r in data.get("injuries", []) if r["team"] == team and not (r.get("through") and date > r["through"])
+            and not (r.get("from") and date < r["from"])]
+    # Once the NBA's official report is out for this date, a player it doesn't list (and no beat writer covers) is not
+    # shown just because another site still lists him (user, Oct 26 2026: Covers had stale "Out"s for players playing).
+    if any(r["src"] == "NBA report" and r.get("from") == date for r in data.get("injuries", [])):
+        official = {norm_name(r["player"]) for r in recs if r["src"] == "NBA report" or r.get("override")}
+        recs = [r for r in recs if norm_name(r["player"]) in official]
+    for r in recs:
         if r.get("st"):
             st, label = r["st"], LABEL[r["st"]]
         elif r.get("kind") == "O":
@@ -329,8 +334,16 @@ NEWS_KEEP = re.compile(r"\((?!\d)[a-z][a-z /-]{1,25}\)|\b(injur\w*|ruled out|out
 NEWS_SKIP = re.compile(r"\b(extension|contract|team option|signs|inks|agrees)\b", re.I)
 
 
+# Game-recap stat lines ("19 points (8-21 FG, ...) ... in 31 minutes") are not injury news (user, Oct 26 2026): left
+# out unless they also mention an injury. Same rule in index.html (NEWS_BOX / NEWS_HURT).
+NEWS_BOX = re.compile(r"\b\d+ points? \(\d+-\d+ FG|\b\d+ points\b[^.]*\b(rebounds|assists)\b", re.I)
+NEWS_HURT = re.compile(r"\((?!\d)[a-z][a-z /-]{1,25}\)|injur|left (the game|early)|exited|did not return|restriction|suspen", re.I)
+
+
 def news_relevant(i):
     t = f"{i.get('headline', '')} {i.get('text', '')}"
+    if NEWS_BOX.search(t) and not NEWS_HURT.search(t):
+        return False
     return bool(NEWS_KEEP.search(t)) and not (NEWS_SKIP.search(t) and not re.search(r"suspen", t, re.I))
 
 
