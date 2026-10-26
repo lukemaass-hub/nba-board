@@ -20,11 +20,13 @@ from update_data import ET, TEAMS, all_games, norm_name  # noqa: E402
 
 SITE = "https://lukemaass-hub.github.io/nba-board/"
 POS = ["PG", "SG", "SF", "PF", "C"]
-RANK = {"out": 0, "doubt": 1, "q": 2, "prob": 3}
-LABEL = {"out": "Out", "doubt": "Doubtful", "q": "Questionable", "prob": "Probable"}
-DOT = {"out": "🔴", "doubt": "🟠", "q": "🟡", "prob": "🟢"}
+# "avail" = Available on the NBA's official injury report (via Presser Wire, Oct 26 2026)
+RANK = {"out": 0, "doubt": 1, "q": 2, "prob": 3, "avail": 4}
+LABEL = {"out": "Out", "doubt": "Doubtful", "q": "Questionable", "prob": "Probable", "avail": "Available"}
+DOT = {"out": "🔴", "doubt": "🟠", "q": "🟡", "prob": "🟢", "avail": "✅"}
 SRC_URL = {"CBS": "https://www.cbssports.com/nba/injuries/", "Covers": "https://www.covers.com/sport/basketball/nba/injuries",
-           "ESPN": "https://www.espn.com/nba/injuries", "RotoWire": "https://www.rotowire.com/basketball/nba-lineups.php"}
+           "ESPN": "https://www.espn.com/nba/injuries", "RotoWire": "https://www.rotowire.com/basketball/nba-lineups.php",
+           "NBA report": "https://presserwire.com/nba/injury-report.html"}
 
 
 def name(code):
@@ -66,7 +68,8 @@ def injuries_for(data, team, date):
         link = next((l["url"] for l in g["lines"] if l["st"] == best and l["url"]), "") or next((l["url"] for l in srcs if l["url"]), "")
         out.append({"player": g["player"], "st": best, "injury": next((l["injury"] for l in g["lines"] if l["injury"]), ""),
                     "srcs": srcs, "link": link, "differ": len(g["sts"]) > 1,
-                    "beat": g["beat"]["src"] if g["beat"] else ""})
+                    # "per <source>" only when the override actually decided it (sources disagree)
+                    "beat": g["beat"]["src"] if g["beat"] and len(g["sts"]) > 1 else ""})
     return sorted(out, key=lambda i: (RANK[i["st"]], i["player"]))
 
 
@@ -143,7 +146,7 @@ def matchup_alerts_for(data, team, opp, inj, starters):
 
 
 NEWS_HOURS = 36
-CUR_MIN_GAMES = 15         # games this season before its average replaces last season's (the user's rule)
+CUR_MIN_GAMES = 1          # this season's average as soon as he has played (Oct 26 2026, user: most up-to-date; was 15)
 CHANGE_MIN = 5.0           # minutes up/down vs last season that counts as a big change
 CHANGE_CUR_GAMES = 5       # games this season needed before we call a change
 CHANGE_BASE_GAMES = 10     # games in the comparison season needed
@@ -184,9 +187,13 @@ def minutes_change(data, player):
 
 
 def mins_tag(data, player, unit=False):
-    """" (34.1)", or " (34.1 MPG)" with unit=True (Slack: makes clear it is minutes per game)."""
+    """" (34.1)", or " (34.1 MPG)" with unit=True (Slack: makes clear it is minutes per game). Last season's number
+    (he hasn't played this season yet) says so: " (7.9 MPG, 2025-26)"."""
     m = avg_minutes(data, player)
-    return f" ({m[0]:.1f}{' MPG' if unit else ''})" if m else ""
+    if not m:
+        return ""
+    old = m[1] and m[1] != (data.get("season_minutes") or {}).get("season")
+    return f" ({m[0]:.1f}{' MPG' if unit else ''}{f', {m[1]}' if old else ''})"
 
 
 def change_html(data, player):
@@ -327,6 +334,21 @@ def news_relevant(i):
     return bool(NEWS_KEEP.search(t)) and not (NEWS_SKIP.search(t) and not re.search(r"suspen", t, re.I))
 
 
+def pressers_for(data, team, now=None, hours=NEWS_HOURS):
+    """Presser Wire press-conference notes about this team from the last 36 hours, injury / minutes related only
+    (news_relevant, the same rule as beat-writer news), newest first."""
+    now = now or dt.datetime.now(dt.timezone.utc)
+    out = []
+    for n in (data.get("presserwire") or {}).get("notes", []):
+        try:
+            fresh = dt.datetime.fromisoformat(n["at"]) >= now - dt.timedelta(hours=hours)
+        except (KeyError, ValueError):
+            continue
+        if n.get("team") == team and fresh and news_relevant({"text": n.get("text", "")}):
+            out.append(n)
+    return sorted(out, key=lambda n: n["at"], reverse=True)
+
+
 def news_for(data, team, now=None):
     """Beat-writer news (RotoWire feed) about this team's players from the last 36 hours, newest first:
     injuries, suspensions and minutes restrictions only (news_relevant)."""
@@ -443,6 +465,14 @@ def build(data, games, date):
                              f'<span style="{light};font-size:11.5px">{e(i.get("reporter") or "RotoWire")} · {ago(i["at"])}</span>'
                              f'<div style="{grey};font-size:12.5px">{e(short(i["text"]))}</div></div>')
                 t.append("    News: " + " | ".join(f"{i['player']}: {i['headline']} ({news_credit(i)})" for i in news[:4]))
+            pr = pressers_for(data, team)
+            if pr:
+                h.append(f'<div style="{label_css}">Press conferences</div>')
+                for n in pr[:3]:
+                    h.append(f'<div style="font-size:13px;line-height:1.45;margin:0 0 7px">🎙️ <b>{e(", ".join(n["players"][:4]))}</b> · '
+                             f'{e(short(n["text"], 280))} <span style="{light};font-size:11.5px">'
+                             f'<a href="{e(n["url"])}" style="color:#5a6470">Presser Wire</a> · {ago(n["at"])}</span></div>')
+                t.append("    Pressers: " + " | ".join(f"{', '.join(n['players'][:4])}: {n['text']} (Presser Wire)" for n in pr[:3]))
             # 5. injuries
             h.append(f'<div style="{label_css}">Injuries</div>')
             if not inj:
@@ -463,8 +493,8 @@ def build(data, games, date):
         h.append("</div>")
         t.append("")
     h.append(f'<div style="font-size:11px;{light};margin:12px 4px 0;line-height:1.5">'
-             '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · (Number) = average minutes per game, this season after 15 games, '
-             'otherwise last season · Green / red "Exp N (+/−)" = expected minutes 5+ more / fewer than that average · Highlighted = 5+ minutes more or fewer than last season · Click a player for the source.</div></div></div>')
+             '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · ✅ Available (NBA official report) · (Number) = average minutes per game, this season, '
+             'otherwise last season (marked with the season) · Green / red "Exp N (+/−)" = expected minutes 5+ more / fewer than that average · Highlighted = 5+ minutes more or fewer than last season · Click a player for the source.</div></div></div>')
     return title, "".join(h), "\n".join(t)
 
 
@@ -517,6 +547,11 @@ def build_slack(data, game, date, test=False):
             blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": ("*Beat-writer news*\n" + "\n".join(
                 f"📰 *{e(i['player'])}:* <{i['url']}|{e(i['headline'])}> {e(i['text'])} _({e(news_credit(i))} · {ago(i['at'])})_"
                 for i in news[:4]))[:2900]}]})
+        pr = pressers_for(data, team)
+        if pr:
+            blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": ("*Press conferences*\n" + "\n".join(
+                f"🎙️ *{e(', '.join(n['players'][:4]))}:* {e(short(n['text'], 280))} _(<{n['url']}|Presser Wire> · {ago(n['at'])})_"
+                for n in pr[:3]))[:2900]}]})
         lines = []
         for i in inj:
             who = f"<{i['link']}|{e(i['player'])}>" if i["link"] else e(i["player"])
@@ -528,7 +563,7 @@ def build_slack(data, game, date, test=False):
                        "text": ("*Injuries*\n" + "\n".join(lines))[:2900] if lines else "✅ No injuries listed"}]})
         blocks.append({"type": "divider"})
     blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text":
-                   f"🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · <{SITE}|Open the full board>"}]})
+                   f"🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · ✅ Available (NBA report) · <{SITE}|Open the full board>"}]})
     return title, blocks
 
 

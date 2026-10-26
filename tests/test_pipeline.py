@@ -301,10 +301,15 @@ def test_season_minutes_and_weekly():
           "last": {"Jalen Brunson": [74, 35.0, "NYK"], "Miles McBride": [70, 20.0, "NYK"], "Josh Hart": [77, 32.0, "NYK"]},
           "prior": {"Mitchell Robinson": [17, 22.0, "NYK"]}}   # an old 2024-25 entry must be ignored
     data = {"season_minutes": sm}
-    assert e.avg_minutes(data, "Jalen Brunson") == (35.0, "2025-26")       # 2 games this season: last season
-    assert e.avg_minutes(data, "Josh Hart") == (32.0, "2025-26")           # 8 games: still last season (needs 15)
-    assert e.avg_minutes(data, "Miles McBride") == (29.0, "2026-27")       # 16 games: this season
-    assert e.avg_minutes(data, "Mitchell Robinson") is None                # not in last season: 2024-25 is never used
+    # Oct 26 2026: this season's average as soon as he has played (was: after 15 games)
+    assert e.avg_minutes(data, "Jalen Brunson") == (30.0, "2026-27")       # 2 games this season: this season
+    assert e.avg_minutes(data, "Josh Hart") == (33.0, "2026-27")
+    assert e.avg_minutes(data, "Miles McBride") == (29.0, "2026-27")
+    assert e.avg_minutes(data, "Mitchell Robinson") == (25.0, "2026-27")   # 2024-25 is never used
+    assert e.mins_tag(data, "Josh Hart", True) == " (33.0 MPG)"
+    no_games = {"season_minutes": {**{k: v for k, v in sm.items() if k != "_idx"}, "current": {}}}
+    assert e.mins_tag(no_games, "Josh Hart", True) == " (32.0 MPG, 2025-26)"   # last season says so
+    assert e.avg_minutes(no_games, "Mitchell Robinson") is None
     assert e.minutes_change(data, "Mitchell Robinson") is None
     assert e.mins_tag(data, "Nobody") == ""
     assert e.minutes_change(data, "Miles McBride") == (9.0, 29.0, 20.0, "2025-26")
@@ -464,3 +469,25 @@ def test_dolly_minutes_left_out_while_disconnected():
     import email_report as e
     data = {"expected_minutes": {"players": [{"name": "A B", "team": "BOS", "expected": 40, "at": "2099-01-01T00:00:00+00:00"}]}}
     assert e.EXPECTED_ENABLED is False and e.expected_raw(data, "BOS", "2026-10-26") == []
+
+
+def test_presserwire_official_report_and_notes():
+    import update_data as u, email_report as e
+    fx = lambda n: open(os.path.join(os.path.dirname(__file__), "fixtures", n)).read()
+    recs, notes = u.parse_pw_injury_report(fx("presserwire_injury_report.html"), "2026-10-26T22:00:00+00:00")
+    by = {r["player"]: r for r in recs}
+    assert by["Henri Veesaar"]["kind"] == "O" and by["Henri Veesaar"]["team"] == "ATL" and by["Henri Veesaar"]["src"] == "NBA report"
+    assert by["Jock Landale"]["st"] == "avail" and by["Coby White"]["kind"] == "O"
+    assert by["Devin Carter"]["from"] == by["Devin Carter"]["through"] == "2026-10-26" and by["Devin Carter"]["override"]
+    assert notes and notes[0]["players"] == ["Jock Landale"] and notes[0]["url"].startswith("https://x.com/")
+    av = u.parse_pw_availability(fx("presserwire_availability.html"))
+    assert av[0]["team"] == "NOP" and "Yves Missi" in av[0]["players"] and av[0]["at"].startswith("2026-10-26T21:33")
+    # official status wins over the sites; "per NBA report" only when it decided it
+    data = {"injuries": [u.rec("ATL", "Jock Landale", "CBS", "G", st="q"), by["Jock Landale"], u.rec("ATL", "Henri Veesaar", "CBS", "O"),
+                         by["Henri Veesaar"]],
+            "presserwire": {"notes": av}}
+    inj = {i["player"]: i for i in e.injuries_for(data, "ATL", "2026-10-26")}
+    assert inj["Jock Landale"]["st"] == "avail" and inj["Jock Landale"]["beat"] == "NBA report"
+    assert inj["Henri Veesaar"]["st"] == "out" and inj["Henri Veesaar"]["beat"] == ""
+    now = dt.datetime(2026, 10, 26, 23, 0, tzinfo=dt.timezone.utc)
+    assert e.pressers_for(data, "NOP", now) and e.pressers_for(data, "NOP", now + dt.timedelta(days=3)) == []

@@ -43,7 +43,7 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   "Minutes restriction" phrases -> data["restrictions"] -> big red warning at the top of that game everywhere.
 - Season minutes (Oct 9 2026): ESPN byathlete stats (regular season) -> data["season_minutes"]: current season
   refreshed every 12 h (morning run picks up last night), last + prior season fetched once. Email/Slack show
-  "Name (35)" = this season's MPG once 15+ games, else last season (Oct 19 2026: only this + last season are used, never
+  "Name (35)" = this season's MPG (since Oct 26 2026 as soon as he has played), else last season (Oct 19 2026: only this + last season are used, never
   older; ESPN answers an unstarted season with the last one, so that counts as no data). Big change = 5+ min vs the last
   season he played (5+ games now, 10+ then): yellow highlight + "+N min vs 2025-26" badge in the pre-game email,
   and a weekly email (Mondays 9 AM ET, or Run workflow > weekly_email) listing all of them. Nothing until 2026-27
@@ -102,6 +102,13 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 ## Style preferences
 Plain language, no jargon, short answers. The user is not a developer: say exactly where to click.
 
+- Presser Wire (Oct 26 2026, user's choice; the user's company OK'd the use): update_data.fetch_presserwire reads two
+  pages, at most every 15 min (their terms: no wholesale copying or bulk scraping): presserwire.com/nba/injury-report.html
+  = the NBA's OFFICIAL injury report -> injury records src "NBA report" with override (newest override wins vs beat
+  writers) and a new status "avail" = Available (✅); and /nba/availability.html + the report's attached quotes ->
+  data["presserwire"]["notes"], shown per team (36 h, injury/minutes only via news_relevant) as "Press conferences".
+- Minutes per game (Oct 26 2026, user: most up to date): this season's MPG as soon as a player has played (CUR_MIN_GAMES
+  = 1, board too); last season's only when he hasn't, labelled "(7.9 MPG, 2025-26)". Season minutes refresh every 2 h.
 - Bot token (Oct 26 2026): the user was given the team's EXISTING IP Trader Bot token (app A0B2GVBAAF6, bot
   B0B37B4MR5M, workspace T030UFQJYEL, scopes incl. chat:write, mpim:write, channels:history, users:read); it can read
   #in-play-trading. The user pasted it in chat; it belongs only in the SLACK_BOT_TOKEN secret, never in a file.

@@ -8,7 +8,7 @@
   :root{
     --chalk:#EDF0F3; --card:#FFFFFF; --ink:#1D1C1D; --muted:#5E6B78; --line:#D3DAE1;
     --paint:#2447A0; --paint-soft:#DCE4F6;
-    --out:#D1332A; --doubt:#E8751A; --q:#E2A912; --prob:#2E9A5B;
+    --out:#D1332A; --doubt:#E8751A; --q:#E2A912; --prob:#2E9A5B; --avail:#5B8DB8;
   }
   *{box-sizing:border-box}
   html{background:var(--chalk)}
@@ -84,11 +84,11 @@
   .tmh span.c{font-weight:400;color:var(--muted);font-size:12.5px}
   .it{margin:3px 0 5px 0;display:grid;grid-template-columns:18px 1fr;gap:0 4px}
   .dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-top:6px}
-  .dot.out{background:var(--out)} .dot.doubt{background:var(--doubt)} .dot.q{background:var(--q)} .dot.prob{background:var(--prob)}
+  .dot.out{background:var(--out)} .dot.doubt{background:var(--doubt)} .dot.q{background:var(--q)} .dot.prob{background:var(--prob)} .dot.avail{background:var(--avail)}
   .it .l1 b{font-weight:900}
   .it .pos{font-size:11.5px;color:var(--muted);font-weight:700;margin-left:2px}
   .it .st{font-weight:700} .per{font-size:11.5px;font-weight:700;color:#5b4b00;background:#fff4c2;border-radius:3px;padding:0 4px} .b2b{margin:8px 0 6px;padding:7px 12px;background:#fff4c2;border:2px solid #b7950b;border-radius:8px;font-size:13px;color:#1d1c1d} .b2b b{color:#7d6608} .warn{margin:8px 0 10px;padding:10px 12px;background:#fdecea;border:2px solid #c0392b;border-radius:8px;font-size:13px} .warn b{color:#c0392b;font-size:14.5px} .warn a{color:#c0392b} .warn .nc{opacity:.65} details.lineup{margin:10px 0 4px;border:1px solid var(--line);border-radius:6px;padding:6px 10px} details.lineup summary{cursor:pointer;font-weight:700;font-size:13px} details.lineup summary small{font-weight:400;opacity:.7;margin-left:4px} details.lineup[open] summary{margin-bottom:6px} .news{font-size:12.5px;line-height:1.45;margin:3px 0} .news a{color:inherit;font-weight:600} .news .nt{opacity:.8} .news .nc{opacity:.6} .ma{font-size:13px;margin:2px 0} .ma.up .d{color:#1e8449} .ma.down .d{color:#c0392b} .pl-link{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px} .pl-link:hover{text-decoration-color:currentColor} .it .src a{color:inherit}
-  .it .st.out{color:var(--out)} .it .st.doubt{color:var(--doubt)} .it .st.q{color:#A77F00} .it .st.prob{color:var(--prob)}
+  .it .st.out{color:var(--out)} .it .st.doubt{color:var(--doubt)} .it .st.q{color:#A77F00} .it .st.prob{color:var(--prob)} .it .st.avail{color:var(--avail)}
   .it .src{font-size:11.5px;color:var(--muted);margin-left:6px}
   .it .diff{font-size:11px;font-weight:700;background:#FFF0D1;color:#8A5A00;border-radius:4px;padding:0 5px;margin-left:6px}
   .next{grid-column:2;font-size:13.5px;color:#343A40}
@@ -127,7 +127,7 @@
   .sl.in{background:#EAF6EF;border-left-color:var(--prob)}
   .sl .why{color:#256B45;font-size:12px}
   .tg{font-size:10.5px;font-weight:900;border-radius:4px;padding:0 5px;color:#fff}
-  .tg.out{background:var(--out)} .tg.doubt{background:var(--doubt)} .tg.q{background:var(--q);color:#3A2C00} .tg.prob{background:var(--prob)}
+  .tg.out{background:var(--out)} .tg.doubt{background:var(--doubt)} .tg.q{background:var(--q);color:#3A2C00} .tg.prob{background:var(--prob)} .tg.avail{background:var(--avail)}
   .chip .up{color:#256B45;font-weight:900;font-size:11.5px}
   .dx{font-size:11.5px;font-weight:800;margin-left:4px} .dx.up{color:#1e8449} .dx.dn{color:#c0392b}
   .chip .pp{font-size:10.5px;color:var(--muted);font-weight:700}
@@ -535,9 +535,10 @@ function normName(s){
 function fmtTime(t){ const [h,m]=t.split(":").map(Number); return `${((h+11)%12)+1}:${pad(m)} ${h>=12?"PM":"AM"}`; }
 function fmtDate(k){ const [y,m,d]=k.split("-").map(Number); const dt=new Date(y,m-1,d); return {long:`${DAYS[dt.getDay()]}, ${MONTHS[m-1]} ${d}`}; }
 function statusKey(s){ s=String(s||"").toLowerCase(); if(s.includes("out")) return "out"; if(s.includes("doubt")) return "doubt"; if(s.includes("prob")) return "prob"; return "q"; }
-const STATUS_LABEL={out:"Out",doubt:"Doubtful",q:"Questionable",prob:"Probable"};
-const STATUS_RANK={out:0,doubt:1,q:2,prob:3};
-const EMOJI={out:"🔴",doubt:"🟠",q:"🟡",prob:"🟢"};
+/* avail = Available on the NBA's official injury report (via Presser Wire, Oct 26 2026) */
+const STATUS_LABEL={out:"Out",doubt:"Doubtful",q:"Questionable",prob:"Probable",avail:"Available"};
+const STATUS_RANK={out:0,doubt:1,q:2,prob:3,avail:4};
+const EMOJI={out:"🔴",doubt:"🟠",q:"🟡",prob:"🟢",avail:"✅"};
 function toast(t){ const e=$("toast"); e.textContent=t; e.classList.add("show"); setTimeout(()=>e.classList.remove("show"),2200); }
 
 /* ---------- schedule ---------- */
@@ -600,13 +601,13 @@ function injuriesFor(code,date){
     const g=groups[normName(r.player)] || (groups[normName(r.player)]={player:r.player,keys:new Set(),lines:[],beat:null});
     g.keys.add(st);
     if(r.override && (!g.beat || r.at>g.beat.at)) g.beat={st,at:r.at,src:r.src};
-    const label = r.override?`${STATUS_LABEL[st]} (beat writer)`: stale?"Out earlier, return date passed": st==="out"?"Out": r.kind==="G"?"Game-time decision":STATUS_LABEL[st];
+    const label = r.override?`${STATUS_LABEL[st]} (${r.src==="NBA report"?"NBA official report":"beat writer"})`: stale?"Out earlier, return date passed": st==="out"?"Out": r.kind==="G"?"Game-time decision":STATUS_LABEL[st];
     g.lines.push({src:r.src,label:r.stale?label+" (stale, source failed on last run)":label,injury:r.injury,upd:r.upd,note:r.note,st,url:r.url||""});
   });
   return Object.values(groups).map(g=>{
     // a beat writer's status (news feed) overrides the injury sites; otherwise the worst status wins
     const best=g.beat?g.beat.st:[...g.keys].sort((a,b)=>STATUS_RANK[a]-STATUS_RANK[b])[0];
-    return {player:g.player,status:STATUS_LABEL[best],k:best,lines:g.lines,conflict:g.keys.size>1,beat:g.beat?g.beat.src:""};
+    return {player:g.player,status:STATUS_LABEL[best],k:best,lines:g.lines,conflict:g.keys.size>1,beat:g.beat&&g.keys.size>1?g.beat.src:""};
   }).sort((a,b)=>STATUS_RANK[a.k]-STATUS_RANK[b.k]||a.player.localeCompare(b.player));
 }
 function outCount(d){
@@ -619,7 +620,7 @@ function outCount(d){
    All of them go to one player: the next healthy player below him at the same position
    (if there is none, the top healthy bench player at an adjacent position). */
 const TIER_MIN={S:30,R:18,L:6};
-const WEIGHT={out:1,doubt:.8,q:.5,prob:0};
+const WEIGHT={out:1,doubt:.8,q:.5,prob:0,avail:0};
 function impact(code,date){
   const ch=DEPTH_P[code], inj=injuriesFor(code,date);
   const status={}; inj.forEach(i=>status[normName(i.player)]=i.k);
@@ -792,6 +793,13 @@ function b2bHTML(g,date){
   }
   return h;
 }
+/* Presser Wire press-conference notes (last 36 h), injury / minutes related only (same rule as beat-writer news) */
+let PRESSERS=[];
+function pressersHTML(code){
+  const items=PRESSERS.filter(n=>n.team===code&&Date.now()-Date.parse(n.at)<36*3600e3&&newsRelevant({text:n.text})).sort((a,b)=>b.at.localeCompare(a.at)).slice(0,3);
+  if(!items.length) return "";
+  return `<div class="sech" style="margin-top:8px">Press conferences</div>`+items.map(n=>`<div class="news"><div>🎙️ <b>${esc(n.players.slice(0,4).join(", "))}</b> <span class="nc"><a href="${esc(n.url)}" target="_blank" rel="noopener">Presser Wire</a> · ${agoText(n.at)}</span></div><div class="nt" title="${esc(n.text)}">${esc(n.text)}</div></div>`).join("");
+}
 function restrictionsHTML(g,date){
   return RESTRICTIONS.filter(w=>(w.team===g.away||w.team===g.home)&&w.from<=date&&date<=w.through).map(w=>
     `<div class="warn">⚠️ <b>MINUTES RESTRICTION: <a href="${esc(w.url)}" target="_blank" rel="noopener">${esc(w.player)}</a> (${esc(w.team)})</b><div>${esc(w.text)} <span class="nc">(${esc(w.reporter?`${w.reporter}, ${w.outlet}`:"RotoWire")} · ${agoText(w.at)})</span></div></div>`).join("");
@@ -803,7 +811,7 @@ function teamBlockHTML(code,date,opp){
   else h+=imp.items.map(it=>injLineHTML(it,date)).join("");
   if(imp.items.length && !imp.hasChart) h+=`<div class="clear" style="margin-left:22px">Depth chart not loaded, so no replacements yet.</div>`;
   const lu=lineupFor(code,date);
-  h+=(opp?matchupAlertsHTML(code,opp,date,imp):"")+newsHTML(code);
+  h+=(opp?matchupAlertsHTML(code,opp,date,imp):"")+newsHTML(code)+pressersHTML(code);
   if(DEPTH_P[code]||lu) h+=`<details class="lineup"><summary>Starters &amp; bench <small>${lu?(lu.confirmed?"confirmed (RotoWire)":"expected (RotoWire)"):"from the depth chart"}</small></summary>${startersHTML(code,imp,date)}${rotationBlockHTML(code,imp,date)}</details>`;
   h+=`</div>`;
   return h;
@@ -825,7 +833,7 @@ function renderPanel(){
     h+=`<section class="gm"><h3 class="gh"><span class="time">${fmtTime(g.time)} ET</span>${logo(g.away,30)}${esc(A.name)}<span class="at">${g.type==="neu"?"vs":"@"}</span>${logo(g.home,30)}${esc(H.name)}${tags.map(t=>`<span class="tag">${t}</span>`).join("")}</h3>
       ${meta?`<div class="gmeta">${esc(meta)}</div>`:""}${b2bHTML(g,selected)}${restrictionsHTML(g,selected)}<div class="teams">${teamBlockHTML(g.away,selected,g.home)}${teamBlockHTML(g.home,selected,g.away)}</div></section>`;
   });
-  h+=`<div class="rep-legend"><span><i style="background:var(--out)"></i>Out</span><span><i style="background:var(--doubt)"></i>Doubtful</span><span><i style="background:var(--q)"></i>Questionable</span><span><i style="background:var(--prob)"></i>Probable</span></div>
+  h+=`<div class="rep-legend"><span><i style="background:var(--out)"></i>Out</span><span><i style="background:var(--doubt)"></i>Doubtful</span><span><i style="background:var(--q)"></i>Questionable</span><span><i style="background:var(--prob)"></i>Probable</span><span><i style="background:var(--avail)"></i>Available (NBA report)</span></div>
     <div class="foot">(Number) = average minutes per game. Starters from RotoWire, bench from the ESPN depth chart. Click a player for the source.</div></div>`;
   el.innerHTML=h;
 }
@@ -973,7 +981,7 @@ document.querySelectorAll("[data-clear]").forEach(b=>b.onclick=()=>{
 
 /* ---------- data.json (written by pipeline/update_data.py) ---------- */
 let dataMeta=null, noGamesNote="";
-/* Average minutes (ESPN season stats), same rules as the email: this season once he has 15+ games, else last
+/* Average minutes (ESPN season stats), same rules as the email: this season once he has played (was 15+ games until Oct 26 2026), else last
    season. CHANGES = 5+ minutes more or fewer than last season (5+ games now, 10+ then). Older seasons aren't used. */
 let MIN_LABEL={}, CHANGES={};
 function loadSeasonMinutes(sm){
@@ -982,7 +990,7 @@ function loadSeasonMinutes(sm){
   const cur=idx("current"), last=idx("last");
   new Set([...Object.keys(cur),...Object.keys(last)]).forEach(k=>{
     const c=cur[k], l=last[k];
-    const pick=c&&c[0]>=15?[c,sm.season]:l&&l[0]>=1?[l,sm.last_season]:null;
+    const pick=c&&c[0]>=1?[c,sm.season]:l&&l[0]>=1?[l,sm.last_season]:null;   // this season as soon as he has played (Oct 26 2026)
     if(pick){ mins[k]=pick[0][1]; MIN_LABEL[k]=pick[1]; }
     const base=l&&l[0]>=10?[l,sm.last_season]:null;
     if(c&&c[0]>=5&&base&&Math.abs(c[1]-base[0][1])>=5) CHANGES[k]={diff:c[1]-base[0][1],vs:base[1]};
@@ -1006,6 +1014,7 @@ async function loadData(){
     if(Array.isArray(d.expected_minutes?.players)) EXPECTED=d.expected_minutes.players;
     if(Array.isArray(d.news)) NEWS=d.news;
     if(Array.isArray(d.restrictions)) RESTRICTIONS=d.restrictions;
+    if(Array.isArray(d.presserwire?.notes)) PRESSERS=d.presserwire.notes;
     if(d.minutes) Object.entries(d.minutes).forEach(([n,v])=>{ mins[normName(n)]=v; });
     loadSeasonMinutes(d.season_minutes);
     if(Array.isArray(d.schedule)&&d.schedule.length>1000) feedGames=d.schedule.map(g=>({date:g.date,time:g.time,away:g.away,home:g.home,type:"reg",note:"",venue:g.venue||""}));
@@ -1017,7 +1026,7 @@ function freshHTML(){
   if(!dataMeta) return `<div class="fresh">Using the built-in snapshot from Oct 6. The automatic refresh (data.json) was not found.</div>`;
   const ago=Math.max(0,Math.round((Date.now()-Date.parse(dataMeta.generated))/60000));
   const when=ago<90?`${ago} min ago`:ago<2880?`${Math.round(ago/60)} hours ago`:`${Math.round(ago/1440)} days ago`;
-  const names={schedule:"Schedule",espn_depth:"Depth charts",realgm_depth:"Depth charts",rotowire:"RotoWire lineups",news:"Beat-writer news",season_minutes:"Season minutes",minutes:"Minutes sheet",cbs:"CBS",covers:"Covers",espn:"ESPN",x:"Beat writers"};
+  const names={schedule:"Schedule",espn_depth:"Depth charts",realgm_depth:"Depth charts",rotowire:"RotoWire lineups",news:"Beat-writer news",presserwire:"Presser Wire (NBA report + pressers)",season_minutes:"Season minutes",minutes:"Minutes sheet",cbs:"CBS",covers:"Covers",espn:"ESPN",x:"Beat writers"};
   const parts=Object.entries(dataMeta.sources).filter(([k])=>k!=="minutes"&&k!=="x").map(([k,v])=>v.ok===true?`${names[k]||k} ✓`:v.ok===false?`<span class="bad">${names[k]||k} failed</span>`:`${names[k]||k} off`);
   return `<div class="fresh">Data refreshed <b>${when}</b> · ${parts.join(" · ")}</div>`;
 }

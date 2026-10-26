@@ -220,6 +220,96 @@ def parse_cbs(html):
     return out
 
 
+# ---------------------------------------------------------------- Presser Wire (Oct 26 2026, user's choice; company OK'd)
+# presserwire.com/nba: notes from press conferences, plus the NBA's OFFICIAL injury report (read by them every 15 min on
+# game days). Its terms ask not to copy the site wholesale or scrape it in bulk, so only two pages are read, at most
+# once every PW_EVERY_MIN minutes: the full injury report and the Availability page.
+PW = "https://presserwire.com"
+PW_IR, PW_AV = PW + "/nba/injury-report.html", PW + "/nba/availability.html"
+PW_EVERY_MIN = 15
+PW_STATUS = {"out": ("O", None), "doubtful": ("G", "doubt"), "questionable": ("G", "q"), "probable": ("G", "prob"),
+             "available": ("G", "avail")}
+
+
+def parse_pw_injury_report(html, read_at):
+    """-> (injury records with src "NBA report", press notes). One record per player per game date; the NBA's status
+    is official, so it overrides the injury sites (like a beat writer's; the newest of the two wins)."""
+    soup = BeautifulSoup(html, "html.parser")
+    recs, notes = [], []
+    last = None
+    for tr in soup.select("table tr"):
+        tds = tr.find_all("td")
+        if "exq" in (tr.get("class") or []) and last:
+            p, t = tr.find("p"), tr.find("time")
+            x = tr.find("a", href=re.compile(r"x\.com/"))
+            if p and t:
+                notes.append({"team": last["team"], "players": [last["player"]], "text": clean(p.get_text(" ", strip=True)),
+                              "at": t.get("datetime", "")[:19] + "+00:00", "url": x["href"] if x else last["url"]})
+            continue
+        if len(tds) != 5:
+            continue
+        team = team_code(tds[0].get_text(" ", strip=True))
+        a = tds[1].find("a")
+        st_el = tds[2].find(class_="st")
+        game = tds[4].find("a", href=re.compile(r"/games/\d{4}-\d{2}-\d{2}-"))
+        if not (team and a and st_el and game):
+            continue
+        cls = next((c for c in st_el.get("class", []) if c in PW_STATUS), None)
+        if not cls:
+            continue
+        kind, st = PW_STATUS[cls]
+        date = re.search(r"/games/(\d{4}-\d{2}-\d{2})-", game["href"]).group(1)
+        player = clean(a.get_text(" ", strip=True))
+        url = PW + game["href"]
+        r = rec(team, player, "NBA report", kind, clean(tds[3].get_text(" ", strip=True)), upd=date, through=date, st=st, url=url)
+        r.update({"from": date, "override": True, "at": read_at})
+        recs.append(r)
+        last = {"team": team, "player": player, "url": url}
+    return recs, notes
+
+
+def parse_pw_availability(html):
+    """The Availability page: the latest press-conference word on each player -> [{team, players, text, at, url}]."""
+    soup = BeautifulSoup(html, "html.parser")
+    out = []
+    for row in soup.select("div.brow"):
+        b, p, t = row.find("b"), row.find("p"), row.find("time")
+        small = row.find("small")
+        if not (b and p and t and small):
+            continue
+        tm = small.get_text(" ", strip=True)
+        team = next((team_code(x) for x in re.split(r"\s*·\s*", tm) if team_code(re.sub(r"^[A-Z]{2,4}\s+", "", x))), None)
+        team = team or team_code(re.sub(r"^[A-Z]{2,4}\s+", "", tm.split("·")[0]))
+        players = [clean(a.get_text(" ", strip=True)) for a in b.find_all("a")]
+        if team:
+            out.append({"team": team, "players": players, "text": clean(p.get_text(" ", strip=True)),
+                        "at": t.get("datetime", "")[:19] + "+00:00", "url": PW_AV})
+    return out
+
+
+def fetch_presserwire(prev):
+    """-> {"read_at", "injuries", "notes"}; reuses the last read if it is under PW_EVERY_MIN minutes old."""
+    now = dt.datetime.now(dt.timezone.utc)
+    old = prev.get("presserwire") or {}
+    if old.get("read_at") and now - dt.datetime.fromisoformat(old["read_at"]) < dt.timedelta(minutes=PW_EVERY_MIN):
+        return old
+    read_at = now.isoformat(timespec="seconds")
+    recs, notes = parse_pw_injury_report(get(PW_IR).text, read_at)
+    if not recs:
+        raise RuntimeError("Presser Wire injury report: no players read (page layout changed?)")
+    try:
+        notes += parse_pw_availability(get(PW_AV).text)
+    except Exception as e:      # the notes are extra; the official statuses still count
+        print(f"[presserwire] availability page failed: {e}", file=sys.stderr)
+    seen, uniq = set(), []
+    for n in sorted(notes, key=lambda n: n["at"], reverse=True):
+        k = (n["team"], n["text"][:80])
+        if k not in seen:
+            seen.add(k)
+            uniq.append(n)
+    return {"read_at": read_at, "injuries": recs, "notes": uniq[:300]}
+
+
 def covers_player(a):
     """Covers shows 'H. Veesaar'; the link ends in '/henri-veesaar', which gives the full name."""
     text = clean(a.get_text(" ", strip=True))
@@ -529,7 +619,7 @@ def apply_news(data):
 # ---------------------------------------------------------------- season minutes (ESPN)
 SEASON_STATS_URL = ("https://site.web.api.espn.com/apis/common/v3/sports/basketball/nba/statistics/byathlete"
                     "?region=us&lang=en&contentorigin=espn&isqualified=false&page=1&limit=1000&seasontype=2&season={}")
-SEASON_REFRESH_HOURS = 12
+SEASON_REFRESH_HOURS = 2   # this season's minutes (was 12; Oct 26 2026, user wants the most up-to-date)
 
 
 def espn_season(day):
@@ -812,6 +902,17 @@ def main():
                 r["stale"] = True
             injuries += old
             status[name]["kept_stale"] = len(old)
+
+    pw = run("presserwire", lambda: fetch_presserwire(prev))
+    if pw is None:
+        pw = prev.get("presserwire") or {}
+        for r in pw.get("injuries", []):
+            r["stale"] = True
+    data["presserwire"] = pw
+    injuries += pw.get("injuries", [])
+    if pw:
+        status["presserwire"].update({"injuries": len(pw.get("injuries", [])), "notes": len(pw.get("notes", [])),
+                                      "read_at": pw.get("read_at")})
 
     news = run("news", fetch_news)
     data["news"] = merge_news(prev.get("news", []), news or [], data)
