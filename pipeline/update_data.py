@@ -59,7 +59,7 @@ def team_code(s):
 def norm_name(s):
     s = re.sub(r"[.'’]", "", (s or "").lower())
     toks = [t for t in re.sub(r"[^a-z0-9]+", " ", s).split() if t not in ("jr", "sr", "ii", "iii", "iv")]
-    return " ".join(toks)
+    return "".join(toks)   # no spaces, so "Nae Qwan Tomlin" (Covers) and "Nae'Qwan Tomlin" (CBS) are one player
 
 
 def get(url, **kw):

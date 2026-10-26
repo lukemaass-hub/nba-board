@@ -530,7 +530,7 @@ const MONTHS=["January","February","March","April","May","June","July","August",
 const DAYS=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 function normName(s){
   return String(s||"").toLowerCase().replace(/[.'’]/g,"").replace(/[^a-z0-9]+/g," ").trim()
-    .split(" ").filter(t=>!["jr","sr","ii","iii","iv"].includes(t)).join(" ");
+    .split(" ").filter(t=>!["jr","sr","ii","iii","iv"].includes(t)).join("");   // no spaces: "Nae Qwan" = "Nae'Qwan"
 }
 function fmtTime(t){ const [h,m]=t.split(":").map(Number); return `${((h+11)%12)+1}:${pad(m)} ${h>=12?"PM":"AM"}`; }
 function fmtDate(k){ const [y,m,d]=k.split("-").map(Number); const dt=new Date(y,m-1,d); return {long:`${DAYS[dt.getDay()]}, ${MONTHS[m-1]} ${d}`}; }
@@ -775,7 +775,10 @@ function agoText(iso){ const m=Math.max(1,Math.round((Date.now()-Date.parse(iso)
 const NEWS_KEEP=/\((?!\d)[a-z][a-z \/-]{1,25}\)|\b(injur\w*|ruled out|out (for|indefinitely|at least|another)|won'?t (play|debut|travel)|will not (play|debut|be ready)|not (play|travel|ready)\w*|(expected|planning|plans|hopeful|fine|cleared) to play|questionable|doubtful|probable|day-to-day|game-time|miss(es|ed|ing)?|sidelined|illness|surgery|torn|tear|sprain\w*|strain\w*|fractur\w*|concussion|sore\w*|rehab\w*|recover\w*|return\w*|injury report|availab\w*|cleared|suspen\w+|restriction\w*|minutes|will play|limited|workload|ramp\w*|load management)\b/i, NEWS_SKIP=/\b(extension|contract|team option|signs|inks|agrees)\b/i;
 function newsRelevant(i){ const t=`${i.headline||""} ${i.text||""}`; return NEWS_KEEP.test(t)&&!(NEWS_SKIP.test(t)&&!/suspen/i.test(t)); }
 function newsHTML(code){
-  const items=NEWS.filter(i=>i.team===code&&newsRelevant(i)&&Date.now()-Date.parse(i.at)<36*3600e3).slice(0,4);
+  // one item per player: only his newest (user's rule, Oct 26 2026)
+  const seen=new Set();
+  const items=NEWS.filter(i=>i.team===code&&newsRelevant(i)&&Date.now()-Date.parse(i.at)<36*3600e3).sort((a,b)=>b.at.localeCompare(a.at))
+    .filter(i=>{ const k=normName(i.player); if(seen.has(k)) return false; seen.add(k); return true; }).slice(0,4);
   if(!items.length) return "";
   return `<div class="sech" style="margin-top:8px">Beat-writer news</div>`+items.map(i=>`<div class="news"><div><b>${esc(i.player)}</b> · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.headline)}</a> <span class="nc">${esc(i.reporter||"RotoWire")} · ${agoText(i.at)}</span></div><div class="nt" title="${esc(i.text)}">${esc(i.text)}</div></div>`).join("");
 }
