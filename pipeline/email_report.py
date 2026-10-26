@@ -203,6 +203,9 @@ def change_text(data, player):
     return f" [{'+' if c[0] > 0 else ''}{round(c[0])} min vs {c[3]}]" if c else ""
 
 
+# Oct 26 2026: Dolly disconnected (user's choice), so expected minutes are left out of every report for now.
+# Set to True to bring them back once a Dolly source is reconnected.
+EXPECTED_ENABLED = False
 EXPECTED_DIFF = 5.0         # Dolly expected minutes this far above/below the average gets a tag (the user's rule)
 EXPECTED_MAX_AGE_H = 36     # ignore Dolly numbers older than this
 EXPECTED_ROLE_MIN = 15.0    # only rotation players: Dolly expects 15+ minutes, or he averaged 15+ (cuts deep-bench noise)
@@ -223,6 +226,8 @@ def expected_minutes_for(data, team, date, now=None, skip=()):
 
 def expected_raw(data, team, date, now=None, skip=()):
     """Every fresh Dolly number for this team and date: [(player, expected, avg_minutes result or None)]."""
+    if not EXPECTED_ENABLED:
+        return []
     em = data.get("expected_minutes") or {}
     now = now or dt.datetime.now(dt.timezone.utc)
     out = []
@@ -275,6 +280,30 @@ def exp_html(tags, player):
 def exp_text(tags, player):
     t = tags.get(norm_name(player))
     return f" {'📈' if t[1] > 0 else '📉'} Expected {t[0]:.1f} ({'+' if t[1] > 0 else '-'}{abs(t[1]):.1f})" if t else ""
+
+
+def back_to_back(data, team, date):
+    """The user's rule (Oct 26 2026): warn when a team plays the 1st or 2nd game of a back-to-back (games on
+    consecutive days, ET). -> [(team, "1st" | "2nd", the other game)]."""
+    d = dt.date.fromisoformat(date)
+    out = []
+    for which, other in (("2nd", d - dt.timedelta(days=1)), ("1st", d + dt.timedelta(days=1))):
+        g = next((g for g in all_games(data) if g["date"] == other.isoformat() and team in (g["away"], g["home"])), None)
+        if g:
+            out.append((team, which, g))
+    return out
+
+
+def b2b_text(team, which, g):
+    """'2nd game of a back-to-back: played @ NYK last night' / '1st game of a back-to-back: vs MIA tomorrow 7:30 PM'"""
+    where = "@" if g["away"] == team else "vs"
+    opp = g["home"] if g["away"] == team else g["away"]
+    when = "last night" if which == "2nd" else f"tomorrow {fmt_time(g['time'])} ET"
+    return f"{which} game of a back-to-back: {'played ' if which == '2nd' else ''}{where} {opp} {when}"
+
+
+def b2b_for(data, g):
+    return [x for t in (g["away"], g["home"]) for x in back_to_back(data, t, g["date"])]
 
 
 def restrictions_for(data, teams, date):
@@ -351,6 +380,10 @@ def build(data, games, date):
                  f'{fmt_time(g["time"])} ET</span>&nbsp; {logo(g["away"], 26)} {e(name(g["away"]))} '
                  f'<span style="{light};font-weight:normal">@</span> {logo(g["home"], 26)} {e(name(g["home"]))}</div>')
         t.append(f"{fmt_time(g['time'])} ET: {name(g['away'])} @ {name(g['home'])}")
+        for team, which, og in b2b_for(data, g):
+            h.append(f'<div style="margin:12px 0 0;padding:8px 12px;background:#fff4c2;border:2px solid #b7950b;border-radius:8px;'
+                     f'font-size:14px"><b style="color:#7d6608">🔁 BACK-TO-BACK: {e(name(team))}</b> · {e(b2b_text(team, which, og))}</div>')
+            t.append(f"  🔁 BACK-TO-BACK: {name(team)} · {b2b_text(team, which, og)}")
         for w in restrictions_for(data, (g["away"], g["home"]), date):
             h.append(f'<div style="margin:12px 0 0;padding:10px 12px;background:#fdecea;border:2px solid #c0392b;border-radius:8px">'
                      f'<div style="font-size:15px;font-weight:bold;color:#c0392b">⚠️ MINUTES RESTRICTION: '
@@ -446,6 +479,9 @@ def build_slack(data, game, date, test=False):
     g = game
     title = f"{'[TEST] ' if test else ''}{fmt_time(g['time'])} ET · {name(g['away'])} @ {name(g['home'])}"
     blocks = [{"type": "header", "text": {"type": "plain_text", "text": title[:150]}}]
+    for team, which, og in b2b_for(data, g):
+        blocks.append({"type": "section", "text": {"type": "mrkdwn", "text":
+                       f":repeat: *BACK-TO-BACK: {e(name(team))}* · {e(b2b_text(team, which, og))}"}})
     for w in restrictions_for(data, (g["away"], g["home"]), date):
         blocks.append({"type": "section", "text": {"type": "mrkdwn", "text":
                        f":warning: *MINUTES RESTRICTION: <{w['url']}|{e(w['player'])}> ({w['team']})*\n{e(w['text'])} "
@@ -589,6 +625,8 @@ def dm_traders(data, token, now, window, sent, stamp):
 def fresh_expected_minutes(data, path):
     """Use expected_minutes.json (saved by the Dolly Minutes extension) when it is newer than data.json's copy, so the
     report always has the latest Dolly read, even between data refreshes."""
+    if not EXPECTED_ENABLED:
+        return
     try:
         em = json.load(open(path))
     except (OSError, ValueError):

@@ -100,6 +100,12 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 ## Style preferences
 Plain language, no jargon, short answers. The user is not a developer: say exactly where to click.
 
+- Back-to-back warning (Oct 26 2026, user's rule): when a team plays the 1st or 2nd game of games on consecutive
+  days (ET, from the schedule), a yellow "🔁 BACK-TO-BACK: <team> · 2nd game of a back-to-back: played @ NYK last night"
+  (or "1st game ...: vs MIA tomorrow 7:30 PM ET") line sits at the top of that game in the email, Slack and board
+  (email_report.back_to_back / b2bHTML).
+- Oct 26 2026: Dolly expected minutes taken out of the email, Slack and board too (EXPECTED_ENABLED=False in
+  email_report.py; update_data.py only loads expected_minutes.json if DOLLY_EXPECTED_MINUTES=on). Kept for later.
 - Oct 22 2026: DOLLY DISCONNECTED at the user's request (Dolly was lagging). dolly-minutes 1.2.0 has no Dolly host
   permission or content script; prop-compare 0.23.0 has no Dolly permission and DOLLY_DISABLED=true (no Ours columns).
   The user turned both off in Chrome. Don't reconnect anything to Dolly unless the user asks; if they do, make it lighter
