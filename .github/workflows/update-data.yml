@@ -78,6 +78,7 @@ jobs:
           # Nothing is sent unless the repository variable SLACK_DM_MODE is "test" (owner only) or "on".
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_DM_MODE: ${{ vars.SLACK_DM_MODE || 'off' }}
+          SLACK_TEST_CHANNEL: ${{ vars.SLACK_TEST_CHANNEL }}
         run: python pipeline/email_report.py --data data.json --window 25
 
       - name: Slack test message (only when you tick the box on "Run workflow")

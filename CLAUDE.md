@@ -74,7 +74,8 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 - Trader DMs (Oct 20 2026, built, NOT sending yet): pipeline/slack_assign.py reads the daily "<m/d> IP Trader
   Schedule" message (posted ~8:30 AM MT by the team's existing IP Trader Bot app in #in-play-trading, C06U8AW81K2),
   takes the NBA section ("7:00 PM - A @ B - <@U..|Name> Cores / <@U..|Name> Props") and email_report.dm_traders() DMs
-  the PROPS traders listed for the game (role matching 'Props') the game's Slack report as soon as both teams' RotoWire lineups are confirmed, else 15 min before tip (Oct 21 2026, user's rule; Cores etc. get nothing; just the report, no extra line) (logged as "dm <date> A@H"). Needs the user's own new
+  (Oct 26 2026: one GROUP DM per game with the bot + that game's Props AND Cores traders, like the football reports;
+  one-on-one bot DMs are invisible because the bot's Messages tab is off) the game's Slack report as soon as both teams' RotoWire lineups are confirmed, else 15 min before tip (Oct 21 2026, user's rule; Cores etc. get nothing; just the report, no extra line) (logged as "dm <date> A@H"). Needs the user's own new
   app (also named IP Trader Bot, App ID A0CALRVPDBM, install awaiting admin approval) with bot scopes chat:write,
   im:write, channels:history, added to #in-play-trading, token in secret SLACK_BOT_TOKEN. Repository variable
   SLACK_DM_MODE: off (default: only logs who would get it) / test (all to the user, marked [TEST]) / on. The user
@@ -100,6 +101,10 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 ## Style preferences
 Plain language, no jargon, short answers. The user is not a developer: say exactly where to click.
 
+- Bot token (Oct 26 2026): the user was given the team's EXISTING IP Trader Bot token (app A0B2GVBAAF6, bot
+  B0B37B4MR5M, workspace T030UFQJYEL, scopes incl. chat:write, mpim:write, channels:history, users:read); it can read
+  #in-play-trading. The user pasted it in chat; it belongs only in the SLACK_BOT_TOKEN secret, never in a file.
+  SLACK_TEST_CHANNEL (repo variable, optional): where test-mode posts go so they are visible.
 - Back-to-back warning (Oct 26 2026, user's rule): when a team plays the 1st or 2nd game of games on consecutive
   days (ET, from the schedule), a yellow "🔁 BACK-TO-BACK: <team> · 2nd game of a back-to-back: played @ NYK last night"
   (or "1st game ...: vs MIA tomorrow 7:30 PM ET") line sits at the top of that game in the email, Slack and board

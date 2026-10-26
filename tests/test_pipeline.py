@@ -394,6 +394,8 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
     monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: text)
     monkeypatch.setattr(sa, "user_name", lambda token, user: "Name " + user)
     monkeypatch.setattr(sa, "dm", lambda token, user, title, blocks: sentto.append((user, blocks)))
+    monkeypatch.setattr(sa, "post_channel", lambda token, ch, title, blocks: sentto.append((ch, blocks)))
+    monkeypatch.setattr(sa, "group_dm", lambda token, users, title, blocks: sentto.append((",".join(users), blocks)))
     monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
     monkeypatch.setattr(e, "all_games", lambda data: [game])
     lineups = lambda c: {"lineups": {t: {"date": "2026-10-20", "confirmed": c} for t in ("PHI", "NYK")}}
@@ -406,15 +408,18 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
 
     # 40 min out, lineups not confirmed yet: wait
     assert run("on", lineups(False), early) == ([], {})
-    # lineups confirmed: only the Props trader (Amol), just the report
+    # lineups confirmed: one group DM with the Cores and Props traders (Evan, Amol), just the report
     users, log = run("on", lineups(True), early)
-    assert users == ["U0ACFA2QDFF"] and "dm 2026-10-20 PHI@NYK" in log and sentto[0][1] == []
+    assert users == ["U09BNHCQD5Z,U0ACFA2QDFF"] and "dm 2026-10-20 PHI@NYK" in log and sentto[0][1] == []
     # never confirmed: sent anyway 15 min before tip
-    assert run("on", lineups(False), late)[0] == ["U0ACFA2QDFF"]
+    assert run("on", lineups(False), late)[0] == ["U09BNHCQD5Z,U0ACFA2QDFF"]
     # off: nothing sent, nothing logged; test: owner only, says who and why
     assert run("off", lineups(True), early) == ([], {})
     assert run("test", lineups(True), early)[0] == ["U0B5EP4PV3M"]
-    assert "Would go to: Amol Singh (Props) (lineups confirmed)" in sentto[0][1][0]["elements"][0]["text"]
+    assert "Would go to a group DM with: Evan Finger (Cores), Amol Singh (Props) (lineups confirmed)" in sentto[0][1][0]["elements"][0]["text"]
+    monkeypatch.setenv("SLACK_TEST_CHANNEL", "C0TEST")
+    assert run("test", lineups(True), early)[0] == ["C0TEST"]
+    monkeypatch.delenv("SLACK_TEST_CHANNEL")
     # already sent: not again
     monkeypatch.setenv("SLACK_DM_MODE", "on"); sentto.clear()
     e.dm_traders(lineups(True), "xoxb", early, 25, {"dm 2026-10-20 PHI@NYK": "x"}, "now")
