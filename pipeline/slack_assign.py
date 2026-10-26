@@ -104,7 +104,23 @@ def user_name(token, user):
 
 
 def dm(token, user, text, blocks):
+    """One-on-one message. Note: these land in the bot's Messages tab, which is switched off on IP Trader Bot, so
+    people can't see them; group_dm (2+ people) shows up in everyone's normal DMs."""
     _api(token, "chat.postMessage", body={"channel": user, "text": text, "blocks": blocks, "unfurl_links": False})
+
+
+def group_dm(token, users, text, blocks):
+    """Group DM of the bot + these people (like the football reports: "IP Trader Bot, Max Pasley"). Same group every
+    time for the same people. Needs mpim:write + chat:write. Falls back to dm() for a single person."""
+    users = list(dict.fromkeys(users))
+    if len(users) < 2:
+        return dm(token, users[0], text, blocks)
+    ch = _api(token, "conversations.open", body={"users": ",".join(users)})["channel"]["id"]
+    _api(token, "chat.postMessage", body={"channel": ch, "text": text, "blocks": blocks, "unfurl_links": False})
+
+
+def post_channel(token, channel, text, blocks):
+    _api(token, "chat.postMessage", body={"channel": channel, "text": text, "blocks": blocks, "unfurl_links": False})
 
 
 def mode():

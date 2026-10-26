@@ -576,7 +576,7 @@ def lineups_confirmed(data, g):
 
 
 def dm_traders(data, token, now, window, sent, stamp):
-    """DM each game's report to the PROPS traders listed for it in today's #in-play-trading schedule (slack_assign.py),
+    """DM each game's report to the Props and Cores traders listed for it (one group DM per game) in today's #in-play-trading schedule (slack_assign.py),
     as soon as both teams' lineups are confirmed (RotoWire), or PROPS_FALLBACK_MIN minutes before tip if they never are
     (the user's rule, Oct 21 2026). Sent once per game ("dm <date> A@H").
     SLACK_DM_MODE: off = only print who would get it; test = all to the owner, marked [TEST]; on = to the traders."""
@@ -603,7 +603,9 @@ def dm_traders(data, token, now, window, sent, stamp):
         return
     sched = sa.parse_schedule(text)
     for key, g, confirmed in due:
-        people = [p for p in sched.get((g["away"], g["home"]), []) if re.search(r"prop", p["role"], re.I)]
+        # one group DM per game: the bot + that game's Props AND Cores traders (user's choice, Oct 26 2026), like the
+        # football reports; a lone trader gets a one-on-one message instead (hidden while the bot's Messages tab is off)
+        people = [p for p in sched.get((g["away"], g["home"]), []) if re.search(r"prop|core", p["role"], re.I)]
         for p in people:
             p["name"] = p["name"] or sa.user_name(token, p["user"])
         who = sa.plan(people)
@@ -612,14 +614,16 @@ def dm_traders(data, token, now, window, sent, stamp):
         if m == "off" or not people:
             print(f"Slack DMs ({m}, {why}): {g['away']}@{g['home']} would go to {who}")
         else:
-            for p in ([{"user": sa.OWNER, "role": ""}] if m == "test" else people):
-                # traders get just the report (user's choice); the owner's test copy says who it would go to
-                head = [{"type": "context", "elements": [{"type": "mrkdwn", "text": slack_escape(f"[TEST] Would go to: {who} ({why})")}]}] if m == "test" else []
-                try:
-                    sa.dm(token, p["user"], title, head + blocks)
-                except Exception as ex:
-                    print(f"Slack DM to {p.get('name') or p['user']} failed: {ex}")
-            print(f"Slack DMs ({m}, {why}): {g['away']}@{g['home']} sent to {'owner (test)' if m == 'test' else who}")
+            try:
+                if m == "test":   # the owner only: SLACK_TEST_CHANNEL if set (visible), else a one-on-one DM
+                    head = [{"type": "context", "elements": [{"type": "mrkdwn", "text": slack_escape(f"[TEST] Would go to a group DM with: {who} ({why})")}]}]
+                    test_ch = (os.environ.get("SLACK_TEST_CHANNEL") or "").strip()
+                    (sa.post_channel if test_ch else sa.dm)(token, test_ch or sa.OWNER, title, head + blocks)
+                else:
+                    sa.group_dm(token, [p["user"] for p in people], title, blocks)
+                print(f"Slack DMs ({m}, {why}): {g['away']}@{g['home']} sent to {'owner (test)' if m == 'test' else who}")
+            except Exception as ex:
+                print(f"Slack DMs: {g['away']}@{g['home']} failed: {ex}")
         if m != "off":
             sent["dm " + key] = stamp
 
