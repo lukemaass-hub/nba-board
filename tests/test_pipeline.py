@@ -315,7 +315,9 @@ def test_season_minutes_and_weekly():
     assert "1 players" in title and "Miles McBride (NYK): 29.0 vs 20.0 in 2025-26 (+9.0), 16 games" in text
 
 
-def test_dolly_expected_minutes():
+def test_dolly_expected_minutes(monkeypatch):
+    import email_report as _e
+    monkeypatch.setattr(_e, 'EXPECTED_ENABLED', True)   # Dolly is disconnected; the feature is kept for later
     import email_report as e
     now = dt.datetime(2026, 10, 20, 18, 0, tzinfo=dt.timezone.utc)
     at = "2026-10-20T15:00:00+00:00"
@@ -345,7 +347,9 @@ def test_dolly_expected_minutes():
     assert e.expected_minutes_for(data, "DET", "2026-10-20", now=now + dt.timedelta(hours=40)) == []   # stale
 
 
-def test_deep_bench_only_when_expected_up():
+def test_deep_bench_only_when_expected_up(monkeypatch):
+    import email_report as _e
+    monkeypatch.setattr(_e, 'EXPECTED_ENABLED', True)   # Dolly is disconnected; the feature is kept for later
     import email_report as e
     now = dt.datetime(2026, 10, 20, 18, 0, tzinfo=dt.timezone.utc)
     at = "2026-10-20T15:00:00+00:00"
@@ -416,7 +420,9 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
     assert sentto == []
 
 
-def test_newest_dolly_minutes_used(tmp_path):
+def test_newest_dolly_minutes_used(tmp_path, monkeypatch):
+    import email_report as _e
+    monkeypatch.setattr(_e, 'EXPECTED_ENABLED', True)   # Dolly is disconnected; the feature is kept for later
     import email_report as e
     p = tmp_path / "expected_minutes.json"
     p.write_text(json.dumps({"updated_at": "2026-10-21T21:00:00Z", "players": [{"name": "A B", "teamName": "Boston Celtics", "expected": 30}]}))
@@ -426,3 +432,25 @@ def test_newest_dolly_minutes_used(tmp_path):
     old = {"expected_minutes": {"updated_at": "2026-10-21T22:00:00Z", "players": []}}
     e.fresh_expected_minutes(old, str(p))
     assert old["expected_minutes"]["players"] == []
+
+
+def test_back_to_back_warning():
+    import email_report as e
+    data = {"schedule": [
+        {"date": "2026-10-25", "time": "19:00", "away": "BKN", "home": "IND", "venue": ""},
+        {"date": "2026-10-26", "time": "19:00", "away": "IND", "home": "MIL", "venue": ""},
+        {"date": "2026-10-27", "time": "19:30", "away": "MIA", "home": "MIL", "venue": ""}]}
+    g = data["schedule"][1]
+    b = e.b2b_for(data, g)
+    assert [(t, w) for t, w, _ in b] == [("IND", "2nd"), ("MIL", "1st")]
+    assert e.b2b_text(*b[0]) == "2nd game of a back-to-back: played vs BKN last night"
+    assert e.b2b_text(*b[1]) == "1st game of a back-to-back: vs MIA tomorrow 7:30 PM ET"
+    assert e.b2b_for(data, data["schedule"][0]) == [("IND", "1st", g)]
+    _, blocks = e.build_slack(data, g, g["date"])
+    assert "BACK-TO-BACK: Indiana Pacers" in json.dumps(blocks) and "BACK-TO-BACK: Milwaukee Bucks" in json.dumps(blocks)
+
+
+def test_dolly_minutes_left_out_while_disconnected():
+    import email_report as e
+    data = {"expected_minutes": {"players": [{"name": "A B", "team": "BOS", "expected": 40, "at": "2099-01-01T00:00:00+00:00"}]}}
+    assert e.EXPECTED_ENABLED is False and e.expected_raw(data, "BOS", "2026-10-26") == []

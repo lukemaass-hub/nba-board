@@ -87,7 +87,7 @@
   .dot.out{background:var(--out)} .dot.doubt{background:var(--doubt)} .dot.q{background:var(--q)} .dot.prob{background:var(--prob)}
   .it .l1 b{font-weight:900}
   .it .pos{font-size:11.5px;color:var(--muted);font-weight:700;margin-left:2px}
-  .it .st{font-weight:700} .per{font-size:11.5px;font-weight:700;color:#5b4b00;background:#fff4c2;border-radius:3px;padding:0 4px} .warn{margin:8px 0 10px;padding:10px 12px;background:#fdecea;border:2px solid #c0392b;border-radius:8px;font-size:13px} .warn b{color:#c0392b;font-size:14.5px} .warn a{color:#c0392b} .warn .nc{opacity:.65} details.lineup{margin:10px 0 4px;border:1px solid var(--line);border-radius:6px;padding:6px 10px} details.lineup summary{cursor:pointer;font-weight:700;font-size:13px} details.lineup summary small{font-weight:400;opacity:.7;margin-left:4px} details.lineup[open] summary{margin-bottom:6px} .news{font-size:12.5px;line-height:1.45;margin:3px 0} .news a{color:inherit;font-weight:600} .news .nt{opacity:.8} .news .nc{opacity:.6} .ma{font-size:13px;margin:2px 0} .ma.up .d{color:#1e8449} .ma.down .d{color:#c0392b} .pl-link{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px} .pl-link:hover{text-decoration-color:currentColor} .it .src a{color:inherit}
+  .it .st{font-weight:700} .per{font-size:11.5px;font-weight:700;color:#5b4b00;background:#fff4c2;border-radius:3px;padding:0 4px} .b2b{margin:8px 0 6px;padding:7px 12px;background:#fff4c2;border:2px solid #b7950b;border-radius:8px;font-size:13px;color:#1d1c1d} .b2b b{color:#7d6608} .warn{margin:8px 0 10px;padding:10px 12px;background:#fdecea;border:2px solid #c0392b;border-radius:8px;font-size:13px} .warn b{color:#c0392b;font-size:14.5px} .warn a{color:#c0392b} .warn .nc{opacity:.65} details.lineup{margin:10px 0 4px;border:1px solid var(--line);border-radius:6px;padding:6px 10px} details.lineup summary{cursor:pointer;font-weight:700;font-size:13px} details.lineup summary small{font-weight:400;opacity:.7;margin-left:4px} details.lineup[open] summary{margin-bottom:6px} .news{font-size:12.5px;line-height:1.45;margin:3px 0} .news a{color:inherit;font-weight:600} .news .nt{opacity:.8} .news .nc{opacity:.6} .ma{font-size:13px;margin:2px 0} .ma.up .d{color:#1e8449} .ma.down .d{color:#c0392b} .pl-link{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px} .pl-link:hover{text-decoration-color:currentColor} .it .src a{color:inherit}
   .it .st.out{color:var(--out)} .it .st.doubt{color:var(--doubt)} .it .st.q{color:#A77F00} .it .st.prob{color:var(--prob)}
   .it .src{font-size:11.5px;color:var(--muted);margin-left:6px}
   .it .diff{font-size:11px;font-weight:700;background:#FFF0D1;color:#8A5A00;border-radius:4px;padding:0 5px;margin-left:6px}
@@ -778,6 +778,20 @@ function newsHTML(code){
   if(!items.length) return "";
   return `<div class="sech" style="margin-top:8px">Beat-writer news</div>`+items.map(i=>`<div class="news"><div><b>${esc(i.player)}</b> · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.headline)}</a> <span class="nc">${esc(i.reporter||"RotoWire")} · ${agoText(i.at)}</span></div><div class="nt" title="${esc(i.text)}">${esc(i.text)}</div></div>`).join("");
 }
+/* Back-to-back (user's rule, Oct 26 2026): a team playing the 1st or 2nd game of games on consecutive days (ET).
+   Same rule as back_to_back() in pipeline/email_report.py. */
+function b2bHTML(g,date){
+  const shift=(n)=>{ const d=new Date(date+"T12:00:00Z"); d.setUTCDate(d.getUTCDate()+n); return d.toISOString().slice(0,10); };
+  let h="";
+  for(const team of [g.away,g.home]) for(const [which,n] of [["2nd",-1],["1st",1]]){
+    const o=games.find(x=>x.date===shift(n)&&(x.away===team||x.home===team));
+    if(!o) continue;
+    const where=o.away===team?"@":"vs", opp=o.away===team?o.home:o.away;
+    const when=which==="2nd"?"last night":`tomorrow ${fmtTime(o.time)} ET`;
+    h+=`<div class="b2b">🔁 <b>BACK-TO-BACK: ${esc((TEAMS[team]||{name:team}).name)}</b> · ${which} game of a back-to-back: ${which==="2nd"?"played ":""}${where} ${esc(opp)} ${when}</div>`;
+  }
+  return h;
+}
 function restrictionsHTML(g,date){
   return RESTRICTIONS.filter(w=>(w.team===g.away||w.team===g.home)&&w.from<=date&&date<=w.through).map(w=>
     `<div class="warn">⚠️ <b>MINUTES RESTRICTION: <a href="${esc(w.url)}" target="_blank" rel="noopener">${esc(w.player)}</a> (${esc(w.team)})</b><div>${esc(w.text)} <span class="nc">(${esc(w.reporter?`${w.reporter}, ${w.outlet}`:"RotoWire")} · ${agoText(w.at)})</span></div></div>`).join("");
@@ -809,7 +823,7 @@ function renderPanel(){
     const tags=[]; if(g.type==="pre") tags.push("Preseason"); if(g.type==="cup") tags.push("NBA Cup"); if(g.type==="neu") tags.push("Neutral site");
     const meta=[g.venue,g.note].filter(Boolean).join(" · ");
     h+=`<section class="gm"><h3 class="gh"><span class="time">${fmtTime(g.time)} ET</span>${logo(g.away,30)}${esc(A.name)}<span class="at">${g.type==="neu"?"vs":"@"}</span>${logo(g.home,30)}${esc(H.name)}${tags.map(t=>`<span class="tag">${t}</span>`).join("")}</h3>
-      ${meta?`<div class="gmeta">${esc(meta)}</div>`:""}${restrictionsHTML(g,selected)}<div class="teams">${teamBlockHTML(g.away,selected,g.home)}${teamBlockHTML(g.home,selected,g.away)}</div></section>`;
+      ${meta?`<div class="gmeta">${esc(meta)}</div>`:""}${b2bHTML(g,selected)}${restrictionsHTML(g,selected)}<div class="teams">${teamBlockHTML(g.away,selected,g.home)}${teamBlockHTML(g.home,selected,g.away)}</div></section>`;
   });
   h+=`<div class="rep-legend"><span><i style="background:var(--out)"></i>Out</span><span><i style="background:var(--doubt)"></i>Doubtful</span><span><i style="background:var(--q)"></i>Questionable</span><span><i style="background:var(--prob)"></i>Probable</span></div>
     <div class="foot">(Number) = average minutes per game. Starters from RotoWire, bench from the ESPN depth chart. Click a player for the source.</div></div>`;
@@ -988,6 +1002,7 @@ async function loadData(){
     if(d.depth) Object.entries(d.depth).forEach(([t,o])=>DEPTH_RAW[t]=o);
     if(d.lineups) LINEUPS=d.lineups;
     if(Array.isArray(d.matchup_alerts)) MATCHUP_ALERTS=d.matchup_alerts;
+    /* Dolly expected minutes: disconnected Oct 26 2026 (user's choice); data.json no longer carries them */
     if(Array.isArray(d.expected_minutes?.players)) EXPECTED=d.expected_minutes.players;
     if(Array.isArray(d.news)) NEWS=d.news;
     if(Array.isArray(d.restrictions)) RESTRICTIONS=d.restrictions;

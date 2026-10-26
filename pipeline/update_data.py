@@ -778,9 +778,12 @@ def main():
         status["rotowire"]["teams"] = len(roto[0])
     sm = run("season_minutes", lambda: fetch_season_minutes(prev.get("season_minutes") or {}))
     data["season_minutes"] = sm or prev.get("season_minutes") or {}
-    # Dolly prematch expected minutes, saved into the repo by the prop-compare extension (Dolly Rosters screen)
+    # Dolly prematch expected minutes: disconnected Oct 26 2026 (user's choice), so nothing is loaded
+    data["expected_minutes"] = {}
     em_path = os.path.join(os.path.dirname(os.path.abspath(args.out)), "expected_minutes.json")
     try:
+        if os.environ.get("DOLLY_EXPECTED_MINUTES") != "on":
+            raise FileNotFoundError
         with open(em_path) as f:
             data["expected_minutes"] = json.load(f)
         for p in data["expected_minutes"].get("players", []):   # the extension sends full team names
