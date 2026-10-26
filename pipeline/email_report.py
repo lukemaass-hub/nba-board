@@ -604,6 +604,8 @@ def dm_traders(data, token, now, window, sent, stamp):
     sched = sa.parse_schedule(text)
     for key, g, confirmed in due:
         people = [p for p in sched.get((g["away"], g["home"]), []) if re.search(r"prop", p["role"], re.I)]
+        for p in people:
+            p["name"] = p["name"] or sa.user_name(token, p["user"])
         who = sa.plan(people)
         why = "lineups confirmed" if confirmed else f"lineups not confirmed {PROPS_FALLBACK_MIN} min before tip"
         title, blocks = build_slack(data, g, g["date"], test=(m == "test"))
