@@ -524,3 +524,32 @@ def test_available_status_does_not_break_email():
     g = {"date": "2026-10-26", "time": "19:30", "away": "DAL", "home": "MIA", "venue": ""}
     data = {"injuries": [r], "schedule": [g]}
     assert "Available" in e.build(data, [g], "2026-10-26")[1]
+
+
+def test_unattended_catch_up_watchdog_and_alerts(monkeypatch):
+    import email_report as e, slack_assign as sa
+    text = open(os.path.join(os.path.dirname(__file__), "fixtures", "schedule_1020.txt")).read()
+    game = {"date": "2026-10-20", "time": "19:00", "away": "PHI", "home": "NYK", "venue": ""}
+    sends, mails = [], []
+    monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: text)
+    monkeypatch.setattr(sa, "group_dm", lambda token, users, title, blocks: sends.append(users))
+    monkeypatch.setattr(sa, "ALSO_INCLUDE", {})
+    monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
+    monkeypatch.setattr(e, "all_games", lambda data: [game])
+    monkeypatch.setattr(e, "send_email", lambda subject, h, t: mails.append(subject) or True)
+    monkeypatch.setenv("SLACK_DM_MODE", "on")
+    at = lambda h, m: dt.datetime(2026, 10, 20, h, m, tzinfo=e.ET)
+    log = {}
+    e.dm_traders({}, "x", at(18, 32), 25, log, "s")        # 28 min before tip, not confirmed: the 30-min fallback sends
+    assert len(sends) == 1 and "dm 2026-10-20 PHI@NYK" in log
+    sends.clear(); log = {}
+    e.dm_traders({}, "x", at(19, 6), 25, log, "s")         # a run that started late still catches up after tip
+    assert len(sends) == 1
+    sends.clear(); log = {}
+    monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: None)   # schedule never posted
+    e.dm_traders({}, "x", at(19, 15), 25, log, "s")
+    e.dm_traders({}, "x", at(19, 20), 25, log, "s")
+    assert sends == [] and len(mails) == 1 and "No Slack group DM for PHI @ NYK" in mails[0]   # alerted once
+    mails.clear(); sent = {}
+    e.alert(sent, "alert run 2026-10-20T19", "A run had a problem", "x"); e.alert(sent, "alert run 2026-10-20T19", "A run had a problem", "x")
+    assert len(mails) == 1

@@ -620,7 +620,25 @@ def post_slack(url, text, blocks):
         raise RuntimeError(f"Slack said: {body[:200]}")
 
 
-PROPS_FALLBACK_MIN = 15     # no confirmed lineups by this many minutes before tip: send anyway
+PROPS_FALLBACK_MIN = 30     # no confirmed lineups by this many minutes before tip: send anyway (was 15; Oct 26 2026,
+                            # so a skipped GitHub run still leaves several more chances)
+DM_LATE_MIN = 10            # a run that starts late can still send up to this many minutes after tip
+WATCH_MIN = 10              # this long after tip with no group DM sent: email the owner (alert)
+
+
+def alert(sent, key, subject, text):
+    """Email the owner about a problem, once per key (keys are saved in email_log.json)."""
+    if key in sent:
+        return
+    print(f"ALERT: {subject}: {text}")
+    stamp = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    body = f'<div style="font-family:Arial,sans-serif;font-size:14px">{html.escape(text)}<br><br>' \
+           f'<a href="https://github.com/lukemaass-hub/nba-board/actions">Open the GitHub runs</a></div>'
+    try:
+        send_email(f"[NBA bot] {subject}", body, text)
+    except Exception as ex:
+        print(f"Alert email failed: {ex}")
+    sent[key] = stamp
 
 
 def lineups_confirmed(data, g):
@@ -635,18 +653,26 @@ def dm_traders(data, token, now, window, sent, stamp):
     (the user's rule, Oct 21 2026). Sent once per game ("dm <date> A@H").
     SLACK_DM_MODE: off = only print who would get it; test = all to the owner, marked [TEST]; on = to the traders."""
     import slack_assign as sa
+    m = sa.mode()
     due = []
     for g in all_games(data):
         tip = dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=ET)
         key = f"{g['date']} {g['away']}@{g['home']}"
-        if "dm " + key in sent or not (now <= tip <= now + dt.timedelta(hours=3)):
+        if "dm " + key in sent:
+            continue
+        # watchdog: the game has tipped and its group DM never went out -> tell the owner (once)
+        if m != "off" and tip + dt.timedelta(minutes=WATCH_MIN) <= now <= tip + dt.timedelta(hours=6):
+            alert(sent, "alert dm " + key, f"No Slack group DM for {g['away']} @ {g['home']}",
+                  f"{name(g['away'])} @ {name(g['home'])} tipped at {fmt_time(g['time'])} ET and its group DM was not sent. "
+                  "Check the latest GitHub run's 'Email / Slack' step: the schedule may not list traders for it, "
+                  "or Slack refused the message.")
+        if not (tip - dt.timedelta(hours=3) <= now <= tip + dt.timedelta(minutes=DM_LATE_MIN)):
             continue
         confirmed = lineups_confirmed(data, g)
         if confirmed or tip - now <= dt.timedelta(minutes=PROPS_FALLBACK_MIN):
             due.append((key, g, confirmed))
     if not due:
         return
-    m = sa.mode()
     try:
         text = sa.fetch_schedule(token, now.date())
     except Exception as ex:   # no access to the channel yet, Slack down: try again on the next run
@@ -663,7 +689,7 @@ def dm_traders(data, token, now, window, sent, stamp):
         for p in people:
             p["name"] = p["name"] or sa.user_name(token, p["user"])
         who = sa.plan(people)
-        why = "lineups confirmed" if confirmed else f"lineups not confirmed {PROPS_FALLBACK_MIN} min before tip"
+        why = "lineups confirmed" if confirmed else "lineups not confirmed yet"
         title, blocks = build_slack(data, g, g["date"], test=(m == "test"))
         if m == "off" or not people:
             print(f"Slack DMs ({m}, {why}): {g['away']}@{g['home']} would go to {who}")
@@ -789,9 +815,16 @@ def main():
     ap.add_argument("--game", default="", help="with --test-email / --agent: a team in the game, e.g. NYK")
     ap.add_argument("--agent-due", type=int, metavar="MIN", help="print JSON of the Slack markdown for games tipping "
                     "off within MIN minutes (for the scheduled Claude agent that posts to Slack)")
+    ap.add_argument("--alert", metavar="TEXT", help="email the owner that a run had a problem (at most once an hour)")
     ap.add_argument("--agent-test", action="store_true", help="like --agent-due but for the next game (or --game), marked TEST")
     args = ap.parse_args()
 
+    if args.alert:
+        sent = json.load(open(args.log)) if os.path.exists(args.log) else {}
+        hour = dt.datetime.now(ET).strftime("%Y-%m-%dT%H")
+        alert(sent, f"alert run {hour}", "A run had a problem", args.alert)
+        json.dump(sent, open(args.log, "w"), indent=1)
+        return
     data = json.load(open(args.data))
     fresh_expected_minutes(data, os.path.join(os.path.dirname(os.path.abspath(args.data)), "expected_minutes.json"))
     now = dt.datetime.now(ET)
@@ -887,7 +920,7 @@ def main():
 
 
     cutoff = (dt.date.today() - dt.timedelta(days=7)).isoformat()
-    sent = {k: v for k, v in sent.items() if re.sub(r"^(slack|dm) ", "", k)[:10] >= cutoff}
+    sent = {k: v for k, v in sent.items() if re.sub(r"^(alert )?(slack |dm |run )?", "", k)[:10] >= cutoff}
     if sent or os.path.exists(args.log):
         json.dump(sent, open(args.log, "w"), indent=1)
 
