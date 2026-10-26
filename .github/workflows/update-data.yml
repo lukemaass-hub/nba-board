@@ -6,10 +6,10 @@ on:
     - cron: "0 11 * * *"
     - cron: "0 17 * * *"
     - cron: "30 21 * * *"
-    # Every 10 minutes from 11 AM to 1 AM Eastern: refreshes only when a game tips off within
-    # 45 minutes, then emails the report for games starting within 25 minutes (once per game),
-    # so the email lands about 20 minutes before tip. GitHub can start these a few minutes late.
-    - cron: "*/10 15-23,0-5 * * *"
+    # Every 5 minutes from 11 AM to 1 AM Eastern (was 10; Oct 26 2026): refreshes only when a game tips within
+    # 90 minutes, then sends each game's Slack group DM once (lineups confirmed, or 30 min before tip).
+    # GitHub sometimes starts these late or skips them, hence the frequent schedule and the catch-up rules.
+    - cron: "*/5 15-23,0-5 * * *"
     # Mondays 9 AM Eastern: weekly minutes-changes email
     - cron: "0 13 * * 1"
   workflow_dispatch:
@@ -57,18 +57,26 @@ jobs:
       - name: Install
         run: pip install -r pipeline/requirements.txt
 
+      # a failing test or a broken website never stops the Slack messages (they use the last good data);
+      # the "Tell the owner" step below emails about it instead
       - name: Test the parsers
+        id: tests
+        continue-on-error: true
         run: python -m pytest -q tests
 
       - name: Pull from the sites and rebuild data.json
+        id: data
+        continue-on-error: true
         env:
           MINUTES_CSV_URL: ${{ secrets.MINUTES_CSV_URL }}
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          PREGAME: ${{ github.event.schedule == '*/10 15-23,0-5 * * *' && '90' || '' }}
+          PREGAME: ${{ github.event.schedule == '*/5 15-23,0-5 * * *' && '90' || '' }}
         run: python pipeline/update_data.py --out data.json ${PREGAME:+--pregame "$PREGAME"}
 
       - name: Email / Slack the report for games tipping off soon
+        id: send
+        continue-on-error: true
         env:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
@@ -105,7 +113,17 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python pipeline/email_report.py --data data.json --weekly
 
+      - name: Tell the owner if something went wrong (email, at most once an hour)
+        if: ${{ steps.tests.outcome == 'failure' || steps.data.outcome == 'failure' || steps.send.outcome == 'failure' }}
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          WHAT: "tests: ${{ steps.tests.outcome }}, data refresh: ${{ steps.data.outcome }}, Slack/email: ${{ steps.send.outcome }}. Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: python pipeline/email_report.py --alert "$WHAT" || true
+
       - name: Save data.json
+        if: ${{ always() }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
@@ -115,7 +133,10 @@ jobs:
             echo "No changes."
           else
             git commit -m "Update data.json"
-            # another run may have saved data.json meanwhile: keep this run's (newer) copy instead of failing
-            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
+            # another run may have saved meanwhile: keep this run's (newer) copy. Retried, because the send log
+            # (email_log.json) must be saved or the next run would send the same group DM again.
+            for i in 1 2 3 4; do
+              git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break
+              sleep $((i * 5))
+            done
           fi
