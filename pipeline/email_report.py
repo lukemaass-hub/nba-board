@@ -622,8 +622,9 @@ def post_slack(url, text, blocks):
 
 PROPS_FALLBACK_MIN = 10     # no confirmed lineups by this many minutes before tip: send anyway (user's rule, Oct 26 2026:
                             # "send once lineups confirm, and at the very least 10 min before the game")
-DM_LATE_MIN = 10            # a run that starts late can still send up to this many minutes after tip
-WATCH_MIN = 10              # this long after tip with no group DM sent: email the owner (alert)
+DM_WAIT_MIN = 9             # a run that starts up to this long before a game's 10-minute mark waits for it and sends,
+                            # so any run in the last ~20 minutes before tip delivers (group DMs never go after tip:
+                            # the user's rule, Oct 26 2026)
 
 
 def alert(sent, key, subject, text):
@@ -661,12 +662,12 @@ def dm_traders(data, token, now, window, sent, stamp):
         if "dm " + key in sent:
             continue
         # watchdog: the game has tipped and its group DM never went out -> tell the owner (once)
-        if m != "off" and tip + dt.timedelta(minutes=WATCH_MIN) <= now <= tip + dt.timedelta(hours=6):
+        if m != "off" and tip <= now <= tip + dt.timedelta(hours=6):
             alert(sent, "alert dm " + key, f"No Slack group DM for {g['away']} @ {g['home']}",
-                  f"{name(g['away'])} @ {name(g['home'])} tipped at {fmt_time(g['time'])} ET and its group DM was not sent. "
+                  f"{name(g['away'])} @ {name(g['home'])} tipped at {fmt_time(g['time'])} ET and its group DM was not sent before tip. "
                   "Check the latest GitHub run's 'Email / Slack' step: the schedule may not list traders for it, "
                   "or Slack refused the message.")
-        if not (tip - dt.timedelta(hours=3) <= now <= tip + dt.timedelta(minutes=DM_LATE_MIN)):
+        if not (tip - dt.timedelta(hours=3) <= now < tip):     # before tip only
             continue
         confirmed = lineups_confirmed(data, g)
         if confirmed or tip - now <= dt.timedelta(minutes=PROPS_FALLBACK_MIN):
@@ -706,6 +707,17 @@ def dm_traders(data, token, now, window, sent, stamp):
                 print(f"Slack DMs: {g['away']}@{g['home']} failed: {ex}")
         if m != "off":
             sent["dm " + key] = stamp
+
+
+def next_fallback(data, now, sent):
+    """The soonest upcoming moment a not-yet-sent game reaches its PROPS_FALLBACK_MIN mark (ET), or None."""
+    marks = []
+    for g in all_games(data):
+        tip = dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=ET)
+        mark = tip - dt.timedelta(minutes=PROPS_FALLBACK_MIN)
+        if f"dm {g['date']} {g['away']}@{g['home']}" not in sent and now < mark:
+            marks.append(mark)
+    return min(marks) if marks else None
 
 
 def fresh_expected_minutes(data, path):
@@ -892,6 +904,14 @@ def main():
     if bot and not args.out:
         try:
             dm_traders(data, bot, now, args.window, sent, stamp)
+            # a game whose 10-minute mark is a few minutes away: wait for it here and send, instead of hoping the
+            # next GitHub run starts on time
+            nxt = next_fallback(data, now, sent)
+            if nxt and nxt - now <= dt.timedelta(minutes=DM_WAIT_MIN) and not args.agent_test:
+                import time
+                print(f"Slack DMs: waiting until {nxt:%I:%M %p} ET for the 10-minute mark")
+                time.sleep(max(0, (nxt - dt.datetime.now(ET)).total_seconds()) + 5)
+                dm_traders(data, bot, dt.datetime.now(ET), args.window, sent, stamp)
         except Exception as ex:
             print(f"Slack DMs failed: {ex}")
         bot = None
