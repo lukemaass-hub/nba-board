@@ -59,6 +59,7 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 - Workflow also runs every 10 min, 11 AM-1 AM ET, with --pregame 90 (was 45; widened Oct 21 2026 to catch confirmed
   lineups for the Props DMs): refreshes only if a game tips within 90 min,
   then pipeline/email_report.py --window 25 emails each game once (email_log.json), about 20 min before tip.
+  Oct 26 2026: pre-game emails OFF (PREGAME_EMAIL=False; the Slack group DMs replace them). Weekly email still on.
 
 - Matchup minutes alerts (Oct 9 2026): pipeline/build_matchup_alerts.py reads the user's NBA_Mins_VS_Teams.xlsx
   (Team_Chart method: each player's avg minutes vs every opponent from Player_vs_Team_Grid; "Avg Mins" = mean of

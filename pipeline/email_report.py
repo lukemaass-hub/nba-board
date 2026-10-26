@@ -739,6 +739,9 @@ def build_weekly(data, rows):
     return title, "".join(h), "\n".join(t)
 
 
+PREGAME_EMAIL = False   # pre-game emails off since Oct 26 2026 (Slack replaces them); the weekly email still goes
+
+
 def send_email(subject, body_html, body_text):
     user, pw, to = os.environ.get("SMTP_USER"), os.environ.get("SMTP_PASSWORD"), os.environ.get("EMAIL_TO")
     if not (user and pw and to):
@@ -842,7 +845,8 @@ def main():
             open(args.out + ".txt", "w").write(body_text)
             print(f"Wrote {args.out}.*  ({len(games)} games)")
             return
-        if send_email(subject, body_html, body_text):
+        # Oct 26 2026: pre-game emails turned off (user: the Slack group DMs replace them). PREGAME_EMAIL = True brings them back.
+        if PREGAME_EMAIL and send_email(subject, body_html, body_text):
             sent.update({k: stamp for k, _ in due})
     elif not args.out:
         print("Email: no games due.")
