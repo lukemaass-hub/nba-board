@@ -404,7 +404,7 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
     monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
     monkeypatch.setattr(e, "all_games", lambda data: [game])
     lineups = lambda c: {"lineups": {t: {"date": "2026-10-20", "confirmed": c} for t in ("PHI", "NYK")}}
-    early, late = dt.datetime(2026, 10, 20, 18, 20, tzinfo=e.ET), dt.datetime(2026, 10, 20, 18, 47, tzinfo=e.ET)
+    early, late = dt.datetime(2026, 10, 20, 18, 20, tzinfo=e.ET), dt.datetime(2026, 10, 20, 18, 51, tzinfo=e.ET)
 
     def run(mode, data, now):
         monkeypatch.setenv("SLACK_DM_MODE", mode); sentto.clear(); log = {}
@@ -416,7 +416,7 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
     # lineups confirmed: one group DM with the Cores and Props traders (Evan, Amol), just the report
     users, log = run("on", lineups(True), early)
     assert users == ["U09BNHCQD5Z,U0ACFA2QDFF"] and "dm 2026-10-20 PHI@NYK" in log and sentto[0][1] == []
-    # never confirmed: sent anyway 15 min before tip
+    # never confirmed: sent anyway 10 min before tip
     assert run("on", lineups(False), late)[0] == ["U09BNHCQD5Z,U0ACFA2QDFF"]
     # extra people for a date (the owner on Oct 26 2026) join the group
     monkeypatch.setattr(sa, "ALSO_INCLUDE", {"2026-10-20": ["U0B5EP4PV3M"]})
@@ -540,7 +540,9 @@ def test_unattended_catch_up_watchdog_and_alerts(monkeypatch):
     monkeypatch.setenv("SLACK_DM_MODE", "on")
     at = lambda h, m: dt.datetime(2026, 10, 20, h, m, tzinfo=e.ET)
     log = {}
-    e.dm_traders({}, "x", at(18, 32), 25, log, "s")        # 28 min before tip, not confirmed: the 30-min fallback sends
+    e.dm_traders({}, "x", at(18, 32), 25, log, "s")        # 28 min before tip, not confirmed: wait
+    assert sends == []
+    e.dm_traders({}, "x", at(18, 50), 25, log, "s")        # 10 min before tip: the fallback sends
     assert len(sends) == 1 and "dm 2026-10-20 PHI@NYK" in log
     sends.clear(); log = {}
     e.dm_traders({}, "x", at(19, 6), 25, log, "s")         # a run that started late still catches up after tip
