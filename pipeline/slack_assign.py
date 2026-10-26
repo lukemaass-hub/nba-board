@@ -89,6 +89,20 @@ def fetch_schedule(token, date, channel=SCHEDULE_CHANNEL):
     return None
 
 
+_names = {}
+
+
+def user_name(token, user):
+    """Display name for a Slack user ID (the schedule read through the API has only <@U...>). Needs users:read."""
+    if user not in _names:
+        try:
+            u = _api(token, "users.info", {"user": user})["user"]
+            _names[user] = (u.get("profile") or {}).get("real_name") or u.get("real_name") or u.get("name") or user
+        except Exception:
+            _names[user] = user
+    return _names[user]
+
+
 def dm(token, user, text, blocks):
     _api(token, "chat.postMessage", body={"channel": user, "text": text, "blocks": blocks, "unfurl_links": False})
 

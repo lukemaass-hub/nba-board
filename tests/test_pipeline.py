@@ -392,6 +392,7 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
     game = {"date": "2026-10-20", "time": "19:00", "away": "PHI", "home": "NYK", "venue": ""}
     sentto = []
     monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: text)
+    monkeypatch.setattr(sa, "user_name", lambda token, user: "Name " + user)
     monkeypatch.setattr(sa, "dm", lambda token, user, title, blocks: sentto.append((user, blocks)))
     monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
     monkeypatch.setattr(e, "all_games", lambda data: [game])
