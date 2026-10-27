@@ -646,3 +646,41 @@ def test_sportsline_projected_minutes_tags():
     assert e.sl_text(tags, "Jake LaRavia") == " 📈 _Expected 31 min (+6.0)_"
     assert e.sl_text(tags, "Austin Reaves") == " 📉 _Expected 30 min (-5.0)_"           # exactly 5 counts
     assert e.sportsline_tags(data, "LAL", "2026-10-28") == {}                             # other day: nothing
+
+
+def test_failed_group_dm_is_not_marked_sent(monkeypatch):
+    import email_report as e, slack_assign as sa
+    text = "*10/27 IP Trader Schedule (Times EST)*\n_*NBA*_ :nba:\n8:00 PM - Sacramento Kings @ San Antonio Spurs - <@U08EZ944MHB|Colton Pettit>\n"
+    game = {"date": "2026-10-27", "time": "20:00", "away": "SAC", "home": "SAS", "venue": ""}
+    tries = []
+    def boom(token, users, title, blocks):
+        tries.append(users)
+        if len(tries) == 1:
+            raise RuntimeError("Slack chat.postMessage: ratelimited")
+    monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: text)
+    monkeypatch.setattr(sa, "group_dm", boom)
+    monkeypatch.setattr(sa, "ALSO_INCLUDE", {})
+    monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
+    monkeypatch.setattr(e, "all_games", lambda data: [game])
+    monkeypatch.setenv("SLACK_DM_MODE", "on")
+    log = {}
+    e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 19, 50, tzinfo=e.ET), 25, log, "s")
+    assert "dm 2026-10-27 SAC@SAS" not in log                      # failed: not marked, so it is tried again
+    e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 19, 53, tzinfo=e.ET), 25, log, "s")
+    assert len(tries) == 2 and log["dm 2026-10-27 SAC@SAS"] == "s"
+
+
+def test_accented_names_match_plain_ones():
+    import update_data as u
+    assert u.norm_name("Nikola Jokić") == u.norm_name("Nikola Jokic") == "nikolajokic"
+    assert u.norm_name("Luka Dončić") == "lukadoncic" and u.norm_name("Đorđe X") == "dordex"
+
+
+def test_early_season_mpg_shows_games_played():
+    import email_report as e
+    data = {"season_minutes": {"season": "2026-27", "last_season": "2025-26",
+                               "current": {"Joan Beringer": [3, 13.7, "MIN"], "Anthony Edwards": [6, 35.0, "MIN"]},
+                               "last": {"Rookie Guy": [40, 7.9, "MIN"]}}}
+    assert e.mins_tag(data, "Joan Beringer", True) == " (13.7 MPG, 3 GP)"
+    assert e.mins_tag(data, "Anthony Edwards", True) == " (35.0 MPG)"
+    assert e.mins_tag(data, "Rookie Guy", True) == " (7.9 MPG, 2025-26)"
