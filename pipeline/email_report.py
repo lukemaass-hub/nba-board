@@ -104,6 +104,23 @@ def starters_for(data, team, date, inj):
     return "Projected starters (depth chart)", rows
 
 
+def replacements_for(data, team, inj):
+    """{injured player's norm name: replacement name} for players out or doubtful: the next healthy player below him at
+    his position on the depth chart (the same heuristic the board uses for "Minutes up")."""
+    chart = (data.get("depth") or {}).get(team) or {}
+    status = {norm_name(i["player"]): i["st"] for i in inj}
+    hurt = lambda n: status.get(norm_name(n)) in ("out", "doubt")
+    out = {}
+    for p in POS:
+        col = [n.strip() for part in (chart.get(p) or "").split("/") for n in part.split(",") if n.strip()]
+        for k, n in enumerate(col):
+            if hurt(n) and norm_name(n) not in out:
+                sub = next((m for m in col[k + 1:] if not hurt(m)), None)
+                if sub:
+                    out[norm_name(n)] = sub
+    return out
+
+
 ESPN_LOGO = {"GSW": "gs", "NOP": "no", "NYK": "ny", "SAS": "sa", "UTA": "utah", "WAS": "wsh"}
 TAG = {"out": ("OUT", "#c0392b"), "doubt": ("DOUBT", "#d35400"), "q": ("GTD", "#b7950b"), "prob": ("PROB", "#1e8449")}
 
@@ -367,11 +384,19 @@ def pressers_for(data, team, now=None, hours=NEWS_HOURS):
     return sorted(out, key=lambda n: n["at"], reverse=True)
 
 
+# Beat-writer news is now limited to MINUTES news (user, Oct 27 2026): a minutes restriction / limit, or more or fewer
+# minutes. Status news (out / questionable) still sets the player's status, it just isn't listed. Same rule on the board.
+NEWS_MINUTES = re.compile(r"minutes?[- ](restriction|limit|cap|count)|restrict|(increased?|increasing|more|expanded|bigger|larger|"
+                          r"reduced?|fewer|limited|lighter|heavier|extra) (minutes|role|workload|playing time)|playing time|"
+                          r"workload|load management|ramp(ing|ed)? up|minutes (will|to) (increase|go up|grow|climb)|\bon a minutes", re.I)
+
+
 def news_for(data, team, now=None):
     """Beat-writer news (RotoWire feed) about this team's players from the last 36 hours, newest first:
     injuries, suspensions and minutes restrictions only (news_relevant)."""
     now = now or dt.datetime.now(dt.timezone.utc)
     items = sorted((i for i in data.get("news", []) if i.get("team") == team and news_relevant(i)
+                    and NEWS_MINUTES.search(f"{i.get('headline', '')} {i.get('text', '')}")
                     and dt.datetime.fromisoformat(i["at"]) >= now - dt.timedelta(hours=NEWS_HOURS)), key=lambda i: i["at"], reverse=True)
     out, seen = [], set()
     for i in items:                   # one item per player: only his newest (user's rule, Oct 26 2026)
@@ -551,12 +576,21 @@ def build_slack(data, game, date, test=False):
         blocks.append({"type": "context", "elements": [
             {"type": "image", "image_url": logo_url, "alt_text": team},
             {"type": "mrkdwn", "text": f"*{e(name(team))}*"}]})
+        # who replaces each player out / doubtful: marked ⬆️ next to the replacement (user, Oct 27 2026)
+        repl = replacements_for(data, team, inj)
+        names_by = {norm_name(i["player"]): i["player"] for i in inj}
+        up_for = {}
+        for k, sub in repl.items():
+            up_for.setdefault(norm_name(sub), []).append(names_by.get(k, k))
+        upt = lambda n: f"  ⬆️ _in for {e(', '.join(up_for[norm_name(n)]))}_" if norm_name(n) in up_for else ""
         if starters:
-            rows = [f"`{p:<2}` *{e(n)}*{mins_tag(data, n, True)}{exp_text(xt, n)}{tag.get(status.get(norm_name(n)), '')}{change_text(data, n)}{f'  _in for {e(why[7:])}_' if why else ''}"
+            rows = [f"`{p:<2}` *{e(n)}*{mins_tag(data, n, True)}{exp_text(xt, n)}{tag.get(status.get(norm_name(n)), '')}{change_text(data, n)}"
+                    f"{f'  ⬆️ _in for {e(why[7:])}_' if why else upt(n)}"
                     for p, n, why in starters]
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": f"_{e(label)}_\n" + "\n".join(rows)}})
         if bench or deep:
-            txt = "*Bench:* " + " · ".join(f"{e(n)}{mins_tag(data, n, True)}{exp_text(xt, n)}{tag.get(st, '')}{change_text(data, n)}" for _, n, st in bench)
+            txt = "*Bench:* " + " · ".join(f"{f'*{e(n)}*' if norm_name(n) in up_for else e(n)}{mins_tag(data, n, True)}{exp_text(xt, n)}"
+                                           f"{tag.get(st, '')}{change_text(data, n)}{upt(n)}" for _, n, st in bench)
             up = deep_bench_up(data, team, date, deep, skip={k for k, st in status.items() if st in ("out", "doubt")})
             if up:
                 txt += "\n*Deep bench, expected up:* " + ", ".join(
@@ -579,10 +613,11 @@ def build_slack(data, game, date, test=False):
         lines = []
         for i in inj:
             who = f"<{i['link']}|{e(i['player'])}>" if i["link"] else e(i["player"])
-            per = f" _(per {e(i['beat'])})_" if i["beat"] else ""
-            lines.append(f"{DOT[i['st']]} *{who}*{mins_tag(data, i['player'], True)} {LABEL[i['st']]}{per}"
+            # no source names (user, Oct 27 2026); the replacement of anyone out / doubtful is highlighted
+            sub = repl.get(norm_name(i["player"])) if i["st"] in ("out", "doubt") else None
+            lines.append(f"{DOT[i['st']]} *{who}*{mins_tag(data, i['player'], True)} {LABEL[i['st']]}"
                          f"{' · ' + e(i['injury']) if i['injury'] else ''}"
-                         f" · {', '.join(e(x['src']) for x in i['srcs'])}{' · sources differ' if i['differ'] else ''}")
+                         f"{f'  →  ⬆️ *{e(sub)}*{mins_tag(data, sub, True)} steps in' if sub else ''}")
         blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
                        "text": ("*Injuries*\n" + "\n".join(lines))[:2900] if lines else "✅ No injuries listed"}]})
         blocks.append({"type": "divider"})

@@ -786,7 +786,9 @@ function newsRelevant(i){ const t=`${i.headline||""} ${i.text||""}`; if(NEWS_BOX
 function newsHTML(code){
   // one item per player: only his newest (user's rule, Oct 26 2026)
   const seen=new Set();
-  const items=NEWS.filter(i=>i.team===code&&newsRelevant(i)&&Date.now()-Date.parse(i.at)<36*3600e3).sort((a,b)=>b.at.localeCompare(a.at))
+  // minutes news only (user, Oct 27 2026): restrictions / limits, more or fewer minutes (same rule as NEWS_MINUTES in email_report.py)
+  const MINUTES=/minutes?[- ](restriction|limit|cap|count)|restrict|(increased?|increasing|more|expanded|bigger|larger|reduced?|fewer|limited|lighter|heavier|extra) (minutes|role|workload|playing time)|playing time|workload|load management|ramp(ing|ed)? up|minutes (will|to) (increase|go up|grow|climb)|\bon a minutes/i;
+  const items=NEWS.filter(i=>i.team===code&&newsRelevant(i)&&MINUTES.test(`${i.headline||""} ${i.text||""}`)&&Date.now()-Date.parse(i.at)<36*3600e3).sort((a,b)=>b.at.localeCompare(a.at))
     .filter(i=>{ const k=normName(i.player); if(seen.has(k)) return false; seen.add(k); return true; }).slice(0,4);
   if(!items.length) return "";
   return `<div class="sech" style="margin-top:8px">Beat-writer news</div>`+items.map(i=>`<div class="news"><div><b>${esc(i.player)}</b> · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.headline)}</a> <span class="nc">${esc(i.reporter||"RotoWire")} · ${agoText(i.at)}</span></div><div class="nt" title="${esc(i.text)}">${esc(i.text)}</div></div>`).join("");

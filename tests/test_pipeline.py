@@ -501,11 +501,12 @@ def test_one_news_item_per_player_and_name_spellings_merge():
     import email_report as e, update_data as u
     assert u.norm_name("Nae Qwan Tomlin") == u.norm_name("Nae'Qwan Tomlin")
     data = {"news": [
-        {"team": "MIN", "player": "Anthony Edwards", "headline": "Listed as questionable", "text": "Edwards (knee) is questionable.", "at": "2026-10-26T17:00:00+00:00"},
-        {"team": "MIN", "player": "Anthony Edwards", "headline": "Upgraded to available", "text": "Edwards (knee) is available.", "at": "2026-10-26T21:45:00+00:00"}],
+        {"team": "MIN", "player": "Anthony Edwards", "headline": "On minutes restriction", "text": "Edwards (knee) will be on a minutes restriction.", "at": "2026-10-26T17:00:00+00:00"},
+        {"team": "MIN", "player": "Anthony Edwards", "headline": "No restriction", "text": "Edwards (knee) won't face a minutes limit.", "at": "2026-10-26T21:45:00+00:00"},
+        {"team": "MIN", "player": "Rudy Gobert", "headline": "Listed as questionable", "text": "Gobert (back) is questionable.", "at": "2026-10-26T21:00:00+00:00"}],
         "injuries": [u.rec("CLE", "Nae Qwan Tomlin", "Covers", "O"), u.rec("CLE", "Nae'Qwan Tomlin", "CBS", "O")]}
     now = dt.datetime(2026, 10, 26, 22, 0, tzinfo=dt.timezone.utc)
-    assert [i["headline"] for i in e.news_for(data, "MIN", now)] == ["Upgraded to available"]
+    assert [i["headline"] for i in e.news_for(data, "MIN", now)] == ["No restriction"]   # newest only; status-only news left out
     assert len(e.injuries_for(data, "CLE", "2026-10-26")) == 1
 
 

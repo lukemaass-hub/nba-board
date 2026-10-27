@@ -130,6 +130,10 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   B0B37B4MR5M, workspace T030UFQJYEL, scopes incl. chat:write, mpim:write, channels:history, users:read); it can read
   #in-play-trading. The user pasted it in chat; it belongs only in the SLACK_BOT_TOKEN secret, never in a file.
   SLACK_TEST_CHANNEL (repo variable, optional): where test-mode posts go so they are visible.
+- Slack report (Oct 27 2026, user): injury lines show no source names; each player out / doubtful gets his replacement
+  (replacements_for: next healthy player below him at his depth-chart position) as "→ ⬆️ Name steps in", and the
+  replacement is marked "⬆️ in for X" in starters / bench. Beat-writer news lists MINUTES news only (NEWS_MINUTES:
+  restrictions, limits, more / fewer minutes), board too; status news still sets statuses.
 - Back-to-back warning (Oct 26 2026, user's rule): when a team plays the 1st or 2nd game of games on consecutive
   days (ET, from the schedule), a yellow "🔁 BACK-TO-BACK: <team> · 2nd game of a back-to-back: played @ NYK last night"
   (or "1st game ...: vs MIA tomorrow 7:30 PM ET") line sits at the top of that game in the email, Slack and board
