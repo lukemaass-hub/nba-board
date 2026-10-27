@@ -643,6 +643,6 @@ def test_sportsline_projected_minutes_tags():
                                "last": {}}}
     tags = e.sportsline_tags(data, "LAL", "2026-10-27")
     assert set(tags) == {e.norm_name("Austin Reaves"), e.norm_name("Jake LaRavia")}       # Luka +1: no tag
-    assert e.sl_text(tags, "Jake LaRavia") == " 📈 _SportsLine 31 min (+6.0)_"
-    assert e.sl_text(tags, "Austin Reaves") == " 📉 _SportsLine 30 min (-5.0)_"           # exactly 5 counts
+    assert e.sl_text(tags, "Jake LaRavia") == " 📈 _Expected 31 min (+6.0)_"
+    assert e.sl_text(tags, "Austin Reaves") == " 📉 _Expected 30 min (-5.0)_"           # exactly 5 counts
     assert e.sportsline_tags(data, "LAL", "2026-10-28") == {}                             # other day: nothing
