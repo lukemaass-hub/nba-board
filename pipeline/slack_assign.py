@@ -22,7 +22,7 @@ Try it without Slack:  python pipeline/slack_assign.py --text-file schedule.txt 
 import argparse, datetime as dt, json, os, re, sys, urllib.parse, urllib.request
 
 sys.path.insert(0, os.path.dirname(__file__))
-from update_data import TEAMS, all_games  # noqa: E402
+from update_data import ET, TEAMS, all_games  # noqa: E402
 
 SCHEDULE_CHANNEL = "C06U8AW81K2"   # #in-play-trading
 OWNER = "U0B5EP4PV3M"              # Luke Maass: test mode sends everything here
@@ -81,7 +81,7 @@ def _api(token, method, params=None, body=None):
 
 def fetch_schedule(token, date, channel=SCHEDULE_CHANNEL):
     """Today's schedule message text from the channel, or None if it isn't posted (yet)."""
-    start = dt.datetime.combine(date, dt.time(0), tzinfo=dt.timezone(dt.timedelta(hours=-5)))   # midnight ET-ish
+    start = dt.datetime.combine(date, dt.time(0), tzinfo=ET)   # midnight Eastern (daylight or winter time)
     res = _api(token, "conversations.history", {"channel": channel, "oldest": f"{start.timestamp() - 6 * 3600:.0f}", "limit": 100})
     for msg in res.get("messages", []):
         if is_schedule(msg.get("text"), date):

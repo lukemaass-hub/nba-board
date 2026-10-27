@@ -9,8 +9,10 @@ on:
     # in winter). The "gate" job ends it in seconds unless a game tips within the next 45 minutes without its group DM;
     # then the run stays on (also for games right after), checks lineups every 3 minutes and sends.
     - cron: "0,30 15-23,0-3 * * *"
-    # Mondays 9 AM Eastern: weekly minutes-changes email
+    # Mondays 9 AM Eastern: weekly minutes-changes email. GitHub schedules in UTC, so both 13:00 (daylight time) and
+    # 14:00 UTC (winter, from Nov 1) run; the email step only goes ahead on the one that is 9 AM Eastern that day.
     - cron: "0 13 * * 1"
+    - cron: "0 14 * * 1"
   workflow_dispatch:
     inputs:
       test_slack:
@@ -91,7 +93,7 @@ jobs:
           MINUTES_CSV_URL: ${{ secrets.MINUTES_CSV_URL }}
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          PREGAME: ${{ github.event_name == 'schedule' && github.event.schedule != '0 11 * * *' && github.event.schedule != '0 13 * * 1' && '90' || '' }}
+          PREGAME: ${{ github.event_name == 'schedule' && github.event.schedule != '0 11 * * *' && github.event.schedule != '0 13 * * 1' && github.event.schedule != '0 14 * * 1' && '90' || '' }}
         run: python pipeline/update_data.py --out data.json ${PREGAME:+--pregame "$PREGAME"}
 
       - name: Email / Slack the report for games tipping off soon
@@ -126,12 +128,19 @@ jobs:
         run: python pipeline/email_report.py --data data.json --test-email --game "$TEST_GAME"
 
       - name: Weekly minutes-changes email (Mondays, or when you tick the box)
-        if: ${{ github.event.schedule == '0 13 * * 1' || (github.event_name == 'workflow_dispatch' && inputs.weekly_email) }}
+        if: ${{ github.event.schedule == '0 13 * * 1' || github.event.schedule == '0 14 * * 1' || (github.event_name == 'workflow_dispatch' && inputs.weekly_email) }}
         env:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
-        run: python pipeline/email_report.py --data data.json --weekly
+          SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          # only the run that is 9 AM Eastern: 13:00 UTC while on daylight time (-0400), 14:00 UTC in winter (-0500)
+          off=$(TZ=America/New_York date +%z)
+          if { [ "$SCHEDULE" = "0 13 * * 1" ] && [ "$off" != "-0400" ]; } || { [ "$SCHEDULE" = "0 14 * * 1" ] && [ "$off" != "-0500" ]; }; then
+            echo "Not 9 AM Eastern on this run; the other Monday run sends the email."; exit 0
+          fi
+          python pipeline/email_report.py --data data.json --weekly
 
       # Stays on until every game today has its group DM: sleeps until 30 minutes before the next tip, then refreshes
       # the lineups every 3 minutes and sends as soon as they are confirmed, or at the 10-minute mark. The send log is
@@ -139,7 +148,7 @@ jobs:
       # slate start picks up anything left.
       - name: Keep watching until every game today has its group DM
         id: watch
-        if: ${{ always() && github.event.schedule != '0 11 * * *' && github.event.schedule != '0 13 * * 1' }}
+        if: ${{ always() && github.event.schedule != '0 11 * * *' && github.event.schedule != '0 13 * * 1' && github.event.schedule != '0 14 * * 1' }}
         continue-on-error: true
         env:
           MINUTES_CSV_URL: ${{ secrets.MINUTES_CSV_URL }}

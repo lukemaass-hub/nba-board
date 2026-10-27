@@ -161,3 +161,8 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   -> data["sportsline"]. Slack starters / bench show " 📈 Expected 36 min (+6.2)" (user, Oct 27: say "Expected", not "SportsLine"). Oct 27: no `PROB` tag next to names in Slack; probable is listed only under Injuries; and no "Expected starters (RotoWire, not confirmed)" label above the starters when SportsLine's projection is 5+
   min above or below his MPG (email_report.sportsline_tags, SL_DIFF). FanDuel's projections were declined: they sit
   behind fanduel.com/research/api, which robots.txt disallows. Board doesn't show SportsLine yet.
+- Fixes from Colton's review (Oct 27 2026): a failed Slack group DM is no longer marked sent (retried on the next check,
+  before tip only); names drop accents properly (Jokić -> nikolajokic, also on the board); under 5 games this season Slack
+  shows the count "(13.7 MPG, 3 GP)" (FEW_GAMES); clock change: code already uses America/New_York, the weekly email
+  now has 13:00 and 14:00 UTC Monday crons and only the one at 9 AM Eastern sends; schedule read uses ET midnight.
+  Dolly accent matching is moot while Dolly is off.

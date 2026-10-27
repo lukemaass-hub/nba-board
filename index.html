@@ -529,7 +529,8 @@ const key = (y,m,d)=>`${y}-${pad(m)}-${pad(d)}`;
 const MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
 const DAYS=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 function normName(s){
-  return String(s||"").toLowerCase().replace(/[.'’]/g,"").replace(/[^a-z0-9]+/g," ").trim()
+  return String(s||"").toLowerCase().replace(/đ/g,"d").replace(/ø/g,"o").replace(/ł/g,"l").replace(/ß/g,"ss").replace(/æ/g,"ae")
+    .normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/[.'’]/g,"").replace(/[^a-z0-9]+/g," ").trim()
     .split(" ").filter(t=>!["jr","sr","ii","iii","iv"].includes(t)).join("");   // no spaces: "Nae Qwan" = "Nae'Qwan"
 }
 function fmtTime(t){ const [h,m]=t.split(":").map(Number); return `${((h+11)%12)+1}:${pad(m)} ${h>=12?"PM":"AM"}`; }

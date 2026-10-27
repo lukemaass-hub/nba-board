@@ -199,6 +199,7 @@ def matchup_alerts_for(data, team, opp, inj, starters):
 
 NEWS_HOURS = 36
 CUR_MIN_GAMES = 1          # this season's average as soon as he has played (Oct 26 2026, user: most up-to-date; was 15)
+FEW_GAMES = 5        # under this many games this season, Slack shows the count: "(13.7 MPG, 3 GP)" (Oct 27 2026)
 CHANGE_MIN = 5.0           # minutes up/down vs last season that counts as a big change
 CHANGE_CUR_GAMES = 5       # games this season needed before we call a change
 CHANGE_BASE_GAMES = 10     # games in the comparison season needed
@@ -245,7 +246,9 @@ def mins_tag(data, player, unit=False):
     if not m:
         return ""
     old = m[1] and m[1] != (data.get("season_minutes") or {}).get("season")
-    return f" ({m[0]:.1f}{' MPG' if unit else ''}{f', {m[1]}' if old else ''})"
+    gp = None if old else (_season_index(data)[1]["current"].get(norm_name(player)) or [None])[0]
+    few = f", {gp} GP" if unit and gp and gp < FEW_GAMES else ""     # early season: "(13.7 MPG, 3 GP)"
+    return f" ({m[0]:.1f}{' MPG' if unit else ''}{f', {m[1]}' if old else ''}{few})"
 
 
 def change_html(data, player):
@@ -774,8 +777,9 @@ def dm_traders(data, token, now, window, sent, stamp):
                         users.append(sa.OWNER)
                     sa.group_dm(token, users, title, blocks)
                 print(f"Slack DMs ({m}, {why}): {g['away']}@{g['home']} sent to {'owner (test)' if m == 'test' else who}")
-            except Exception as ex:
-                print(f"Slack DMs: {g['away']}@{g['home']} failed: {ex}")
+            except Exception as ex:   # not marked sent: the next check tries again (still before tip only)
+                print(f"Slack DMs: {g['away']}@{g['home']} failed, will retry: {ex}")
+                continue
         if m != "off":
             sent["dm " + key] = stamp
 

@@ -17,7 +17,7 @@ Sources (each one is optional; a failure keeps that source's last good data, mar
 
 Usage:  python pipeline/update_data.py --out data.json
 """
-import argparse, csv, datetime as dt, io, json, os, re, sys, time
+import argparse, csv, datetime as dt, io, json, os, re, sys, time, unicodedata
 from zoneinfo import ZoneInfo
 
 import requests
@@ -56,8 +56,12 @@ def team_code(s):
     return ALIAS.get(re.sub(r"[.']", "", (s or "").strip().lower()))
 
 
+_NO_SPLIT = str.maketrans({"đ": "d", "ø": "o", "ł": "l", "ß": "ss", "æ": "ae"})
+
+
 def norm_name(s):
-    s = re.sub(r"[.'’]", "", (s or "").lower())
+    s = unicodedata.normalize("NFKD", (s or "").lower().translate(_NO_SPLIT))
+    s = re.sub(r"[.'’]", "", "".join(c for c in s if not unicodedata.combining(c)))   # Jokić -> jokic
     toks = [t for t in re.sub(r"[^a-z0-9]+", " ", s).split() if t not in ("jr", "sr", "ii", "iii", "iv")]
     return "".join(toks)   # no spaces, so "Nae Qwan Tomlin" (Covers) and "Nae'Qwan Tomlin" (CBS) are one player
 
