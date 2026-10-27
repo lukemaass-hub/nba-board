@@ -570,8 +570,9 @@ def test_gate_only_runs_before_games():
     gate = importlib.util.module_from_spec(spec); spec.loader.exec_module(gate)
     data = {"schedule": [{"date": "2026-10-26", "time": "19:00", "away": "WAS", "home": "CHA"}]}
     utc = lambda h, m: dt.datetime(2026, 10, 26, h, m, tzinfo=dt.timezone.utc)     # 19:00 ET = 23:00 UTC
-    assert gate.go(data, utc(15, 30)) and gate.go(data, utc(22, 59))               # a game today still to send
-    assert not gate.go(data, utc(15, 30), {"dm 2026-10-26 WAS@CHA": "x"})         # already sent
+    assert gate.go(data, utc(22, 30)) and gate.go(data, utc(22, 59))               # within 45 min of tip, not sent
+    assert not gate.go(data, utc(21, 30))                                          # 90 min out: not yet
+    assert not gate.go(data, utc(22, 30), {"dm 2026-10-26 WAS@CHA": "x"})         # already sent
     assert not gate.go(data, utc(23, 1))                                           # tipped
     assert "*/5" not in open(os.path.join(os.path.dirname(__file__), "..", ".github", "workflows", "update-data.yml")).read()
 

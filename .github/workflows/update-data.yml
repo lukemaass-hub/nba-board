@@ -4,15 +4,11 @@ on:
   schedule:
     # Morning refresh, 7 AM Eastern (6 AM in winter)
     - cron: "0 11 * * *"
-    # Slate starts (user, Oct 27 2026: a couple of runs before each slate, not every 5 minutes), in UTC:
-    # 11:30 AM, 2:30 PM, 5:30 PM and 6:30 PM Eastern in daylight time (an hour earlier in winter). Each start only
-    # goes ahead if a game today still needs its Slack group DM (the "gate" job); it then STAYS ON, sleeping between
-    # games and checking lineups every 3 minutes from 30 minutes before each tip, until the whole slate is sent.
-    # The later starts are backups in case GitHub skips one (it often starts scheduled runs late or not at all).
-    - cron: "30 15 * * *"
-    - cron: "30 18 * * *"
-    - cron: "30 21 * * *"
-    - cron: "30 22 * * *"
+    # Pre-game starts (user, Oct 27 2026: start ~30 minutes before the games, not throughout the day). GitHub can't
+    # schedule by tip time, so a quick check runs every 30 minutes, 11 AM-11:30 PM Eastern (daylight time; 10 AM-10:30 PM
+    # in winter). The "gate" job ends it in seconds unless a game tips within the next 45 minutes without its group DM;
+    # then the run stays on (also for games right after), checks lineups every 3 minutes and sends.
+    - cron: "0,30 15-23,0-3 * * *"
     # Mondays 9 AM Eastern: weekly minutes-changes email
     - cron: "0 13 * * 1"
   workflow_dispatch:

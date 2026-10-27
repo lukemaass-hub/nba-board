@@ -108,9 +108,9 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 Plain language, no jargon, short answers. The user is not a developer: say exactly where to click.
 
 - Unattended safety (Oct 26-27 2026, user: run without them; only before games; always send before tip, never after;
-  Oct 27: "a couple of runs before each slate", not every 5 min): crons = 7 AM ET refresh, slate starts at 15:30 /
-  18:30 / 21:30 / 22:30 UTC (the last a backup), Monday email. The "gate" job (pipeline/gate.py) lets a slate start
-  proceed only if a game today hasn't tipped and has no group DM (reads email_log.json). That run then STAYS ON (watch
+  Oct 27: "a couple of runs before each slate", not every 5 min): crons = 7 AM ET refresh, a quick check every 30 min
+  ("0,30 15-23,0-3 * * *" UTC), Monday email. The "gate" job (pipeline/gate.py) lets a check proceed only if a game
+  tips within 45 min without its group DM (reads email_log.json; user: start ~30 min before the games). That run then STAYS ON (watch
   step, up to 5 h, job timeout 330): email_report.py --next-wait says how long to sleep (until 30 min before the next
   tip, 30 min at a time; every 3 min inside that), then refresh (update_data --pregame 90) + send + save (commit
   email_log.json after every check, so a stopped run never causes a repeat), until every game today is sent.
