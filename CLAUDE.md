@@ -166,3 +166,5 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   shows the count "(13.7 MPG, 3 GP)" (FEW_GAMES); clock change: code already uses America/New_York, the weekly email
   now has 13:00 and 14:00 UTC Monday crons and only the one at 9 AM Eastern sends; schedule read uses ET midnight.
   Dolly accent matching is moot while Dolly is off.
+- Oct 27 2026: a code push (merge) now only runs the tests, in its own concurrency group (update-data-push). Before, a
+  push run went into the watch step on old code and held the update-data group for hours; the timer's 7 PM run waited.
