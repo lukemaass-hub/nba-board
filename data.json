@@ -8620,7 +8620,7 @@
    "time": "19:30",
    "vs": "BOS",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8628,7 +8628,7 @@
     },
     {
      "pos": "SG",
-     "name": "Keon Ellis"
+     "name": "Nolan Traore"
     },
     {
      "pos": "SF",
@@ -16705,6 +16705,17 @@
  },
  "news": [
   {
+   "id": "nba536398",
+   "player": "Lauri Markkanen",
+   "headline": "Questionable for Wednesday",
+   "text": "Markkanen (wrist) is questionable for Wednesday's game against the Spurs.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/lauri-markkanen-4119",
+   "at": "2026-10-27T23:05:00+00:00",
+   "team": "UTA"
+  },
+  {
    "id": "nba536397",
    "player": "Derrick White",
    "headline": "Will play Tuesday",
@@ -21390,10 +21401,10 @@
    "player": "Anthony Edwards",
    "src": "ESPN",
    "kind": "O",
-   "injury": "Right Knee",
+   "injury": "Right Knee Surgery",
    "upd": "2026-10-27",
    "until": "2026-12-21",
-   "note": "Edwards (knee) is questionable for Wednesday's game against the Warriors.",
+   "note": "Edwards will undergo arthroscopic right knee surgery and is expected to miss up to two months, Shams Charania of ESPN reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Anthony%20Edwards"
   },
@@ -23382,6 +23393,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Thiero"
   },
   {
+   "team": "UTA",
+   "player": "Lauri Markkanen",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-28",
+   "until": "",
+   "note": "Markkanen (wrist) is questionable for Wednesday's game against the Spurs.",
+   "through": "2026-10-28",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/lauri-markkanen-4119",
+   "from": "2026-10-28",
+   "override": true,
+   "at": "2026-10-27T23:05:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "BOS",
    "player": "Derrick White",
    "src": "Bobby Krivitsky",
@@ -24539,27 +24567,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-10-27T23:06:48+00:00",
+ "generated_at": "2026-10-27T23:10:07+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-27T23:06:33+00:00",
+   "at": "2026-10-27T23:09:51+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-27T23:06:44+00:00",
+   "at": "2026-10-27T23:10:02+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-27T23:06:47+00:00",
+   "at": "2026-10-27T23:10:06+00:00",
    "teams": 8,
    "injuries": 15
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-27T23:06:47+00:00",
+   "at": "2026-10-27T23:10:06+00:00",
    "current_players": 411,
    "last_players": 582
   },
@@ -24569,17 +24597,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-27T23:06:47+00:00",
+   "at": "2026-10-27T23:10:06+00:00",
    "count": 94
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-27T23:06:48+00:00",
+   "at": "2026-10-27T23:10:06+00:00",
    "count": 81
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-27T23:06:48+00:00",
+   "at": "2026-10-27T23:10:06+00:00",
    "count": 94
   },
   "x": {
@@ -24588,21 +24616,21 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-10-27T23:06:48+00:00",
+   "at": "2026-10-27T23:10:06+00:00",
    "players": 83,
    "read_at": "2026-10-27T22:57:56+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-10-27T23:06:48+00:00",
+   "at": "2026-10-27T23:10:06+00:00",
    "injuries": 83,
    "notes": 117,
    "read_at": "2026-10-27T22:57:57+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-10-27T23:06:48+00:00",
-   "count": 139
+   "at": "2026-10-27T23:10:07+00:00",
+   "count": 140
   }
  }
 }
