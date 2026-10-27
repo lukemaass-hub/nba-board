@@ -691,7 +691,9 @@ def dm_traders(data, token, now, window, sent, stamp):
     for key, g, confirmed in due:
         # one group DM per game: the bot + that game's Props AND Cores traders (user's choice, Oct 26 2026), like the
         # football reports; a lone trader gets a one-on-one message instead (hidden while the bot's Messages tab is off)
-        people = [p for p in sched.get((g["away"], g["home"]), []) if re.search(r"prop|core", p["role"], re.I)]
+        listed = sched.get((g["away"], g["home"]), [])
+        # Props and Cores traders; a game listing traders with no role (e.g. "- Colton Pettit") sends to them all
+        people = [p for p in listed if re.search(r"prop|core", p["role"], re.I)] or [p for p in listed if not p["role"]]
         for p in people:
             p["name"] = p["name"] or sa.user_name(token, p["user"])
         who = sa.plan(people)
