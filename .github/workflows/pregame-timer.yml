@@ -1,0 +1,52 @@
+name: Pre-game timer
+
+# Starts the "Update availability data" run exactly 30 minutes before each game (user, Oct 27 2026: "make sure it
+# goes 30 mins before"). GitHub's own schedule can start hours-precise jobs but is often 30+ minutes late, so this
+# job starts in the morning, works out today's tip times from data.json, SLEEPS until 30 minutes before each game and
+# then starts the real run (which checks lineups every 3 minutes and sends the Slack group DM). A job may run at most
+# 6 hours, so before that it starts a fresh copy of itself to keep waiting. The half-hourly checks in
+# update-data.yml stay as a backup in case this timer ever fails.
+on:
+  schedule:
+    - cron: "0 12 * * *"      # 8 AM Eastern (7 AM in winter); has hours of slack before the first game
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: pregame-timer
+  cancel-in-progress: true    # a newer timer replaces an older one
+
+jobs:
+  timer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: |
+            data.json
+            email_log.json
+            pipeline/gate.py
+          sparse-checkout-cone-mode: false
+      - name: Wait for 30 minutes before each game, then start the real run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          start=$(date +%s); after=""
+          while true; do
+            git pull -q origin main || true          # fresh email_log.json: skip games already sent
+            read secs tip < <(python3 pipeline/gate.py --next-start data.json email_log.json "$after")
+            if [ "$secs" -lt 0 ]; then echo "No more games today."; break; fi
+            left=$(( 20700 - ($(date +%s) - start) ))  # stay under GitHub's 6-hour limit (5 h 45 min)
+            if [ "$secs" -gt "$left" ]; then
+              echo "Next start is too far away for this job: handing over to a fresh timer."
+              sleep "$left"; gh workflow run pregame-timer.yml --ref main; break
+            fi
+            echo "Next game tips $tip: starting the real run in $((secs / 60)) min"
+            sleep "$secs"
+            gh workflow run update-data.yml --ref main
+            after="$tip"
+          done

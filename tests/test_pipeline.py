@@ -614,3 +614,18 @@ def test_lone_trader_gets_the_owner_added(monkeypatch):
     monkeypatch.setenv("SLACK_DM_MODE", "on")
     e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 19, 50, tzinfo=e.ET), 25, {}, "s")
     assert sends == [["U08EZ944MHB", sa.OWNER]]
+
+
+def test_timer_starts_30_minutes_before_each_game():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("gate", os.path.join(os.path.dirname(__file__), "..", "pipeline", "gate.py"))
+    gate = importlib.util.module_from_spec(spec); spec.loader.exec_module(gate)
+    data = {"schedule": [{"date": "2026-10-27", "time": "19:30", "away": "BKN", "home": "BOS"},
+                         {"date": "2026-10-27", "time": "22:00", "away": "POR", "home": "LAL"}]}
+    et = gate.ZoneInfo("America/New_York")
+    at = lambda h, m: dt.datetime(2026, 10, 27, h, m, tzinfo=et)
+    assert gate.next_start(data, at(8, 0)) == (11 * 3600, at(19, 30))          # 8 AM: start at 7:00 PM
+    assert gate.next_start(data, at(19, 5)) == (0, at(19, 30))                 # already inside 30 min: now
+    assert gate.next_start(data, at(19, 5), after=at(19, 30)) == (2 * 3600 + 25 * 60, at(22, 0))   # then 9:30 PM
+    assert gate.next_start(data, at(8, 0), {"dm 2026-10-27 BKN@BOS": "x"})[1] == at(22, 0)
+    assert gate.next_start(data, at(23, 0)) == (-1, None)

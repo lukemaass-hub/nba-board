@@ -29,7 +29,36 @@ def go(data, now, sent=None):
     return False
 
 
+LEAD_MIN = 30       # the timer starts the real run this long before each tip (user, Oct 27 2026)
+
+
+def next_start(data, now, sent=None, after=None):
+    """Seconds until the timer should start the real run: LEAD_MIN before the next game (ET, today) that has no group
+    DM yet and tips after `after` (a datetime, to move past a game already handled); 0 if that moment has passed but
+    the game hasn't tipped; -1 if there is nothing left today. Returns (seconds, tip)."""
+    et = ZoneInfo("America/New_York")
+    today = now.astimezone(et).date().isoformat()
+    tips = []
+    for g in data.get("schedule", []) + [{"date": l["date"], "time": l["time"], "away": l.get("vs"), "home": t}
+                                          for t, l in (data.get("lineups") or {}).items() if l.get("home") and l.get("time")]:
+        tip = dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=et)
+        if g["date"] == today and now < tip and (after is None or tip > after) \
+                and f"dm {g['date']} {g['away']}@{g['home']}" not in (sent or {}):
+            tips.append(tip)
+    if not tips:
+        return -1, None
+    tip = min(tips)
+    return max(0, int((tip - dt.timedelta(minutes=LEAD_MIN) - now).total_seconds())), tip
+
+
 if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "--next-start":     # gate.py --next-start data.json email_log.json [after]
+        d = json.load(open(sys.argv[2]))
+        sent = json.load(open(sys.argv[3])) if os.path.exists(sys.argv[3]) else {}
+        after = dt.datetime.fromisoformat(sys.argv[4]) if len(sys.argv) > 4 and sys.argv[4] else None
+        secs, tip = next_start(d, dt.datetime.now(dt.timezone.utc), sent, after)
+        print(secs, tip.isoformat() if tip else "")
+        sys.exit(0)
     ev, sched = os.environ.get("EVENT", ""), os.environ.get("SCHEDULE", "")
     ok = True
     if ev == "schedule" and sched in PREGAME_CRONS:
