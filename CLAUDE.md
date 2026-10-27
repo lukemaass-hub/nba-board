@@ -107,18 +107,16 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
 ## Style preferences
 Plain language, no jargon, short answers. The user is not a developer: say exactly where to click.
 
-- Unattended safety (Oct 26 2026, user: must run without them watching; only check before games; always send before
-  tip, never after): cron every 5 min 10 AM-midnight ET, but the "gate" job (pipeline/gate.py) skips the run unless a
-  game tips within 90 min (or tipped <15 min ago, only for the alert); the 3 daily refreshes / Monday email / pushes /
-  manual runs always run. Group DMs: lineups confirmed, else 10 min before tip (PROPS_FALLBACK_MIN), never after tip;
-  a run that starts up to 9 min before a game's 10-minute mark waits for it and sends (next_fallback / DM_WAIT_MIN).
-  tests / data refresh / send steps are continue-on-error; the save step always runs and retries the push
-  (email_log.json must be saved or a DM would repeat). The owner gets an email (alert(), EMAIL_TO) if a step fails
-  (at most once an hour) or a game tips with no group DM sent (once per game). Side effect: the RotoWire news RSS is
-  now only polled near games and 3x a day, so some news items between can be missed.
-  GitHub actually started the 5-min schedule only ~every 30 min (Oct 26 2026), so the workflow's "Keep watching" step
-  loops (every 3 min, up to an hour; job timeout 75) while email_report.py --pending 75 says a game tipping within 75
-  min still lacks its group DM: refresh (update_data --pregame 90) + send. One run reaching the window is enough.
+- Unattended safety (Oct 26-27 2026, user: run without them; only before games; always send before tip, never after;
+  Oct 27: "a couple of runs before each slate", not every 5 min): crons = 7 AM ET refresh, slate starts at 15:30 /
+  18:30 / 21:30 / 22:30 UTC (the last a backup), Monday email. The "gate" job (pipeline/gate.py) lets a slate start
+  proceed only if a game today hasn't tipped and has no group DM (reads email_log.json). That run then STAYS ON (watch
+  step, up to 5 h, job timeout 330): email_report.py --next-wait says how long to sleep (until 75 min before the next
+  tip, 30 min at a time; every 3 min inside that), then refresh (update_data --pregame 90) + send + save (commit
+  email_log.json after every check, so a stopped run never causes a repeat), until every game today is sent.
+  Group DMs: lineups confirmed, else 10 min before tip, never after tip. Steps are continue-on-error; the owner gets an
+  email if a step fails (once an hour) or a game tips without its group DM. The RotoWire news RSS is now read only
+  around games and in the morning, so some news items can be missed.
 - Presser Wire (Oct 26 2026, user's choice; the user's company OK'd the use): update_data.fetch_presserwire reads two
   pages, at most every 15 min (their terms: no wholesale copying or bulk scraping): presserwire.com/nba/injury-report.html
   = the NBA's OFFICIAL injury report -> injury records src "NBA report" with override (newest override wins vs beat

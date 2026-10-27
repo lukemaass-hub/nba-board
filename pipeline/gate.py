@@ -1,13 +1,11 @@
-"""Should this scheduled run do anything? (Oct 26 2026, user: only check before games, not all day.)
-The every-5-minute schedule only proceeds when a game tips within the next WINDOW_MIN minutes (ET); the three daily
-refreshes, the Monday email, pushes and manual runs always proceed. Writes go=true/false to $GITHUB_OUTPUT.
-Standard library only, so it runs before anything is installed."""
+"""Should this scheduled run do anything? (Oct 27 2026, user: run a couple of times before each slate, not every 5 min.)
+The slate starts (PREGAME_CRONS) only proceed when a game today has not tipped and has no group DM yet; the run then
+stays on until the whole slate is sent. The morning refresh, the Monday email, pushes and manual runs always proceed.
+Writes go=true/false to $GITHUB_OUTPUT. Standard library only, so it runs before anything is installed."""
 import datetime as dt, json, os, sys
 from zoneinfo import ZoneInfo
 
-WINDOW_MIN = 90
-AFTER_MIN = 15      # a few minutes after tip too, only so a game that tipped unsent triggers the owner's alert email
-PREGAME_CRON = "*/5 14-23,0-3 * * *"
+PREGAME_CRONS = {"30 15 * * *", "30 18 * * *", "30 21 * * *", "30 22 * * *"}   # UTC; the last one is a backup
 
 
 def games(data):
@@ -18,11 +16,14 @@ def games(data):
     return out
 
 
-def go(data, now):
+def go(data, now, sent=None):
+    """A game today (ET) that hasn't tipped and has no group DM yet."""
     et = ZoneInfo("America/New_York")
-    for d, t in games(data):
-        tip = dt.datetime.fromisoformat(f"{d}T{t}").replace(tzinfo=et)
-        if now - dt.timedelta(minutes=AFTER_MIN) <= tip <= now + dt.timedelta(minutes=WINDOW_MIN):
+    today = now.astimezone(et).date().isoformat()
+    for g in data.get("schedule", []) + [{"date": l["date"], "time": l["time"], "away": l.get("vs"), "home": t}
+                                          for t, l in (data.get("lineups") or {}).items() if l.get("home") and l.get("time")]:
+        tip = dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=et)
+        if g["date"] == today and now < tip and f"dm {g['date']} {g['away']}@{g['home']}" not in (sent or {}):
             return True
     return False
 
@@ -30,11 +31,13 @@ def go(data, now):
 if __name__ == "__main__":
     ev, sched = os.environ.get("EVENT", ""), os.environ.get("SCHEDULE", "")
     ok = True
-    if ev == "schedule" and sched == PREGAME_CRON:
+    if ev == "schedule" and sched in PREGAME_CRONS:
         try:
-            ok = go(json.load(open(sys.argv[1] if len(sys.argv) > 1 else "data.json")), dt.datetime.now(dt.timezone.utc))
+            log = sys.argv[2] if len(sys.argv) > 2 else "email_log.json"
+            sent = json.load(open(log)) if os.path.exists(log) else {}
+            ok = go(json.load(open(sys.argv[1] if len(sys.argv) > 1 else "data.json")), dt.datetime.now(dt.timezone.utc), sent)
         except Exception as e:          # can't tell: run, to be safe
             print(f"gate: {e}")
-    print(f"gate: {'go' if ok else 'no game within %d min, nothing to do' % WINDOW_MIN}")
+    print(f"gate: {'go' if ok else 'every game today is sent or has tipped: nothing to do'}")
     with open(os.environ.get("GITHUB_OUTPUT", os.devnull), "a") as f:
         f.write(f"go={'true' if ok else 'false'}\n")

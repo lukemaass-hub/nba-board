@@ -570,9 +570,23 @@ def test_gate_only_runs_before_games():
     gate = importlib.util.module_from_spec(spec); spec.loader.exec_module(gate)
     data = {"schedule": [{"date": "2026-10-26", "time": "19:00", "away": "WAS", "home": "CHA"}]}
     utc = lambda h, m: dt.datetime(2026, 10, 26, h, m, tzinfo=dt.timezone.utc)     # 19:00 ET = 23:00 UTC
-    assert gate.go(data, utc(21, 45)) and gate.go(data, utc(22, 59))
-    assert gate.go(data, utc(23, 10))          # just after tip: only to alert if it went unsent (never sends after tip)
-    assert not gate.go(data, utc(20, 0)) and not gate.go(data, utc(23, 20))
+    assert gate.go(data, utc(15, 30)) and gate.go(data, utc(22, 59))               # a game today still to send
+    assert not gate.go(data, utc(15, 30), {"dm 2026-10-26 WAS@CHA": "x"})         # already sent
+    assert not gate.go(data, utc(23, 1))                                           # tipped
+    assert "*/5" not in open(os.path.join(os.path.dirname(__file__), "..", ".github", "workflows", "update-data.yml")).read()
+
+
+def test_watching_run_sleeps_until_the_next_game():
+    import email_report as e
+    g1 = {"date": "2026-10-27", "time": "19:30", "away": "BKN", "home": "BOS", "venue": ""}
+    g2 = {"date": "2026-10-27", "time": "22:00", "away": "POR", "home": "LAL", "venue": ""}
+    data = {"schedule": [g1, g2]}
+    at = lambda h, m: dt.datetime(2026, 10, 27, h, m, tzinfo=e.ET)
+    assert e.next_wait(data, at(17, 50), {}) == 25 * 60          # sleep until 75 min before 7:30 (6:15)
+    assert e.next_wait(data, at(14, 0), {}) == 1800              # far away: 30 minutes at a time
+    assert e.next_wait(data, at(18, 40), {}) == 180              # inside the hour: every 3 minutes
+    assert e.next_wait(data, at(19, 0), {"dm 2026-10-27 BKN@BOS": "x"}) == 1800   # sent: wait for the 10 PM game
+    assert e.next_wait(data, at(23, 0), {}) == -1                # everything tipped: stop
 
 
 def test_pending_games_keep_the_run_watching():
