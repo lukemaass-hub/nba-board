@@ -124,9 +124,9 @@ def sportsline_tags(data, team, date):
 
 
 def sl_text(tags, player):
-    """' 📈 SportsLine 36 min (+6.2)' / ' 📉 SportsLine 12 min (-7.5)'"""
+    """' 📈 Expected 36 min (+6.2)' / ' 📉 Expected 12 min (-7.5)'"""
     t = tags.get(norm_name(player))
-    return f" {'📈' if t[1] > 0 else '📉'} _SportsLine {t[0]:g} min ({'+' if t[1] > 0 else '-'}{abs(t[1]):.1f})_" if t else ""
+    return f" {'📈' if t[1] > 0 else '📉'} _Expected {t[0]:g} min ({'+' if t[1] > 0 else '-'}{abs(t[1]):.1f})_" if t else ""
 
 
 def replacements_for(data, team, inj):
