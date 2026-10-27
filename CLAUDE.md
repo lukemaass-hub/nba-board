@@ -111,7 +111,7 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   Oct 27: "a couple of runs before each slate", not every 5 min): crons = 7 AM ET refresh, slate starts at 15:30 /
   18:30 / 21:30 / 22:30 UTC (the last a backup), Monday email. The "gate" job (pipeline/gate.py) lets a slate start
   proceed only if a game today hasn't tipped and has no group DM (reads email_log.json). That run then STAYS ON (watch
-  step, up to 5 h, job timeout 330): email_report.py --next-wait says how long to sleep (until 75 min before the next
+  step, up to 5 h, job timeout 330): email_report.py --next-wait says how long to sleep (until 30 min before the next
   tip, 30 min at a time; every 3 min inside that), then refresh (update_data --pregame 90) + send + save (commit
   email_log.json after every check, so a stopped run never causes a repeat), until every game today is sent.
   Group DMs: lineups confirmed, else 10 min before tip, never after tip. Steps are continue-on-error; the owner gets an

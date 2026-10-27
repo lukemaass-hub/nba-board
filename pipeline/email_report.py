@@ -754,7 +754,7 @@ def dm_traders(data, token, now, window, sent, stamp):
             sent["dm " + key] = stamp
 
 
-WATCH_LEAD_MIN = 75     # the watching run checks every 3 minutes from this long before each tip; sleeps until then
+WATCH_LEAD_MIN = 30     # the watching run checks every 3 minutes from this long before each tip; sleeps until then (user, Oct 27 2026)
 
 
 def next_wait(data, now, sent):

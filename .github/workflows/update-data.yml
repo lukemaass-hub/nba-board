@@ -7,7 +7,7 @@ on:
     # Slate starts (user, Oct 27 2026: a couple of runs before each slate, not every 5 minutes), in UTC:
     # 11:30 AM, 2:30 PM, 5:30 PM and 6:30 PM Eastern in daylight time (an hour earlier in winter). Each start only
     # goes ahead if a game today still needs its Slack group DM (the "gate" job); it then STAYS ON, sleeping between
-    # games and checking lineups every 3 minutes from 75 minutes before each tip, until the whole slate is sent.
+    # games and checking lineups every 3 minutes from 30 minutes before each tip, until the whole slate is sent.
     # The later starts are backups in case GitHub skips one (it often starts scheduled runs late or not at all).
     - cron: "30 15 * * *"
     - cron: "30 18 * * *"
@@ -137,7 +137,7 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python pipeline/email_report.py --data data.json --weekly
 
-      # Stays on until every game today has its group DM: sleeps until 75 minutes before the next tip, then refreshes
+      # Stays on until every game today has its group DM: sleeps until 30 minutes before the next tip, then refreshes
       # the lineups every 3 minutes and sends as soon as they are confirmed, or at the 10-minute mark. The send log is
       # saved after every check, so nothing is ever sent twice even if the run is stopped. At most 5 hours; a later
       # slate start picks up anything left.

@@ -582,9 +582,9 @@ def test_watching_run_sleeps_until_the_next_game():
     g2 = {"date": "2026-10-27", "time": "22:00", "away": "POR", "home": "LAL", "venue": ""}
     data = {"schedule": [g1, g2]}
     at = lambda h, m: dt.datetime(2026, 10, 27, h, m, tzinfo=e.ET)
-    assert e.next_wait(data, at(17, 50), {}) == 25 * 60          # sleep until 75 min before 7:30 (6:15)
+    assert e.next_wait(data, at(18, 40), {}) == 20 * 60          # sleep until 30 min before 7:30 (7:00)
     assert e.next_wait(data, at(14, 0), {}) == 1800              # far away: 30 minutes at a time
-    assert e.next_wait(data, at(18, 40), {}) == 180              # inside the hour: every 3 minutes
+    assert e.next_wait(data, at(19, 5), {}) == 180               # within 30 min of tip: every 3 minutes
     assert e.next_wait(data, at(19, 0), {"dm 2026-10-27 BKN@BOS": "x"}) == 1800   # sent: wait for the 10 PM game
     assert e.next_wait(data, at(23, 0), {}) == -1                # everything tipped: stop
 
