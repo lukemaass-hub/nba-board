@@ -613,7 +613,7 @@ def build_slack(data, game, date, test=False):
             rows = [f"`{p:<2}` *{e(n)}*{mins_tag(data, n, True)}{sl_text(slt, n)}{exp_text(xt, n)}{tag.get(status.get(norm_name(n)), '')}{change_text(data, n)}"
                     f"{f'  ⬆️ _in for {e(why[7:])}_' if why else upt(n)}"
                     for p, n, why in starters]
-            blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": f"_{e(label)}_\n" + "\n".join(rows)}})
+            blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(rows)}})   # no "Expected starters (RotoWire, not confirmed)" line (user, Oct 27 2026)
         if bench or deep:
             txt = "*Bench:* " + " · ".join(f"{f'*{e(n)}*' if norm_name(n) in up_for else e(n)}{mins_tag(data, n, True)}{sl_text(slt, n)}{exp_text(xt, n)}"
                                            f"{tag.get(st, '')}{change_text(data, n)}{upt(n)}" for _, n, st in bench)

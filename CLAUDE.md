@@ -158,6 +158,6 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
 
 - SportsLine projected minutes (Oct 27 2026, user's request; the user's company OK'd the use): update_data.fetch_sportsline
   reads sportsline.com/nba/expert-projections/simulation/ (robots.txt allows it; at most every 15 min; today's games only)
-  -> data["sportsline"]. Slack starters / bench show " 📈 Expected 36 min (+6.2)" (user, Oct 27: say "Expected", not "SportsLine"). Oct 27: no `PROB` tag next to names in Slack; probable is listed only under Injuries when SportsLine's projection is 5+
+  -> data["sportsline"]. Slack starters / bench show " 📈 Expected 36 min (+6.2)" (user, Oct 27: say "Expected", not "SportsLine"). Oct 27: no `PROB` tag next to names in Slack; probable is listed only under Injuries; and no "Expected starters (RotoWire, not confirmed)" label above the starters when SportsLine's projection is 5+
   min above or below his MPG (email_report.sportsline_tags, SL_DIFF). FanDuel's projections were declined: they sit
   behind fanduel.com/research/api, which robots.txt disallows. Board doesn't show SportsLine yet.
