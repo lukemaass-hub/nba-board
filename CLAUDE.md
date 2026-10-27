@@ -114,6 +114,10 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   step, up to 5 h, job timeout 330): email_report.py --next-wait says how long to sleep (until 30 min before the next
   tip, 30 min at a time; every 3 min inside that), then refresh (update_data --pregame 90) + send + save (commit
   email_log.json after every check, so a stopped run never causes a repeat), until every game today is sent.
+  Oct 27 2026, user: "make sure it goes 30 mins before" -> .github/workflows/pregame-timer.yml: starts 8 AM ET, reads
+  today's tips (gate.py --next-start), SLEEPS until 30 min before each game and starts update-data.yml (workflow_dispatch,
+  GITHUB_TOKEN with actions: write), then waits for the next game; hands over to a fresh copy of itself before the
+  6-hour job limit. Doesn't depend on GitHub's cron punctuality. The half-hourly checks remain as a backup.
   Group DMs: lineups confirmed, else 10 min before tip, never after tip. Steps are continue-on-error; the owner gets an
   email if a step fails (once an hour) or a game tips without its group DM. The RotoWire news RSS is now read only
   around games and in the morning, so some news items can be missed.
