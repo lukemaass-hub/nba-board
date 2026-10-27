@@ -714,6 +714,16 @@ def dm_traders(data, token, now, window, sent, stamp):
             sent["dm " + key] = stamp
 
 
+def pending_games(data, now, sent, minutes):
+    """Games tipping within `minutes` whose group DM hasn't gone out yet (the workflow keeps watching for them)."""
+    out = []
+    for g in all_games(data):
+        tip = dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=ET)
+        if now < tip <= now + dt.timedelta(minutes=minutes) and f"dm {g['date']} {g['away']}@{g['home']}" not in sent:
+            out.append(g)
+    return out
+
+
 def next_fallback(data, now, sent):
     """The soonest upcoming moment a not-yet-sent game reaches its PROPS_FALLBACK_MIN mark (ET), or None."""
     marks = []
@@ -832,10 +842,17 @@ def main():
     ap.add_argument("--game", default="", help="with --test-email / --agent: a team in the game, e.g. NYK")
     ap.add_argument("--agent-due", type=int, metavar="MIN", help="print JSON of the Slack markdown for games tipping "
                     "off within MIN minutes (for the scheduled Claude agent that posts to Slack)")
+    ap.add_argument("--pending", type=int, metavar="MIN", help="exit 0 if a game tipping within MIN minutes still needs "
+                    "its group DM (the workflow keeps watching), else exit 1")
     ap.add_argument("--alert", metavar="TEXT", help="email the owner that a run had a problem (at most once an hour)")
     ap.add_argument("--agent-test", action="store_true", help="like --agent-due but for the next game (or --game), marked TEST")
     args = ap.parse_args()
 
+    if args.pending is not None:
+        import slack_assign as sa
+        data = json.load(open(args.data))
+        sent = json.load(open(args.log)) if os.path.exists(args.log) else {}
+        sys.exit(0 if pending_games(data, dt.datetime.now(ET), sent, args.pending) and sa.mode() != "off" else 1)
     if args.alert:
         sent = json.load(open(args.log)) if os.path.exists(args.log) else {}
         hour = dt.datetime.now(ET).strftime("%Y-%m-%dT%H")

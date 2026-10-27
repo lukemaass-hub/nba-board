@@ -65,7 +65,7 @@ jobs:
     needs: gate
     if: ${{ needs.gate.outputs.go == 'true' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v5
 
@@ -133,6 +133,30 @@ jobs:
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python pipeline/email_report.py --data data.json --weekly
+
+      # GitHub often starts the 5-minute schedule only every ~30 minutes (Oct 26 2026), so a run that finds a game
+      # tipping within the next hour without its group DM stays on: it refreshes the lineups every 3 minutes and
+      # sends as soon as they are confirmed, or at the 10-minute mark, then stops. One run reaching the window is enough.
+      - name: Keep watching until every game starting within the hour has its group DM
+        id: watch
+        if: ${{ always() }}
+        continue-on-error: true
+        env:
+          MINUTES_CSV_URL: ${{ secrets.MINUTES_CSV_URL }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_DM_MODE: ${{ vars.SLACK_DM_MODE || 'on' }}
+          SLACK_TEST_CHANNEL: ${{ vars.SLACK_TEST_CHANNEL }}
+        run: |
+          for i in $(seq 1 20); do
+            python pipeline/email_report.py --data data.json --pending 75 || break
+            echo "A game within the hour still needs its group DM: checking again in 3 minutes"
+            sleep 180
+            python pipeline/update_data.py --out data.json --pregame 90 > /dev/null || true
+            python pipeline/email_report.py --data data.json --window 25 || true
+          done
 
       - name: Tell the owner if something went wrong (email, at most once an hour)
         if: ${{ steps.tests.outcome == 'failure' || steps.data.outcome == 'failure' || steps.send.outcome == 'failure' }}

@@ -572,3 +572,14 @@ def test_gate_only_runs_before_games():
     assert gate.go(data, utc(21, 45)) and gate.go(data, utc(22, 59))
     assert gate.go(data, utc(23, 10))          # just after tip: only to alert if it went unsent (never sends after tip)
     assert not gate.go(data, utc(20, 0)) and not gate.go(data, utc(23, 20))
+
+
+def test_pending_games_keep_the_run_watching():
+    import email_report as e
+    g = {"date": "2026-10-26", "time": "21:00", "away": "MEM", "home": "UTA", "venue": ""}
+    data = {"schedule": [g]}
+    at = lambda h, m: dt.datetime(2026, 10, 26, h, m, tzinfo=e.ET)
+    assert e.pending_games(data, at(20, 7), {}, 60) == [g]          # 53 min out, not sent: keep watching
+    assert e.pending_games(data, at(19, 50), {}, 60) == []          # more than an hour out
+    assert e.pending_games(data, at(20, 7), {"dm 2026-10-26 MEM@UTA": "x"}, 60) == []
+    assert e.pending_games(data, at(21, 1), {}, 60) == []           # tipped: stop
