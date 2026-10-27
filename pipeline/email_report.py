@@ -579,7 +579,7 @@ def slack_escape(t):
 def build_slack(data, game, date, test=False):
     """One Slack message (Block Kit) per game, same layout as the email: starters, bench, alerts, then injuries."""
     e = slack_escape
-    tag = {"out": " `OUT`", "doubt": " `DOUBT`", "q": " `GTD`", "prob": " `PROB`"}
+    tag = {"out": " `OUT`", "doubt": " `DOUBT`", "q": " `GTD`"}   # no PROB next to names: probable is listed under Injuries only (user, Oct 27 2026)
     g = game
     title = f"{'[TEST] ' if test else ''}{fmt_time(g['time'])} ET · {name(g['away'])} @ {name(g['home'])}"
     blocks = [{"type": "header", "text": {"type": "plain_text", "text": title[:150]}}]
