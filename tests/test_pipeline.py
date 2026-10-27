@@ -583,3 +583,18 @@ def test_pending_games_keep_the_run_watching():
     assert e.pending_games(data, at(19, 50), {}, 60) == []          # more than an hour out
     assert e.pending_games(data, at(20, 7), {"dm 2026-10-26 MEM@UTA": "x"}, 60) == []
     assert e.pending_games(data, at(21, 1), {}, 60) == []           # tipped: stop
+
+
+def test_lone_trader_gets_the_owner_added(monkeypatch):
+    import email_report as e, slack_assign as sa
+    text = "*10/27 IP Trader Schedule (Times EST)*\n_*NBA*_ :nba:\n8:00 PM - Sacramento Kings @ San Antonio Spurs - <@U08EZ944MHB|Colton Pettit>\n"
+    game = {"date": "2026-10-27", "time": "20:00", "away": "SAC", "home": "SAS", "venue": ""}
+    sends = []
+    monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: text)
+    monkeypatch.setattr(sa, "group_dm", lambda token, users, title, blocks: sends.append(users))
+    monkeypatch.setattr(sa, "ALSO_INCLUDE", {})
+    monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
+    monkeypatch.setattr(e, "all_games", lambda data: [game])
+    monkeypatch.setenv("SLACK_DM_MODE", "on")
+    e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 19, 50, tzinfo=e.ET), 25, {}, "s")
+    assert sends == [["U08EZ944MHB", sa.OWNER]]

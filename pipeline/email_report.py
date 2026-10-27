@@ -706,7 +706,10 @@ def dm_traders(data, token, now, window, sent, stamp):
                     test_ch = (os.environ.get("SLACK_TEST_CHANNEL") or "").strip()
                     (sa.post_channel if test_ch else sa.dm)(token, test_ch or sa.OWNER, title, head + blocks)
                 else:
-                    sa.group_dm(token, [p["user"] for p in people] + sa.ALSO_INCLUDE.get(g["date"], []), title, blocks)
+                    users = list(dict.fromkeys([p["user"] for p in people] + sa.ALSO_INCLUDE.get(g["date"], [])))
+                    if len(users) < 2:     # one trader alone would land in the bot's hidden Messages tab (user, Oct 27 2026)
+                        users.append(sa.OWNER)
+                    sa.group_dm(token, users, title, blocks)
                 print(f"Slack DMs ({m}, {why}): {g['away']}@{g['home']} sent to {'owner (test)' if m == 'test' else who}")
             except Exception as ex:
                 print(f"Slack DMs: {g['away']}@{g['home']} failed: {ex}")
