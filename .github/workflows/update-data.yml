@@ -38,8 +38,10 @@ on:
 permissions:
   contents: write
 
+# A code change (push) only runs the tests, in its own group: before Oct 27 2026 a push run went on to the watch step
+# and held this group for hours on old code, so the timer's run sat waiting and newer runs were dropped.
 concurrency:
-  group: update-data
+  group: update-data${{ github.event_name == 'push' && '-push' || '' }}
   cancel-in-progress: false
 
 jobs:
@@ -88,6 +90,7 @@ jobs:
 
       - name: Pull from the sites and rebuild data.json
         id: data
+        if: ${{ github.event_name != 'push' }}
         continue-on-error: true
         env:
           MINUTES_CSV_URL: ${{ secrets.MINUTES_CSV_URL }}
@@ -98,6 +101,7 @@ jobs:
 
       - name: Email / Slack the report for games tipping off soon
         id: send
+        if: ${{ github.event_name != 'push' }}
         continue-on-error: true
         env:
           SMTP_USER: ${{ secrets.SMTP_USER }}
@@ -148,7 +152,7 @@ jobs:
       # slate start picks up anything left.
       - name: Keep watching until every game today has its group DM
         id: watch
-        if: ${{ always() && github.event.schedule != '0 11 * * *' && github.event.schedule != '0 13 * * 1' && github.event.schedule != '0 14 * * 1' }}
+        if: ${{ always() && github.event_name != 'push' && github.event.schedule != '0 11 * * *' && github.event.schedule != '0 13 * * 1' && github.event.schedule != '0 14 * * 1' }}
         continue-on-error: true
         env:
           MINUTES_CSV_URL: ${{ secrets.MINUTES_CSV_URL }}
@@ -192,7 +196,7 @@ jobs:
         run: python pipeline/email_report.py --alert "$WHAT" || true
 
       - name: Save data.json
-        if: ${{ always() }}
+        if: ${{ always() && github.event_name != 'push' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
