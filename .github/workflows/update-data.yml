@@ -2,15 +2,17 @@ name: Update availability data
 
 on:
   schedule:
-    # 3x a day, in UTC: 7 AM, 1 PM and 5:30 PM Eastern (during daylight time)
+    # Morning refresh, 7 AM Eastern (6 AM in winter)
     - cron: "0 11 * * *"
-    - cron: "0 17 * * *"
+    # Slate starts (user, Oct 27 2026: a couple of runs before each slate, not every 5 minutes), in UTC:
+    # 11:30 AM, 2:30 PM, 5:30 PM and 6:30 PM Eastern in daylight time (an hour earlier in winter). Each start only
+    # goes ahead if a game today still needs its Slack group DM (the "gate" job); it then STAYS ON, sleeping between
+    # games and checking lineups every 3 minutes from 30 minutes before each tip, until the whole slate is sent.
+    # The later starts are backups in case GitHub skips one (it often starts scheduled runs late or not at all).
+    - cron: "30 15 * * *"
+    - cron: "30 18 * * *"
     - cron: "30 21 * * *"
-    # Every 5 minutes during game hours, but a run only does anything when a game tips within the next 90 minutes
-    # (the "gate" job; user, Oct 26 2026: check before games, not all day). It sends each game's Slack group DM once:
-    # when both lineups are confirmed, else 10 minutes before tip, and never after tip. A run that starts within
-    # ~20 minutes of a tip waits for the 10-minute mark itself, so a late or skipped GitHub run still delivers.
-    - cron: "*/5 14-23,0-3 * * *"
+    - cron: "30 22 * * *"
     # Mondays 9 AM Eastern: weekly minutes-changes email
     - cron: "0 13 * * 1"
   workflow_dispatch:
@@ -53,19 +55,20 @@ jobs:
         with:
           sparse-checkout: |
             data.json
+            email_log.json
             pipeline/gate.py
           sparse-checkout-cone-mode: false
       - id: gate
         env:
           EVENT: ${{ github.event_name }}
           SCHEDULE: ${{ github.event.schedule }}
-        run: python3 pipeline/gate.py data.json
+        run: python3 pipeline/gate.py data.json email_log.json
 
   update:
     needs: gate
     if: ${{ needs.gate.outputs.go == 'true' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 330
     steps:
       - uses: actions/checkout@v5
 
@@ -92,7 +95,7 @@ jobs:
           MINUTES_CSV_URL: ${{ secrets.MINUTES_CSV_URL }}
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          PREGAME: ${{ github.event.schedule == '*/5 14-23,0-3 * * *' && '90' || '' }}
+          PREGAME: ${{ github.event_name == 'schedule' && github.event.schedule != '0 11 * * *' && github.event.schedule != '0 13 * * 1' && '90' || '' }}
         run: python pipeline/update_data.py --out data.json ${PREGAME:+--pregame "$PREGAME"}
 
       - name: Email / Slack the report for games tipping off soon
@@ -134,12 +137,13 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python pipeline/email_report.py --data data.json --weekly
 
-      # GitHub often starts the 5-minute schedule only every ~30 minutes (Oct 26 2026), so a run that finds a game
-      # tipping within the next hour without its group DM stays on: it refreshes the lineups every 3 minutes and
-      # sends as soon as they are confirmed, or at the 10-minute mark, then stops. One run reaching the window is enough.
-      - name: Keep watching until every game starting within the hour has its group DM
+      # Stays on until every game today has its group DM: sleeps until 30 minutes before the next tip, then refreshes
+      # the lineups every 3 minutes and sends as soon as they are confirmed, or at the 10-minute mark. The send log is
+      # saved after every check, so nothing is ever sent twice even if the run is stopped. At most 5 hours; a later
+      # slate start picks up anything left.
+      - name: Keep watching until every game today has its group DM
         id: watch
-        if: ${{ always() }}
+        if: ${{ always() && github.event.schedule != '0 11 * * *' && github.event.schedule != '0 13 * * 1' }}
         continue-on-error: true
         env:
           MINUTES_CSV_URL: ${{ secrets.MINUTES_CSV_URL }}
@@ -150,13 +154,28 @@ jobs:
           SLACK_DM_MODE: ${{ vars.SLACK_DM_MODE || 'on' }}
           SLACK_TEST_CHANNEL: ${{ vars.SLACK_TEST_CHANNEL }}
         run: |
-          for i in $(seq 1 20); do
-            python pipeline/email_report.py --data data.json --pending 75 || break
-            echo "A game within the hour still needs its group DM: checking again in 3 minutes"
-            sleep 180
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          save() {
+            git add data.json; [ -f email_log.json ] && git add email_log.json
+            git diff --cached --quiet && return 0
+            git commit -q -m "Update data.json"
+            for i in 1 2 3 4; do
+              git pull -q --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && return 0
+              sleep $((i * 5))
+            done
+          }
+          start=$(date +%s)
+          while [ $(( $(date +%s) - start )) -lt 18000 ]; do
+            w=$(python pipeline/email_report.py --data data.json --next-wait || echo -1)
+            [ "$w" -lt 0 ] && break
+            echo "Next check in $((w / 60)) min"
+            sleep "$w"
             python pipeline/update_data.py --out data.json --pregame 90 > /dev/null || true
             python pipeline/email_report.py --data data.json --window 25 || true
+            save
           done
+          python pipeline/email_report.py --data data.json --window 25 || true   # alert if a game tipped unsent
 
       - name: Tell the owner if something went wrong (email, at most once an hour)
         if: ${{ steps.tests.outcome == 'failure' || steps.data.outcome == 'failure' || steps.send.outcome == 'failure' }}

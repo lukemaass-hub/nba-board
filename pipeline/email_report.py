@@ -754,6 +754,24 @@ def dm_traders(data, token, now, window, sent, stamp):
             sent["dm " + key] = stamp
 
 
+WATCH_LEAD_MIN = 30     # the watching run checks every 3 minutes from this long before each tip; sleeps until then (user, Oct 27 2026)
+
+
+def next_wait(data, now, sent):
+    """Seconds the watching run should sleep before its next check (Oct 27 2026, user: run a couple of times before each
+    slate, not every 5 minutes): -1 when every game today has its group DM or has tipped; 180 while a game is within
+    WATCH_LEAD_MIN of tip; otherwise until that point (at most 30 minutes at a time)."""
+    tips = []
+    for g in all_games(data):
+        tip = dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=ET)
+        if g["date"] == now.date().isoformat() and now < tip and f"dm {g['date']} {g['away']}@{g['home']}" not in sent:
+            tips.append(tip)
+    if not tips:
+        return -1
+    lead = min(tips) - dt.timedelta(minutes=WATCH_LEAD_MIN) - now
+    return 180 if lead.total_seconds() <= 0 else int(min(lead.total_seconds(), 1800))
+
+
 def pending_games(data, now, sent, minutes):
     """Games tipping within `minutes` whose group DM hasn't gone out yet (the workflow keeps watching for them)."""
     out = []
@@ -882,12 +900,20 @@ def main():
     ap.add_argument("--game", default="", help="with --test-email / --agent: a team in the game, e.g. NYK")
     ap.add_argument("--agent-due", type=int, metavar="MIN", help="print JSON of the Slack markdown for games tipping "
                     "off within MIN minutes (for the scheduled Claude agent that posts to Slack)")
+    ap.add_argument("--next-wait", action="store_true", help="print how many seconds the watching run should sleep before "
+                    "its next check, or -1 when every game today has its group DM (the run can stop)")
     ap.add_argument("--pending", type=int, metavar="MIN", help="exit 0 if a game tipping within MIN minutes still needs "
                     "its group DM (the workflow keeps watching), else exit 1")
     ap.add_argument("--alert", metavar="TEXT", help="email the owner that a run had a problem (at most once an hour)")
     ap.add_argument("--agent-test", action="store_true", help="like --agent-due but for the next game (or --game), marked TEST")
     args = ap.parse_args()
 
+    if args.next_wait:
+        import slack_assign as sa
+        data = json.load(open(args.data))
+        sent = json.load(open(args.log)) if os.path.exists(args.log) else {}
+        print(next_wait(data, dt.datetime.now(ET), sent) if sa.mode() != "off" else -1)
+        return
     if args.pending is not None:
         import slack_assign as sa
         data = json.load(open(args.data))
