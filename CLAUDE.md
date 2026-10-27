@@ -115,6 +115,9 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   (email_log.json must be saved or a DM would repeat). The owner gets an email (alert(), EMAIL_TO) if a step fails
   (at most once an hour) or a game tips with no group DM sent (once per game). Side effect: the RotoWire news RSS is
   now only polled near games and 3x a day, so some news items between can be missed.
+  GitHub actually started the 5-min schedule only ~every 30 min (Oct 26 2026), so the workflow's "Keep watching" step
+  loops (every 3 min, up to an hour; job timeout 75) while email_report.py --pending 75 says a game tipping within 75
+  min still lacks its group DM: refresh (update_data --pregame 90) + send. One run reaching the window is enough.
 - Presser Wire (Oct 26 2026, user's choice; the user's company OK'd the use): update_data.fetch_presserwire reads two
   pages, at most every 15 min (their terms: no wholesale copying or bulk scraping): presserwire.com/nba/injury-report.html
   = the NBA's OFFICIAL injury report -> injury records src "NBA report" with override (newest override wins vs beat
