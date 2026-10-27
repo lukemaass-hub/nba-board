@@ -310,6 +310,52 @@ def fetch_presserwire(prev):
     return {"read_at": read_at, "injuries": recs, "notes": uniq[:300]}
 
 
+# ---------------------------------------------------------------- SportsLine projected minutes (Oct 27 2026)
+# sportsline.com/nba/expert-projections/simulation/: projected stats, including minutes, for every player in today's
+# games, as a plain table. robots.txt allows the page; its terms are "non-commercial", and the user got their company's
+# OK. One page, read at most every SL_EVERY_MIN minutes.
+SL_URL = "https://www.sportsline.com/nba/expert-projections/simulation/"
+SL_EVERY_MIN = 15
+
+
+def parse_sportsline(html):
+    """-> [{"player", "team", "game", "min"}] from the projections table (columns PLAYER POS TEAM GAME ... MIN ...)."""
+    soup = BeautifulSoup(html, "html.parser")
+    table = soup.find("table")
+    if not table:
+        return []
+    rows = table.find_all("tr")
+    head = [c.get_text(" ", strip=True).upper() for c in rows[0].find_all(["th", "td"])] if rows else []
+    if not {"PLAYER", "TEAM", "MIN"} <= set(head):
+        raise RuntimeError(f"SportsLine table layout changed: {head[:12]}")
+    ip, it, ig, im = head.index("PLAYER"), head.index("TEAM"), head.index("GAME") if "GAME" in head else None, head.index("MIN")
+    out = []
+    for tr in rows[1:]:
+        c = [x.get_text(" ", strip=True) for x in tr.find_all(["th", "td"])]
+        if len(c) <= im:
+            continue
+        try:
+            mins = float(c[im])
+        except ValueError:
+            continue
+        team = team_code(c[it])
+        if team and c[ip]:
+            out.append({"player": clean(c[ip]), "team": team, "game": c[ig] if ig is not None else "", "min": mins})
+    return out
+
+
+def fetch_sportsline(prev):
+    """-> {"read_at", "date" (ET), "players"}; reuses the last read if it is under SL_EVERY_MIN minutes old."""
+    now = dt.datetime.now(dt.timezone.utc)
+    old = prev.get("sportsline") or {}
+    if old.get("read_at") and now - dt.datetime.fromisoformat(old["read_at"]) < dt.timedelta(minutes=SL_EVERY_MIN):
+        return old
+    players = parse_sportsline(get(SL_URL).text)
+    if not players:
+        raise RuntimeError("SportsLine: no projected minutes read (page layout changed?)")
+    return {"read_at": now.isoformat(timespec="seconds"), "date": today_et().isoformat(), "players": players}
+
+
 def covers_player(a):
     """Covers shows 'H. Veesaar'; the link ends in '/henri-veesaar', which gives the full name."""
     text = clean(a.get_text(" ", strip=True))
@@ -902,6 +948,11 @@ def main():
                 r["stale"] = True
             injuries += old
             status[name]["kept_stale"] = len(old)
+
+    sl = run("sportsline", lambda: fetch_sportsline(prev))
+    data["sportsline"] = sl if sl is not None else (prev.get("sportsline") or {})
+    if sl:
+        status["sportsline"].update({"players": len(sl["players"]), "read_at": sl["read_at"]})
 
     pw = run("presserwire", lambda: fetch_presserwire(prev))
     if pw is None:

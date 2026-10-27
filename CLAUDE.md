@@ -156,3 +156,8 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   email_report.py re-reads expected_minutes.json at send time when it is newer than data.json's copy (fresh_expected_minutes). A fully
   unattended version would need a feed from the Dolly team.
 
+- SportsLine projected minutes (Oct 27 2026, user's request; the user's company OK'd the use): update_data.fetch_sportsline
+  reads sportsline.com/nba/expert-projections/simulation/ (robots.txt allows it; at most every 15 min; today's games only)
+  -> data["sportsline"]. Slack starters / bench show " 📈 SportsLine 36 min (+6.2)" when SportsLine's projection is 5+
+  min above or below his MPG (email_report.sportsline_tags, SL_DIFF). FanDuel's projections were declined: they sit
+  behind fanduel.com/research/api, which robots.txt disallows. Board doesn't show SportsLine yet.

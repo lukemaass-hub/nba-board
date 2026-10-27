@@ -104,6 +104,31 @@ def starters_for(data, team, date, inj):
     return "Projected starters (depth chart)", rows
 
 
+SL_DIFF = 5.0   # SportsLine projected minutes this far above / below the season average get a tag (user, Oct 27 2026)
+
+
+def sportsline_tags(data, team, date):
+    """{norm name: (projected minutes, difference)} for this team's players whose SportsLine projected minutes for the
+    game are SL_DIFF+ above or below their average (avg_minutes: this season, else last season)."""
+    sl = data.get("sportsline") or {}
+    if sl.get("date") != date:
+        return {}
+    out = {}
+    for p in sl.get("players", []):
+        if p.get("team") != team:
+            continue
+        avg = avg_minutes(data, p["player"])
+        if avg and abs(p["min"] - avg[0]) >= SL_DIFF - 1e-9:
+            out[norm_name(p["player"])] = (p["min"], round(p["min"] - avg[0], 1))
+    return out
+
+
+def sl_text(tags, player):
+    """' 📈 SportsLine 36 min (+6.2)' / ' 📉 SportsLine 12 min (-7.5)'"""
+    t = tags.get(norm_name(player))
+    return f" {'📈' if t[1] > 0 else '📉'} _SportsLine {t[0]:g} min ({'+' if t[1] > 0 else '-'}{abs(t[1]):.1f})_" if t else ""
+
+
 def replacements_for(data, team, inj):
     """{injured player's norm name: replacement name} for players out or doubtful: the next healthy player below him at
     his position on the depth chart (the same heuristic the board uses for "Minutes up")."""
@@ -583,13 +608,14 @@ def build_slack(data, game, date, test=False):
         for k, sub in repl.items():
             up_for.setdefault(norm_name(sub), []).append(names_by.get(k, k))
         upt = lambda n: f"  ⬆️ _in for {e(', '.join(up_for[norm_name(n)]))}_" if norm_name(n) in up_for else ""
+        slt = sportsline_tags(data, team, date)
         if starters:
-            rows = [f"`{p:<2}` *{e(n)}*{mins_tag(data, n, True)}{exp_text(xt, n)}{tag.get(status.get(norm_name(n)), '')}{change_text(data, n)}"
+            rows = [f"`{p:<2}` *{e(n)}*{mins_tag(data, n, True)}{sl_text(slt, n)}{exp_text(xt, n)}{tag.get(status.get(norm_name(n)), '')}{change_text(data, n)}"
                     f"{f'  ⬆️ _in for {e(why[7:])}_' if why else upt(n)}"
                     for p, n, why in starters]
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": f"_{e(label)}_\n" + "\n".join(rows)}})
         if bench or deep:
-            txt = "*Bench:* " + " · ".join(f"{f'*{e(n)}*' if norm_name(n) in up_for else e(n)}{mins_tag(data, n, True)}{exp_text(xt, n)}"
+            txt = "*Bench:* " + " · ".join(f"{f'*{e(n)}*' if norm_name(n) in up_for else e(n)}{mins_tag(data, n, True)}{sl_text(slt, n)}{exp_text(xt, n)}"
                                            f"{tag.get(st, '')}{change_text(data, n)}{upt(n)}" for _, n, st in bench)
             up = deep_bench_up(data, team, date, deep, skip={k for k, st in status.items() if st in ("out", "doubt")})
             if up:

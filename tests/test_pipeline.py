@@ -629,3 +629,20 @@ def test_timer_starts_30_minutes_before_each_game():
     assert gate.next_start(data, at(19, 5), after=at(19, 30)) == (2 * 3600 + 25 * 60, at(22, 0))   # then 9:30 PM
     assert gate.next_start(data, at(8, 0), {"dm 2026-10-27 BKN@BOS": "x"})[1] == at(22, 0)
     assert gate.next_start(data, at(23, 0)) == (-1, None)
+
+
+def test_sportsline_projected_minutes_tags():
+    import update_data as u, email_report as e
+    rows = u.parse_sportsline(open(os.path.join(os.path.dirname(__file__), "fixtures", "sportsline_projections.html")).read())
+    assert rows[0] == {"player": "Luka Doncic", "team": "LAL", "game": "POR@LAL", "min": 36.0} and len(rows) == 5
+    data = {"sportsline": {"date": "2026-10-27", "players": [
+                {"player": "Luka Doncic", "team": "LAL", "min": 36.0}, {"player": "Austin Reaves", "team": "LAL", "min": 30.0},
+                {"player": "Jake LaRavia", "team": "LAL", "min": 31.0}]},
+            "season_minutes": {"season": "2026-27", "last_season": "2025-26",
+                               "current": {"Luka Doncic": [3, 35.0, "LAL"], "Austin Reaves": [3, 35.0, "LAL"], "Jake LaRavia": [3, 25.0, "LAL"]},
+                               "last": {}}}
+    tags = e.sportsline_tags(data, "LAL", "2026-10-27")
+    assert set(tags) == {e.norm_name("Austin Reaves"), e.norm_name("Jake LaRavia")}       # Luka +1: no tag
+    assert e.sl_text(tags, "Jake LaRavia") == " 📈 _SportsLine 31 min (+6.0)_"
+    assert e.sl_text(tags, "Austin Reaves") == " 📉 _SportsLine 30 min (-5.0)_"           # exactly 5 counts
+    assert e.sportsline_tags(data, "LAL", "2026-10-28") == {}                             # other day: nothing
