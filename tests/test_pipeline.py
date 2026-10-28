@@ -407,6 +407,7 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
     monkeypatch.setattr(sa, "group_dm", lambda token, users, title, blocks: sentto.append((",".join(users), blocks)))
     monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
     monkeypatch.setattr(e, "all_games", lambda data: [game])
+    monkeypatch.setattr(sa, "ALWAYS_INCLUDE", [])
     lineups = lambda c: {"lineups": {t: {"date": "2026-10-20", "confirmed": c} for t in ("PHI", "NYK")}}
     early, late = dt.datetime(2026, 10, 20, 18, 20, tzinfo=e.ET), dt.datetime(2026, 10, 20, 18, 51, tzinfo=e.ET)
 
@@ -426,6 +427,7 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
     monkeypatch.setattr(sa, "ALSO_INCLUDE", {"2026-10-20": ["U0B5EP4PV3M"]})
     assert run("on", lineups(True), early)[0] == ["U09BNHCQD5Z,U0ACFA2QDFF,U0B5EP4PV3M"]
     monkeypatch.setattr(sa, "ALSO_INCLUDE", {})
+    monkeypatch.setattr(sa, "ALWAYS_INCLUDE", [])
     # off: nothing sent, nothing logged; test: owner only, says who and why
     assert run("off", lineups(True), early) == ([], {})
     assert run("test", lineups(True), early)[0] == ["U0B5EP4PV3M"]
@@ -539,6 +541,7 @@ def test_unattended_catch_up_watchdog_and_alerts(monkeypatch):
     monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: text)
     monkeypatch.setattr(sa, "group_dm", lambda token, users, title, blocks: sends.append(users))
     monkeypatch.setattr(sa, "ALSO_INCLUDE", {})
+    monkeypatch.setattr(sa, "ALWAYS_INCLUDE", [])
     monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
     monkeypatch.setattr(e, "all_games", lambda data: [game])
     monkeypatch.setattr(e, "send_email", lambda subject, h, t: mails.append(subject) or True)
@@ -609,6 +612,7 @@ def test_lone_trader_gets_the_owner_added(monkeypatch):
     monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: text)
     monkeypatch.setattr(sa, "group_dm", lambda token, users, title, blocks: sends.append(users))
     monkeypatch.setattr(sa, "ALSO_INCLUDE", {})
+    monkeypatch.setattr(sa, "ALWAYS_INCLUDE", [])
     monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
     monkeypatch.setattr(e, "all_games", lambda data: [game])
     monkeypatch.setenv("SLACK_DM_MODE", "on")
@@ -660,6 +664,7 @@ def test_failed_group_dm_is_not_marked_sent(monkeypatch):
     monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: text)
     monkeypatch.setattr(sa, "group_dm", boom)
     monkeypatch.setattr(sa, "ALSO_INCLUDE", {})
+    monkeypatch.setattr(sa, "ALWAYS_INCLUDE", [])
     monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
     monkeypatch.setattr(e, "all_games", lambda data: [game])
     monkeypatch.setenv("SLACK_DM_MODE", "on")
@@ -684,3 +689,19 @@ def test_early_season_mpg_shows_games_played():
     assert e.mins_tag(data, "Joan Beringer", True) == " (13.7 MPG, 3 GP)"
     assert e.mins_tag(data, "Anthony Edwards", True) == " (35.0 MPG)"
     assert e.mins_tag(data, "Rookie Guy", True) == " (7.9 MPG, 2025-26)"
+
+
+def test_owner_is_in_every_group(monkeypatch):
+    import email_report as e, slack_assign as sa
+    text = ("*10/27 IP Trader Schedule (Times EST)*\n_*NBA*_ :nba:\n11:00 PM - Portland Trail Blazers @ Los Angeles Lakers - "
+            "<@U09T3QTC6SK|Nick Battista> Cores / <@U09BNHCQD5Z|Evan Finger> Props\n")
+    game = {"date": "2026-10-27", "time": "23:00", "away": "POR", "home": "LAL", "venue": ""}
+    sends = []
+    monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: text)
+    monkeypatch.setattr(sa, "group_dm", lambda token, users, title, blocks: sends.append(users))
+    monkeypatch.setattr(sa, "ALSO_INCLUDE", {})
+    monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
+    monkeypatch.setattr(e, "all_games", lambda data: [game])
+    monkeypatch.setenv("SLACK_DM_MODE", "on")
+    e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 22, 50, tzinfo=e.ET), 25, {}, "s")
+    assert sends == [["U09T3QTC6SK", "U09BNHCQD5Z", sa.OWNER]]

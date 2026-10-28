@@ -126,6 +126,8 @@ def post_channel(token, channel, text, blocks):
 # People added to every NBA game's group DM on these dates, on top of that game's Props and Cores traders
 # (user's request: "for all of the games tonight include me", Oct 26 2026).
 ALSO_INCLUDE = {"2026-10-26": [OWNER]}
+# ...and on every date (user, Oct 27 2026: "put me in all the groups going forward")
+ALWAYS_INCLUDE = [OWNER]
 
 
 def mode():

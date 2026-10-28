@@ -772,7 +772,7 @@ def dm_traders(data, token, now, window, sent, stamp):
                     test_ch = (os.environ.get("SLACK_TEST_CHANNEL") or "").strip()
                     (sa.post_channel if test_ch else sa.dm)(token, test_ch or sa.OWNER, title, head + blocks)
                 else:
-                    users = list(dict.fromkeys([p["user"] for p in people] + sa.ALSO_INCLUDE.get(g["date"], [])))
+                    users = list(dict.fromkeys([p["user"] for p in people] + sa.ALSO_INCLUDE.get(g["date"], []) + sa.ALWAYS_INCLUDE))
                     if len(users) < 2:     # one trader alone would land in the bot's hidden Messages tab (user, Oct 27 2026)
                         users.append(sa.OWNER)
                     sa.group_dm(token, users, title, blocks)
