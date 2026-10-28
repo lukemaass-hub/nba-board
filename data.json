@@ -8794,7 +8794,7 @@
    "time": "23:00",
    "vs": "LAL",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8823,7 +8823,7 @@
    "time": "23:00",
    "vs": "POR",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -16740,6 +16740,17 @@
  },
  "news": [
   {
+   "id": "nba536411",
+   "player": "Victor Wembanyama",
+   "headline": "Full stat line in blowout win",
+   "text": "Wembanyama finished with 29 points (14-21 FG, 0-3 3Pt, 1-1 FT), 10 rebounds, five blocks, two assists and two steals across 27 minutes in Tuesday's 130-103 win over the Kings.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/victor-wembanyama-5809",
+   "at": "2026-10-28T02:37:00+00:00",
+   "team": "SAS"
+  },
+  {
    "id": "nba536408",
    "player": "Egor Demin",
    "headline": "Won't return Tuesday",
@@ -18047,28 +18058,6 @@
    "url": "https://www.rotowire.com/basketball/player/caleb-wilson-6926",
    "at": "2026-10-25T02:52:00+00:00",
    "team": "CHI"
-  },
-  {
-   "id": "nba535937",
-   "player": "Sergio de Larrea",
-   "headline": "Drops 21 points in loss",
-   "text": "De Larrea racked up 21 points (9-15 FG, 3-4 3Pt), five rebounds and four assists across 33 minutes in Saturday's 122-106 loss to the Spurs.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/sergio-de-larrea-6593",
-   "at": "2026-10-25T02:40:00+00:00",
-   "team": "DAL"
-  },
-  {
-   "id": "nba535936",
-   "player": "Dylan Harper",
-   "headline": "Tallies 22 points in Saturday's win",
-   "text": "Harper finished Saturday's 122-106 win over Dallas with 22 points (9-18 FG, 3-8 3Pt, 1-1 FT), five rebounds, two assists and two steals over 28 minutes.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/dylan-harper-6549",
-   "at": "2026-10-25T02:38:00+00:00",
-   "team": "SAS"
   }
  ],
  "matchup_alerts": [
@@ -18706,12 +18695,12 @@
    "team": "DAL",
    "player": "Santi Aldama",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Knee",
    "upd": "2026-10-27",
-   "until": "",
-   "note": "",
-   "through": "2026-10-29",
+   "until": "2026-10-28",
+   "note": "Expected to be out until at least Oct 28",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Santi%20Aldama"
   },
   {
@@ -24421,27 +24410,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-10-28T02:37:27+00:00",
+ "generated_at": "2026-10-28T02:40:50+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-28T02:37:12+00:00",
+   "at": "2026-10-28T02:40:34+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-28T02:37:25+00:00",
+   "at": "2026-10-28T02:40:49+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-28T02:37:26+00:00",
+   "at": "2026-10-28T02:40:49+00:00",
    "teams": 8,
    "injuries": 15
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-28T02:37:26+00:00",
+   "at": "2026-10-28T02:40:49+00:00",
    "current_players": 411,
    "last_players": 582
   },
@@ -24451,17 +24440,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-28T02:37:26+00:00",
+   "at": "2026-10-28T02:40:50+00:00",
    "count": 95
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-28T02:37:27+00:00",
+   "at": "2026-10-28T02:40:50+00:00",
    "count": 84
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-28T02:37:27+00:00",
+   "at": "2026-10-28T02:40:50+00:00",
    "count": 94
   },
   "x": {
@@ -24470,21 +24459,21 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-10-28T02:37:27+00:00",
+   "at": "2026-10-28T02:40:50+00:00",
    "players": 64,
    "read_at": "2026-10-28T02:30:45+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-10-28T02:37:27+00:00",
+   "at": "2026-10-28T02:40:50+00:00",
    "injuries": 93,
    "notes": 117,
    "read_at": "2026-10-28T02:30:45+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-10-28T02:37:27+00:00",
-   "count": 121
+   "at": "2026-10-28T02:40:50+00:00",
+   "count": 120
   }
  }
 }
