@@ -8852,23 +8852,23 @@
    "time": "19:30",
    "vs": "TOR",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Anthony Black"
+     "name": "Jase Richardson"
     },
     {
      "pos": "SG",
-     "name": "Desmond Bane"
+     "name": "Anthony Black"
     },
     {
      "pos": "SF",
-     "name": "Franz Wagner"
+     "name": "Desmond Bane"
     },
     {
      "pos": "PF",
-     "name": "Tristan da Silva"
+     "name": "Franz Wagner"
     },
     {
      "pos": "C",
@@ -8881,7 +8881,7 @@
    "time": "19:30",
    "vs": "ORL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9100,11 +9100,11 @@
     },
     {
      "pos": "PF",
-     "name": "Gui Santos"
+     "name": "Draymond Green"
     },
     {
      "pos": "C",
-     "name": "Draymond Green"
+     "name": "Graham Ike"
     }
    ]
   },
@@ -19270,17 +19270,6 @@
    "url": "https://www.rotowire.com/basketball/player/cason-wallace-5898",
    "at": "2026-10-25T23:34:00+00:00",
    "team": "OKC"
-  },
-  {
-   "id": "nba536051",
-   "player": "Keegan Murray",
-   "headline": "Won't play Sunday",
-   "text": "Murray (ankle) has been ruled out for Sunday's game against the Grizzlies.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/keegan-murray-5699",
-   "at": "2026-10-25T23:04:00+00:00",
-   "team": "SAC"
   }
  ],
  "matchup_alerts": [
@@ -22220,6 +22209,18 @@
   },
   {
    "team": "GSW",
+   "player": "Gui Santos",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Knee Tendinitis",
+   "upd": "2026-10-28",
+   "until": "2026-10-30",
+   "note": "Santos has been ruled out for Wednesday's game against the Timberwolves due to left knee tendinitis.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Gui%20Santos"
+  },
+  {
+   "team": "GSW",
    "player": "Kristaps Porzingis",
    "src": "ESPN",
    "kind": "O",
@@ -22289,18 +22290,6 @@
    "note": "Head coach Ime Udoka said Monday that Adams could be out \"a week or two\" due to his right soleus strain, Lachard Binkley of SI.com reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Steven%20Adams"
-  },
-  {
-   "team": "IND",
-   "player": "Obi Toppin",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Hand Sprain",
-   "upd": "2026-10-28",
-   "until": "",
-   "note": "Toppin (hand) is active for Wednesday's game against Philadelphia.",
-   "through": "2026-10-30",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Obi%20Toppin"
   },
   {
    "team": "IND",
@@ -24905,19 +24894,6 @@
   },
   {
    "team": "GSW",
-   "player": "Gui Santos",
-   "src": "RotoWire",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-10-28",
-   "until": "",
-   "note": "RotoWire tag: Out",
-   "through": "2026-10-28",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Gui%20Santos"
-  },
-  {
-   "team": "GSW",
    "player": "Jimmy Butler",
    "src": "RotoWire",
    "kind": "O",
@@ -26217,23 +26193,6 @@
    "override": true,
    "at": "2026-10-26T01:03:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "SAC",
-   "player": "Keegan Murray",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-10-25",
-   "until": "",
-   "note": "Murray (ankle) has been ruled out for Sunday's game against the Grizzlies.",
-   "through": "2026-10-25",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/keegan-murray-5699",
-   "from": "2026-10-25",
-   "override": true,
-   "at": "2026-10-25T23:04:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -26249,27 +26208,27 @@
    "at": "2026-10-28T22:25:00+00:00"
   }
  ],
- "generated_at": "2026-10-28T23:03:50+00:00",
+ "generated_at": "2026-10-28T23:07:11+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-28T23:03:29+00:00",
+   "at": "2026-10-28T23:06:53+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-28T23:03:43+00:00",
+   "at": "2026-10-28T23:07:07+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-28T23:03:49+00:00",
+   "at": "2026-10-28T23:07:10+00:00",
    "teams": 24,
-   "injuries": 82
+   "injuries": 81
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-28T23:03:49+00:00",
+   "at": "2026-10-28T23:07:10+00:00",
    "current_players": 417,
    "last_players": 582
   },
@@ -26279,17 +26238,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-28T23:03:49+00:00",
+   "at": "2026-10-28T23:07:10+00:00",
    "count": 92
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-28T23:03:49+00:00",
+   "at": "2026-10-28T23:07:11+00:00",
    "count": 90
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-28T23:03:50+00:00",
+   "at": "2026-10-28T23:07:11+00:00",
    "count": 90
   },
   "x": {
@@ -26298,21 +26257,21 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-10-28T23:03:50+00:00",
+   "at": "2026-10-28T23:07:11+00:00",
    "players": 224,
    "read_at": "2026-10-28T23:00:23+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-10-28T23:03:50+00:00",
+   "at": "2026-10-28T23:07:11+00:00",
    "injuries": 90,
    "notes": 125,
    "read_at": "2026-10-28T23:00:24+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-10-28T23:03:50+00:00",
-   "count": 96
+   "at": "2026-10-28T23:07:11+00:00",
+   "count": 95
   }
  }
 }
