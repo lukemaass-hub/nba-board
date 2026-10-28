@@ -172,3 +172,5 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   line never resends a game it missed in the log.
 - Oct 27 2026 (user): "put me in all the groups going forward" -> slack_assign.ALWAYS_INCLUDE = [OWNER]: the owner is in every
   game's group DM.
+- Oct 28 2026 (user): press-conference quotes removed from Slack, email and board (PRESSERS_ENABLED=False in
+  email_report.py and index.html). The official NBA injury report from Presser Wire still sets statuses.

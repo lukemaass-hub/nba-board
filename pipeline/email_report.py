@@ -394,9 +394,14 @@ def news_relevant(i):
     return bool(NEWS_KEEP.search(t)) and not (NEWS_SKIP.search(t) and not re.search(r"suspen", t, re.I))
 
 
+PRESSERS_ENABLED = False   # press-conference quotes taken out of Slack / email (user, Oct 28 2026); the NBA report still sets statuses
+
+
 def pressers_for(data, team, now=None, hours=NEWS_HOURS):
     """Presser Wire press-conference notes about this team from the last 36 hours, injury / minutes related only
-    (news_relevant, the same rule as beat-writer news), newest first."""
+    (news_relevant, the same rule as beat-writer news), newest first. Off while PRESSERS_ENABLED is False."""
+    if not PRESSERS_ENABLED:
+        return []
     now = now or dt.datetime.now(dt.timezone.utc)
     out = []
     for n in (data.get("presserwire") or {}).get("notes", []):
