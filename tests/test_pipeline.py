@@ -681,12 +681,12 @@ def test_accented_names_match_plain_ones():
     assert u.norm_name("Luka Dončić") == "lukadoncic" and u.norm_name("Đorđe X") == "dordex"
 
 
-def test_early_season_mpg_shows_games_played():
+def test_early_season_mpg_has_no_games_played():
     import email_report as e
     data = {"season_minutes": {"season": "2026-27", "last_season": "2025-26",
                                "current": {"Joan Beringer": [3, 13.7, "MIN"], "Anthony Edwards": [6, 35.0, "MIN"]},
                                "last": {"Rookie Guy": [40, 7.9, "MIN"]}}}
-    assert e.mins_tag(data, "Joan Beringer", True) == " (13.7 MPG, 3 GP)"
+    assert e.mins_tag(data, "Joan Beringer", True) == " (13.7 MPG)"        # no games-played count (user, Oct 27 2026)
     assert e.mins_tag(data, "Anthony Edwards", True) == " (35.0 MPG)"
     assert e.mins_tag(data, "Rookie Guy", True) == " (7.9 MPG, 2025-26)"
 
