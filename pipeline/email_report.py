@@ -199,7 +199,6 @@ def matchup_alerts_for(data, team, opp, inj, starters):
 
 NEWS_HOURS = 36
 CUR_MIN_GAMES = 1          # this season's average as soon as he has played (Oct 26 2026, user: most up-to-date; was 15)
-FEW_GAMES = 5        # under this many games this season, Slack shows the count: "(13.7 MPG, 3 GP)" (Oct 27 2026)
 CHANGE_MIN = 5.0           # minutes up/down vs last season that counts as a big change
 CHANGE_CUR_GAMES = 5       # games this season needed before we call a change
 CHANGE_BASE_GAMES = 10     # games in the comparison season needed
@@ -246,9 +245,7 @@ def mins_tag(data, player, unit=False):
     if not m:
         return ""
     old = m[1] and m[1] != (data.get("season_minutes") or {}).get("season")
-    gp = None if old else (_season_index(data)[1]["current"].get(norm_name(player)) or [None])[0]
-    few = f", {gp} GP" if unit and gp and gp < FEW_GAMES else ""     # early season: "(13.7 MPG, 3 GP)"
-    return f" ({m[0]:.1f}{' MPG' if unit else ''}{f', {m[1]}' if old else ''}{few})"
+    return f" ({m[0]:.1f}{' MPG' if unit else ''}{f', {m[1]}' if old else ''})"
 
 
 def change_html(data, player):

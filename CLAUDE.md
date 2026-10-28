@@ -162,8 +162,8 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   min above or below his MPG (email_report.sportsline_tags, SL_DIFF). FanDuel's projections were declined: they sit
   behind fanduel.com/research/api, which robots.txt disallows. Board doesn't show SportsLine yet.
 - Fixes from Colton's review (Oct 27 2026): a failed Slack group DM is no longer marked sent (retried on the next check,
-  before tip only); names drop accents properly (Jokić -> nikolajokic, also on the board); under 5 games this season Slack
-  shows the count "(13.7 MPG, 3 GP)" (FEW_GAMES); clock change: code already uses America/New_York, the weekly email
+  before tip only); names drop accents properly (Jokić -> nikolajokic, also on the board); the "(13.7 MPG, 3 GP)" games-played
+  count was added then REMOVED the same day at the user's request; clock change: code already uses America/New_York, the weekly email
   now has 13:00 and 14:00 UTC Monday crons and only the one at 9 AM Eastern sends; schedule read uses ET midnight.
   Dolly accent matching is moot while Dolly is off.
 - Oct 27 2026: a code push (merge) now only runs the tests, in its own concurrency group (update-data-push). Before, a
