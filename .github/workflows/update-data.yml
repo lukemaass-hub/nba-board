@@ -70,7 +70,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 330
     steps:
+      # the branch's newest commit, not the one from when the run was queued: a run that waited in line would otherwise
+      # start from an old send log and send a game again (Oct 27 2026: Nets @ Celtics)
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-python@v6
         with:
@@ -176,10 +180,12 @@ jobs:
           }
           start=$(date +%s)
           while [ $(( $(date +%s) - start )) -lt 18000 ]; do
+            save; git pull -q --rebase -X theirs origin "${GITHUB_REF_NAME}" || true   # pick up sends logged by any other run
             w=$(python pipeline/email_report.py --data data.json --next-wait || echo -1)
             [ "$w" -lt 0 ] && break
             echo "Next check in $((w / 60)) min"
             sleep "$w"
+            git pull -q --rebase -X theirs origin "${GITHUB_REF_NAME}" || true   # tree is clean here (saved above)
             python pipeline/update_data.py --out data.json --pregame 90 > /dev/null || true
             python pipeline/email_report.py --data data.json --window 25 || true
             save
