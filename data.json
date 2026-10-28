@@ -8620,7 +8620,7 @@
    "time": "19:00",
    "vs": "ATL",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -18201,6 +18201,17 @@
  },
  "news": [
   {
+   "id": "nba536540",
+   "player": "Yaxel Lendeborg",
+   "headline": "Available to play",
+   "text": "Lendeborg (foot) is available for Wednesday's game in Minnesota, as expected.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/yaxel-lendeborg-6562",
+   "at": "2026-10-28T22:28:00+00:00",
+   "team": "GSW"
+  },
+  {
    "id": "nba536539",
    "player": "AJ Dybantsa",
    "headline": "On minutes restriction Wednesday",
@@ -19233,17 +19244,6 @@
    "url": "https://www.rotowire.com/basketball/player/cameron-johnson-4916",
    "at": "2026-10-25T22:41:00+00:00",
    "team": "DEN"
-  },
-  {
-   "id": "nba536044",
-   "player": "Ivica Zubac",
-   "headline": "Questionable to return Sunday",
-   "text": "Zubac is questionable to return to Sunday's game in Brooklyn due to a left ankle sprain, Pat Boylan of FanDuel Sports Network Indiana reports.",
-   "reporter": "Pat Boylan",
-   "outlet": "FanDuel Sports Network Indiana",
-   "url": "https://www.rotowire.com/basketball/player/ivica-zubac-3888",
-   "at": "2026-10-25T22:34:00+00:00",
-   "team": "IND"
   }
  ],
  "matchup_alerts": [
@@ -22210,7 +22210,7 @@
    "player": "Yaxel Lendeborg",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Foot",
+   "injury": "day-to-day",
    "upd": "2026-10-28",
    "until": "",
    "note": "Lendeborg (foot) is trending toward playing Wednesday against the Timberwolves, Anthony Slater of ESPN.com reports.",
@@ -25422,6 +25422,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Max%20Strus"
   },
   {
+   "team": "GSW",
+   "player": "Yaxel Lendeborg",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-28",
+   "until": "",
+   "note": "Lendeborg (foot) is available for Wednesday's game in Minnesota, as expected.",
+   "through": "2026-10-28",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/yaxel-lendeborg-6562",
+   "from": "2026-10-28",
+   "override": true,
+   "at": "2026-10-28T22:28:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "ORL",
    "player": "Anthony Black",
    "src": "RotoWire news",
@@ -26236,23 +26253,6 @@
    "override": true,
    "at": "2026-10-25T22:41:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "IND",
-   "player": "Ivica Zubac",
-   "src": "Pat Boylan",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-25",
-   "until": "",
-   "note": "Zubac is questionable to return to Sunday's game in Brooklyn due to a left ankle sprain, Pat Boylan of FanDuel Sports Network Indiana reports.",
-   "through": "2026-10-25",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/player/ivica-zubac-3888",
-   "from": "2026-10-25",
-   "override": true,
-   "at": "2026-10-25T22:34:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -26268,27 +26268,27 @@
    "at": "2026-10-28T22:25:00+00:00"
   }
  ],
- "generated_at": "2026-10-28T22:30:59+00:00",
+ "generated_at": "2026-10-28T22:34:32+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-28T22:30:25+00:00",
+   "at": "2026-10-28T22:34:04+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-28T22:30:39+00:00",
+   "at": "2026-10-28T22:34:17+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-28T22:30:56+00:00",
+   "at": "2026-10-28T22:34:31+00:00",
    "teams": 24,
    "injuries": 83
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-28T22:30:57+00:00",
+   "at": "2026-10-28T22:34:31+00:00",
    "current_players": 417,
    "last_players": 582
   },
@@ -26298,17 +26298,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-28T22:30:57+00:00",
+   "at": "2026-10-28T22:34:31+00:00",
    "count": 92
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-28T22:30:57+00:00",
+   "at": "2026-10-28T22:34:31+00:00",
    "count": 91
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-28T22:30:58+00:00",
+   "at": "2026-10-28T22:34:32+00:00",
    "count": 91
   },
   "x": {
@@ -26317,20 +26317,20 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-10-28T22:30:58+00:00",
+   "at": "2026-10-28T22:34:32+00:00",
    "players": 224,
    "read_at": "2026-10-28T22:30:58+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-10-28T22:30:59+00:00",
+   "at": "2026-10-28T22:34:32+00:00",
    "injuries": 89,
    "notes": 124,
    "read_at": "2026-10-28T22:30:58+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-10-28T22:30:59+00:00",
+   "at": "2026-10-28T22:34:32+00:00",
    "count": 95
   }
  }
