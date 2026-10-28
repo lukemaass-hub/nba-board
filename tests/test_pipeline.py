@@ -496,7 +496,12 @@ def test_presserwire_official_report_and_notes():
     assert inj["Jock Landale"]["st"] == "avail" and inj["Jock Landale"]["beat"] == "NBA report"
     assert inj["Henri Veesaar"]["st"] == "out" and inj["Henri Veesaar"]["beat"] == ""
     now = dt.datetime(2026, 10, 26, 23, 0, tzinfo=dt.timezone.utc)
-    assert e.pressers_for(data, "NOP", now) and e.pressers_for(data, "NOP", now + dt.timedelta(days=3)) == []
+    assert e.pressers_for(data, "NOP", now) == []                  # off: press-conference quotes removed (user, Oct 28 2026)
+    e.PRESSERS_ENABLED = True
+    try:
+        assert e.pressers_for(data, "NOP", now) and e.pressers_for(data, "NOP", now + dt.timedelta(days=3)) == []
+    finally:
+        e.PRESSERS_ENABLED = False
 
 
 def test_one_news_item_per_player_and_name_spellings_merge():

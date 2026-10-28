@@ -810,7 +810,9 @@ function b2bHTML(g,date){
 }
 /* Presser Wire press-conference notes (last 36 h), injury / minutes related only (same rule as beat-writer news) */
 let PRESSERS=[];
+const PRESSERS_ENABLED=false;   // press-conference quotes removed (user, Oct 28 2026)
 function pressersHTML(code){
+  if(!PRESSERS_ENABLED) return "";
   const items=PRESSERS.filter(n=>n.team===code&&Date.now()-Date.parse(n.at)<36*3600e3&&newsRelevant({text:n.text})).sort((a,b)=>b.at.localeCompare(a.at)).slice(0,3);
   if(!items.length) return "";
   return `<div class="sech" style="margin-top:8px">Press conferences</div>`+items.map(n=>`<div class="news"><div>🎙️ <b>${esc(n.players.slice(0,4).join(", "))}</b> <span class="nc"><a href="${esc(n.url)}" target="_blank" rel="noopener">Presser Wire</a> · ${agoText(n.at)}</span></div><div class="nt" title="${esc(n.text)}">${esc(n.text)}</div></div>`).join("");
