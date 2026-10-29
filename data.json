@@ -8678,7 +8678,7 @@
    "time": "20:00",
    "vs": "NOP",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8707,7 +8707,7 @@
    "time": "20:00",
    "vs": "SAC",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8727,7 +8727,7 @@
     },
     {
      "pos": "C",
-     "name": "DeAndre Jordan"
+     "name": "Karlo Matkovic"
     }
    ]
   },
@@ -16552,6 +16552,17 @@
  },
  "news": [
   {
+   "id": "nba536754",
+   "player": "Jaylon Tyson",
+   "headline": "Available vs. Hawks",
+   "text": "Tyson (neck) has been cleared to play Thursday night against Atlanta.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/jaylon-tyson-6277",
+   "at": "2026-10-29T23:33:00+00:00",
+   "team": "CLE"
+  },
+  {
    "id": "nba536750",
    "player": "Dejounte Murray",
    "headline": "Late scratch Thursday",
@@ -17407,17 +17418,6 @@
    "outlet": "DailyThunder.com",
    "url": "https://www.rotowire.com/basketball/player/ajay-mitchell-6289",
    "at": "2026-10-26T23:41:00+00:00",
-   "team": "OKC"
-  },
-  {
-   "id": "nba536213",
-   "player": "Jared McCain",
-   "headline": "Starting Monday",
-   "text": "McCain will start Monday's game against the Suns, Brandon Rahbar of DailyThunder.com reports.",
-   "reporter": "Brandon Rahbar",
-   "outlet": "DailyThunder.com",
-   "url": "https://www.rotowire.com/basketball/player/jared-mccain-6266",
-   "at": "2026-10-26T23:37:00+00:00",
    "team": "OKC"
   }
  ],
@@ -22477,6 +22477,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Sharpe"
   },
   {
+   "team": "CLE",
+   "player": "Jaylon Tyson",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-29",
+   "until": "",
+   "note": "Tyson (neck) has been cleared to play Thursday night against Atlanta.",
+   "through": "2026-10-29",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/jaylon-tyson-6277",
+   "from": "2026-10-29",
+   "override": true,
+   "at": "2026-10-29T23:33:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "NOP",
    "player": "Dejounte Murray",
    "src": "Jim Eichenhofer",
@@ -23257,23 +23274,6 @@
    "override": true,
    "at": "2026-10-26T23:41:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "OKC",
-   "player": "Jared McCain",
-   "src": "Brandon Rahbar",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-26",
-   "until": "",
-   "note": "McCain will start Monday's game against the Suns, Brandon Rahbar of DailyThunder.com reports.",
-   "through": "2026-10-26",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/jared-mccain-6266",
-   "from": "2026-10-26",
-   "override": true,
-   "at": "2026-10-26T23:37:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -23289,27 +23289,27 @@
    "at": "2026-10-28T22:25:00+00:00"
   }
  ],
- "generated_at": "2026-10-29T23:36:52+00:00",
+ "generated_at": "2026-10-29T23:40:10+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-29T23:36:36+00:00",
+   "at": "2026-10-29T23:39:55+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-29T23:36:49+00:00",
+   "at": "2026-10-29T23:40:07+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-29T23:36:50+00:00",
+   "at": "2026-10-29T23:40:09+00:00",
    "teams": 6,
    "injuries": 13
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-29T23:36:50+00:00",
+   "at": "2026-10-29T23:40:09+00:00",
    "current_players": 425,
    "last_players": 582
   },
@@ -23319,17 +23319,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-29T23:36:50+00:00",
+   "at": "2026-10-29T23:40:09+00:00",
    "count": 96
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-29T23:36:51+00:00",
+   "at": "2026-10-29T23:40:09+00:00",
    "count": 87
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-29T23:36:51+00:00",
+   "at": "2026-10-29T23:40:10+00:00",
    "count": 96
   },
   "x": {
@@ -23338,20 +23338,20 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-10-29T23:36:51+00:00",
+   "at": "2026-10-29T23:40:10+00:00",
    "players": 53,
    "read_at": "2026-10-29T23:36:51+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-10-29T23:36:52+00:00",
+   "at": "2026-10-29T23:40:10+00:00",
    "injuries": 71,
    "notes": 137,
    "read_at": "2026-10-29T23:36:51+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-10-29T23:36:52+00:00",
+   "at": "2026-10-29T23:40:10+00:00",
    "count": 79
   }
  }
