@@ -8620,7 +8620,7 @@
    "time": "20:00",
    "vs": "ATL",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -20235,12 +20235,12 @@
    "team": "CLE",
    "player": "Meleek Thomas",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Foot",
    "upd": "2026-10-29",
-   "until": "",
-   "note": "Thomas (foot) is questionable for Thursday's game in Atlanta.",
-   "through": "2026-10-31",
+   "until": "2026-10-31",
+   "note": "Thomas (foot) has been ruled out for Thursday's game against the Hawks, Serena Winters of FanDuel Sports Network Ohio reports.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Meleek%20Thomas"
   },
   {
@@ -22305,19 +22305,6 @@
   },
   {
    "team": "CLE",
-   "player": "Meleek Thomas",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-10-29",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-10-29",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Thomas"
-  },
-  {
-   "team": "CLE",
    "player": "Jaylon Tyson",
    "src": "RotoWire",
    "kind": "G",
@@ -22328,6 +22315,19 @@
    "through": "2026-10-29",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Tyson"
+  },
+  {
+   "team": "CLE",
+   "player": "Meleek Thomas",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-10-29",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-10-29",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Thomas"
   },
   {
    "team": "CLE",
@@ -23298,27 +23298,27 @@
    "at": "2026-10-28T22:25:00+00:00"
   }
  ],
- "generated_at": "2026-10-29T23:20:25+00:00",
+ "generated_at": "2026-10-29T23:30:15+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-29T23:20:08+00:00",
+   "at": "2026-10-29T23:30:00+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-29T23:20:20+00:00",
+   "at": "2026-10-29T23:30:12+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-29T23:20:22+00:00",
+   "at": "2026-10-29T23:30:14+00:00",
    "teams": 6,
    "injuries": 14
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-29T23:20:22+00:00",
+   "at": "2026-10-29T23:30:14+00:00",
    "current_players": 425,
    "last_players": 582
   },
@@ -23328,17 +23328,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-29T23:20:23+00:00",
+   "at": "2026-10-29T23:30:15+00:00",
    "count": 95
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-29T23:20:23+00:00",
+   "at": "2026-10-29T23:30:15+00:00",
    "count": 87
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-29T23:20:23+00:00",
+   "at": "2026-10-29T23:30:15+00:00",
    "count": 96
   },
   "x": {
@@ -23347,20 +23347,20 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-10-29T23:20:24+00:00",
+   "at": "2026-10-29T23:30:15+00:00",
    "players": 54,
    "read_at": "2026-10-29T23:20:23+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-10-29T23:20:25+00:00",
+   "at": "2026-10-29T23:30:15+00:00",
    "injuries": 71,
    "notes": 137,
    "read_at": "2026-10-29T23:20:24+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-10-29T23:20:25+00:00",
+   "at": "2026-10-29T23:30:15+00:00",
    "count": 79
   }
  }
