@@ -8736,7 +8736,7 @@
    "time": "22:00",
    "vs": "POR",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8765,7 +8765,7 @@
    "time": "22:00",
    "vs": "MEM",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -16767,6 +16767,17 @@
  },
  "news": [
   {
+   "id": "nba536767",
+   "player": "Ty Jerome",
+   "headline": "Available Thursday",
+   "text": "Jerome (back) is available for Thursday's game at Portland.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/ty-jerome-4774",
+   "at": "2026-10-30T01:36:00+00:00",
+   "team": "MEM"
+  },
+  {
    "id": "nba536766",
    "player": "Ty Jerome",
    "headline": "Late addition to injury report",
@@ -17612,17 +17623,6 @@
    "url": "https://www.rotowire.com/basketball/player/lamelo-ball-5151",
    "at": "2026-10-27T05:33:00+00:00",
    "team": "MIN"
-  },
-  {
-   "id": "nba536237",
-   "player": "Alex Caruso",
-   "headline": "Won't return vs. Phoenix",
-   "text": "Caruso won't return to Monday's game against the Suns due to a right ankle sprain, Marc J. Spears of ESPN.com reports. He'll finish with nine points (3-5 FG, 3-5 3Pt), three assists and two rebounds in nine minutes.",
-   "reporter": "Marc J. Spears",
-   "outlet": "ESPN.com",
-   "url": "https://www.rotowire.com/basketball/player/alex-caruso-3952",
-   "at": "2026-10-27T01:37:00+00:00",
-   "team": "OKC"
   }
  ],
  "matchup_alerts": [
@@ -20853,7 +20853,7 @@
    "player": "Ty Jerome",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Back",
+   "injury": "day-to-day",
    "upd": "2026-10-30",
    "until": "",
    "note": "Jerome is questionable for Thursday's game against the Trail Blazers due to back tightness.",
@@ -22883,6 +22883,23 @@
    "injury": "",
    "upd": "2026-10-29",
    "until": "",
+   "note": "Jerome (back) is available for Thursday's game at Portland.",
+   "through": "2026-10-29",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/ty-jerome-4774",
+   "from": "2026-10-29",
+   "override": true,
+   "at": "2026-10-30T01:36:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "MEM",
+   "player": "Ty Jerome",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-10-29",
+   "until": "",
    "note": "Jerome is questionable for Thursday's game against the Trail Blazers due to back tightness.",
    "through": "2026-10-29",
    "st": "q",
@@ -23690,23 +23707,6 @@
    "override": true,
    "at": "2026-10-27T15:31:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "OKC",
-   "player": "Alex Caruso",
-   "src": "Marc J. Spears",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-10-26",
-   "until": "",
-   "note": "Caruso won't return to Monday's game against the Suns due to a right ankle sprain, Marc J. Spears of ESPN.com reports. He'll finish with nine points (3-5 FG, 3-5 3Pt), three assists and two rebounds in nine minutes.",
-   "through": "2026-10-26",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/alex-caruso-3952",
-   "from": "2026-10-26",
-   "override": true,
-   "at": "2026-10-27T01:37:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -23722,27 +23722,27 @@
    "at": "2026-10-28T22:25:00+00:00"
   }
  ],
- "generated_at": "2026-10-30T01:36:49+00:00",
+ "generated_at": "2026-10-30T01:40:06+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-10-30T01:36:36+00:00",
+   "at": "2026-10-30T01:39:51+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-10-30T01:36:47+00:00",
+   "at": "2026-10-30T01:40:04+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-10-30T01:36:48+00:00",
+   "at": "2026-10-30T01:40:05+00:00",
    "teams": 6,
    "injuries": 13
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-10-30T01:36:48+00:00",
+   "at": "2026-10-30T01:40:05+00:00",
    "current_players": 425,
    "last_players": 582
   },
@@ -23752,17 +23752,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-10-30T01:36:48+00:00",
+   "at": "2026-10-30T01:40:05+00:00",
    "count": 94
   },
   "covers": {
    "ok": true,
-   "at": "2026-10-30T01:36:49+00:00",
+   "at": "2026-10-30T01:40:06+00:00",
    "count": 87
   },
   "espn": {
    "ok": true,
-   "at": "2026-10-30T01:36:49+00:00",
+   "at": "2026-10-30T01:40:06+00:00",
    "count": 95
   },
   "x": {
@@ -23771,20 +23771,20 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-10-30T01:36:49+00:00",
+   "at": "2026-10-30T01:40:06+00:00",
    "players": 52,
    "read_at": "2026-10-30T01:30:13+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-10-30T01:36:49+00:00",
+   "at": "2026-10-30T01:40:06+00:00",
    "injuries": 86,
    "notes": 137,
    "read_at": "2026-10-30T01:30:14+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-10-30T01:36:49+00:00",
+   "at": "2026-10-30T01:40:06+00:00",
    "count": 78
   }
  }
