@@ -8628,15 +8628,15 @@
     },
     {
      "pos": "SG",
-     "name": "Paul George"
+     "name": "Hugo Gonzalez"
     },
     {
      "pos": "SF",
-     "name": "Jayson Tatum"
+     "name": "Paul George"
     },
     {
      "pos": "PF",
-     "name": "Jordan Walsh"
+     "name": "Jayson Tatum"
     },
     {
      "pos": "C",
@@ -13975,7 +13975,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-01T20:00:39+00:00",
+  "read_at": "2026-11-01T20:34:13+00:00",
   "date": "2026-11-01",
   "players": [
    {
@@ -14003,14 +14003,20 @@
     "min": 37.0
    },
    {
+    "player": "Pascal Siakam",
+    "team": "IND",
+    "game": "BKN@IND",
+    "min": 33.0
+   },
+   {
     "player": "Scottie Barnes",
     "team": "TOR",
     "game": "TOR@LAL",
     "min": 33.0
    },
    {
-    "player": "Pascal Siakam",
-    "team": "IND",
+    "player": "Julius Randle",
+    "team": "BKN",
     "game": "BKN@IND",
     "min": 33.0
    },
@@ -14021,22 +14027,10 @@
     "min": 34.0
    },
    {
-    "player": "Julius Randle",
-    "team": "BKN",
-    "game": "BKN@IND",
-    "min": 33.0
-   },
-   {
     "player": "Desmond Bane",
     "team": "ORL",
     "game": "BOS@ORL",
     "min": 33.0
-   },
-   {
-    "player": "Paul George",
-    "team": "BOS",
-    "game": "BOS@ORL",
-    "min": 30.0
    },
    {
     "player": "Austin Reaves",
@@ -14045,9 +14039,21 @@
     "min": 35.0
    },
    {
+    "player": "Paul George",
+    "team": "BOS",
+    "game": "BOS@ORL",
+    "min": 30.0
+   },
+   {
     "player": "RJ Barrett",
     "team": "TOR",
     "game": "TOR@LAL",
+    "min": 32.0
+   },
+   {
+    "player": "Darius Garland",
+    "team": "LAC",
+    "game": "LAC@GS",
     "min": 32.0
    },
    {
@@ -14055,12 +14061,6 @@
     "team": "BOS",
     "game": "BOS@ORL",
     "min": 33.0
-   },
-   {
-    "player": "Darius Garland",
-    "team": "LAC",
-    "game": "LAC@GS",
-    "min": 32.0
    },
    {
     "player": "Michael Porter Jr.",
@@ -14111,6 +14111,12 @@
     "min": 29.0
    },
    {
+    "player": "Kelly Oubre",
+    "team": "IND",
+    "game": "BKN@IND",
+    "min": 31.0
+   },
+   {
     "player": "Obi Toppin",
     "team": "IND",
     "game": "BKN@IND",
@@ -14121,12 +14127,6 @@
     "team": "ORL",
     "game": "BOS@ORL",
     "min": 23.0
-   },
-   {
-    "player": "Kelly Oubre",
-    "team": "IND",
-    "game": "BKN@IND",
-    "min": 31.0
    },
    {
     "player": "De`Anthony Melton",
@@ -14189,22 +14189,16 @@
     "min": 21.0
    },
    {
-    "player": "Rui Hachimura",
-    "team": "LAC",
-    "game": "LAC@GS",
-    "min": 31.0
-   },
-   {
-    "player": "Quentin Grimes",
-    "team": "LAL",
-    "game": "TOR@LAL",
-    "min": 25.0
-   },
-   {
     "player": "Neemias Queta",
     "team": "BOS",
     "game": "BOS@ORL",
     "min": 20.0
+   },
+   {
+    "player": "Rui Hachimura",
+    "team": "LAC",
+    "game": "LAC@GS",
+    "min": 31.0
    },
    {
     "player": "Nolan Traore",
@@ -14217,6 +14211,12 @@
     "team": "BKN",
     "game": "BKN@IND",
     "min": 19.0
+   },
+   {
+    "player": "Quentin Grimes",
+    "team": "LAL",
+    "game": "TOR@LAL",
+    "min": 25.0
    },
    {
     "player": "Kris Dunn",
@@ -14261,16 +14261,16 @@
     "min": 21.0
    },
    {
-    "player": "Georges Niang",
-    "team": "GSW",
-    "game": "LAC@GS",
-    "min": 21.0
-   },
-   {
     "player": "Derrick Jones Jr.",
     "team": "LAC",
     "game": "LAC@GS",
     "min": 26.0
+   },
+   {
+    "player": "Georges Niang",
+    "team": "GSW",
+    "game": "LAC@GS",
+    "min": 21.0
    },
    {
     "player": "Ziaire Williams",
@@ -14315,16 +14315,16 @@
     "min": 17.0
    },
    {
-    "player": "Sandro Mamukelashvili",
-    "team": "LAL",
-    "game": "TOR@LAL",
-    "min": 17.0
-   },
-   {
     "player": "Keon Ellis",
     "team": "BKN",
     "game": "BKN@IND",
     "min": 22.0
+   },
+   {
+    "player": "Sandro Mamukelashvili",
+    "team": "LAL",
+    "game": "TOR@LAL",
+    "min": 17.0
    },
    {
     "player": "Gary Payton",
@@ -14393,16 +14393,16 @@
     "min": 14.0
    },
    {
-    "player": "Josh Minott",
-    "team": "BKN",
-    "game": "BKN@IND",
-    "min": 11.0
-   },
-   {
     "player": "Kevon Looney",
     "team": "LAL",
     "game": "TOR@LAL",
     "min": 12.0
+   },
+   {
+    "player": "Josh Minott",
+    "team": "BKN",
+    "game": "BKN@IND",
+    "min": 11.0
    },
    {
     "player": "Jamal Cain",
@@ -14431,7 +14431,7 @@
   ]
  },
  "presserwire": {
-  "read_at": "2026-11-01T20:00:40+00:00",
+  "read_at": "2026-11-01T20:34:13+00:00",
   "injuries": [
    {
     "team": "BOS",
@@ -14446,7 +14446,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "BOS",
@@ -14461,7 +14461,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "BKN",
@@ -14476,7 +14476,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "BKN",
@@ -14491,7 +14491,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "GSW",
@@ -14506,7 +14506,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "GSW",
@@ -14521,7 +14521,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "GSW",
@@ -14536,7 +14536,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "GSW",
@@ -14551,7 +14551,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "GSW",
@@ -14566,7 +14566,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "GSW",
@@ -14582,7 +14582,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "IND",
@@ -14597,7 +14597,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "IND",
@@ -14612,7 +14612,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "IND",
@@ -14627,7 +14627,22 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
+   },
+   {
+    "team": "IND",
+    "player": "Obi Toppin",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Low Back Soreness",
+    "upd": "2026-11-01",
+    "until": "",
+    "note": "",
+    "through": "2026-11-01",
+    "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
+    "from": "2026-11-01",
+    "override": true,
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "IND",
@@ -14642,7 +14657,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "IND",
@@ -14657,23 +14672,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
-   },
-   {
-    "team": "IND",
-    "player": "Obi Toppin",
-    "src": "NBA report",
-    "kind": "G",
-    "injury": "Low Back Soreness Listed Q 5x, played 5 \u00b7 Team Qs played 57/70",
-    "upd": "2026-11-01",
-    "until": "",
-    "note": "",
-    "through": "2026-11-01",
-    "st": "q",
-    "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
-    "from": "2026-11-01",
-    "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "IND",
@@ -14689,7 +14688,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "LAC",
@@ -14704,7 +14703,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "LAC",
@@ -14719,7 +14718,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "LAC",
@@ -14734,7 +14733,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "LAC",
@@ -14749,7 +14748,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "LAC",
@@ -14764,7 +14763,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "LAL",
@@ -14779,7 +14778,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-toronto-raptors-at-los-angeles-lakers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "LAL",
@@ -14795,7 +14794,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-toronto-raptors-at-los-angeles-lakers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "LAL",
@@ -14811,7 +14810,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-toronto-raptors-at-los-angeles-lakers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "ORL",
@@ -14826,7 +14825,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "ORL",
@@ -14841,7 +14840,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "ORL",
@@ -14856,7 +14855,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "ORL",
@@ -14871,7 +14870,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "ORL",
@@ -14886,7 +14885,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "TOR",
@@ -14901,7 +14900,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-toronto-raptors-at-los-angeles-lakers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    },
    {
     "team": "TOR",
@@ -14916,7 +14915,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-01-toronto-raptors-at-los-angeles-lakers.html",
     "from": "2026-11-01",
     "override": true,
-    "at": "2026-11-01T20:00:40+00:00"
+    "at": "2026-11-01T20:34:13+00:00"
    }
   ],
   "notes": [
@@ -14929,6 +14928,15 @@
     "text": "Without Rudy Gobert and Anthony Edwards on the second night of a back-to-back, Joan Beringer said Minnesota still expects to win: \"We really have the potential to win every game, and we don't have any excuse.\" LaMelo Ball added: \"Down some players... 5 games, 7 nights.\"",
     "at": "2026-11-01T07:04:49+00:00",
     "url": "https://presserwire.com/nba/availability.html"
+   },
+   {
+    "team": "GSW",
+    "players": [
+     "Gui Santos"
+    ],
+    "text": "Steven Adams and Reed Sheppard remain out for Houston, and Ime Udoka liked the response: \"it felt good to see other guys step into those roles and us not really miss a beat.\" Fred VanVleet is coming off surgery; \"we knew we wouldn't play back-to-back,\" Udoka said postgame.",
+    "at": "2026-11-01T03:33:23+00:00",
+    "url": "https://x.com/nbapresserwire/status/2116735325875912959"
    },
    {
     "team": "HOU",
@@ -15100,6 +15108,15 @@
     "url": "https://presserwire.com/nba/availability.html"
    },
    {
+    "team": "LAL",
+    "players": [
+     "Walker Kessler"
+    ],
+    "text": "Dejounte Murray is out for New Orleans on Oct. 29, celebrating the birth of his son; Herb Jones starts. Jordan Poole (ankle) is out too, re-evaluated \"in the next couple of days,\" Jamahl Mosley said. With both out, he wants Jeremiah Fears to be \"a dominant point guard.\"",
+    "at": "2026-10-29T22:52:03+00:00",
+    "url": "https://x.com/nbapresserwire/status/2115939749324316729"
+   },
+   {
     "team": "NOP",
     "players": [
      "Herb Jones",
@@ -15252,6 +15269,15 @@
     "text": "Rui Hachimura has had no tests on his injury, Clippers coach Tyronn Lue said Oct. 28, adding he will be okay and is day-to-day. Kobe Sanders could take on a bigger role; Lue pointed to his 6'8 length and \"being able to switch... 1 through 5 at times.\"",
     "at": "2026-10-29T01:29:43+00:00",
     "url": "https://presserwire.com/nba/availability.html"
+   },
+   {
+    "team": "LAL",
+    "players": [
+     "Walker Kessler"
+    ],
+    "text": "Yves Missi warmed up on the court before the Pelicans' game on Oct. 28. Asked if he could return on this homestand, Jamahl Mosley didn't commit: \"There's no timetable on that. It's just good to see him standing up and moving around and shooting the basketball a little bit.\"",
+    "at": "2026-10-28T22:29:49+00:00",
+    "url": "https://x.com/nbapresserwire/status/2115571767377039592"
    },
    {
     "team": "NOP",
@@ -15520,6 +15546,15 @@
     "text": "Justin Champagnie is being evaluated for a right foot injury. Wizards coach Brian Keefe would not say whether X-rays were taken or came back negative. Trae Young spoke of Champagnie's \"recovery\": \"We gonna make sure he's right and we'll hold down the fort while he's gone.\"",
     "at": "2026-10-27T02:47:15+00:00",
     "url": "https://presserwire.com/nba/availability.html"
+   },
+   {
+    "team": "GSW",
+    "players": [
+     "Gui Santos"
+    ],
+    "text": "Steven Adams will miss \"a week or two at least,\" Ime Udoka said before Houston's game; he felt something mid-game after earlier soreness. Clint Capela gets the first look at center, \"but we're very comfortable going small.\" Marcus Smart is day-to-day, possibly back next game.",
+    "at": "2026-10-26T23:16:18+00:00",
+    "url": "https://x.com/nbapresserwire/status/2114858689568137266"
    },
    {
     "team": "HOU",
@@ -18004,12 +18039,12 @@
    "team": "NOP",
    "player": "Jordan Poole",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
    "upd": "2026-11-01",
-   "until": "",
-   "note": "",
-   "through": "2026-11-03",
+   "until": "2026-11-04",
+   "note": "Expected to be out until at least Nov 4",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jordan%20Poole"
   },
   {
@@ -19886,6 +19921,18 @@
   },
   {
    "team": "IND",
+   "player": "Obi Toppin",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Back Soreness",
+   "upd": "2026-11-01",
+   "until": "2026-11-02",
+   "note": "Toppin (back) is questionable for Sunday's game against the Nets.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Obi%20Toppin"
+  },
+  {
+   "team": "IND",
    "player": "T.J. McConnell",
    "src": "ESPN",
    "kind": "O",
@@ -19922,18 +19969,6 @@
   },
   {
    "team": "IND",
-   "player": "Obi Toppin",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Back Soreness",
-   "upd": "2026-10-31",
-   "until": "",
-   "note": "Toppin (back) is questionable for Sunday's game against the Nets.",
-   "through": "2026-11-03",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Obi%20Toppin"
-  },
-  {
-   "team": "IND",
    "player": "Johnny Furphy",
    "src": "ESPN",
    "kind": "O",
@@ -19967,6 +20002,30 @@
    "note": "Haliburton (hamstring) will miss at least the next two weeks of action, Shams Charania of ESPN reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Tyrese%20Haliburton"
+  },
+  {
+   "team": "LAC",
+   "player": "Yanic Konan Niederhauser",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Foot Surgery",
+   "upd": "2026-11-01",
+   "until": "2026-11-08",
+   "note": "Niederhauser (foot) had his third-year team option picked up Thursday by the Clippers, Ohm Youngmisuk of ESPN.com reports.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Yanic%20Konan%20Niederhauser"
+  },
+  {
+   "team": "LAC",
+   "player": "Brandon Ingram",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Achilles Surgery",
+   "upd": "2026-11-01",
+   "until": "2026-11-08",
+   "note": "Ingram (Achilles) is making progress but is set to miss at least one more week, Ohm Youngmisuk of ESPN.com reports.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Brandon%20Ingram"
   },
   {
    "team": "LAC",
@@ -20102,14 +20161,26 @@
   },
   {
    "team": "NOP",
-   "player": "Jordan Poole",
+   "player": "Trey Murphy III",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Left Ankle Sprain",
+   "injury": "Knee",
    "upd": "2026-11-01",
    "until": "",
-   "note": "Poole (ankle) has been ruled out for Saturday's game against the Hawks.",
+   "note": "Murphy (knee) is listed as probable for Monday's game against the Grizzlies.",
    "through": "2026-11-03",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Trey%20Murphy%20III"
+  },
+  {
+   "team": "NOP",
+   "player": "Jordan Poole",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Ankle Sprain",
+   "upd": "2026-11-01",
+   "until": "2026-11-04",
+   "note": "Poole (ankle) has been ruled out for Monday's game against the Grizzlies.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jordan%20Poole"
   },
   {
@@ -20545,7 +20616,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "BOS",
@@ -20560,7 +20631,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "BKN",
@@ -20575,7 +20646,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "BKN",
@@ -20590,7 +20661,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "GSW",
@@ -20605,7 +20676,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "GSW",
@@ -20620,7 +20691,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "GSW",
@@ -20635,7 +20706,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "GSW",
@@ -20650,7 +20721,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "GSW",
@@ -20665,7 +20736,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "GSW",
@@ -20681,7 +20752,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "IND",
@@ -20696,7 +20767,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "IND",
@@ -20711,7 +20782,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "IND",
@@ -20726,7 +20797,22 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
+  },
+  {
+   "team": "IND",
+   "player": "Obi Toppin",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Low Back Soreness",
+   "upd": "2026-11-01",
+   "until": "",
+   "note": "",
+   "through": "2026-11-01",
+   "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
+   "from": "2026-11-01",
+   "override": true,
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "IND",
@@ -20741,7 +20827,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "IND",
@@ -20756,23 +20842,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
-  },
-  {
-   "team": "IND",
-   "player": "Obi Toppin",
-   "src": "NBA report",
-   "kind": "G",
-   "injury": "Low Back Soreness Listed Q 5x, played 5 \u00b7 Team Qs played 57/70",
-   "upd": "2026-11-01",
-   "until": "",
-   "note": "",
-   "through": "2026-11-01",
-   "st": "q",
-   "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
-   "from": "2026-11-01",
-   "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "IND",
@@ -20788,7 +20858,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-brooklyn-nets-at-indiana-pacers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "LAC",
@@ -20803,7 +20873,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "LAC",
@@ -20818,7 +20888,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "LAC",
@@ -20833,7 +20903,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "LAC",
@@ -20848,7 +20918,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "LAC",
@@ -20863,7 +20933,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-la-clippers-at-golden-state-warriors.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "LAL",
@@ -20878,7 +20948,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-toronto-raptors-at-los-angeles-lakers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "LAL",
@@ -20894,7 +20964,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-toronto-raptors-at-los-angeles-lakers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "LAL",
@@ -20910,7 +20980,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-toronto-raptors-at-los-angeles-lakers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "ORL",
@@ -20925,7 +20995,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "ORL",
@@ -20940,7 +21010,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "ORL",
@@ -20955,7 +21025,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "ORL",
@@ -20970,7 +21040,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "ORL",
@@ -20985,7 +21055,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-boston-celtics-at-orlando-magic.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "TOR",
@@ -21000,7 +21070,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-toronto-raptors-at-los-angeles-lakers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "TOR",
@@ -21015,7 +21085,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-01-toronto-raptors-at-los-angeles-lakers.html",
    "from": "2026-11-01",
    "override": true,
-   "at": "2026-11-01T20:00:40+00:00"
+   "at": "2026-11-01T20:34:13+00:00"
   },
   {
    "team": "BOS",
@@ -21162,19 +21232,6 @@
   },
   {
    "team": "IND",
-   "player": "Obi Toppin",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-01",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-01",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=O.%20Toppin"
-  },
-  {
-   "team": "IND",
    "player": "Johnny Furphy",
    "src": "RotoWire",
    "kind": "O",
@@ -21224,6 +21281,19 @@
    "through": "2026-11-01",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Sheppard"
+  },
+  {
+   "team": "IND",
+   "player": "Obi Toppin",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-01",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-11-01",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Obi%20Toppin"
   },
   {
    "team": "IND",
@@ -22141,27 +22211,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-01T20:03:57+00:00",
+ "generated_at": "2026-11-01T20:34:14+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-01T20:03:43+00:00",
+   "at": "2026-11-01T20:34:00+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-01T20:03:56+00:00",
+   "at": "2026-11-01T20:34:12+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-01T20:03:56+00:00",
+   "at": "2026-11-01T20:34:12+00:00",
    "teams": 8,
    "injuries": 34
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-01T20:03:56+00:00",
+   "at": "2026-11-01T20:34:12+00:00",
    "current_players": 441,
    "last_players": 582
   },
@@ -22171,18 +22241,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-01T20:03:56+00:00",
+   "at": "2026-11-01T20:34:13+00:00",
    "count": 89
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-01T20:03:57+00:00",
+   "at": "2026-11-01T20:34:13+00:00",
    "count": 88
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-01T20:03:57+00:00",
-   "count": 88
+   "at": "2026-11-01T20:34:13+00:00",
+   "count": 91
   },
   "x": {
    "ok": null,
@@ -22190,20 +22260,20 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-01T20:03:57+00:00",
+   "at": "2026-11-01T20:34:13+00:00",
    "players": 75,
-   "read_at": "2026-11-01T20:00:39+00:00"
+   "read_at": "2026-11-01T20:34:13+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-01T20:03:57+00:00",
+   "at": "2026-11-01T20:34:14+00:00",
    "injuries": 32,
-   "notes": 134,
-   "read_at": "2026-11-01T20:00:40+00:00"
+   "notes": 138,
+   "read_at": "2026-11-01T20:34:13+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-01T20:03:57+00:00",
+   "at": "2026-11-01T20:34:14+00:00",
    "count": 63
   }
  }
