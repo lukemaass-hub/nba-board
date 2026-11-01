@@ -8968,7 +8968,7 @@
    "time": "20:30",
    "vs": "HOU",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17083,6 +17083,17 @@
  },
  "news": [
   {
+   "id": "nba537004",
+   "player": "Ziaire Williams",
+   "headline": "Questionable for Sunday",
+   "text": "Williams (foot) is questionable for Sunday's game against the Raptors.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/ziaire-williams-5400",
+   "at": "2026-11-01T00:04:00+00:00",
+   "team": "LAL"
+  },
+  {
    "id": "nba537001",
    "player": "Joan Beringer",
    "headline": "Starting Saturday",
@@ -20338,6 +20349,18 @@
   },
   {
    "team": "ATL",
+   "player": "Jock Landale",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Hip",
+   "upd": "2026-11-01",
+   "until": "2026-11-02",
+   "note": "Landale (nose) is available for Friday's game versus Charlotte.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Jock%20Landale"
+  },
+  {
+   "team": "ATL",
    "player": "Mouhamed Gueye",
    "src": "ESPN",
    "kind": "O",
@@ -23019,6 +23042,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=F.%20VanVleet"
   },
   {
+   "team": "LAL",
+   "player": "Ziaire Williams",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-01",
+   "until": "",
+   "note": "Williams (foot) is questionable for Sunday's game against the Raptors.",
+   "through": "2026-11-01",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/ziaire-williams-5400",
+   "from": "2026-11-01",
+   "override": true,
+   "at": "2026-11-01T00:04:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "MIN",
    "player": "Joan Beringer",
    "src": "Jack Borman",
@@ -23768,27 +23808,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-01T00:06:52+00:00",
+ "generated_at": "2026-11-01T00:10:10+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-01T00:06:38+00:00",
+   "at": "2026-11-01T00:09:55+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-01T00:06:51+00:00",
+   "at": "2026-11-01T00:10:09+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-01T00:06:51+00:00",
+   "at": "2026-11-01T00:10:09+00:00",
    "teams": 14,
    "injuries": 41
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-01T00:06:51+00:00",
+   "at": "2026-11-01T00:10:09+00:00",
    "current_players": 432,
    "last_players": 582
   },
@@ -23798,18 +23838,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-01T00:06:51+00:00",
+   "at": "2026-11-01T00:10:09+00:00",
    "count": 89
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-01T00:06:51+00:00",
+   "at": "2026-11-01T00:10:10+00:00",
    "count": 84
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-01T00:06:51+00:00",
-   "count": 88
+   "at": "2026-11-01T00:10:10+00:00",
+   "count": 89
   },
   "x": {
    "ok": null,
@@ -23817,21 +23857,21 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-01T00:06:51+00:00",
+   "at": "2026-11-01T00:10:10+00:00",
    "players": 103,
    "read_at": "2026-11-01T00:00:14+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-01T00:06:51+00:00",
+   "at": "2026-11-01T00:10:10+00:00",
    "injuries": 72,
    "notes": 134,
    "read_at": "2026-11-01T00:00:14+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-01T00:06:52+00:00",
-   "count": 66
+   "at": "2026-11-01T00:10:10+00:00",
+   "count": 67
   }
  }
 }
