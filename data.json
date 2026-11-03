@@ -9345,7 +9345,7 @@
    "time": "22:00",
    "vs": "PHX",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9357,11 +9357,11 @@
     },
     {
      "pos": "SF",
-     "name": "Yaxel Lendeborg"
+     "name": "Will Richard"
     },
     {
      "pos": "PF",
-     "name": "Georges Niang"
+     "name": "Yaxel Lendeborg"
     },
     {
      "pos": "C",
@@ -9374,7 +9374,7 @@
    "time": "22:00",
    "vs": "LAC",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9394,7 +9394,7 @@
     },
     {
      "pos": "C",
-     "name": "Trayce Jackson-Davis"
+     "name": "Collin Murray-Boyles"
     }
    ]
   },
@@ -9403,7 +9403,7 @@
    "time": "22:00",
    "vs": "TOR",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -22794,6 +22794,18 @@
   },
   {
    "team": "DAL",
+   "player": "Max Christie",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Right Hip",
+   "upd": "2026-11-03",
+   "until": "",
+   "note": "Christie (shin) is available for Saturday's game against the Spurs.",
+   "through": "2026-11-04",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Max%20Christie"
+  },
+  {
+   "team": "DAL",
    "player": "Kyrie Irving",
    "src": "ESPN",
    "kind": "O",
@@ -23586,25 +23598,13 @@
   },
   {
    "team": "TOR",
-   "player": "Scottie Barnes",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "day-to-day",
-   "upd": "2026-11-02",
-   "until": "",
-   "note": "Barnes (hip) is listed as questionable for Monday's game against the Clippers.",
-   "through": "2026-11-04",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Scottie%20Barnes"
-  },
-  {
-   "team": "TOR",
    "player": "Jakob Poeltl",
    "src": "ESPN",
    "kind": "O",
    "injury": "Left Shoulder Inflammation",
-   "upd": "2026-11-02",
+   "upd": "2026-11-03",
    "until": "2026-11-04",
-   "note": "Poeltl (shoulder) is listed as questionable for Monday's game against the Clippers.",
+   "note": "Poeltl (shoulder) has been ruled out for Monday's game against the Clippers, Zulfi Sheikh reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jakob%20Poeltl"
   },
@@ -27207,27 +27207,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-03T02:33:32+00:00",
+ "generated_at": "2026-11-03T02:36:49+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-03T02:33:19+00:00",
+   "at": "2026-11-03T02:36:36+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-03T02:33:31+00:00",
+   "at": "2026-11-03T02:36:47+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-03T02:33:31+00:00",
+   "at": "2026-11-03T02:36:48+00:00",
    "teams": 30,
    "injuries": 93
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-03T02:33:31+00:00",
+   "at": "2026-11-03T02:36:48+00:00",
    "current_players": 442,
    "last_players": 582
   },
@@ -27237,17 +27237,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-03T02:33:31+00:00",
+   "at": "2026-11-03T02:36:48+00:00",
    "count": 93
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-03T02:33:32+00:00",
+   "at": "2026-11-03T02:36:48+00:00",
    "count": 96
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-03T02:33:32+00:00",
+   "at": "2026-11-03T02:36:49+00:00",
    "count": 94
   },
   "x": {
@@ -27256,20 +27256,20 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-03T02:33:32+00:00",
+   "at": "2026-11-03T02:36:49+00:00",
    "players": 277,
    "read_at": "2026-11-03T02:30:14+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-03T02:33:32+00:00",
+   "at": "2026-11-03T02:36:49+00:00",
    "injuries": 103,
    "notes": 136,
    "read_at": "2026-11-03T02:30:15+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-03T02:33:32+00:00",
+   "at": "2026-11-03T02:36:49+00:00",
    "count": 71
   }
  }
