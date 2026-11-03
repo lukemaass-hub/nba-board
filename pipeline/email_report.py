@@ -129,6 +129,13 @@ def sl_text(tags, player):
     return f" {'📈' if t[1] > 0 else '📉'} _Expected {t[0]:g} min ({'+' if t[1] > 0 else '-'}{abs(t[1]):.1f})_" if t else ""
 
 
+def depth_starters(data, team):
+    """Norm names of the depth chart's starter (first name) at each position."""
+    chart = (data.get("depth") or {}).get(team) or {}
+    col = lambda p: [n.strip() for part in (chart.get(p) or "").split("/") for n in part.split(",") if n.strip()]
+    return {norm_name(c[0]) for c in map(col, POS) if c}
+
+
 def replacements_for(data, team, inj):
     """{injured player's norm name: replacement name} for players out or doubtful: the next healthy player below him at
     his position on the depth chart (the same heuristic the board uses for "Minutes up")."""
@@ -248,8 +255,17 @@ def mins_tag(data, player, unit=False):
     return f" ({m[0]:.1f}{' MPG' if unit else ''}{f', {m[1]}' if old else ''})"
 
 
+# Nov 3 2026: "+N min vs 2025-26" badges and highlights taken out of the board, email and Slack (user). The weekly
+# minutes-changes email still uses minutes_change(). Set to True to bring them back.
+MINUTES_CHANGE_ENABLED = False
+
+
+def big_change(data, player):
+    return minutes_change(data, player) if MINUTES_CHANGE_ENABLED else None
+
+
 def change_html(data, player):
-    c = minutes_change(data, player)
+    c = big_change(data, player)
     if not c:
         return ""
     up = c[0] > 0
@@ -258,7 +274,7 @@ def change_html(data, player):
 
 
 def change_text(data, player):
-    c = minutes_change(data, player)
+    c = big_change(data, player)
     return f" [{'+' if c[0] > 0 else ''}{round(c[0])} min vs {c[3]}]" if c else ""
 
 
@@ -505,7 +521,7 @@ def build(data, games, date):
             if starters:
                 h.append(f'<div style="{label_css}">{e(label)}</div><table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:14px">')
                 for p, n, why in starters:
-                    hl = "background:#fff4c2;" if minutes_change(data, n) else ""
+                    hl = "background:#fff4c2;" if big_change(data, n) else ""
                     h.append(f'<tr><td style="width:30px;padding:2px 0;{light};font-size:11px;font-weight:bold">{e(p)}</td>'
                              f'<td style="padding:2px 4px;{hl}"><b>{e(n)}</b> {mins(n)}{exp_html(xt, n)}{tag(status.get(norm_name(n)))}{change_html(data, n)}'
                              f'{f" <span style=color:#1e8449;font-size:12px>in for {e(why[7:])}</span>" if why else ""}</td></tr>')
@@ -516,7 +532,7 @@ def build(data, games, date):
             up = []
             if bench or deep:
                 h.append(f'<div style="{label_css}">Bench</div><div style="font-size:13px;line-height:1.7">'
-                         + " &nbsp;·&nbsp; ".join(f'<span style="{"background:#fff4c2;" if minutes_change(data, n) else ""}">{e(n)} {mins(n)}</span>'
+                         + " &nbsp;·&nbsp; ".join(f'<span style="{"background:#fff4c2;" if big_change(data, n) else ""}">{e(n)} {mins(n)}</span>'
                                                   f'{exp_html(xt, n)}{tag(st)}{change_html(data, n)}' for p, n, st in bench) + "</div>")
                 up = deep_bench_up(data, team, date, deep, skip={k for k, st in status.items() if st in ("out", "doubt")})
                 if up:   # deep bench only when Dolly expects him to play more than usual
@@ -573,7 +589,7 @@ def build(data, games, date):
         t.append("")
     h.append(f'<div style="font-size:11px;{light};margin:12px 4px 0;line-height:1.5">'
              '🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · ✅ Available (NBA official report) · (Number) = average minutes per game, this season, '
-             'otherwise last season (marked with the season) · Green / red "Exp N (+/−)" = expected minutes 5+ more / fewer than that average · Highlighted = 5+ minutes more or fewer than last season · Click a player for the source.</div></div></div>')
+             'otherwise last season (marked with the season) · Green / red "Exp N (+/−)" = expected minutes 5+ more / fewer than that average · ' + ('Highlighted = 5+ minutes more or fewer than last season · ' if MINUTES_CHANGE_ENABLED else '') + 'Click a player for the source.</div></div></div>')
     return title, "".join(h), "\n".join(t)
 
 
@@ -606,8 +622,9 @@ def build_slack(data, game, date, test=False):
         blocks.append({"type": "context", "elements": [
             {"type": "image", "image_url": logo_url, "alt_text": team},
             {"type": "mrkdwn", "text": f"*{e(name(team))}*"}]})
-        # who replaces each player out / doubtful: marked ⬆️ next to the replacement (user, Oct 27 2026)
-        repl = replacements_for(data, team, inj)
+        # who replaces each player out / doubtful: marked ⬆️ next to the replacement (user, Oct 27 2026);
+        # starters only since Nov 3 2026 (user: less cluttered)
+        repl = {k: v for k, v in replacements_for(data, team, inj).items() if k in depth_starters(data, team)}
         names_by = {norm_name(i["player"]): i["player"] for i in inj}
         up_for = {}
         for k, sub in repl.items():
@@ -648,7 +665,7 @@ def build_slack(data, game, date, test=False):
             sub = repl.get(norm_name(i["player"])) if i["st"] in ("out", "doubt") else None
             lines.append(f"{DOT[i['st']]} *{who}*{mins_tag(data, i['player'], True)} {LABEL[i['st']]}"
                          f"{' · ' + e(i['injury']) if i['injury'] else ''}"
-                         f"{f'  →  ⬆️ *{e(sub)}*{mins_tag(data, sub, True)} steps in' if sub else ''}")
+                         f"{f'  →  ⬆️ *{e(sub)}*{mins_tag(data, sub, True)}' if sub else ''}")
         blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
                        "text": ("*Injuries*\n" + "\n".join(lines))[:2900] if lines else "✅ No injuries listed"}]})
         blocks.append({"type": "divider"})

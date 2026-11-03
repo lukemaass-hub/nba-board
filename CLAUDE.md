@@ -50,6 +50,10 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   season he played (5+ games now, 10+ then): yellow highlight + "+N min vs 2025-26" badge in the pre-game email,
   and a weekly email (Mondays 9 AM ET, or Run workflow > weekly_email) listing all of them. Nothing until 2026-27
   games are played.
+  Nov 3 2026 (user): the "+N min vs 2025-26" badges and yellow highlights are OFF on the board, email and Slack
+  (MINUTES_CHANGE_ENABLED / CHANGES_ENABLED); the weekly changes email is unchanged.
+- Slack injury lines (Nov 3 2026, user): the "→ ⬆️ Replacement" arrow only shows for injured depth-chart starters
+  (also the "⬆️ in for" marks on the bench), and no "steps in" text.
 - Board layout: starters & bench are inside a closed "Starters & bench" dropdown; injuries, alerts, news visible.
 - Depth charts: embedded set covers only 22 of 30 teams (RealGM page was truncated in the chat). The pipeline run
   should fill all 30. HoopsHype blocks automated access.

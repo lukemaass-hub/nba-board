@@ -1013,8 +1013,9 @@ function loadSeasonMinutes(sm){
     if(c&&c[0]>=5&&base&&Math.abs(c[1]-base[0][1])>=5) CHANGES[k]={diff:c[1]-base[0][1],vs:base[1]};
   });
 }
+const CHANGES_ENABLED=false;   // "+N min vs 2025-26" badges removed (user, Nov 3 2026); same switch as MINUTES_CHANGE_ENABLED in email_report.py
 function changeHTML(name){
-  const c=CHANGES[normName(name)]; if(!c) return "";
+  const c=CHANGES_ENABLED&&CHANGES[normName(name)]; if(!c) return "";
   return `<span class="chg ${c.diff>0?"up":"down"}" title="Average minutes this season vs ${esc(c.vs)}">${c.diff>0?"📈 +":"📉 "}${Math.round(c.diff)} min vs ${esc(c.vs)}</span>`;
 }
 async function loadData(){
