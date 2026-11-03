@@ -1023,14 +1023,21 @@ def main():
         return
 
     if args.test_slack:
-        if not slack_url:
-            sys.exit("SLACK_WEBHOOK_URL is not set (add it under Settings > Secrets and variables > Actions).")
+        # no webhook (Nov 3 2026): send through the bot instead, to SLACK_TEST_CHANNEL if set, else a DM to the owner
+        bot = os.environ.get("SLACK_BOT_TOKEN")
+        if not slack_url and not bot:
+            sys.exit("Neither SLACK_WEBHOOK_URL nor SLACK_BOT_TOKEN is set (add one under Settings > Secrets and variables > Actions).")
         games = next_games(data, now)
         if not games:
             sys.exit("No upcoming games in data.json to test with.")
         for g in games:
             title, blocks = build_slack(data, g, g["date"], test=True)
-            post_slack(slack_url, title, blocks)
+            if slack_url:
+                post_slack(slack_url, title, blocks)
+            else:
+                import slack_assign as sa
+                test_ch = (os.environ.get("SLACK_TEST_CHANNEL") or "").strip()
+                (sa.post_channel if test_ch else sa.dm)(bot, test_ch or sa.OWNER, title, blocks)
             print(f"Slack test sent: {title}")
         return
 
