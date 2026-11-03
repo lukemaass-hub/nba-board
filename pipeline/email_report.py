@@ -666,8 +666,9 @@ def build_slack(data, game, date, test=False):
             lines.append(f"{DOT[i['st']]} *{who}*{mins_tag(data, i['player'], True)} {LABEL[i['st']]}"
                          f"{' · ' + e(i['injury']) if i['injury'] else ''}"
                          f"{f'  →  ⬆️ *{e(sub)}*{mins_tag(data, sub, True)}' if sub else ''}")
-        blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
-                       "text": ("*Injuries*\n" + "\n".join(lines))[:2900] if lines else "✅ No injuries listed"}]})
+        if lines:   # nothing at all when there are no injuries, no "No injuries listed" (user, Nov 3 2026)
+            blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
+                           "text": ("*Injuries*\n" + "\n".join(lines))[:2900]}]})
         blocks.append({"type": "divider"})
     blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text":
                    f"🔴 Out · 🟠 Doubtful · 🟡 Questionable · 🟢 Probable · ✅ Available (NBA report)"}]})

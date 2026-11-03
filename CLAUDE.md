@@ -54,6 +54,7 @@ so this feeds betting/trading decisions. Accuracy and honest uncertainty matter 
   (MINUTES_CHANGE_ENABLED / CHANGES_ENABLED); the weekly changes email is unchanged.
 - Slack injury lines (Nov 3 2026, user): the "→ ⬆️ Replacement" arrow only shows for injured depth-chart starters
   (also the "⬆️ in for" marks on the bench), and no "steps in" text.
+  A team with no injuries shows no Injuries section at all (no "No injuries listed").
 - Board layout: starters & bench are inside a closed "Starters & bench" dropdown; injuries, alerts, news visible.
 - Depth charts: embedded set covers only 22 of 30 teams (RealGM page was truncated in the chat). The pipeline run
   should fill all 30. HoopsHype blocks automated access.
