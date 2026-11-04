@@ -184,7 +184,7 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   lines in ESPN's core odds list) + final scores -> backtest/data/spreads.csv; `table` fits a logistic curve (favorite
   wins by 15+) -> pipeline/blowout_table.json. Rates: 0-2.5 pts 17%, 7-8.5 27%, 11-12.5 38%, 13-14.5 47%, 15+ 61%.
   update_data.fetch_lines reads today's DraftKings spread from ESPN's scoreboard on every refresh -> data["lines"];
-  Slack shows ":boom: 42% chance of a blowout" (just that, user Nov 4 2026) only when the chance
+  Slack shows "42% chance of a blowout" in bold (just that, no emoji; user Nov 4 2026) only when the chance
   is >= BLOWOUT_MIN (0.30 since Nov 4 2026, user; about 9+ point favorites; was 0.40). Closing line stands in for "30 min before tip" (not kept for
   past games).
 - Press quotes back (Nov 4 2026, user): PRESSERS_ENABLED=True, boiled down to facts by rules (user won't add an
