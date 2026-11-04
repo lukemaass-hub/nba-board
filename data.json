@@ -8620,7 +8620,7 @@
    "time": "19:00",
    "vs": "DET",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8707,7 +8707,7 @@
    "time": "19:00",
    "vs": "ATL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -19024,7 +19024,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-04T23:30:45+00:00",
+  "read_at": "2026-11-04T23:34:05+00:00",
   "date": "2026-11-04",
   "games": {
    "PHI@DET": {
@@ -21885,6 +21885,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba537547",
+   "player": "Coby White",
+   "headline": "Good to go Wednesday",
+   "text": "White (calf) is available for Wednesday's game in Brooklyn.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/coby-white-4801",
+   "at": "2026-11-04T23:31:00+00:00",
+   "team": "CHA"
+  },
   {
    "id": "nba537545",
    "player": "Payton Pritchard",
@@ -28678,6 +28689,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Y.%20Niederhauser"
   },
   {
+   "team": "CHA",
+   "player": "Coby White",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-04",
+   "until": "",
+   "note": "White (calf) is available for Wednesday's game in Brooklyn.",
+   "through": "2026-11-04",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/coby-white-4801",
+   "from": "2026-11-04",
+   "override": true,
+   "at": "2026-11-04T23:31:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "BOS",
    "player": "Payton Pritchard",
    "src": "Taylor Snow",
@@ -29138,27 +29166,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-04T23:30:46+00:00",
+ "generated_at": "2026-11-04T23:34:05+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-04T23:30:26+00:00",
+   "at": "2026-11-04T23:33:51+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-04T23:30:39+00:00",
+   "at": "2026-11-04T23:34:04+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-04T23:30:40+00:00",
+   "at": "2026-11-04T23:34:04+00:00",
    "teams": 28,
    "injuries": 84
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-04T23:30:40+00:00",
+   "at": "2026-11-04T23:34:04+00:00",
    "current_players": 448,
    "last_players": 582
   },
@@ -29168,17 +29196,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-04T23:30:40+00:00",
+   "at": "2026-11-04T23:34:04+00:00",
    "count": 92
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-04T23:30:41+00:00",
+   "at": "2026-11-04T23:34:05+00:00",
    "count": 93
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-04T23:30:41+00:00",
+   "at": "2026-11-04T23:34:05+00:00",
    "count": 91
   },
   "x": {
@@ -29187,40 +29215,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-04T23:30:42+00:00",
+   "at": "2026-11-04T23:34:05+00:00",
    "players": 276,
    "read_at": "2026-11-04T23:30:41+00:00",
    "saved_for_history": 301
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-04T23:30:45+00:00",
+   "at": "2026-11-04T23:34:05+00:00",
    "players": 151,
    "read_at": "2026-11-04T23:30:42+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-04T23:30:45+00:00",
+   "at": "2026-11-04T23:34:05+00:00",
    "players": 10,
    "read_at": "2026-11-04T23:30:45+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-04T23:30:45+00:00",
+   "at": "2026-11-04T23:34:05+00:00",
    "games": 14,
-   "read_at": "2026-11-04T23:30:45+00:00"
+   "read_at": "2026-11-04T23:34:05+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-04T23:30:46+00:00",
+   "at": "2026-11-04T23:34:05+00:00",
    "injuries": 95,
    "notes": 141,
    "read_at": "2026-11-04T23:30:45+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-04T23:30:46+00:00",
-   "count": 44
+   "at": "2026-11-04T23:34:05+00:00",
+   "count": 45
   }
  }
 }
