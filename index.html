@@ -804,7 +804,7 @@ function b2bHTML(g,date){
     if(!o) continue;
     const where=o.away===team?"@":"vs", opp=o.away===team?o.home:o.away;
     const when=which==="2nd"?"last night":`tomorrow ${fmtTime(o.time)} ET`;
-    h+=`<div class="b2b">🔁 <b>BACK-TO-BACK: ${esc((TEAMS[team]||{name:team}).name)}</b> · ${which} game of a back-to-back: ${which==="2nd"?"played ":""}${where} ${esc(opp)} ${when}</div>`;
+    h+=`<div class="b2b">🔁 <b>BACK-TO-BACK: ${esc((TEAMS[team]||{name:team}).name)}</b> · ${which==="2nd"?"2nd game of a back-to-back":`1st game of a back-to-back: ${where} ${esc(opp)} ${when}`}</div>`;
   }
   return h;
 }

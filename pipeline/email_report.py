@@ -370,7 +370,9 @@ def back_to_back(data, team, date):
 
 
 def b2b_text(team, which, g):
-    """'2nd game of a back-to-back: played @ NYK last night' / '1st game of a back-to-back: vs MIA tomorrow 7:30 PM'"""
+    """'2nd game of a back-to-back' (no opponent: user, Nov 4 2026) / '1st game of a back-to-back: vs MIA tomorrow 7:30 PM'"""
+    if which == "2nd":
+        return "2nd game of a back-to-back"
     where = "@" if g["away"] == team else "vs"
     opp = g["home"] if g["away"] == team else g["away"]
     when = "last night" if which == "2nd" else f"tomorrow {fmt_time(g['time'])} ET"

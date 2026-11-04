@@ -141,7 +141,8 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   (replacements_for: next healthy player below him at his depth-chart position) as "→ ⬆️ Name steps in", and the
   replacement is marked "⬆️ in for X" in starters / bench. Beat-writer news lists MINUTES news only (NEWS_MINUTES:
   restrictions, limits, more / fewer minutes), board too; status news still sets statuses.
-- Back-to-back warning (Oct 26 2026, user's rule): when a team plays the 1st or 2nd game of games on consecutive
+- Back-to-back warning (Oct 26 2026, user's rule; Nov 4 2026: the 2nd game just says "2nd game of a back-to-back", no
+  opponent from last night): when a team plays the 1st or 2nd game of games on consecutive
   days (ET, from the schedule), a yellow "🔁 BACK-TO-BACK: <team> · 2nd game of a back-to-back: played @ NYK last night"
   (or "1st game ...: vs MIA tomorrow 7:30 PM ET") line sits at the top of that game in the email, Slack and board
   (email_report.back_to_back / b2bHTML).
