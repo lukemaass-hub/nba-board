@@ -378,7 +378,7 @@ def b2b_text(team, which, g):
 
 
 BLOWOUT_TABLE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "blowout_table.json")
-BLOWOUT_MIN = 0.40      # warn only when favorites this size won by 15+ at least 40% of the time (about 12+ points; Nov 4 2026)
+BLOWOUT_MIN = 0.30      # warn when favorites this size won by 15+ at least 30% of the time (about 9+ points; user, Nov 4 2026)
 _blowout = None
 
 
@@ -452,15 +452,89 @@ QUOTE_RELEVANT = re.compile(
     r"closing (lineup|group)|bench role|come off the bench", re.I)
 
 
-def quote_sentence(txt):
-    """The first sentence of a press note that is about minutes / shots / sitting (QUOTE_RELEVANT), or ""."""
+# Press quotes boiled down to the facts (user, Nov 4 2026: "only the relevant information, take away the useless
+# wording"; no Claude key, so these rules do it). Each rule turns a phrase into a short fact; a note with no fact is
+# left out. A back-to-back is only mentioned next to a minutes / rest fact.
+_NUM = r"(\d+(?:\.\d+)?(?:\s*(?:-|–|or|to)\s*\d+)?)"
+QUOTE_FACTS = [
+    (re.compile(r"not (?:like )?(?:on )?a minutes[- ](?:restriction|limit)", re.I), lambda m: "no minutes restriction"),
+    (re.compile(r"minutes[- ](?:restriction|limit|cap)|limits? on his minutes|minutes number|minutes count", re.I),
+     lambda m: "on a minutes limit"),
+    (re.compile(r"(?:around|about|roughly|up to|capped at|limited to|no more than) " + _NUM + r" minutes", re.I),
+     lambda m: f"around {m.group(1)} minutes"),
+    (re.compile(r"played (?:just |a little |a bit )?(under|over|about|around|nearly|almost)? ?" + _NUM + r" minutes", re.I),
+     lambda m: f"played {(m.group(1) + ' ') if m.group(1) else ''}{m.group(2)} minutes"),
+    (re.compile(r"sat (?:out )?the (?:last|final) " + _NUM + r" minutes", re.I), lambda m: f"sat the last {m.group(1)} minutes"),
+    (re.compile(r"(?:sat|sit|sitting|rested)\b[^.]{0,30}\b(?:4th|fourth) quarter|sat (?:briefly )?late|"
+                r"(?:4th|fourth) quarter[^.]{0,30}\b(?:sat|sit|bench)", re.I), lambda m: "sat late in the game"),
+    (re.compile(r"monitor(?:ing)? his minutes|watch(?:ing)? his minutes|manag(?:e|ing) (?:his|that|it|him)|"
+                r"be smart with (?:him|it)|load management", re.I), lambda m: "minutes being managed"),
+    (re.compile(r"(?:very )?heavy minutes|a lot of minutes", re.I), lambda m: "played heavy minutes"),
+    (re.compile(r"more minutes|more playing time|bigger role|expanded role|larger role", re.I), lambda m: "in line for more minutes"),
+    (re.compile(r"fewer minutes|less playing time|smaller role|reduced role|out of the rotation", re.I), lambda m: "fewer minutes"),
+    (re.compile(r"turning down shots|more shots|shoot more|more aggressive|get (?:up )?more shots", re.I), lambda m: "told to shoot more"),
+    (re.compile(r"\b(?:will|could|may|might) (?:rest|sit)\b|\bget a game off\b|sit out (?:the )?(?:second|first) (?:game|night)", re.I),
+     lambda m: "may rest"),
+]
+B2B = re.compile(r"back[- ]to[- ]back", re.I)
+
+
+def _roster(data):
+    sm = data.get("season_minutes") or {}
+    names = set((sm.get("current") or {}) | (sm.get("last") or {}))
+    for team in (data.get("depth") or {}).values():
+        for pos in (team.values() if isinstance(team, dict) else []):
+            names.update(x.strip() for x in re.split(r"[/,]", pos) if isinstance(pos, str))
+    return {x for x in names if x}
+
+
+def condense_quote(n, roster=()):
+    """'Coby White: on a minutes limit; played under 16 minutes' from a press note, or "" when it says nothing about
+    minutes, shots or sitting. Each fact goes to the player named nearest before it in the same sentence."""
+    txt = n.get("text", "")
     if NEWS_BOX.search(txt) and not NEWS_HURT.search(txt):
         return ""
-    for s in re.split(r"(?<=[.!?])\s+(?=[A-Z\"“])|(?<=[.!?][\"”])\s+(?=[A-Z\"“])", txt):
-        if QUOTE_RELEVANT.search(s):
-            return s.strip()
-    return ""
+    listed = n.get("players", [])
+    roster = set(roster) | set(listed)
 
+    def resolve(name):
+        if name in roster:
+            return name
+        last = name.split()[-1]
+        for k in listed:                       # "Reaves" / "Tatum": the note's own players by last name
+            if k.split()[-1] == last:
+                return k
+        return None
+
+    def names_in(a, b):
+        out = []
+        for c in re.finditer(r"[A-Z][a-zA-Z'.-]+(?: (?:[A-Z][a-zA-Z'.-]+|da|de|van|Jr\.))*", txt[a:b]):
+            nm = resolve(re.sub(r"'s$", "", c.group(0)).rstrip("."))
+            if nm:
+                out.append(nm)
+        return out
+
+    sentences = [(m.start(), m.end()) for m in re.finditer(r"[^.!?]+(?:[.!?]+[\"”]?|$)", txt)]
+    first_in_note = (names_in(0, len(txt)) or listed[:1] or [""])[0]
+    by_player, order = {}, []
+    for rx, fact in QUOTE_FACTS:
+        m = rx.search(txt)
+        if not m:
+            continue
+        s0, s1 = next(((a, b) for a, b in sentences if a <= m.start() < b), (0, len(txt)))
+        who = (names_in(s0, s1) or [first_in_note])[0]      # the sentence's first player is who it is about
+        f = fact(m)
+        if f == "on a minutes limit" and "no minutes restriction" in by_player.get(who, []):
+            continue
+        if who not in by_player:
+            by_player[who], _ = [], order.append(who)
+        if f not in by_player[who]:
+            by_player[who].append(f)
+    if not by_player:
+        return ""
+    if B2B.search(txt):
+        by_player[order[0]].append("on a back-to-back")
+    return " · ".join(f"{w}: {'; '.join(fs)}" if w else "; ".join(fs) for w, fs in ((w, by_player[w]) for w in order))
 
 def pressers_for(data, team, now=None, hours=NEWS_HOURS):
     """Presser Wire press-conference notes about this team from the last 36 hours, only about minutes, shots,
@@ -468,7 +542,7 @@ def pressers_for(data, team, now=None, hours=NEWS_HOURS):
     if not PRESSERS_ENABLED:
         return []
     now = now or dt.datetime.now(dt.timezone.utc)
-    out = []
+    out, roster = [], _roster(data)
     for n in (data.get("presserwire") or {}).get("notes", []):
         try:
             fresh = dt.datetime.fromisoformat(n["at"]) >= now - dt.timedelta(hours=hours)
@@ -476,11 +550,7 @@ def pressers_for(data, team, now=None, hours=NEWS_HOURS):
             continue
         if n.get("team") != team or not fresh:
             continue
-        if "keep" in n:              # read by Claude at refresh: only the facts (user, Nov 4 2026)
-            if n["keep"] and n.get("short"):
-                out.append({**n, "line": n["short"]})
-            continue
-        line = quote_sentence(n.get("text", ""))     # no summary yet: just the sentence that matters
+        line = condense_quote(n, roster)
         if line:
             out.append({**n, "line": line})
     return sorted(out, key=lambda n: n["at"], reverse=True)

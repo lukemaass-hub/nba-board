@@ -496,11 +496,17 @@ def test_presserwire_official_report_and_notes():
     assert inj["Jock Landale"]["st"] == "avail" and inj["Jock Landale"]["beat"] == "NBA report"
     assert inj["Henri Veesaar"]["st"] == "out" and inj["Henri Veesaar"]["beat"] == ""
     now = dt.datetime(2026, 10, 26, 23, 0, tzinfo=dt.timezone.utc)
-    # back on (Nov 4 2026) for minutes / shots / restriction quotes: the Missi quote mentions the rotation
-    assert e.pressers_for(data, "NOP", now) and e.pressers_for(data, "NOP", now + dt.timedelta(days=3)) == []
-    assert e.QUOTE_RELEVANT.search("Nick Nurse said Embiid sat the last 15 minutes and will play 28 minutes tonight")
-    assert e.QUOTE_RELEVANT.search("He wants to get up more shots") and e.QUOTE_RELEVANT.search("sat in the fourth quarter")
-    assert not e.QUOTE_RELEVANT.search("He missed Monday's game to take care of his son")
+    # back on (Nov 4 2026), boiled down to minutes / shots / sitting facts; the Missi rehab quote has none
+    assert e.pressers_for(data, "NOP", now) == []
+    c = lambda text, players: e.condense_quote({"text": text, "players": players})
+    assert c("Coby White knew his minutes number before tip-off in his first game back. \"Probably played a little more "
+             "than I was supposed to,\" White said. He played a little under 16 minutes.", ["Coby White"]) == \
+        "Coby White: on a minutes limit; played under 16 minutes"
+    assert c("Not a minutes restriction, Micah Nori stresses, but Portland's coach wants Damian Lillard and Ja Morant "
+             "around 30-32 minutes.", ["Damian Lillard"]) == "Damian Lillard: no minutes restriction; around 30-32 minutes"
+    assert c("Joel Embiid sat the last 15 or 16 minutes of the game. Nick Nurse said the team is managing his foot.",
+             ["Joel Embiid"]) == "Joel Embiid: sat the last 15 or 16 minutes; minutes being managed"
+    assert c("Dejounte Murray missed Monday's win to take care of his son.", ["Dejounte Murray"]) == ""
 
 
 def test_one_news_item_per_player_and_name_spellings_merge():

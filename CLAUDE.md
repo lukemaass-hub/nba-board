@@ -185,10 +185,10 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   wins by 15+) -> pipeline/blowout_table.json. Rates: 0-2.5 pts 17%, 7-8.5 27%, 11-12.5 38%, 13-14.5 47%, 15+ 61%.
   update_data.fetch_lines reads today's DraftKings spread from ESPN's scoreboard on every refresh -> data["lines"];
   Slack shows ":boom: BLOWOUT WATCH: <fav> -12.5 · favorites this size won by 15+ in 42% of games" only when the chance
-  is >= BLOWOUT_MIN (0.40, about 12+ point favorites). Closing line stands in for "30 min before tip" (not kept for
+  is >= BLOWOUT_MIN (0.30 since Nov 4 2026, user; about 9+ point favorites; was 0.40). Closing line stands in for "30 min before tip" (not kept for
   past games).
-- Press quotes back (Nov 4 2026, user): PRESSERS_ENABLED=True. update_data.summarize_quotes asks Claude (claude-opus-5-5,
-  low effort, structured output, server-side fallbacks) once per new note for keep + a one-line "short" ("Coby White: on
-  a minutes restriction, played just under 16"); only minutes / shots / role / sitting late / rest / may not play
-  (back-to-backs only if limited minutes or sitting). Needs the ANTHROPIC_API_KEY secret; without it the report shows
-  the one sentence matching QUOTE_RELEVANT.
+- Press quotes back (Nov 4 2026, user): PRESSERS_ENABLED=True, boiled down to facts by rules (user won't add an
+  Anthropic key): email_report.QUOTE_FACTS turns phrases into short facts ("on a minutes limit", "played under 16
+  minutes", "sat the last 15 minutes", "around 30-32 minutes", "told to shoot more", "may rest"...), each credited to the
+  first player named in its sentence -> "Coby White: on a minutes limit; played under 16 minutes". A note with no fact
+  is dropped; "on a back-to-back" is only added next to another fact.

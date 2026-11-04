@@ -291,54 +291,6 @@ def parse_pw_availability(html):
     return out
 
 
-QUOTE_MODEL = "claude-opus-5-5"
-QUOTE_PROMPT = """You read NBA press-conference notes for a sportsbook's player-props traders. For each note, decide
-whether it tells a trader something about a player's minutes or shots in an upcoming game: a minutes restriction or
-limit, an expected minutes number, playing more or fewer minutes, a bigger or smaller role or more or fewer shots,
-sitting in the 4th quarter or late in games, resting, or likely not playing (a back-to-back counts ONLY when it says
-someone may have limited minutes or sit). Injury rehab updates with no game impact, praise, tactics and results do not.
-
-For each note you keep, write `short`: the player's name, a colon, then only the facts, at most 15 words, no quotes,
-no filler. Use only numbers that are in the note. Example: "Coby White: on a minutes restriction, played just under 16"."""
-
-
-def summarize_quotes(notes, prev_notes):
-    """Adds "keep" (bool) and "short" (one line) to each press note (user, Nov 4 2026: only the relevant facts, no
-    filler). Claude reads only notes it hasn't seen before (cached by text in data.json); without ANTHROPIC_API_KEY
-    the notes are left as they are and the report falls back to the one matching sentence."""
-    seen = {n.get("text"): n for n in prev_notes or [] if "keep" in n}
-    todo = []
-    for n in notes:
-        old = seen.get(n.get("text"))
-        if old:
-            n["keep"], n["short"] = old["keep"], old.get("short", "")
-        else:
-            todo.append(n)
-    if not todo or not os.environ.get("ANTHROPIC_API_KEY"):
-        return notes
-    import anthropic
-    client = anthropic.Anthropic()
-    for start in range(0, len(todo), 40):
-        batch = todo[start:start + 40]
-        listing = "\n".join(f"{i}. [{n.get('team', '')}] {n.get('text', '')}" for i, n in enumerate(batch))
-        resp = client.beta.messages.create(
-            model=QUOTE_MODEL, max_tokens=8000,
-            betas=["server-side-fallback-2026-07-01"], fallbacks="default",
-            output_config={"effort": "low", "format": {"type": "json_schema", "schema": {
-                "type": "object", "additionalProperties": False, "required": ["items"],
-                "properties": {"items": {"type": "array", "items": {
-                    "type": "object", "additionalProperties": False, "required": ["i", "keep", "short"],
-                    "properties": {"i": {"type": "integer"}, "keep": {"type": "boolean"}, "short": {"type": "string"}}}}}}}},
-            system=QUOTE_PROMPT,
-            messages=[{"role": "user", "content": listing}])
-        if resp.stop_reason == "refusal":
-            raise RuntimeError("quote summaries: request declined")
-        text = next(b.text for b in resp.content if b.type == "text")
-        for it in json.loads(text)["items"]:
-            if 0 <= it["i"] < len(batch):
-                batch[it["i"]]["keep"], batch[it["i"]]["short"] = bool(it["keep"]), it["short"].strip()
-    return notes
-
 
 def fetch_presserwire(prev):
     """-> {"read_at", "injuries", "notes"}; reuses the last read if it is under PW_EVERY_MIN minutes old."""
@@ -1046,11 +998,6 @@ def main():
         pw = prev.get("presserwire") or {}
         for r in pw.get("injuries", []):
             r["stale"] = True
-    if pw.get("notes"):
-        try:
-            summarize_quotes(pw["notes"], (prev.get("presserwire") or {}).get("notes"))
-        except Exception as e:      # keep going: the report falls back to the matching sentence
-            print(f"[quotes] summary FAILED: {e}", file=sys.stderr)
     data["presserwire"] = pw
     injuries += pw.get("injuries", [])
     if pw:
