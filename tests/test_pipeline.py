@@ -724,9 +724,9 @@ def test_live_line_and_blowout_warning(monkeypatch):
     games = u.parse_lines(sb)
     assert games["MIL@BOS"]["fav"] == "BOS" and games["MIL@BOS"]["spread"] == 11.5
     assert games["ATL@WAS"]["fav"] == "ATL" and games["ATL@WAS"]["spread"] == 2.5
-    monkeypatch.setattr(e, "_blowout", {"by_spread": {"2.5": 0.05, "11.5": 0.36}})
+    monkeypatch.setattr(e, "_blowout", {"by_spread": {"2.5": 0.05, "11.5": 0.45}})
     data = {"lines": {"date": "2026-11-04", "games": games}}
     g = {"date": "2026-11-04", "time": "19:30", "away": "MIL", "home": "BOS"}
-    assert e.blowout_for(data, g)[4] == 0.36                                         # big favorite: warning
+    assert e.blowout_for(data, g)[4] == 0.45                                         # big favorite: warning
     assert e.blowout_for(data, {**g, "away": "ATL", "home": "WAS"}) is None          # small spread: nothing
     assert e.blowout_for(data, {**g, "date": "2026-11-05"}) is None                  # line from another day: nothing

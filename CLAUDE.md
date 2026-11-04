@@ -179,3 +179,16 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   game's group DM.
 - Oct 28 2026 (user): press-conference quotes removed from Slack, email and board (PRESSERS_ENABLED=False in
   email_report.py and index.html). The official NBA injury report from Presser Wire still sets statuses.
+- Blowout warning (Nov 4 2026, user): backtest/blowout.py fetches 5 regular seasons (2021-22 to 2025-26, 6,147 games)
+  of ESPN closing spreads (summary pickcenter "consensus"; 2023-24 and 2024-25 have none, so the middle of the pre-game
+  lines in ESPN's core odds list) + final scores -> backtest/data/spreads.csv; `table` fits a logistic curve (favorite
+  wins by 15+) -> pipeline/blowout_table.json. Rates: 0-2.5 pts 17%, 7-8.5 27%, 11-12.5 38%, 13-14.5 47%, 15+ 61%.
+  update_data.fetch_lines reads today's DraftKings spread from ESPN's scoreboard on every refresh -> data["lines"];
+  Slack shows ":boom: BLOWOUT WATCH: <fav> -12.5 · favorites this size won by 15+ in 42% of games" only when the chance
+  is >= BLOWOUT_MIN (0.40, about 12+ point favorites). Closing line stands in for "30 min before tip" (not kept for
+  past games).
+- Press quotes back (Nov 4 2026, user): PRESSERS_ENABLED=True. update_data.summarize_quotes asks Claude (claude-opus-5-5,
+  low effort, structured output, server-side fallbacks) once per new note for keep + a one-line "short" ("Coby White: on
+  a minutes restriction, played just under 16"); only minutes / shots / role / sitting late / rest / may not play
+  (back-to-backs only if limited minutes or sitting). Needs the ANTHROPIC_API_KEY secret; without it the report shows
+  the one sentence matching QUOTE_RELEVANT.

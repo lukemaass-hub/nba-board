@@ -378,7 +378,7 @@ def b2b_text(team, which, g):
 
 
 BLOWOUT_TABLE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "blowout_table.json")
-BLOWOUT_MIN = 0.30      # only warn when the favorite wins by 15+ at least this often at that spread (user: "reasonably high")
+BLOWOUT_MIN = 0.40      # warn only when favorites this size won by 15+ at least 40% of the time (about 12+ points; Nov 4 2026)
 _blowout = None
 
 
@@ -449,7 +449,17 @@ QUOTE_RELEVANT = re.compile(
     r"manag(e|ing) (him|his|that|it)|ramp(ing|ed)? up|playing time|rotation|"
     r"\bshots?\b|shot attempts|shoot more|more aggressive|\blooks\b|touches|usage|"
     r"(4th|fourth) quarter|\bsat (the last|him)|\bsit (him|the last)|garbage time|"
-    r"closing (lineup|group)|bench role|come off the bench|back[- ]to[- ]back", re.I)
+    r"closing (lineup|group)|bench role|come off the bench", re.I)
+
+
+def quote_sentence(txt):
+    """The first sentence of a press note that is about minutes / shots / sitting (QUOTE_RELEVANT), or ""."""
+    if NEWS_BOX.search(txt) and not NEWS_HURT.search(txt):
+        return ""
+    for s in re.split(r"(?<=[.!?])\s+(?=[A-Z\"“])|(?<=[.!?][\"”])\s+(?=[A-Z\"“])", txt):
+        if QUOTE_RELEVANT.search(s):
+            return s.strip()
+    return ""
 
 
 def pressers_for(data, team, now=None, hours=NEWS_HOURS):
@@ -464,9 +474,15 @@ def pressers_for(data, team, now=None, hours=NEWS_HOURS):
             fresh = dt.datetime.fromisoformat(n["at"]) >= now - dt.timedelta(hours=hours)
         except (KeyError, ValueError):
             continue
-        txt = n.get("text", "")
-        if n.get("team") == team and fresh and QUOTE_RELEVANT.search(txt) and not (NEWS_BOX.search(txt) and not NEWS_HURT.search(txt)):
-            out.append(n)
+        if n.get("team") != team or not fresh:
+            continue
+        if "keep" in n:              # read by Claude at refresh: only the facts (user, Nov 4 2026)
+            if n["keep"] and n.get("short"):
+                out.append({**n, "line": n["short"]})
+            continue
+        line = quote_sentence(n.get("text", ""))     # no summary yet: just the sentence that matters
+        if line:
+            out.append({**n, "line": line})
     return sorted(out, key=lambda n: n["at"], reverse=True)
 
 
@@ -604,10 +620,10 @@ def build(data, games, date):
             if pr:
                 h.append(f'<div style="{label_css}">Press conferences</div>')
                 for n in pr[:3]:
-                    h.append(f'<div style="font-size:13px;line-height:1.45;margin:0 0 7px">🎙️ <b>{e(", ".join(n["players"][:4]))}</b> · '
-                             f'{e(short(n["text"], 280))} <span style="{light};font-size:11.5px">'
+                    h.append(f'<div style="font-size:13px;line-height:1.45;margin:0 0 7px">🎙️ '
+                             f'{e(short(n["line"], 200))} <span style="{light};font-size:11.5px">'
                              f'<a href="{e(n["url"])}" style="color:#5a6470">Presser Wire</a> · {ago(n["at"])}</span></div>')
-                t.append("    Pressers: " + " | ".join(f"{', '.join(n['players'][:4])}: {n['text']} (Presser Wire)" for n in pr[:3]))
+                t.append("    Pressers: " + " | ".join(f"{n['line']} (Presser Wire)" for n in pr[:3]))
             # 5. injuries
             h.append(f'<div style="{label_css}">Injuries</div>')
             if not inj:
@@ -702,7 +718,7 @@ def build_slack(data, game, date, test=False):
         pr = pressers_for(data, team)
         if pr:
             blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": ("*Press conferences*\n" + "\n".join(
-                f"🎙️ *{e(', '.join(n['players'][:4]))}:* {e(short(n['text'], 280))} _(<{n['url']}|Presser Wire> · {ago(n['at'])})_"
+                f"🎙️ {e(short(n['line'], 200))} _(<{n['url']}|Presser Wire> · {ago(n['at'])})_"
                 for n in pr[:3]))[:2900]}]})
         lines = []
         for i in inj:
