@@ -2,7 +2,8 @@
 
 For every regular-season game of the last 5 seasons (2021-22 to 2025-26): ESPN's last pre-game spread (the
 "consensus" line in the game summary's pickcenter, i.e. the closing line, which is the closest thing to "30 minutes
-before tip" that is kept for past games) and the final score. A blowout = the FAVORITE wins by 15 or more.
+before tip" that is kept for past games; for 2023-24 and 2024-25, which have none, the middle of the pre-game lines in
+ESPN's odds list) and the final score. A blowout = the FAVORITE wins by 15 or more.
 
     python backtest/blowout.py fetch     -> backtest/data/spreads.csv (cached; re-running only fetches what's missing)
     python backtest/blowout.py table     -> pipeline/blowout_table.json + printout by spread
@@ -17,6 +18,7 @@ CSV = os.path.join(HERE, "data", "spreads.csv")
 OUT = os.path.join(HERE, "..", "pipeline", "blowout_table.json")
 SB = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates={d:%Y%m%d}&seasontype=2"
 SUM = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event={gid}"
+CORE = "https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/events/{gid}/competitions/{gid}/odds?limit=50"
 # regular seasons (ESPN season year = the year it ends)
 SEASONS = {2022: ("2021-10-19", "2022-04-10"), 2023: ("2022-10-18", "2023-04-09"), 2024: ("2023-10-24", "2024-04-14"),
            2025: ("2024-10-22", "2025-04-13"), 2026: ("2025-10-21", "2026-04-12")}
@@ -68,6 +70,13 @@ def line(g):
         if sp == 0:
             return ("PK", 0.0, p["provider"].get("name"))
         return (g["home"] if sp < 0 else g["away"], abs(sp), p["provider"].get("name"))
+    # 2023-24 and 2024-25 games have no pickcenter: use ESPN's odds list, the middle of the pre-game (not "Live") lines
+    co = get(CORE.format(gid=g["gid"])) or {}
+    sps = sorted(float(it["spread"]) for it in co.get("items", [])
+                 if it.get("spread") is not None and "live" not in (it.get("provider") or {}).get("name", "").lower())
+    if sps:
+        sp = sps[len(sps) // 2]
+        return ("PK", 0.0, "median") if sp == 0 else (g["home"] if sp < 0 else g["away"], abs(sp), f"median of {len(sps)}")
     return None
 
 
@@ -77,7 +86,7 @@ def fetch():
         have = {r["gid"]: r for r in csv.DictReader(open(CSV))}
     os.makedirs(os.path.dirname(CSV), exist_ok=True)
     for season, (a, b) in SEASONS.items():
-        games = [g for g in finals(season, a, b) if g["gid"] not in have]
+        games = [g for g in finals(season, a, b) if g["gid"] not in have or have[g["gid"]]["spread"] == ""]
         print(f"{season}: {len(games)} games to look up", flush=True)
 
         def one(g):
