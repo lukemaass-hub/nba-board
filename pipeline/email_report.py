@@ -462,7 +462,7 @@ def news_relevant(i):
     return bool(NEWS_KEEP.search(t)) and not (NEWS_SKIP.search(t) and not re.search(r"suspen", t, re.I))
 
 
-PRESSERS_ENABLED = True    # press-conference quotes: off Oct 28 2026, back Nov 4 2026 for minutes / shots / restrictions only (user)
+PRESSERS_ENABLED = False   # press quotes held back for now (user, Nov 4 2026: "don't include press quotes yet"); the shortening rules stay
 # quotes worth showing (user, Nov 4 2026): minutes, shots, restrictions, sitting in 4th quarters and similar
 QUOTE_RELEVANT = re.compile(
     r"minutes?[- ](restriction|limit|cap|number|count)|restrict|(heavy|heavier|lighter|more|fewer|extra|limited|reduced|"

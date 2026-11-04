@@ -193,6 +193,7 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   minutes", "sat the last 15 minutes", "around 30-32 minutes", "told to shoot more", "may rest"...), each credited to the
   first player named in its sentence -> "Coby White: on a minutes limit; played under 16 minutes". A note with no fact
   is dropped; "on a back-to-back" is only added next to another fact.
+  Nov 4 2026 (user): "don't include press quotes yet" -> PRESSERS_ENABLED=False again (Slack, email, board); rules kept.
 - Expected-minutes history (Nov 4 2026, user: "start storing expected minutes and saving when you send the messages"):
   pipeline/expected_history.csv (date, game, team, player, expected, read_at, at_send, sent_at). update_data
   .save_expected_history writes SportsLine's numbers on every refresh for games not yet tipped (last pre-tip read wins);

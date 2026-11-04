@@ -810,7 +810,7 @@ function b2bHTML(g,date){
 }
 /* Presser Wire press-conference notes (last 36 h), injury / minutes related only (same rule as beat-writer news) */
 let PRESSERS=[];
-const PRESSERS_ENABLED=true;   // quotes back Nov 4 2026 (user), minutes / shots / restrictions only, same rule as Slack
+const PRESSERS_ENABLED=false;   // held back for now (user, Nov 4 2026)
 const QUOTE_RELEVANT=/minutes?[- ](restriction|limit|cap|number|count)|restrict|(heavy|heavier|lighter|more|fewer|extra|limited|reduced|increased|big|his|her|their) minutes|play(ed|ing|s)? \d+ minutes|limits? on his|workload|load management|manag(e|ing) (him|his|that|it)|ramp(ing|ed)? up|playing time|rotation|\bshots?\b|shot attempts|shoot more|more aggressive|\blooks\b|touches|usage|(4th|fourth) quarter|\bsat (the last|him)|\bsit (him|the last)|garbage time|closing (lineup|group)|bench role|come off the bench|back[- ]to[- ]back/i;
 function pressersHTML(code){
   if(!PRESSERS_ENABLED) return "";
