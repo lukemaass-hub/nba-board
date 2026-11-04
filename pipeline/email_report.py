@@ -737,7 +737,7 @@ def build_slack(data, game, date, test=False):
     if bo:
         fav, sp, _, prov, p = bo
         blocks.append({"type": "section", "text": {"type": "mrkdwn", "text":
-                       f":boom: *{p:.0%} chance of a blowout*"}})   # just the chance (user, Nov 4 2026)
+                       f"*{p:.0%} chance of a blowout*"}})   # just the chance (user, Nov 4 2026)
     for w in restrictions_for(data, (g["away"], g["home"]), date):
         blocks.append({"type": "section", "text": {"type": "mrkdwn", "text":
                        f":warning: *MINUTES RESTRICTION: <{w['url']}|{e(w['player'])}> ({w['team']})*\n{e(w['text'])} "
