@@ -349,6 +349,82 @@ def parse_sportsline(html):
     return out
 
 
+RW_MIN_URL = "https://www.rotowire.com/basketball/projected-minutes.php"
+FP_URL = "https://www.fantasypros.com/nba/projections/daily-overall.php"
+
+
+def parse_rotowire_minutes(html):
+    """RotoWire's projected minutes: free for AWAY teams only (home teams are for subscribers, and are skipped).
+    -> [{"player", "team", "min"}]; players marked Out are left out."""
+    out = []
+    for b in html.split('<div class="lineup proj-min')[1:]:
+        if "Subscriber Exclusive" in b:
+            continue
+        m = re.search(r'alt="([A-Z]{2,4})"', b)
+        team = team_code(m.group(1)) if m else None
+        if not team:
+            continue
+        for name, inj, mins in re.findall(r'<span>([^<]+)</span></a>\s*(?:<div class="lineups-viz__inj">([^<]*)</div>)?\s*</div>'
+                                          r'\s*<div class="minutes-meter">.*?minutes-meter__proj[^"]*"[^>]*>([\d.]+)<', b, re.S):
+            if inj.strip().lower() != "out" and float(mins) > 0:
+                out.append({"player": clean(name), "team": team, "min": float(mins)})
+    return out
+
+
+def parse_fantasypros(html):
+    """FantasyPros daily projections: only the top 10 players are free. -> [{"player", "team", "min"}]."""
+    t = re.search(r"<table.*?</table>", html, re.S)
+    if not t:
+        return []
+    rows = re.findall(r"<tr.*?</tr>", t.group(0), re.S)
+    cells = lambda r: [clean(re.sub("<[^>]+>", " ", c)) for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", r, re.S)]
+    head = [c.upper() for c in cells(rows[0])] if rows else []
+    if "PLAYER" not in head or "MIN" not in head:
+        raise RuntimeError("FantasyPros: no PLAYER / MIN columns (page layout changed?)")
+    ip, im = head.index("PLAYER"), head.index("MIN")
+    out = []
+    for r in rows[1:]:
+        c = cells(r)
+        m = re.match(r"(.+?)\s*\(([A-Z]{2,4})\s*-", c[ip]) if len(c) > max(ip, im) else None
+        try:
+            mins = float(c[im])
+        except (ValueError, IndexError):
+            continue
+        if m and team_code(m.group(2)):
+            out.append({"player": m.group(1).strip(), "team": team_code(m.group(2)), "min": mins})
+    return out
+
+
+def fetch_minutes_source(prev, key, url, parse):
+    """Same 15-minute reuse as SportsLine."""
+    now = dt.datetime.now(dt.timezone.utc)
+    old = prev.get(key) or {}
+    if old.get("read_at") and now - dt.datetime.fromisoformat(old["read_at"]) < dt.timedelta(minutes=SL_EVERY_MIN):
+        return old
+    players = parse(get(url).text)
+    if not players:
+        raise RuntimeError(f"{key}: no projected minutes read (page layout changed?)")
+    return {"read_at": now.isoformat(timespec="seconds"), "date": today_et().isoformat(), "players": players}
+
+
+def mix_expected(data):
+    """One expected-minutes number per player (user, Nov 4 2026): FantasyPros for its free top 10, else RotoWire for
+    the away team, else SportsLine. -> {"date", "players": [{"player", "team", "min", "src"}]}."""
+    date = today_et().isoformat()
+    srcs = [(k, data.get(k) or {}) for k in ("fantasypros", "rotowire_minutes", "sportsline")]
+    seen, out = set(), []
+    for name, s in srcs:
+        if s.get("date") != date:
+            continue
+        for p in s.get("players", []):
+            k = (p["team"], norm_name(p["player"]))
+            if k not in seen:
+                seen.add(k)
+                out.append({**p, "src": {"fantasypros": "FantasyPros", "rotowire_minutes": "RotoWire",
+                                         "sportsline": "SportsLine"}[name]})
+    return {"date": date, "read_at": max([s.get("read_at", "") for _, s in srcs] or [""]), "players": out}
+
+
 def fetch_sportsline(prev):
     """-> {"read_at", "date" (ET), "players"}; reuses the last read if it is under SL_EVERY_MIN minutes old."""
     now = dt.datetime.now(dt.timezone.utc)
@@ -391,7 +467,7 @@ def fetch_lines():
 
 
 EXPECTED_HISTORY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "expected_history.csv")
-EH_COLS = ["date", "game", "team", "player", "expected", "read_at", "dropped_at", "at_send", "sent_at"]
+EH_COLS = ["date", "game", "team", "player", "expected", "source", "read_at", "dropped_at", "at_send", "sent_at"]
 
 
 def read_expected_history(path=EXPECTED_HISTORY):
@@ -410,7 +486,7 @@ def write_expected_history(rows, path=EXPECTED_HISTORY):
 def save_expected_history(data, now=None, path=EXPECTED_HISTORY):
     """Keeps SportsLine's expected minutes for every game, the last read before tip (user, Nov 4 2026: "start storing
     expected minutes"), in pipeline/expected_history.csv. Games that have tipped are never overwritten."""
-    sl = data.get("sportsline") or {}
+    sl = data.get("expected_mix") or data.get("sportsline") or {}
     if not sl.get("players") or not sl.get("read_at"):
         return 0
     now = now or dt.datetime.now(dt.timezone.utc)
@@ -430,7 +506,8 @@ def save_expected_history(data, now=None, path=EXPECTED_HISTORY):
         listed.add(k)
         old = rows.get(k, {})
         rows[k] = {**{c: "" for c in EH_COLS}, **old, "date": sl["date"], "game": game, "team": p["team"],
-                   "player": p["player"], "expected": f"{p['min']:g}", "read_at": sl["read_at"], "dropped_at": ""}
+                   "player": p["player"], "expected": f"{p['min']:g}", "source": p.get("src", "SportsLine"),
+                   "read_at": sl["read_at"], "dropped_at": ""}
         n += 1
     # a player SportsLine stopped listing before tip (ruled out, scratched) keeps his old number but is marked dropped,
     # so his stale projection isn't read as "expected to play" (Nov 4 2026: Indiana's six-man game on Nov 2)
@@ -444,7 +521,7 @@ def save_expected_history(data, now=None, path=EXPECTED_HISTORY):
 
 def mark_expected_sent(data, game, at, path=EXPECTED_HISTORY):
     """When a game's report goes out: note the expected minutes it showed for both teams (at_send, sent_at)."""
-    sl = data.get("sportsline") or {}
+    sl = data.get("expected_mix") or data.get("sportsline") or {}
     if sl.get("date") != game["date"]:
         return
     rows = read_expected_history(path)
@@ -1056,6 +1133,12 @@ def main():
     data["sportsline"] = sl if sl is not None else (prev.get("sportsline") or {})
     if sl:
         status["sportsline"].update({"players": len(sl["players"]), "read_at": sl["read_at"]})
+    for key, url, parse in (("rotowire_minutes", RW_MIN_URL, parse_rotowire_minutes), ("fantasypros", FP_URL, parse_fantasypros)):
+        got = run(key, lambda: fetch_minutes_source(prev, key, url, parse))
+        data[key] = got if got is not None else (prev.get(key) or {})
+        if got:
+            status[key].update({"players": len(got["players"]), "read_at": got["read_at"]})
+    data["expected_mix"] = mix_expected(data)
     try:
         status["sportsline"]["saved_for_history"] = save_expected_history(data)
     except Exception as e:

@@ -773,3 +773,20 @@ def test_stale_sportsline_hides_expected(monkeypatch):
     data["lineups"]["IND"]["starters"].pop()
     data["hurt"] = True                                                              # listed player is out, given 30
     assert e.sportsline_stale(data, "IND", "2026-11-02")
+
+
+def test_expected_minutes_mix(monkeypatch):
+    import update_data as u
+    fx = lambda n: open(os.path.join(os.path.dirname(__file__), "fixtures", n), errors="ignore").read()
+    rw = u.parse_rotowire_minutes(fx("rotowire_projected_minutes.html"))
+    assert rw and len({p["team"] for p in rw}) == 1 and all(p["min"] > 0 for p in rw)      # away team only, no Out
+    fp = u.parse_fantasypros(fx("fantasypros_daily.html"))
+    assert len(fp) == 10 and fp[0]["player"] == "Shai Gilgeous-Alexander" and fp[0]["team"] == "OKC"
+    monkeypatch.setattr(u, "today_et", lambda: dt.date(2026, 11, 4))
+    data = {"fantasypros": {"date": "2026-11-04", "players": [{"player": "Tyrese Maxey", "team": "PHI", "min": 36.0}]},
+            "rotowire_minutes": {"date": "2026-11-04", "players": [{"player": "Tyrese Maxey", "team": "PHI", "min": 35.0},
+                                                                    {"player": "Kelly Oubre", "team": "PHI", "min": 28.0}]},
+            "sportsline": {"date": "2026-11-04", "players": [{"player": "Kelly Oubre", "team": "PHI", "min": 30.0},
+                                                              {"player": "Cade Cunningham", "team": "DET", "min": 34.0}]}}
+    mix = {p["player"]: (p["min"], p["src"]) for p in u.mix_expected(data)["players"]}
+    assert mix == {"Tyrese Maxey": (36.0, "FantasyPros"), "Kelly Oubre": (28.0, "RotoWire"), "Cade Cunningham": (34.0, "SportsLine")}
