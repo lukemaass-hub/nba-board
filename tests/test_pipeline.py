@@ -496,12 +496,11 @@ def test_presserwire_official_report_and_notes():
     assert inj["Jock Landale"]["st"] == "avail" and inj["Jock Landale"]["beat"] == "NBA report"
     assert inj["Henri Veesaar"]["st"] == "out" and inj["Henri Veesaar"]["beat"] == ""
     now = dt.datetime(2026, 10, 26, 23, 0, tzinfo=dt.timezone.utc)
-    assert e.pressers_for(data, "NOP", now) == []                  # off: press-conference quotes removed (user, Oct 28 2026)
-    e.PRESSERS_ENABLED = True
-    try:
-        assert e.pressers_for(data, "NOP", now) and e.pressers_for(data, "NOP", now + dt.timedelta(days=3)) == []
-    finally:
-        e.PRESSERS_ENABLED = False
+    # back on (Nov 4 2026) for minutes / shots / restriction quotes: the Missi quote mentions the rotation
+    assert e.pressers_for(data, "NOP", now) and e.pressers_for(data, "NOP", now + dt.timedelta(days=3)) == []
+    assert e.QUOTE_RELEVANT.search("Nick Nurse said Embiid sat the last 15 minutes and will play 28 minutes tonight")
+    assert e.QUOTE_RELEVANT.search("He wants to get up more shots") and e.QUOTE_RELEVANT.search("sat in the fourth quarter")
+    assert not e.QUOTE_RELEVANT.search("He missed Monday's game to take care of his son")
 
 
 def test_one_news_item_per_player_and_name_spellings_merge():
@@ -710,3 +709,24 @@ def test_owner_is_in_every_group(monkeypatch):
     monkeypatch.setenv("SLACK_DM_MODE", "on")
     e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 22, 50, tzinfo=e.ET), 25, {}, "s")
     assert sends == [["U09T3QTC6SK", "U09BNHCQD5Z", sa.OWNER]]
+
+
+def test_live_line_and_blowout_warning(monkeypatch):
+    import update_data as u, email_report as e
+    sb = {"events": [{"competitions": [{"status": {"type": {"state": "pre"}},
+           "competitors": [{"homeAway": "home", "team": {"displayName": "Boston Celtics", "abbreviation": "BOS"}},
+                           {"homeAway": "away", "team": {"displayName": "Milwaukee Bucks", "abbreviation": "MIL"}}],
+           "odds": [{"provider": {"name": "DraftKings"}, "details": "BOS -11.5", "spread": -11.5}]}]},
+                      {"competitions": [{"status": {"type": {"state": "pre"}},
+           "competitors": [{"homeAway": "home", "team": {"displayName": "Washington Wizards", "abbreviation": "WSH"}},
+                           {"homeAway": "away", "team": {"displayName": "Atlanta Hawks", "abbreviation": "ATL"}}],
+           "odds": [{"provider": {"name": "DraftKings"}, "details": "ATL -2.5", "spread": 2.5}]}]}]}
+    games = u.parse_lines(sb)
+    assert games["MIL@BOS"]["fav"] == "BOS" and games["MIL@BOS"]["spread"] == 11.5
+    assert games["ATL@WAS"]["fav"] == "ATL" and games["ATL@WAS"]["spread"] == 2.5
+    monkeypatch.setattr(e, "_blowout", {"by_spread": {"2.5": 0.05, "11.5": 0.45}})
+    data = {"lines": {"date": "2026-11-04", "games": games}}
+    g = {"date": "2026-11-04", "time": "19:30", "away": "MIL", "home": "BOS"}
+    assert e.blowout_for(data, g)[4] == 0.45                                         # big favorite: warning
+    assert e.blowout_for(data, {**g, "away": "ATL", "home": "WAS"}) is None          # small spread: nothing
+    assert e.blowout_for(data, {**g, "date": "2026-11-05"}) is None                  # line from another day: nothing

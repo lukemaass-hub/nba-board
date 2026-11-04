@@ -291,6 +291,55 @@ def parse_pw_availability(html):
     return out
 
 
+QUOTE_MODEL = "claude-opus-5-5"
+QUOTE_PROMPT = """You read NBA press-conference notes for a sportsbook's player-props traders. For each note, decide
+whether it tells a trader something about a player's minutes or shots in an upcoming game: a minutes restriction or
+limit, an expected minutes number, playing more or fewer minutes, a bigger or smaller role or more or fewer shots,
+sitting in the 4th quarter or late in games, resting, or likely not playing (a back-to-back counts ONLY when it says
+someone may have limited minutes or sit). Injury rehab updates with no game impact, praise, tactics and results do not.
+
+For each note you keep, write `short`: the player's name, a colon, then only the facts, at most 15 words, no quotes,
+no filler. Use only numbers that are in the note. Example: "Coby White: on a minutes restriction, played just under 16"."""
+
+
+def summarize_quotes(notes, prev_notes):
+    """Adds "keep" (bool) and "short" (one line) to each press note (user, Nov 4 2026: only the relevant facts, no
+    filler). Claude reads only notes it hasn't seen before (cached by text in data.json); without ANTHROPIC_API_KEY
+    the notes are left as they are and the report falls back to the one matching sentence."""
+    seen = {n.get("text"): n for n in prev_notes or [] if "keep" in n}
+    todo = []
+    for n in notes:
+        old = seen.get(n.get("text"))
+        if old:
+            n["keep"], n["short"] = old["keep"], old.get("short", "")
+        else:
+            todo.append(n)
+    if not todo or not os.environ.get("ANTHROPIC_API_KEY"):
+        return notes
+    import anthropic
+    client = anthropic.Anthropic()
+    for start in range(0, len(todo), 40):
+        batch = todo[start:start + 40]
+        listing = "\n".join(f"{i}. [{n.get('team', '')}] {n.get('text', '')}" for i, n in enumerate(batch))
+        resp = client.beta.messages.create(
+            model=QUOTE_MODEL, max_tokens=8000,
+            betas=["server-side-fallback-2026-07-01"], fallbacks="default",
+            output_config={"effort": "low", "format": {"type": "json_schema", "schema": {
+                "type": "object", "additionalProperties": False, "required": ["items"],
+                "properties": {"items": {"type": "array", "items": {
+                    "type": "object", "additionalProperties": False, "required": ["i", "keep", "short"],
+                    "properties": {"i": {"type": "integer"}, "keep": {"type": "boolean"}, "short": {"type": "string"}}}}}}}},
+            system=QUOTE_PROMPT,
+            messages=[{"role": "user", "content": listing}])
+        if resp.stop_reason == "refusal":
+            raise RuntimeError("quote summaries: request declined")
+        text = next(b.text for b in resp.content if b.type == "text")
+        for it in json.loads(text)["items"]:
+            if 0 <= it["i"] < len(batch):
+                batch[it["i"]]["keep"], batch[it["i"]]["short"] = bool(it["keep"]), it["short"].strip()
+    return notes
+
+
 def fetch_presserwire(prev):
     """-> {"read_at", "injuries", "notes"}; reuses the last read if it is under PW_EVERY_MIN minutes old."""
     now = dt.datetime.now(dt.timezone.utc)
@@ -358,6 +407,35 @@ def fetch_sportsline(prev):
     if not players:
         raise RuntimeError("SportsLine: no projected minutes read (page layout changed?)")
     return {"read_at": now.isoformat(timespec="seconds"), "date": today_et().isoformat(), "players": players}
+
+
+ODDS_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates={d:%Y%m%d}"
+
+
+def parse_lines(sb):
+    """ESPN scoreboard -> {"AWAY@HOME": {"fav": code, "spread": 11.5, "details": "BOS -11.5", "provider"}} for games
+    that haven't started (the line keeps moving until tip; we read it on every refresh)."""
+    out = {}
+    for ev in sb.get("events", []):
+        c = ev["competitions"][0]
+        if c["status"]["type"].get("state") != "pre":
+            continue
+        t = {x["homeAway"]: team_code(x["team"].get("displayName", "")) for x in c["competitors"]}
+        o = (c.get("odds") or [{}])[0]
+        if not (t.get("away") and t.get("home")) or o.get("spread") is None:
+            continue
+        sp = float(o["spread"])          # the home team's line: -11.5 = home favored by 11.5, +2.5 = away favored
+        fav = t["home"] if sp < 0 else t["away"] if sp > 0 else None
+        out[f"{t['away']}@{t['home']}"] = {"fav": fav, "spread": abs(sp), "details": o.get("details", ""),
+                                           "provider": (o.get("provider") or {}).get("name", "")}
+    return out
+
+
+def fetch_lines():
+    """Today's (ET) pre-game spreads from ESPN (DraftKings line), read fresh on every refresh -> data["lines"]."""
+    now = dt.datetime.now(dt.timezone.utc)
+    return {"read_at": now.isoformat(timespec="seconds"), "date": today_et().isoformat(),
+            "games": parse_lines(get(ODDS_URL.format(d=today_et())).json())}
 
 
 def covers_player(a):
@@ -958,11 +1036,21 @@ def main():
     if sl:
         status["sportsline"].update({"players": len(sl["players"]), "read_at": sl["read_at"]})
 
+    ln = run("lines", fetch_lines)
+    data["lines"] = ln if ln is not None else (prev.get("lines") or {})
+    if ln:
+        status["lines"].update({"games": len(ln["games"]), "read_at": ln["read_at"]})
+
     pw = run("presserwire", lambda: fetch_presserwire(prev))
     if pw is None:
         pw = prev.get("presserwire") or {}
         for r in pw.get("injuries", []):
             r["stale"] = True
+    if pw.get("notes"):
+        try:
+            summarize_quotes(pw["notes"], (prev.get("presserwire") or {}).get("notes"))
+        except Exception as e:      # keep going: the report falls back to the matching sentence
+            print(f"[quotes] summary FAILED: {e}", file=sys.stderr)
     data["presserwire"] = pw
     injuries += pw.get("injuries", [])
     if pw:
