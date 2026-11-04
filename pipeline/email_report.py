@@ -107,11 +107,27 @@ def starters_for(data, team, date, inj):
 SL_DIFF = 5.0   # SportsLine projected minutes this far above / below the season average get a tag (user, Oct 27 2026)
 
 
+def sportsline_stale(data, team, date):
+    """True when SportsLine hasn't caught up with tonight's lineup for this team, so its Expected minutes are not shown
+    (Nov 4 2026: on Nov 2 it still had IND's Slawson at 5 and scratched Oubre at 30, and no Braden Smith or Kobe Brown,
+    who started): a RotoWire starter it doesn't list, or a player it lists who is out or doubtful."""
+    sl = data.get("sportsline") or {}
+    listed = {norm_name(p["player"]): p["min"] for p in sl.get("players", []) if p.get("team") == team}
+    if not listed:
+        return False
+    hurt = {norm_name(i["player"]): i["st"] for i in injuries_for(data, team, date)}
+    lu = (data.get("lineups") or {}).get(team) or {}
+    if lu.get("date") == date and any(norm_name(s["name"]) not in listed and norm_name(s["name"]) not in hurt
+                                      for s in lu.get("starters", [])):
+        return True       # a healthy starter it doesn't list (a questionable one it may be leaving out on purpose)
+    return any(listed.get(k, 0) >= 10 for k, st in hurt.items() if st in ("out", "doubt"))   # out, still given 10+ min
+
+
 def sportsline_tags(data, team, date):
     """{norm name: (projected minutes, difference)} for this team's players whose SportsLine projected minutes for the
     game are SL_DIFF+ above or below their average (avg_minutes: this season, else last season)."""
     sl = data.get("sportsline") or {}
-    if sl.get("date") != date:
+    if sl.get("date") != date or sportsline_stale(data, team, date):
         return {}
     out = {}
     for p in sl.get("players", []):

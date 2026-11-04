@@ -759,3 +759,17 @@ def test_expected_minutes_history(tmp_path):
     h = u.read_expected_history(path)
     assert h[("2026-11-04", "NYK", "Jose Alvarado")]["dropped_at"] == "2026-11-04T23:00:00+00:00"
     assert h[("2026-11-04", "NYK", "Mikal Bridges")]["dropped_at"] == ""
+
+
+def test_stale_sportsline_hides_expected(monkeypatch):
+    import email_report as e
+    monkeypatch.setattr(e, "injuries_for", lambda data, team, date: [{"player": "Kelly Oubre", "st": "out"}] if data.get("hurt") else [])
+    data = {"sportsline": {"date": "2026-11-02", "players": [{"player": "Jalen Slawson", "team": "IND", "min": 5.0},
+                                                              {"player": "Kelly Oubre", "team": "IND", "min": 30.0}]},
+            "lineups": {"IND": {"date": "2026-11-02", "starters": [{"name": "Kelly Oubre"}, {"name": "Jalen Slawson"}]}}}
+    assert not e.sportsline_stale(data, "IND", "2026-11-02")
+    data["lineups"]["IND"]["starters"].append({"name": "Braden Smith"})            # starter SportsLine doesn't list
+    assert e.sportsline_stale(data, "IND", "2026-11-02")
+    data["lineups"]["IND"]["starters"].pop()
+    data["hurt"] = True                                                              # listed player is out, given 30
+    assert e.sportsline_stale(data, "IND", "2026-11-02")

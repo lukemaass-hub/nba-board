@@ -201,3 +201,6 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   dropped_at (Nov 4 2026): a player SportsLine stopped listing before tip (ruled out, scratched) keeps his old number but
   is marked dropped, so a stale projection is not read as "expected to play". SportsLine is slow on late scratches and
   does not move minutes to deep bench players much (Nov 2 IND: Slawson 5 expected, played 41).
+  Nov 4 2026: email_report.sportsline_stale hides the "Expected" tags for a team when SportsLine is behind on the lineup:
+  a healthy RotoWire starter it does not list, or a player it still gives 10+ min who is out / doubtful. Timing was not
+  the issue: SportsLine kept the stale IND numbers even after tip.
