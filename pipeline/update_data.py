@@ -360,6 +360,35 @@ def fetch_sportsline(prev):
     return {"read_at": now.isoformat(timespec="seconds"), "date": today_et().isoformat(), "players": players}
 
 
+ODDS_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates={d:%Y%m%d}"
+
+
+def parse_lines(sb):
+    """ESPN scoreboard -> {"AWAY@HOME": {"fav": code, "spread": 11.5, "details": "BOS -11.5", "provider"}} for games
+    that haven't started (the line keeps moving until tip; we read it on every refresh)."""
+    out = {}
+    for ev in sb.get("events", []):
+        c = ev["competitions"][0]
+        if c["status"]["type"].get("state") != "pre":
+            continue
+        t = {x["homeAway"]: team_code(x["team"].get("displayName", "")) for x in c["competitors"]}
+        o = (c.get("odds") or [{}])[0]
+        if not (t.get("away") and t.get("home")) or o.get("spread") is None:
+            continue
+        sp = float(o["spread"])          # the home team's line: -11.5 = home favored by 11.5, +2.5 = away favored
+        fav = t["home"] if sp < 0 else t["away"] if sp > 0 else None
+        out[f"{t['away']}@{t['home']}"] = {"fav": fav, "spread": abs(sp), "details": o.get("details", ""),
+                                           "provider": (o.get("provider") or {}).get("name", "")}
+    return out
+
+
+def fetch_lines():
+    """Today's (ET) pre-game spreads from ESPN (DraftKings line), read fresh on every refresh -> data["lines"]."""
+    now = dt.datetime.now(dt.timezone.utc)
+    return {"read_at": now.isoformat(timespec="seconds"), "date": today_et().isoformat(),
+            "games": parse_lines(get(ODDS_URL.format(d=today_et())).json())}
+
+
 def covers_player(a):
     """Covers shows 'H. Veesaar'; the link ends in '/henri-veesaar', which gives the full name."""
     text = clean(a.get_text(" ", strip=True))
@@ -957,6 +986,11 @@ def main():
     data["sportsline"] = sl if sl is not None else (prev.get("sportsline") or {})
     if sl:
         status["sportsline"].update({"players": len(sl["players"]), "read_at": sl["read_at"]})
+
+    ln = run("lines", fetch_lines)
+    data["lines"] = ln if ln is not None else (prev.get("lines") or {})
+    if ln:
+        status["lines"].update({"games": len(ln["games"]), "read_at": ln["read_at"]})
 
     pw = run("presserwire", lambda: fetch_presserwire(prev))
     if pw is None:

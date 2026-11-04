@@ -810,10 +810,11 @@ function b2bHTML(g,date){
 }
 /* Presser Wire press-conference notes (last 36 h), injury / minutes related only (same rule as beat-writer news) */
 let PRESSERS=[];
-const PRESSERS_ENABLED=false;   // press-conference quotes removed (user, Oct 28 2026)
+const PRESSERS_ENABLED=true;   // quotes back Nov 4 2026 (user), minutes / shots / restrictions only, same rule as Slack
+const QUOTE_RELEVANT=/minutes?[- ](restriction|limit|cap|number|count)|restrict|(heavy|heavier|lighter|more|fewer|extra|limited|reduced|increased|big|his|her|their) minutes|play(ed|ing|s)? \d+ minutes|limits? on his|workload|load management|manag(e|ing) (him|his|that|it)|ramp(ing|ed)? up|playing time|rotation|\bshots?\b|shot attempts|shoot more|more aggressive|\blooks\b|touches|usage|(4th|fourth) quarter|\bsat (the last|him)|\bsit (him|the last)|garbage time|closing (lineup|group)|bench role|come off the bench|back[- ]to[- ]back/i;
 function pressersHTML(code){
   if(!PRESSERS_ENABLED) return "";
-  const items=PRESSERS.filter(n=>n.team===code&&Date.now()-Date.parse(n.at)<36*3600e3&&newsRelevant({text:n.text})).sort((a,b)=>b.at.localeCompare(a.at)).slice(0,3);
+  const items=PRESSERS.filter(n=>n.team===code&&Date.now()-Date.parse(n.at)<36*3600e3&&QUOTE_RELEVANT.test(n.text||"")).sort((a,b)=>b.at.localeCompare(a.at)).slice(0,3);
   if(!items.length) return "";
   return `<div class="sech" style="margin-top:8px">Press conferences</div>`+items.map(n=>`<div class="news"><div>🎙️ <b>${esc(n.players.slice(0,4).join(", "))}</b> <span class="nc"><a href="${esc(n.url)}" target="_blank" rel="noopener">Presser Wire</a> · ${agoText(n.at)}</span></div><div class="nt" title="${esc(n.text)}">${esc(n.text)}</div></div>`).join("");
 }

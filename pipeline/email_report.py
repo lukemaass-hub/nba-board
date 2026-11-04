@@ -377,6 +377,37 @@ def b2b_text(team, which, g):
     return f"{which} game of a back-to-back: {'played ' if which == '2nd' else ''}{where} {opp} {when}"
 
 
+BLOWOUT_TABLE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "blowout_table.json")
+BLOWOUT_MIN = 0.30      # only warn when the favorite wins by 15+ at least this often at that spread (user: "reasonably high")
+_blowout = None
+
+
+def blowout_chance(spread):
+    """Share of games (last 5 seasons, closing line) where a favorite of this size won by 15+, from blowout_table.json."""
+    global _blowout
+    if _blowout is None:
+        try:
+            _blowout = json.load(open(BLOWOUT_TABLE))
+        except (OSError, ValueError):
+            _blowout = {}
+    by = _blowout.get("by_spread") or {}
+    if not by:
+        return None
+    key = f"{min(20.0, round(float(spread) * 2) / 2):g}"
+    return by.get(key)
+
+
+def blowout_for(data, g):
+    """(favorite, spread, details, provider, chance) for this game from the line read at the latest refresh, when the
+    chance is at least BLOWOUT_MIN; else None."""
+    ln = data.get("lines") or {}
+    x = (ln.get("games") or {}).get(f"{g['away']}@{g['home']}") if ln.get("date") == g["date"] else None
+    if not x or not x.get("fav"):
+        return None
+    p = blowout_chance(x["spread"])
+    return (x["fav"], x["spread"], x.get("details", ""), x.get("provider", ""), p) if p is not None and p >= BLOWOUT_MIN else None
+
+
 def b2b_for(data, g):
     return [x for t in (g["away"], g["home"]) for x in back_to_back(data, t, g["date"])]
 
@@ -410,12 +441,20 @@ def news_relevant(i):
     return bool(NEWS_KEEP.search(t)) and not (NEWS_SKIP.search(t) and not re.search(r"suspen", t, re.I))
 
 
-PRESSERS_ENABLED = False   # press-conference quotes taken out of Slack / email (user, Oct 28 2026); the NBA report still sets statuses
+PRESSERS_ENABLED = True    # press-conference quotes: off Oct 28 2026, back Nov 4 2026 for minutes / shots / restrictions only (user)
+# quotes worth showing (user, Nov 4 2026): minutes, shots, restrictions, sitting in 4th quarters and similar
+QUOTE_RELEVANT = re.compile(
+    r"minutes?[- ](restriction|limit|cap|number|count)|restrict|(heavy|heavier|lighter|more|fewer|extra|limited|reduced|"
+    r"increased|big|his|her|their) minutes|play(ed|ing|s)? \d+ minutes|limits? on his|workload|load management|"
+    r"manag(e|ing) (him|his|that|it)|ramp(ing|ed)? up|playing time|rotation|"
+    r"\bshots?\b|shot attempts|shoot more|more aggressive|\blooks\b|touches|usage|"
+    r"(4th|fourth) quarter|\bsat (the last|him)|\bsit (him|the last)|garbage time|"
+    r"closing (lineup|group)|bench role|come off the bench|back[- ]to[- ]back", re.I)
 
 
 def pressers_for(data, team, now=None, hours=NEWS_HOURS):
-    """Presser Wire press-conference notes about this team from the last 36 hours, injury / minutes related only
-    (news_relevant, the same rule as beat-writer news), newest first. Off while PRESSERS_ENABLED is False."""
+    """Presser Wire press-conference notes about this team from the last 36 hours, only about minutes, shots,
+    restrictions, sitting in the 4th quarter and similar (QUOTE_RELEVANT), newest first. Off while PRESSERS_ENABLED is False."""
     if not PRESSERS_ENABLED:
         return []
     now = now or dt.datetime.now(dt.timezone.utc)
@@ -425,7 +464,8 @@ def pressers_for(data, team, now=None, hours=NEWS_HOURS):
             fresh = dt.datetime.fromisoformat(n["at"]) >= now - dt.timedelta(hours=hours)
         except (KeyError, ValueError):
             continue
-        if n.get("team") == team and fresh and news_relevant({"text": n.get("text", "")}):
+        txt = n.get("text", "")
+        if n.get("team") == team and fresh and QUOTE_RELEVANT.search(txt) and not (NEWS_BOX.search(txt) and not NEWS_HURT.search(txt)):
             out.append(n)
     return sorted(out, key=lambda n: n["at"], reverse=True)
 
@@ -607,6 +647,12 @@ def build_slack(data, game, date, test=False):
     for team, which, og in b2b_for(data, g):
         blocks.append({"type": "section", "text": {"type": "mrkdwn", "text":
                        f":repeat: *BACK-TO-BACK: {e(name(team))}* · {e(b2b_text(team, which, og))}"}})
+    bo = blowout_for(data, g)
+    if bo:
+        fav, sp, _, prov, p = bo
+        blocks.append({"type": "section", "text": {"type": "mrkdwn", "text":
+                       f":boom: *BLOWOUT WATCH: {e(name(fav))} -{sp:g}* · favorites this size won by 15+ in *{p:.0%}* of games "
+                       f"(last 5 seasons){f' · {e(prov)} line' if prov else ''}"}})
     for w in restrictions_for(data, (g["away"], g["home"]), date):
         blocks.append({"type": "section", "text": {"type": "mrkdwn", "text":
                        f":warning: *MINUTES RESTRICTION: <{w['url']}|{e(w['player'])}> ({w['team']})*\n{e(w['text'])} "
