@@ -736,3 +736,20 @@ def test_live_line_and_blowout_warning(monkeypatch):
     assert e.blowout_for(data, g)[4] == 0.45                                         # big favorite: warning
     assert e.blowout_for(data, {**g, "away": "ATL", "home": "WAS"}) is None          # small spread: nothing
     assert e.blowout_for(data, {**g, "date": "2026-11-05"}) is None                  # line from another day: nothing
+
+
+def test_expected_minutes_history(tmp_path):
+    import update_data as u
+    path = str(tmp_path / "eh.csv")
+    data = {"schedule": [{"date": "2026-11-04", "time": "19:30", "away": "CHI", "home": "NYK"}],
+            "sportsline": {"date": "2026-11-04", "read_at": "2026-11-04T22:00:00+00:00",
+                           "players": [{"player": "Jose Alvarado", "team": "NYK", "min": 19.0},
+                                       {"player": "Somebody Else", "team": "BOS", "min": 30.0}]}}
+    before = dt.datetime(2026, 11, 4, 22, 0, tzinfo=dt.timezone.utc)
+    assert u.save_expected_history(data, before, path) == 1                     # only teams playing, before tip
+    data["sportsline"]["players"][0]["min"] = 21.0
+    u.mark_expected_sent(data, data["schedule"][0], "2026-11-04T23:20:00+00:00", path)
+    after = dt.datetime(2026, 11, 5, 1, 0, tzinfo=dt.timezone.utc)       # 7:30 PM ET = 00:30 UTC (winter time)
+    assert u.save_expected_history(data, after, path) == 0                      # tipped: left alone
+    r = u.read_expected_history(path)[("2026-11-04", "NYK", "Jose Alvarado")]
+    assert (r["expected"], r["at_send"], r["game"]) == ("19", "21", "CHI@NYK")
