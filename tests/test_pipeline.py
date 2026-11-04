@@ -464,7 +464,7 @@ def test_back_to_back_warning():
     g = data["schedule"][1]
     b = e.b2b_for(data, g)
     assert [(t, w) for t, w, _ in b] == [("IND", "2nd"), ("MIL", "1st")]
-    assert e.b2b_text(*b[0]) == "2nd game of a back-to-back: played vs BKN last night"
+    assert e.b2b_text(*b[0]) == "2nd game of a back-to-back"          # no opponent (user, Nov 4 2026)
     assert e.b2b_text(*b[1]) == "1st game of a back-to-back: vs MIA tomorrow 7:30 PM ET"
     assert e.b2b_for(data, data["schedule"][0]) == [("IND", "1st", g)]
     _, blocks = e.build_slack(data, g, g["date"])
