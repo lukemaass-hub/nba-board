@@ -929,6 +929,11 @@ def dm_traders(data, token, now, window, sent, stamp):
                     if len(users) < 2:     # one trader alone would land in the bot's hidden Messages tab (user, Oct 27 2026)
                         users.append(sa.OWNER)
                     sa.group_dm(token, users, title, blocks)
+                    try:      # keep the expected minutes this report showed (pipeline/expected_history.csv)
+                        import update_data
+                        update_data.mark_expected_sent(data, g, now.isoformat(timespec="seconds"))
+                    except Exception as ex2:
+                        print(f"expected history: {ex2}")
                 print(f"Slack DMs ({m}, {why}): {g['away']}@{g['home']} sent to {'owner (test)' if m == 'test' else who}")
             except Exception as ex:   # not marked sent: the next check tries again (still before tip only)
                 print(f"Slack DMs: {g['away']}@{g['home']} failed, will retry: {ex}")

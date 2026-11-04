@@ -390,6 +390,68 @@ def fetch_lines():
             "games": parse_lines(get(ODDS_URL.format(d=today_et())).json())}
 
 
+EXPECTED_HISTORY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "expected_history.csv")
+EH_COLS = ["date", "game", "team", "player", "expected", "read_at", "at_send", "sent_at"]
+
+
+def read_expected_history(path=EXPECTED_HISTORY):
+    if not os.path.exists(path):
+        return {}
+    return {(r["date"], r["team"], r["player"]): r for r in csv.DictReader(open(path, newline=""))}
+
+
+def write_expected_history(rows, path=EXPECTED_HISTORY):
+    with open(path, "w", newline="") as f:
+        w = csv.DictWriter(f, EH_COLS)
+        w.writeheader()
+        w.writerows(sorted(rows.values(), key=lambda r: (r["date"], r["game"], r["team"], r["player"])))
+
+
+def save_expected_history(data, now=None, path=EXPECTED_HISTORY):
+    """Keeps SportsLine's expected minutes for every game, the last read before tip (user, Nov 4 2026: "start storing
+    expected minutes"), in pipeline/expected_history.csv. Games that have tipped are never overwritten."""
+    sl = data.get("sportsline") or {}
+    if not sl.get("players") or not sl.get("read_at"):
+        return 0
+    now = now or dt.datetime.now(dt.timezone.utc)
+    games = {}
+    for g in all_games(data):
+        if g["date"] == sl["date"]:
+            tip = dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=ET)
+            if now < tip:
+                games[g["away"]] = games[g["home"]] = f"{g['away']}@{g['home']}"
+    rows, n = read_expected_history(path), 0
+    for p in sl["players"]:
+        game = games.get(p["team"])
+        if not game:
+            continue
+        k = (sl["date"], p["team"], p["player"])
+        old = rows.get(k, {})
+        rows[k] = {**{c: "" for c in EH_COLS}, **old, "date": sl["date"], "game": game, "team": p["team"],
+                   "player": p["player"], "expected": f"{p['min']:g}", "read_at": sl["read_at"]}
+        n += 1
+    if n:
+        write_expected_history(rows, path)
+    return n
+
+
+def mark_expected_sent(data, game, at, path=EXPECTED_HISTORY):
+    """When a game's report goes out: note the expected minutes it showed for both teams (at_send, sent_at)."""
+    sl = data.get("sportsline") or {}
+    if sl.get("date") != game["date"]:
+        return
+    rows = read_expected_history(path)
+    key = f"{game['away']}@{game['home']}"
+    for p in sl.get("players", []):
+        if p["team"] in (game["away"], game["home"]):
+            k = (game["date"], p["team"], p["player"])
+            r = rows.get(k) or {**{c: "" for c in EH_COLS}, "date": game["date"], "game": key, "team": p["team"],
+                                "player": p["player"], "expected": f"{p['min']:g}", "read_at": sl.get("read_at", "")}
+            r.update({"at_send": f"{p['min']:g}", "sent_at": at})
+            rows[k] = r
+    write_expected_history(rows, path)
+
+
 def covers_player(a):
     """Covers shows 'H. Veesaar'; the link ends in '/henri-veesaar', which gives the full name."""
     text = clean(a.get_text(" ", strip=True))
@@ -987,6 +1049,10 @@ def main():
     data["sportsline"] = sl if sl is not None else (prev.get("sportsline") or {})
     if sl:
         status["sportsline"].update({"players": len(sl["players"]), "read_at": sl["read_at"]})
+    try:
+        status["sportsline"]["saved_for_history"] = save_expected_history(data)
+    except Exception as e:
+        print(f"[expected history] FAILED: {e}", file=sys.stderr)
 
     ln = run("lines", fetch_lines)
     data["lines"] = ln if ln is not None else (prev.get("lines") or {})
