@@ -198,3 +198,6 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   .save_expected_history writes SportsLine's numbers on every refresh for games not yet tipped (last pre-tip read wins);
   email_report.dm_traders -> update_data.mark_expected_sent records what the report showed when it went out. The workflow
   commits the file. Back-filled from git history of data.json for Oct 27 - Nov 4 (1,371 rows).
+  dropped_at (Nov 4 2026): a player SportsLine stopped listing before tip (ruled out, scratched) keeps his old number but
+  is marked dropped, so a stale projection is not read as "expected to play". SportsLine is slow on late scratches and
+  does not move minutes to deep bench players much (Nov 2 IND: Slawson 5 expected, played 41).
