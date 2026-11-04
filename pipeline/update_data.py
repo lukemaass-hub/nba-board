@@ -391,7 +391,7 @@ def fetch_lines():
 
 
 EXPECTED_HISTORY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "expected_history.csv")
-EH_COLS = ["date", "game", "team", "player", "expected", "read_at", "at_send", "sent_at"]
+EH_COLS = ["date", "game", "team", "player", "expected", "read_at", "dropped_at", "at_send", "sent_at"]
 
 
 def read_expected_history(path=EXPECTED_HISTORY):
@@ -421,15 +421,22 @@ def save_expected_history(data, now=None, path=EXPECTED_HISTORY):
             if now < tip:
                 games[g["away"]] = games[g["home"]] = f"{g['away']}@{g['home']}"
     rows, n = read_expected_history(path), 0
+    listed = set()
     for p in sl["players"]:
         game = games.get(p["team"])
         if not game:
             continue
         k = (sl["date"], p["team"], p["player"])
+        listed.add(k)
         old = rows.get(k, {})
         rows[k] = {**{c: "" for c in EH_COLS}, **old, "date": sl["date"], "game": game, "team": p["team"],
-                   "player": p["player"], "expected": f"{p['min']:g}", "read_at": sl["read_at"]}
+                   "player": p["player"], "expected": f"{p['min']:g}", "read_at": sl["read_at"], "dropped_at": ""}
         n += 1
+    # a player SportsLine stopped listing before tip (ruled out, scratched) keeps his old number but is marked dropped,
+    # so his stale projection isn't read as "expected to play" (Nov 4 2026: Indiana's six-man game on Nov 2)
+    for k, r in rows.items():
+        if k[0] == sl["date"] and k[1] in games and k not in listed and not r.get("dropped_at"):
+            r["dropped_at"] = sl["read_at"]
     if n:
         write_expected_history(rows, path)
     return n

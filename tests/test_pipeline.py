@@ -753,3 +753,9 @@ def test_expected_minutes_history(tmp_path):
     assert u.save_expected_history(data, after, path) == 0                      # tipped: left alone
     r = u.read_expected_history(path)[("2026-11-04", "NYK", "Jose Alvarado")]
     assert (r["expected"], r["at_send"], r["game"]) == ("19", "21", "CHI@NYK")
+    # a player SportsLine stops listing before tip is marked dropped
+    data["sportsline"].update({"read_at": "2026-11-04T23:00:00+00:00", "players": [{"player": "Mikal Bridges", "team": "NYK", "min": 30.0}]})
+    u.save_expected_history(data, before, path)
+    h = u.read_expected_history(path)
+    assert h[("2026-11-04", "NYK", "Jose Alvarado")]["dropped_at"] == "2026-11-04T23:00:00+00:00"
+    assert h[("2026-11-04", "NYK", "Mikal Bridges")]["dropped_at"] == ""
