@@ -204,3 +204,10 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   Nov 4 2026: email_report.sportsline_stale hides the "Expected" tags for a team when SportsLine is behind on the lineup:
   a healthy RotoWire starter it does not list, or a player it still gives 10+ min who is out / doubtful. Timing was not
   the issue: SportsLine kept the stale IND numbers even after tip.
+- Expected minutes = a MIX (Nov 4 2026, user): update_data.mix_expected -> data["expected_mix"]: FantasyPros daily
+  projections (fantasypros.com/nba/projections/daily-overall.php, only the top 10 are free) first, then RotoWire's
+  projected minutes (rotowire.com/basketball/projected-minutes.php, free for AWAY teams only; home teams are
+  subscriber-only and skipped), then SportsLine for everyone else. Each read at most every 15 min; robots.txt allows all
+  three. email_report.sportsline_tags uses the mix; when SportsLine is stale for a team only its SportsLine-sourced
+  numbers are dropped. expected_history.csv has a "source" column. Other sites checked: DailyFantasyFuel (no minutes),
+  lineups.com (403), Basketball Monster (login).

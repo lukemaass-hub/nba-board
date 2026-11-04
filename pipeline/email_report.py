@@ -124,14 +124,17 @@ def sportsline_stale(data, team, date):
 
 
 def sportsline_tags(data, team, date):
-    """{norm name: (projected minutes, difference)} for this team's players whose SportsLine projected minutes for the
-    game are SL_DIFF+ above or below their average (avg_minutes: this season, else last season)."""
-    sl = data.get("sportsline") or {}
-    if sl.get("date") != date or sportsline_stale(data, team, date):
+    """{norm name: (projected minutes, difference)} for this team's players whose expected minutes for the game are
+    SL_DIFF+ above or below their average (avg_minutes: this season, else last season). Expected minutes = the mix
+    (update_data.mix_expected): FantasyPros top 10, else RotoWire (away team), else SportsLine."""
+    mix = data.get("expected_mix") or {}
+    sl = mix if mix.get("date") == date else (data.get("sportsline") or {})
+    if sl.get("date") != date:
         return {}
+    stale = sportsline_stale(data, team, date)        # then SportsLine's numbers for this team are skipped
     out = {}
     for p in sl.get("players", []):
-        if p.get("team") != team:
+        if p.get("team") != team or (stale and p.get("src", "SportsLine") == "SportsLine"):
             continue
         avg = avg_minutes(data, p["player"])
         if avg and abs(p["min"] - avg[0]) >= SL_DIFF - 1e-9:
