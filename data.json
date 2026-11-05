@@ -8587,16 +8587,16 @@
   "SAS": {
    "PG": "De'Aaron Fox/Jordan McLaughlin/Ja'Kobi Gillespie,David Jones Garcia",
    "SG": "Stephon Castle/Julian Champagnie/",
-   "SF": "Dylan Harper/Keldon Johnson/Carter Bryant,Harrison Barnes",
-   "PF": "Devin Vassell/Tobias Harris/Maliq Brown",
+   "SF": "Dylan Harper/Keldon Johnson/Harrison Barnes",
+   "PF": "Devin Vassell/Tobias Harris/Carter Bryant,Maliq Brown",
    "C": "Victor Wembanyama/Luke Kornet/Tarris Reed Jr.,Jayden Quaintance"
   },
   "UTA": {
    "PG": "Keyonte George/Isaiah Collier/Trey Alexander,Kobe Bufkin",
-   "SG": "Darryn Peterson/Brice Sensabaugh/Josh Green",
-   "SF": "Ace Bailey/Svi Mykhailiuk/Josh Okogie",
-   "PF": "Lauri Markkanen/Kyle Filipowski/Harrison Ingram",
-   "C": "Jaxson Hayes/Mo Bamba/Tony Bradley,Jaren Jackson Jr.,Jusuf Nurkic"
+   "SG": "Darryn Peterson/Svi Mykhailiuk/Josh Green",
+   "SF": "Ace Bailey/Brice Sensabaugh/",
+   "PF": "Lauri Markkanen/Josh Okogie/Harrison Ingram",
+   "C": "Jaxson Hayes/Mo Bamba/Kyle Filipowski,Tony Bradley,Jaren Jackson Jr.,Jusuf Nurkic"
   },
   "WAS": {
    "PG": "Trae Young/Bub Carrington/Tre Mann,Reece Beekman",
@@ -8607,10 +8607,10 @@
   },
   "TOR": {
    "PG": "Immanuel Quickley/Jamal Shead/Jaden Bradley,Malachi Smith",
-   "SG": "RJ Barrett//Alijah Martin",
-   "SF": "Ja'Kobe Walter/Allen Graves,Jamison Battle/Kawhi Leonard",
+   "SG": "Ja'Kobe Walter//Alijah Martin",
+   "SF": "RJ Barrett/Jamison Battle/Allen Graves,Kawhi Leonard",
    "PF": "Scottie Barnes/Collin Murray-Boyles,Kyle Anderson/",
-   "C": "Jakob Poeltl//Trayce Jackson-Davis,Nate Bittle"
+   "C": "Jakob Poeltl/Trayce Jackson-Davis/Nate Bittle"
   }
  },
  "minutes": {},
@@ -8765,7 +8765,7 @@
    "time": "19:30",
    "vs": "MIL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8852,7 +8852,7 @@
    "time": "19:30",
    "vs": "NYK",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -18985,7 +18985,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-05T00:07:00+00:00",
+  "read_at": "2026-11-05T00:10:18+00:00",
   "date": "2026-11-04",
   "games": {
    "PHI@DET": {
@@ -19020,8 +19020,8 @@
    },
    "IND@MEM": {
     "fav": "MEM",
-    "spread": 6.5,
-    "details": "MEM -6.5",
+    "spread": 5.5,
+    "details": "MEM -5.5",
     "provider": "DraftKings"
    },
    "UTA@NOP": {
@@ -25091,6 +25091,18 @@
   },
   {
    "team": "BOS",
+   "player": "Devin Carter",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Illness",
+   "upd": "2026-11-04",
+   "until": "2026-11-08",
+   "note": "Carter (illness) practiced with the G League's Maine Celtics on Wednesday.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Devin%20Carter"
+  },
+  {
+   "team": "BOS",
    "player": "Jayson Tatum",
    "src": "ESPN",
    "kind": "O",
@@ -25100,18 +25112,6 @@
    "note": "Tatum will be rested Wednesday against the Bucks, Jack Simone of BostonSportsJournal.com reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jayson%20Tatum"
-  },
-  {
-   "team": "BOS",
-   "player": "Devin Carter",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Illness",
-   "upd": "2026-10-18",
-   "until": "2026-11-08",
-   "note": "Carter has been diagnosed with mononucleosis and is without a timetable for a return, Gary Washburn of The Boston Globe reports.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Devin%20Carter"
   },
   {
    "team": "BKN",
@@ -25145,7 +25145,7 @@
    "injury": "Right Hamstring",
    "upd": "2026-11-04",
    "until": "2026-11-09",
-   "note": "Charlotte assigned Williams (hamstring) to the G League's Greensboro Swarm on Wednesday.",
+   "note": "The Hornets recalled Williams (hamstring) from the G League's Greensboro Swarm on Wednesday.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Grant%20Williams"
   },
@@ -29192,27 +29192,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-05T00:07:00+00:00",
+ "generated_at": "2026-11-05T00:10:18+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-05T00:06:45+00:00",
+   "at": "2026-11-05T00:10:03+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-05T00:06:59+00:00",
+   "at": "2026-11-05T00:10:16+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-05T00:06:59+00:00",
+   "at": "2026-11-05T00:10:17+00:00",
    "teams": 28,
    "injuries": 84
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-05T00:06:59+00:00",
+   "at": "2026-11-05T00:10:17+00:00",
    "current_players": 448,
    "last_players": 582
   },
@@ -29222,17 +29222,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-05T00:06:59+00:00",
+   "at": "2026-11-05T00:10:17+00:00",
    "count": 92
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-05T00:07:00+00:00",
+   "at": "2026-11-05T00:10:18+00:00",
    "count": 93
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-05T00:07:00+00:00",
+   "at": "2026-11-05T00:10:18+00:00",
    "count": 90
   },
   "x": {
@@ -29241,39 +29241,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-05T00:07:00+00:00",
+   "at": "2026-11-05T00:10:18+00:00",
    "players": 273,
    "read_at": "2026-11-05T00:00:16+00:00",
    "saved_for_history": 255
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-05T00:07:00+00:00",
+   "at": "2026-11-05T00:10:18+00:00",
    "players": 151,
    "read_at": "2026-11-05T00:00:16+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-05T00:07:00+00:00",
+   "at": "2026-11-05T00:10:18+00:00",
    "players": 10,
    "read_at": "2026-11-05T00:00:17+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-05T00:07:00+00:00",
+   "at": "2026-11-05T00:10:18+00:00",
    "games": 14,
-   "read_at": "2026-11-05T00:07:00+00:00"
+   "read_at": "2026-11-05T00:10:18+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-05T00:07:00+00:00",
+   "at": "2026-11-05T00:10:18+00:00",
    "injuries": 96,
    "notes": 140,
    "read_at": "2026-11-05T00:00:17+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-05T00:07:00+00:00",
+   "at": "2026-11-05T00:10:18+00:00",
    "count": 47
   }
  }
