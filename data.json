@@ -8794,7 +8794,7 @@
    "time": "19:30",
    "vs": "BKN",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8823,7 +8823,7 @@
    "time": "19:30",
    "vs": "CHA",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -18985,21 +18985,9 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-05T00:10:18+00:00",
+  "read_at": "2026-11-05T00:13:38+00:00",
   "date": "2026-11-04",
   "games": {
-   "PHI@DET": {
-    "fav": "DET",
-    "spread": 2.5,
-    "details": "DET -2.5",
-    "provider": "DraftKings"
-   },
-   "ATL@WAS": {
-    "fav": "ATL",
-    "spread": 1.5,
-    "details": "ATL -1.5",
-    "provider": "DraftKings"
-   },
    "MIL@BOS": {
     "fav": "BOS",
     "spread": 12.5,
@@ -28149,19 +28137,6 @@
   },
   {
    "team": "MEM",
-   "player": "Quinten Post",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-04",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-04",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Q.%20Post"
-  },
-  {
-   "team": "MEM",
    "player": "Scotty Pippen Jr.",
    "src": "RotoWire",
    "kind": "O",
@@ -29192,27 +29167,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-05T00:10:18+00:00",
+ "generated_at": "2026-11-05T00:13:38+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-05T00:10:03+00:00",
+   "at": "2026-11-05T00:13:23+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-05T00:10:16+00:00",
+   "at": "2026-11-05T00:13:37+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-05T00:10:17+00:00",
+   "at": "2026-11-05T00:13:37+00:00",
    "teams": 28,
-   "injuries": 84
+   "injuries": 83
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-05T00:10:17+00:00",
+   "at": "2026-11-05T00:13:37+00:00",
    "current_players": 448,
    "last_players": 582
   },
@@ -29222,17 +29197,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-05T00:10:17+00:00",
+   "at": "2026-11-05T00:13:37+00:00",
    "count": 92
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-05T00:10:18+00:00",
+   "at": "2026-11-05T00:13:38+00:00",
    "count": 93
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-05T00:10:18+00:00",
+   "at": "2026-11-05T00:13:38+00:00",
    "count": 90
   },
   "x": {
@@ -29241,39 +29216,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-05T00:10:18+00:00",
+   "at": "2026-11-05T00:13:38+00:00",
    "players": 273,
    "read_at": "2026-11-05T00:00:16+00:00",
    "saved_for_history": 255
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-05T00:10:18+00:00",
+   "at": "2026-11-05T00:13:38+00:00",
    "players": 151,
    "read_at": "2026-11-05T00:00:16+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-05T00:10:18+00:00",
+   "at": "2026-11-05T00:13:38+00:00",
    "players": 10,
    "read_at": "2026-11-05T00:00:17+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-05T00:10:18+00:00",
-   "games": 14,
-   "read_at": "2026-11-05T00:10:18+00:00"
+   "at": "2026-11-05T00:13:38+00:00",
+   "games": 12,
+   "read_at": "2026-11-05T00:13:38+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-05T00:10:18+00:00",
+   "at": "2026-11-05T00:13:38+00:00",
    "injuries": 96,
    "notes": 140,
    "read_at": "2026-11-05T00:00:17+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-05T00:10:18+00:00",
+   "at": "2026-11-05T00:13:38+00:00",
    "count": 47
   }
  }
