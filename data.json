@@ -9229,7 +9229,7 @@
    "time": "21:00",
    "vs": "POR",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -18966,15 +18966,9 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-05T01:40:16+00:00",
+  "read_at": "2026-11-05T01:43:35+00:00",
   "date": "2026-11-04",
   "games": {
-   "MIN@HOU": {
-    "fav": "HOU",
-    "spread": 6.5,
-    "details": "HOU -6.5",
-    "provider": "DraftKings"
-   },
    "TOR@DEN": {
     "fav": "DEN",
     "spread": 5.5,
@@ -21838,6 +21832,28 @@
   ]
  },
  "news": [
+  {
+   "id": "nba537588",
+   "player": "Jarrett Allen",
+   "headline": "Exits to locker room",
+   "text": "Allen exited to the locker room in the first quarter of Wednesday's game against the Thunder due to an apparent right knee injury, Chris Fedor of The Cleveland Plain Dealer reports.",
+   "reporter": "Chris Fedor",
+   "outlet": "The Cleveland Plain Dealer",
+   "url": "https://www.rotowire.com/basketball/player/jarrett-allen-4122",
+   "at": "2026-11-05T01:41:00+00:00",
+   "team": "CLE"
+  },
+  {
+   "id": "nba537587",
+   "player": "Coby White",
+   "headline": "Exits Wednesday's game against Nets",
+   "text": "White (undisclosed) exited Wednesday's game against the Nets, Owen O'Connor of SI.com reports.",
+   "reporter": "Owen O'Connor",
+   "outlet": "SI.com",
+   "url": "https://www.rotowire.com/basketball/player/coby-white-4801",
+   "at": "2026-11-05T01:40:00+00:00",
+   "team": "CHA"
+  },
   {
    "id": "nba537586",
    "player": "Jalen Smith",
@@ -29122,27 +29138,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-05T01:40:16+00:00",
+ "generated_at": "2026-11-05T01:43:35+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-05T01:40:02+00:00",
+   "at": "2026-11-05T01:43:21+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-05T01:40:15+00:00",
+   "at": "2026-11-05T01:43:34+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-05T01:40:15+00:00",
+   "at": "2026-11-05T01:43:34+00:00",
    "teams": 28,
    "injuries": 81
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-05T01:40:15+00:00",
+   "at": "2026-11-05T01:43:34+00:00",
    "current_players": 448,
    "last_players": 582
   },
@@ -29152,17 +29168,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-05T01:40:16+00:00",
+   "at": "2026-11-05T01:43:35+00:00",
    "count": 85
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-05T01:40:16+00:00",
+   "at": "2026-11-05T01:43:35+00:00",
    "count": 93
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-05T01:40:16+00:00",
+   "at": "2026-11-05T01:43:35+00:00",
    "count": 83
   },
   "x": {
@@ -29171,40 +29187,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-05T01:40:16+00:00",
+   "at": "2026-11-05T01:43:35+00:00",
    "players": 271,
    "read_at": "2026-11-05T01:30:17+00:00",
    "saved_for_history": 105
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-05T01:40:16+00:00",
+   "at": "2026-11-05T01:43:35+00:00",
    "players": 151,
    "read_at": "2026-11-05T01:30:18+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-05T01:40:16+00:00",
+   "at": "2026-11-05T01:43:35+00:00",
    "players": 10,
    "read_at": "2026-11-05T01:30:18+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-05T01:40:16+00:00",
-   "games": 6,
-   "read_at": "2026-11-05T01:40:16+00:00"
+   "at": "2026-11-05T01:43:35+00:00",
+   "games": 5,
+   "read_at": "2026-11-05T01:43:35+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-05T01:40:16+00:00",
+   "at": "2026-11-05T01:43:35+00:00",
    "injuries": 100,
    "notes": 140,
    "read_at": "2026-11-05T01:30:19+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-05T01:40:16+00:00",
-   "count": 51
+   "at": "2026-11-05T01:43:35+00:00",
+   "count": 53
   }
  }
 }
