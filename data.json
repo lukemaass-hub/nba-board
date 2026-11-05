@@ -8939,7 +8939,7 @@
    "time": "20:00",
    "vs": "UTA",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8968,7 +8968,7 @@
    "time": "20:00",
    "vs": "OKC",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8980,7 +8980,7 @@
     },
     {
      "pos": "SF",
-     "name": "Meleek Thomas"
+     "name": "Tyrese Proctor"
     },
     {
      "pos": "PF",
@@ -9026,7 +9026,7 @@
    "time": "20:00",
    "vs": "MEM",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9034,7 +9034,7 @@
     },
     {
      "pos": "SG",
-     "name": "Jarace Walker"
+     "name": "Braden Smith"
     },
     {
      "pos": "SF",
@@ -18985,27 +18985,9 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-05T00:40:16+00:00",
+  "read_at": "2026-11-05T00:43:35+00:00",
   "date": "2026-11-04",
   "games": {
-   "MIL@BOS": {
-    "fav": "BOS",
-    "spread": 12.5,
-    "details": "BOS -12.5",
-    "provider": "DraftKings"
-   },
-   "CHA@BKN": {
-    "fav": "CHA",
-    "spread": 3.5,
-    "details": "CHA -3.5",
-    "provider": "DraftKings"
-   },
-   "CHI@NYK": {
-    "fav": "NYK",
-    "spread": 11.5,
-    "details": "NY -11.5",
-    "provider": "DraftKings"
-   },
    "IND@MEM": {
     "fav": "MEM",
     "spread": 6.5,
@@ -21839,6 +21821,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba537568",
+   "player": "Aday Mara",
+   "headline": "Starting Wednesday",
+   "text": "Mara will start Wednesday against the Cavs, Clemente Almanza of USA Today reports.",
+   "reporter": "Clemente Almanza",
+   "outlet": "USA Today",
+   "url": "https://www.rotowire.com/basketball/player/aday-mara-6932",
+   "at": "2026-11-05T00:41:00+00:00",
+   "team": "OKC"
+  },
   {
    "id": "nba537562",
    "player": "Ivica Zubac",
@@ -28539,6 +28532,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Y.%20Niederhauser"
   },
   {
+   "team": "OKC",
+   "player": "Aday Mara",
+   "src": "Clemente Almanza",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-04",
+   "until": "",
+   "note": "Mara will start Wednesday against the Cavs, Clemente Almanza of USA Today reports.",
+   "through": "2026-11-04",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/aday-mara-6932",
+   "from": "2026-11-04",
+   "override": true,
+   "at": "2026-11-05T00:41:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "IND",
    "player": "Ivica Zubac",
    "src": "Alex Golden",
@@ -29067,27 +29077,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-05T00:40:16+00:00",
+ "generated_at": "2026-11-05T00:43:35+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-05T00:40:01+00:00",
+   "at": "2026-11-05T00:43:20+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-05T00:40:15+00:00",
+   "at": "2026-11-05T00:43:33+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-05T00:40:15+00:00",
+   "at": "2026-11-05T00:43:34+00:00",
    "teams": 28,
    "injuries": 77
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-05T00:40:15+00:00",
+   "at": "2026-11-05T00:43:34+00:00",
    "current_players": 448,
    "last_players": 582
   },
@@ -29097,17 +29107,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-05T00:40:15+00:00",
+   "at": "2026-11-05T00:43:34+00:00",
    "count": 91
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-05T00:40:16+00:00",
+   "at": "2026-11-05T00:43:35+00:00",
    "count": 93
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-05T00:40:16+00:00",
+   "at": "2026-11-05T00:43:35+00:00",
    "count": 87
   },
   "x": {
@@ -29116,40 +29126,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-05T00:40:16+00:00",
+   "at": "2026-11-05T00:43:35+00:00",
    "players": 273,
    "read_at": "2026-11-05T00:30:14+00:00",
    "saved_for_history": 189
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-05T00:40:16+00:00",
+   "at": "2026-11-05T00:43:35+00:00",
    "players": 151,
    "read_at": "2026-11-05T00:30:15+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-05T00:40:16+00:00",
+   "at": "2026-11-05T00:43:35+00:00",
    "players": 10,
    "read_at": "2026-11-05T00:30:17+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-05T00:40:16+00:00",
-   "games": 12,
-   "read_at": "2026-11-05T00:40:16+00:00"
+   "at": "2026-11-05T00:43:35+00:00",
+   "games": 9,
+   "read_at": "2026-11-05T00:43:35+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-05T00:40:16+00:00",
+   "at": "2026-11-05T00:43:35+00:00",
    "injuries": 96,
    "notes": 140,
    "read_at": "2026-11-05T00:30:18+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-05T00:40:16+00:00",
-   "count": 48
+   "at": "2026-11-05T00:43:35+00:00",
+   "count": 49
   }
  }
 }
