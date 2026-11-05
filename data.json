@@ -8910,7 +8910,7 @@
    "time": "20:00",
    "vs": "NOP",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8997,7 +8997,7 @@
    "time": "20:00",
    "vs": "CLE",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9005,15 +9005,15 @@
     },
     {
      "pos": "SG",
-     "name": "Jared McCain"
-    },
-    {
-     "pos": "SF",
      "name": "Ajay Mitchell"
     },
     {
-     "pos": "PF",
+     "pos": "SF",
      "name": "Kenrich Williams"
+    },
+    {
+     "pos": "PF",
+     "name": "Aday Mara"
     },
     {
      "pos": "C",
@@ -18985,7 +18985,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-05T00:36:57+00:00",
+  "read_at": "2026-11-05T00:40:16+00:00",
   "date": "2026-11-04",
   "games": {
    "MIL@BOS": {
@@ -19008,8 +19008,8 @@
    },
    "IND@MEM": {
     "fav": "MEM",
-    "spread": 5.5,
-    "details": "MEM -5.5",
+    "spread": 6.5,
+    "details": "MEM -6.5",
     "provider": "DraftKings"
    },
    "UTA@NOP": {
@@ -27955,19 +27955,6 @@
   },
   {
    "team": "IND",
-   "player": "Obi Toppin",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-04",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-04",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=O.%20Toppin"
-  },
-  {
-   "team": "IND",
    "player": "Johnny Furphy",
    "src": "RotoWire",
    "kind": "O",
@@ -29080,27 +29067,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-05T00:36:57+00:00",
+ "generated_at": "2026-11-05T00:40:16+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-05T00:36:42+00:00",
+   "at": "2026-11-05T00:40:01+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-05T00:36:56+00:00",
+   "at": "2026-11-05T00:40:15+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-05T00:36:56+00:00",
+   "at": "2026-11-05T00:40:15+00:00",
    "teams": 28,
-   "injuries": 78
+   "injuries": 77
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-05T00:36:56+00:00",
+   "at": "2026-11-05T00:40:15+00:00",
    "current_players": 448,
    "last_players": 582
   },
@@ -29110,17 +29097,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-05T00:36:56+00:00",
+   "at": "2026-11-05T00:40:15+00:00",
    "count": 91
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-05T00:36:57+00:00",
+   "at": "2026-11-05T00:40:16+00:00",
    "count": 93
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-05T00:36:57+00:00",
+   "at": "2026-11-05T00:40:16+00:00",
    "count": 87
   },
   "x": {
@@ -29129,39 +29116,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-05T00:36:57+00:00",
+   "at": "2026-11-05T00:40:16+00:00",
    "players": 273,
    "read_at": "2026-11-05T00:30:14+00:00",
    "saved_for_history": 189
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-05T00:36:57+00:00",
+   "at": "2026-11-05T00:40:16+00:00",
    "players": 151,
    "read_at": "2026-11-05T00:30:15+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-05T00:36:57+00:00",
+   "at": "2026-11-05T00:40:16+00:00",
    "players": 10,
    "read_at": "2026-11-05T00:30:17+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-05T00:36:57+00:00",
+   "at": "2026-11-05T00:40:16+00:00",
    "games": 12,
-   "read_at": "2026-11-05T00:36:57+00:00"
+   "read_at": "2026-11-05T00:40:16+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-05T00:36:57+00:00",
+   "at": "2026-11-05T00:40:16+00:00",
    "injuries": 96,
    "notes": 140,
    "read_at": "2026-11-05T00:30:18+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-05T00:36:57+00:00",
+   "at": "2026-11-05T00:40:16+00:00",
    "count": 48
   }
  }
