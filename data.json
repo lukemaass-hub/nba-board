@@ -9258,7 +9258,7 @@
    "time": "21:30",
    "vs": "SAS",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9266,7 +9266,7 @@
     },
     {
      "pos": "SG",
-     "name": "Caleb Martin"
+     "name": "Zaccharie Risacher"
     },
     {
      "pos": "SF",
@@ -9287,7 +9287,7 @@
    "time": "21:30",
    "vs": "DAL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -18956,21 +18956,9 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-05T02:10:18+00:00",
+  "read_at": "2026-11-05T02:13:37+00:00",
   "date": "2026-11-04",
   "games": {
-   "TOR@DEN": {
-    "fav": "DEN",
-    "spread": 4.5,
-    "details": "DEN -4.5",
-    "provider": "DraftKings"
-   },
-   "POR@PHX": {
-    "fav": "POR",
-    "spread": 2.5,
-    "details": "POR -2.5",
-    "provider": "DraftKings"
-   },
    "DAL@SAS": {
     "fav": "SAS",
     "spread": 12.5,
@@ -23993,12 +23981,12 @@
    "team": "BOS",
    "player": "Jayson Tatum",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Rest",
    "upd": "2026-11-03",
    "until": "",
-   "note": "The Celtics listed Tatum as Questionable for Wednesday's (Nov. 4) game against the Bucks.",
-   "through": "2026-11-06",
+   "note": "The Celtics listed Tatum as OUT for Wednesday's (Nov. 4) game against the Bucks.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Tatum"
   },
   {
@@ -24050,39 +24038,15 @@
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=G.%20Williams"
   },
   {
-   "team": "CHA",
-   "player": "Kon Knueppel",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Hamstring",
-   "upd": "2026-11-02",
-   "until": "",
-   "note": "The Hornets have listed Knueppel as Probable for Wednesday's (Nov. 4) game against the Nets.",
-   "through": "2026-11-06",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20Knueppel"
-  },
-  {
-   "team": "CHI",
-   "player": "Jalen Smith",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Finger",
-   "upd": "2026-11-02",
-   "until": "",
-   "note": "The Bulls listed Smith as Probable fro Wednesday's (Nov. 4) game against New York.",
-   "through": "2026-11-06",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Smith"
-  },
-  {
    "team": "CHI",
    "player": "Nic Claxton",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Hamstring",
-   "upd": "2026-11-02",
+   "upd": "2026-11-03",
    "until": "",
-   "note": "The Bulls listed Claxton as Questionable fro Wednesday's (Nov. 4) game against New York.",
-   "through": "2026-11-06",
+   "note": "The Bulls listed Claxton as Out for Wednesday's (Nov. 4) game against New York.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=N.%20Claxton"
   },
   {
@@ -24123,6 +24087,18 @@
   },
   {
    "team": "DAL",
+   "player": "Santi Aldama",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Knee",
+   "upd": "2026-11-03",
+   "until": "",
+   "note": "The Mavericks listed Aldama as Doubtful for Wednesday's (Nov. 4) game against the Spurs.",
+   "through": "2026-11-06",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=S.%20Aldama"
+  },
+  {
+   "team": "DAL",
    "player": "Max Christie",
    "src": "Covers",
    "kind": "O",
@@ -24132,18 +24108,6 @@
    "note": "The Mavericks listed Christie as OUT for Wednesday's (Nov. 4) game against the Spurs..",
    "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=M.%20Christie"
-  },
-  {
-   "team": "DAL",
-   "player": "Santi Aldama",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-11-02",
-   "until": "",
-   "note": "The Mavericks listed Aldama as Questionable for Wednesday's (Nov. 4) game against the Spurs.",
-   "through": "2026-11-06",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=S.%20Aldama"
   },
   {
    "team": "DAL",
@@ -24317,12 +24281,12 @@
    "team": "HOU",
    "player": "Clint Capela",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
-   "upd": "2026-11-02",
+   "upd": "2026-11-03",
    "until": "",
-   "note": "The Rockets listed Capela as Questionable for Wednesday's (Nov. 4) game against Minnesota.",
-   "through": "2026-11-06",
+   "note": "The Rockets listed Capela as OUT for Wednesday's (Nov. 4) game against Minnesota.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=C.%20Capela"
   },
   {
@@ -24435,6 +24399,18 @@
   },
   {
    "team": "LAC",
+   "player": "Quenton Jackson",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Groin",
+   "upd": "2026-11-03",
+   "until": "",
+   "note": "Jackson is Questionable for Wednesday's (Nov. 4) game against the Heat.",
+   "through": "2026-11-06",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=Q.%20Jackson"
+  },
+  {
+   "team": "LAC",
    "player": "Brandon Ingram",
    "src": "Covers",
    "kind": "O",
@@ -24530,27 +24506,27 @@
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=G.%20Antetokounmpo"
   },
   {
-   "team": "MIA",
-   "player": "Myron Gardner",
+   "team": "MIL",
+   "player": "Kam Jones",
    "src": "Covers",
    "kind": "G",
-   "injury": "Quadriceps",
-   "upd": "2026-11-02",
+   "injury": "Ankle",
+   "upd": "2026-11-03",
    "until": "",
-   "note": "The Heat listed Gardner as Questionable for Wednesday's (Nov. 4) game against the Clippers.",
+   "note": "The Bucks listed Jones as Questionable for Wednesday's (Nov. 4) game against Boston.",
    "through": "2026-11-06",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=M.%20Gardner"
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20Jones"
   },
   {
    "team": "MIN",
    "player": "Terrence Shannon Jr.",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Hip",
-   "upd": "2026-11-02",
+   "upd": "2026-11-03",
    "until": "",
-   "note": "The Timberwolves listed Shannon Jr. as Questionable for Wednesday's (Nov. 4) game against Houston.",
-   "through": "2026-11-06",
+   "note": "The Timberwolves listed Shannon Jr. as OUT for Wednesday's (Nov. 4) game against Houston.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Shannon%20Jr."
   },
   {
@@ -24583,9 +24559,9 @@
    "src": "Covers",
    "kind": "G",
    "injury": "Patellar",
-   "upd": "2026-11-02",
+   "upd": "2026-11-03",
    "until": "",
-   "note": "The Pelicans listed Murphy III as Probable for Wednesday's (Nov. 4) game against Utah.",
+   "note": "The Pelicans listed Murphy III as Questionable for Wednesday's (Nov. 4) game against Utah.",
    "through": "2026-11-06",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Murphy%20III"
   },
@@ -24617,12 +24593,12 @@
    "team": "NYK",
    "player": "Josh Hart",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
-   "upd": "2026-11-02",
+   "upd": "2026-11-03",
    "until": "",
-   "note": "The Knicks listed Hart as Questionable for Wednesday's (Nov. 4) game against Chicago.",
-   "through": "2026-11-06",
+   "note": "The Knicks listed Hart as OUT for Wednesday's (Nov. 4) game against Chicago.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Hart"
   },
   {
@@ -24785,12 +24761,12 @@
    "team": "PHX",
    "player": "Rasheer Fleming",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
-   "upd": "2026-11-02",
+   "upd": "2026-11-03",
    "until": "",
-   "note": "The Suns listed Fleming as Questionable for Wednesday's (Nov. 4) game against Portland.",
-   "through": "2026-11-06",
+   "note": "The Suns listed Fleming as Out for Wednesday's (Nov. 4) game against Portland.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=R.%20Fleming"
   },
   {
@@ -24843,15 +24819,15 @@
   },
   {
    "team": "SAC",
-   "player": "Precious Achiuwa",
+   "player": "Daeqwon Plowden",
    "src": "Covers",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-11-02",
+   "kind": "O",
+   "injury": "Illness",
+   "upd": "2026-11-03",
    "until": "",
-   "note": "The Kings listed Achiuwa as Probable for Wednesday's (Nov. 4) game against the Lakers.",
-   "through": "2026-11-06",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=P.%20Achiuwa"
+   "note": "Plowden is Out for Wednesday's (Nov. 4) game against the Lakers.",
+   "through": "",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=D.%20Plowden"
   },
   {
    "team": "SAC",
@@ -24987,15 +24963,15 @@
   },
   {
    "team": "WAS",
-   "player": "Anthony Gill",
+   "player": "Bilal Coulibaly",
    "src": "Covers",
    "kind": "G",
-   "injury": "Back",
-   "upd": "2026-11-02",
+   "injury": "Illness",
+   "upd": "2026-11-03",
    "until": "",
-   "note": "The Wizards listed Gill as Questionable for Wednesday's (Nov. 4) game against Atlanta.",
+   "note": "The Wizards listed Coulibaly as Questionable for Wednesday's (Nov. 4) game against Atlanta.",
    "through": "2026-11-06",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=A.%20Gill"
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=B.%20Coulibaly"
   },
   {
    "team": "WAS",
@@ -29208,27 +29184,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-05T02:10:18+00:00",
+ "generated_at": "2026-11-05T02:13:37+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-05T02:10:03+00:00",
+   "at": "2026-11-05T02:13:22+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-05T02:10:16+00:00",
+   "at": "2026-11-05T02:13:35+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-05T02:10:17+00:00",
+   "at": "2026-11-05T02:13:36+00:00",
    "teams": 28,
    "injuries": 77
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-05T02:10:17+00:00",
+   "at": "2026-11-05T02:13:36+00:00",
    "current_players": 448,
    "last_players": 582
   },
@@ -29238,17 +29214,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-05T02:10:17+00:00",
+   "at": "2026-11-05T02:13:36+00:00",
    "count": 85
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-05T02:10:18+00:00",
-   "count": 93
+   "at": "2026-11-05T02:13:36+00:00",
+   "count": 92
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-05T02:10:18+00:00",
+   "at": "2026-11-05T02:13:37+00:00",
    "count": 83
   },
   "x": {
@@ -29257,39 +29233,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-05T02:10:18+00:00",
+   "at": "2026-11-05T02:13:37+00:00",
    "players": 271,
    "read_at": "2026-11-05T02:00:15+00:00",
    "saved_for_history": 59
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-05T02:10:18+00:00",
+   "at": "2026-11-05T02:13:37+00:00",
    "players": 150,
    "read_at": "2026-11-05T02:00:16+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-05T02:10:18+00:00",
+   "at": "2026-11-05T02:13:37+00:00",
    "players": 10,
    "read_at": "2026-11-05T02:00:17+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-05T02:10:18+00:00",
-   "games": 5,
-   "read_at": "2026-11-05T02:10:18+00:00"
+   "at": "2026-11-05T02:13:37+00:00",
+   "games": 3,
+   "read_at": "2026-11-05T02:13:37+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-05T02:10:18+00:00",
+   "at": "2026-11-05T02:13:37+00:00",
    "injuries": 100,
    "notes": 141,
    "read_at": "2026-11-05T02:00:18+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-05T02:10:18+00:00",
+   "at": "2026-11-05T02:13:37+00:00",
    "count": 58
   }
  }
