@@ -8620,7 +8620,7 @@
    "time": "21:00",
    "vs": "PHX",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -14598,7 +14598,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-06T01:30:43+00:00",
+  "read_at": "2026-11-06T01:34:02+00:00",
   "date": "2026-11-05",
   "games": {
    "ORL@PHX": {
@@ -17091,6 +17091,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba537802",
+   "player": "Scottie Barnes",
+   "headline": "Questionable for Friday",
+   "text": "Barnes (groin) is questionable to play Friday's game against the Bucks.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/scottie-barnes-5390",
+   "at": "2026-11-06T01:27:00+00:00",
+   "team": "TOR"
+  },
   {
    "id": "nba537797",
    "player": "Nic Claxton",
@@ -22674,6 +22685,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Gui%20Santos"
   },
   {
+   "team": "TOR",
+   "player": "Scottie Barnes",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-06",
+   "until": "",
+   "note": "Barnes (groin) is questionable to play Friday's game against the Bucks.",
+   "through": "2026-11-06",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/scottie-barnes-5390",
+   "from": "2026-11-06",
+   "override": true,
+   "at": "2026-11-06T01:27:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "MEM",
    "player": "Scotty Pippen",
    "src": "RotoWire news",
@@ -23202,27 +23230,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-06T01:30:44+00:00",
+ "generated_at": "2026-11-06T01:34:02+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-06T01:30:26+00:00",
+   "at": "2026-11-06T01:33:47+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-06T01:30:40+00:00",
+   "at": "2026-11-06T01:34:01+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-06T01:30:40+00:00",
+   "at": "2026-11-06T01:34:01+00:00",
    "teams": 4,
    "injuries": 12
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-06T01:30:40+00:00",
+   "at": "2026-11-06T01:34:01+00:00",
    "current_players": 452,
    "last_players": 582
   },
@@ -23232,17 +23260,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-06T01:30:41+00:00",
+   "at": "2026-11-06T01:34:01+00:00",
    "count": 94
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-06T01:30:41+00:00",
+   "at": "2026-11-06T01:34:01+00:00",
    "count": 85
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-06T01:30:41+00:00",
+   "at": "2026-11-06T01:34:02+00:00",
    "count": 93
   },
   "x": {
@@ -23251,40 +23279,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-06T01:30:42+00:00",
+   "at": "2026-11-06T01:34:02+00:00",
    "players": 39,
    "read_at": "2026-11-06T01:30:41+00:00",
    "saved_for_history": 42
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-06T01:30:43+00:00",
+   "at": "2026-11-06T01:34:02+00:00",
    "players": 22,
    "read_at": "2026-11-06T01:30:42+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-06T01:30:43+00:00",
+   "at": "2026-11-06T01:34:02+00:00",
    "players": 10,
    "read_at": "2026-11-06T01:30:43+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-06T01:30:43+00:00",
+   "at": "2026-11-06T01:34:02+00:00",
    "games": 2,
-   "read_at": "2026-11-06T01:30:43+00:00"
+   "read_at": "2026-11-06T01:34:02+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-06T01:30:44+00:00",
+   "at": "2026-11-06T01:34:02+00:00",
    "injuries": 71,
    "notes": 147,
    "read_at": "2026-11-06T01:30:43+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-06T01:30:44+00:00",
-   "count": 57
+   "at": "2026-11-06T01:34:02+00:00",
+   "count": 58
   }
  }
 }
