@@ -8649,7 +8649,7 @@
    "time": "15:30",
    "vs": "PHI",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -16609,7 +16609,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-08T20:04:01+00:00",
+  "read_at": "2026-11-08T20:07:18+00:00",
   "date": "2026-11-08",
   "games": {
    "PHI@CHI": {
@@ -18801,6 +18801,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba538173",
+   "player": "Joel Embiid",
+   "headline": "Upgraded to available",
+   "text": "Embiid (foot) is available for Sunday's game against the Bulls.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/joel-embiid-3572",
+   "at": "2026-11-08T20:01:00+00:00",
+   "team": "PHI"
+  },
   {
    "id": "nba538163",
    "player": "Nic Claxton",
@@ -24229,6 +24240,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Raynaud"
   },
   {
+   "team": "PHI",
+   "player": "Joel Embiid",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-08",
+   "until": "",
+   "note": "Embiid (foot) is available for Sunday's game against the Bulls.",
+   "through": "2026-11-08",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/joel-embiid-3572",
+   "from": "2026-11-08",
+   "override": true,
+   "at": "2026-11-08T20:01:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "CHI",
    "player": "Nic Claxton",
    "src": "Will Gotlieb",
@@ -25012,27 +25040,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-08T20:04:01+00:00",
+ "generated_at": "2026-11-08T20:07:18+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-08T20:03:46+00:00",
+   "at": "2026-11-08T20:07:05+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-08T20:04:00+00:00",
+   "at": "2026-11-08T20:07:17+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-08T20:04:01+00:00",
+   "at": "2026-11-08T20:07:17+00:00",
    "teams": 14,
    "injuries": 34
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-08T20:04:01+00:00",
+   "at": "2026-11-08T20:07:17+00:00",
    "current_players": 459,
    "last_players": 582
   },
@@ -25042,17 +25070,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-08T20:04:01+00:00",
+   "at": "2026-11-08T20:07:18+00:00",
    "count": 89
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-08T20:04:01+00:00",
+   "at": "2026-11-08T20:07:18+00:00",
    "count": 90
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-08T20:04:01+00:00",
+   "at": "2026-11-08T20:07:18+00:00",
    "count": 87
   },
   "x": {
@@ -25061,40 +25089,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-08T20:04:01+00:00",
+   "at": "2026-11-08T20:07:18+00:00",
    "players": 140,
    "read_at": "2026-11-08T20:00:41+00:00",
    "saved_for_history": 160
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-08T20:04:01+00:00",
+   "at": "2026-11-08T20:07:18+00:00",
    "players": 86,
    "read_at": "2026-11-08T20:00:41+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-08T20:04:01+00:00",
+   "at": "2026-11-08T20:07:18+00:00",
    "players": 9,
    "read_at": "2026-11-08T20:00:42+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-08T20:04:01+00:00",
+   "at": "2026-11-08T20:07:18+00:00",
    "games": 7,
-   "read_at": "2026-11-08T20:04:01+00:00"
+   "read_at": "2026-11-08T20:07:18+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-08T20:04:01+00:00",
+   "at": "2026-11-08T20:07:18+00:00",
    "injuries": 38,
    "notes": 165,
    "read_at": "2026-11-08T20:00:42+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-08T20:04:01+00:00",
-   "count": 69
+   "at": "2026-11-08T20:07:18+00:00",
+   "count": 70
   }
  }
 }
