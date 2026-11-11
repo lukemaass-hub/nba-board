@@ -8806,7 +8806,7 @@
     },
     {
      "pos": "SF",
-     "name": "Andrew Wiggins"
+     "name": "Pelle Larsson"
     },
     {
      "pos": "PF",
@@ -16156,7 +16156,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-11T01:36:47+00:00",
+  "read_at": "2026-11-11T01:40:03+00:00",
   "date": "2026-11-10",
   "games": {
    "LAC@PHX": {
@@ -18845,6 +18845,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba538521",
+   "player": "Tristan da Silva",
+   "headline": "Downgraded to out",
+   "text": "Da Silva (calf) has been ruled out for Tuesday's game against the Kings, Jason Beede of the Orlando Sentinel reports.",
+   "reporter": "Jason Beede",
+   "outlet": "Orlando Sentinel",
+   "url": "https://www.rotowire.com/basketball/player/tristan-da-silva-6267",
+   "at": "2026-11-11T01:35:00+00:00",
+   "team": "ORL"
+  },
   {
    "id": "nba538520",
    "player": "Giannis Antetokounmpo",
@@ -23064,12 +23075,12 @@
    "team": "ORL",
    "player": "Tristan da Silva",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Left Calf Strain",
    "upd": "2026-11-10",
-   "until": "",
+   "until": "2026-11-11",
    "note": "Da Silva is questionable for Tuesday's game against the Kings due to a left calf strain.",
-   "through": "2026-11-12",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Tristan%20da%20Silva"
   },
   {
@@ -24702,19 +24713,6 @@
   },
   {
    "team": "LAC",
-   "player": "Cam Christie",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-10",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-10",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Christie"
-  },
-  {
-   "team": "LAC",
    "player": "Bradley Beal",
    "src": "RotoWire",
    "kind": "O",
@@ -24725,6 +24723,19 @@
    "through": "2026-11-10",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Beal"
+  },
+  {
+   "team": "LAC",
+   "player": "Cam Christie",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-10",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-11-10",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Christie"
   },
   {
    "team": "LAC",
@@ -25037,6 +25048,23 @@
    "through": "2026-11-10",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Sharpe"
+  },
+  {
+   "team": "ORL",
+   "player": "Tristan da Silva",
+   "src": "Jason Beede",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-10",
+   "until": "",
+   "note": "Da Silva (calf) has been ruled out for Tuesday's game against the Kings, Jason Beede of the Orlando Sentinel reports.",
+   "through": "2026-11-10",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/tristan-da-silva-6267",
+   "from": "2026-11-10",
+   "override": true,
+   "at": "2026-11-11T01:35:00+00:00",
+   "from_news": true
   },
   {
    "team": "MIA",
@@ -26026,27 +26054,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-11T01:36:47+00:00",
+ "generated_at": "2026-11-11T01:40:03+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-11T01:36:35+00:00",
+   "at": "2026-11-11T01:39:50+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-11T01:36:46+00:00",
+   "at": "2026-11-11T01:40:02+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-11T01:36:46+00:00",
+   "at": "2026-11-11T01:40:02+00:00",
    "teams": 12,
    "injuries": 31
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-11T01:36:46+00:00",
+   "at": "2026-11-11T01:40:02+00:00",
    "current_players": 462,
    "last_players": 582
   },
@@ -26056,17 +26084,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-11T01:36:46+00:00",
+   "at": "2026-11-11T01:40:02+00:00",
    "count": 90
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-11T01:36:47+00:00",
+   "at": "2026-11-11T01:40:03+00:00",
    "count": 95
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-11T01:36:47+00:00",
+   "at": "2026-11-11T01:40:03+00:00",
    "count": 90
   },
   "x": {
@@ -26075,40 +26103,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-11T01:36:47+00:00",
+   "at": "2026-11-11T01:40:03+00:00",
    "players": 121,
    "read_at": "2026-11-11T01:30:13+00:00",
    "saved_for_history": 85
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-11T01:36:47+00:00",
+   "at": "2026-11-11T01:40:03+00:00",
    "players": 66,
    "read_at": "2026-11-11T01:30:13+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-11T01:36:47+00:00",
+   "at": "2026-11-11T01:40:03+00:00",
    "players": 10,
    "read_at": "2026-11-11T01:30:15+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-11T01:36:47+00:00",
+   "at": "2026-11-11T01:40:03+00:00",
    "games": 4,
-   "read_at": "2026-11-11T01:36:47+00:00"
+   "read_at": "2026-11-11T01:40:03+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-11T01:36:47+00:00",
+   "at": "2026-11-11T01:40:03+00:00",
    "injuries": 78,
    "notes": 158,
    "read_at": "2026-11-11T01:30:16+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-11T01:36:47+00:00",
-   "count": 77
+   "at": "2026-11-11T01:40:03+00:00",
+   "count": 78
   }
  }
 }
