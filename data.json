@@ -8881,7 +8881,7 @@
    "time": "22:00",
    "vs": "ORL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -16156,7 +16156,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-11T02:33:31+00:00",
+  "read_at": "2026-11-11T02:36:47+00:00",
   "date": "2026-11-10",
   "games": {
    "ORL@SAC": {
@@ -20556,12 +20556,12 @@
    "team": "LAC",
    "player": "Cam Christie",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
-   "upd": "2026-11-09",
-   "until": "",
-   "note": "",
-   "through": "2026-11-12",
+   "upd": "2026-11-10",
+   "until": "2026-11-13",
+   "note": "Expected to be out until at least Nov 13",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cam%20Christie"
   },
   {
@@ -20820,12 +20820,12 @@
    "team": "ORL",
    "player": "Tristan da Silva",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Calf",
    "upd": "2026-11-10",
-   "until": "",
-   "note": "",
-   "through": "2026-11-12",
+   "until": "2026-11-11",
+   "note": "Expected to be out until at least Nov 11",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tristan%20da%20Silva"
   },
   {
@@ -21502,18 +21502,6 @@
   },
   {
    "team": "GSW",
-   "player": "Brandon Williams",
-   "src": "Covers",
-   "kind": "O",
-   "injury": "Hamstring",
-   "upd": "2026-11-09",
-   "until": "2026-11-16",
-   "note": "The Warriors reported Brandon Williams to miss at least one week with mild hamstring strain.",
-   "through": "",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=B.%20Williams"
-  },
-  {
-   "team": "GSW",
    "player": "Will Richard",
    "src": "Covers",
    "kind": "G",
@@ -21523,6 +21511,18 @@
    "note": "Richard did not play in Monday's (Nov. 9) game against New Orleans.",
    "through": "2026-11-12",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=W.%20Richard"
+  },
+  {
+   "team": "GSW",
+   "player": "Brandon Williams",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Hamstring",
+   "upd": "2026-11-08",
+   "until": "",
+   "note": "Williams did not return to Monday's (Nov. 9) game against New Orleans.",
+   "through": "2026-11-12",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=B.%20Williams"
   },
   {
    "team": "GSW",
@@ -21746,22 +21746,34 @@
    "src": "Covers",
    "kind": "G",
    "injury": "Wrist",
-   "upd": "2026-11-09",
+   "upd": "2026-11-08",
    "until": "",
-   "note": "Antetokounmpo is Questionable for Tuesday's (Nov. 10) game against Utah.",
+   "note": "Antetokounmpo is Probable for Tuesday's (Nov. 10) game against Utah.",
    "through": "2026-11-12",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=G.%20Antetokounmpo"
   },
   {
    "team": "MIL",
-   "player": "Tyler Herro",
+   "player": "Kel El Ware",
    "src": "Covers",
-   "kind": "O",
-   "injury": "Contusion",
+   "kind": "G",
+   "injury": "Ankle",
    "upd": "2026-11-09",
    "until": "",
-   "note": "Herro is Out for Tuesday's (Nov. 10) game against the Knicks.",
-   "through": "",
+   "note": "Ware is Questionable for Tuesday's (Nov. 10) game against the Knicks.",
+   "through": "2026-11-12",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20Ware"
+  },
+  {
+   "team": "MIL",
+   "player": "Tyler Herro",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Contusion",
+   "upd": "2026-11-08",
+   "until": "",
+   "note": "Herro is Questionable for Tuesday's (Nov. 10) game against the Knicks.",
+   "through": "2026-11-12",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Herro"
   },
   {
@@ -21828,12 +21840,12 @@
    "team": "NYK",
    "player": "Josh Hart",
    "src": "Covers",
-   "kind": "O",
+   "kind": "G",
    "injury": "Ankle",
-   "upd": "2026-11-09",
+   "upd": "2026-11-08",
    "until": "",
-   "note": "Hart is Out for Tuesday's (Nov. 10) game against the Bucks.",
-   "through": "",
+   "note": "Hart is Questionable for Tuesday's (Nov. 10) game against the Bucks.",
+   "through": "2026-11-12",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Hart"
   },
   {
@@ -22078,6 +22090,30 @@
   },
   {
    "team": "SAC",
+   "player": "Keegan Murray",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Wrist",
+   "upd": "2026-11-08",
+   "until": "",
+   "note": "Murray is Questionable for Tuesday's (Nov. 10) game against Orlando.",
+   "through": "2026-11-12",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20Murray"
+  },
+  {
+   "team": "SAC",
+   "player": "Domantas Sabonis",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Knee",
+   "upd": "2026-11-07",
+   "until": "",
+   "note": "Sabonis is Questionable for Tuesday's (Nov. 10) game against Orlando.",
+   "through": "2026-11-12",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=D.%20Sabonis"
+  },
+  {
+   "team": "SAC",
    "player": "Ben Simmons",
    "src": "Covers",
    "kind": "O",
@@ -22198,18 +22234,6 @@
   },
   {
    "team": "UTA",
-   "player": "Lauri Markkanen",
-   "src": "Covers",
-   "kind": "O",
-   "injury": "Wrist",
-   "upd": "2026-11-09",
-   "until": "",
-   "note": "Markkanen is Out for Tuesday's (Nov. 10) game against Miami.",
-   "through": "",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=L.%20Markkanen"
-  },
-  {
-   "team": "UTA",
    "player": "Keyonte George",
    "src": "Covers",
    "kind": "O",
@@ -22219,6 +22243,18 @@
    "note": "George is OUT for Tuesday's (Nov. 10) game against Miami.",
    "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20George"
+  },
+  {
+   "team": "UTA",
+   "player": "Lauri Markkanen",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Wrist",
+   "upd": "2026-11-07",
+   "until": "",
+   "note": "Markkanen is Questionable for Tuesday's (Nov. 10) game against Miami.",
+   "through": "2026-11-12",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=L.%20Markkanen"
   },
   {
    "team": "UTA",
@@ -25965,27 +26001,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-11T02:33:31+00:00",
+ "generated_at": "2026-11-11T02:36:47+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-11T02:33:17+00:00",
+   "at": "2026-11-11T02:36:34+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-11T02:33:30+00:00",
+   "at": "2026-11-11T02:36:45+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-11T02:33:30+00:00",
+   "at": "2026-11-11T02:36:46+00:00",
    "teams": 12,
    "injuries": 31
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-11T02:33:30+00:00",
+   "at": "2026-11-11T02:36:46+00:00",
    "current_players": 462,
    "last_players": 582
   },
@@ -25995,17 +26031,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-11T02:33:30+00:00",
+   "at": "2026-11-11T02:36:46+00:00",
    "count": 90
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-11T02:33:30+00:00",
-   "count": 92
+   "at": "2026-11-11T02:36:46+00:00",
+   "count": 95
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-11T02:33:31+00:00",
+   "at": "2026-11-11T02:36:47+00:00",
    "count": 90
   },
   "x": {
@@ -26014,39 +26050,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-11T02:33:31+00:00",
+   "at": "2026-11-11T02:36:47+00:00",
    "players": 121,
    "read_at": "2026-11-11T02:30:12+00:00",
    "saved_for_history": 43
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-11T02:33:31+00:00",
+   "at": "2026-11-11T02:36:47+00:00",
    "players": 66,
    "read_at": "2026-11-11T02:30:13+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-11T02:33:31+00:00",
+   "at": "2026-11-11T02:36:47+00:00",
    "players": 10,
    "read_at": "2026-11-11T02:30:13+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-11T02:33:31+00:00",
+   "at": "2026-11-11T02:36:47+00:00",
    "games": 2,
-   "read_at": "2026-11-11T02:33:31+00:00"
+   "read_at": "2026-11-11T02:36:47+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-11T02:33:31+00:00",
+   "at": "2026-11-11T02:36:47+00:00",
    "injuries": 78,
    "notes": 158,
    "read_at": "2026-11-11T02:30:13+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-11T02:33:31+00:00",
+   "at": "2026-11-11T02:36:47+00:00",
    "count": 76
   }
  }
