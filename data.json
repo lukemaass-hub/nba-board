@@ -8620,7 +8620,7 @@
    "time": "19:00",
    "vs": "IND",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17622,7 +17622,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-11T23:30:55+00:00",
+  "read_at": "2026-11-11T23:34:14+00:00",
   "date": "2026-11-11",
   "games": {
    "WAS@IND": {
@@ -24166,6 +24166,30 @@
   },
   {
    "team": "CHI",
+   "player": "Dailyn Swain",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Right Back",
+   "upd": "2026-11-11",
+   "until": "",
+   "note": "Swain (back) has been downgraded to questionable for Wednesday's game against the Spurs.",
+   "through": "2026-11-13",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Dailyn%20Swain"
+  },
+  {
+   "team": "CHI",
+   "player": "Norman Powell",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Shoulder Inflammation",
+   "upd": "2026-11-11",
+   "until": "2026-11-13",
+   "note": "Powell (shoulder) won't play in Wednesday's game against the Spurs,Joel Lorenzi of The Athletic reports.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Norman%20Powell"
+  },
+  {
+   "team": "CHI",
    "player": "Tobe Awaka",
    "src": "ESPN",
    "kind": "O",
@@ -24187,18 +24211,6 @@
    "note": "Wilson has been downgraded to questionable for Wednesday's game against the Spurs due to right hip soreness.",
    "through": "2026-11-13",
    "url": "https://www.espn.com/nba/injuries#:~:text=Caleb%20Wilson"
-  },
-  {
-   "team": "CHI",
-   "player": "Norman Powell",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Right Shoulder Inflammation",
-   "upd": "2026-11-10",
-   "until": "2026-11-13",
-   "note": "Powell (shoulder) is listed as questionable for Wednesday's game versus the Spurs.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Norman%20Powell"
   },
   {
    "team": "CHI",
@@ -26610,19 +26622,6 @@
   },
   {
    "team": "CLE",
-   "player": "Jaylon Tyson",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-11",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-11",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Tyson"
-  },
-  {
-   "team": "CLE",
    "player": "Sam Merrill",
    "src": "RotoWire",
    "kind": "O",
@@ -28249,27 +28248,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-11T23:30:56+00:00",
+ "generated_at": "2026-11-11T23:34:14+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-11T23:30:33+00:00",
+   "at": "2026-11-11T23:34:01+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-11T23:30:46+00:00",
+   "at": "2026-11-11T23:34:13+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-11T23:30:46+00:00",
+   "at": "2026-11-11T23:34:13+00:00",
    "teams": 20,
-   "injuries": 69
+   "injuries": 68
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-11T23:30:46+00:00",
+   "at": "2026-11-11T23:34:13+00:00",
    "current_players": 462,
    "last_players": 582
   },
@@ -28279,18 +28278,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-11T23:30:47+00:00",
+   "at": "2026-11-11T23:34:14+00:00",
    "count": 97
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-11T23:30:47+00:00",
+   "at": "2026-11-11T23:34:14+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-11T23:30:47+00:00",
-   "count": 96
+   "at": "2026-11-11T23:34:14+00:00",
+   "count": 97
   },
   "x": {
    "ok": null,
@@ -28298,39 +28297,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-11T23:30:48+00:00",
+   "at": "2026-11-11T23:34:14+00:00",
    "players": 200,
    "read_at": "2026-11-11T23:30:47+00:00",
    "saved_for_history": 214
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-11T23:30:55+00:00",
+   "at": "2026-11-11T23:34:14+00:00",
    "players": 106,
    "read_at": "2026-11-11T23:30:48+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-11T23:30:55+00:00",
+   "at": "2026-11-11T23:34:14+00:00",
    "players": 10,
    "read_at": "2026-11-11T23:30:55+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-11T23:30:55+00:00",
+   "at": "2026-11-11T23:34:14+00:00",
    "games": 10,
-   "read_at": "2026-11-11T23:30:55+00:00"
+   "read_at": "2026-11-11T23:34:14+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-11T23:30:56+00:00",
+   "at": "2026-11-11T23:34:14+00:00",
    "injuries": 88,
    "notes": 157,
    "read_at": "2026-11-11T23:30:55+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-11T23:30:56+00:00",
+   "at": "2026-11-11T23:34:14+00:00",
    "count": 67
   }
  }
