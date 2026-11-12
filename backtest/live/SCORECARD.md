@@ -2,36 +2,38 @@
 
 Gain = 1+ minutes above the player's last-10-game average. Weights: last game x1, coach's-decision benchings x1. Picks lock at tip-off.
 
-**219 team-games scored** (2026-10-20 to 2026-11-10)
+**221 team-games scored** (2026-10-20 to 2026-11-11)
 
 | | #1 pick gained minutes |
 |---|---|
-| Model | 57.5% |
-| Next man up (same position) | 38.8% |
-| Random teammate | 38.7% |
+| Model | 57.9% |
+| Next man up (same position) | 38.9% |
+| Random teammate | 38.8% |
 
-Model top 3: 54.5% gained. Rank correlation: 0.37.
+Model top 3: 54.8% gained. Rank correlation: 0.37.
 
 | Model's confidence | Games | #1 pick gained |
 |---|---|---|
-| high | 50 | 68.0% |
+| high | 51 | 68.6% |
 | medium-high | 41 | 70.7% |
 | medium-low | 54 | 48.1% |
-| low | 74 | 50.0% |
+| low | 75 | 50.7% |
 
 ## Latest
 
 | Date | Team | Out | #1 pick (change) | Hit | Confidence |
 |---|---|---|---|---|---|
+| 2026-11-11 | POR | Ja Morant (28) | Sidy Cissoko (+7) | yes | low |
+| 2026-11-11 | OKC | Chet Holmgren (27); Ajay Mitchell (28); Cason Wallace (21); Jalen Williams (28); Jaylin Williams (17) | Jared McCain (+5) | yes | high |
 | 2026-11-10 | ORL | Paolo Banchero (33); Jalen Suggs (31) | Jamal Cain (+1) | no | high |
 | 2026-11-10 | UTA | Keyonte George (32); Jaren Jackson Jr. (27); Lauri Markkanen (30) | Josh Green (+14) | yes | high |
 | 2026-11-10 | LAC | Brandon Ingram (32); Jordan Miller (24) | Baba Miller (+6) | yes | low |
 | 2026-11-09 | MEM | Scotty Pippen Jr. (19); Isaiah Stewart (17) | Cameron Boozer (+1) | yes | low |
 | 2026-11-09 | LAL | Quentin Grimes (26); Austin Reaves (37) | Collin Sexton (+10) | yes | medium-high |
 | 2026-11-09 | CHA | Moussa Diabate (28); Kon Knueppel (29); Brandon Miller (31); Dennis Schroder (29) | Royce O'Neale (+4) | yes | high |
-| 2026-11-09 | DET | Jalen Duren (28); Isaiah Joe (15) | Cade Cunningham (-6) | no | low |
-| 2026-11-09 | WAS | Reece Beekman (18); Justin Champagnie (22); Bilal Coulibaly (26) | Tre Johnson (+7) | yes | medium-low |
 | 2026-11-09 | CLE | Sam Merrill (24); Jaylon Tyson (21) | Tyrese Proctor (+5) | yes | medium-low |
+| 2026-11-09 | WAS | Reece Beekman (18); Justin Champagnie (22); Bilal Coulibaly (26) | Tre Johnson (+7) | yes | medium-low |
+| 2026-11-09 | DET | Jalen Duren (28); Isaiah Joe (15) | Cade Cunningham (-6) | no | low |
 | 2026-11-09 | TOR | Scottie Barnes (33); Kawhi Leonard (30); Collin Murray-Boyles (21); Immanuel Quickley (29) | Malachi Smith (-26) | no | high |
 | 2026-11-09 | IND | Tyrese Haliburton (33); Ben Sheppard (19) | Aaron Nesmith (+8) | yes | low |
 | 2026-11-09 | DEN | Julian Strawther (17) | Cameron Johnson (+1) | yes | low |
@@ -45,6 +47,4 @@ Model top 3: 54.5% gained. Rank correlation: 0.37.
 | 2026-11-07 | ATL | Jock Landale (18) | Dyson Daniels (+1) | no | low |
 | 2026-11-07 | BKN | Egor Demin (24) | Michael Porter Jr. (+3) | yes | low |
 | 2026-11-07 | CLE | Jarrett Allen (26); Sam Merrill (24); Jaylon Tyson (21) | Mario Hezonja (-2) | no | medium-high |
-| 2026-11-07 | WAS | Reece Beekman (18); Justin Champagnie (22); Jamir Watkins (25) | Kyshawn George (-2) | no | low |
-| 2026-11-07 | OKC | Chet Holmgren (27); Cason Wallace (21); Jalen Williams (28); Jaylin Williams (17) | Kenrich Williams (+4) | yes | high |
 | 2026-11-07 | POR | Ja Morant (28); Shaedon Sharpe (27); Robert Williams III (17) | Sidy Cissoko (-2) | no | medium-high |
