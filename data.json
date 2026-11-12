@@ -8536,11 +8536,11 @@
    "C": "Yves Missi/Karlo Matkovic/Trendon Watford,DeAndre Jordan"
   },
   "NYK": {
-   "PG": "Jalen Brunson/Jose Alvarado/Tyler Kolek,Jaden Akins",
-   "SG": "Josh Hart/Miles McBride/Pacome Dadiet,Tyler Nickel",
-   "SF": "Mikal Bridges/Jordan Clarkson/Dalton Knecht",
-   "PF": "OG Anunoby/Landry Shamet/Mohamed Diawara",
-   "C": "Karl-Anthony Towns/Andre Drummond/James Wiseman"
+   "PG": "Jalen Brunson/Jose Alvarado,Tyler Kolek/Jordan Clarkson",
+   "SG": "//",
+   "SF": "//",
+   "PF": "OG Anunoby/Landry Shamet/Josh Hart,Mohamed Diawara,Pacome Dadiet",
+   "C": "Karl-Anthony Towns/Andre Drummond,James Wiseman/"
   },
   "OKC": {
    "PG": "Shai Gilgeous-Alexander/Bennett Stirtz/Nikola Topic,Cason Wallace",
@@ -8599,10 +8599,10 @@
    "C": "Jaxson Hayes/Mo Bamba/Kyle Filipowski,Tony Bradley,Jaren Jackson Jr.,Jusuf Nurkic"
   },
   "WAS": {
-   "PG": "Trae Young/Bub Carrington/Tre Mann,Reece Beekman",
-   "SG": "Kyshawn George/Tre Johnson/Will Riley,Jamir Watkins",
-   "SF": "AJ Dybantsa/Bilal Coulibaly/",
-   "PF": "Anthony Davis/Justin Champagnie/Khris Middleton",
+   "PG": "Trae Young/Bub Carrington,Tre Mann/Tre Johnson,Reece Beekman",
+   "SG": "//",
+   "SF": "AJ Dybantsa/Bilal Coulibaly/Kyshawn George,Jamir Watkins",
+   "PF": "Anthony Davis/Justin Champagnie/Khris Middleton,Will Riley",
    "C": "Alex Sarr/Deandre Ayton/Tristan Vukcevic,Anthony Gill,Felix Okpara"
   },
   "TOR": {
@@ -8823,7 +8823,7 @@
    "time": "20:00",
    "vs": "BKN",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8835,7 +8835,7 @@
     },
     {
      "pos": "SF",
-     "name": "Saddiq Bey"
+     "name": "Herbert Jones"
     },
     {
      "pos": "PF",
@@ -8910,7 +8910,7 @@
    "time": "20:00",
    "vs": "MIL",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17609,7 +17609,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-12T00:33:34+00:00",
+  "read_at": "2026-11-12T00:36:50+00:00",
   "date": "2026-11-11",
   "games": {
    "SAS@CHI": {
@@ -20459,6 +20459,17 @@
  },
  "news": [
   {
+   "id": "nba538669",
+   "player": "Caleb Wilson",
+   "headline": "Good to go Wednesday",
+   "text": "Wilson (hip) is available for Wednesday's game against the Spurs.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/caleb-wilson-6926",
+   "at": "2026-11-12T00:33:00+00:00",
+   "team": "CHI"
+  },
+  {
    "id": "nba538664",
    "player": "Moussa Diabate",
    "headline": "Probable for Thursday",
@@ -21744,18 +21755,6 @@
   },
   {
    "team": "CHA",
-   "player": "Moussa Diabate",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Quadriceps",
-   "upd": "2026-11-09",
-   "until": "",
-   "note": "",
-   "through": "2026-11-13",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Moussa%20Diabate"
-  },
-  {
-   "team": "CHA",
    "player": "Brandon Miller",
    "src": "CBS",
    "kind": "G",
@@ -21765,6 +21764,18 @@
    "note": "",
    "through": "2026-11-13",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandon%20Miller"
+  },
+  {
+   "team": "CHA",
+   "player": "Moussa Diabate",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Quadriceps",
+   "upd": "2026-11-09",
+   "until": "",
+   "note": "",
+   "through": "2026-11-13",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Moussa%20Diabate"
   },
   {
    "team": "CHA",
@@ -21816,14 +21827,26 @@
   },
   {
    "team": "CHI",
-   "player": "Norman Powell",
+   "player": "Dailyn Swain",
    "src": "CBS",
    "kind": "G",
-   "injury": "Shoulder",
-   "upd": "2026-11-09",
+   "injury": "Back",
+   "upd": "2026-11-11",
    "until": "",
    "note": "",
    "through": "2026-11-13",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dailyn%20Swain"
+  },
+  {
+   "team": "CHI",
+   "player": "Norman Powell",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Shoulder",
+   "upd": "2026-11-11",
+   "until": "2026-11-13",
+   "note": "Expected to be out until at least Nov 13",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Norman%20Powell"
   },
   {
@@ -21849,18 +21872,6 @@
    "note": "Expected to be out until at least Nov 16",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Sam%20Merrill"
-  },
-  {
-   "team": "CLE",
-   "player": "Jaylon Tyson",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-11-09",
-   "until": "",
-   "note": "",
-   "through": "2026-11-13",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jaylon%20Tyson"
   },
   {
    "team": "CLE",
@@ -21972,6 +21983,18 @@
   },
   {
    "team": "GSW",
+   "player": "Will Richard",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Thumb",
+   "upd": "2026-11-10",
+   "until": "",
+   "note": "",
+   "through": "2026-11-13",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Will%20Richard"
+  },
+  {
+   "team": "GSW",
    "player": "Gary Payton II",
    "src": "CBS",
    "kind": "O",
@@ -21993,18 +22016,6 @@
    "note": "Expected to be out until at least Nov 22",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Brandon%20Williams"
-  },
-  {
-   "team": "GSW",
-   "player": "Will Richard",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Thumb",
-   "upd": "2026-11-10",
-   "until": "",
-   "note": "",
-   "through": "2026-11-13",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Will%20Richard"
   },
   {
    "team": "GSW",
@@ -22044,18 +22055,6 @@
   },
   {
    "team": "HOU",
-   "player": "Clint Capela",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Ankle",
-   "upd": "2026-11-09",
-   "until": "2026-11-15",
-   "note": "Expected to be out until at least Nov 15",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Clint%20Capela"
-  },
-  {
-   "team": "HOU",
    "player": "Steven Adams",
    "src": "CBS",
    "kind": "O",
@@ -22065,6 +22064,18 @@
    "note": "Expected to be out until at least Nov 15",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Steven%20Adams"
+  },
+  {
+   "team": "HOU",
+   "player": "Clint Capela",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Ankle",
+   "upd": "2026-11-09",
+   "until": "2026-11-15",
+   "note": "Expected to be out until at least Nov 15",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Clint%20Capela"
   },
   {
    "team": "IND",
@@ -22077,18 +22088,6 @@
    "note": "Expected to be out until at least Nov 22",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tyrese%20Haliburton"
-  },
-  {
-   "team": "IND",
-   "player": "T.J. McConnell",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Hamstring",
-   "upd": "2026-11-10",
-   "until": "",
-   "note": "",
-   "through": "2026-11-13",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=T.J.%20McConnell"
   },
   {
    "team": "IND",
@@ -22188,18 +22187,6 @@
   },
   {
    "team": "MEM",
-   "player": "Quinten Post",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Head",
-   "upd": "2026-11-10",
-   "until": "2026-11-13",
-   "note": "Expected to be out until at least Nov 13",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Quinten%20Post"
-  },
-  {
-   "team": "MEM",
    "player": "Scotty Pippen Jr.",
    "src": "CBS",
    "kind": "O",
@@ -22209,6 +22196,18 @@
    "note": "Expected to be out until at least Nov 21",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Scotty%20Pippen%20Jr."
+  },
+  {
+   "team": "MEM",
+   "player": "Quinten Post",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Head",
+   "upd": "2026-11-10",
+   "until": "2026-11-13",
+   "note": "Expected to be out until at least Nov 13",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Quinten%20Post"
   },
   {
    "team": "MEM",
@@ -22284,18 +22283,6 @@
   },
   {
    "team": "NOP",
-   "player": "Bennedict Mathurin",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Thumb",
-   "upd": "2026-11-11",
-   "until": "2026-11-13",
-   "note": "Expected to be out until at least Nov 13",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Bennedict%20Mathurin"
-  },
-  {
-   "team": "NOP",
    "player": "Trey Murphy III",
    "src": "CBS",
    "kind": "G",
@@ -22305,6 +22292,18 @@
    "note": "",
    "through": "2026-11-13",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Trey%20Murphy%20III"
+  },
+  {
+   "team": "NOP",
+   "player": "Bennedict Mathurin",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Thumb",
+   "upd": "2026-11-11",
+   "until": "2026-11-13",
+   "note": "Expected to be out until at least Nov 13",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Bennedict%20Mathurin"
   },
   {
    "team": "NOP",
@@ -22644,6 +22643,18 @@
   },
   {
    "team": "SAS",
+   "player": "Devin Vassell",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Groin",
+   "upd": "2026-11-11",
+   "until": "2026-11-13",
+   "note": "Expected to be out until at least Nov 13",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Devin%20Vassell"
+  },
+  {
+   "team": "SAS",
    "player": "Tobias Harris",
    "src": "CBS",
    "kind": "O",
@@ -22653,18 +22664,6 @@
    "note": "Expected to be out until at least Nov 19",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tobias%20Harris"
-  },
-  {
-   "team": "SAS",
-   "player": "Devin Vassell",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Groin",
-   "upd": "2026-11-09",
-   "until": "",
-   "note": "",
-   "through": "2026-11-13",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Devin%20Vassell"
   },
   {
    "team": "SAS",
@@ -23232,7 +23231,7 @@
   },
   {
    "team": "IND",
-   "player": "T.J. McConnell",
+   "player": "T J Mcconnell",
    "src": "Covers",
    "kind": "G",
    "injury": "Hamstring",
@@ -27264,6 +27263,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Youngblood"
   },
   {
+   "team": "CHI",
+   "player": "Caleb Wilson",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-11",
+   "until": "",
+   "note": "Wilson (hip) is available for Wednesday's game against the Spurs.",
+   "through": "2026-11-11",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/caleb-wilson-6926",
+   "from": "2026-11-11",
+   "override": true,
+   "at": "2026-11-12T00:33:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "CHA",
    "player": "Moussa Diabate",
    "src": "RotoWire news",
@@ -28132,27 +28148,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-12T00:33:34+00:00",
+ "generated_at": "2026-11-12T00:36:50+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-12T00:33:22+00:00",
+   "at": "2026-11-12T00:36:38+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-12T00:33:33+00:00",
+   "at": "2026-11-12T00:36:49+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-12T00:33:33+00:00",
+   "at": "2026-11-12T00:36:49+00:00",
    "teams": 20,
    "injuries": 62
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-12T00:33:33+00:00",
+   "at": "2026-11-12T00:36:49+00:00",
    "current_players": 462,
    "last_players": 582
   },
@@ -28162,17 +28178,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-12T00:33:33+00:00",
-   "count": 97
+   "at": "2026-11-12T00:36:49+00:00",
+   "count": 96
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-12T00:33:34+00:00",
+   "at": "2026-11-12T00:36:50+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-12T00:33:34+00:00",
+   "at": "2026-11-12T00:36:50+00:00",
    "count": 93
   },
   "x": {
@@ -28181,40 +28197,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-12T00:33:34+00:00",
+   "at": "2026-11-12T00:36:50+00:00",
    "players": 199,
    "read_at": "2026-11-12T00:30:14+00:00",
    "saved_for_history": 148
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-12T00:33:34+00:00",
+   "at": "2026-11-12T00:36:50+00:00",
    "players": 106,
    "read_at": "2026-11-12T00:30:15+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-12T00:33:34+00:00",
+   "at": "2026-11-12T00:36:50+00:00",
    "players": 10,
    "read_at": "2026-11-12T00:30:16+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-12T00:33:34+00:00",
+   "at": "2026-11-12T00:36:50+00:00",
    "games": 7,
-   "read_at": "2026-11-12T00:33:34+00:00"
+   "read_at": "2026-11-12T00:36:50+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-12T00:33:34+00:00",
+   "at": "2026-11-12T00:36:50+00:00",
    "injuries": 88,
    "notes": 157,
    "read_at": "2026-11-12T00:30:16+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-12T00:33:34+00:00",
-   "count": 68
+   "at": "2026-11-12T00:36:50+00:00",
+   "count": 69
   }
  }
 }
