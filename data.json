@@ -8649,7 +8649,7 @@
    "time": "19:00",
    "vs": "TOR",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8707,7 +8707,7 @@
    "time": "19:00",
    "vs": "DET",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -15371,13 +15371,13 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-12T23:30:39+00:00",
+  "read_at": "2026-11-12T23:33:56+00:00",
   "date": "2026-11-12",
   "games": {
    "TOR@PHI": {
     "fav": "PHI",
-    "spread": 7.5,
-    "details": "PHI -7.5",
+    "spread": 8.5,
+    "details": "PHI -8.5",
     "provider": "DraftKings"
    },
    "DET@WAS": {
@@ -18105,6 +18105,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba538840",
+   "player": "Joel Embiid",
+   "headline": "Available Thursday",
+   "text": "Embiid (foot) will play Thursday against the Raptors, Austin Krell of OnPattison.com reports.",
+   "reporter": "Austin Krell",
+   "outlet": "OnPattison.com",
+   "url": "https://www.rotowire.com/basketball/player/joel-embiid-3572",
+   "at": "2026-11-12T23:32:00+00:00",
+   "team": "PHI"
+  },
   {
    "id": "nba538837",
    "player": "Zach Edey",
@@ -24138,19 +24149,6 @@
   },
   {
    "team": "PHI",
-   "player": "Joel Embiid",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-12",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-12",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Embiid"
-  },
-  {
-   "team": "PHI",
    "player": "Ariel Hukporti",
    "src": "RotoWire",
    "kind": "O",
@@ -24161,19 +24159,6 @@
    "through": "2026-11-12",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Hukporti"
-  },
-  {
-   "team": "PHI",
-   "player": "Joel Embiid",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-12",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-12",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Embiid"
   },
   {
    "team": "PHI",
@@ -24408,6 +24393,23 @@
    "through": "2026-11-12",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Williams"
+  },
+  {
+   "team": "PHI",
+   "player": "Joel Embiid",
+   "src": "Austin Krell",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-12",
+   "until": "",
+   "note": "Embiid (foot) will play Thursday against the Raptors, Austin Krell of OnPattison.com reports.",
+   "through": "2026-11-12",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/joel-embiid-3572",
+   "from": "2026-11-12",
+   "override": true,
+   "at": "2026-11-12T23:32:00+00:00",
+   "from_news": true
   },
   {
    "team": "MEM",
@@ -25346,27 +25348,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-12T23:30:40+00:00",
+ "generated_at": "2026-11-12T23:33:57+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-12T23:30:26+00:00",
+   "at": "2026-11-12T23:33:43+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-12T23:30:37+00:00",
+   "at": "2026-11-12T23:33:56+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-12T23:30:38+00:00",
+   "at": "2026-11-12T23:33:56+00:00",
    "teams": 8,
-   "injuries": 25
+   "injuries": 23
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-12T23:30:38+00:00",
+   "at": "2026-11-12T23:33:56+00:00",
    "current_players": 464,
    "last_players": 582
   },
@@ -25376,17 +25378,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-12T23:30:38+00:00",
+   "at": "2026-11-12T23:33:56+00:00",
    "count": 99
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-12T23:30:38+00:00",
+   "at": "2026-11-12T23:33:56+00:00",
    "count": 92
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-12T23:30:39+00:00",
+   "at": "2026-11-12T23:33:56+00:00",
    "count": 104
   },
   "x": {
@@ -25395,40 +25397,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-12T23:30:39+00:00",
+   "at": "2026-11-12T23:33:56+00:00",
    "players": 78,
    "read_at": "2026-11-12T23:30:39+00:00",
    "saved_for_history": 83
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-12T23:30:39+00:00",
+   "at": "2026-11-12T23:33:56+00:00",
    "players": 41,
    "read_at": "2026-11-12T23:30:39+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-12T23:30:39+00:00",
+   "at": "2026-11-12T23:33:56+00:00",
    "players": 10,
    "read_at": "2026-11-12T23:30:39+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-12T23:30:40+00:00",
+   "at": "2026-11-12T23:33:57+00:00",
    "games": 4,
-   "read_at": "2026-11-12T23:30:39+00:00"
+   "read_at": "2026-11-12T23:33:56+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-12T23:30:40+00:00",
+   "at": "2026-11-12T23:33:57+00:00",
    "injuries": 78,
    "notes": 161,
    "read_at": "2026-11-12T23:30:40+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-12T23:30:40+00:00",
-   "count": 72
+   "at": "2026-11-12T23:33:57+00:00",
+   "count": 73
   }
  }
 }
