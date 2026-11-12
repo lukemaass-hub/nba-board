@@ -9026,7 +9026,7 @@
    "time": "21:00",
    "vs": "UTA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -14424,7 +14424,7 @@
     "MIN"
    ]
   },
-  "fetched_at": "2026-11-11T23:30:46+00:00"
+  "fetched_at": "2026-11-12T01:33:32+00:00"
  },
  "expected_minutes": {},
  "sportsline": {
@@ -17581,7 +17581,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-12T01:30:16+00:00",
+  "read_at": "2026-11-12T01:33:33+00:00",
   "date": "2026-11-11",
   "games": {
    "ORL@UTA": {
@@ -20406,6 +20406,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba538679",
+   "player": "Jamal Cain",
+   "headline": "Ruled out for Wednesday",
+   "text": "Cain (shoulder) is out for Wednesday's game in Utah.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/jamal-cain-5796",
+   "at": "2026-11-12T01:29:00+00:00",
+   "team": "ORL"
+  },
   {
    "id": "nba538678",
    "player": "Keyonte George",
@@ -24617,24 +24628,24 @@
    "team": "ORL",
    "player": "Jamal Cain",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Left Shoulder Bruise",
-   "upd": "2026-11-11",
-   "until": "",
+   "upd": "2026-11-12",
+   "until": "2026-11-13",
    "note": "Cain is questionable for Wednesday's game against the Jazz due to a left shoulder contusion.",
-   "through": "2026-11-13",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jamal%20Cain"
   },
   {
    "team": "ORL",
    "player": "Tristan da Silva",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Left Calf Strain",
-   "upd": "2026-11-11",
-   "until": "",
+   "upd": "2026-11-12",
+   "until": "2026-11-13",
    "note": "Da Silva (calf) is listed as questionable for Wednesday's game at Utah.",
-   "through": "2026-11-13",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Tristan%20da%20Silva"
   },
   {
@@ -27119,6 +27130,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Youngblood"
   },
   {
+   "team": "ORL",
+   "player": "Jamal Cain",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-11",
+   "until": "",
+   "note": "Cain (shoulder) is out for Wednesday's game in Utah.",
+   "through": "2026-11-11",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/jamal-cain-5796",
+   "from": "2026-11-11",
+   "override": true,
+   "at": "2026-11-12T01:29:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "UTA",
    "player": "Keyonte George",
    "src": "RotoWire news",
@@ -28038,27 +28066,27 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-12T01:30:17+00:00",
+ "generated_at": "2026-11-12T01:33:34+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-12T01:30:00+00:00",
+   "at": "2026-11-12T01:33:21+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-12T01:30:12+00:00",
+   "at": "2026-11-12T01:33:32+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-12T01:30:12+00:00",
+   "at": "2026-11-12T01:33:32+00:00",
    "teams": 20,
    "injuries": 58
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-12T01:30:12+00:00",
+   "at": "2026-11-12T01:33:33+00:00",
    "current_players": 462,
    "last_players": 582
   },
@@ -28068,17 +28096,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-12T01:30:13+00:00",
+   "at": "2026-11-12T01:33:33+00:00",
    "count": 92
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-12T01:30:13+00:00",
+   "at": "2026-11-12T01:33:33+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-12T01:30:13+00:00",
+   "at": "2026-11-12T01:33:33+00:00",
    "count": 90
   },
   "x": {
@@ -28087,40 +28115,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-12T01:30:14+00:00",
+   "at": "2026-11-12T01:33:33+00:00",
    "players": 198,
    "read_at": "2026-11-12T01:30:13+00:00",
    "saved_for_history": 62
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-12T01:30:16+00:00",
+   "at": "2026-11-12T01:33:33+00:00",
    "players": 104,
    "read_at": "2026-11-12T01:30:14+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-12T01:30:16+00:00",
+   "at": "2026-11-12T01:33:33+00:00",
    "players": 10,
    "read_at": "2026-11-12T01:30:16+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-12T01:30:16+00:00",
+   "at": "2026-11-12T01:33:33+00:00",
    "games": 3,
-   "read_at": "2026-11-12T01:30:16+00:00"
+   "read_at": "2026-11-12T01:33:33+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-12T01:30:17+00:00",
+   "at": "2026-11-12T01:33:33+00:00",
    "injuries": 88,
    "notes": 157,
    "read_at": "2026-11-12T01:30:16+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-12T01:30:17+00:00",
-   "count": 73
+   "at": "2026-11-12T01:33:34+00:00",
+   "count": 74
   }
  }
 }
