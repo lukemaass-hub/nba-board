@@ -8852,7 +8852,7 @@
    "time": "20:00",
    "vs": "MIA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -14385,7 +14385,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-14T00:20:19+00:00",
+  "read_at": "2026-11-14T00:36:44+00:00",
   "date": "2026-11-13",
   "players": [
    {
@@ -14401,16 +14401,16 @@
     "min": 34.0
    },
    {
-    "player": "Darius Acuff Jr.",
-    "team": "SAC",
-    "game": "POR@SAC",
-    "min": 41.0
-   },
-   {
     "player": "Donovan Mitchell",
     "team": "CLE",
     "game": "CLE@MIA",
     "min": 33.0
+   },
+   {
+    "player": "Darius Acuff Jr.",
+    "team": "SAC",
+    "game": "POR@SAC",
+    "min": 41.0
    },
    {
     "player": "Alperen Sengun",
@@ -14581,16 +14581,28 @@
     "min": 32.0
    },
    {
+    "player": "Keyonte George",
+    "team": "UTA",
+    "game": "UTA@HOU",
+    "min": 32.0
+   },
+   {
     "player": "Isaiah Hartenstein",
     "team": "OKC",
     "game": "OKC@LAC",
     "min": 25.0
    },
    {
-    "player": "Keyonte George",
-    "team": "UTA",
-    "game": "UTA@HOU",
+    "player": "Saddiq Bey",
+    "team": "NOP",
+    "game": "MEM@NO",
     "min": 32.0
+   },
+   {
+    "player": "Ivica Zubac",
+    "team": "IND",
+    "game": "NY@IND",
+    "min": 30.0
    },
    {
     "player": "Ajay Mitchell",
@@ -14599,10 +14611,10 @@
     "min": 27.0
    },
    {
-    "player": "Ivica Zubac",
-    "team": "IND",
-    "game": "NY@IND",
-    "min": 30.0
+    "player": "Norman Powell",
+    "team": "CHI",
+    "game": "ATL@CHI",
+    "min": 31.0
    },
    {
     "player": "Josh Hart",
@@ -14617,18 +14629,6 @@
     "min": 27.0
    },
    {
-    "player": "Saddiq Bey",
-    "team": "NOP",
-    "game": "MEM@NO",
-    "min": 32.0
-   },
-   {
-    "player": "Norman Powell",
-    "team": "CHI",
-    "game": "ATL@CHI",
-    "min": 31.0
-   },
-   {
     "player": "Darryn Peterson",
     "team": "UTA",
     "game": "UTA@HOU",
@@ -14641,10 +14641,10 @@
     "min": 34.0
    },
    {
-    "player": "Onyeka Okongwu",
-    "team": "ATL",
+    "player": "Jalen Smith",
+    "team": "CHI",
     "game": "ATL@CHI",
-    "min": 30.0
+    "min": 27.0
    },
    {
     "player": "Brandin Podziemski",
@@ -14653,22 +14653,22 @@
     "min": 30.0
    },
    {
-    "player": "Jalen Smith",
-    "team": "CHI",
+    "player": "Onyeka Okongwu",
+    "team": "ATL",
     "game": "ATL@CHI",
-    "min": 27.0
-   },
-   {
-    "player": "Jaime Jaquez Jr",
-    "team": "MIL",
-    "game": "MIL@ORL",
-    "min": 31.0
+    "min": 30.0
    },
    {
     "player": "Fred VanVleet",
     "team": "HOU",
     "game": "UTA@HOU",
     "min": 30.0
+   },
+   {
+    "player": "Jaime Jaquez Jr",
+    "team": "MIL",
+    "game": "MIL@ORL",
+    "min": 31.0
    },
    {
     "player": "Nicolas Claxton",
@@ -14701,15 +14701,15 @@
     "min": 35.0
    },
    {
-    "player": "Jalen Suggs",
-    "team": "ORL",
-    "game": "MIL@ORL",
-    "min": 29.0
-   },
-   {
     "player": "Nickeil Alexander-Walker",
     "team": "ATL",
     "game": "ATL@CHI",
+    "min": 29.0
+   },
+   {
+    "player": "Jalen Suggs",
+    "team": "ORL",
+    "game": "MIL@ORL",
     "min": 29.0
    },
    {
@@ -14779,16 +14779,16 @@
     "min": 27.0
    },
    {
+    "player": "Cam Spencer",
+    "team": "MEM",
+    "game": "MEM@NO",
+    "min": 20.0
+   },
+   {
     "player": "Matas Buzelis",
     "team": "CHI",
     "game": "ATL@CHI",
     "min": 28.0
-   },
-   {
-    "player": "Tari Eason",
-    "team": "HOU",
-    "game": "UTA@HOU",
-    "min": 25.0
    },
    {
     "player": "Rui Hachimura",
@@ -14797,10 +14797,10 @@
     "min": 30.0
    },
    {
-    "player": "Cam Spencer",
-    "team": "MEM",
-    "game": "MEM@NO",
-    "min": 20.0
+    "player": "Tari Eason",
+    "team": "HOU",
+    "game": "UTA@HOU",
+    "min": 25.0
    },
    {
     "player": "Isaiah Collier",
@@ -14821,10 +14821,10 @@
     "min": 22.0
    },
    {
-    "player": "Andrew Wiggins",
-    "team": "MIA",
-    "game": "CLE@MIA",
-    "min": 26.0
+    "player": "Jerami Grant",
+    "team": "MEM",
+    "game": "MEM@NO",
+    "min": 25.0
    },
    {
     "player": "Myles Turner",
@@ -14833,16 +14833,16 @@
     "min": 28.0
    },
    {
+    "player": "Andrew Wiggins",
+    "team": "MIA",
+    "game": "CLE@MIA",
+    "min": 26.0
+   },
+   {
     "player": "Ryan Rollins",
     "team": "MIL",
     "game": "MIL@ORL",
     "min": 23.0
-   },
-   {
-    "player": "Jerami Grant",
-    "team": "MEM",
-    "game": "MEM@NO",
-    "min": 25.0
    },
    {
     "player": "Obi Toppin",
@@ -14875,22 +14875,16 @@
     "min": 21.0
    },
    {
-    "player": "Kris Dunn",
-    "team": "LAC",
-    "game": "OKC@LAC",
-    "min": 27.0
-   },
-   {
-    "player": "Malik Monk",
-    "team": "SAC",
-    "game": "POR@SAC",
-    "min": 23.0
-   },
-   {
     "player": "Isaiah Jackson",
     "team": "LAC",
     "game": "OKC@LAC",
     "min": 21.0
+   },
+   {
+    "player": "Kris Dunn",
+    "team": "LAC",
+    "game": "OKC@LAC",
+    "min": 27.0
    },
    {
     "player": "Ace Bailey",
@@ -14899,10 +14893,10 @@
     "min": 29.0
    },
    {
-    "player": "Jaylen Wells",
-    "team": "MEM",
-    "game": "MEM@NO",
-    "min": 27.0
+    "player": "Malik Monk",
+    "team": "SAC",
+    "game": "POR@SAC",
+    "min": 23.0
    },
    {
     "player": "De`Anthony Melton",
@@ -14911,10 +14905,10 @@
     "min": 23.0
    },
    {
-    "player": "Jaylon Tyson",
-    "team": "CLE",
-    "game": "CLE@MIA",
-    "min": 21.0
+    "player": "Jaylen Wells",
+    "team": "MEM",
+    "game": "MEM@NO",
+    "min": 27.0
    },
    {
     "player": "Tristan da Silva",
@@ -14929,9 +14923,21 @@
     "min": 28.0
    },
    {
+    "player": "Jaylon Tyson",
+    "team": "CLE",
+    "game": "CLE@MIA",
+    "min": 21.0
+   },
+   {
     "player": "Benedict Mathurin",
     "team": "NOP",
     "game": "MEM@NO",
+    "min": 24.0
+   },
+   {
+    "player": "Scoot Henderson",
+    "team": "POR",
+    "game": "POR@SAC",
     "min": 24.0
    },
    {
@@ -14939,12 +14945,6 @@
     "team": "CLE",
     "game": "CLE@MIA",
     "min": 20.0
-   },
-   {
-    "player": "Scoot Henderson",
-    "team": "POR",
-    "game": "POR@SAC",
-    "min": 24.0
    },
    {
     "player": "Reed Sheppard",
@@ -15001,6 +15001,12 @@
     "min": 21.0
    },
    {
+    "player": "Max Strus",
+    "team": "LAC",
+    "game": "OKC@LAC",
+    "min": 20.0
+   },
+   {
     "player": "Jaxson Hayes",
     "team": "UTA",
     "game": "UTA@HOU",
@@ -15013,28 +15019,16 @@
     "min": 27.0
    },
    {
-    "player": "Kyle Filipowski",
-    "team": "UTA",
-    "game": "UTA@HOU",
-    "min": 20.0
-   },
-   {
-    "player": "Max Strus",
-    "team": "LAC",
-    "game": "OKC@LAC",
-    "min": 20.0
-   },
-   {
     "player": "Al Horford",
     "team": "GSW",
     "game": "GS@SA",
     "min": 21.0
    },
    {
-    "player": "Julian Champagnie",
-    "team": "SAS",
-    "game": "GS@SA",
-    "min": 23.0
+    "player": "Kyle Filipowski",
+    "team": "UTA",
+    "game": "UTA@HOU",
+    "min": 20.0
    },
    {
     "player": "T.J. McConnell",
@@ -15043,10 +15037,16 @@
     "min": 14.0
    },
    {
-    "player": "Aday Mara",
+    "player": "Kenrich Williams",
     "team": "OKC",
     "game": "OKC@LAC",
-    "min": 16.0
+    "min": 20.0
+   },
+   {
+    "player": "Julian Champagnie",
+    "team": "SAS",
+    "game": "GS@SA",
+    "min": 23.0
    },
    {
     "player": "Kel`El Ware",
@@ -15055,16 +15055,16 @@
     "min": 18.0
    },
    {
-    "player": "Kenrich Williams",
-    "team": "OKC",
-    "game": "OKC@LAC",
-    "min": 20.0
-   },
-   {
     "player": "Dylan Cardwell",
     "team": "SAC",
     "game": "POR@SAC",
     "min": 20.0
+   },
+   {
+    "player": "Aday Mara",
+    "team": "OKC",
+    "game": "OKC@LAC",
+    "min": 16.0
    },
    {
     "player": "Herbert Jones",
@@ -15085,10 +15085,10 @@
     "min": 22.0
    },
    {
-    "player": "Karlo Matkovic",
-    "team": "NOP",
-    "game": "MEM@NO",
-    "min": 17.0
+    "player": "Bennett Stirtz",
+    "team": "OKC",
+    "game": "OKC@LAC",
+    "min": 21.0
    },
    {
     "player": "Landry Shamet",
@@ -15103,16 +15103,10 @@
     "min": 18.0
    },
    {
-    "player": "Bennett Stirtz",
-    "team": "OKC",
-    "game": "OKC@LAC",
-    "min": 21.0
-   },
-   {
-    "player": "Georges Niang",
-    "team": "GSW",
-    "game": "GS@SA",
-    "min": 21.0
+    "player": "Karlo Matkovic",
+    "team": "NOP",
+    "game": "MEM@NO",
+    "min": 17.0
    },
    {
     "player": "Keldon Johnson",
@@ -15121,22 +15115,28 @@
     "min": 18.0
    },
    {
+    "player": "Georges Niang",
+    "team": "GSW",
+    "game": "GS@SA",
+    "min": 21.0
+   },
+   {
     "player": "Tyrese Proctor",
     "team": "CLE",
     "game": "CLE@MIA",
     "min": 14.0
    },
    {
-    "player": "Brice Sensabaugh",
-    "team": "UTA",
-    "game": "UTA@HOU",
-    "min": 19.0
-   },
-   {
     "player": "Nikola Vucevic",
     "team": "ORL",
     "game": "MIL@ORL",
     "min": 15.0
+   },
+   {
+    "player": "Brice Sensabaugh",
+    "team": "UTA",
+    "game": "UTA@HOU",
+    "min": 19.0
    },
    {
     "player": "Gui Santos",
@@ -15163,22 +15163,16 @@
     "min": 21.0
    },
    {
-    "player": "Charles Bassey",
-    "team": "GSW",
-    "game": "GS@SA",
-    "min": 12.0
-   },
-   {
-    "player": "Bogdan Bogdanovic",
-    "team": "HOU",
-    "game": "UTA@HOU",
-    "min": 17.0
-   },
-   {
     "player": "Isaiah Stewart",
     "team": "MEM",
     "game": "MEM@NO",
     "min": 15.0
+   },
+   {
+    "player": "Charles Bassey",
+    "team": "GSW",
+    "game": "GS@SA",
+    "min": 12.0
    },
    {
     "player": "Kobe Sanders",
@@ -15187,22 +15181,28 @@
     "min": 18.0
    },
    {
+    "player": "Bogdan Bogdanovic",
+    "team": "HOU",
+    "game": "UTA@HOU",
+    "min": 17.0
+   },
+   {
     "player": "Thomas Bryant",
     "team": "CLE",
     "game": "CLE@MIA",
     "min": 12.0
    },
    {
-    "player": "Quenton Jackson",
-    "team": "IND",
-    "game": "NY@IND",
-    "min": 14.0
-   },
-   {
     "player": "Sidy Cissoko",
     "team": "POR",
     "game": "POR@SAC",
     "min": 19.0
+   },
+   {
+    "player": "Quenton Jackson",
+    "team": "IND",
+    "game": "NY@IND",
+    "min": 14.0
    },
    {
     "player": "Taylor Hendricks",
@@ -15215,6 +15215,12 @@
     "team": "NYK",
     "game": "NY@IND",
     "min": 12.0
+   },
+   {
+    "player": "Patrick Williams",
+    "team": "CHI",
+    "game": "ATL@CHI",
+    "min": 18.0
    },
    {
     "player": "Gary Payton",
@@ -15232,12 +15238,6 @@
     "player": "Tim Hardaway",
     "team": "MIA",
     "game": "CLE@MIA",
-    "min": 18.0
-   },
-   {
-    "player": "Patrick Williams",
-    "team": "CHI",
-    "game": "ATL@CHI",
     "min": 18.0
    },
    {
@@ -15271,6 +15271,12 @@
     "min": 15.0
    },
    {
+    "player": "Ryan Conwell",
+    "team": "MIA",
+    "game": "CLE@MIA",
+    "min": 14.0
+   },
+   {
     "player": "AJ Green",
     "team": "MIL",
     "game": "MIL@ORL",
@@ -15281,12 +15287,6 @@
     "team": "IND",
     "game": "NY@IND",
     "min": 15.0
-   },
-   {
-    "player": "Ryan Conwell",
-    "team": "MIA",
-    "game": "CLE@MIA",
-    "min": 14.0
    },
    {
     "player": "Luke Kornet",
@@ -15337,6 +15337,12 @@
     "min": 13.0
    },
    {
+    "player": "Leonard Miller",
+    "team": "CHI",
+    "game": "ATL@CHI",
+    "min": 11.0
+   },
+   {
     "player": "Baba Miller",
     "team": "LAC",
     "game": "OKC@LAC",
@@ -15347,12 +15353,6 @@
     "team": "CHI",
     "game": "ATL@CHI",
     "min": 10.0
-   },
-   {
-    "player": "Leonard Miller",
-    "team": "CHI",
-    "game": "ATL@CHI",
-    "min": 11.0
    },
    {
     "player": "Josh Okogie",
@@ -15459,7 +15459,7 @@
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-14T00:20:20+00:00",
+  "read_at": "2026-11-14T00:36:44+00:00",
   "date": "2026-11-13",
   "players": [
    {
@@ -15980,7 +15980,7 @@
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-14T00:20:20+00:00",
+  "read_at": "2026-11-14T00:36:45+00:00",
   "date": "2026-11-13",
   "players": [
    {
@@ -16032,7 +16032,7 @@
  },
  "expected_mix": {
   "date": "2026-11-13",
-  "read_at": "2026-11-14T00:20:20+00:00",
+  "read_at": "2026-11-14T00:36:45+00:00",
   "players": [
    {
     "player": "Shai Gilgeous-Alexander",
@@ -16781,17 +16781,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Ivica Zubac",
-    "team": "IND",
-    "game": "NY@IND",
-    "min": 30.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Saddiq Bey",
     "team": "NOP",
     "game": "MEM@NO",
     "min": 32.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Ivica Zubac",
+    "team": "IND",
+    "game": "NY@IND",
+    "min": 30.0,
     "src": "SportsLine"
    },
    {
@@ -16851,16 +16851,16 @@
     "src": "SportsLine"
    },
    {
-    "player": "Jalen Suggs",
-    "team": "ORL",
-    "game": "MIL@ORL",
+    "player": "Nickeil Alexander-Walker",
+    "team": "ATL",
+    "game": "ATL@CHI",
     "min": 29.0,
     "src": "SportsLine"
    },
    {
-    "player": "Nickeil Alexander-Walker",
-    "team": "ATL",
-    "game": "ATL@CHI",
+    "player": "Jalen Suggs",
+    "team": "ORL",
+    "game": "MIL@ORL",
     "min": 29.0,
     "src": "SportsLine"
    },
@@ -16907,17 +16907,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Tari Eason",
-    "team": "HOU",
-    "game": "UTA@HOU",
-    "min": 25.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Rui Hachimura",
     "team": "LAC",
     "game": "OKC@LAC",
     "min": 30.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Tari Eason",
+    "team": "HOU",
+    "game": "UTA@HOU",
+    "min": 25.0,
     "src": "SportsLine"
    },
    {
@@ -16963,6 +16963,13 @@
     "src": "SportsLine"
    },
    {
+    "player": "Isaiah Jackson",
+    "team": "LAC",
+    "game": "OKC@LAC",
+    "min": 21.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Kris Dunn",
     "team": "LAC",
     "game": "OKC@LAC",
@@ -16974,13 +16981,6 @@
     "team": "SAC",
     "game": "POR@SAC",
     "min": 23.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Isaiah Jackson",
-    "team": "LAC",
-    "game": "OKC@LAC",
-    "min": 21.0,
     "src": "SportsLine"
    },
    {
@@ -17040,17 +17040,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Julian Champagnie",
-    "team": "SAS",
-    "game": "GS@SA",
-    "min": 23.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "T.J. McConnell",
     "team": "IND",
     "game": "NY@IND",
     "min": 14.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Julian Champagnie",
+    "team": "SAS",
+    "game": "GS@SA",
+    "min": 23.0,
     "src": "SportsLine"
    },
    {
@@ -17075,17 +17075,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Karlo Matkovic",
-    "team": "NOP",
-    "game": "MEM@NO",
-    "min": 17.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Gregory Jackson",
     "team": "MEM",
     "game": "MEM@NO",
     "min": 18.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Karlo Matkovic",
+    "team": "NOP",
+    "game": "MEM@NO",
+    "min": 17.0,
     "src": "SportsLine"
    },
    {
@@ -17117,13 +17117,6 @@
     "src": "SportsLine"
    },
    {
-    "player": "Bogdan Bogdanovic",
-    "team": "HOU",
-    "game": "UTA@HOU",
-    "min": 17.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Kobe Sanders",
     "team": "LAC",
     "game": "OKC@LAC",
@@ -17131,10 +17124,24 @@
     "src": "SportsLine"
    },
    {
+    "player": "Bogdan Bogdanovic",
+    "team": "HOU",
+    "game": "UTA@HOU",
+    "min": 17.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Quenton Jackson",
     "team": "IND",
     "game": "NY@IND",
     "min": 14.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Patrick Williams",
+    "team": "CHI",
+    "game": "ATL@CHI",
+    "min": 18.0,
     "src": "SportsLine"
    },
    {
@@ -17152,23 +17159,9 @@
     "src": "SportsLine"
    },
    {
-    "player": "Patrick Williams",
-    "team": "CHI",
-    "game": "ATL@CHI",
-    "min": 18.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Gradey Dick",
     "team": "LAC",
     "game": "OKC@LAC",
-    "min": 15.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Jarace Walker",
-    "team": "IND",
-    "game": "NY@IND",
     "min": 15.0,
     "src": "SportsLine"
    },
@@ -17177,6 +17170,13 @@
     "team": "MIA",
     "game": "CLE@MIA",
     "min": 14.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Jarace Walker",
+    "team": "IND",
+    "game": "NY@IND",
+    "min": 15.0,
     "src": "SportsLine"
    },
    {
@@ -17222,6 +17222,13 @@
     "src": "SportsLine"
    },
    {
+    "player": "Leonard Miller",
+    "team": "CHI",
+    "game": "ATL@CHI",
+    "min": 11.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Baba Miller",
     "team": "LAC",
     "game": "OKC@LAC",
@@ -17233,13 +17240,6 @@
     "team": "CHI",
     "game": "ATL@CHI",
     "min": 10.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Leonard Miller",
-    "team": "CHI",
-    "game": "ATL@CHI",
-    "min": 11.0,
     "src": "SportsLine"
    },
    {
@@ -17301,7 +17301,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-14T00:33:29+00:00",
+  "read_at": "2026-11-14T00:36:45+00:00",
   "date": "2026-11-13",
   "games": {
    "CLE@MIA": {
@@ -17349,7 +17349,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-14T00:20:20+00:00",
+  "read_at": "2026-11-14T00:36:45+00:00",
   "injuries": [
    {
     "team": "ATL",
@@ -17364,7 +17364,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "ATL",
@@ -17379,7 +17379,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "ATL",
@@ -17394,7 +17394,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "ATL",
@@ -17409,7 +17409,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "ATL",
@@ -17425,7 +17425,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "ATL",
@@ -17441,7 +17441,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "CHI",
@@ -17456,7 +17456,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "CHI",
@@ -17471,7 +17471,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "CHI",
@@ -17486,7 +17486,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "CHI",
@@ -17502,7 +17502,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "CLE",
@@ -17517,7 +17517,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-cleveland-cavaliers-at-miami-heat.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "CLE",
@@ -17532,7 +17532,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-cleveland-cavaliers-at-miami-heat.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "CLE",
@@ -17547,7 +17547,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-cleveland-cavaliers-at-miami-heat.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "GSW",
@@ -17562,7 +17562,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "GSW",
@@ -17577,7 +17577,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "GSW",
@@ -17592,7 +17592,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "GSW",
@@ -17607,7 +17607,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "GSW",
@@ -17622,7 +17622,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "GSW",
@@ -17638,7 +17638,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "HOU",
@@ -17653,7 +17653,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-utah-jazz-at-houston-rockets.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "HOU",
@@ -17668,7 +17668,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-utah-jazz-at-houston-rockets.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "HOU",
@@ -17683,7 +17683,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-utah-jazz-at-houston-rockets.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "IND",
@@ -17698,7 +17698,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-new-york-knicks-at-indiana-pacers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "IND",
@@ -17713,7 +17713,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-new-york-knicks-at-indiana-pacers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "IND",
@@ -17728,7 +17728,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-new-york-knicks-at-indiana-pacers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "IND",
@@ -17744,7 +17744,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-new-york-knicks-at-indiana-pacers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "IND",
@@ -17760,7 +17760,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-new-york-knicks-at-indiana-pacers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "LAC",
@@ -17775,7 +17775,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "LAC",
@@ -17790,7 +17790,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "LAC",
@@ -17805,7 +17805,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "LAC",
@@ -17820,7 +17820,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "MEM",
@@ -17835,7 +17835,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "MEM",
@@ -17850,7 +17850,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "MEM",
@@ -17865,7 +17865,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "MEM",
@@ -17880,7 +17880,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "MIA",
@@ -17895,7 +17895,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-cleveland-cavaliers-at-miami-heat.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "MIA",
@@ -17910,7 +17910,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-cleveland-cavaliers-at-miami-heat.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "MIA",
@@ -17926,7 +17926,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-cleveland-cavaliers-at-miami-heat.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "NOP",
@@ -17941,7 +17941,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "NOP",
@@ -17956,7 +17956,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "NOP",
@@ -17971,7 +17971,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "NOP",
@@ -17986,7 +17986,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "NOP",
@@ -18001,7 +18001,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "NOP",
@@ -18017,7 +18017,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "OKC",
@@ -18032,7 +18032,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "OKC",
@@ -18047,7 +18047,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "OKC",
@@ -18062,7 +18062,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "OKC",
@@ -18077,7 +18077,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "OKC",
@@ -18092,7 +18092,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "OKC",
@@ -18108,7 +18108,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "OKC",
@@ -18124,7 +18124,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "ORL",
@@ -18139,7 +18139,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "ORL",
@@ -18154,7 +18154,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "ORL",
@@ -18169,7 +18169,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "ORL",
@@ -18184,7 +18184,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "ORL",
@@ -18200,7 +18200,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "ORL",
@@ -18216,7 +18216,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "ORL",
@@ -18232,7 +18232,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "POR",
@@ -18247,7 +18247,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "POR",
@@ -18262,7 +18262,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "POR",
@@ -18277,7 +18277,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "POR",
@@ -18292,7 +18292,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "SAC",
@@ -18307,7 +18307,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "SAC",
@@ -18322,7 +18322,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "SAC",
@@ -18337,7 +18337,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "SAS",
@@ -18352,7 +18352,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "SAS",
@@ -18367,7 +18367,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "SAS",
@@ -18383,7 +18383,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "SAS",
@@ -18399,7 +18399,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "UTA",
@@ -18414,7 +18414,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-utah-jazz-at-houston-rockets.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "UTA",
@@ -18429,7 +18429,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-utah-jazz-at-houston-rockets.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "UTA",
@@ -18444,7 +18444,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-13-utah-jazz-at-houston-rockets.html",
     "from": "2026-11-13",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "BKN",
@@ -18460,7 +18460,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-brooklyn-nets-at-memphis-grizzlies.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "BKN",
@@ -18476,7 +18476,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-brooklyn-nets-at-memphis-grizzlies.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "DAL",
@@ -18491,7 +18491,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-dallas-mavericks-at-cleveland-cavaliers.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "DAL",
@@ -18506,7 +18506,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-dallas-mavericks-at-cleveland-cavaliers.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "DAL",
@@ -18521,7 +18521,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-dallas-mavericks-at-cleveland-cavaliers.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "DAL",
@@ -18537,7 +18537,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-dallas-mavericks-at-cleveland-cavaliers.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "DAL",
@@ -18553,7 +18553,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-dallas-mavericks-at-cleveland-cavaliers.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "DAL",
@@ -18569,7 +18569,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-dallas-mavericks-at-cleveland-cavaliers.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "DEN",
@@ -18584,7 +18584,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-denver-nuggets-at-new-orleans-pelicans.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "DET",
@@ -18599,7 +18599,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-detroit-pistons-at-miami-heat.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "DET",
@@ -18614,7 +18614,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-detroit-pistons-at-miami-heat.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "MIN",
@@ -18629,7 +18629,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-chicago-bulls-at-minnesota-timberwolves.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "MIN",
@@ -18644,7 +18644,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-chicago-bulls-at-minnesota-timberwolves.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    },
    {
     "team": "MIN",
@@ -18660,7 +18660,7 @@
     "url": "https://presserwire.com/nba/games/2026-11-14-chicago-bulls-at-minnesota-timberwolves.html",
     "from": "2026-11-14",
     "override": true,
-    "at": "2026-11-14T00:20:20+00:00"
+    "at": "2026-11-14T00:36:45+00:00"
    }
   ],
   "notes": [
@@ -22471,18 +22471,6 @@
   },
   {
    "team": "ATL",
-   "player": "Kingston Flemings",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Lumbar",
-   "upd": "2026-11-11",
-   "until": "",
-   "note": "Flemings is Questionable for Friday's (Nov. 13) game against the Bulls.",
-   "through": "2026-11-15",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20Flemings"
-  },
-  {
-   "team": "ATL",
    "player": "Keshon Gilbert",
    "src": "Covers",
    "kind": "O",
@@ -22603,6 +22591,18 @@
   },
   {
    "team": "CHI",
+   "player": "Norman Powell",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Shoulder",
+   "upd": "2026-11-12",
+   "until": "",
+   "note": "Powell is Available for Friday's (Nov. 13) game against the Hawks.",
+   "through": "2026-11-15",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=N.%20Powell"
+  },
+  {
+   "team": "CHI",
    "player": "Dailyn Swain",
    "src": "Covers",
    "kind": "G",
@@ -22636,18 +22636,6 @@
    "note": "Awaka is Out for Friday's (Nov. 13) game against the Hawks.",
    "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Awaka"
-  },
-  {
-   "team": "CHI",
-   "player": "Norman Powell",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Shoulder",
-   "upd": "2026-11-11",
-   "until": "",
-   "note": "Powell is Questionable for Friday's (Nov. 13) game against the Hawks.",
-   "through": "2026-11-15",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=N.%20Powell"
   },
   {
    "team": "CLE",
@@ -22855,30 +22843,6 @@
   },
   {
    "team": "IND",
-   "player": "T J Mcconnell",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Hamstring",
-   "upd": "2026-11-11",
-   "until": "",
-   "note": "McConnell is Probable for Friday's (Nov. 13) game against the Knicks.",
-   "through": "2026-11-15",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20McConnell"
-  },
-  {
-   "team": "IND",
-   "player": "Aaron Nesmith",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-11-11",
-   "until": "",
-   "note": "Nesmith is Questionable for Friday's (Nov. 13) game against the Knicks.",
-   "through": "2026-11-15",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=A.%20Nesmith"
-  },
-  {
-   "team": "IND",
    "player": "Tyrese Haliburton",
    "src": "Covers",
    "kind": "O",
@@ -23047,38 +23011,26 @@
   },
   {
    "team": "MIA",
-   "player": "Giannis Antetokounmpo",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Wrist",
-   "upd": "2026-11-11",
-   "until": "",
-   "note": "Antetokounmpo is Probable for Friday's (Nov. 13) game against the Cavaliers.",
-   "through": "2026-11-15",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=G.%20Antetokounmpo"
-  },
-  {
-   "team": "MIA",
    "player": "Klay Thompson",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
-   "upd": "2026-11-11",
+   "upd": "2026-11-12",
    "until": "",
-   "note": "Thompson is Questionable for Friday's (Nov. 13) game against the Cavaliers.",
-   "through": "2026-11-15",
+   "note": "Thompson is Out for Friday's (Nov. 13) game against the Cavaliers.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20Thompson"
   },
   {
    "team": "MIA",
    "player": "Pelle Larsson",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Illness",
-   "upd": "2026-11-11",
+   "upd": "2026-11-12",
    "until": "",
-   "note": "Larsson is Questionable for Friday's (Nov. 13) game against the Cavaliers.",
-   "through": "2026-11-15",
+   "note": "Larsson is Out for Friday's (Nov. 13) game against the Cavaliers.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=P.%20Larsson"
   },
   {
@@ -23107,39 +23059,51 @@
   },
   {
    "team": "NOP",
-   "player": "Bryce McGowens",
+   "player": "Dejounte Murray",
    "src": "Covers",
-   "kind": "G",
-   "injury": "Elbow",
-   "upd": "2026-11-11",
+   "kind": "O",
+   "injury": "Ankle",
+   "upd": "2026-11-12",
    "until": "",
-   "note": "McGowens is Doubtful for Thursday's (Nov. 12) game against the Grizzlies.",
-   "through": "2026-11-15",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=B.%20McGowens"
+   "note": "Murray is OUT for Thursday's (Nov. 12) game against the Grizzlies.",
+   "through": "",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=D.%20Murray"
   },
   {
    "team": "NOP",
-   "player": "Bennedict Mathurin",
+   "player": "Bryce McGowens",
    "src": "Covers",
-   "kind": "G",
-   "injury": "Thumb",
-   "upd": "2026-11-11",
+   "kind": "O",
+   "injury": "Elbow",
+   "upd": "2026-11-12",
    "until": "",
-   "note": "Mathurin is Doubtful for Thursday's (Nov. 12) game against the Grizzlies.",
-   "through": "2026-11-15",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=B.%20Mathurin"
+   "note": "McGowens is OUT for Thursday's (Nov. 12) game against the Grizzlies.",
+   "through": "",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=B.%20McGowens"
   },
   {
    "team": "NOP",
    "player": "Trey Murphy III",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Knee",
-   "upd": "2026-11-11",
+   "upd": "2026-11-12",
    "until": "",
-   "note": "Murphy III is Doubtful for Thursday's (Nov. 12) game against the Grizzlies.",
-   "through": "2026-11-15",
+   "note": "Murphy III is OUT for Thursday's (Nov. 12) game against the Grizzlies.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Murphy%20III"
+  },
+  {
+   "team": "NOP",
+   "player": "Yves Missi",
+   "src": "Covers",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-11-12",
+   "until": "",
+   "note": "Missi is OUT for Thursday's (Nov. 12) game against the Grizzlies.",
+   "through": "",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=Y.%20Missi"
   },
   {
    "team": "NOP",
@@ -23152,18 +23116,6 @@
    "note": "Watford is OUT for Thursday's (Nov. 12) game against the Grizzlies.",
    "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Watford"
-  },
-  {
-   "team": "NOP",
-   "player": "Yves Missi",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-11-11",
-   "until": "",
-   "note": "Missi is Doubtful for Thursday's (Nov. 12) game against the Grizzlies.",
-   "through": "2026-11-15",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=Y.%20Missi"
   },
   {
    "team": "OKC",
@@ -23236,42 +23188,6 @@
    "note": "Williams has been diagnosed with a dislocated left ankle and fractured fibula, which will require surgery, Shams Charania of ESPN.",
    "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Williams"
-  },
-  {
-   "team": "ORL",
-   "player": "Jamal Cain",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Shoulder",
-   "upd": "2026-11-11",
-   "until": "",
-   "note": "Cain is Questionable for Friday's (Nov. 13) game against the Bucks.",
-   "through": "2026-11-15",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Cain"
-  },
-  {
-   "team": "ORL",
-   "player": "Tristan Da Silva",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Calf",
-   "upd": "2026-11-11",
-   "until": "",
-   "note": "da Silva is Questionable for Friday's (Nov. 13) game against the Bucks.",
-   "through": "2026-11-15",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20da%20Silva"
-  },
-  {
-   "team": "ORL",
-   "player": "Jalen Suggs",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-11-11",
-   "until": "",
-   "note": "Suggs is Questionable for Friday's (Nov. 13) game against the Bucks.",
-   "through": "2026-11-15",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Suggs"
   },
   {
    "team": "ORL",
@@ -23433,12 +23349,12 @@
    "team": "SAC",
    "player": "Precious Achiuwa",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Leg",
-   "upd": "2026-11-11",
+   "upd": "2026-11-12",
    "until": "",
-   "note": "Achiuwa is Questionable for Friday's (Nov. 13) game against the Trail Blazers.",
-   "through": "2026-11-15",
+   "note": "Achiuwa is OUT for Friday's (Nov. 13) game against the Trail Blazers.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=P.%20Achiuwa"
   },
   {
@@ -24846,7 +24762,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "ATL",
@@ -24861,7 +24777,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "ATL",
@@ -24876,7 +24792,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "ATL",
@@ -24891,7 +24807,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "ATL",
@@ -24907,7 +24823,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "ATL",
@@ -24923,7 +24839,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "CHI",
@@ -24938,7 +24854,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "CHI",
@@ -24953,7 +24869,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "CHI",
@@ -24968,7 +24884,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "CHI",
@@ -24984,7 +24900,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-atlanta-hawks-at-chicago-bulls.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "CLE",
@@ -24999,7 +24915,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-cleveland-cavaliers-at-miami-heat.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "CLE",
@@ -25014,7 +24930,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-cleveland-cavaliers-at-miami-heat.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "CLE",
@@ -25029,7 +24945,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-cleveland-cavaliers-at-miami-heat.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "GSW",
@@ -25044,7 +24960,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "GSW",
@@ -25059,7 +24975,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "GSW",
@@ -25074,7 +24990,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "GSW",
@@ -25089,7 +25005,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "GSW",
@@ -25104,7 +25020,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "GSW",
@@ -25120,7 +25036,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "HOU",
@@ -25135,7 +25051,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-utah-jazz-at-houston-rockets.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "HOU",
@@ -25150,7 +25066,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-utah-jazz-at-houston-rockets.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "HOU",
@@ -25165,7 +25081,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-utah-jazz-at-houston-rockets.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "IND",
@@ -25180,7 +25096,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-new-york-knicks-at-indiana-pacers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "IND",
@@ -25195,7 +25111,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-new-york-knicks-at-indiana-pacers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "IND",
@@ -25210,7 +25126,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-new-york-knicks-at-indiana-pacers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "IND",
@@ -25226,7 +25142,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-new-york-knicks-at-indiana-pacers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "IND",
@@ -25242,7 +25158,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-new-york-knicks-at-indiana-pacers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "LAC",
@@ -25257,7 +25173,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "LAC",
@@ -25272,7 +25188,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "LAC",
@@ -25287,7 +25203,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "LAC",
@@ -25302,7 +25218,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "MEM",
@@ -25317,7 +25233,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "MEM",
@@ -25332,7 +25248,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "MEM",
@@ -25347,7 +25263,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "MEM",
@@ -25362,7 +25278,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "MIA",
@@ -25377,7 +25293,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-cleveland-cavaliers-at-miami-heat.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "MIA",
@@ -25392,7 +25308,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-cleveland-cavaliers-at-miami-heat.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "MIA",
@@ -25408,7 +25324,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-cleveland-cavaliers-at-miami-heat.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "NOP",
@@ -25423,7 +25339,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "NOP",
@@ -25438,7 +25354,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "NOP",
@@ -25453,7 +25369,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "NOP",
@@ -25468,7 +25384,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "NOP",
@@ -25483,7 +25399,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "NOP",
@@ -25499,7 +25415,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-memphis-grizzlies-at-new-orleans-pelicans.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "OKC",
@@ -25514,7 +25430,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "OKC",
@@ -25529,7 +25445,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "OKC",
@@ -25544,7 +25460,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "OKC",
@@ -25559,7 +25475,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "OKC",
@@ -25574,7 +25490,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "OKC",
@@ -25590,7 +25506,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "OKC",
@@ -25606,7 +25522,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-oklahoma-city-thunder-at-la-clippers.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "ORL",
@@ -25621,7 +25537,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "ORL",
@@ -25636,7 +25552,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "ORL",
@@ -25651,7 +25567,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "ORL",
@@ -25666,7 +25582,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "ORL",
@@ -25682,7 +25598,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "ORL",
@@ -25698,7 +25614,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "ORL",
@@ -25714,7 +25630,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-milwaukee-bucks-at-orlando-magic.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "POR",
@@ -25729,7 +25645,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "POR",
@@ -25744,7 +25660,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "POR",
@@ -25759,7 +25675,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "POR",
@@ -25774,7 +25690,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "SAC",
@@ -25789,7 +25705,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "SAC",
@@ -25804,7 +25720,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "SAC",
@@ -25819,7 +25735,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-portland-trail-blazers-at-sacramento-kings.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "SAS",
@@ -25834,7 +25750,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "SAS",
@@ -25849,7 +25765,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "SAS",
@@ -25865,7 +25781,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "SAS",
@@ -25881,7 +25797,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-golden-state-warriors-at-san-antonio-spurs.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "UTA",
@@ -25896,7 +25812,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-utah-jazz-at-houston-rockets.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "UTA",
@@ -25911,7 +25827,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-utah-jazz-at-houston-rockets.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "UTA",
@@ -25926,7 +25842,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-13-utah-jazz-at-houston-rockets.html",
    "from": "2026-11-13",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "BKN",
@@ -25942,7 +25858,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-brooklyn-nets-at-memphis-grizzlies.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "BKN",
@@ -25958,7 +25874,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-brooklyn-nets-at-memphis-grizzlies.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "DAL",
@@ -25973,7 +25889,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-dallas-mavericks-at-cleveland-cavaliers.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "DAL",
@@ -25988,7 +25904,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-dallas-mavericks-at-cleveland-cavaliers.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "DAL",
@@ -26003,7 +25919,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-dallas-mavericks-at-cleveland-cavaliers.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "DAL",
@@ -26019,7 +25935,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-dallas-mavericks-at-cleveland-cavaliers.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "DAL",
@@ -26035,7 +25951,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-dallas-mavericks-at-cleveland-cavaliers.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "DAL",
@@ -26051,7 +25967,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-dallas-mavericks-at-cleveland-cavaliers.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "DEN",
@@ -26066,7 +25982,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-denver-nuggets-at-new-orleans-pelicans.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "DET",
@@ -26081,7 +25997,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-detroit-pistons-at-miami-heat.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "DET",
@@ -26096,7 +26012,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-detroit-pistons-at-miami-heat.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "MIN",
@@ -26111,7 +26027,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-chicago-bulls-at-minnesota-timberwolves.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "MIN",
@@ -26126,7 +26042,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-chicago-bulls-at-minnesota-timberwolves.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "MIN",
@@ -26142,7 +26058,7 @@
    "url": "https://presserwire.com/nba/games/2026-11-14-chicago-bulls-at-minnesota-timberwolves.html",
    "from": "2026-11-14",
    "override": true,
-   "at": "2026-11-14T00:20:20+00:00"
+   "at": "2026-11-14T00:36:45+00:00"
   },
   {
    "team": "IND",
@@ -27776,27 +27692,27 @@
    "at": "2026-11-13T23:19:00+00:00"
   }
  ],
- "generated_at": "2026-11-14T00:33:29+00:00",
+ "generated_at": "2026-11-14T00:36:46+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-14T00:33:16+00:00",
+   "at": "2026-11-14T00:36:32+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-14T00:33:29+00:00",
+   "at": "2026-11-14T00:36:43+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-14T00:33:29+00:00",
+   "at": "2026-11-14T00:36:44+00:00",
    "teams": 18,
    "injuries": 63
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-14T00:33:29+00:00",
+   "at": "2026-11-14T00:36:44+00:00",
    "current_players": 465,
    "last_players": 582
   },
@@ -27806,17 +27722,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-14T00:33:29+00:00",
+   "at": "2026-11-14T00:36:44+00:00",
    "count": 99
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-14T00:33:29+00:00",
-   "count": 98
+   "at": "2026-11-14T00:36:44+00:00",
+   "count": 91
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-14T00:33:29+00:00",
+   "at": "2026-11-14T00:36:44+00:00",
    "count": 99
   },
   "x": {
@@ -27825,39 +27741,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-14T00:33:29+00:00",
+   "at": "2026-11-14T00:36:44+00:00",
    "players": 178,
-   "read_at": "2026-11-14T00:20:19+00:00",
+   "read_at": "2026-11-14T00:36:44+00:00",
    "saved_for_history": 148
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-14T00:33:29+00:00",
+   "at": "2026-11-14T00:36:45+00:00",
    "players": 103,
-   "read_at": "2026-11-14T00:20:20+00:00"
+   "read_at": "2026-11-14T00:36:44+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-14T00:33:29+00:00",
+   "at": "2026-11-14T00:36:45+00:00",
    "players": 9,
-   "read_at": "2026-11-14T00:20:20+00:00"
+   "read_at": "2026-11-14T00:36:45+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-14T00:33:29+00:00",
+   "at": "2026-11-14T00:36:45+00:00",
    "games": 7,
-   "read_at": "2026-11-14T00:33:29+00:00"
+   "read_at": "2026-11-14T00:36:45+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-14T00:33:29+00:00",
+   "at": "2026-11-14T00:36:46+00:00",
    "injuries": 86,
    "notes": 161,
-   "read_at": "2026-11-14T00:20:20+00:00"
+   "read_at": "2026-11-14T00:36:45+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-14T00:33:29+00:00",
+   "at": "2026-11-14T00:36:46+00:00",
    "count": 61
   }
  }
