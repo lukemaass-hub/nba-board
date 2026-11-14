@@ -8649,7 +8649,7 @@
    "time": "19:00",
    "vs": "DEN",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8814,7 +8814,7 @@
     },
     {
      "pos": "C",
-     "name": "Jalen Smith"
+     "name": "Zach Collins"
     }
    ]
   },
@@ -15831,7 +15831,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-14T23:33:59+00:00",
+  "read_at": "2026-11-14T23:37:18+00:00",
   "date": "2026-11-14",
   "games": {
    "DEN@NOP": {
@@ -22073,33 +22073,9 @@
    "injury": "Personal",
    "upd": "2026-11-14",
    "until": "",
-   "note": "Porter delivered 22 points (7-14 FG, 4-10 3Pt, 4-4 FT), six rebounds, three assists and a steal across 28 minutes in Wednesday's 145-111 win over the Pelicans.",
+   "note": "Porter (personal) is listed as questionable for Saturday's game against Memphis, Erik Slater of ClutchPoints.com reports.",
    "through": "2026-11-16",
    "url": "https://www.espn.com/nba/injuries#:~:text=Michael%20Porter%20Jr."
-  },
-  {
-   "team": "BKN",
-   "player": "Mikel Brown Jr.",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "day-to-day",
-   "upd": "2026-11-14",
-   "until": "",
-   "note": "Brown (illness) has been upgraded to probable for Saturday's game at Memphis.",
-   "through": "2026-11-16",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Mikel%20Brown%20Jr."
-  },
-  {
-   "team": "BKN",
-   "player": "Nolan Traore",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Calf Soreness",
-   "upd": "2026-11-13",
-   "until": "",
-   "note": "Traore (calf) is listed as probable for Saturday's game against Memphis.",
-   "through": "2026-11-16",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Nolan%20Traore"
   },
   {
    "team": "CHA",
@@ -22165,12 +22141,12 @@
    "team": "CHI",
    "player": "Jalen Smith",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Left Finger Sprain",
    "upd": "2026-11-14",
-   "until": "",
+   "until": "2026-11-16",
    "note": "Smith (finger) is listed as questionable for Saturday's game at Minnesota.",
-   "through": "2026-11-16",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jalen%20Smith"
   },
   {
@@ -24690,19 +24666,6 @@
   },
   {
    "team": "CHI",
-   "player": "Jalen Smith",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-14",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-14",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Smith"
-  },
-  {
-   "team": "CHI",
    "player": "Nic Claxton",
    "src": "RotoWire",
    "kind": "G",
@@ -24729,19 +24692,6 @@
   },
   {
    "team": "CHI",
-   "player": "Jalen Smith",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-14",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-14",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Smith"
-  },
-  {
-   "team": "CHI",
    "player": "Tobe Awaka",
    "src": "RotoWire",
    "kind": "O",
@@ -24752,6 +24702,19 @@
    "through": "2026-11-14",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Tobe%20Awaka"
+  },
+  {
+   "team": "CHI",
+   "player": "Jalen Smith",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-14",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-11-14",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Smith"
   },
   {
    "team": "CHI",
@@ -25618,27 +25581,27 @@
    "at": "2026-11-13T23:19:00+00:00"
   }
  ],
- "generated_at": "2026-11-14T23:33:59+00:00",
+ "generated_at": "2026-11-14T23:37:18+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-14T23:33:44+00:00",
+   "at": "2026-11-14T23:37:04+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-14T23:33:58+00:00",
+   "at": "2026-11-14T23:37:17+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-14T23:33:58+00:00",
+   "at": "2026-11-14T23:37:17+00:00",
    "teams": 10,
-   "injuries": 37
+   "injuries": 36
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-14T23:33:58+00:00",
+   "at": "2026-11-14T23:37:17+00:00",
    "current_players": 467,
    "last_players": 582
   },
@@ -25648,18 +25611,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-14T23:33:59+00:00",
+   "at": "2026-11-14T23:37:18+00:00",
    "count": 108
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-14T23:33:59+00:00",
+   "at": "2026-11-14T23:37:18+00:00",
    "count": 91
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-14T23:33:59+00:00",
-   "count": 109
+   "at": "2026-11-14T23:37:18+00:00",
+   "count": 107
   },
   "x": {
    "ok": null,
@@ -25667,39 +25630,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-14T23:33:59+00:00",
+   "at": "2026-11-14T23:37:18+00:00",
    "players": 104,
    "read_at": "2026-11-14T23:30:39+00:00",
    "saved_for_history": 109
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-14T23:33:59+00:00",
+   "at": "2026-11-14T23:37:18+00:00",
    "players": 54,
    "read_at": "2026-11-14T23:30:40+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-14T23:33:59+00:00",
+   "at": "2026-11-14T23:37:18+00:00",
    "players": 9,
    "read_at": "2026-11-14T23:30:40+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-14T23:33:59+00:00",
+   "at": "2026-11-14T23:37:18+00:00",
    "games": 5,
-   "read_at": "2026-11-14T23:33:59+00:00"
+   "read_at": "2026-11-14T23:37:18+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-14T23:33:59+00:00",
+   "at": "2026-11-14T23:37:18+00:00",
    "injuries": 72,
    "notes": 162,
    "read_at": "2026-11-14T23:30:40+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-14T23:33:59+00:00",
+   "at": "2026-11-14T23:37:18+00:00",
    "count": 62
   }
  }
