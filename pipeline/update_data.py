@@ -1135,14 +1135,28 @@ def main():
             print(f"[{name}] FAILED: {e}", file=sys.stderr)
         return None
 
-    sch = run("schedule", fetch_schedule)
-    if sch:
-        data["schedule"] = sch[0]
-        status["schedule"]["count"] = sch[1]["count"]
-    dep = run("espn_depth", fetch_espn_depth)
-    if dep:
-        data["depth"].update(dep)
-        status["espn_depth"]["teams"] = len(dep)
+    # slow-changing sources are reused when they were read recently (Nov 15 2026: less load; the depth charts alone
+    # are 30 ESPN requests, and they were read on every 3-minute check before games)
+    def recent(name, minutes):
+        s = (prev.get("sources") or {}).get(name) or {}
+        try:
+            fresh = s.get("ok") and dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(s["at"]) < dt.timedelta(minutes=minutes)
+        except (KeyError, ValueError):
+            fresh = False
+        if fresh:
+            status[name] = {**s, "reused": True}
+        return fresh
+
+    if not (recent("schedule", 360) and prev.get("schedule")):
+        sch = run("schedule", fetch_schedule)
+        if sch:
+            data["schedule"] = sch[0]
+            status["schedule"]["count"] = sch[1]["count"]
+    if not (recent("espn_depth", 60) and prev.get("depth")):
+        dep = run("espn_depth", fetch_espn_depth)
+        if dep:
+            data["depth"].update(dep)
+            status["espn_depth"]["teams"] = len(dep)
     roto = run("rotowire", fetch_rotowire)
     roto_inj = None
     if roto:
