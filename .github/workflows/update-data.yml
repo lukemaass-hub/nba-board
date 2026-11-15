@@ -153,7 +153,7 @@ jobs:
           python pipeline/email_report.py --data data.json --weekly
 
       # Stays on until every game today has its group DM: sleeps until 30 minutes before the next tip, then refreshes
-      # the lineups every 3 minutes and sends as soon as they are confirmed, or at the 10-minute mark. The send log is
+      # the lineups every 3 minutes and sends as soon as they are confirmed, or at the 5-minute mark. The send log is
       # saved after every check, so nothing is ever sent twice even if the run is stopped. At most 5 hours; a later
       # slate start picks up anything left.
       - name: Keep watching until every game today has its group DM

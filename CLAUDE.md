@@ -224,3 +224,5 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   cell has class "verified" once announced). update_data.parse_bm_lineups + merge_bm_lineups: a team RotoWire hasn't
   confirmed but BM has verified gets BM's starters (names matched to ours by last name), confirmed=True,
   source "Basketball Monster". NBA's own stats/lineup files were not used (stats.nba.com blocks automated access).
+- Nov 15 2026 (user): the group-DM fallback moved from 10 to 5 minutes before tip (PROPS_FALLBACK_MIN = 5), so more
+  lineups are confirmed (RotoWire or Basketball Monster) before an unconfirmed one is sent. Still never after tip.
