@@ -235,3 +235,5 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   backtest-live hourly ("15 15-23,0-4"). The watch loop saves (commit + Pages build) at once after a send or a new
   expected-minutes row, otherwise at most every 15 min (was every 3 min); pulls use --autostash, and a data file left
   unparseable after a pull is restored.
+- Nov 15 2026: update_data reuses the schedule for 6 h and the ESPN depth charts (30 requests) for 60 min instead of
+  reading them on every check (status shows "reused": true). Lineups, injuries and lines are still read every check.
