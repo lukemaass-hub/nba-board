@@ -861,9 +861,9 @@ def post_slack(url, text, blocks):
         raise RuntimeError(f"Slack said: {body[:200]}")
 
 
-PROPS_FALLBACK_MIN = 10     # no confirmed lineups by this many minutes before tip: send anyway (user's rule, Oct 26 2026:
-                            # "send once lineups confirm, and at the very least 10 min before the game")
-DM_WAIT_MIN = 9             # a run that starts up to this long before a game's 10-minute mark waits for it and sends,
+PROPS_FALLBACK_MIN = 5      # no confirmed lineups by this many minutes before tip: send anyway (user's rule; 10 min from
+                            # Oct 26 2026, 5 min since Nov 15 2026: "switch the fallback to 5 mins before tip")
+DM_WAIT_MIN = 9             # a run that starts up to this long before a game's 5-minute mark waits for it and sends,
                             # so any run in the last ~20 minutes before tip delivers (group DMs never go after tip:
                             # the user's rule, Oct 26 2026)
 
@@ -958,7 +958,7 @@ def dm_traders(data, token, now, window, sent, stamp):
                 print(f"Slack DMs: {g['away']}@{g['home']} failed, will retry: {ex}")
                 continue
         if m != "off":
-            sent["dm " + key] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")   # the real send time (a run can wait minutes for the 10-minute mark)
+            sent["dm " + key] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")   # the real send time (a run can wait minutes for the 5-minute mark)
 
 
 WATCH_LEAD_MIN = 30     # the watching run checks every 3 minutes from this long before each tip; sleeps until then (user, Oct 27 2026)
@@ -1206,12 +1206,12 @@ def main():
     if bot and not args.out:
         try:
             dm_traders(data, bot, now, args.window, sent, stamp)
-            # a game whose 10-minute mark is a few minutes away: wait for it here and send, instead of hoping the
+            # a game whose 5-minute mark is a few minutes away: wait for it here and send, instead of hoping the
             # next GitHub run starts on time
             nxt = next_fallback(data, now, sent)
             if nxt and nxt - now <= dt.timedelta(minutes=DM_WAIT_MIN) and not args.agent_test:
                 import time
-                print(f"Slack DMs: waiting until {nxt:%I:%M %p} ET for the 10-minute mark")
+                print(f"Slack DMs: waiting until {nxt:%I:%M %p} ET for the 5-minute mark")
                 time.sleep(max(0, (nxt - dt.datetime.now(ET)).total_seconds()) + 5)
                 dm_traders(data, bot, dt.datetime.now(ET), args.window, sent, stamp)
         except Exception as ex:

@@ -409,7 +409,7 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
     monkeypatch.setattr(e, "all_games", lambda data: [game])
     monkeypatch.setattr(sa, "ALWAYS_INCLUDE", [])
     lineups = lambda c: {"lineups": {t: {"date": "2026-10-20", "confirmed": c} for t in ("PHI", "NYK")}}
-    early, late = dt.datetime(2026, 10, 20, 18, 20, tzinfo=e.ET), dt.datetime(2026, 10, 20, 18, 51, tzinfo=e.ET)
+    early, late = dt.datetime(2026, 10, 20, 18, 20, tzinfo=e.ET), dt.datetime(2026, 10, 20, 18, 56, tzinfo=e.ET)
 
     def run(mode, data, now):
         monkeypatch.setenv("SLACK_DM_MODE", mode); sentto.clear(); log = {}
@@ -421,7 +421,7 @@ def test_trader_schedule_parsed_and_dms_follow_mode(monkeypatch):
     # lineups confirmed: one group DM with the Cores and Props traders (Evan, Amol), just the report
     users, log = run("on", lineups(True), early)
     assert users == ["U09BNHCQD5Z,U0ACFA2QDFF"] and "dm 2026-10-20 PHI@NYK" in log and sentto[0][1] == []
-    # never confirmed: sent anyway 10 min before tip
+    # never confirmed: sent anyway 5 min before tip
     assert run("on", lineups(False), late)[0] == ["U09BNHCQD5Z,U0ACFA2QDFF"]
     # extra people for a date (the owner on Oct 26 2026) join the group
     monkeypatch.setattr(sa, "ALSO_INCLUDE", {"2026-10-20": ["U0B5EP4PV3M"]})
@@ -560,14 +560,14 @@ def test_unattended_catch_up_watchdog_and_alerts(monkeypatch):
     log = {}
     e.dm_traders({}, "x", at(18, 32), 25, log, "s")        # 28 min before tip, not confirmed: wait
     assert sends == []
-    e.dm_traders({}, "x", at(18, 50), 25, log, "s")        # 10 min before tip: the fallback sends
+    e.dm_traders({}, "x", at(18, 55), 25, log, "s")        # 5 min before tip: the fallback sends
     assert len(sends) == 1 and "dm 2026-10-20 PHI@NYK" in log
     sends.clear(); log = {}
     e.dm_traders({}, "x", at(19, 1), 25, log, "s")         # never after tip (user's rule): nothing sent, owner alerted
     assert sends == [] and len(mails) == 1
     mails.clear(); log = {}
-    assert e.next_fallback({}, at(18, 43), {}) == at(18, 50)   # a run at 18:43 waits for the 18:50 mark
-    assert e.next_fallback({}, at(18, 51), {}) is None
+    assert e.next_fallback({}, at(18, 48), {}) == at(18, 55)   # a run at 18:48 waits for the 18:55 mark
+    assert e.next_fallback({}, at(18, 56), {}) is None
     monkeypatch.setattr(sa, "fetch_schedule", lambda token, date: None)   # schedule never posted
     e.dm_traders({}, "x", at(19, 0), 25, log, "s")
     e.dm_traders({}, "x", at(19, 5), 25, log, "s")
@@ -626,7 +626,7 @@ def test_lone_trader_gets_the_owner_added(monkeypatch):
     monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
     monkeypatch.setattr(e, "all_games", lambda data: [game])
     monkeypatch.setenv("SLACK_DM_MODE", "on")
-    e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 19, 50, tzinfo=e.ET), 25, {}, "s")
+    e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 19, 55, tzinfo=e.ET), 25, {}, "s")
     assert sends == [["U08EZ944MHB", sa.OWNER]]
 
 
@@ -682,9 +682,9 @@ def test_failed_group_dm_is_not_marked_sent(monkeypatch):
     monkeypatch.setattr(e, "all_games", lambda data: [game])
     monkeypatch.setenv("SLACK_DM_MODE", "on")
     log = {}
-    e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 19, 50, tzinfo=e.ET), 25, log, "s")
+    e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 19, 55, tzinfo=e.ET), 25, log, "s")
     assert "dm 2026-10-27 SAC@SAS" not in log                      # failed: not marked, so it is tried again
-    e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 19, 53, tzinfo=e.ET), 25, log, "s")
+    e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 19, 57, tzinfo=e.ET), 25, log, "s")
     assert len(tries) == 2 and log["dm 2026-10-27 SAC@SAS"][:2] == "20"          # logged with the real send time
 
 
@@ -716,7 +716,7 @@ def test_owner_is_in_every_group(monkeypatch):
     monkeypatch.setattr(e, "build_slack", lambda data, g, date, test=False: ("t", []))
     monkeypatch.setattr(e, "all_games", lambda data: [game])
     monkeypatch.setenv("SLACK_DM_MODE", "on")
-    e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 22, 50, tzinfo=e.ET), 25, {}, "s")
+    e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 22, 55, tzinfo=e.ET), 25, {}, "s")
     assert sends == [["U09T3QTC6SK", "U09BNHCQD5Z", sa.OWNER]]
 
 
