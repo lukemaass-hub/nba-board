@@ -12,7 +12,7 @@ name: Pre-game timer
 # timer replaces the running one and works out the next start again.
 on:
   schedule:
-    - cron: "17 */2 * * *"    # backup restart every 2 hours (off the hour: GitHub delays :00 jobs the most)
+    - cron: "17 */6 * * *"    # backup restart every 6 hours (Nov 15 2026, was 2; off the hour: GitHub delays :00 jobs the most)
   workflow_dispatch:
 
 permissions:

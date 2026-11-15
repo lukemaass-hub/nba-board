@@ -5,8 +5,8 @@ Writes go=true/false to $GITHUB_OUTPUT. Standard library only, so it runs before
 import datetime as dt, json, os, sys
 from zoneinfo import ZoneInfo
 
-PREGAME_CRONS = {"0,30 15-23,0-3 * * *"}   # UTC, every 30 min in game hours
-SOON_MIN = 45       # proceed only if a game tips within this many minutes (user: start ~30 min before the games)
+PREGAME_CRONS = {"40 15-23,0-3 * * *", "0,30 15-23,0-3 * * *"}   # UTC, hourly in game hours (was every 30 min)
+SOON_MIN = 70       # proceed only if a game tips within this many minutes (hourly backup checks since Nov 15 2026, so every game gets one)
 
 
 def games(data):

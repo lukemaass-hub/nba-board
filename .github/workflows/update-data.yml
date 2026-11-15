@@ -8,7 +8,7 @@ on:
     # schedule by tip time, so a quick check runs every 30 minutes, 11 AM-11:30 PM Eastern (daylight time; 10 AM-10:30 PM
     # in winter). The "gate" job ends it in seconds unless a game tips within the next 45 minutes without its group DM;
     # then the run stays on (also for games right after), checks lineups every 3 minutes and sends.
-    - cron: "0,30 15-23,0-3 * * *"
+    - cron: "40 15-23,0-3 * * *"    # hourly backup since Nov 15 2026 (was every 30 min); the pre-game timer does the real work
     # Mondays 9 AM Eastern: weekly minutes-changes email. GitHub schedules in UTC, so both 13:00 (daylight time) and
     # 14:00 UTC (winter, from Nov 1) run; the email step only goes ahead on the one that is 9 AM Eastern that day.
     - cron: "0 13 * * 1"
@@ -181,18 +181,33 @@ jobs:
               sleep $((i * 5))
             done
           }
+          # save at once when a group DM was sent (email_log.json) or expected minutes were stored; otherwise at most every
+          # 15 minutes, so the board and the log stay fresh without a commit (and a Pages build) every 3 minutes (Nov 15 2026)
+          last=0
+          maybe_save() {
+            if ! git diff --quiet -- email_log.json pipeline/expected_history.csv 2>/dev/null || [ $(( $(date +%s) - last )) -ge 900 ]; then
+              save; last=$(date +%s)
+            fi
+          }
+          sync() {     # pick up sends logged by any other run; never leave a half-merged data file behind
+            git pull -q --rebase --autostash -X theirs origin "${GITHUB_REF_NAME}" || true
+            for f in data.json email_log.json; do
+              python -c "import json,sys; json.load(open(sys.argv[1]))" "$f" 2>/dev/null || { git checkout -- "$f" 2>/dev/null; git stash drop -q 2>/dev/null || true; }
+            done
+          }
           start=$(date +%s)
           while [ $(( $(date +%s) - start )) -lt 18000 ]; do
-            save; git pull -q --rebase -X theirs origin "${GITHUB_REF_NAME}" || true   # pick up sends logged by any other run
+            maybe_save; sync
             w=$(python pipeline/email_report.py --data data.json --next-wait || echo -1)
             [ "$w" -lt 0 ] && break
             echo "Next check in $((w / 60)) min"
             sleep "$w"
-            git pull -q --rebase -X theirs origin "${GITHUB_REF_NAME}" || true   # tree is clean here (saved above)
+            sync
             python pipeline/update_data.py --out data.json --pregame 90 > /dev/null || true
             python pipeline/email_report.py --data data.json --window 25 || true
-            save
+            maybe_save
           done
+          save
           python pipeline/email_report.py --data data.json --window 25 || true   # alert if a game tipped unsent
 
       - name: Tell the owner if something went wrong (email, at most once an hour)
