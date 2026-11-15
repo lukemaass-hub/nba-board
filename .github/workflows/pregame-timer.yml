@@ -6,9 +6,13 @@ name: Pre-game timer
 # then starts the real run (which checks lineups every 3 minutes and sends the Slack group DM). A job may run at most
 # 6 hours, so before that it starts a fresh copy of itself to keep waiting. The half-hourly checks in
 # update-data.yml stay as a backup in case this timer ever fails.
+# Nov 15 2026: the timer now runs all the time. After the last game it keeps sleeping (handing over every 5 h 45 min)
+# until 30 minutes before the next day's first game, so it no longer depends on GitHub's morning schedule, which ran
+# 6 hours late that day and missed a 1 PM game. The schedule below only restarts it if the chain ever breaks; a new
+# timer replaces the running one and works out the next start again.
 on:
   schedule:
-    - cron: "0 12 * * *"      # 8 AM Eastern (7 AM in winter); has hours of slack before the first game
+    - cron: "17 */2 * * *"    # backup restart every 2 hours (off the hour: GitHub delays :00 jobs the most)
   workflow_dispatch:
 
 permissions:
@@ -39,7 +43,9 @@ jobs:
           while true; do
             git pull -q origin main || true          # fresh email_log.json: skip games already sent
             read secs tip < <(python3 pipeline/gate.py --next-start data.json email_log.json "$after")
-            if [ "$secs" -lt 0 ]; then echo "No more games today."; break; fi
+            if [ "$secs" -lt 0 ]; then                 # nothing in the next 2 days: check again in a few hours
+              echo "No games in the next 2 days."; sleep 20000; gh workflow run pregame-timer.yml --ref main; break
+            fi
             left=$(( 20700 - ($(date +%s) - start) ))  # stay under GitHub's 6-hour limit (5 h 45 min)
             if [ "$secs" -gt "$left" ]; then
               echo "Next start is too far away for this job: handing over to a fresh timer."

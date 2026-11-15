@@ -33,16 +33,17 @@ LEAD_MIN = 30       # the timer starts the real run this long before each tip (u
 
 
 def next_start(data, now, sent=None, after=None):
-    """Seconds until the timer should start the real run: LEAD_MIN before the next game (ET, today) that has no group
-    DM yet and tips after `after` (a datetime, to move past a game already handled); 0 if that moment has passed but
-    the game hasn't tipped; -1 if there is nothing left today. Returns (seconds, tip)."""
+    """Seconds until the timer should start the real run: LEAD_MIN before the next game (the next 2 days; Nov 15 2026:
+    the timer no longer stops after the last game and waits for GitHub's morning schedule, which ran 6 hours late and
+    missed a 1 PM game) that has no group DM yet and tips after `after` (a datetime, to move past a game already
+    handled); 0 if that moment has passed but the game hasn't tipped; -1 if nothing is scheduled. Returns (seconds, tip)."""
     et = ZoneInfo("America/New_York")
-    today = now.astimezone(et).date().isoformat()
+    horizon = now + dt.timedelta(days=2)
     tips = []
     for g in data.get("schedule", []) + [{"date": l["date"], "time": l["time"], "away": l.get("vs"), "home": t}
                                           for t, l in (data.get("lineups") or {}).items() if l.get("home") and l.get("time")]:
         tip = dt.datetime.fromisoformat(f"{g['date']}T{g['time']}").replace(tzinfo=et)
-        if g["date"] == today and now < tip and (after is None or tip > after) \
+        if now < tip <= horizon and (after is None or tip > after) \
                 and f"dm {g['date']} {g['away']}@{g['home']}" not in (sent or {}):
             tips.append(tip)
     if not tips:

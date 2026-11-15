@@ -641,6 +641,9 @@ def test_timer_starts_30_minutes_before_each_game():
     assert gate.next_start(data, at(8, 0)) == (11 * 3600, at(19, 30))          # 8 AM: start at 7:00 PM
     assert gate.next_start(data, at(19, 5)) == (0, at(19, 30))                 # already inside 30 min: now
     assert gate.next_start(data, at(19, 5), after=at(19, 30)) == (2 * 3600 + 25 * 60, at(22, 0))   # then 9:30 PM
+    # after the last game it waits for the next day's first game instead of stopping (Nov 15 2026)
+    nxt = {"schedule": data["schedule"] + [{"date": "2026-10-28", "time": "13:00", "away": "IND", "home": "PHI"}]}
+    assert gate.next_start(nxt, at(23, 30)) == (13 * 3600, dt.datetime(2026, 10, 28, 13, 0, tzinfo=et))
     assert gate.next_start(data, at(8, 0), {"dm 2026-10-27 BKN@BOS": "x"})[1] == at(22, 0)
     assert gate.next_start(data, at(23, 0)) == (-1, None)
 
