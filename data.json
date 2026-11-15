@@ -8852,15 +8852,15 @@
    "time": "20:00",
    "vs": "MEM",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Nolan Traore"
+     "name": "Egor Demin"
     },
     {
      "pos": "SG",
-     "name": "Egor Demin"
+     "name": "Noah Clowney"
     },
     {
      "pos": "SF",
@@ -15718,15 +15718,9 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-15T00:40:16+00:00",
+  "read_at": "2026-11-15T00:43:36+00:00",
   "date": "2026-11-14",
   "games": {
-   "DAL@CLE": {
-    "fav": "DAL",
-    "spread": 8.5,
-    "details": "DAL -8.5",
-    "provider": "DraftKings"
-   },
    "DET@MIA": {
     "fav": "DET",
     "spread": 4.5,
@@ -18567,6 +18561,17 @@
  },
  "news": [
   {
+   "id": "nba539172",
+   "player": "Zach Edey",
+   "headline": "Out again Saturday",
+   "text": "Edey (ankle) is listed as out for Saturday's game against the Nets.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/zach-edey-6263",
+   "at": "2026-11-15T00:43:00+00:00",
+   "team": "MEM"
+  },
+  {
    "id": "nba539170",
    "player": "Jerami Grant",
    "headline": "Won't play Saturday",
@@ -19247,17 +19252,6 @@
    "url": "https://www.rotowire.com/basketball/player/keyonte-george-5899",
    "at": "2026-11-12T01:10:00+00:00",
    "team": "UTA"
-  },
-  {
-   "id": "nba538675",
-   "player": "Ryan Rollins",
-   "headline": "Headed to bench",
-   "text": "Rollins will come off the bench in Wednesday's game against the Lakers.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/ryan-rollins-5668",
-   "at": "2026-11-12T00:42:00+00:00",
-   "team": "MIL"
   }
  ],
  "matchup_alerts": [
@@ -25083,27 +25077,27 @@
    "team": "MEM",
    "player": "Zach Edey",
    "src": "RotoWire",
-   "kind": "G",
+   "kind": "O",
    "injury": "",
    "upd": "2026-11-14",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Out",
    "through": "2026-11-14",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Z.%20Edey"
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Zach%20Edey"
   },
   {
    "team": "MEM",
    "player": "Zach Edey",
    "src": "RotoWire",
-   "kind": "G",
+   "kind": "O",
    "injury": "",
    "upd": "2026-11-14",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Out",
    "through": "2026-11-14",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Z.%20Edey"
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Zach%20Edey"
   },
   {
    "team": "MEM",
@@ -25156,6 +25150,23 @@
    "through": "2026-11-14",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Q.%20Post"
+  },
+  {
+   "team": "MEM",
+   "player": "Zach Edey",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-14",
+   "until": "",
+   "note": "Edey (ankle) is listed as out for Saturday's game against the Nets.",
+   "through": "2026-11-14",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/zach-edey-6263",
+   "from": "2026-11-14",
+   "override": true,
+   "at": "2026-11-15T00:43:00+00:00",
+   "from_news": true
   },
   {
    "team": "MEM",
@@ -25896,27 +25907,27 @@
    "at": "2026-11-13T23:19:00+00:00"
   }
  ],
- "generated_at": "2026-11-15T00:40:16+00:00",
+ "generated_at": "2026-11-15T00:43:37+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-15T00:40:01+00:00",
+   "at": "2026-11-15T00:43:22+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-15T00:40:15+00:00",
+   "at": "2026-11-15T00:43:35+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-15T00:40:15+00:00",
+   "at": "2026-11-15T00:43:35+00:00",
    "teams": 10,
    "injuries": 33
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-15T00:40:15+00:00",
+   "at": "2026-11-15T00:43:35+00:00",
    "current_players": 467,
    "last_players": 582
   },
@@ -25926,17 +25937,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-15T00:40:15+00:00",
+   "at": "2026-11-15T00:43:36+00:00",
    "count": 105
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-15T00:40:16+00:00",
+   "at": "2026-11-15T00:43:36+00:00",
    "count": 100
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-15T00:40:16+00:00",
+   "at": "2026-11-15T00:43:36+00:00",
    "count": 105
   },
   "x": {
@@ -25945,39 +25956,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-15T00:40:16+00:00",
+   "at": "2026-11-15T00:43:36+00:00",
    "players": 96,
    "read_at": "2026-11-15T00:30:17+00:00",
    "saved_for_history": 64
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-15T00:40:16+00:00",
+   "at": "2026-11-15T00:43:36+00:00",
    "players": 52,
    "read_at": "2026-11-15T00:30:18+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-15T00:40:16+00:00",
+   "at": "2026-11-15T00:43:36+00:00",
    "players": 9,
    "read_at": "2026-11-15T00:30:18+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-15T00:40:16+00:00",
-   "games": 4,
-   "read_at": "2026-11-15T00:40:16+00:00"
+   "at": "2026-11-15T00:43:36+00:00",
+   "games": 3,
+   "read_at": "2026-11-15T00:43:36+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-15T00:40:16+00:00",
+   "at": "2026-11-15T00:43:36+00:00",
    "injuries": 85,
    "notes": 163,
    "read_at": "2026-11-15T00:30:19+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-15T00:40:16+00:00",
+   "at": "2026-11-15T00:43:36+00:00",
    "count": 63
   }
  }
