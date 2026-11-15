@@ -230,3 +230,8 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   only the bench player with the most minutes a game (avg_minutes). Replacements still show in Injuries.
 - Nov 15 2026 (user): back-to-back lines just say "1st/2nd game of a back-to-back" (no opponent or time), and in Slack
   each team's line sits right above that team's section instead of both at the top. Board text matches.
+- Lighter GitHub load (Nov 15 2026, user): update-data backup check hourly at :40 ("40 15-23,0-3 * * *", was every 30
+  min; gate SOON_MIN 70 so every game still gets one); pre-game timer backup restart every 6 h ("17 */6 * * *");
+  backtest-live hourly ("15 15-23,0-4"). The watch loop saves (commit + Pages build) at once after a send or a new
+  expected-minutes row, otherwise at most every 15 min (was every 3 min); pulls use --autostash, and a data file left
+  unparseable after a pull is restored.

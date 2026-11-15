@@ -5,8 +5,8 @@ name: Live test of the teammate-minutes model (2026-27)
 
 on:
   schedule:
-    # every 30 minutes, 11 AM to 12:45 AM Eastern: rank games that tip within 2 hours (picks lock at tip-off)
-    - cron: "15,45 15-23,0-4 * * *"
+    # hourly, 11 AM to 12:15 AM Eastern: rank games that tip within 2 hours (picks lock at tip-off; was every 30 min)
+    - cron: "15 15-23,0-4 * * *"
     # 7:40 AM Eastern: download last night's box scores and score the picks
     - cron: "40 11 * * *"
   workflow_dispatch: {}
