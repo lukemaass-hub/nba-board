@@ -228,3 +228,5 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   lineups are confirmed (RotoWire or Basketball Monster) before an unconfirmed one is sent. Still never after tip.
 - Nov 15 2026 (user): "just send the 6th man from the bench" -> the Slack report's bench line is now "6th man: Name (MPG)",
   only the bench player with the most minutes a game (avg_minutes). Replacements still show in Injuries.
+- Nov 15 2026 (user): back-to-back lines just say "1st/2nd game of a back-to-back" (no opponent or time), and in Slack
+  each team's line sits right above that team's section instead of both at the top. Board text matches.

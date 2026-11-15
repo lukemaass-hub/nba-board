@@ -389,13 +389,8 @@ def back_to_back(data, team, date):
 
 
 def b2b_text(team, which, g):
-    """'2nd game of a back-to-back' (no opponent: user, Nov 4 2026) / '1st game of a back-to-back: vs MIA tomorrow 7:30 PM'"""
-    if which == "2nd":
-        return "2nd game of a back-to-back"
-    where = "@" if g["away"] == team else "vs"
-    opp = g["home"] if g["away"] == team else g["away"]
-    when = "last night" if which == "2nd" else f"tomorrow {fmt_time(g['time'])} ET"
-    return f"{which} game of a back-to-back: {'played ' if which == '2nd' else ''}{where} {opp} {when}"
+    """'1st game of a back-to-back' / '2nd game of a back-to-back': no opponent or time (user, Nov 4 and Nov 15 2026)."""
+    return f"{which} game of a back-to-back"
 
 
 BLOWOUT_TABLE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "blowout_table.json")
@@ -751,9 +746,7 @@ def build_slack(data, game, date, test=False):
     g = game
     title = f"{'[TEST] ' if test else ''}{fmt_time(g['time'])} ET · {name(g['away'])} @ {name(g['home'])}"
     blocks = [{"type": "header", "text": {"type": "plain_text", "text": title[:150]}}]
-    for team, which, og in b2b_for(data, g):
-        blocks.append({"type": "section", "text": {"type": "mrkdwn", "text":
-                       f":repeat: *BACK-TO-BACK: {e(name(team))}* · {e(b2b_text(team, which, og))}"}})
+    b2b = b2b_for(data, g)      # each team's line sits just above that team (user, Nov 15 2026), not both at the top
     bo = blowout_for(data, g)
     if bo:
         fav, sp, _, prov, p = bo
@@ -771,6 +764,10 @@ def build_slack(data, game, date, test=False):
         alerts = matchup_alerts_for(data, team, opp, inj, starters)
         xt = expected_tags(data, team, date, skip={k for k, st in status.items() if st in ("out", "doubt")})
         logo_url = f"https://a.espncdn.com/i/teamlogos/nba/500/{ESPN_LOGO.get(team, team.lower())}.png"
+        for bt, which, og in b2b:
+            if bt == team:
+                blocks.append({"type": "section", "text": {"type": "mrkdwn", "text":
+                               f":repeat: *BACK-TO-BACK: {e(name(team))}* · {e(b2b_text(team, which, og))}"}})
         blocks.append({"type": "context", "elements": [
             {"type": "image", "image_url": logo_url, "alt_text": team},
             {"type": "mrkdwn", "text": f"*{e(name(team))}*"}]})
