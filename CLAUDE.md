@@ -212,3 +212,7 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   three. email_report.sportsline_tags uses the mix; when SportsLine is stale for a team only its SportsLine-sourced
   numbers are dropped. expected_history.csv has a "source" column. Other sites checked: DailyFantasyFuel (no minutes),
   lineups.com (403), Basketball Monster (login).
+- Nov 15 2026: a 1 PM ET game (IND@PHI) got no group DM: GitHub ran the 7 AM refresh 5.5 h late and the pre-game timer
+  ("0 12 * * *") 6 h late, and skipped the half-hourly backups 10 AM-12:30 PM. Fix: the timer now never stops.
+  gate.next_start looks 2 days ahead, so after the last game the timer keeps sleeping (handing over every 5 h 45 min)
+  until 30 min before the next day's first game; its cron is now only a backup restart every 2 hours ("17 */2 * * *").
