@@ -8823,7 +8823,7 @@
    "time": "17:00",
    "vs": "SAS",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17188,15 +17188,9 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-15T21:40:04+00:00",
+  "read_at": "2026-11-15T21:43:21+00:00",
   "date": "2026-11-15",
   "games": {
-   "CHA@LAC": {
-    "fav": "LAC",
-    "spread": 1.5,
-    "details": "LAC -1.5",
-    "provider": "DraftKings"
-   },
    "SAS@UTA": {
     "fav": "SAS",
     "spread": 14.5,
@@ -19953,6 +19947,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba539283",
+   "player": "Sam Merrill",
+   "headline": "Missing sixth straight game Monday",
+   "text": "Merrill (elbow) has been ruled out for Monday's game against the Bulls.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/sam-merrill-5254",
+   "at": "2026-11-15T21:39:00+00:00",
+   "team": "CLE"
+  },
   {
    "id": "nba539282",
    "player": "Nic Claxton",
@@ -26613,7 +26618,7 @@
    "injury": "",
    "upd": "2026-11-15",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Prob",
    "through": "2026-11-15",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Barnes"
@@ -26626,7 +26631,7 @@
    "injury": "",
    "upd": "2026-11-15",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Prob",
    "through": "2026-11-15",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Barnes"
@@ -26994,6 +26999,23 @@
    "through": "2026-11-15",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Raynaud"
+  },
+  {
+   "team": "CLE",
+   "player": "Sam Merrill",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-16",
+   "until": "",
+   "note": "Merrill (elbow) has been ruled out for Monday's game against the Bulls.",
+   "through": "2026-11-16",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/sam-merrill-5254",
+   "from": "2026-11-16",
+   "override": true,
+   "at": "2026-11-15T21:39:00+00:00",
+   "from_news": true
   },
   {
    "team": "DAL",
@@ -27853,27 +27875,27 @@
    "at": "2026-11-13T23:19:00+00:00"
   }
  ],
- "generated_at": "2026-11-15T21:40:04+00:00",
+ "generated_at": "2026-11-15T21:43:22+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-15T21:39:52+00:00",
+   "at": "2026-11-15T21:43:08+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-15T21:40:03+00:00",
+   "at": "2026-11-15T21:43:20+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-15T21:40:03+00:00",
+   "at": "2026-11-15T21:43:21+00:00",
    "teams": 18,
    "injuries": 62
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-15T21:40:03+00:00",
+   "at": "2026-11-15T21:43:21+00:00",
    "current_players": 469,
    "last_players": 582
   },
@@ -27883,17 +27905,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-15T21:40:04+00:00",
+   "at": "2026-11-15T21:43:21+00:00",
    "count": 105
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-15T21:40:04+00:00",
+   "at": "2026-11-15T21:43:21+00:00",
    "count": 108
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-15T21:40:04+00:00",
+   "at": "2026-11-15T21:43:21+00:00",
    "count": 106
   },
   "x": {
@@ -27902,40 +27924,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-15T21:40:04+00:00",
+   "at": "2026-11-15T21:43:21+00:00",
    "players": 161,
    "read_at": "2026-11-15T21:30:13+00:00",
    "saved_for_history": 132
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-15T21:40:04+00:00",
+   "at": "2026-11-15T21:43:21+00:00",
    "players": 101,
    "read_at": "2026-11-15T21:30:13+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-15T21:40:04+00:00",
+   "at": "2026-11-15T21:43:21+00:00",
    "players": 10,
    "read_at": "2026-11-15T21:30:14+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-15T21:40:04+00:00",
-   "games": 7,
-   "read_at": "2026-11-15T21:40:04+00:00"
+   "at": "2026-11-15T21:43:21+00:00",
+   "games": 6,
+   "read_at": "2026-11-15T21:43:21+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-15T21:40:04+00:00",
+   "at": "2026-11-15T21:43:21+00:00",
    "injuries": 77,
    "notes": 165,
    "read_at": "2026-11-15T21:30:14+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-15T21:40:04+00:00",
-   "count": 71
+   "at": "2026-11-15T21:43:22+00:00",
+   "count": 72
   }
  }
 }
