@@ -8678,7 +8678,7 @@
    "time": "19:30",
    "vs": "CLE",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8864,7 +8864,7 @@
     },
     {
      "pos": "SF",
-     "name": "Michael Porter"
+     "name": "Danny Wolf"
     },
     {
      "pos": "PF",
@@ -15745,15 +15745,9 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-15T00:10:16+00:00",
+  "read_at": "2026-11-15T00:13:35+00:00",
   "date": "2026-11-14",
   "games": {
-   "DEN@NOP": {
-    "fav": "DEN",
-    "spread": 12.5,
-    "details": "DEN -12.5",
-    "provider": "DraftKings"
-   },
    "DAL@CLE": {
     "fav": "DAL",
     "spread": 8.5,
@@ -15768,8 +15762,8 @@
    },
    "BKN@MEM": {
     "fav": "MEM",
-    "spread": 3.5,
-    "details": "MEM -3.5",
+    "spread": 4.5,
+    "details": "MEM -4.5",
     "provider": "DraftKings"
    },
    "CHI@MIN": {
@@ -18396,6 +18390,28 @@
  },
  "news": [
   {
+   "id": "nba539162",
+   "player": "Thomas Bryant",
+   "headline": "Starting Saturday",
+   "text": "Bryant will start Saturday's game against the Mavericks.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/thomas-bryant-4155",
+   "at": "2026-11-15T00:13:00+00:00",
+   "team": "CLE"
+  },
+  {
+   "id": "nba539161",
+   "player": "Mario Hezonja",
+   "headline": "Starting Saturday",
+   "text": "Hezonja is listed as the starting power forward for Saturday's game against the Mavericks.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/mario-hezonja-3578",
+   "at": "2026-11-15T00:10:00+00:00",
+   "team": "CLE"
+  },
+  {
    "id": "nba539158",
    "player": "Jaxson Hayes",
    "headline": "Ruled out for Sunday",
@@ -20856,9 +20872,9 @@
    "src": "Covers",
    "kind": "G",
    "injury": "Illness",
-   "upd": "2026-11-12",
+   "upd": "2026-11-13",
    "until": "",
-   "note": "Brown Jr. is Questionable for Saturday's (Nov. 14) game against the Grizzlies.",
+   "note": "Brown Jr. is Probable for Saturday's (Nov. 14) game against the Grizzlies.",
    "through": "2026-11-16",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=M.%20Brown%20Jr."
   },
@@ -20912,26 +20928,50 @@
   },
   {
    "team": "CHI",
-   "player": "Dailyn Swain",
+   "player": "Norman Powell",
    "src": "Covers",
    "kind": "G",
    "injury": "Back",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Swain did not play on Friday's (Nov. 13) game against the Hawks.",
+   "note": "Powell is Questionable for Saturday's (Nov. 14) game against the Timberwolves.",
    "through": "2026-11-16",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=D.%20Swain"
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=N.%20Powell"
+  },
+  {
+   "team": "CHI",
+   "player": "Nic Claxton",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Hamstring",
+   "upd": "2026-11-13",
+   "until": "",
+   "note": "Claxton is Questionable for Saturday's (Nov. 14) game against the Timberwolves.",
+   "through": "2026-11-16",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=N.%20Claxton"
+  },
+  {
+   "team": "CHI",
+   "player": "Jalen Smith",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Finger",
+   "upd": "2026-11-13",
+   "until": "",
+   "note": "Smith is Questionable for Saturday's (Nov. 14) game against the Timberwolves.",
+   "through": "2026-11-16",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Smith"
   },
   {
    "team": "CHI",
    "player": "Tobe Awaka",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Back",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Awaka did not play on Friday's (Nov. 13) game against the Hawks.",
-   "through": "2026-11-16",
+   "note": "Awaka is OUT for Saturday's (Nov. 14) game against the Timberwolves.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Awaka"
   },
   {
@@ -20948,26 +20988,74 @@
   },
   {
    "team": "CLE",
-   "player": "Evan Mobley",
+   "player": "James Harden",
    "src": "Covers",
    "kind": "G",
+   "injury": "Calf",
+   "upd": "2026-11-13",
+   "until": "",
+   "note": "Harden is Questionable for Saturday's (Nov. 14) game against the Mavericks.",
+   "through": "2026-11-16",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Harden"
+  },
+  {
+   "team": "CLE",
+   "player": "Jarrett Allen",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Knee",
+   "upd": "2026-11-13",
+   "until": "",
+   "note": "Allen is Questionable for Saturday's (Nov. 14) game against the Mavericks.",
+   "through": "2026-11-16",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Allen"
+  },
+  {
+   "team": "CLE",
+   "player": "Donovan Mitchell",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Knee",
+   "upd": "2026-11-13",
+   "until": "",
+   "note": "Mitchell is Questionable for Saturday's (Nov. 14) game against the Mavericks.",
+   "through": "2026-11-16",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=D.%20Mitchell"
+  },
+  {
+   "team": "CLE",
+   "player": "Peyton Watson",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Hamstring",
+   "upd": "2026-11-13",
+   "until": "",
+   "note": "Watson is Questionable for Saturday's (Nov. 14) game against the Mavericks.",
+   "through": "2026-11-16",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=P.%20Watson"
+  },
+  {
+   "team": "CLE",
+   "player": "Evan Mobley",
+   "src": "Covers",
+   "kind": "O",
    "injury": "Toe",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Mobley did not play on Friday's (Nov. 13) game against the Heat.",
-   "through": "2026-11-16",
+   "note": "Mobley is OUT for Saturday's (Nov. 14) game against the Mavericks.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=E.%20Mobley"
   },
   {
    "team": "CLE",
    "player": "Sam Merrill",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Elbow",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Merrill did not play on Friday's (Nov. 13) game against the Heat.",
-   "through": "2026-11-16",
+   "note": "Merrill is OUT for Saturday's (Nov. 14) game against the Mavericks.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=S.%20Merrill"
   },
   {
@@ -20988,9 +21076,9 @@
    "src": "Covers",
    "kind": "G",
    "injury": "Ankle",
-   "upd": "2026-11-12",
+   "upd": "2026-11-13",
    "until": "",
-   "note": "Christie is Questionable for Saturday's (Nov. 14) game against the Cavaliers.",
+   "note": "Christie is Doubtful for Saturday's (Nov. 14) game against the Cavaliers.",
    "through": "2026-11-16",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=M.%20Christie"
   },
@@ -21284,13 +21372,37 @@
   },
   {
    "team": "MEM",
+   "player": "Jerami Grant",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Head",
+   "upd": "2026-11-13",
+   "until": "",
+   "note": "Grant is Questionable for Saturday's (Nov. 14) game against the Nets.",
+   "through": "2026-11-16",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Grant"
+  },
+  {
+   "team": "MEM",
+   "player": "Ty Jerome",
+   "src": "Covers",
+   "kind": "O",
+   "injury": "Hip",
+   "upd": "2026-11-13",
+   "until": "",
+   "note": "Jerome is OUT for Saturday's (Nov. 14) game against the Nets.",
+   "through": "",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Jerome"
+  },
+  {
+   "team": "MEM",
    "player": "Zach Edey",
    "src": "Covers",
    "kind": "G",
    "injury": "Ankle",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Edey did not play on Friday's (Nov. 13) game against the Pelicans.",
+   "note": "Edey is Questionable for Saturday's (Nov. 14) game against the Nets.",
    "through": "2026-11-16",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=Z.%20Edey"
   },
@@ -21298,37 +21410,49 @@
    "team": "MEM",
    "player": "Quinten Post",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Concussion Protocol",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Post did not play on Friday's (Nov. 13) game against the Pelicans.",
-   "through": "2026-11-16",
+   "note": "Post is OUT for Saturday's (Nov. 14) game against the Nets.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=Q.%20Post"
   },
   {
    "team": "MEM",
    "player": "Richie Saunders",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Knee",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Saunders did not play on Friday's (Nov. 13) game against the Pelicans.",
-   "through": "2026-11-16",
+   "note": "Saunders is OUT for Saturday's (Nov. 14) game against the Nets.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=R.%20Saunders"
   },
   {
    "team": "MEM",
    "player": "Scotty Pippen Jr.",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Back",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Pippen Jr. did not play on Friday's (Nov. 13) game against the Pelicans.",
-   "through": "2026-11-16",
+   "note": "Pippen Jr. is OUT for Saturday's (Nov. 14) game against the Nets.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=S.%20Pippen%20Jr."
+  },
+  {
+   "team": "MIA",
+   "player": "Giannis Antetokounmpo",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Wrist",
+   "upd": "2026-11-13",
+   "until": "",
+   "note": "Antetokounmpo is Probable for Saturday's (Nov. 14) game against Detroit.",
+   "through": "2026-11-16",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=G.%20Antetokounmpo"
   },
   {
    "team": "MIA",
@@ -21338,7 +21462,7 @@
    "injury": "Ankle",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Thompson did not play on Friday's (Nov. 13) game against the Cavaliers.",
+   "note": "Thompson is Probable for Saturday's (Nov. 14) game against Detroit.",
    "through": "2026-11-16",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20Thompson"
   },
@@ -21350,7 +21474,7 @@
    "injury": "Illness",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Larsson did not play on Friday's (Nov. 13) game against the Cavaliers.",
+   "note": "Larsson is Doubtful for Saturday's (Nov. 14) game against Detroit.",
    "through": "2026-11-16",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=P.%20Larsson"
   },
@@ -21382,48 +21506,48 @@
    "team": "NOP",
    "player": "Dejounte Murray",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Murray did not play on Thursday's (Nov. 12) game against the Grizzlies.",
-   "through": "2026-11-16",
+   "note": "Murray is OUT for Saturday's (Nov. 14) game against Denver.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=D.%20Murray"
   },
   {
    "team": "NOP",
    "player": "Bryce McGowens",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Elbow",
    "upd": "2026-11-13",
    "until": "",
-   "note": "McGowens did not play on Thursday's (Nov. 12) game against the Grizzlies.",
-   "through": "2026-11-16",
+   "note": "McGowens is OUT for Saturday's (Nov. 14) game against Denver.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=B.%20McGowens"
   },
   {
    "team": "NOP",
    "player": "Trey Murphy III",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Knee",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Murphy III did not play on Thursday's (Nov. 12) game against the Grizzlies.",
-   "through": "2026-11-16",
+   "note": "Murphy III is OUT for Saturday's (Nov. 14) game against Denver.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Murphy%20III"
   },
   {
    "team": "NOP",
    "player": "Trendon Watford",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Watford did not play on Thursday's (Nov. 12) game against the Grizzlies.",
-   "through": "2026-11-16",
+   "note": "Watford is OUT for Saturday's (Nov. 14) game against Denver.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Watford"
   },
   {
@@ -21434,7 +21558,7 @@
    "injury": "Knee",
    "upd": "2026-11-13",
    "until": "",
-   "note": "Missi did not play on Thursday's (Nov. 12) game against the Grizzlies.",
+   "note": "Missi is Probable for Saturday's (Nov. 14) game against Denver.",
    "through": "2026-11-16",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=Y.%20Missi"
   },
@@ -24584,26 +24708,13 @@
    "team": "BKN",
    "player": "Michael Porter Jr.",
    "src": "RotoWire",
-   "kind": "G",
+   "kind": "O",
    "injury": "",
    "upd": "2026-11-14",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Out",
    "through": "2026-11-14",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Porter"
-  },
-  {
-   "team": "BKN",
-   "player": "Michael Porter Jr.",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-14",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-14",
-   "st": "q",
+   "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Porter"
   },
   {
@@ -24683,6 +24794,23 @@
    "through": "2026-11-14",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Q.%20Post"
+  },
+  {
+   "team": "CLE",
+   "player": "Thomas Bryant",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-14",
+   "until": "",
+   "note": "Bryant will start Saturday's game against the Mavericks.",
+   "through": "2026-11-14",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/thomas-bryant-4155",
+   "from": "2026-11-14",
+   "override": true,
+   "at": "2026-11-15T00:13:00+00:00",
+   "from_news": true
   },
   {
    "team": "UTA",
@@ -25389,27 +25517,27 @@
    "at": "2026-11-13T23:19:00+00:00"
   }
  ],
- "generated_at": "2026-11-15T00:10:16+00:00",
+ "generated_at": "2026-11-15T00:13:36+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-15T00:10:01+00:00",
+   "at": "2026-11-15T00:13:20+00:00",
    "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-15T00:10:15+00:00",
+   "at": "2026-11-15T00:13:34+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-15T00:10:15+00:00",
+   "at": "2026-11-15T00:13:35+00:00",
    "teams": 10,
-   "injuries": 34
+   "injuries": 33
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-15T00:10:15+00:00",
+   "at": "2026-11-15T00:13:35+00:00",
    "current_players": 467,
    "last_players": 582
   },
@@ -25419,17 +25547,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-15T00:10:16+00:00",
+   "at": "2026-11-15T00:13:35+00:00",
    "count": 105
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-15T00:10:16+00:00",
-   "count": 91
+   "at": "2026-11-15T00:13:35+00:00",
+   "count": 100
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-15T00:10:16+00:00",
+   "at": "2026-11-15T00:13:35+00:00",
    "count": 106
   },
   "x": {
@@ -25438,40 +25566,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-15T00:10:16+00:00",
+   "at": "2026-11-15T00:13:35+00:00",
    "players": 98,
    "read_at": "2026-11-15T00:00:15+00:00",
    "saved_for_history": 83
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-15T00:10:16+00:00",
+   "at": "2026-11-15T00:13:35+00:00",
    "players": 52,
    "read_at": "2026-11-15T00:00:15+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-15T00:10:16+00:00",
+   "at": "2026-11-15T00:13:35+00:00",
    "players": 9,
    "read_at": "2026-11-15T00:00:16+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-15T00:10:16+00:00",
-   "games": 5,
-   "read_at": "2026-11-15T00:10:16+00:00"
+   "at": "2026-11-15T00:13:35+00:00",
+   "games": 4,
+   "read_at": "2026-11-15T00:13:35+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-15T00:10:16+00:00",
+   "at": "2026-11-15T00:13:35+00:00",
    "injuries": 72,
    "notes": 162,
    "read_at": "2026-11-15T00:00:16+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-15T00:10:16+00:00",
-   "count": 61
+   "at": "2026-11-15T00:13:36+00:00",
+   "count": 63
   }
  }
 }
