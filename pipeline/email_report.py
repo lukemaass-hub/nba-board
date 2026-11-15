@@ -958,7 +958,7 @@ def dm_traders(data, token, now, window, sent, stamp):
                 print(f"Slack DMs: {g['away']}@{g['home']} failed, will retry: {ex}")
                 continue
         if m != "off":
-            sent["dm " + key] = stamp
+            sent["dm " + key] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")   # the real send time (a run can wait minutes for the 10-minute mark)
 
 
 WATCH_LEAD_MIN = 30     # the watching run checks every 3 minutes from this long before each tip; sleeps until then (user, Oct 27 2026)
