@@ -216,3 +216,11 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   ("0 12 * * *") 6 h late, and skipped the half-hourly backups 10 AM-12:30 PM. Fix: the timer now never stops.
   gate.next_start looks 2 days ahead, so after the last game the timer keeps sleeping (handing over every 5 h 45 min)
   until 30 min before the next day's first game; its cron is now only a backup restart every 2 hours ("17 */2 * * *").
+- Lineup check (Nov 15 2026, user: reports' starters didn't match): Nov 5-14, 93 of 98 teams had all 5 right; RotoWire
+  confirmed 89 of 90 right (BOS Nov 10 changed after confirmation); the misses were the 4 games sent at the 10-minute
+  mark with RotoWire's EXPECTED lineup (e.g. OKC@POR Nov 10 sent 10:50 PM, RotoWire confirmed McCain at 10:51).
+  email_log "dm" stamps now record the real send time (they showed the run's start, so fallback sends looked early).
+  Second lineup source: Basketball Monster (basketballmonster.com/nbalineups.aspx, robots.txt allows, free; a starter's
+  cell has class "verified" once announced). update_data.parse_bm_lineups + merge_bm_lineups: a team RotoWire hasn't
+  confirmed but BM has verified gets BM's starters (names matched to ours by last name), confirmed=True,
+  source "Basketball Monster". NBA's own stats/lineup files were not used (stats.nba.com blocks automated access).

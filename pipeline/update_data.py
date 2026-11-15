@@ -425,6 +425,62 @@ def mix_expected(data):
     return {"date": date, "read_at": max([s.get("read_at", "") for _, s in srcs] or [""]), "players": out}
 
 
+BM_LINEUPS_URL = "https://basketballmonster.com/nbalineups.aspx"
+
+
+def parse_bm_lineups(html):
+    """Basketball Monster's free starting lineups (robots.txt allows it): {team: {"starters": [{"pos", "name"}],
+    "verified": bool}} for today's games. A starter's cell has class "verified" once the team has announced it
+    (Nov 15 2026: a second source for confirmed lineups when RotoWire hasn't confirmed by the 10-minute mark)."""
+    out = {}
+    for tb in re.findall(r'<table class="datatable">(.*?)</table>', html, re.S):
+        head = re.search(r"<th colspan=\"3\"[^>]*>\s*([A-Z]{2,4})\s*@\s*([A-Z]{2,4})\s", tb)
+        if not head:
+            continue
+        teams = [team_code(head.group(1)), team_code(head.group(2))]
+        if not all(teams):
+            continue
+        rows = {t: [] for t in teams}
+        for pos, cells in re.findall(r'<td class="tdc">\s*<span[^>]*>(PG|SG|SF|PF|C)</span>\s*</td>(.*?)</tr>', tb, re.S):
+            for t, (cls, body) in zip(teams, re.findall(r'<td class="([^"]*)">(.*?)</td>', cells, re.S)):
+                name = re.search(r"<a [^>]*>([^<]+)</a>", body)
+                rows[t].append({"pos": pos, "name": clean(name.group(1)) if name else "", "verified": "verified" in cls})
+        for t in teams:
+            st = [r for r in rows[t] if r["name"]]
+            if len(st) == 5:
+                out[t] = {"starters": [{"pos": r["pos"], "name": r["name"]} for r in st],
+                          "verified": all(r["verified"] for r in st)}
+    return out
+
+
+def merge_bm_lineups(data, bm, today=None):
+    """A team RotoWire hasn't confirmed yet but Basketball Monster has verified: use Basketball Monster's starters and
+    count the lineup as confirmed (so the group DM can go out with it). Names are matched to our depth chart / RotoWire
+    spelling by last name ("Alexandre Sarr" -> "Alex Sarr"). Returns the teams it changed."""
+    today = (today or today_et()).isoformat()
+    lineups = data.setdefault("lineups", {})
+    used = []
+    for team, v in bm.items():
+        if not v["verified"]:
+            continue
+        lu = lineups.get(team) or {}
+        if lu.get("date") == today and lu.get("confirmed"):
+            continue
+        known = [s["name"] for s in lu.get("starters", [])] if lu.get("date") == today else []
+        for pos in (data.get("depth") or {}).get(team, {}).values():
+            if isinstance(pos, str):
+                known += [x.strip() for x in re.split(r"[/,]", pos) if x.strip()]
+
+        def ours(name):
+            exact = [k for k in known if norm_name(k) == norm_name(name)]
+            same_last = [k for k in known if norm_name(k.split()[-1]) == norm_name(name.split()[-1])]
+            return (exact or (same_last if len(set(same_last)) == 1 else []) or [name])[0]
+        lineups[team] = {**lu, "date": today, "confirmed": True, "source": "Basketball Monster",
+                         "starters": [{"pos": s["pos"], "name": ours(s["name"])} for s in v["starters"]]}
+        used.append(team)
+    return used
+
+
 def fetch_sportsline(prev):
     """-> {"read_at", "date" (ET), "players"}; reuses the last read if it is under SL_EVERY_MIN minutes old."""
     now = dt.datetime.now(dt.timezone.utc)
@@ -1092,6 +1148,10 @@ def main():
     if roto:
         data["lineups"], roto_inj = roto
         status["rotowire"]["teams"] = len(roto[0])
+    bm = run("bm_lineups", lambda: parse_bm_lineups(get(BM_LINEUPS_URL).text))
+    if bm:
+        status["bm_lineups"].update({"teams": len(bm), "verified": sum(v["verified"] for v in bm.values()),
+                                     "used": merge_bm_lineups(data, bm)})
     sm = run("season_minutes", lambda: fetch_season_minutes(prev.get("season_minutes") or {}))
     data["season_minutes"] = sm or prev.get("season_minutes") or {}
     # Dolly prematch expected minutes: disconnected Oct 26 2026 (user's choice), so nothing is loaded

@@ -793,3 +793,17 @@ def test_expected_minutes_mix(monkeypatch):
                                                               {"player": "Cade Cunningham", "team": "DET", "min": 34.0}]}}
     mix = {p["player"]: (p["min"], p["src"]) for p in u.mix_expected(data)["players"]}
     assert mix == {"Tyrese Maxey": (36.0, "FantasyPros"), "Kelly Oubre": (28.0, "RotoWire"), "Cade Cunningham": (34.0, "SportsLine")}
+
+
+def test_basketball_monster_lineups_fill_in_when_rotowire_has_not_confirmed():
+    import update_data as u
+    bm = u.parse_bm_lineups(open(os.path.join(os.path.dirname(__file__), "fixtures", "bm_lineups.html"), errors="ignore").read())
+    assert bm["HOU"]["verified"] is False and len(bm["HOU"]["starters"]) == 5
+    verified = [t for t, v in bm.items() if v["verified"]]
+    assert len(verified) == 2
+    t = verified[0]
+    data = {"lineups": {t: {"date": "2026-11-15", "confirmed": False, "starters": [{"pos": "PG", "name": "Someone Else"}]},
+                        "HOU": {"date": "2026-11-15", "confirmed": False, "starters": []}}, "depth": {}}
+    assert u.merge_bm_lineups(data, bm, dt.date(2026, 11, 15)) == verified
+    assert data["lineups"][t]["confirmed"] and data["lineups"][t]["source"] == "Basketball Monster"
+    assert data["lineups"]["HOU"]["confirmed"] is False                   # projected only: left alone
