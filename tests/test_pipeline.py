@@ -685,7 +685,7 @@ def test_failed_group_dm_is_not_marked_sent(monkeypatch):
     e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 19, 50, tzinfo=e.ET), 25, log, "s")
     assert "dm 2026-10-27 SAC@SAS" not in log                      # failed: not marked, so it is tried again
     e.dm_traders({}, "x", dt.datetime(2026, 10, 27, 19, 53, tzinfo=e.ET), 25, log, "s")
-    assert len(tries) == 2 and log["dm 2026-10-27 SAC@SAS"] == "s"
+    assert len(tries) == 2 and log["dm 2026-10-27 SAC@SAS"][:2] == "20"          # logged with the real send time
 
 
 def test_accented_names_match_plain_ones():
