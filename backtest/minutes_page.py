@@ -111,7 +111,8 @@ def season_changes(days=7):
     before that, 4+ minutes apart. 2+ games in the last week and 3+ before it. Same rules as the rest of the page: a
     coach's DNP is 0, any other DNP (injury, rest) is left out, and 0s before his first real game are dropped."""
     import datetime as dt
-    m, team = defaultdict(dict), {}
+    m, team, meta = defaultdict(dict), {}, {}
+    exp = expected_by_game()
     for r in csv.DictReader(open(os.path.join(HERE, "data", "box_2026-27.csv"), newline="")):
         k = r["player_id"]
         if int(r["played"]):
@@ -121,6 +122,7 @@ def season_changes(days=7):
         else:
             continue
         team[k] = (MAP.get(r["team"], r["team"]), r["player"])
+        meta[(k, r["date"])] = ("@" if r["home"] == "0" else "vs") + " " + MAP.get(r["opponent"], r["opponent"]), int(r["starter"])
     if not m:
         return {"from": "", "to": "", "rows": []}
     last_day = max(d for v in m.values() for d in v)
@@ -136,8 +138,10 @@ def season_changes(days=7):
         if len(week) >= 2 and len(before) >= 3:
             a, b = st.mean(week), st.mean(before)
             if abs(a - b) >= SHOW_CHANGE:
+                log = [[d[5:], meta[(k, d)][0], round(v), meta[(k, d)][1], int(d >= start),
+                        exp.get((d, team[k][0], norm_name(team[k][1])))] for d, v in sorted(g.items(), reverse=True)]
                 out.append({"team": team[k][0], "player": team[k][1], "now": round(a, 1), "gp": len(week),
-                            "last": round(b, 1), "lgp": len(before), "d": round(a - b, 1)})
+                            "last": round(b, 1), "lgp": len(before), "d": round(a - b, 1), "log": log})
     return {"from": start, "to": last_day, "rows": sorted(out, key=lambda x: -abs(x["d"]))}
 
 
@@ -164,7 +168,7 @@ tr.d>td{background:var(--sub);font-size:12.5px;text-align:left;line-height:1.7;p
 #bmore{margin:10px 0;font-size:13.5px} .empty{padding:22px 10px!important;color:var(--mut)}
 .chg{font-weight:700;margin-left:6px} .sub{width:auto;margin:2px 0 8px} .sub th,.sub td{padding:4px 12px;cursor:default;background:none}
 details summary{cursor:pointer;color:var(--accent);margin:4px 0} .rank{display:flex;gap:6px;align-items:center;margin-left:auto}
-.sortbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)} footer{margin:26px 0 10px;font-size:12.5px;color:var(--mut);max-width:900px}
+.sortbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)} tr.wk td{font-weight:600} footer{margin:26px 0 10px;font-size:12.5px;color:var(--mut);max-width:900px}
 """
 
 MIN_GAMES = 2      # every number on the page needs at least this many games behind it (user, Nov 16 2026)
@@ -263,8 +267,12 @@ function cdraw(){
  const t=$("cteam").value;
  document.querySelectorAll(".cbtn").forEach(b=>b.classList.toggle("on",b.dataset.k===cdir));
  const rs=CH.filter(x=>(!t||x.team===t)&&(cdir==="all"||(cdir==="up"?x.d>0:x.d<0)));
- $("ctb").innerHTML=rs.map(x=>`<tr><td class="l"><b>${esc(x.player)}</b> <span class="mut">${x.team}</span></td><td>${f(x.last)} <span class="mut">(${x.lgp} g)</span></td>
-  <td>${f(x.now)} <span class="mut">(${x.gp} g)</span></td><td class="big ${cl(x.d)}">${sg(x.d)}</td></tr>`).join("") || `<tr><td colspan="4" class="l empty">None.</td></tr>`;
+ $("ctb").innerHTML=rs.map((x,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(x.player)}</b> <span class="mut">${x.team}</span></td><td>${f(x.last)} <span class="mut">(${x.lgp} g)</span></td>
+  <td>${f(x.now)} <span class="mut">(${x.gp} g)</span></td><td class="big ${cl(x.d)}">${sg(x.d)}</td></tr>
+  <tr class="d" id="c${i}" hidden><td colspan="4"><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th><th class="l"></th></tr>
+  ${x.log.map(g=>`<tr${g[4]?' class="wk"':''}><td class="l">${g[0]}</td><td class="l">${g[1]}</td><td>${g[2]}</td><td>${g[5]??"–"}</td>
+   <td class="l mut">${g[3]?"started":g[2]===0?"DNP (coach)":"bench"}${g[4]?" · last week":""}</td></tr>`).join("")}</table></td></tr>`).join("") || `<tr><td colspan="4" class="l empty">None.</td></tr>`;
+ document.querySelectorAll("#ctb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("c"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
 }
 document.querySelectorAll(".cbtn").forEach(b=>b.onclick=()=>{cdir=b.dataset.k; cdraw();}); $("cteam").onchange=cdraw;
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));
@@ -315,7 +323,8 @@ Every number uses at least {MIN_GAMES} games. Games through {through}.</p>
 </div>
 <div id="view4" hidden>
 <p class="lead">Minutes a game in the last week ({CH["from"][5:]} to {CH["to"][5:]}) vs the rest of this season before it,
-{SHOW_CHANGE}+ minutes apart (2+ games this week, 3+ before). A coach's DNP counts as 0; games missed injured don't count.</p>
+{SHOW_CHANGE}+ minutes apart (2+ games this week, 3+ before). A coach's DNP counts as 0; games missed injured don't count.
+Click a player for his game log (last week in bold).</p>
 <div class="bar"><select id="cteam"></select><span class="rank">
 <button class="cbtn sortbtn on" data-k="all">All</button><button class="cbtn sortbtn" data-k="up">More minutes</button>
 <button class="cbtn sortbtn" data-k="down">Fewer minutes</button></span></div>
