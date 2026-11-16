@@ -237,3 +237,6 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   unparseable after a pull is restored.
 - Nov 15 2026: update_data reuses the schedule for 6 h and the ESPN depth charts (30 requests) for 60 min instead of
   reading them on every check (status shows "reused": true). Lineups, injuries and lines are still read every check.
+- backtest/minutes_page.py (Nov 16 2026, user asked to rebuild the page): `python backtest/minutes_page.py OUT.html`
+  builds the "Minutes when a starter or key bench player is out" page (tabs "By team" and "Biggest differences") from
+  backtest/data/box_<season>.csv, data.json depth charts and pipeline/expected_history.csv. Not part of the bot.
