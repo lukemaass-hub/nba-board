@@ -9026,7 +9026,7 @@
    "time": "20:00",
    "vs": "MIL",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9055,7 +9055,7 @@
    "time": "20:00",
    "vs": "ATL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9067,11 +9067,11 @@
     },
     {
      "pos": "SF",
-     "name": "Jaime Jaquez"
+     "name": "Kyle Kuzma"
     },
     {
      "pos": "PF",
-     "name": "Kyle Kuzma"
+     "name": "Jericho Sims"
     },
     {
      "pos": "C",
@@ -14401,7 +14401,7 @@
     "OKC"
    ]
   },
-  "fetched_at": "2026-11-15T22:33:36+00:00"
+  "fetched_at": "2026-11-16T00:36:11+00:00"
  },
  "expected_minutes": {},
  "sportsline": {
@@ -16526,7 +16526,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-16T00:33:08+00:00",
+  "read_at": "2026-11-16T00:36:12+00:00",
   "date": "2026-11-15",
   "games": {
    "ATL@MIL": {
@@ -20732,17 +20732,6 @@
    "url": "https://www.rotowire.com/basketball/player/ajay-mitchell-6289",
    "at": "2026-11-13T01:03:00+00:00",
    "team": "OKC"
-  },
-  {
-   "id": "nba538845",
-   "player": "Joel Embiid",
-   "headline": "Cleared to return",
-   "text": "Embiid (knee) returned to Thursday's game against Toronto with 5:26 remaining in the first quarter, Ky Carlin of USA Today reports.",
-   "reporter": "Ky Carlin",
-   "outlet": "USA Today",
-   "url": "https://www.rotowire.com/basketball/player/joel-embiid-3572",
-   "at": "2026-11-13T00:34:00+00:00",
-   "team": "PHI"
   }
  ],
  "matchup_alerts": [
@@ -24618,13 +24607,25 @@
   },
   {
    "team": "SAC",
+   "player": "Precious Achiuwa",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Ankle Soreness",
+   "upd": "2026-11-16",
+   "until": "2026-11-18",
+   "note": "Achiuwa (ankle) has been ruled out for Sunday's game against the Thunder, Brenden Nunes of KHTK Sactown Sports 1140 reports.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Precious%20Achiuwa"
+  },
+  {
+   "team": "SAC",
    "player": "De'Andre Hunter",
    "src": "ESPN",
    "kind": "G",
    "injury": "Left Hip Soreness",
    "upd": "2026-11-16",
    "until": "",
-   "note": "Hunter supplied 24 points (7-13 FG, 2-5 3Pt, 8-9 FT), five rebounds, two assists and two steals in 42 minutes during Friday's 120-107 loss to Portland.",
+   "note": "Hunter is questionable for Sunday's game against the Thunder due to left hip soreness.",
    "through": "2026-11-17",
    "url": "https://www.espn.com/nba/injuries#:~:text=De%27Andre%20Hunter"
   },
@@ -24639,18 +24640,6 @@
    "note": "Raynaud (knee) has been ruled out for Sunday's game against the Thunder.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Maxime%20Raynaud"
-  },
-  {
-   "team": "SAC",
-   "player": "Precious Achiuwa",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Left Ankle Soreness",
-   "upd": "2026-11-15",
-   "until": "2026-11-18",
-   "note": "Achiuwa (ankle) is questionable for Sunday's game against the Thunder.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Precious%20Achiuwa"
   },
   {
    "team": "SAC",
@@ -28319,7 +28308,7 @@
    "at": "2026-11-13T23:19:00+00:00"
   }
  ],
- "generated_at": "2026-11-16T00:33:08+00:00",
+ "generated_at": "2026-11-16T00:36:13+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -28335,20 +28324,20 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-16T00:33:06+00:00",
+   "at": "2026-11-16T00:36:11+00:00",
    "teams": 18,
    "injuries": 60
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-16T00:33:07+00:00",
+   "at": "2026-11-16T00:36:11+00:00",
    "teams": 18,
-   "verified": 14,
+   "verified": 16,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-16T00:33:07+00:00",
+   "at": "2026-11-16T00:36:12+00:00",
    "current_players": 469,
    "last_players": 582
   },
@@ -28358,17 +28347,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-16T00:33:07+00:00",
+   "at": "2026-11-16T00:36:12+00:00",
    "count": 100
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-16T00:33:08+00:00",
+   "at": "2026-11-16T00:36:12+00:00",
    "count": 102
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-16T00:33:08+00:00",
+   "at": "2026-11-16T00:36:12+00:00",
    "count": 103
   },
   "x": {
@@ -28377,40 +28366,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-16T00:33:08+00:00",
+   "at": "2026-11-16T00:36:12+00:00",
    "players": 95,
    "read_at": "2026-11-16T00:30:01+00:00",
    "saved_for_history": 42
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-16T00:33:08+00:00",
+   "at": "2026-11-16T00:36:12+00:00",
    "players": 101,
    "read_at": "2026-11-16T00:30:02+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-16T00:33:08+00:00",
+   "at": "2026-11-16T00:36:12+00:00",
    "players": 10,
    "read_at": "2026-11-16T00:30:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-16T00:33:08+00:00",
+   "at": "2026-11-16T00:36:12+00:00",
    "games": 2,
-   "read_at": "2026-11-16T00:33:08+00:00"
+   "read_at": "2026-11-16T00:36:12+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-16T00:33:08+00:00",
+   "at": "2026-11-16T00:36:12+00:00",
    "injuries": 112,
    "notes": 164,
    "read_at": "2026-11-16T00:30:03+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-16T00:33:08+00:00",
-   "count": 89
+   "at": "2026-11-16T00:36:13+00:00",
+   "count": 88
   }
  }
 }
