@@ -249,3 +249,4 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   left out (IND Nov 2); differences under 4 minutes show "no change".
   Nov 16 2026 (user): "Minutes changes" now compares the last 7 days with this season before them (4+ apart; 2+ games
   this week, 3+ before), not last season. The weekly email itself still compares with last season.
+  Each row opens a game log (date, opponent, minutes, expected, started/bench/coach DNP; last week in bold).
