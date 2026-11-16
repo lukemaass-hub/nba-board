@@ -253,3 +253,4 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   Nov 16 2026 (user): each row has a "Why" (Teammate injuries / Teammates back / Back from injury / Rotation change, with
   details: who was out, starting lineup or bench, coach DNPs). left_injured(): a game a player left hurt (under half his
   average of 3+ earlier games, then missed the next team game; Curry Nov 11, 6 min) counts nowhere on the page.
+  The "Why" shows only after clicking a player (user, Nov 16 2026), above his game log.
