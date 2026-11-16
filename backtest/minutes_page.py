@@ -233,7 +233,7 @@ tr.d>td{background:var(--sub);font-size:12.5px;text-align:left;line-height:1.7;p
 #bmore{margin:10px 0;font-size:13.5px} .empty{padding:22px 10px!important;color:var(--mut)}
 .chg{font-weight:700;margin-left:6px} .sub{width:auto;margin:2px 0 8px} .sub th,.sub td{padding:4px 12px;cursor:default;background:none}
 details summary{cursor:pointer;color:var(--accent);margin:4px 0} .rank{display:flex;gap:6px;align-items:center;margin-left:auto}
-.sortbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)} tr.wk td{font-weight:600} td:not(.l),th:not(.l){white-space:nowrap} footer{margin:26px 0 10px;font-size:12.5px;color:var(--mut);max-width:900px}
+.sortbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)} tr.wk td{font-weight:600} .why{margin:2px 0 8px;font-size:13.5px} td:not(.l),th:not(.l){white-space:nowrap} footer{margin:26px 0 10px;font-size:12.5px;color:var(--mut);max-width:900px}
 """
 
 MIN_GAMES = 2      # every number on the page needs at least this many games behind it (user, Nov 16 2026)
@@ -334,10 +334,10 @@ function cdraw(){
  const rs=CH.filter(x=>(!t||x.team===t)&&(cdir==="all"||(cdir==="up"?x.d>0:x.d<0)));
  $("ctb").innerHTML=rs.map((x,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(x.player)}</b> <span class="mut">${x.team}</span></td><td>${f(x.last)} <span class="mut">(${x.lgp} g)</span></td>
   <td>${f(x.now)} <span class="mut">(${x.gp} g)</span></td><td class="big ${cl(x.d)}">${sg(x.d)}</td>
-  <td class="l"><b>${esc(x.kind)}</b><br><span class="mut">${esc(x.why)}</span></td></tr>
-  <tr class="d" id="c${i}" hidden><td colspan="5"><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th><th class="l"></th></tr>
+</tr>
+  <tr class="d" id="c${i}" hidden><td colspan="4"><div class="why"><b>Why:</b> ${esc(x.kind)} · ${esc(x.why)}</div><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th><th class="l"></th></tr>
   ${x.log.map(g=>`<tr${g[4]?' class="wk"':''}><td class="l">${g[0]}</td><td class="l">${g[1]}</td><td>${g[2]}</td><td>${g[5]??"–"}</td>
-   <td class="l mut">${g[6]?"left hurt (not counted)":g[3]?"started":g[2]===0?"DNP (coach)":"bench"}${g[4]?" · last week":""}</td></tr>`).join("")}</table></td></tr>`).join("") || `<tr><td colspan="5" class="l empty">None.</td></tr>`;
+   <td class="l mut">${g[6]?"left hurt (not counted)":g[3]?"started":g[2]===0?"DNP (coach)":"bench"}${g[4]?" · last week":""}</td></tr>`).join("")}</table></td></tr>`).join("") || `<tr><td colspan="4" class="l empty">None.</td></tr>`;
  document.querySelectorAll("#ctb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("c"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
 }
 document.querySelectorAll(".cbtn").forEach(b=>b.onclick=()=>{cdir=b.dataset.k; cdraw();}); $("cteam").onchange=cdraw;
@@ -390,12 +390,12 @@ Every number uses at least {MIN_GAMES} games. Games through {through}.</p>
 <div id="view4" hidden>
 <p class="lead">Minutes a game in the last week ({CH["from"][5:]} to {CH["to"][5:]}) vs the rest of this season before it,
 {SHOW_CHANGE}+ minutes apart (2+ games this week, 3+ before). A coach's DNP counts as 0; games missed injured don't count.
-Games he left hurt don't count. Click a player for his game log (last week in bold).</p>
+Games he left hurt don't count. Click a player for why it changed and his game log (last week in bold).</p>
 <div class="bar"><select id="cteam"></select><span class="rank">
 <button class="cbtn sortbtn on" data-k="all">All</button><button class="cbtn sortbtn" data-k="up">More minutes</button>
 <button class="cbtn sortbtn" data-k="down">Fewer minutes</button></span></div>
 <div class="wrap"><table><thead><tr><th class="l">Player</th><th>Season before this week<small>min a game</small></th><th>Last week<small>min a game</small></th>
-<th>Change</th><th class="l">Why</th></tr></thead><tbody id="ctb"></tbody></table></div>
+<th>Change</th></tr></thead><tbody id="ctb"></tbody></table></div>
 </div>
 <footer>Minutes played: ESPN box scores (a coach's-decision DNP counts as 0). Starters: on this season's depth chart or started at
 least half their games. Expected minutes (2026-27, from Oct 27): what the trader bot's report showed (FantasyPros top 10, else RotoWire
