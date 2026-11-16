@@ -250,3 +250,6 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   Nov 16 2026 (user): "Minutes changes" now compares the last 7 days with this season before them (4+ apart; 2+ games
   this week, 3+ before), not last season. The weekly email itself still compares with last season.
   Each row opens a game log (date, opponent, minutes, expected, started/bench/coach DNP; last week in bold).
+  Nov 16 2026 (user): each row has a "Why" (Teammate injuries / Teammates back / Back from injury / Rotation change, with
+  details: who was out, starting lineup or bench, coach DNPs). left_injured(): a game a player left hurt (under half his
+  average of 3+ earlier games, then missed the next team game; Curry Nov 11, 6 min) counts nowhere on the page.
