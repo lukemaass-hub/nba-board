@@ -106,25 +106,39 @@ def build_data():
     return out
 
 
-def season_changes():
-    """This season's MPG vs last season's for players with 5+ games now and 10+ then, 5+ minutes apart (the weekly
-    minutes-changes email's rule)."""
-    def mpg(season):
-        m, team = defaultdict(list), {}
-        for r in csv.DictReader(open(os.path.join(HERE, "data", f"box_{season}.csv"), newline="")):
-            if int(r["played"]):
-                m[r["player_id"]].append(float(r["minutes"])); team[r["player_id"]] = (MAP.get(r["team"], r["team"]), r["player"])
-        return m, team
-    cur, cteam = mpg("2026-27")
-    last, _ = mpg("2025-26")
+def season_changes(days=7):
+    """This season only (user, Nov 16 2026): each player's minutes a game over the last `days` days vs his average
+    before that, 4+ minutes apart. 2+ games in the last week and 3+ before it. Same rules as the rest of the page: a
+    coach's DNP is 0, any other DNP (injury, rest) is left out, and 0s before his first real game are dropped."""
+    import datetime as dt
+    m, team = defaultdict(dict), {}
+    for r in csv.DictReader(open(os.path.join(HERE, "data", "box_2026-27.csv"), newline="")):
+        k = r["player_id"]
+        if int(r["played"]):
+            m[k][r["date"]] = float(r["minutes"])
+        elif "COACH" in (r.get("dnp_reason") or "").upper():
+            m[k][r["date"]] = 0.0
+        else:
+            continue
+        team[k] = (MAP.get(r["team"], r["team"]), r["player"])
+    if not m:
+        return {"from": "", "to": "", "rows": []}
+    last_day = max(d for v in m.values() for d in v)
+    start = (dt.date.fromisoformat(last_day) - dt.timedelta(days=days - 1)).isoformat()
     out = []
-    for pid, v in cur.items():
-        if len(v) >= 5 and len(last.get(pid, [])) >= 10:
-            a, b = st.mean(v), st.mean(last[pid])
-            if abs(a - b) >= 5:
-                out.append({"team": cteam[pid][0], "player": cteam[pid][1], "now": round(a, 1), "gp": len(v),
-                            "last": round(b, 1), "lgp": len(last[pid]), "d": round(a - b, 1)})
-    return sorted(out, key=lambda x: -abs(x["d"]))
+    for k, games in m.items():
+        first = min((d for d, v in games.items() if v > 0), default=None)
+        if first is None:
+            continue
+        g = {d: v for d, v in games.items() if d >= first}
+        week = [v for d, v in g.items() if d >= start]
+        before = [v for d, v in g.items() if d < start]
+        if len(week) >= 2 and len(before) >= 3:
+            a, b = st.mean(week), st.mean(before)
+            if abs(a - b) >= SHOW_CHANGE:
+                out.append({"team": team[k][0], "player": team[k][1], "now": round(a, 1), "gp": len(week),
+                            "last": round(b, 1), "lgp": len(before), "d": round(a - b, 1)})
+    return {"from": start, "to": last_day, "rows": sorted(out, key=lambda x: -abs(x["d"]))}
 
 
 CSS = """
@@ -300,12 +314,12 @@ Every number uses at least {MIN_GAMES} games. Games through {through}.</p>
 <div id="mmore" style="margin:10px 0;font-size:13.5px"></div>
 </div>
 <div id="view4" hidden>
-<p class="lead">The weekly minutes-changes email's list: this season's minutes a game vs last season's, 5+ minutes apart
-(5+ games this season, 10+ last season).</p>
+<p class="lead">Minutes a game in the last week ({CH["from"][5:]} to {CH["to"][5:]}) vs the rest of this season before it,
+{SHOW_CHANGE}+ minutes apart (2+ games this week, 3+ before). A coach's DNP counts as 0; games missed injured don't count.</p>
 <div class="bar"><select id="cteam"></select><span class="rank">
 <button class="cbtn sortbtn on" data-k="all">All</button><button class="cbtn sortbtn" data-k="up">More minutes</button>
 <button class="cbtn sortbtn" data-k="down">Fewer minutes</button></span></div>
-<div class="wrap"><table><thead><tr><th class="l">Player</th><th>2025-26<small>min a game</small></th><th>2026-27<small>min a game</small></th>
+<div class="wrap"><table><thead><tr><th class="l">Player</th><th>Season before this week<small>min a game</small></th><th>Last week<small>min a game</small></th>
 <th>Change</th></tr></thead><tbody id="ctb"></tbody></table></div>
 </div>
 <footer>Minutes played: ESPN box scores (a coach's-decision DNP counts as 0). Starters: on this season's depth chart or started at
@@ -314,7 +328,7 @@ for away teams, else SportsLine), or its last read before tip. Teammates who mis
 Left out: DNPs for injury or rest (he wasn't available), 0-minute games before a player's first real game, players often benched
 by the coach (not key teammates), and games with more than {MAX_OUT} key teammates out (e.g. Pacers, Nov 2).
 Differences under {SHOW_CHANGE} minutes show as "no change".</footer>
-<script>const D={json.dumps(D, separators=(",", ":"))}; const CH={json.dumps(CH, separators=(",", ":"))};
+<script>const D={json.dumps(D, separators=(",", ":"))}; const CH={json.dumps(CH["rows"], separators=(",", ":"))};
 {JS}</script></body></html>"""
 
 
