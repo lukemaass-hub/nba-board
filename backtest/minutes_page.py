@@ -25,6 +25,22 @@ MAX_OUT = 3           # a team-game with more than this many key teammates out i
 SHOW_CHANGE = 4       # a difference smaller than this shows as "no change" (user, Nov 16 2026)
 
 
+def left_injured(games, team_dates):
+    """Dates of games a player left hurt (user, Nov 16 2026: Curry played 6 minutes on Nov 11 and then sat): he played
+    under half his average of the games before (3+ of them) and was not available for his team's next game."""
+    out, seen = set(), []
+    for d in sorted(games):
+        v = games[d]
+        if v > 0 and len(seen) >= 3 and v < 0.5 * st.mean(seen):
+            nxt = next((x for x in team_dates if x > d), None)
+            if nxt and nxt not in games:
+                out.add(d)
+                continue
+        if v > 0:
+            seen.append(v)
+    return out
+
+
 def expected_by_game():
     out = {}
     path = os.path.join(ROOT, "pipeline", "expected_history.csv")
@@ -63,6 +79,9 @@ def build_data():
             first = min((d for d, v in m.items() if v > 0), default=None)
             for d in [d for d, v in m.items() if v == 0 and (first is None or d < first)]:
                 del m[d]
+        for (t, k), m in mins.items():
+            for d in left_injured(m, sorted(team_dates[t])):
+                m.pop(d, None); played[(t, k)].pop(d, None)
         sdata = {}
         for t, dates in team_dates.items():
             dates = sorted(dates)
@@ -108,40 +127,86 @@ def build_data():
 
 def season_changes(days=7):
     """This season only (user, Nov 16 2026): each player's minutes a game over the last `days` days vs his average
-    before that, 4+ minutes apart. 2+ games in the last week and 3+ before it. Same rules as the rest of the page: a
-    coach's DNP is 0, any other DNP (injury, rest) is left out, and 0s before his first real game are dropped."""
+    before that, 4+ minutes apart (2+ games this week, 3+ before), with a short reason: key teammates out or back,
+    his own injury, or a rotation change (starting / bench / coach's DNPs). A coach's DNP is 0; injured DNPs, 0s before
+    his first real game, and games he left hurt (left_injured) don't count."""
     import datetime as dt
-    m, team, meta = defaultdict(dict), {}, {}
+    m, team, meta, starts, coach = defaultdict(dict), {}, {}, defaultdict(dict), defaultdict(set)
+    team_dates = defaultdict(set)
     exp = expected_by_game()
     for r in csv.DictReader(open(os.path.join(HERE, "data", "box_2026-27.csv"), newline="")):
-        k = r["player_id"]
+        k, tm = r["player_id"], MAP.get(r["team"], r["team"])
+        team_dates[tm].add(r["date"])
         if int(r["played"]):
             m[k][r["date"]] = float(r["minutes"])
         elif "COACH" in (r.get("dnp_reason") or "").upper():
             m[k][r["date"]] = 0.0
+            coach[k].add(r["date"])
         else:
             continue
-        team[k] = (MAP.get(r["team"], r["team"]), r["player"])
-        meta[(k, r["date"])] = ("@" if r["home"] == "0" else "vs") + " " + MAP.get(r["opponent"], r["opponent"]), int(r["starter"])
+        team[k] = (tm, r["player"])
+        starts[k][r["date"]] = int(r["starter"])
+        meta[(k, r["date"])] = ("@" if r["home"] == "0" else "vs") + " " + MAP.get(r["opponent"], r["opponent"])
     if not m:
         return {"from": "", "to": "", "rows": []}
     last_day = max(d for v in m.values() for d in v)
     start = (dt.date.fromisoformat(last_day) - dt.timedelta(days=days - 1)).isoformat()
-    out = []
+    hurt, clean = {}, {}
     for k, games in m.items():
         first = min((d for d, v in games.items() if v > 0), default=None)
         if first is None:
             continue
         g = {d: v for d, v in games.items() if d >= first}
-        week = [v for d, v in g.items() if d >= start]
-        before = [v for d, v in g.items() if d < start]
-        if len(week) >= 2 and len(before) >= 3:
-            a, b = st.mean(week), st.mean(before)
-            if abs(a - b) >= SHOW_CHANGE:
-                log = [[d[5:], meta[(k, d)][0], round(v), meta[(k, d)][1], int(d >= start),
-                        exp.get((d, team[k][0], norm_name(team[k][1])))] for d, v in sorted(g.items(), reverse=True)]
-                out.append({"team": team[k][0], "player": team[k][1], "now": round(a, 1), "gp": len(week),
-                            "last": round(b, 1), "lgp": len(before), "d": round(a - b, 1), "log": log})
+        hurt[k] = left_injured(g, sorted(team_dates[team[k][0]]))
+        clean[k] = {d: v for d, v in g.items() if d not in hurt[k]}
+    # key teammates (same rule as the rest of the page): start half his games or 20+ MPG, rarely benched by the coach
+    keys = defaultdict(list)
+    for k, g in clean.items():
+        pl = [v for v in g.values() if v > 0]
+        if len(pl) >= 2 and len(coach[k]) <= 0.25 * len(g):
+            if sum(starts[k].get(d, 0) for d in g) >= 0.5 * len(pl) or st.mean(pl) >= 20:
+                keys[team[k][0]].append(k)
+    out = []
+    for k, g in clean.items():
+        week = {d: v for d, v in g.items() if d >= start}
+        before = {d: v for d, v in g.items() if d < start}
+        if len(week) < 2 or len(before) < 3:
+            continue
+        a, b = st.mean(week.values()), st.mean(before.values())
+        if abs(a - b) < SHOW_CHANGE:
+            continue
+        tm, why, kind = team[k][0], [], ""
+        for o in keys[tm]:
+            if o == k:
+                continue
+            ow = sum(1 for d in week if d not in m[o] or d in hurt.get(o, ()))
+            ob = sum(1 for d in before if d not in m[o] or d in hurt.get(o, ()))
+            name = team[o][1]
+            if a > b and ow >= 0.5 * len(week) and ob < 0.5 * len(before):
+                why.append(f"{name} out ({ow} of {len(week)} games)"); kind = kind or "Teammate injuries"
+            if a < b and ob >= 0.5 * len(before) and ow < 0.5 * len(week):
+                why.append(f"{name} back"); kind = kind or "Teammates back"
+        missed_before = [d for d in sorted(team_dates[tm]) if d < start and d not in g][-3:]
+        if a > b and len(missed_before) >= 2 and (dt.date.fromisoformat(start) - dt.date.fromisoformat(missed_before[-1])).days <= 10:
+            why.append(f"back from his own injury (missed {len(missed_before)}+ games)"); kind = kind or "Back from injury"
+        sw = sum(starts[k].get(d, 0) for d in week) / len(week)
+        sb = sum(starts[k].get(d, 0) for d in before) / len(before)
+        if sw >= 0.5 > sb:
+            why.append("moved into the starting lineup"); kind = kind or "Rotation change"
+        if sb >= 0.5 > sw:
+            why.append("moved to the bench"); kind = kind or "Rotation change"
+        cw = len([d for d in week if d in coach[k]])
+        if cw:
+            why.append(f"benched by the coach in {cw} game{'s' if cw > 1 else ''}"); kind = kind or "Rotation change"
+        hw = [d for d in hurt[k] if d >= start]
+        if hw:
+            why.append("left the " + ", ".join(d[5:] for d in hw) + " game hurt (not counted)")
+        if not kind:
+            kind, why = "Rotation change", why or ["no injuries involved"]
+        log = [[d[5:], meta[(k, d)], round(v), starts[k].get(d, 0), int(d >= start), exp.get((d, tm, norm_name(team[k][1]))),
+                int(d in hurt[k])] for d, v in sorted(g.items(), reverse=True)]
+        out.append({"team": tm, "player": team[k][1], "now": round(a, 1), "gp": len(week), "last": round(b, 1),
+                    "lgp": len(before), "d": round(a - b, 1), "kind": kind, "why": "; ".join(why), "log": log})
     return {"from": start, "to": last_day, "rows": sorted(out, key=lambda x: -abs(x["d"]))}
 
 
@@ -168,7 +233,7 @@ tr.d>td{background:var(--sub);font-size:12.5px;text-align:left;line-height:1.7;p
 #bmore{margin:10px 0;font-size:13.5px} .empty{padding:22px 10px!important;color:var(--mut)}
 .chg{font-weight:700;margin-left:6px} .sub{width:auto;margin:2px 0 8px} .sub th,.sub td{padding:4px 12px;cursor:default;background:none}
 details summary{cursor:pointer;color:var(--accent);margin:4px 0} .rank{display:flex;gap:6px;align-items:center;margin-left:auto}
-.sortbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)} tr.wk td{font-weight:600} footer{margin:26px 0 10px;font-size:12.5px;color:var(--mut);max-width:900px}
+.sortbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)} tr.wk td{font-weight:600} td:not(.l),th:not(.l){white-space:nowrap} footer{margin:26px 0 10px;font-size:12.5px;color:var(--mut);max-width:900px}
 """
 
 MIN_GAMES = 2      # every number on the page needs at least this many games behind it (user, Nov 16 2026)
@@ -268,10 +333,11 @@ function cdraw(){
  document.querySelectorAll(".cbtn").forEach(b=>b.classList.toggle("on",b.dataset.k===cdir));
  const rs=CH.filter(x=>(!t||x.team===t)&&(cdir==="all"||(cdir==="up"?x.d>0:x.d<0)));
  $("ctb").innerHTML=rs.map((x,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(x.player)}</b> <span class="mut">${x.team}</span></td><td>${f(x.last)} <span class="mut">(${x.lgp} g)</span></td>
-  <td>${f(x.now)} <span class="mut">(${x.gp} g)</span></td><td class="big ${cl(x.d)}">${sg(x.d)}</td></tr>
-  <tr class="d" id="c${i}" hidden><td colspan="4"><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th><th class="l"></th></tr>
+  <td>${f(x.now)} <span class="mut">(${x.gp} g)</span></td><td class="big ${cl(x.d)}">${sg(x.d)}</td>
+  <td class="l"><b>${esc(x.kind)}</b><br><span class="mut">${esc(x.why)}</span></td></tr>
+  <tr class="d" id="c${i}" hidden><td colspan="5"><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th><th class="l"></th></tr>
   ${x.log.map(g=>`<tr${g[4]?' class="wk"':''}><td class="l">${g[0]}</td><td class="l">${g[1]}</td><td>${g[2]}</td><td>${g[5]??"–"}</td>
-   <td class="l mut">${g[3]?"started":g[2]===0?"DNP (coach)":"bench"}${g[4]?" · last week":""}</td></tr>`).join("")}</table></td></tr>`).join("") || `<tr><td colspan="4" class="l empty">None.</td></tr>`;
+   <td class="l mut">${g[6]?"left hurt (not counted)":g[3]?"started":g[2]===0?"DNP (coach)":"bench"}${g[4]?" · last week":""}</td></tr>`).join("")}</table></td></tr>`).join("") || `<tr><td colspan="5" class="l empty">None.</td></tr>`;
  document.querySelectorAll("#ctb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("c"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
 }
 document.querySelectorAll(".cbtn").forEach(b=>b.onclick=()=>{cdir=b.dataset.k; cdraw();}); $("cteam").onchange=cdraw;
@@ -324,12 +390,12 @@ Every number uses at least {MIN_GAMES} games. Games through {through}.</p>
 <div id="view4" hidden>
 <p class="lead">Minutes a game in the last week ({CH["from"][5:]} to {CH["to"][5:]}) vs the rest of this season before it,
 {SHOW_CHANGE}+ minutes apart (2+ games this week, 3+ before). A coach's DNP counts as 0; games missed injured don't count.
-Click a player for his game log (last week in bold).</p>
+Games he left hurt don't count. Click a player for his game log (last week in bold).</p>
 <div class="bar"><select id="cteam"></select><span class="rank">
 <button class="cbtn sortbtn on" data-k="all">All</button><button class="cbtn sortbtn" data-k="up">More minutes</button>
 <button class="cbtn sortbtn" data-k="down">Fewer minutes</button></span></div>
 <div class="wrap"><table><thead><tr><th class="l">Player</th><th>Season before this week<small>min a game</small></th><th>Last week<small>min a game</small></th>
-<th>Change</th></tr></thead><tbody id="ctb"></tbody></table></div>
+<th>Change</th><th class="l">Why</th></tr></thead><tbody id="ctb"></tbody></table></div>
 </div>
 <footer>Minutes played: ESPN box scores (a coach's-decision DNP counts as 0). Starters: on this season's depth chart or started at
 least half their games. Expected minutes (2026-27, from Oct 27): what the trader bot's report showed (FantasyPros top 10, else RotoWire
