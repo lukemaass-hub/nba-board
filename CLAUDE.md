@@ -242,3 +242,8 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   backtest/data/box_<season>.csv, data.json depth charts and pipeline/expected_history.csv. Not part of the bot.
   Nov 16 2026 (user): every number needs 2+ games (MIN_GAMES), teammates out in the same games share a row, compact
   "healthy -> out" tables, games list folded under "Every game".
+  Nov 16 2026 (user): tabs "Biggest misses" (2026-27 games with a key teammate out, expected vs played, 0-minute games left
+  out) and "Minutes changes" (the weekly email list: MPG vs last season, 5+ apart, 5+ / 10+ games). Rules: a non-coach
+  DNP (injury, rest) is "not available", not 0; 0s before a player's first real game are dropped; key teammates exclude
+  players benched by the coach in >25% of their games (Danny Wolf); team-games with more than 3 key teammates out are
+  left out (IND Nov 2); differences under 4 minutes show "no change".

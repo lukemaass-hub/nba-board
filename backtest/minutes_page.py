@@ -21,6 +21,8 @@ from update_data import norm_name  # noqa: E402
 
 MAP = {"GS": "GSW", "NY": "NYK", "SA": "SAS", "NO": "NOP", "UTAH": "UTA", "WSH": "WAS"}
 SEASONS = {"2024-25": 10, "2025-26": 10, "2026-27": 2}       # games played to count as a player / key teammate
+MAX_OUT = 3           # a team-game with more than this many key teammates out is left out (unusual nights, user Nov 16 2026)
+SHOW_CHANGE = 4       # a difference smaller than this shows as "no change" (user, Nov 16 2026)
 
 
 def expected_by_game():
@@ -42,16 +44,25 @@ def build_data():
         if not os.path.exists(path):
             continue
         team_dates, mins, played, starts = defaultdict(set), defaultdict(dict), defaultdict(dict), defaultdict(int)
-        info, teams_of = {}, defaultdict(set)
+        info, teams_of, coach_dnp = {}, defaultdict(set), defaultdict(int)
         for r in csv.DictReader(open(path, newline="")):
             t, k = MAP.get(r["team"], r["team"]), r["player_id"]
             team_dates[t].add(r["date"])
             info[(t, k)] = {"name": r["player"], "pos": (r["position"] or "?")[0].replace("P", "G").replace("S", "F")}
-            mins[(t, k)][r["date"]] = float(r["minutes"]) if int(r["played"]) else 0.0     # coach's DNP = 0
+            if int(r["played"]):
+                mins[(t, k)][r["date"]] = float(r["minutes"])
+            elif "COACH" in (r.get("dnp_reason") or "").upper():
+                mins[(t, k)][r["date"]] = 0.0          # benched by the coach = 0 minutes
+                coach_dnp[(t, k)] += 1
+            # any other DNP (injury, illness, rest...) = he wasn't available: left out (user, Nov 16 2026)
             teams_of[k].add(t)
             if int(r["played"]):
                 played[(t, k)][r["date"]] = float(r["minutes"])
                 starts[(t, k)] += int(r["starter"])
+        for key, m in mins.items():          # 0s before his first real game: he was likely hurt too, not benched
+            first = min((d for d, v in m.items() if v > 0), default=None)
+            for d in [d for d, v in m.items() if v == 0 and (first is None or d < first)]:
+                del m[d]
         sdata = {}
         for t, dates in team_dates.items():
             dates = sorted(dates)
@@ -66,23 +77,54 @@ def build_data():
             keys = {}
             for k in ks:
                 role = "starter" if starter[k] else "key bench" if mpg[k] >= 20 else None
-                if not role:
+                listed = len(played[(t, k)]) + coach_dnp[(t, k)]
+                if not role or coach_dnp[(t, k)] > 0.25 * listed:     # in and out of the rotation (Danny Wolf): not key
                     continue
                 ds = sorted(mins[(t, k)])
                 lo, hi = (dates[0], dates[-1]) if len(teams_of[k]) == 1 else (ds[0], ds[-1])   # traded: only his stint
                 keys[k] = {"name": info[(t, k)]["name"], "role": role, "pos": info[(t, k)]["pos"], "mpg": round(mpg[k], 1),
                            "sat": [i for i, d in enumerate(dates) if lo <= d <= hi and d not in played[(t, k)]],
                            "on": [i for i, d in enumerate(dates) if lo <= d <= hi]}
+            out_count = defaultdict(int)
+            for v in keys.values():
+                for i in v["sat"]:
+                    out_count[i] += 1
+            skip = {i for i, n in out_count.items() if n > MAX_OUT}
+            for v in keys.values():
+                v["sat"] = [i for i in v["sat"] if i not in skip]
+                v["on"] = [i for i in v["on"] if i not in skip]
             players = {}
             for k in ks:
                 p = {"name": info[(t, k)]["name"], "pos": info[(t, k)]["pos"], "mpg": round(mpg[k], 1),
-                     "m": [None if mins[(t, k)].get(d) is None else round(mins[(t, k)][d]) for d in dates]}
+                     "m": [None if mins[(t, k)].get(d) is None or i in skip else round(mins[(t, k)][d]) for i, d in enumerate(dates)]}
                 if season == "2026-27":
                     p["e"] = [exp.get((d, t, norm_name(info[(t, k)]["name"]))) for d in dates]
                 players[k] = p
-            sdata[t] = {"dates": [d[5:] for d in dates], "keys": keys, "players": players}
+            sdata[t] = {"dates": [d[5:] for d in dates], "keys": keys, "players": players,
+                        "skipped": [dates[i][5:] for i in sorted(skip)]}
         out[season] = sdata
     return out
+
+
+def season_changes():
+    """This season's MPG vs last season's for players with 5+ games now and 10+ then, 5+ minutes apart (the weekly
+    minutes-changes email's rule)."""
+    def mpg(season):
+        m, team = defaultdict(list), {}
+        for r in csv.DictReader(open(os.path.join(HERE, "data", f"box_{season}.csv"), newline="")):
+            if int(r["played"]):
+                m[r["player_id"]].append(float(r["minutes"])); team[r["player_id"]] = (MAP.get(r["team"], r["team"]), r["player"])
+        return m, team
+    cur, cteam = mpg("2026-27")
+    last, _ = mpg("2025-26")
+    out = []
+    for pid, v in cur.items():
+        if len(v) >= 5 and len(last.get(pid, [])) >= 10:
+            a, b = st.mean(v), st.mean(last[pid])
+            if abs(a - b) >= 5:
+                out.append({"team": cteam[pid][0], "player": cteam[pid][1], "now": round(a, 1), "gp": len(v),
+                            "last": round(b, 1), "lgp": len(last[pid]), "d": round(a - b, 1)})
+    return sorted(out, key=lambda x: -abs(x["d"]))
 
 
 CSS = """
@@ -115,7 +157,9 @@ MIN_GAMES = 2      # every number on the page needs at least this many games beh
 
 JS = r"""
 const MIN=__MIN__;
-const f=v=>v==null?"–":v.toFixed(1), sg=v=>v==null?"–":(v>0?"+":"")+v.toFixed(1), cl=v=>v==null?"":v>=0.05?"up":v<=-0.05?"dn":"";
+const SHOW=__SHOW__;          // smaller differences show as "no change"
+const f=v=>v==null?"–":v.toFixed(1), cl=v=>v==null?"":v>=SHOW?"up":v<=-SHOW?"dn":"";
+const sg=v=>v==null?"–":Math.abs(v)<SHOW?'<span class="mut">no change</span>':(v>0?"+":"")+v.toFixed(1);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const mean=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null, POS={G:"G",F:"F",C:"C"}, $=id=>document.getElementById(id);
 const avg2=a=>a.length>=MIN?mean(a):null;          // fewer than MIN games: no number
@@ -185,21 +229,48 @@ function bdraw(){
 }
 document.querySelectorAll(".sortbtn").forEach(b=>b.onclick=()=>{bkey=b.dataset.k; blim=50; bdraw();});
 $("bseason").onchange=()=>{fillTeams("bteam",$("bseason").value,"All teams");blim=50;bdraw();}; $("bteam").onchange=()=>{blim=50;bdraw();};
+// ---- tab 3: biggest misses (2026-27: games a key teammate was out, expected vs played)
+const MISSES=[]; R.filter(r=>r.season==="2026-27").forEach(r=>r.games.forEach(g=>{ if(g.out.length&&g.e!=null&&g.m>0) MISSES.push({r,g,miss:g.m-g.e}); }));
+let mdir="all",mlim=50;
+function mdraw(){
+ const t=$("mteam").value;
+ document.querySelectorAll(".mbtn").forEach(b=>b.classList.toggle("on",b.dataset.k===mdir));
+ const rs=MISSES.filter(x=>(!t||x.r.team===t)&&Math.abs(x.miss)>=SHOW&&(mdir==="all"||(mdir==="more"?x.miss>0:x.miss<0))).sort((a,b)=>Math.abs(b.miss)-Math.abs(a.miss));
+ $("mtb").innerHTML=rs.slice(0,mlim).map(({r,g,miss})=>`<tr><td class="l">${g.d}</td><td class="l"><b>${esc(r.player)}</b> <span class="mut">${r.team}</span></td>
+  <td class="l">${esc(g.out.join(", "))}</td><td>${f(g.e)}</td><td>${f(g.m)}</td><td class="big ${cl(miss)}">${sg(miss)}</td></tr>`).join("")
+  || `<tr><td colspan="6" class="l empty">No misses of ${SHOW}+ minutes.</td></tr>`;
+ $("mmore").innerHTML=rs.length>mlim?`Showing the top ${mlim} of ${rs.length}. <a href="#" id="mall">Show all</a>`:"";
+ if($("mall")) $("mall").onclick=e=>{e.preventDefault();mlim=1e9;mdraw();};
+}
+document.querySelectorAll(".mbtn").forEach(b=>b.onclick=()=>{mdir=b.dataset.k; mlim=50; mdraw();}); $("mteam").onchange=()=>{mlim=50;mdraw();};
+// ---- tab 4: minutes changes vs last season (the weekly email's list)
+let cdir="all";
+function cdraw(){
+ const t=$("cteam").value;
+ document.querySelectorAll(".cbtn").forEach(b=>b.classList.toggle("on",b.dataset.k===cdir));
+ const rs=CH.filter(x=>(!t||x.team===t)&&(cdir==="all"||(cdir==="up"?x.d>0:x.d<0)));
+ $("ctb").innerHTML=rs.map(x=>`<tr><td class="l"><b>${esc(x.player)}</b> <span class="mut">${x.team}</span></td><td>${f(x.last)} <span class="mut">(${x.lgp} g)</span></td>
+  <td>${f(x.now)} <span class="mut">(${x.gp} g)</span></td><td class="big ${cl(x.d)}">${sg(x.d)}</td></tr>`).join("") || `<tr><td colspan="4" class="l empty">None.</td></tr>`;
+}
+document.querySelectorAll(".cbtn").forEach(b=>b.onclick=()=>{cdir=b.dataset.k; cdraw();}); $("cteam").onchange=cdraw;
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));
- $("view1").hidden=b.dataset.v!=="1"; $("view2").hidden=b.dataset.v!=="2";});
-fillTeams("team","2026-27","Pick a team"); fillTeams("bteam","2026-27","All teams"); draw(); bdraw();
-""".replace("__MIN__", str(MIN_GAMES))
+ ["1","2","3","4"].forEach(v=>$("view"+v).hidden=b.dataset.v!==v);});
+fillTeams("team","2026-27","Pick a team"); fillTeams("bteam","2026-27","All teams"); fillTeams("mteam","2026-27","All teams");
+$("cteam").innerHTML='<option value="">All teams</option>'+[...new Set(CH.map(x=>x.team))].sort().map(t=>`<option>${t}</option>`).join("");
+draw(); bdraw(); mdraw(); cdraw();
+""".replace("__MIN__", str(MIN_GAMES)).replace("__SHOW__", str(SHOW_CHANGE))
 
 SEASON_OPTS = '<option>2024-25</option><option>2025-26</option><option value="2026-27" selected>2026-27</option>'
 
 
-def page(D, through):
+def page(D, CH, through):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Minutes When Teammates Sit</title><style>{CSS}</style></head><body>
 <h1>Minutes when a key teammate is out</h1>
 <p class="lead">How a player's minutes change when a starter or key bench player (20+ minutes a game) sits.
 Every number uses at least {MIN_GAMES} games. Games through {through}.</p>
-<div class="tabs"><button class="tab on" data-v="1">By team</button><button class="tab" data-v="2">Biggest differences</button></div>
+<div class="tabs"><button class="tab on" data-v="1">By team</button><button class="tab" data-v="2">Biggest differences</button>
+<button class="tab" data-v="3">Biggest misses</button><button class="tab" data-v="4">Minutes changes</button></div>
 <div id="view1">
 <div class="bar"><select id="season">{SEASON_OPTS}</select><select id="team"></select><input id="q" placeholder="or type a player" size="16"></div>
 <div class="wrap"><table><thead id="head"><tr>
@@ -218,10 +289,32 @@ Every number uses at least {MIN_GAMES} games. Games through {through}.</p>
 </tr></thead><tbody id="btb"></tbody></table></div>
 <div id="bmore"></div>
 </div>
+<div id="view3" hidden>
+<p class="lead">2026-27 games where a key teammate was out: what the report expected vs what he played, biggest misses first
+(at least {SHOW_CHANGE} minutes). Games he didn't play are left out (usually a late scratch).</p>
+<div class="bar"><select id="mteam"></select><span class="rank">
+<button class="mbtn sortbtn on" data-k="all">All</button><button class="mbtn sortbtn" data-k="more">Played more than expected</button>
+<button class="mbtn sortbtn" data-k="less">Played less than expected</button></span></div>
+<div class="wrap"><table><thead><tr><th class="l">Date</th><th class="l">Player</th><th class="l">Key teammate(s) out</th>
+<th>Expected</th><th>Played</th><th>Miss<small>played − expected</small></th></tr></thead><tbody id="mtb"></tbody></table></div>
+<div id="mmore" style="margin:10px 0;font-size:13.5px"></div>
+</div>
+<div id="view4" hidden>
+<p class="lead">The weekly minutes-changes email's list: this season's minutes a game vs last season's, 5+ minutes apart
+(5+ games this season, 10+ last season).</p>
+<div class="bar"><select id="cteam"></select><span class="rank">
+<button class="cbtn sortbtn on" data-k="all">All</button><button class="cbtn sortbtn" data-k="up">More minutes</button>
+<button class="cbtn sortbtn" data-k="down">Fewer minutes</button></span></div>
+<div class="wrap"><table><thead><tr><th class="l">Player</th><th>2025-26<small>min a game</small></th><th>2026-27<small>min a game</small></th>
+<th>Change</th></tr></thead><tbody id="ctb"></tbody></table></div>
+</div>
 <footer>Minutes played: ESPN box scores (a coach's-decision DNP counts as 0). Starters: on this season's depth chart or started at
 least half their games. Expected minutes (2026-27, from Oct 27): what the trader bot's report showed (FantasyPros top 10, else RotoWire
-for away teams, else SportsLine), or its last read before tip. Teammates who missed exactly the same games share a row.</footer>
-<script>const D={json.dumps(D, separators=(",", ":"))};
+for away teams, else SportsLine), or its last read before tip. Teammates who missed exactly the same games share a row.
+Left out: DNPs for injury or rest (he wasn't available), 0-minute games before a player's first real game, players often benched
+by the coach (not key teammates), and games with more than {MAX_OUT} key teammates out (e.g. Pacers, Nov 2).
+Differences under {SHOW_CHANGE} minutes show as "no change".</footer>
+<script>const D={json.dumps(D, separators=(",", ":"))}; const CH={json.dumps(CH, separators=(",", ":"))};
 {JS}</script></body></html>"""
 
 
@@ -229,5 +322,5 @@ if __name__ == "__main__":
     out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "minutes_when_out.html")
     D = build_data()
     through = max((r["date"] for r in csv.DictReader(open(os.path.join(HERE, "data", "box_2026-27.csv")))), default="")
-    open(out, "w").write(page(D, through))
+    open(out, "w").write(page(D, season_changes(), through))
     print(out, {s: len(t) for s, t in D.items()})
