@@ -247,3 +247,5 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   DNP (injury, rest) is "not available", not 0; 0s before a player's first real game are dropped; key teammates exclude
   players benched by the coach in >25% of their games (Danny Wolf); team-games with more than 3 key teammates out are
   left out (IND Nov 2); differences under 4 minutes show "no change".
+  Nov 16 2026 (user): "Minutes changes" now compares the last 7 days with this season before them (4+ apart; 2+ games
+  this week, 3+ before), not last season. The weekly email itself still compares with last season.
