@@ -105,150 +105,122 @@ tr.d>td{background:var(--sub);font-size:12.5px;text-align:left;line-height:1.7;p
 .mate{margin:4px 0 12px;padding:8px 12px;border:1px solid var(--line2);border-radius:8px;background:var(--card);max-width:720px} .mate .ln{margin:2px 0}
 .games td,.games th{padding:3px 10px;font-size:12.5px;background:none;cursor:default}
 .gl span{display:inline-block;margin:0 10px 2px 0;white-space:nowrap} .gl span.o{font-weight:700}
-#more,#bmore{margin:10px 0;font-size:13.5px} footer{margin:26px 0 10px;font-size:12.5px;color:var(--mut);max-width:900px}
+#bmore{margin:10px 0;font-size:13.5px} .empty{padding:22px 10px!important;color:var(--mut)}
+.chg{font-weight:700;margin-left:6px} .sub{width:auto;margin:2px 0 8px} .sub th,.sub td{padding:4px 12px;cursor:default;background:none}
+details summary{cursor:pointer;color:var(--accent);margin:4px 0} .rank{display:flex;gap:6px;align-items:center;margin-left:auto}
+.sortbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)} footer{margin:26px 0 10px;font-size:12.5px;color:var(--mut);max-width:900px}
 """
 
+MIN_GAMES = 2      # every number on the page needs at least this many games behind it (user, Nov 16 2026)
+
 JS = r"""
+const MIN=__MIN__;
 const f=v=>v==null?"–":v.toFixed(1), sg=v=>v==null?"–":(v>0?"+":"")+v.toFixed(1), cl=v=>v==null?"":v>=0.05?"up":v<=-0.05?"dn":"";
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const mean=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null, POS={G:"Guard",F:"Forward",C:"Center"}, $=id=>document.getElementById(id);
+const mean=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null, POS={G:"G",F:"F",C:"C"}, $=id=>document.getElementById(id);
+const avg2=a=>a.length>=MIN?mean(a):null;          // fewer than MIN games: no number
 const R=[];
 for(const [season,teams] of Object.entries(D)) for(const [team,T] of Object.entries(teams)){
  for(const [pk,P] of Object.entries(T.players)){
-  const E=P.e||[], mates=[];
+  const E=P.e||[], groups={};
   for(const [kk,K] of Object.entries(T.keys)){
    if(pk===kk) continue;
    const sat=new Set(K.sat), on=new Set(K.on), og=[], ng=[];
    T.dates.forEach((d,i)=>{ if(P.m[i]==null||!on.has(i)) return; (sat.has(i)?og:ng).push(i); });
-   if(!og.length||!ng.length) continue;
+   if(og.length<MIN||ng.length<MIN) continue;
+   const k=og.join(",")+"|"+ng.join(",");          // teammates out in exactly the same games: one row
+   if(groups[k]){ groups[k].names.push(K.name); continue; }
    const eo=og.map(i=>E[i]).filter(x=>x!=null), en=ng.map(i=>E[i]).filter(x=>x!=null), oe=og.filter(i=>E[i]!=null);
-   const m={name:K.name,role:K.role,pos:K.pos,mpg:K.mpg,on:og.length,nn:ng.length,sat,og,ng,
-     ao:mean(og.map(i=>P.m[i])),an:mean(ng.map(i=>P.m[i])),eo:eo.length?mean(eo):null,en:en.length?mean(en):null,neo:eo.length,nen:en.length,
-     ea:oe.length?mean(oe.map(i=>P.m[i]-E[i])):null,nea:oe.length};
-   m.ad=m.ao-m.an; m.ed=(m.eo!=null&&m.en!=null)?m.eo-m.en:null; mates.push(m);
+   const m={names:[K.name],role:K.role,on:og.length,nn:ng.length,sat,og,ng,
+     ao:mean(og.map(i=>P.m[i])),an:mean(ng.map(i=>P.m[i])),eo:avg2(eo),en:avg2(en),neo:eo.length,nen:en.length,
+     ea:oe.length>=MIN?mean(oe.map(i=>P.m[i]-E[i])):null,nea:oe.length};
+   m.ad=m.ao-m.an; m.ed=(m.eo!=null&&m.en!=null)?m.eo-m.en:null; groups[k]=m;
   }
+  const mates=Object.values(groups); mates.forEach(m=>m.name=m.names.join(", "));
   if(!mates.length) continue;
-  const games=T.dates.map((d,i)=>P.m[i]==null?null:{d,i,m:P.m[i],e:E[i]??null,out:mates.filter(x=>x.sat.has(i)).map(x=>x.name)}).filter(Boolean);
-  R.push({season,team,player:P.name,pos:P.pos,mpg:P.mpg,gp:games.length,mates,games});
+  const games=T.dates.map((d,i)=>P.m[i]==null?null:{d,i,m:P.m[i],e:E[i]??null,out:mates.filter(x=>x.sat.has(i)).flatMap(x=>x.names)}).filter(Boolean);
+  R.push({season,team,player:P.name,pos:P.pos,mpg:P.mpg,gp:games.length,mates:mates.sort((a,b)=>b.ad-a.ad),games});
  }}
 function fillTeams(sel,season,blank){const cur=$(sel).value, ts=[...new Set(R.filter(r=>r.season===season).map(r=>r.team))].sort();
  $(sel).innerHTML=`<option value="">${blank}</option>`+ts.map(t=>`<option${t===cur?" selected":""}>${t}</option>`).join("");}
+const pair=(a,b,d)=>`${f(a)} → ${f(b)} <span class="${cl(d)} chg">${sg(d)}</span>`;
+const gamesTable=(r,ex)=>`<table class="games"><tr><th class="l">Date</th><th>Played</th>${ex?"<th>Expected</th>":""}<th class="l">Key teammates out</th></tr>
+ ${r.games.map(g=>`<tr><td class="l">${g.d}</td><td>${g.m}</td>${ex?`<td>${g.e??"–"}</td>`:""}<td class="l">${g.out.length?esc(g.out.join(", ")):'<span class="mut">none</span>'}</td></tr>`).join("")}</table>`;
 // ---- tab 1: by team
-let key="best",dir=-1,limit=100;
+let key="best",dir=-1;
 function draw(){
- const se=$("season").value,t=$("team").value,q=$("q").value.toLowerCase(),mq=$("mq").value.toLowerCase(),mo=+$("minout").value,ex=se==="2026-27";
- if(!t&&!q&&!mq){ $("tb").innerHTML=`<tr><td colspan="6" class="l" style="padding:22px 10px;color:var(--mut)">Pick a team, or type a player or a teammate, to see players.</td></tr>`; $("more").innerHTML=""; return; }
- const rs=[];
- for(const r of R){
-  if(r.season!==se||(t&&r.team!==t)||(q&&!r.player.toLowerCase().includes(q))) continue;
-  const ms=r.mates.filter(m=>m.on>=mo&&m.nn>=mo&&(!mq||m.name.toLowerCase().includes(mq))).sort((a,b)=>b.ad-a.ad);
-  if(ms.length) rs.push({...r,ms,best:ms[0].ad,bestm:ms[0]});
- }
+ const se=$("season").value,t=$("team").value,q=$("q").value.toLowerCase(),ex=se==="2026-27";
+ if(!t&&!q){ $("tb").innerHTML=`<tr><td colspan="4" class="l empty">Pick a team or type a player.</td></tr>`; return; }
+ const rs=R.filter(r=>r.season===se&&(!t||r.team===t)&&(!q||r.player.toLowerCase().includes(q))).map(r=>({...r,best:r.mates[0].ad}));
  rs.sort((a,b)=>{const x=a[key],y=b[key]; return (typeof x==="string"?x.localeCompare(y):x-y)*dir;});
- $("tb").innerHTML=rs.slice(0,limit).map((r,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(r.player)}</b> <span class="mut">${r.team} · ${POS[r.pos]||r.pos}</span></td>
-  <td>${r.mpg}</td><td>${r.gp}</td><td class="l">${esc(r.bestm.name)} <span class="mut">${r.bestm.role}, out ${r.bestm.on} game${r.bestm.on>1?"s":""}</span></td>
-  <td class="big ${cl(r.best)}">${sg(r.best)}</td><td>${r.ms.length}</td></tr>
-  <tr class="d" id="d${i}" hidden><td colspan="6">
-  ${r.ms.map(m=>`<div class="mate"><b>${esc(m.name)}</b> <span class="mut">${m.role} · ${POS[m.pos]||m.pos} · ${m.mpg} min a game</span>
-   <div class="ln">Minutes when ${esc(m.name)} was healthy: <b>${f(m.an)}</b> <span class="mut">(${m.nn} games)</span></div>
-   <div class="ln">Minutes played when ${esc(m.name)} was out: <b>${f(m.ao)}</b> <span class="mut">(${m.on} games)</span> &nbsp;<span class="${cl(m.ad)}"><b>${sg(m.ad)}</b></span></div>
-   ${ex?`<div class="ln">Expected minutes when ${esc(m.name)} was healthy: <b>${f(m.en)}</b> <span class="mut">${m.en!=null?"("+m.nen+" games)":"(not saved)"}</span></div>
-   <div class="ln">Expected minutes when ${esc(m.name)} was out: <b>${f(m.eo)}</b> <span class="mut">${m.eo!=null?"("+m.neo+" games)":"(not saved)"}</span>${m.ed!=null?` &nbsp;<span class="${cl(m.ed)}"><b>${sg(m.ed)}</b></span>`:""}</div>`:""}</div>`).join("")}
-  <b>Every game</b>
-  <table class="games"><tr><th class="l">Date</th><th>Minutes played</th>${ex?"<th>Expected minutes</th>":""}<th class="l">Key teammates out</th></tr>
-   ${r.games.map(g=>`<tr><td class="l">${g.d}</td><td>${g.m}</td>${ex?`<td>${g.e??"–"}</td>`:""}<td class="l">${g.out.length?"<b>"+esc(g.out.join(", "))+"</b>":'<span class="mut">none</span>'}</td></tr>`).join("")}</table>
-  </td></tr>`).join("");
- $("more").innerHTML=rs.length>limit?`Showing ${limit} of ${rs.length} players. <a href="#" id="all">Show all</a>`:`${rs.length} players`;
- if($("all")) $("all").onclick=e=>{e.preventDefault();limit=1e9;draw();};
+ $("tb").innerHTML=rs.length?rs.map((r,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(r.player)}</b> <span class="mut">${r.team} · ${POS[r.pos]||r.pos}</span></td>
+  <td>${r.mpg}</td><td class="l">${esc(r.mates[0].name)}</td><td class="big ${cl(r.best)}">${sg(r.best)}</td></tr>
+  <tr class="d" id="d${i}" hidden><td colspan="4">
+  <table class="sub"><tr><th class="l">When this teammate was out</th><th>Games out</th><th>His minutes<small>healthy → out</small></th>${ex?"<th>Expected minutes<small>healthy → out</small></th>":""}</tr>
+  ${r.mates.map(m=>`<tr><td class="l">${esc(m.name)} <span class="mut">${m.role}</span></td><td>${m.on}</td><td>${pair(m.an,m.ao,m.ad)}</td>${ex?`<td>${m.ed!=null?pair(m.en,m.eo,m.ed):'<span class="mut">not enough saved</span>'}</td>`:""}</tr>`).join("")}</table>
+  <details><summary>Every game</summary>${gamesTable(r,ex)}</details></td></tr>`).join("")
+  :`<tr><td colspan="4" class="l empty">No players with at least ${MIN} games each way.</td></tr>`;
  document.querySelectorAll("#tb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("d"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
 }
 document.querySelectorAll("#head th[data-k]").forEach(th=>th.onclick=()=>{const k=th.dataset.k; dir=(key===k)?-dir:(k==="player"?1:-1); key=k; draw();});
-$("season").onchange=()=>{fillTeams("team",$("season").value,"Pick a team");limit=100;draw();};
-["team","minout"].forEach(id=>$(id).onchange=()=>{limit=100;draw();}); ["q","mq"].forEach(id=>$(id).oninput=()=>{limit=100;draw();});
-// ---- tab 2: biggest differences (teammates out in exactly the same games share a row)
-const PAIRS=[]; R.forEach(r=>{const seen={}; r.mates.forEach(m=>{const k=m.og.join(",")+"|"+m.ng.join(",");
- if(seen[k]){ seen[k].m.name+=", "+m.name; if(!seen[k].m.role.includes(m.role)) seen[k].m.role+=" / "+m.role; return; }
- const x={r,m:{...m}}; seen[k]=x; PAIRS.push(x);});});
-let bkey="ad",bdir=-1,blim=100;
-const gm=(r,j)=>r.games.find(g=>g.i===j);
+$("season").onchange=()=>{fillTeams("team",$("season").value,"Pick a team");draw();}; $("team").onchange=draw; $("q").oninput=draw;
+// ---- tab 2: biggest differences
+const PAIRS=[]; R.forEach(r=>r.mates.forEach(m=>PAIRS.push({r,m})));
+let bkey="ad",blim=50;
 function bdraw(){
- const se=$("bseason").value,t=$("bteam").value,mo=+$("bmin").value,ro=$("brole").value,ex=se==="2026-27";
+ const se=$("bseason").value,t=$("bteam").value,ex=se==="2026-27";
  document.querySelectorAll(".bexp").forEach(x=>x.style.display=ex?"":"none");
- const val=x=>x.m[bkey];
- const rs=PAIRS.filter(x=>x.r.season===se&&(!t||x.r.team===t)&&(!ro||x.m.role.includes(ro))&&x.m.on>=mo&&x.m.nn>=mo&&val(x)!=null).sort((a,b)=>(val(a)-val(b))*bdir);
- if(bkey==="ea"){ const keep={}; rs.forEach(x=>{const k=x.r.season+x.r.team+x.r.player, o=keep[k]; if(!o||x.m.nea>o.m.nea||(x.m.nea===o.m.nea&&x.m.on>o.m.on)) keep[k]=x;});
-  const ok=new Set(Object.values(keep)); for(let i=rs.length-1;i>=0;i--) if(!ok.has(rs[i])) rs.splice(i,1); }
- document.querySelectorAll("#bhead th[data-k]").forEach(th=>th.classList.toggle("on",th.dataset.k===bkey));
- const were=m=>m.name.includes(",")?"were":"was";
- $("btb").innerHTML=rs.slice(0,blim).map(({r,m},i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(r.player)}</b> <span class="mut">${r.team} · ${POS[r.pos]||r.pos}</span></td>
-  <td class="l">${esc(m.name)} <span class="mut">${m.role}, out ${m.on}</span></td>
-  <td class="grp">${f(m.an)}</td><td>${f(m.ao)}</td><td class="big ${cl(m.ad)}">${sg(m.ad)}</td>
-  <td class="grp bexp">${f(m.eo)}</td><td class="bexp big ${cl(m.ea)}">${sg(m.ea)}<br><span class="mut">${m.nea?m.nea+(m.nea>1?" games":" game"):""}</span></td>
-  <td class="grp bexp">${f(m.en)}</td><td class="bexp">${f(m.eo)}</td><td class="bexp big ${cl(m.ed)}">${sg(m.ed)}</td></tr>
-  <tr class="d" id="b${i}" hidden><td colspan="10"><b>Games ${esc(m.name)} ${were(m)} out</b> <span class="mut">(date: ${esc(r.player)}'s minutes played${ex?", expected":""})</span>
-  <div class="gl">${m.og.map(j=>{const g=gm(r,j); return `<span class="o">${g.d}: ${g.m}${ex&&g.e!=null?" (exp "+g.e+")":""}</span>`}).join("")}</div>
-  <b>Games ${esc(m.name)} ${were(m)} healthy</b><div class="gl">${m.ng.map(j=>{const g=gm(r,j); return `<span>${g.d}: ${g.m}${ex&&g.e!=null?" (exp "+g.e+")":""}</span>`}).join("")}</div></td></tr>`).join("");
- $("bmore").innerHTML=rs.length>blim?`Showing ${blim} of ${rs.length}. <a href="#" id="ball">Show all</a>`:`${rs.length} rows`;
+ if(!ex&&bkey!=="ad") bkey="ad";
+ document.querySelectorAll(".sortbtn").forEach(b=>b.classList.toggle("on",b.dataset.k===bkey));
+ let rs=PAIRS.filter(x=>x.r.season===se&&(!t||x.r.team===t)&&x.m[bkey]!=null).sort((a,b)=>b.m[bkey]-a.m[bkey]);
+ if(bkey==="ea"){ const seen=new Set(); rs=rs.filter(x=>{const k=x.r.season+x.r.team+x.r.player; if(seen.has(k)) return false; seen.add(k); return true;}); }
+ $("btb").innerHTML=rs.slice(0,blim).map(({r,m},i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(r.player)}</b> <span class="mut">${r.team}</span></td>
+  <td class="l">${esc(m.name)} <span class="mut">out ${m.on}</span></td><td>${pair(m.an,m.ao,m.ad)}</td>
+  <td class="bexp">${m.ed!=null?pair(m.en,m.eo,m.ed):"–"}</td><td class="bexp big ${cl(m.ea)}">${sg(m.ea)}<br><span class="mut">${m.nea>=MIN?m.nea+" games":""}</span></td></tr>
+  <tr class="d" id="b${i}" hidden><td colspan="5">${gamesTable(r,ex)}</td></tr>`).join("")
+  || `<tr><td colspan="5" class="l empty">Nothing with at least ${MIN} games each way.</td></tr>`;
+ $("bmore").innerHTML=rs.length>blim?`Showing the top ${blim} of ${rs.length}. <a href="#" id="ball">Show all</a>`:"";
  if($("ball")) $("ball").onclick=e=>{e.preventDefault();blim=1e9;bdraw();};
  document.querySelectorAll("#btb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("b"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
 }
-document.querySelectorAll("#bhead th[data-k]").forEach(th=>th.onclick=()=>{const k=th.dataset.k; bdir=(bkey===k)?-bdir:-1; bkey=k; bdraw();});
-document.querySelectorAll(".sortbtn").forEach(b=>b.onclick=()=>{bkey=b.dataset.k; bdir=-1; bdraw();});
-$("bseason").onchange=()=>{fillTeams("bteam",$("bseason").value,"All teams");blim=100;bdraw();}; ["bteam","bmin","brole"].forEach(id=>$(id).onchange=()=>{blim=100;bdraw();});
+document.querySelectorAll(".sortbtn").forEach(b=>b.onclick=()=>{bkey=b.dataset.k; blim=50; bdraw();});
+$("bseason").onchange=()=>{fillTeams("bteam",$("bseason").value,"All teams");blim=50;bdraw();}; $("bteam").onchange=()=>{blim=50;bdraw();};
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));
  $("view1").hidden=b.dataset.v!=="1"; $("view2").hidden=b.dataset.v!=="2";});
 fillTeams("team","2026-27","Pick a team"); fillTeams("bteam","2026-27","All teams"); draw(); bdraw();
-"""
+""".replace("__MIN__", str(MIN_GAMES))
 
-SEASON_OPTS = '<option>2024-25</option><option>2025-26</option><option value="2026-27" selected>2026-27 (so far)</option>'
+SEASON_OPTS = '<option>2024-25</option><option>2025-26</option><option value="2026-27" selected>2026-27</option>'
 
 
 def page(D, through):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Minutes When Teammates Sit</title><style>{CSS}</style></head><body>
-<h1>Minutes when a starter or key bench player is out</h1>
-<p class="lead">Pick a team (or type a name). Click a player to see his minutes when each key teammate was healthy and when he was out,
-and every game. Key teammate = a starter or a bench player who plays 20+ minutes a game. Games through {through}.</p>
+<h1>Minutes when a key teammate is out</h1>
+<p class="lead">How a player's minutes change when a starter or key bench player (20+ minutes a game) sits.
+Every number uses at least {MIN_GAMES} games. Games through {through}.</p>
 <div class="tabs"><button class="tab on" data-v="1">By team</button><button class="tab" data-v="2">Biggest differences</button></div>
 <div id="view1">
-<div class="bar">
-<label>Season <select id="season">{SEASON_OPTS}</select></label>
-<label><b>Team</b> <select id="team"></select></label>
-<label>Player <input id="q" placeholder="type a name" size="12"></label>
-<label>Teammate who was out <input id="mq" placeholder="e.g. Curry" size="12"></label>
-<label>At least <select id="minout"><option selected>1</option><option>3</option><option>5</option><option>10</option></select> games healthy and out</label>
-</div>
+<div class="bar"><select id="season">{SEASON_OPTS}</select><select id="team"></select><input id="q" placeholder="or type a player" size="16"></div>
 <div class="wrap"><table><thead id="head"><tr>
-<th class="l" data-k="player">Player</th><th data-k="mpg">Minutes<small>a game</small></th><th data-k="gp">Games<small>played</small></th>
-<th class="l">Biggest boost<small>teammate who was out</small></th><th data-k="best">Extra minutes<small>when he was out</small></th><th>Key teammates<small>who missed games</small></th>
+<th class="l" data-k="player">Player</th><th data-k="mpg">Min/game</th><th class="l">Biggest boost when out</th><th data-k="best">Extra min</th>
 </tr></thead><tbody id="tb"></tbody></table></div>
-<div id="more"></div>
 </div>
 <div id="view2" hidden>
-<p class="lead">Every player paired with a key teammate who was out, ranked by the biggest gaps. Click a row for the games.</p>
-<div class="bar">
-<label>Season <select id="bseason">{SEASON_OPTS}</select></label>
-<label>Team <select id="bteam"></select></label>
-<label>Teammate type <select id="brole"><option value="">Starters and key bench</option><option value="starter">Starters only</option><option value="key bench">Key bench only</option></select></label>
-<label>At least <select id="bmin"><option selected>1</option><option>2</option><option>3</option><option>5</option><option>10</option></select> games healthy and out</label>
-</div>
-<div class="bar">Rank by:
-<button class="sortbtn" data-k="ad">Minutes played: teammate out vs healthy</button>
-<button class="sortbtn bexp" data-k="ea">Minutes played vs expected, when teammate out</button>
-<button class="sortbtn bexp" data-k="ed">Expected minutes: teammate out vs healthy</button>
-<span class="mut">Click a blue column title again to flip it. For "played vs expected" each player is listed once.</span></div>
-<div class="wrap"><table><thead id="bhead"><tr>
-<th class="l">Player</th><th class="l">Key teammate(s) who were out</th>
-<th class="grp">Minutes played<small>teammate healthy</small></th><th>Minutes played<small>teammate out</small></th><th data-k="ad">Difference<small>out vs healthy</small></th>
-<th class="grp bexp">Expected<small>teammate out</small></th><th class="bexp" data-k="ea">Played vs expected<small>when teammate out</small></th>
-<th class="grp bexp">Expected<small>teammate healthy</small></th><th class="bexp">Expected<small>teammate out</small></th><th class="bexp" data-k="ed">Expected difference<small>out vs healthy</small></th>
+<div class="bar"><select id="bseason">{SEASON_OPTS}</select><select id="bteam"></select>
+<span class="rank">Rank by
+<button class="sortbtn on" data-k="ad">Minutes gained</button>
+<button class="sortbtn bexp" data-k="ea">Played above expected</button>
+<button class="sortbtn bexp" data-k="ed">Expected gained</button></span></div>
+<div class="wrap"><table><thead><tr>
+<th class="l">Player</th><th class="l">Teammate(s) out</th><th>Minutes played<small>healthy → out</small></th>
+<th class="bexp">Expected minutes<small>healthy → out</small></th><th class="bexp">Played vs expected<small>when out</small></th>
 </tr></thead><tbody id="btb"></tbody></table></div>
 <div id="bmore"></div>
 </div>
-<footer>Minutes played: ESPN box scores (regular season; a coach's-decision DNP counts as 0). Starters: on this season's depth chart or
-started at least half their games. Expected minutes (2026-27 only, from Oct 27): the number the trader bot's
-report showed (FantasyPros top 10, else RotoWire for away teams, else SportsLine), or its last read before tip; a player the site dropped
-before tip has none. A traded player shows under each team. Small samples swing a lot.</footer>
+<footer>Minutes played: ESPN box scores (a coach's-decision DNP counts as 0). Starters: on this season's depth chart or started at
+least half their games. Expected minutes (2026-27, from Oct 27): what the trader bot's report showed (FantasyPros top 10, else RotoWire
+for away teams, else SportsLine), or its last read before tip. Teammates who missed exactly the same games share a row.</footer>
 <script>const D={json.dumps(D, separators=(",", ":"))};
 {JS}</script></body></html>"""
 

@@ -240,3 +240,5 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
 - backtest/minutes_page.py (Nov 16 2026, user asked to rebuild the page): `python backtest/minutes_page.py OUT.html`
   builds the "Minutes when a starter or key bench player is out" page (tabs "By team" and "Biggest differences") from
   backtest/data/box_<season>.csv, data.json depth charts and pipeline/expected_history.csv. Not part of the bot.
+  Nov 16 2026 (user): every number needs 2+ games (MIN_GAMES), teammates out in the same games share a row, compact
+  "healthy -> out" tables, games list folded under "Every game".
