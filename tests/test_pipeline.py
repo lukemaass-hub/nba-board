@@ -807,3 +807,16 @@ def test_basketball_monster_lineups_fill_in_when_rotowire_has_not_confirmed():
     assert u.merge_bm_lineups(data, bm, dt.date(2026, 11, 15)) == verified
     assert data["lineups"][t]["confirmed"] and data["lineups"][t]["source"] == "Basketball Monster"
     assert data["lineups"]["HOU"]["confirmed"] is False                   # projected only: left alone
+
+
+def test_schedule_reads_bolded_hybrid_games():
+    """Nov 16 2026: hybrid-feed games are bolded with an emoji in front and were skipped (no group DM)."""
+    import slack_assign as sa
+    t = ("*_NBA_* :nba:\n"
+         ":hybrid-time: *7:00 PM - Orlando Magic @ Boston Celtics* - <@U1|Adam B> Cores / <@U2|Luke M> Props\n"
+         "7:00 PM - Chicago Bulls @ Cleveland Cavaliers - <@U3|Ian M> Cores / <@U4|Blake G> Props\n"
+         "&gt; :warning: *Bolded NBA games are on the Hybrid Feed*\n\n*_NHL_* :nhl:\n"
+         "7:30 PM - Montreal Canadiens @ New York Rangers - <@U5|Mike W>\n")
+    s = sa.parse_schedule(t)
+    assert set(s) == {("ORL", "BOS"), ("CHI", "CLE")}
+    assert [p["role"] for p in s[("ORL", "BOS")]] == ["Cores", "Props"]

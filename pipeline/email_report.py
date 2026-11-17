@@ -934,7 +934,10 @@ def dm_traders(data, token, now, window, sent, stamp):
         who = sa.plan(people)
         why = "lineups confirmed" if confirmed else "lineups not confirmed yet"
         title, blocks = build_slack(data, g, g["date"], test=(m == "test"))
-        if m == "off" or not people:
+        if m != "off" and not people:   # not marked sent: a game missing from the schedule is retried, and the owner is emailed if it tips unsent
+            print(f"Slack DMs: {g['away']}@{g['home']} has no traders in today's IP Trader Schedule; not sent, will retry")
+            continue
+        if m == "off":
             print(f"Slack DMs ({m}, {why}): {g['away']}@{g['home']} would go to {who}")
         else:
             try:

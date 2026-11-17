@@ -51,11 +51,13 @@ def parse_schedule(text):
     """NBA games in the schedule text -> {(away_code, home_code): [{"user": id, "name": str, "role": str}]}."""
     out, sport = {}, None
     for line in (text or "").splitlines():
+        # hybrid-feed games are bolded with an emoji in front (Nov 16 2026): ":hybrid-time: *7:00 PM - A @ B* - <@U..>"
+        clean = re.sub(r"^\s*(?::[\w+-]+:\s*)+", "", line).replace("*", "")
         h = HEADER.match(line)
-        if h and not GAME.match(line):
+        if h and not GAME.match(clean):
             sport = h.group(1).strip().upper()
             continue
-        m = GAME.match(line)
+        m = GAME.match(clean)
         if sport != "NBA" or not m:
             continue
         away, home = team_code(m.group(2)), team_code(m.group(3))
