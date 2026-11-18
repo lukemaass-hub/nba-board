@@ -253,6 +253,8 @@ details summary{cursor:pointer;color:var(--accent);margin:4px 0} .rank{display:f
 .sortbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)} tr.wk td{font-weight:600} .why{margin:2px 0 8px;font-size:13.5px} td:not(.l),th:not(.l){white-space:nowrap} footer{margin:26px 0 10px;font-size:12.5px;color:var(--mut);max-width:900px}
 """
 
+PTS_SIG = 4        # points tab: 4+ points a game apart counts as a real difference (user, Nov 18 2026)
+OVER_SIG = 0.30    # ...or going over our line 30+ percentage points more / less often
 MIN_GAMES = 2      # every number on the page needs at least this many games behind it (user, Nov 16 2026)
 
 JS = r"""
@@ -281,6 +283,11 @@ for(const [season,teams] of Object.entries(D)) for(const [team,T] of Object.entr
      lo:avg2(og.map(i=>Ln[i]).filter(x=>x!=null)),ln:avg2(ng.map(i=>Ln[i]).filter(x=>x!=null)),
      lso:og.map(i=>Ln[i]).filter(x=>x!=null),lsn:ng.map(i=>Ln[i]).filter(x=>x!=null)};
    m.ld=(m.lo!=null&&m.ln!=null)?m.lo-m.ln:null;
+   { const po=og.map(i=>Pt[i]).filter(x=>x!=null), pn=ng.map(i=>Pt[i]).filter(x=>x!=null);
+     m.pto=avg2(po); m.ptn=avg2(pn); m.ptd=(m.pto!=null&&m.ptn!=null)?m.pto-m.ptn:null;
+     const wo=og.filter(i=>Ln[i]!=null&&Pt[i]!=null), wn=ng.filter(i=>Ln[i]!=null&&Pt[i]!=null);
+     m.ovo=wo.filter(i=>Pt[i]>Ln[i]).length; m.novo=wo.length; m.ovn=wn.filter(i=>Pt[i]>Ln[i]).length; m.novn=wn.length;
+     m.ovd=(wo.length>=MIN&&wn.length>=MIN)?m.ovo/wo.length-m.ovn/wn.length:null; }
    m.ad=m.ao-m.an; m.ed=(m.eo!=null&&m.en!=null)?m.eo-m.en:null; groups[k]=m;
   }
   const mates=Object.values(groups); mates.forEach(m=>m.name=m.names.join(", "));
@@ -362,12 +369,39 @@ function cdraw(){
  document.querySelectorAll("#ctb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("c"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
 }
 document.querySelectorAll(".cbtn").forEach(b=>b.onclick=()=>{cdir=b.dataset.k; cdraw();}); $("cteam").onchange=cdraw;
+// ---- tab 5: points (and how often he goes over our line) when a key teammate is out (user, Nov 18 2026)
+const PTS_SIG=__PTS__, OVER_SIG=__OVER__, pc=v=>Math.round(v*100)+"%";
+const PP=[]; R.filter(r=>r.season==="2026-27").forEach(r=>r.mates.forEach(m=>{ m.nmin=Math.min(m.on,m.nn);
+  const sp=m.ptd!=null&&Math.abs(m.ptd)>=PTS_SIG, so=m.ovd!=null&&Math.abs(m.ovd)>=OVER_SIG;
+  if(sp||so) PP.push({r,m,sp,so});}));
+let pkey="pts",plim=50;
+function pdraw(){
+ const t=$("pteam").value;
+ document.querySelectorAll(".pbtn").forEach(b=>b.classList.toggle("on",b.dataset.k===pkey));
+ const g3=$("p3").checked;
+ const rs=PP.filter(x=>(!t||x.r.team===t)&&(pkey!=="over"||x.m.ovd!=null)&&(!g3||(pkey==="over"?Math.min(x.m.novo,x.m.novn)>=3:x.m.nmin>=3)))
+   .sort((a,b)=>pkey==="over"?Math.abs(b.m.ovd)-Math.abs(a.m.ovd):Math.abs(b.m.ptd??0)-Math.abs(a.m.ptd??0));
+ $("ptb").innerHTML=rs.slice(0,plim).map(({r,m},i)=>{
+  const gs=r.games.filter(g=>m.sat.has(g.i)||m.ng.includes(g.i));
+  return `<tr class="p" data-i="${i}"><td class="l"><b>${esc(r.player)}</b> <span class="mut">${r.team}</span></td><td class="l">${esc(m.name)} out <span class="mut">${m.on} g out</span></td>
+  <td>${m.ptd!=null?lpair(m.ptn,m.pto,m.ptd):"–"}</td>
+  ${HASL?`<td>${m.ovd!=null?`${pc(m.ovn/m.novn)} → ${pc(m.ovo/m.novo)} <span class="${m.ovd>0?"up":"dn"} chg">${m.ovd>0?"+":""}${Math.round(m.ovd*100)}</span><small class="lines">${m.ovn} of ${m.novn} → ${m.ovo} of ${m.novo} over</small>`:'<span class="mut">not enough bets</span>'}</td>
+  <td>${m.ld!=null?lpair(m.ln,m.lo,m.ld):"–"}</td>`:""}<td>${f(m.an)} → ${f(m.ao)}</td></tr>
+  <tr class="d" id="p${i}" hidden><td colspan="${HASL?6:4}"><table class="games"><tr><th class="l">Date</th><th>Minutes</th>${HASL?"<th>Our points line</th>":""}<th>Points</th><th class="l">${esc(m.name)}</th><th class="l">Key teammates out</th></tr>
+  ${gs.map(g=>`<tr><td class="l">${g.d}</td><td>${g.m}</td>${HASL?`<td>${g.l??"–"}</td>`:""}<td>${g.p??"–"}</td><td class="l">${m.sat.has(g.i)?"<b>out</b>":"played"}</td><td class="l">${g.out.length?esc(g.out.join(", ")):'<span class="mut">none</span>'}</td></tr>`).join("")}</table></td></tr>`;}).join("")
+  || `<tr><td colspan="6" class="l empty">None.</td></tr>`;
+ $("pmore").innerHTML=rs.length>plim?`Showing the top ${plim} of ${rs.length}. <a href="#" id="pall">Show all</a>`:"";
+ if($("pall")) $("pall").onclick=e=>{e.preventDefault();plim=1e9;pdraw();};
+ document.querySelectorAll("#ptb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("p"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
+}
+document.querySelectorAll(".pbtn").forEach(b=>b.onclick=()=>{pkey=b.dataset.k; plim=50; pdraw();}); $("pteam").onchange=()=>{plim=50;pdraw();}; $("p3").onchange=()=>{plim=50;pdraw();};
+if(!HASL) document.querySelectorAll(".pl").forEach(x=>x.style.display="none");
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));
- ["1","2","3","4"].forEach(v=>$("view"+v).hidden=b.dataset.v!==v);});
-fillTeams("team","2026-27","Pick a team"); fillTeams("bteam","2026-27","All teams"); fillTeams("mteam","2026-27","All teams");
+ ["1","2","3","4","5"].forEach(v=>$("view"+v).hidden=b.dataset.v!==v);});
+fillTeams("team","2026-27","Pick a team"); fillTeams("bteam","2026-27","All teams"); fillTeams("mteam","2026-27","All teams"); fillTeams("pteam","2026-27","All teams");
 $("cteam").innerHTML='<option value="">All teams</option>'+[...new Set(CH.map(x=>x.team))].sort().map(t=>`<option>${t}</option>`).join("");
-draw(); bdraw(); mdraw(); cdraw();
-""".replace("__MIN__", str(MIN_GAMES)).replace("__SHOW__", str(SHOW_CHANGE))
+draw(); bdraw(); mdraw(); cdraw(); pdraw();
+""".replace("__MIN__", str(MIN_GAMES)).replace("__PTS__", str(PTS_SIG)).replace("__OVER__", str(OVER_SIG)).replace("__SHOW__", str(SHOW_CHANGE))
 
 SEASON_OPTS = '<option>2024-25</option><option>2025-26</option><option value="2026-27" selected>2026-27</option>'
 
@@ -381,7 +415,7 @@ def page(D, CH, through):
 more minutes in games Flemings misses. Click a player to see every teammate.
 Every number uses at least {MIN_GAMES} games. Games through {through}.</p>
 <div class="tabs"><button class="tab on" data-v="1">By team</button><button class="tab" data-v="2">Biggest differences</button>
-<button class="tab" data-v="3">Biggest misses</button><button class="tab" data-v="4">Minutes changes</button></div>
+<button class="tab" data-v="3">Biggest misses</button><button class="tab" data-v="4">Minutes changes</button><button class="tab" data-v="5">Points when out</button></div>
 <div id="view1">
 <div class="bar"><select id="season">{SEASON_OPTS}</select><select id="team"></select><input id="q" placeholder="or type a player" size="16"></div>
 <div class="wrap"><table><thead id="head"><tr>
@@ -419,6 +453,17 @@ Games he left hurt don't count. Click a player for why it changed and his game l
 <button class="cbtn sortbtn" data-k="down">Fewer minutes</button></span></div>
 <div class="wrap"><table><thead><tr><th class="l">Player</th><th>Season before this week<small>min a game</small></th><th>Last week<small>min a game</small></th>
 <th>Change</th></tr></thead><tbody id="ctb"></tbody></table></div>
+</div>
+<div id="view5" hidden>
+<p class="lead">2026-27: players who score a lot more or less when a key teammate is out ({PTS_SIG}+ points a game apart)<span class="pl">,
+or who go over our points line much more or less often than usual ({int(OVER_SIG*100)}+ percentage points apart; "over" = scored more than
+our line that game)</span>. 2+ games each way, so small samples: check the games behind each row. Click a player for every game.</p>
+<div class="bar"><select id="pteam"></select><label style="font-size:13.5px"><input type="checkbox" id="p3"> Only 3+ games each way</label><span class="rank">Rank by
+<button class="pbtn sortbtn on" data-k="pts">Points difference</button><button class="pbtn sortbtn pl" data-k="over">Over-rate difference</button></span></div>
+<div class="wrap"><table><thead><tr><th class="l">Player</th><th class="l">Player out</th><th>Points a game<small>he plays → he's out</small></th>
+<th class="pl">Went over our line<small>he plays → he's out</small></th><th class="pl">Our points line<small>average · he plays → he's out</small></th>
+<th>Minutes<small>he plays → he's out</small></th></tr></thead><tbody id="ptb"></tbody></table></div>
+<div id="pmore" style="margin:10px 0;font-size:13.5px"></div>
 </div>
 <footer>Minutes played: ESPN box scores (a coach's-decision DNP counts as 0). Starters: on this season's depth chart or started at
 least half their games. Expected minutes (2026-27, from Oct 27): what the trader bot's report showed (FantasyPros top 10, else RotoWire

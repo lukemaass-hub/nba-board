@@ -280,3 +280,6 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   (only games someone bet). Internal betting data: the lines file and that page are NEVER committed (repo is public).
 - Nov 18 2026 (user): game logs on the minutes page also show actual POINTS (backtest/fetch_points.py -> backtest/data/
   points_2026-27.csv from ESPN summaries; re-run it to add new games). Plain number, no arrows (user).
+- Nov 18 2026 (user): minutes page tab 5 "Points when out": pairs where a player scores PTS_SIG (4)+ points a game more/less
+  with a key teammate out, or (with --lines) goes over our points line OVER_SIG (30)+ percentage points more/less often.
+  2+ games each way, "Only 3+ games each way" checkbox; rank by points or over-rate difference; click a row for the games.
