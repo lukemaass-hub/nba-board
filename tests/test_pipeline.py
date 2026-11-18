@@ -280,7 +280,8 @@ def test_news_sets_status_and_restrictions():
     assert len(data["injuries"]) == 2 and len(data["restrictions"]) == 1
     import email_report as e
     inj = e.injuries_for(data, "NYK", "2026-10-09")
-    assert (inj[0]["st"], inj[0]["beat"], inj[0]["differ"]) == ("q", "A B", True)   # writer beats ESPN's "out"
+    # Nov 18 2026 (user): a player listed OUT anywhere is out, even if a writer says questionable
+    assert (inj[0]["st"], inj[0]["differ"]) == ("out", True)
     assert e.injuries_for(data, "NYK", "2026-10-08")[0]["st"] == "out"                 # news not in effect yet
     assert [w["player"] for w in e.restrictions_for(data, ("NYK", "MIA"), "2026-10-09")] == ["Jalen Brunson"]
     assert e.restrictions_for(data, ("NYK",), "2026-10-12") == []
@@ -885,3 +886,14 @@ def test_sixth_man_is_never_questionable():
     title, blocks = e.build_slack(d, d["schedule"][0], "2026-11-18")
     six = [b for b in blocks if "6th man" in json.dumps(b)]
     assert six and "Maxey" not in json.dumps(six)
+
+
+def test_out_anywhere_is_out_unless_confirmed_starter():
+    import email_report as e
+    rec = lambda src, st: {"team": "PHI", "player": "Tyrese Maxey", "src": src, "kind": "G", "st": st, "through": "2026-11-18"}
+    d = {"lineups": {"PHI": {"date": "2026-11-18", "confirmed": False, "starters": [{"pos": "PG", "name": "Tyrese Maxey"}]}},
+         "injuries": [rec("RotoWire", "q"), rec("ESPN", "out")]}
+    assert e.injuries_for(d, "PHI", "2026-11-18")[0]["st"] == "out"
+    d["lineups"]["PHI"]["confirmed"] = True          # in a confirmed starting five: he is playing
+    d["injuries"] = [rec("ESPN", "out")]
+    assert e.injuries_for(d, "PHI", "2026-11-18") == []
