@@ -292,8 +292,8 @@ function fillTeams(sel,season,blank){const cur=$(sel).value, ts=[...new Set(R.fi
  $(sel).innerHTML=`<option value="">${blank}</option>`+ts.map(t=>`<option${t===cur?" selected":""}>${t}</option>`).join("");}
 const pair=(a,b,d)=>`${f(a)} → ${f(b)} <span class="${cl(d)} chg">${sg(d)}</span>`;
 const HASL=typeof LINES_ON!=="undefined"&&LINES_ON, lpair=(a,b,d)=>`${f(a)} → ${f(b)} ${d==null?"":Math.abs(d)<1?'<span class="mut">no change</span>':`<span class="${d>0?"up":"dn"} chg">${d>0?"+":""}${d.toFixed(1)}</span>`}`;
-const gamesTable=(r,ex)=>`<table class="games"><tr><th class="l">Date</th><th>Played</th>${ex?"<th>Expected</th>":""}${ex&&HASL?"<th>Our points line<small>that game</small></th>":""}${ex?`<th>Points${HASL?"<small>▲ over our line · ▼ under</small>":""}</th>`:""}<th class="l">Key teammates out</th></tr>
- ${r.games.map(g=>`<tr><td class="l">${g.d}</td><td>${g.m}</td>${ex?`<td>${g.e??"–"}</td>`:""}${ex&&HASL?`<td>${g.l??"–"}</td>`:""}${ex?`<td>${g.p==null?"–":g.l!=null?`<span class="${g.p>g.l?"up":"dn"}">${g.p}</span>`:g.p}</td>`:""}<td class="l">${g.out.length?esc(g.out.join(", ")):'<span class="mut">none</span>'}</td></tr>`).join("")}</table>`;
+const gamesTable=(r,ex)=>`<table class="games"><tr><th class="l">Date</th><th>Played</th>${ex?"<th>Expected</th>":""}${ex&&HASL?"<th>Our points line<small>that game</small></th>":""}${ex?"<th>Points</th>":""}<th class="l">Key teammates out</th></tr>
+ ${r.games.map(g=>`<tr><td class="l">${g.d}</td><td>${g.m}</td>${ex?`<td>${g.e??"–"}</td>`:""}${ex&&HASL?`<td>${g.l??"–"}</td>`:""}${ex?`<td>${g.p??"–"}</td>`:""}<td class="l">${g.out.length?esc(g.out.join(", ")):'<span class="mut">none</span>'}</td></tr>`).join("")}</table>`;
 // ---- tab 1: by team
 let key="best",dir=-1;
 function draw(){
@@ -356,8 +356,8 @@ function cdraw(){
  $("ctb").innerHTML=rs.map((x,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(x.player)}</b> <span class="mut">${x.team}</span></td><td>${f(x.last)} <span class="mut">(${x.lgp} g)</span></td>
   <td>${f(x.now)} <span class="mut">(${x.gp} g)</span></td><td class="big ${cl(x.d)}">${sg(x.d)}</td>
 </tr>
-  <tr class="d" id="c${i}" hidden><td colspan="4"><div class="why"><b>Why:</b> ${esc(x.kind)} · ${esc(x.why)}</div><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th>${HASL?"<th>Our points line<small>that game</small></th>":""}<th>Points${HASL?"<small>▲ over our line · ▼ under</small>":""}</th><th class="l"></th></tr>
-  ${x.log.map(g=>`<tr${g[4]?' class="wk"':''}><td class="l">${g[0]}</td><td class="l">${g[1]}</td><td>${g[2]}</td><td>${g[5]??"–"}</td>${HASL?`<td>${g[7]??"–"}</td>`:""}<td>${g[8]==null?"–":g[7]!=null?`<span class="${g[8]>g[7]?"up":"dn"}">${g[8]}</span>`:g[8]}</td>
+  <tr class="d" id="c${i}" hidden><td colspan="4"><div class="why"><b>Why:</b> ${esc(x.kind)} · ${esc(x.why)}</div><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th>${HASL?"<th>Our points line<small>that game</small></th>":""}<th>Points</th><th class="l"></th></tr>
+  ${x.log.map(g=>`<tr${g[4]?' class="wk"':''}><td class="l">${g[0]}</td><td class="l">${g[1]}</td><td>${g[2]}</td><td>${g[5]??"–"}</td>${HASL?`<td>${g[7]??"–"}</td>`:""}<td>${g[8]??"–"}</td>
    <td class="l mut">${g[6]?"left hurt (not counted)":g[3]?"started":g[2]===0?"DNP (coach)":"bench"}${g[4]?" · last week":""}</td></tr>`).join("")}</table></td></tr>`).join("") || `<tr><td colspan="4" class="l empty">None.</td></tr>`;
  document.querySelectorAll("#ctb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("c"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
 }

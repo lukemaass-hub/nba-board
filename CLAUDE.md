@@ -279,4 +279,4 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   leg_market_type 'BASKETBALL:FT:PROPPTS', prematch, line parsed from leg_selection of the last wager before tip
   (only games someone bet). Internal betting data: the lines file and that page are NEVER committed (repo is public).
 - Nov 18 2026 (user): game logs on the minutes page also show actual POINTS (backtest/fetch_points.py -> backtest/data/
-  points_2026-27.csv from ESPN summaries; re-run it to add new games). With --lines, ▲/▼ mark over/under our line.
+  points_2026-27.csv from ESPN summaries; re-run it to add new games). Plain number, no arrows (user).
