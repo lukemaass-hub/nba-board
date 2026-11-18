@@ -273,3 +273,8 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
 - Nov 17 2026 (user): "have the info send to me so I can verify before it starts sending to other people" ->
   slack_assign.OWNER_ONLY = True (PAUSED = False): mode() is "test": every report goes to the owner's DM with the bot,
   marked [TEST] with who it would have gone to (SLACK_TEST_CHANNEL ignored). OWNER_ONLY = False only when the user says.
+- Nov 18 2026 (user): minutes page can show OUR prematch points O/U lines in the click-through (By team teammate table,
+  Every game, Minutes changes game log): `python backtest/minutes_page.py OUT.html --lines lines_map.json`. Lines come
+  from Snowflake ([beta] Snowflake Agents connector, TRADING_AGENT_20260623, read only): V_TRADING_SPORTSBOOK_MART,
+  leg_market_type 'BASKETBALL:FT:PROPPTS', prematch, line parsed from leg_selection of the last wager before tip
+  (only games someone bet). Internal betting data: the lines file and that page are NEVER committed (repo is public).

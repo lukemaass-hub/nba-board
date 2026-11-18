@@ -41,6 +41,9 @@ def left_injured(games, team_dates):
     return out
 
 
+LINES = {}   # optional {"YYYY-MM-DD|normname": our prematch points line}; --lines FILE (internal data: never commit it)
+
+
 def expected_by_game():
     out = {}
     path = os.path.join(ROOT, "pipeline", "expected_history.csv")
@@ -118,6 +121,8 @@ def build_data():
                      "m": [None if mins[(t, k)].get(d) is None or i in skip else round(mins[(t, k)][d]) for i, d in enumerate(dates)]}
                 if season == "2026-27":
                     p["e"] = [exp.get((d, t, norm_name(info[(t, k)]["name"]))) for d in dates]
+                    if LINES:
+                        p["l"] = [LINES.get(f"{d}|{norm_name(info[(t, k)]['name'])}") for d in dates]
                 players[k] = p
             sdata[t] = {"dates": [d[5:] for d in dates], "keys": keys, "players": players,
                         "skipped": [dates[i][5:] for i in sorted(skip)]}
@@ -204,7 +209,7 @@ def season_changes(days=7):
         if not kind:
             kind, why = "Rotation change", why or ["no injuries involved"]
         log = [[d[5:], meta[(k, d)], round(v), starts[k].get(d, 0), int(d >= start), exp.get((d, tm, norm_name(team[k][1]))),
-                int(d in hurt[k])] for d, v in sorted(g.items(), reverse=True)]
+                int(d in hurt[k]), LINES.get(f"{d}|{norm_name(team[k][1])}")] for d, v in sorted(g.items(), reverse=True)]
         out.append({"team": tm, "player": team[k][1], "now": round(a, 1), "gp": len(week), "last": round(b, 1),
                     "lgp": len(before), "d": round(a - b, 1), "kind": kind, "why": "; ".join(why), "log": log})
     return {"from": start, "to": last_day, "rows": sorted(out, key=lambda x: -abs(x["d"]))}
@@ -249,7 +254,7 @@ const avg2=a=>a.length>=MIN?mean(a):null;          // fewer than MIN games: no n
 const R=[];
 for(const [season,teams] of Object.entries(D)) for(const [team,T] of Object.entries(teams)){
  for(const [pk,P] of Object.entries(T.players)){
-  const E=P.e||[], groups={};
+  const E=P.e||[], Ln=P.l||[], groups={};
   for(const [kk,K] of Object.entries(T.keys)){
    if(pk===kk) continue;
    const sat=new Set(K.sat), on=new Set(K.on), og=[], ng=[];
@@ -260,19 +265,22 @@ for(const [season,teams] of Object.entries(D)) for(const [team,T] of Object.entr
    const eo=og.map(i=>E[i]).filter(x=>x!=null), en=ng.map(i=>E[i]).filter(x=>x!=null), oe=og.filter(i=>E[i]!=null);
    const m={names:[K.name],role:K.role,on:og.length,nn:ng.length,sat,og,ng,
      ao:mean(og.map(i=>P.m[i])),an:mean(ng.map(i=>P.m[i])),eo:avg2(eo),en:avg2(en),neo:eo.length,nen:en.length,
-     ea:oe.length>=MIN?mean(oe.map(i=>P.m[i]-E[i])):null,nea:oe.length};
+     ea:oe.length>=MIN?mean(oe.map(i=>P.m[i]-E[i])):null,nea:oe.length,
+     lo:avg2(og.map(i=>Ln[i]).filter(x=>x!=null)),ln:avg2(ng.map(i=>Ln[i]).filter(x=>x!=null))};
+   m.ld=(m.lo!=null&&m.ln!=null)?m.lo-m.ln:null;
    m.ad=m.ao-m.an; m.ed=(m.eo!=null&&m.en!=null)?m.eo-m.en:null; groups[k]=m;
   }
   const mates=Object.values(groups); mates.forEach(m=>m.name=m.names.join(", "));
   if(!mates.length) continue;
-  const games=T.dates.map((d,i)=>P.m[i]==null?null:{d,i,m:P.m[i],e:E[i]??null,out:mates.filter(x=>x.sat.has(i)).flatMap(x=>x.names)}).filter(Boolean);
+  const games=T.dates.map((d,i)=>P.m[i]==null?null:{d,i,m:P.m[i],e:E[i]??null,l:Ln[i]??null,out:mates.filter(x=>x.sat.has(i)).flatMap(x=>x.names)}).filter(Boolean);
   R.push({season,team,player:P.name,pos:P.pos,mpg:P.mpg,gp:games.length,mates:mates.sort((a,b)=>b.ad-a.ad),games});
  }}
 function fillTeams(sel,season,blank){const cur=$(sel).value, ts=[...new Set(R.filter(r=>r.season===season).map(r=>r.team))].sort();
  $(sel).innerHTML=`<option value="">${blank}</option>`+ts.map(t=>`<option${t===cur?" selected":""}>${t}</option>`).join("");}
 const pair=(a,b,d)=>`${f(a)} → ${f(b)} <span class="${cl(d)} chg">${sg(d)}</span>`;
-const gamesTable=(r,ex)=>`<table class="games"><tr><th class="l">Date</th><th>Played</th>${ex?"<th>Expected</th>":""}<th class="l">Key teammates out</th></tr>
- ${r.games.map(g=>`<tr><td class="l">${g.d}</td><td>${g.m}</td>${ex?`<td>${g.e??"–"}</td>`:""}<td class="l">${g.out.length?esc(g.out.join(", ")):'<span class="mut">none</span>'}</td></tr>`).join("")}</table>`;
+const HASL=typeof LINES_ON!=="undefined"&&LINES_ON, lpair=(a,b,d)=>`${f(a)} → ${f(b)} ${d==null?"":Math.abs(d)<1?'<span class="mut">no change</span>':`<span class="${d>0?"up":"dn"} chg">${d>0?"+":""}${d.toFixed(1)}</span>`}`;
+const gamesTable=(r,ex)=>`<table class="games"><tr><th class="l">Date</th><th>Played</th>${ex?"<th>Expected</th>":""}${ex&&HASL?"<th>Our points line</th>":""}<th class="l">Key teammates out</th></tr>
+ ${r.games.map(g=>`<tr><td class="l">${g.d}</td><td>${g.m}</td>${ex?`<td>${g.e??"–"}</td>`:""}${ex&&HASL?`<td>${g.l??"–"}</td>`:""}<td class="l">${g.out.length?esc(g.out.join(", ")):'<span class="mut">none</span>'}</td></tr>`).join("")}</table>`;
 // ---- tab 1: by team
 let key="best",dir=-1;
 function draw(){
@@ -283,8 +291,8 @@ function draw(){
  $("tb").innerHTML=rs.length?rs.map((r,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(r.player)}</b> <span class="mut">${r.team} · ${POS[r.pos]||r.pos}</span></td>
   <td>${r.mpg}</td><td class="l">${esc(r.mates[0].name)} out</td><td class="big ${cl(r.best)}">${sg(r.best)}</td></tr>
   <tr class="d" id="d${i}" hidden><td colspan="4">
-  <table class="sub"><tr><th class="l">Player out</th><th>Games he missed</th><th>${esc(r.player)}'s minutes<small>he plays → he's out</small></th>${ex?"<th>His expected minutes<small>he plays → he's out</small></th>":""}</tr>
-  ${r.mates.map(m=>`<tr><td class="l">${esc(m.name)} out <span class="mut">${m.role}</span></td><td>${m.on}</td><td>${pair(m.an,m.ao,m.ad)}</td>${ex?`<td>${m.ed!=null?pair(m.en,m.eo,m.ed):'<span class="mut">not enough saved</span>'}</td>`:""}</tr>`).join("")}</table>
+  <table class="sub"><tr><th class="l">Player out</th><th>Games he missed</th><th>${esc(r.player)}'s minutes<small>he plays → he's out</small></th>${ex?"<th>His expected minutes<small>he plays → he's out</small></th>":""}${ex&&HASL?"<th>Our points line<small>he plays → he's out</small></th>":""}</tr>
+  ${r.mates.map(m=>`<tr><td class="l">${esc(m.name)} out <span class="mut">${m.role}</span></td><td>${m.on}</td><td>${pair(m.an,m.ao,m.ad)}</td>${ex?`<td>${m.ed!=null?pair(m.en,m.eo,m.ed):'<span class="mut">not enough saved</span>'}</td>`:""}${ex&&HASL?`<td>${m.ld!=null?lpair(m.ln,m.lo,m.ld):'<span class="mut">not enough bets</span>'}</td>`:""}</tr>`).join("")}</table>
   <details><summary>Every game</summary>${gamesTable(r,ex)}</details></td></tr>`).join("")
   :`<tr><td colspan="4" class="l empty">No players with at least ${MIN} games each way.</td></tr>`;
  document.querySelectorAll("#tb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("d"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
@@ -335,8 +343,8 @@ function cdraw(){
  $("ctb").innerHTML=rs.map((x,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(x.player)}</b> <span class="mut">${x.team}</span></td><td>${f(x.last)} <span class="mut">(${x.lgp} g)</span></td>
   <td>${f(x.now)} <span class="mut">(${x.gp} g)</span></td><td class="big ${cl(x.d)}">${sg(x.d)}</td>
 </tr>
-  <tr class="d" id="c${i}" hidden><td colspan="4"><div class="why"><b>Why:</b> ${esc(x.kind)} · ${esc(x.why)}</div><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th><th class="l"></th></tr>
-  ${x.log.map(g=>`<tr${g[4]?' class="wk"':''}><td class="l">${g[0]}</td><td class="l">${g[1]}</td><td>${g[2]}</td><td>${g[5]??"–"}</td>
+  <tr class="d" id="c${i}" hidden><td colspan="4"><div class="why"><b>Why:</b> ${esc(x.kind)} · ${esc(x.why)}</div><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th>${HASL?"<th>Our points line</th>":""}<th class="l"></th></tr>
+  ${x.log.map(g=>`<tr${g[4]?' class="wk"':''}><td class="l">${g[0]}</td><td class="l">${g[1]}</td><td>${g[2]}</td><td>${g[5]??"–"}</td>${HASL?`<td>${g[7]??"–"}</td>`:""}
    <td class="l mut">${g[6]?"left hurt (not counted)":g[3]?"started":g[2]===0?"DNP (coach)":"bench"}${g[4]?" · last week":""}</td></tr>`).join("")}</table></td></tr>`).join("") || `<tr><td colspan="4" class="l empty">None.</td></tr>`;
  document.querySelectorAll("#ctb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("c"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
 }
@@ -405,12 +413,17 @@ for away teams, else SportsLine), or its last read before tip. Teammates who mis
 Left out: DNPs for injury or rest (he wasn't available), 0-minute games before a player's first real game, players often benched
 by the coach (not key teammates), and games with more than {MAX_OUT} key teammates out (e.g. Pacers, Nov 2).
 Differences under {SHOW_CHANGE} minutes show as "no change".</footer>
-<script>const D={json.dumps(D, separators=(",", ":"))}; const CH={json.dumps(CH["rows"], separators=(",", ":"))};
+<script>const LINES_ON={"true" if LINES else "false"}; const D={json.dumps(D, separators=(",", ":"))}; const CH={json.dumps(CH["rows"], separators=(",", ":"))};
 {JS}</script></body></html>"""
 
 
 if __name__ == "__main__":
-    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "minutes_when_out.html")
+    args = sys.argv[1:]
+    if "--lines" in args:           # our prematch points lines (from Snowflake); keep that file and the page out of the repo
+        i = args.index("--lines")
+        LINES.update(json.load(open(args[i + 1])))
+        del args[i:i + 2]
+    out = args[0] if args else os.path.join(HERE, "minutes_when_out.html")
     D = build_data()
     through = max((r["date"] for r in csv.DictReader(open(os.path.join(HERE, "data", "box_2026-27.csv")))), default="")
     open(out, "w").write(page(D, season_changes(), through))
