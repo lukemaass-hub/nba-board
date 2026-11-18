@@ -515,11 +515,41 @@ def parse_lines(sb):
     return out
 
 
+def parse_tips(sb):
+    """ESPN scoreboard -> {"AWAY@HOME": ("YYYY-MM-DD", "HH:MM")} tip times in ET. The schedule feed can be wrong after
+    TV time changes (Nov 17 2026: it had UTA@LAC at 11 PM and CHA@LAL at 10 PM; ESPN and the trader schedule: 10:30, 11)."""
+    out = {}
+    for ev in sb.get("events", []):
+        c = ev["competitions"][0]
+        t = {x["homeAway"]: team_code(x["team"].get("displayName", "")) for x in c["competitors"]}
+        if not (t.get("away") and t.get("home")) or c["status"]["type"].get("state") == "post":
+            continue
+        try:
+            tip = dt.datetime.fromisoformat(ev["date"].replace("Z", "+00:00")).astimezone(ET)
+        except (KeyError, ValueError):
+            continue
+        out[f"{t['away']}@{t['home']}"] = (tip.date().isoformat(), tip.strftime("%H:%M"))
+    return out
+
+
+def fix_tip_times(schedule, tips):
+    """Use ESPN's tip time for today's games when the schedule feed disagrees. Returns the games changed."""
+    changed = []
+    for g in schedule:
+        k = f"{g['away']}@{g['home']}"
+        if k in tips and tips[k][0] == g["date"] and tips[k][1] != g["time"]:
+            changed.append(f"{k} {g['time']} -> {tips[k][1]}")
+            g["time"] = tips[k][1]
+    return changed
+
+
 def fetch_lines():
-    """Today's (ET) pre-game spreads from ESPN (DraftKings line), read fresh on every refresh -> data["lines"]."""
+    """Today's (ET) pre-game spreads from ESPN (DraftKings line), read fresh on every refresh -> data["lines"],
+    plus ESPN's tip times (used to correct the schedule)."""
     now = dt.datetime.now(dt.timezone.utc)
+    sb = get(ODDS_URL.format(d=today_et())).json()
     return {"read_at": now.isoformat(timespec="seconds"), "date": today_et().isoformat(),
-            "games": parse_lines(get(ODDS_URL.format(d=today_et())).json())}
+            "games": parse_lines(sb), "tips": parse_tips(sb)}
 
 
 EXPECTED_HISTORY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "expected_history.csv")
@@ -1222,6 +1252,13 @@ def main():
     data["lines"] = ln if ln is not None else (prev.get("lines") or {})
     if ln:
         status["lines"].update({"games": len(ln["games"]), "read_at": ln["read_at"]})
+        try:
+            moved = fix_tip_times(data.get("schedule") or [], {k: tuple(v) for k, v in (ln.get("tips") or {}).items()})
+            if moved:
+                status["lines"]["tip_times_fixed"] = moved
+                print("Tip times corrected from ESPN: " + "; ".join(moved))
+        except Exception as e:
+            print(f"[tip times] FAILED: {e}", file=sys.stderr)
 
     pw = run("presserwire", lambda: fetch_presserwire(prev))
     if pw is None:

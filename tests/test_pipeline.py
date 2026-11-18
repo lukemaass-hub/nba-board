@@ -820,3 +820,14 @@ def test_schedule_reads_bolded_hybrid_games():
     s = sa.parse_schedule(t)
     assert set(s) == {("ORL", "BOS"), ("CHI", "CLE")}
     assert [p["role"] for p in s[("ORL", "BOS")]] == ["Cores", "Props"]
+
+
+def test_tip_times_corrected_from_espn():
+    """Nov 17 2026: the schedule feed had UTA@LAC at 11 PM; ESPN (and the trader schedule) said 10:30 PM ET."""
+    import update_data as u
+    sb = {"events": [{"date": "2026-11-18T03:30Z", "competitions": [{"status": {"type": {"state": "pre"}}, "competitors": [
+        {"homeAway": "away", "team": {"displayName": "Utah Jazz"}}, {"homeAway": "home", "team": {"displayName": "LA Clippers"}}]}]}]}
+    tips = u.parse_tips(sb)
+    assert tips == {"UTA@LAC": ("2026-11-17", "22:30")}
+    sched = [{"date": "2026-11-17", "time": "23:00", "away": "UTA", "home": "LAC"}]
+    assert u.fix_tip_times(sched, tips) == ["UTA@LAC 23:00 -> 22:30"] and sched[0]["time"] == "22:30"
