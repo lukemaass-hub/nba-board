@@ -869,3 +869,19 @@ def test_rotowire_lineup_page_decides_tonight():
              {"team": "POR", "player": "Damian Lillard", "src": "CBS", "kind": "G", "through": "2026-11-19"}]}
     got = {i["player"]: i["st"] for i in e.injuries_for(d, "POR", "2026-11-17")}
     assert got == {"Deni Avdija": "out"}
+
+
+def test_sixth_man_is_never_questionable():
+    """Nov 18 2026: Maxey (GTD, not in PHI's confirmed lineup) was named 6th man."""
+    import email_report as e
+    d = {
+        "schedule": [{"date": "2026-11-18", "time": "19:00", "away": "PHI", "home": "ORL"}],
+        "depth": {"PHI": {"PG": "Tyrese Maxey/Anfernee Simons", "SG": "VJ Edgecombe/Kelly Oubre", "SF": "A/B", "PF": "C/D", "C": "E/F"}},
+        "lineups": {"PHI": {"date": "2026-11-18", "confirmed": True, "starters": [
+            {"pos": "PG", "name": "Anfernee Simons"}, {"pos": "SG", "name": "VJ Edgecombe"}, {"pos": "SF", "name": "A"},
+            {"pos": "PF", "name": "C"}, {"pos": "C", "name": "E"}]}},
+        "injuries": [{"team": "PHI", "player": "Tyrese Maxey", "src": "RotoWire", "kind": "G", "st": "q", "through": "2026-11-18"}],
+        "season_minutes": {}}
+    title, blocks = e.build_slack(d, d["schedule"][0], "2026-11-18")
+    six = [b for b in blocks if "6th man" in json.dumps(b)]
+    assert six and "Maxey" not in json.dumps(six)
