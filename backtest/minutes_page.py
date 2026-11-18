@@ -373,7 +373,7 @@ document.querySelectorAll(".cbtn").forEach(b=>b.onclick=()=>{cdir=b.dataset.k; c
 const PTS_SIG=__PTS__, OVER_SIG=__OVER__, pc=v=>Math.round(v*100)+"%";
 const PP=[]; R.filter(r=>r.season==="2026-27").forEach(r=>r.mates.forEach(m=>{ m.nmin=Math.min(m.on,m.nn);
   const sp=m.ptd!=null&&Math.abs(m.ptd)>=PTS_SIG, so=m.ovd!=null&&Math.abs(m.ovd)>=OVER_SIG;
-  if(sp||so) PP.push({r,m,sp,so});}));
+  if((sp||so)&&(!HASL||m.ovd!=null)) PP.push({r,m,sp,so});}));   // with our lines: only players with enough bets (user)
 let pkey="pts",plim=50;
 function pdraw(){
  const t=$("pteam").value;
@@ -385,7 +385,7 @@ function pdraw(){
   const gs=r.games.filter(g=>m.sat.has(g.i)||m.ng.includes(g.i));
   return `<tr class="p" data-i="${i}"><td class="l"><b>${esc(r.player)}</b> <span class="mut">${r.team}</span></td><td class="l">${esc(m.name)} out <span class="mut">${m.on} g out</span></td>
   <td>${m.ptd!=null?lpair(m.ptn,m.pto,m.ptd):"–"}</td>
-  ${HASL?`<td>${m.ovd!=null?`${pc(m.ovn/m.novn)} → ${pc(m.ovo/m.novo)} <span class="${m.ovd>0?"up":"dn"} chg">${m.ovd>0?"+":""}${Math.round(m.ovd*100)}</span><small class="lines">${m.ovn} of ${m.novn} → ${m.ovo} of ${m.novo} over</small>`:'<span class="mut">not enough bets</span>'}</td>
+  ${HASL?`<td>${pc(m.ovn/m.novn)} → ${pc(m.ovo/m.novo)}</td>
   <td>${m.ld!=null?lpair(m.ln,m.lo,m.ld):"–"}</td>`:""}<td>${f(m.an)} → ${f(m.ao)}</td></tr>
   <tr class="d" id="p${i}" hidden><td colspan="${HASL?6:4}"><table class="games"><tr><th class="l">Date</th><th>Minutes</th>${HASL?"<th>Our points line</th>":""}<th>Points</th><th class="l">${esc(m.name)}</th><th class="l">Key teammates out</th></tr>
   ${gs.map(g=>`<tr><td class="l">${g.d}</td><td>${g.m}</td>${HASL?`<td>${g.l??"–"}</td>`:""}<td>${g.p??"–"}</td><td class="l">${m.sat.has(g.i)?"<b>out</b>":"played"}</td><td class="l">${g.out.length?esc(g.out.join(", ")):'<span class="mut">none</span>'}</td></tr>`).join("")}</table></td></tr>`;}).join("")
