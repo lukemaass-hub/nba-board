@@ -283,3 +283,6 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
 - Nov 18 2026 (user): minutes page tab 5 "Points when out": pairs where a player scores PTS_SIG (4)+ points a game more/less
   with a key teammate out, or (with --lines) goes over our points line OVER_SIG (30)+ percentage points more/less often.
   2+ games each way, "Only 3+ games each way" checkbox; rank by points or over-rate difference; click a row for the games.
+- Nov 18 2026 (user): pairs where a key teammate is out and the player plays LESS (4+ minutes down) are left out of every
+  tab (By team, Biggest differences, Points when out; Minutes changes drops "Teammate injuries" rows going down, none so far).
+  Biggest misses (expected vs played) is unchanged. Points when out: over-rate shown as two plain % columns.
