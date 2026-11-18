@@ -8765,7 +8765,7 @@
    "time": "19:00",
    "vs": "MIL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8787,18 +8787,19 @@
      "pos": "C",
      "name": "Bam Adebayo"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "PHI": {
    "date": "2026-11-18",
    "time": "19:00",
    "vs": "ORL",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Tyrese Maxey"
+     "name": "Anfernee Simons"
     },
     {
      "pos": "SG",
@@ -8816,14 +8817,15 @@
      "pos": "C",
      "name": "Joel Embiid"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "ORL": {
    "date": "2026-11-18",
    "time": "19:00",
    "vs": "PHI",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8831,11 +8833,11 @@
     },
     {
      "pos": "SG",
-     "name": "Anthony Black"
+     "name": "Desmond Bane"
     },
     {
      "pos": "SF",
-     "name": "Desmond Bane"
+     "name": "Anthony Black"
     },
     {
      "pos": "PF",
@@ -8845,7 +8847,8 @@
      "pos": "C",
      "name": "Wendell Carter"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "CHI": {
    "date": "2026-11-18",
@@ -18402,7 +18405,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-18T23:30:54+00:00",
+  "read_at": "2026-11-18T23:34:00+00:00",
   "date": "2026-11-18",
   "games": {
    "MEM@CLE": {
@@ -18437,8 +18440,8 @@
    },
    "WAS@TOR": {
     "fav": "TOR",
-    "spread": 4.5,
-    "details": "TOR -4.5",
+    "spread": 3.5,
+    "details": "TOR -3.5",
     "provider": "Draft Kings"
    },
    "DET@NOP": {
@@ -21769,6 +21772,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba539827",
+   "player": "Mario Hezonja",
+   "headline": "Joining starting lineup",
+   "text": "Hezonja is in the starting lineup for Wednesday's game against the Grizzlies, Danny Cunningham of Sports Radio 92.3 The Fan Cleveland reports.",
+   "reporter": "Danny Cunningham",
+   "outlet": "Sports Radio 92.3 The Fan Cleveland",
+   "url": "https://www.rotowire.com/basketball/player/mario-hezonja-3578",
+   "at": "2026-11-18T23:28:00+00:00",
+   "team": "CLE"
+  },
   {
    "id": "nba539826",
    "player": "Dean Wade",
@@ -26276,6 +26290,18 @@
   },
   {
    "team": "PHI",
+   "player": "Dean Wade",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Hamstring Soreness",
+   "upd": "2026-11-18",
+   "until": "2026-11-21",
+   "note": "Wade (hamstring) is out for Wednesday's game in Orlando.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Dean%20Wade"
+  },
+  {
+   "team": "PHI",
    "player": "Tyrese Maxey",
    "src": "ESPN",
    "kind": "G",
@@ -26297,18 +26323,6 @@
    "note": "Brown (hamstring) will be re-evaluated at some point this weekend, per Kris Rihm of ESPN.com.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jaylen%20Brown"
-  },
-  {
-   "team": "PHI",
-   "player": "Dean Wade",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Left Hamstring Soreness",
-   "upd": "2026-11-18",
-   "until": "2026-11-21",
-   "note": "Wade (hamstring) has been downgraded to questionable for Wednesday's game against the Magic.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Dean%20Wade"
   },
   {
    "team": "PHI",
@@ -29516,6 +29530,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Raynaud"
   },
   {
+   "team": "CLE",
+   "player": "Mario Hezonja",
+   "src": "Danny Cunningham",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-18",
+   "until": "",
+   "note": "Hezonja is in the starting lineup for Wednesday's game against the Grizzlies, Danny Cunningham of Sports Radio 92.3 The Fan Cleveland reports.",
+   "through": "2026-11-18",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/mario-hezonja-3578",
+   "from": "2026-11-18",
+   "override": true,
+   "at": "2026-11-18T23:28:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "PHI",
    "player": "Dean Wade",
    "src": "RotoWire news",
@@ -30316,7 +30347,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-18T23:30:55+00:00",
+ "generated_at": "2026-11-18T23:34:00+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -30327,24 +30358,29 @@
   "espn_depth": {
    "ok": true,
    "at": "2026-11-18T23:30:51+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-18T23:30:52+00:00",
+   "at": "2026-11-18T23:33:59+00:00",
    "teams": 24,
    "injuries": 86
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-18T23:30:52+00:00",
+   "at": "2026-11-18T23:33:59+00:00",
    "teams": 22,
-   "verified": 1,
-   "used": []
+   "verified": 4,
+   "used": [
+    "PHI",
+    "ORL",
+    "MIA"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-18T23:30:52+00:00",
+   "at": "2026-11-18T23:33:59+00:00",
    "current_players": 471,
    "last_players": 582
   },
@@ -30354,17 +30390,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-18T23:30:52+00:00",
+   "at": "2026-11-18T23:33:59+00:00",
    "count": 103
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-18T23:30:52+00:00",
+   "at": "2026-11-18T23:34:00+00:00",
    "count": 105
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-18T23:30:52+00:00",
+   "at": "2026-11-18T23:34:00+00:00",
    "count": 104
   },
   "x": {
@@ -30373,40 +30409,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-18T23:30:53+00:00",
+   "at": "2026-11-18T23:34:00+00:00",
    "players": 242,
    "read_at": "2026-11-18T23:30:52+00:00",
    "saved_for_history": 256
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-18T23:30:54+00:00",
+   "at": "2026-11-18T23:34:00+00:00",
    "players": 125,
    "read_at": "2026-11-18T23:30:53+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-18T23:30:54+00:00",
+   "at": "2026-11-18T23:34:00+00:00",
    "players": 10,
    "read_at": "2026-11-18T23:30:54+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-18T23:30:54+00:00",
+   "at": "2026-11-18T23:34:00+00:00",
    "games": 12,
-   "read_at": "2026-11-18T23:30:54+00:00"
+   "read_at": "2026-11-18T23:34:00+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-18T23:30:55+00:00",
+   "at": "2026-11-18T23:34:00+00:00",
    "injuries": 114,
    "notes": 163,
    "read_at": "2026-11-18T23:30:54+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-18T23:30:55+00:00",
-   "count": 63
+   "at": "2026-11-18T23:34:00+00:00",
+   "count": 64
   }
  }
 }
