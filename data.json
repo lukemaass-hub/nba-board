@@ -8620,7 +8620,7 @@
    "time": "19:30",
    "vs": "TOR",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8642,14 +8642,15 @@
      "pos": "C",
      "name": "Karl-Anthony Towns"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "TOR": {
    "date": "2026-11-17",
    "time": "19:30",
    "vs": "NYK",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8671,7 +8672,8 @@
      "pos": "C",
      "name": "Collin Murray-Boyles"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "POR": {
    "date": "2026-11-17",
@@ -15749,7 +15751,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-18T00:00:40+00:00",
+  "read_at": "2026-11-18T00:03:46+00:00",
   "date": "2026-11-17",
   "games": {
    "NYK@TOR": {
@@ -27037,7 +27039,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-18T00:00:41+00:00",
+ "generated_at": "2026-11-18T00:03:46+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -27048,24 +27050,28 @@
   "espn_depth": {
    "ok": true,
    "at": "2026-11-18T00:00:38+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-18T00:00:38+00:00",
+   "at": "2026-11-18T00:03:45+00:00",
    "teams": 10,
    "injuries": 32
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-18T00:00:38+00:00",
+   "at": "2026-11-18T00:03:45+00:00",
    "teams": 10,
-   "verified": 0,
-   "used": []
+   "verified": 2,
+   "used": [
+    "NYK",
+    "TOR"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-18T00:00:38+00:00",
+   "at": "2026-11-18T00:03:45+00:00",
    "current_players": 471,
    "last_players": 582
   },
@@ -27075,17 +27081,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-18T00:00:38+00:00",
+   "at": "2026-11-18T00:03:45+00:00",
    "count": 106
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-18T00:00:39+00:00",
+   "at": "2026-11-18T00:03:46+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-18T00:00:39+00:00",
+   "at": "2026-11-18T00:03:46+00:00",
    "count": 106
   },
   "x": {
@@ -27094,39 +27100,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-18T00:00:40+00:00",
+   "at": "2026-11-18T00:03:46+00:00",
    "players": 94,
    "read_at": "2026-11-18T00:00:39+00:00",
    "saved_for_history": 103
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-18T00:00:40+00:00",
+   "at": "2026-11-18T00:03:46+00:00",
    "players": 54,
    "read_at": "2026-11-18T00:00:40+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-18T00:00:40+00:00",
+   "at": "2026-11-18T00:03:46+00:00",
    "players": 9,
    "read_at": "2026-11-18T00:00:40+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-18T00:00:40+00:00",
+   "at": "2026-11-18T00:03:46+00:00",
    "games": 5,
-   "read_at": "2026-11-18T00:00:40+00:00"
+   "read_at": "2026-11-18T00:03:46+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-18T00:00:41+00:00",
+   "at": "2026-11-18T00:03:46+00:00",
    "injuries": 104,
    "notes": 162,
    "read_at": "2026-11-18T00:00:40+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-18T00:00:41+00:00",
+   "at": "2026-11-18T00:03:46+00:00",
    "count": 87
   }
  }
