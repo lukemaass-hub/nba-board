@@ -14183,7 +14183,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-18T02:06:34+00:00",
+  "read_at": "2026-11-18T02:36:41+00:00",
   "date": "2026-11-17",
   "players": [
    {
@@ -14753,18 +14753,23 @@
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-18T02:06:35+00:00",
+  "read_at": "2026-11-18T02:36:42+00:00",
   "date": "2026-11-17",
   "players": [
+   {
+    "player": "Sion James",
+    "team": "CHA",
+    "min": 35.0
+   },
    {
     "player": "Naz Reid",
     "team": "CHA",
     "min": 31.0
    },
    {
-    "player": "Sion James",
+    "player": "Coby White",
     "team": "CHA",
-    "min": 31.0
+    "min": 30.0
    },
    {
     "player": "Moussa Diabate",
@@ -14777,19 +14782,9 @@
     "min": 25.0
    },
    {
-    "player": "Coby White",
-    "team": "CHA",
-    "min": 20.0
-   },
-   {
-    "player": "Grayson Allen",
-    "team": "CHA",
-    "min": 25.0
-   },
-   {
     "player": "Royce O'Neale",
     "team": "CHA",
-    "min": 18.0
+    "min": 25.0
    },
    {
     "player": "Grant Williams",
@@ -14809,7 +14804,7 @@
    {
     "player": "Tidjane Salaun",
     "team": "CHA",
-    "min": 6.0
+    "min": 10.0
    },
    {
     "player": "Liam McNeeley",
@@ -15024,7 +15019,7 @@
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-18T02:06:36+00:00",
+  "read_at": "2026-11-18T02:36:43+00:00",
   "date": "2026-11-17",
   "players": [
    {
@@ -15076,7 +15071,7 @@
  },
  "expected_mix": {
   "date": "2026-11-17",
-  "read_at": "2026-11-18T02:06:36+00:00",
+  "read_at": "2026-11-18T02:36:43+00:00",
   "players": [
    {
     "player": "Luka Doncic",
@@ -15133,15 +15128,21 @@
     "src": "FantasyPros"
    },
    {
+    "player": "Sion James",
+    "team": "CHA",
+    "min": 35.0,
+    "src": "RotoWire"
+   },
+   {
     "player": "Naz Reid",
     "team": "CHA",
     "min": 31.0,
     "src": "RotoWire"
    },
    {
-    "player": "Sion James",
+    "player": "Coby White",
     "team": "CHA",
-    "min": 31.0,
+    "min": 30.0,
     "src": "RotoWire"
    },
    {
@@ -15151,21 +15152,9 @@
     "src": "RotoWire"
    },
    {
-    "player": "Coby White",
-    "team": "CHA",
-    "min": 20.0,
-    "src": "RotoWire"
-   },
-   {
-    "player": "Grayson Allen",
-    "team": "CHA",
-    "min": 25.0,
-    "src": "RotoWire"
-   },
-   {
     "player": "Royce O'Neale",
     "team": "CHA",
-    "min": 18.0,
+    "min": 25.0,
     "src": "RotoWire"
    },
    {
@@ -15189,7 +15178,7 @@
    {
     "player": "Tidjane Salaun",
     "team": "CHA",
-    "min": 6.0,
+    "min": 10.0,
     "src": "RotoWire"
    },
    {
@@ -15546,6 +15535,13 @@
     "src": "SportsLine"
    },
    {
+    "player": "Grayson Allen",
+    "team": "CHA",
+    "game": "CHA@LAL",
+    "min": 25.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Keaton Wagler",
     "team": "LAC",
     "game": "UTA@LAC",
@@ -15744,7 +15740,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-18T02:06:36+00:00",
+  "read_at": "2026-11-18T02:36:43+00:00",
   "date": "2026-11-17",
   "games": {
    "UTA@LAC": {
@@ -15755,8 +15751,8 @@
    },
    "CHA@LAL": {
     "fav": "LAL",
-    "spread": 6.5,
-    "details": "LAL -6.5",
+    "spread": 7.5,
+    "details": "LAL -7.5",
     "provider": "Draft Kings"
    }
   },
@@ -15784,7 +15780,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-18T02:06:36+00:00",
+  "read_at": "2026-11-18T02:36:43+00:00",
   "injuries": [
    {
     "team": "CHA",
@@ -15800,6 +15796,21 @@
     "from": "2026-11-17",
     "override": true,
     "at": "2026-11-18T00:30:02+00:00"
+   },
+   {
+    "team": "CHA",
+    "player": "Grayson Allen",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Concussion - like symptoms",
+    "upd": "2026-11-17",
+    "until": "",
+    "note": "",
+    "through": "2026-11-17",
+    "url": "https://presserwire.com/nba/games/2026-11-17-charlotte-hornets-at-los-angeles-lakers.html",
+    "from": "2026-11-17",
+    "override": true,
+    "at": "2026-11-18T02:36:43+00:00"
    },
    {
     "team": "CHA",
@@ -16471,7 +16482,7 @@
     "player": "Nae'Qwan Tomlin",
     "src": "NBA report",
     "kind": "O",
-    "injury": "Low Back Stress",
+    "injury": "Low Back Stress Reaction",
     "upd": "2026-11-18",
     "until": "",
     "note": "",
@@ -16518,7 +16529,7 @@
     "player": "Sam Merrill",
     "src": "NBA report",
     "kind": "G",
-    "injury": "Right Elbow Injury Management",
+    "injury": "Right Elbow Injury",
     "upd": "2026-11-18",
     "until": "",
     "note": "",
@@ -17391,7 +17402,7 @@
     "player": "Precious Achiuwa",
     "src": "NBA report",
     "kind": "G",
-    "injury": "Left Lower Leg Contusion",
+    "injury": "Left Lower Leg",
     "upd": "2026-11-18",
     "until": "",
     "note": "",
@@ -18219,7 +18230,7 @@
     ],
     "text": "Charles Lee wouldn't call Brandon Miller day-to-day after the Hornets' game against Cleveland, but said Miller is improving every day: \"I don't want to say day to day... But like, I don't think it's going to be a long-term thing.\" Naz Reid and Grayson Allen will be evaluated.",
     "at": "2026-11-10T04:08:29+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2120005649870524525"
    },
    {
     "team": "NOP",
@@ -18963,6 +18974,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba539665",
+   "player": "Grayson Allen",
+   "headline": "Late scratch Tuesday",
+   "text": "Allen (concussion-like symptoms) has been ruled out for Tuesday's game against the Lakers.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/grayson-allen-4454",
+   "at": "2026-11-18T02:19:00+00:00",
+   "team": "CHA"
+  },
   {
    "id": "nba539664",
    "player": "Cody Williams",
@@ -22837,6 +22859,18 @@
   },
   {
    "team": "CHA",
+   "player": "Grayson Allen",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Concussion",
+   "upd": "2026-11-18",
+   "until": "2026-11-20",
+   "note": "Allen (concussion-like symptoms) has been ruled out for Tuesday's game against the Lakers.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Grayson%20Allen"
+  },
+  {
+   "team": "CHA",
    "player": "Kon Knueppel",
    "src": "ESPN",
    "kind": "O",
@@ -24040,6 +24074,21 @@
   },
   {
    "team": "CHA",
+   "player": "Grayson Allen",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Concussion - like symptoms",
+   "upd": "2026-11-17",
+   "until": "",
+   "note": "",
+   "through": "2026-11-17",
+   "url": "https://presserwire.com/nba/games/2026-11-17-charlotte-hornets-at-los-angeles-lakers.html",
+   "from": "2026-11-17",
+   "override": true,
+   "at": "2026-11-18T02:36:43+00:00"
+  },
+  {
+   "team": "CHA",
    "player": "Kon Knueppel",
    "src": "NBA report",
    "kind": "O",
@@ -24708,7 +24757,7 @@
    "player": "Nae'Qwan Tomlin",
    "src": "NBA report",
    "kind": "O",
-   "injury": "Low Back Stress",
+   "injury": "Low Back Stress Reaction",
    "upd": "2026-11-18",
    "until": "",
    "note": "",
@@ -24755,7 +24804,7 @@
    "player": "Sam Merrill",
    "src": "NBA report",
    "kind": "G",
-   "injury": "Right Elbow Injury Management",
+   "injury": "Right Elbow Injury",
    "upd": "2026-11-18",
    "until": "",
    "note": "",
@@ -25628,7 +25677,7 @@
    "player": "Precious Achiuwa",
    "src": "NBA report",
    "kind": "G",
-   "injury": "Left Lower Leg Contusion",
+   "injury": "Left Lower Leg",
    "upd": "2026-11-18",
    "until": "",
    "note": "",
@@ -26052,6 +26101,19 @@
   },
   {
    "team": "CHA",
+   "player": "Grayson Allen",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-17",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-11-17",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=G.%20Allen"
+  },
+  {
+   "team": "CHA",
    "player": "Kon Knueppel",
    "src": "RotoWire",
    "kind": "O",
@@ -26101,6 +26163,23 @@
    "through": "2026-11-17",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Reaves"
+  },
+  {
+   "team": "CHA",
+   "player": "Grayson Allen",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-17",
+   "until": "",
+   "note": "Allen (concussion-like symptoms) has been ruled out for Tuesday's game against the Lakers.",
+   "through": "2026-11-17",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/grayson-allen-4454",
+   "from": "2026-11-17",
+   "override": true,
+   "at": "2026-11-18T02:19:00+00:00",
+   "from_news": true
   },
   {
    "team": "MIN",
@@ -27107,34 +27186,36 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-18T02:06:37+00:00",
+ "generated_at": "2026-11-18T02:36:44+00:00",
  "sources": {
   "schedule": {
    "ok": true,
    "at": "2026-11-18T02:06:19+00:00",
-   "count": 1200
+   "count": 1200,
+   "reused": true
   },
   "espn_depth": {
    "ok": true,
    "at": "2026-11-18T02:06:33+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-18T02:06:33+00:00",
+   "at": "2026-11-18T02:36:41+00:00",
    "teams": 10,
-   "injuries": 31
+   "injuries": 32
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-18T02:06:33+00:00",
+   "at": "2026-11-18T02:36:41+00:00",
    "teams": 10,
    "verified": 6,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-18T02:06:33+00:00",
+   "at": "2026-11-18T02:36:41+00:00",
    "current_players": 471,
    "last_players": 582
   },
@@ -27144,18 +27225,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-18T02:06:34+00:00",
+   "at": "2026-11-18T02:36:41+00:00",
    "count": 104
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-18T02:06:34+00:00",
+   "at": "2026-11-18T02:36:41+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-18T02:06:34+00:00",
-   "count": 105
+   "at": "2026-11-18T02:36:41+00:00",
+   "count": 106
   },
   "x": {
    "ok": null,
@@ -27163,44 +27244,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-18T02:06:35+00:00",
+   "at": "2026-11-18T02:36:42+00:00",
    "players": 94,
-   "read_at": "2026-11-18T02:06:34+00:00",
+   "read_at": "2026-11-18T02:36:41+00:00",
    "saved_for_history": 42
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-18T02:06:36+00:00",
-   "players": 53,
-   "read_at": "2026-11-18T02:06:35+00:00"
+   "at": "2026-11-18T02:36:43+00:00",
+   "players": 52,
+   "read_at": "2026-11-18T02:36:42+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-18T02:06:36+00:00",
+   "at": "2026-11-18T02:36:43+00:00",
    "players": 9,
-   "read_at": "2026-11-18T02:06:36+00:00"
+   "read_at": "2026-11-18T02:36:43+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-18T02:06:36+00:00",
+   "at": "2026-11-18T02:36:43+00:00",
    "games": 2,
-   "read_at": "2026-11-18T02:06:36+00:00",
-   "tip_times_fixed": [
-    "CHA@LAL 22:00 -> 23:00",
-    "UTA@LAC 23:00 -> 22:30"
-   ]
+   "read_at": "2026-11-18T02:36:43+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-18T02:06:37+00:00",
-   "injuries": 110,
+   "at": "2026-11-18T02:36:44+00:00",
+   "injuries": 111,
    "notes": 163,
-   "read_at": "2026-11-18T02:06:36+00:00"
+   "read_at": "2026-11-18T02:36:43+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-18T02:06:37+00:00",
-   "count": 84
+   "at": "2026-11-18T02:36:44+00:00",
+   "count": 85
   }
  }
 }
