@@ -3,6 +3,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "pipeline"))
 import datetime as dt
 import update_data as u
 u.today_et = lambda: dt.date(2026, 10, 6)
+import slack_assign
+slack_assign.PAUSED = False   # the tests check sending itself, paused or not
 
 CBS = """
 <div class="TableBaseWrapper"><div class="TeamLogoNameLockup"><span class="TeamName"><a>L.A. Clippers</a></span></div>
@@ -831,3 +833,10 @@ def test_tip_times_corrected_from_espn():
     assert tips == {"UTA@LAC": ("2026-11-17", "22:30")}
     sched = [{"date": "2026-11-17", "time": "23:00", "away": "UTA", "home": "LAC"}]
     assert u.fix_tip_times(sched, tips) == ["UTA@LAC 23:00 -> 22:30"] and sched[0]["time"] == "22:30"
+
+
+def test_pause_stops_sending(monkeypatch):
+    import slack_assign as sa
+    monkeypatch.setenv("SLACK_DM_MODE", "on")
+    monkeypatch.setattr(sa, "PAUSED", True)
+    assert sa.mode() == "off"
