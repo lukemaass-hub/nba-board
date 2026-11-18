@@ -273,3 +273,18 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
 - Nov 17 2026 (user): "have the info send to me so I can verify before it starts sending to other people" ->
   slack_assign.OWNER_ONLY = True (PAUSED = False): mode() is "test": every report goes to the owner's DM with the bot,
   marked [TEST] with who it would have gone to (SLACK_TEST_CHANNEL ignored). OWNER_ONLY = False only when the user says.
+- Nov 18 2026 (user): minutes page can show OUR prematch points O/U lines in the click-through (By team teammate table,
+  Every game, Minutes changes game log): `python backtest/minutes_page.py OUT.html --lines lines_map.json`. Lines come
+  from Snowflake ([beta] Snowflake Agents connector, TRADING_AGENT_20260623, read only): V_TRADING_SPORTSBOOK_MART,
+  leg_market_type 'BASKETBALL:FT:PROPPTS', prematch, line parsed from leg_selection of the last wager before tip
+  (only games someone bet). Internal betting data: the lines file and that page are NEVER committed (repo is public).
+- Nov 18 2026 (user): game logs on the minutes page also show actual POINTS (backtest/fetch_points.py -> backtest/data/
+  points_2026-27.csv from ESPN summaries; re-run it to add new games). Plain number, no arrows (user).
+- Nov 18 2026 (user): minutes page tab 5 "Points when out": pairs where a player scores PTS_SIG (4)+ points a game more/less
+  with a key teammate out, or (with --lines) goes over our points line OVER_SIG (30)+ percentage points more/less often.
+  2+ games each way, "Only 3+ games each way" checkbox; rank by points or over-rate difference; click a row for the games.
+- Nov 18 2026 (user): pairs where a key teammate is out and the player plays LESS (4+ minutes down) are left out of every
+  tab (By team, Biggest differences, Points when out; Minutes changes drops "Teammate injuries" rows going down, none so far).
+  Biggest misses (expected vs played) is unchanged. Points when out: over-rate shown as two plain % columns.
+- Nov 18 2026 (user): "we can return to sending alerts out to people" -> OWNER_ONLY = False: group DMs to the game's traders
+  (+ owner) again.

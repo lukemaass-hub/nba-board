@@ -41,6 +41,17 @@ def left_injured(games, team_dates):
     return out
 
 
+LINES = {}   # optional {"YYYY-MM-DD|normname": our prematch points line}; --lines FILE (internal data: never commit it)
+
+
+def points_by_game():
+    """(date, ESPN player id) -> points scored, this season (backtest/fetch_points.py)."""
+    path = os.path.join(HERE, "data", "points_2026-27.csv")
+    if not os.path.exists(path):
+        return {}
+    return {(r["date"], r["player_id"]): int(r["points"]) for r in csv.DictReader(open(path, newline=""))}
+
+
 def expected_by_game():
     out = {}
     path = os.path.join(ROOT, "pipeline", "expected_history.csv")
@@ -54,6 +65,7 @@ def expected_by_game():
 def build_data():
     depth = json.load(open(os.path.join(ROOT, "data.json"))).get("depth", {})
     exp = expected_by_game()
+    pts = points_by_game()
     out = {}
     for season, need in SEASONS.items():
         path = os.path.join(HERE, "data", f"box_{season}.csv")
@@ -118,6 +130,9 @@ def build_data():
                      "m": [None if mins[(t, k)].get(d) is None or i in skip else round(mins[(t, k)][d]) for i, d in enumerate(dates)]}
                 if season == "2026-27":
                     p["e"] = [exp.get((d, t, norm_name(info[(t, k)]["name"]))) for d in dates]
+                    p["p"] = [pts.get((d, k)) for d in dates]
+                    if LINES:
+                        p["l"] = [LINES.get(f"{d}|{norm_name(info[(t, k)]['name'])}") for d in dates]
                 players[k] = p
             sdata[t] = {"dates": [d[5:] for d in dates], "keys": keys, "players": players,
                         "skipped": [dates[i][5:] for i in sorted(skip)]}
@@ -134,6 +149,7 @@ def season_changes(days=7):
     m, team, meta, starts, coach = defaultdict(dict), {}, {}, defaultdict(dict), defaultdict(set)
     team_dates = defaultdict(set)
     exp = expected_by_game()
+    pts = points_by_game()
     for r in csv.DictReader(open(os.path.join(HERE, "data", "box_2026-27.csv"), newline="")):
         k, tm = r["player_id"], MAP.get(r["team"], r["team"])
         team_dates[tm].add(r["date"])
@@ -204,13 +220,14 @@ def season_changes(days=7):
         if not kind:
             kind, why = "Rotation change", why or ["no injuries involved"]
         log = [[d[5:], meta[(k, d)], round(v), starts[k].get(d, 0), int(d >= start), exp.get((d, tm, norm_name(team[k][1]))),
-                int(d in hurt[k])] for d, v in sorted(g.items(), reverse=True)]
+                int(d in hurt[k]), LINES.get(f"{d}|{norm_name(team[k][1])}"), pts.get((d, k))] for d, v in sorted(g.items(), reverse=True)]
         out.append({"team": tm, "player": team[k][1], "now": round(a, 1), "gp": len(week), "last": round(b, 1),
                     "lgp": len(before), "d": round(a - b, 1), "kind": kind, "why": "; ".join(why), "log": log})
     return {"from": start, "to": last_day, "rows": sorted(out, key=lambda x: -abs(x["d"]))}
 
 
-CSS = """
+CSS = """small.lines{display:block;font-weight:400;color:var(--mut,#777);font-size:11.5px;margin-top:2px}
+
 :root{--bg:#fcfcfb;--card:#fff;--ink:#0b0b0b;--ink2:#33322f;--mut:#6f6e69;--line:#ecebe6;--line2:#e6e5e0;--accent:#2a78d6;--sub:#f7f6f2;--hover:#f4f3ef}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1a19;--card:#222220;--ink:#f0efec;--ink2:#d6d5cf;--mut:#a8a79f;--line:#2e2e2b;--line2:#33332f;--sub:#20201e;--hover:#242422}}
 body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);max-width:1240px;margin:24px auto;padding:0 16px;line-height:1.45}
@@ -236,6 +253,8 @@ details summary{cursor:pointer;color:var(--accent);margin:4px 0} .rank{display:f
 .sortbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)} tr.wk td{font-weight:600} .why{margin:2px 0 8px;font-size:13.5px} td:not(.l),th:not(.l){white-space:nowrap} footer{margin:26px 0 10px;font-size:12.5px;color:var(--mut);max-width:900px}
 """
 
+PTS_SIG = 4        # points tab: 4+ points a game apart counts as a real difference (user, Nov 18 2026)
+OVER_SIG = 0.30    # ...or going over our line 30+ percentage points more / less often
 MIN_GAMES = 2      # every number on the page needs at least this many games behind it (user, Nov 16 2026)
 
 JS = r"""
@@ -246,10 +265,10 @@ const sg=v=>v==null?"–":Math.abs(v)<SHOW?'<span class="mut">no change</span>':
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const mean=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null, POS={G:"G",F:"F",C:"C"}, $=id=>document.getElementById(id);
 const avg2=a=>a.length>=MIN?mean(a):null;          // fewer than MIN games: no number
-const R=[];
+const R=[], CH2=CH.filter(x=>!(x.kind==="Teammate injuries"&&x.d<0));   // fewer minutes because teammates were out: left out
 for(const [season,teams] of Object.entries(D)) for(const [team,T] of Object.entries(teams)){
  for(const [pk,P] of Object.entries(T.players)){
-  const E=P.e||[], groups={};
+  const E=P.e||[], Ln=P.l||[], Pt=P.p||[], groups={};
   for(const [kk,K] of Object.entries(T.keys)){
    if(pk===kk) continue;
    const sat=new Set(K.sat), on=new Set(K.on), og=[], ng=[];
@@ -260,19 +279,29 @@ for(const [season,teams] of Object.entries(D)) for(const [team,T] of Object.entr
    const eo=og.map(i=>E[i]).filter(x=>x!=null), en=ng.map(i=>E[i]).filter(x=>x!=null), oe=og.filter(i=>E[i]!=null);
    const m={names:[K.name],role:K.role,on:og.length,nn:ng.length,sat,og,ng,
      ao:mean(og.map(i=>P.m[i])),an:mean(ng.map(i=>P.m[i])),eo:avg2(eo),en:avg2(en),neo:eo.length,nen:en.length,
-     ea:oe.length>=MIN?mean(oe.map(i=>P.m[i]-E[i])):null,nea:oe.length};
+     ea:oe.length>=MIN?mean(oe.map(i=>P.m[i]-E[i])):null,nea:oe.length,
+     lo:avg2(og.map(i=>Ln[i]).filter(x=>x!=null)),ln:avg2(ng.map(i=>Ln[i]).filter(x=>x!=null)),
+     lso:og.map(i=>Ln[i]).filter(x=>x!=null),lsn:ng.map(i=>Ln[i]).filter(x=>x!=null)};
+   m.ld=(m.lo!=null&&m.ln!=null)?m.lo-m.ln:null;
+   { const po=og.map(i=>Pt[i]).filter(x=>x!=null), pn=ng.map(i=>Pt[i]).filter(x=>x!=null);
+     m.pto=avg2(po); m.ptn=avg2(pn); m.ptd=(m.pto!=null&&m.ptn!=null)?m.pto-m.ptn:null;
+     const wo=og.filter(i=>Ln[i]!=null&&Pt[i]!=null), wn=ng.filter(i=>Ln[i]!=null&&Pt[i]!=null);
+     m.ovo=wo.filter(i=>Pt[i]>Ln[i]).length; m.novo=wo.length; m.ovn=wn.filter(i=>Pt[i]>Ln[i]).length; m.novn=wn.length;
+     m.ovd=(wo.length>=MIN&&wn.length>=MIN)?m.ovo/wo.length-m.ovn/wn.length:null; }
    m.ad=m.ao-m.an; m.ed=(m.eo!=null&&m.en!=null)?m.eo-m.en:null; groups[k]=m;
   }
-  const mates=Object.values(groups); mates.forEach(m=>m.name=m.names.join(", "));
+  // a teammate out and this player playing LESS (4+ minutes down) is left out everywhere (user, Nov 18 2026)
+  const mates=Object.values(groups).filter(m=>m.ad>-SHOW); mates.forEach(m=>m.name=m.names.join(", "));
   if(!mates.length) continue;
-  const games=T.dates.map((d,i)=>P.m[i]==null?null:{d,i,m:P.m[i],e:E[i]??null,out:mates.filter(x=>x.sat.has(i)).flatMap(x=>x.names)}).filter(Boolean);
+  const games=T.dates.map((d,i)=>P.m[i]==null?null:{d,i,m:P.m[i],e:E[i]??null,l:Ln[i]??null,p:Pt[i]??null,out:mates.filter(x=>x.sat.has(i)).flatMap(x=>x.names)}).filter(Boolean);
   R.push({season,team,player:P.name,pos:P.pos,mpg:P.mpg,gp:games.length,mates:mates.sort((a,b)=>b.ad-a.ad),games});
  }}
 function fillTeams(sel,season,blank){const cur=$(sel).value, ts=[...new Set(R.filter(r=>r.season===season).map(r=>r.team))].sort();
  $(sel).innerHTML=`<option value="">${blank}</option>`+ts.map(t=>`<option${t===cur?" selected":""}>${t}</option>`).join("");}
 const pair=(a,b,d)=>`${f(a)} → ${f(b)} <span class="${cl(d)} chg">${sg(d)}</span>`;
-const gamesTable=(r,ex)=>`<table class="games"><tr><th class="l">Date</th><th>Played</th>${ex?"<th>Expected</th>":""}<th class="l">Key teammates out</th></tr>
- ${r.games.map(g=>`<tr><td class="l">${g.d}</td><td>${g.m}</td>${ex?`<td>${g.e??"–"}</td>`:""}<td class="l">${g.out.length?esc(g.out.join(", ")):'<span class="mut">none</span>'}</td></tr>`).join("")}</table>`;
+const HASL=typeof LINES_ON!=="undefined"&&LINES_ON, lpair=(a,b,d)=>`${f(a)} → ${f(b)} ${d==null?"":Math.abs(d)<1?'<span class="mut">no change</span>':`<span class="${d>0?"up":"dn"} chg">${d>0?"+":""}${d.toFixed(1)}</span>`}`;
+const gamesTable=(r,ex)=>`<table class="games"><tr><th class="l">Date</th><th>Played</th>${ex?"<th>Expected</th>":""}${ex&&HASL?"<th>Our points line<small>that game</small></th>":""}${ex?"<th>Points</th>":""}<th class="l">Key teammates out</th></tr>
+ ${r.games.map(g=>`<tr><td class="l">${g.d}</td><td>${g.m}</td>${ex?`<td>${g.e??"–"}</td>`:""}${ex&&HASL?`<td>${g.l??"–"}</td>`:""}${ex?`<td>${g.p??"–"}</td>`:""}<td class="l">${g.out.length?esc(g.out.join(", ")):'<span class="mut">none</span>'}</td></tr>`).join("")}</table>`;
 // ---- tab 1: by team
 let key="best",dir=-1;
 function draw(){
@@ -281,10 +310,10 @@ function draw(){
  const rs=R.filter(r=>r.season===se&&(!t||r.team===t)&&(!q||r.player.toLowerCase().includes(q))).map(r=>({...r,best:r.mates[0].ad}));
  rs.sort((a,b)=>{const x=a[key],y=b[key]; return (typeof x==="string"?x.localeCompare(y):x-y)*dir;});
  $("tb").innerHTML=rs.length?rs.map((r,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(r.player)}</b> <span class="mut">${r.team} · ${POS[r.pos]||r.pos}</span></td>
-  <td>${r.mpg}</td><td class="l">${esc(r.mates[0].name)}</td><td class="big ${cl(r.best)}">${sg(r.best)}</td></tr>
+  <td>${r.mpg}</td><td class="l">${esc(r.mates[0].name)} out</td><td class="big ${cl(r.best)}">${sg(r.best)}</td></tr>
   <tr class="d" id="d${i}" hidden><td colspan="4">
-  <table class="sub"><tr><th class="l">When this teammate was out</th><th>Games out</th><th>His minutes<small>healthy → out</small></th>${ex?"<th>Expected minutes<small>healthy → out</small></th>":""}</tr>
-  ${r.mates.map(m=>`<tr><td class="l">${esc(m.name)} <span class="mut">${m.role}</span></td><td>${m.on}</td><td>${pair(m.an,m.ao,m.ad)}</td>${ex?`<td>${m.ed!=null?pair(m.en,m.eo,m.ed):'<span class="mut">not enough saved</span>'}</td>`:""}</tr>`).join("")}</table>
+  <table class="sub"><tr><th class="l">Player out</th><th>Games he missed</th><th>${esc(r.player)}'s minutes<small>he plays → he's out</small></th>${ex?"<th>His expected minutes<small>he plays → he's out</small></th>":""}${ex&&HASL?"<th>Our points line<small>average · he plays → he's out</small></th>":""}</tr>
+  ${r.mates.map(m=>`<tr><td class="l">${esc(m.name)} out <span class="mut">${m.role}</span></td><td>${m.on}</td><td>${pair(m.an,m.ao,m.ad)}</td>${ex?`<td>${m.ed!=null?pair(m.en,m.eo,m.ed):'<span class="mut">not enough saved</span>'}</td>`:""}${ex&&HASL?`<td>${m.ld!=null?lpair(m.ln,m.lo,m.ld):'<span class="mut">not enough bets</span>'}</td>`:""}</tr>`).join("")}</table>
   <details><summary>Every game</summary>${gamesTable(r,ex)}</details></td></tr>`).join("")
   :`<tr><td colspan="4" class="l empty">No players with at least ${MIN} games each way.</td></tr>`;
  document.querySelectorAll("#tb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("d"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
@@ -331,22 +360,49 @@ let cdir="all";
 function cdraw(){
  const t=$("cteam").value;
  document.querySelectorAll(".cbtn").forEach(b=>b.classList.toggle("on",b.dataset.k===cdir));
- const rs=CH.filter(x=>(!t||x.team===t)&&(cdir==="all"||(cdir==="up"?x.d>0:x.d<0)));
+ const rs=CH2.filter(x=>(!t||x.team===t)&&(cdir==="all"||(cdir==="up"?x.d>0:x.d<0)));
  $("ctb").innerHTML=rs.map((x,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(x.player)}</b> <span class="mut">${x.team}</span></td><td>${f(x.last)} <span class="mut">(${x.lgp} g)</span></td>
   <td>${f(x.now)} <span class="mut">(${x.gp} g)</span></td><td class="big ${cl(x.d)}">${sg(x.d)}</td>
 </tr>
-  <tr class="d" id="c${i}" hidden><td colspan="4"><div class="why"><b>Why:</b> ${esc(x.kind)} · ${esc(x.why)}</div><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th><th class="l"></th></tr>
-  ${x.log.map(g=>`<tr${g[4]?' class="wk"':''}><td class="l">${g[0]}</td><td class="l">${g[1]}</td><td>${g[2]}</td><td>${g[5]??"–"}</td>
+  <tr class="d" id="c${i}" hidden><td colspan="4"><div class="why"><b>Why:</b> ${esc(x.kind)} · ${esc(x.why)}</div><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th>${HASL?"<th>Our points line<small>that game</small></th>":""}<th>Points</th><th class="l"></th></tr>
+  ${x.log.map(g=>`<tr${g[4]?' class="wk"':''}><td class="l">${g[0]}</td><td class="l">${g[1]}</td><td>${g[2]}</td><td>${g[5]??"–"}</td>${HASL?`<td>${g[7]??"–"}</td>`:""}<td>${g[8]??"–"}</td>
    <td class="l mut">${g[6]?"left hurt (not counted)":g[3]?"started":g[2]===0?"DNP (coach)":"bench"}${g[4]?" · last week":""}</td></tr>`).join("")}</table></td></tr>`).join("") || `<tr><td colspan="4" class="l empty">None.</td></tr>`;
  document.querySelectorAll("#ctb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("c"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
 }
 document.querySelectorAll(".cbtn").forEach(b=>b.onclick=()=>{cdir=b.dataset.k; cdraw();}); $("cteam").onchange=cdraw;
+// ---- tab 5: points (and how often he goes over our line) when a key teammate is out (user, Nov 18 2026)
+const PTS_SIG=__PTS__, OVER_SIG=__OVER__, pc=v=>Math.round(v*100)+"%";
+const PP=[]; R.filter(r=>r.season==="2026-27").forEach(r=>r.mates.forEach(m=>{ m.nmin=Math.min(m.on,m.nn);
+  const sp=m.ptd!=null&&Math.abs(m.ptd)>=PTS_SIG, so=m.ovd!=null&&Math.abs(m.ovd)>=OVER_SIG;
+  if((sp||so)&&(!HASL||m.ovd!=null)) PP.push({r,m,sp,so});}));   // with our lines: only players with enough bets (user)
+let pkey="pts",plim=50;
+function pdraw(){
+ const t=$("pteam").value;
+ document.querySelectorAll(".pbtn").forEach(b=>b.classList.toggle("on",b.dataset.k===pkey));
+ const g3=$("p3").checked;
+ const rs=PP.filter(x=>(!t||x.r.team===t)&&(pkey!=="over"||x.m.ovd!=null)&&(!g3||(pkey==="over"?Math.min(x.m.novo,x.m.novn)>=3:x.m.nmin>=3)))
+   .sort((a,b)=>pkey==="over"?Math.abs(b.m.ovd)-Math.abs(a.m.ovd):Math.abs(b.m.ptd??0)-Math.abs(a.m.ptd??0));
+ $("ptb").innerHTML=rs.slice(0,plim).map(({r,m},i)=>{
+  const gs=r.games.filter(g=>m.sat.has(g.i)||m.ng.includes(g.i));
+  return `<tr class="p" data-i="${i}"><td class="l"><b>${esc(r.player)}</b> <span class="mut">${r.team}</span></td><td class="l">${esc(m.name)} out <span class="mut">${m.on} g out</span></td>
+  <td>${m.ptd!=null?lpair(m.ptn,m.pto,m.ptd):"–"}</td>
+  ${HASL?`<td>${pc(m.ovn/m.novn)}</td><td>${pc(m.ovo/m.novo)}</td>
+  <td>${m.ld!=null?lpair(m.ln,m.lo,m.ld):"–"}</td>`:""}<td>${f(m.an)} → ${f(m.ao)}</td></tr>
+  <tr class="d" id="p${i}" hidden><td colspan="${HASL?7:4}"><table class="games"><tr><th class="l">Date</th><th>Minutes</th>${HASL?"<th>Our points line</th>":""}<th>Points</th><th class="l">${esc(m.name)}</th><th class="l">Key teammates out</th></tr>
+  ${gs.map(g=>`<tr><td class="l">${g.d}</td><td>${g.m}</td>${HASL?`<td>${g.l??"–"}</td>`:""}<td>${g.p??"–"}</td><td class="l">${m.sat.has(g.i)?"<b>out</b>":"played"}</td><td class="l">${g.out.length?esc(g.out.join(", ")):'<span class="mut">none</span>'}</td></tr>`).join("")}</table></td></tr>`;}).join("")
+  || `<tr><td colspan="6" class="l empty">None.</td></tr>`;
+ $("pmore").innerHTML=rs.length>plim?`Showing the top ${plim} of ${rs.length}. <a href="#" id="pall">Show all</a>`:"";
+ if($("pall")) $("pall").onclick=e=>{e.preventDefault();plim=1e9;pdraw();};
+ document.querySelectorAll("#ptb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("p"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
+}
+document.querySelectorAll(".pbtn").forEach(b=>b.onclick=()=>{pkey=b.dataset.k; plim=50; pdraw();}); $("pteam").onchange=()=>{plim=50;pdraw();}; $("p3").onchange=()=>{plim=50;pdraw();};
+if(!HASL) document.querySelectorAll(".pl").forEach(x=>x.style.display="none");
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));
- ["1","2","3","4"].forEach(v=>$("view"+v).hidden=b.dataset.v!==v);});
-fillTeams("team","2026-27","Pick a team"); fillTeams("bteam","2026-27","All teams"); fillTeams("mteam","2026-27","All teams");
-$("cteam").innerHTML='<option value="">All teams</option>'+[...new Set(CH.map(x=>x.team))].sort().map(t=>`<option>${t}</option>`).join("");
-draw(); bdraw(); mdraw(); cdraw();
-""".replace("__MIN__", str(MIN_GAMES)).replace("__SHOW__", str(SHOW_CHANGE))
+ ["1","2","3","4","5"].forEach(v=>$("view"+v).hidden=b.dataset.v!==v);});
+fillTeams("team","2026-27","Pick a team"); fillTeams("bteam","2026-27","All teams"); fillTeams("mteam","2026-27","All teams"); fillTeams("pteam","2026-27","All teams");
+$("cteam").innerHTML='<option value="">All teams</option>'+[...new Set(CH2.map(x=>x.team))].sort().map(t=>`<option>${t}</option>`).join("");
+draw(); bdraw(); mdraw(); cdraw(); pdraw();
+""".replace("__MIN__", str(MIN_GAMES)).replace("__PTS__", str(PTS_SIG)).replace("__OVER__", str(OVER_SIG)).replace("__SHOW__", str(SHOW_CHANGE))
 
 SEASON_OPTS = '<option>2024-25</option><option>2025-26</option><option value="2026-27" selected>2026-27</option>'
 
@@ -355,14 +411,16 @@ def page(D, CH, through):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Minutes When Teammates Sit</title><style>{CSS}</style></head><body>
 <h1>Minutes when a key teammate is out</h1>
-<p class="lead">How a player's minutes change when a starter or key bench player (20+ minutes a game) sits.
+<p class="lead">How many more (or fewer) minutes a player gets when one of his teammates, a starter or key bench player
+(20+ minutes a game), misses the game. Example: "Corey Kispert · Kingston Flemings out · +13.4" means Kispert plays about 13
+more minutes in games Flemings misses. Click a player to see every teammate.
 Every number uses at least {MIN_GAMES} games. Games through {through}.</p>
 <div class="tabs"><button class="tab on" data-v="1">By team</button><button class="tab" data-v="2">Biggest differences</button>
-<button class="tab" data-v="3">Biggest misses</button><button class="tab" data-v="4">Minutes changes</button></div>
+<button class="tab" data-v="3">Biggest misses</button><button class="tab" data-v="4">Minutes changes</button><button class="tab" data-v="5">Points when out</button></div>
 <div id="view1">
 <div class="bar"><select id="season">{SEASON_OPTS}</select><select id="team"></select><input id="q" placeholder="or type a player" size="16"></div>
 <div class="wrap"><table><thead id="head"><tr>
-<th class="l" data-k="player">Player</th><th data-k="mpg">Min/game</th><th class="l">Biggest boost when out</th><th data-k="best">Extra min</th>
+<th class="l" data-k="player">Player</th><th data-k="mpg">Min/game</th><th class="l">Player out</th><th data-k="best">Change in minutes</th>
 </tr></thead><tbody id="tb"></tbody></table></div>
 </div>
 <div id="view2" hidden>
@@ -372,8 +430,8 @@ Every number uses at least {MIN_GAMES} games. Games through {through}.</p>
 <button class="sortbtn bexp" data-k="ea">Played above expected</button>
 <button class="sortbtn bexp" data-k="ed">Expected gained</button></span></div>
 <div class="wrap"><table><thead><tr>
-<th class="l">Player</th><th class="l">Teammate(s) out</th><th>Minutes played<small>healthy → out</small></th>
-<th class="bexp">Expected minutes<small>healthy → out</small></th><th class="bexp">Played vs expected<small>when out</small></th>
+<th class="l">Player</th><th class="l">Player(s) out</th><th>Player's minutes<small>he plays → he's out</small></th>
+<th class="bexp">Player's expected minutes<small>he plays → he's out</small></th><th class="bexp">Played vs expected<small>with the teammate out</small></th>
 </tr></thead><tbody id="btb"></tbody></table></div>
 <div id="bmore"></div>
 </div>
@@ -397,18 +455,34 @@ Games he left hurt don't count. Click a player for why it changed and his game l
 <div class="wrap"><table><thead><tr><th class="l">Player</th><th>Season before this week<small>min a game</small></th><th>Last week<small>min a game</small></th>
 <th>Change</th></tr></thead><tbody id="ctb"></tbody></table></div>
 </div>
+<div id="view5" hidden>
+<p class="lead">2026-27: players who score a lot more or less when a key teammate is out ({PTS_SIG}+ points a game apart)<span class="pl">,
+or who go over our points line much more or less often than usual ({int(OVER_SIG*100)}+ percentage points apart; "over" = scored more than
+our line that game)</span>. 2+ games each way, so small samples: check the games behind each row. Click a player for every game.</p>
+<div class="bar"><select id="pteam"></select><label style="font-size:13.5px"><input type="checkbox" id="p3"> Only 3+ games each way</label><span class="rank">Rank by
+<button class="pbtn sortbtn on" data-k="pts">Points difference</button><button class="pbtn sortbtn pl" data-k="over">Over-rate difference</button></span></div>
+<div class="wrap"><table><thead><tr><th class="l">Player</th><th class="l">Player out</th><th>Points a game<small>he plays → he's out</small></th>
+<th class="pl">Went over our line<small>when he plays</small></th><th class="pl">Went over our line<small>when he's out</small></th><th class="pl">Our points line<small>average · he plays → he's out</small></th>
+<th>Minutes<small>he plays → he's out</small></th></tr></thead><tbody id="ptb"></tbody></table></div>
+<div id="pmore" style="margin:10px 0;font-size:13.5px"></div>
+</div>
 <footer>Minutes played: ESPN box scores (a coach's-decision DNP counts as 0). Starters: on this season's depth chart or started at
 least half their games. Expected minutes (2026-27, from Oct 27): what the trader bot's report showed (FantasyPros top 10, else RotoWire
 for away teams, else SportsLine), or its last read before tip. Teammates who missed exactly the same games share a row.
 Left out: DNPs for injury or rest (he wasn't available), 0-minute games before a player's first real game, players often benched
 by the coach (not key teammates), and games with more than {MAX_OUT} key teammates out (e.g. Pacers, Nov 2).
 Differences under {SHOW_CHANGE} minutes show as "no change".</footer>
-<script>const D={json.dumps(D, separators=(",", ":"))}; const CH={json.dumps(CH["rows"], separators=(",", ":"))};
+<script>const LINES_ON={"true" if LINES else "false"}; const D={json.dumps(D, separators=(",", ":"))}; const CH={json.dumps(CH["rows"], separators=(",", ":"))};
 {JS}</script></body></html>"""
 
 
 if __name__ == "__main__":
-    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "minutes_when_out.html")
+    args = sys.argv[1:]
+    if "--lines" in args:           # our prematch points lines (from Snowflake); keep that file and the page out of the repo
+        i = args.index("--lines")
+        LINES.update(json.load(open(args[i + 1])))
+        del args[i:i + 2]
+    out = args[0] if args else os.path.join(HERE, "minutes_when_out.html")
     D = build_data()
     through = max((r["date"] for r in csv.DictReader(open(os.path.join(HERE, "data", "box_2026-27.csv")))), default="")
     open(out, "w").write(page(D, season_changes(), through))
