@@ -840,3 +840,15 @@ def test_pause_stops_sending(monkeypatch):
     monkeypatch.setenv("SLACK_DM_MODE", "on")
     monkeypatch.setattr(sa, "PAUSED", True)
     assert sa.mode() == "off"
+
+
+def test_unchanged_nba_report_status_keeps_first_seen_time():
+    """Nov 17 2026: Avdija Q on the NBA report since 2:33 PM; a 7:29 PM "won't play" must beat our 7:30 re-read of it."""
+    old = [{"player": "Deni Avdija", "from": "2026-11-17", "st": "q", "at": "2026-11-17T19:33:19+00:00"}]
+    new = [{"player": "Deni Avdija", "from": "2026-11-17", "st": "q", "at": "2026-11-18T00:30:02+00:00"},
+           {"player": "Other Guy", "from": "2026-11-17", "st": None, "at": "2026-11-18T00:30:02+00:00"}]
+    u.keep_status_since(new, old)
+    assert new[0]["at"] == "2026-11-17T19:33:19+00:00" and new[1]["at"] == "2026-11-18T00:30:02+00:00"
+    changed = [{"player": "Deni Avdija", "from": "2026-11-17", "st": None, "at": "2026-11-18T00:45:00+00:00"}]
+    u.keep_status_since(changed, old)          # a CHANGE (Q -> out) is new news and keeps its new time
+    assert changed[0]["at"] == "2026-11-18T00:45:00+00:00"
