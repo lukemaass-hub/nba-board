@@ -5,6 +5,7 @@ import update_data as u
 u.today_et = lambda: dt.date(2026, 10, 6)
 import slack_assign
 slack_assign.PAUSED = False   # the tests check sending itself, paused or not
+slack_assign.OWNER_ONLY = False
 
 CBS = """
 <div class="TableBaseWrapper"><div class="TeamLogoNameLockup"><span class="TeamName"><a>L.A. Clippers</a></span></div>
@@ -840,6 +841,9 @@ def test_pause_stops_sending(monkeypatch):
     monkeypatch.setenv("SLACK_DM_MODE", "on")
     monkeypatch.setattr(sa, "PAUSED", True)
     assert sa.mode() == "off"
+    monkeypatch.setattr(sa, "PAUSED", False)
+    monkeypatch.setattr(sa, "OWNER_ONLY", True)
+    assert sa.mode() == "test"
 
 
 def test_unchanged_nba_report_status_keeps_first_seen_time():
@@ -852,3 +856,16 @@ def test_unchanged_nba_report_status_keeps_first_seen_time():
     changed = [{"player": "Deni Avdija", "from": "2026-11-17", "st": None, "at": "2026-11-18T00:45:00+00:00"}]
     u.keep_status_since(changed, old)          # a CHANGE (Q -> out) is new news and keeps its new time
     assert changed[0]["at"] == "2026-11-18T00:45:00+00:00"
+
+
+def test_rotowire_lineup_page_decides_tonight():
+    """Nov 17 2026: RotoWire's lineup page tag beats an older 'questionable' anywhere else; its starters are playing."""
+    import email_report as e
+    d = {"lineups": {"POR": {"date": "2026-11-17", "confirmed": True, "starters": [{"pos": "PG", "name": "Damian Lillard"}]}},
+         "injuries": [
+             {"team": "POR", "player": "Deni Avdija", "src": "NBA report", "kind": "G", "st": "q", "from": "2026-11-17",
+              "through": "2026-11-17", "override": True, "at": "2026-11-18T00:30:02+00:00"},
+             {"team": "POR", "player": "Deni Avdija", "src": "RotoWire", "kind": "O", "st": "out", "through": "2026-11-17"},
+             {"team": "POR", "player": "Damian Lillard", "src": "CBS", "kind": "G", "through": "2026-11-19"}]}
+    got = {i["player"]: i["st"] for i in e.injuries_for(d, "POR", "2026-11-17")}
+    assert got == {"Deni Avdija": "out"}

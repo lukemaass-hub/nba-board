@@ -132,12 +132,17 @@ ALSO_INCLUDE = {"2026-10-26": [OWNER]}
 ALWAYS_INCLUDE = [OWNER]
 
 
-PAUSED = True   # user, Nov 17 2026: "hold off on sending things until everything is fixed". False to send again.
+PAUSED = False   # True = send nothing (user, Nov 17 2026: "hold off on sending things until everything is fixed")
+# Owner only (user, Nov 17 2026: "have the info send to me so I can verify before it starts sending to other people"):
+# every report goes to the owner's DM with the bot, marked [TEST] with who it would have gone to. False = traders again.
+OWNER_ONLY = True
 
 
 def mode():
     if PAUSED:
         return "off"
+    if OWNER_ONLY:
+        return "test"
     m = (os.environ.get("SLACK_DM_MODE") or "off").strip().lower()
     return m if m in ("off", "test", "on") else "off"
 
