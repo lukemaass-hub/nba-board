@@ -38,6 +38,9 @@ def fmt_time(t):
     return f"{(h + 11) % 12 + 1}:{m:02d} {'PM' if h >= 12 else 'AM'}"
 
 
+ROTOWIRE_DECIDES = True   # RotoWire's lineup page sets tonight's statuses when it has the team (user, Nov 17 2026)
+
+
 def injuries_for(data, team, date):
     """Same merge as the page: one entry per player, every source listed. The worst status wins, except that a
     beat writer's status (from the news feed) overrides the injury sites; the newest beat-writer report counts."""
@@ -47,7 +50,7 @@ def injuries_for(data, team, date):
     # Once the NBA's official report is out for this date, a player it doesn't list (and no beat writer covers) is not
     # shown just because another site still lists him (user, Oct 26 2026: Covers had stale "Out"s for players playing).
     if any(r["src"] == "NBA report" and r.get("from") == date for r in data.get("injuries", [])):
-        official = {norm_name(r["player"]) for r in recs if r["src"] == "NBA report" or r.get("override")}
+        official = {norm_name(r["player"]) for r in recs if r["src"] in ("NBA report", "RotoWire") or r.get("override")}
         recs = [r for r in recs if norm_name(r["player"]) in official]
     for r in recs:
         if r.get("st"):
@@ -62,8 +65,22 @@ def injuries_for(data, team, date):
                            "url": r.get("url") or SRC_URL.get(r["src"], ""), "beat": bool(r.get("override"))})
         if r.get("override") and (not g["beat"] or r.get("at", "") > g["beat"]["at"]):
             g["beat"] = {"st": st, "at": r.get("at", ""), "src": r["src"]}
+    # RotoWire's lineup page decides when it has tonight's lineup for this team (user, Nov 17 2026: "just get the lineup
+    # info from the most reliable source"; Nov 5-16 sends: 0 wrong of 234 calls, vs 3 for the NBA report, 13 for the mix):
+    # a player it tags (Out, GTD...) gets its status, one of its starters is playing, everyone else as before.
+    lu = (data.get("lineups") or {}).get(team) or {}
+    rw_on = ROTOWIRE_DECIDES and lu.get("date") == date and bool(lu.get("starters"))
+    rw_tag = {}
+    for r in recs:
+        if r["src"] == "RotoWire" and r.get("st"):
+            rw_tag[norm_name(r["player"])] = r["st"]
+    rw_start = {norm_name(x["name"]) for x in lu.get("starters", [])} if rw_on else set()
     out = []
-    for g in groups.values():
+    for k, g in groups.items():
+        if rw_on and k in rw_start and k not in rw_tag:
+            continue          # in RotoWire's starting five: playing
+        if rw_on and k in rw_tag:
+            g["beat"] = {"st": rw_tag[k], "at": "", "src": "RotoWire"}
         best = g["beat"]["st"] if g["beat"] else min(g["sts"], key=RANK.get)
         srcs, seen = [], set()
         for l in g["lines"]:
@@ -943,7 +960,7 @@ def dm_traders(data, token, now, window, sent, stamp):
             try:
                 if m == "test":   # the owner only: SLACK_TEST_CHANNEL if set (visible), else a one-on-one DM
                     head = [{"type": "context", "elements": [{"type": "mrkdwn", "text": slack_escape(f"[TEST] Would go to a group DM with: {who} ({why})")}]}]
-                    test_ch = (os.environ.get("SLACK_TEST_CHANNEL") or "").strip()
+                    test_ch = "" if sa.OWNER_ONLY else (os.environ.get("SLACK_TEST_CHANNEL") or "").strip()
                     (sa.post_channel if test_ch else sa.dm)(token, test_ch or sa.OWNER, title, head + blocks)
                 else:
                     users = list(dict.fromkeys([p["user"] for p in people] + sa.ALSO_INCLUDE.get(g["date"], []) + sa.ALWAYS_INCLUDE))

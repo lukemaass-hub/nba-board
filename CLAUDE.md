@@ -265,3 +265,11 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
 - Nov 17 2026: POR@MIN report listed Deni Avdija (ruled out at 7:29 PM, RotoWire news) as the 6th man: the NBA report's
   record carried OUR read time (7:30), so its old "questionable" (on the report since 2:33 PM) counted as newer.
   update_data.keep_status_since: an NBA-report status keeps the time it first appeared; only a change is new.
+- Nov 17 2026 (user): "just get the lineup info from the most reliable source" -> email_report.ROTOWIRE_DECIDES: when
+  RotoWire's lineup page has tonight's lineup for a team, its tags (Out, GTD...) set those players' statuses and its
+  starters count as playing; other sources only fill players it doesn't list. Check of Nov 5-16 sends vs box scores:
+  RotoWire lineup page 0 wrong of 234 calls, NBA report 3 of 242, the old mix 13 of 262 (most were healthy scratches);
+  "questionable" in our reports drops from 11 to 3.
+- Nov 17 2026 (user): "have the info send to me so I can verify before it starts sending to other people" ->
+  slack_assign.OWNER_ONLY = True (PAUSED = False): mode() is "test": every report goes to the owner's DM with the bot,
+  marked [TEST] with who it would have gone to (SLACK_TEST_CHANNEL ignored). OWNER_ONLY = False only when the user says.
