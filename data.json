@@ -8678,7 +8678,7 @@
    "time": "19:00",
    "vs": "IND",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8707,7 +8707,7 @@
    "time": "19:00",
    "vs": "HOU",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8736,15 +8736,15 @@
    "time": "19:00",
    "vs": "MIA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Brayden Burries"
+     "name": "Tyler Herro"
     },
     {
      "pos": "SG",
-     "name": "Tyler Herro"
+     "name": "Brayden Burries"
     },
     {
      "pos": "SF",
@@ -8758,7 +8758,8 @@
      "pos": "C",
      "name": "Myles Turner"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "MIA": {
    "date": "2026-11-18",
@@ -18405,7 +18406,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-18T23:34:00+00:00",
+  "read_at": "2026-11-18T23:37:04+00:00",
   "date": "2026-11-18",
   "games": {
    "MEM@CLE": {
@@ -21772,6 +21773,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba539828",
+   "player": "Tyrese Maxey",
+   "headline": "Ruled out for Wednesday",
+   "text": "Maxey (foot) is out for Wednesday's game in Orlando, Ky Carlin of USA Today reports.",
+   "reporter": "Ky Carlin",
+   "outlet": "USA Today",
+   "url": "https://www.rotowire.com/basketball/player/tyrese-maxey-5158",
+   "at": "2026-11-18T23:34:00+00:00",
+   "team": "PHI"
+  },
   {
    "id": "nba539827",
    "player": "Mario Hezonja",
@@ -26304,12 +26316,12 @@
    "team": "PHI",
    "player": "Tyrese Maxey",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Right Foot Soreness",
    "upd": "2026-11-18",
-   "until": "",
+   "until": "2026-11-21",
    "note": "Maxey is questionable for Wednesday's game in Orlando due to right foot soreness, Gina Mizell of The Philadelphia Inquirer reports.",
-   "through": "2026-11-20",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Tyrese%20Maxey"
   },
   {
@@ -28623,13 +28635,13 @@
    "team": "PHI",
    "player": "Tyrese Maxey",
    "src": "RotoWire",
-   "kind": "G",
+   "kind": "O",
    "injury": "",
    "upd": "2026-11-18",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Out",
    "through": "2026-11-18",
-   "st": "q",
+   "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20Maxey"
   },
   {
@@ -28644,19 +28656,6 @@
    "through": "2026-11-18",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Hukporti"
-  },
-  {
-   "team": "PHI",
-   "player": "Tyrese Maxey",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-18",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-18",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20Maxey"
   },
   {
    "team": "PHI",
@@ -28696,6 +28695,19 @@
    "through": "2026-11-18",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Brown"
+  },
+  {
+   "team": "PHI",
+   "player": "Tyrese Maxey",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-18",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-11-18",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20Maxey"
   },
   {
    "team": "PHI",
@@ -29530,6 +29542,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Raynaud"
   },
   {
+   "team": "PHI",
+   "player": "Tyrese Maxey",
+   "src": "Ky Carlin",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-18",
+   "until": "",
+   "note": "Maxey (foot) is out for Wednesday's game in Orlando, Ky Carlin of USA Today reports.",
+   "through": "2026-11-18",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/tyrese-maxey-5158",
+   "from": "2026-11-18",
+   "override": true,
+   "at": "2026-11-18T23:34:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "CLE",
    "player": "Mario Hezonja",
    "src": "Danny Cunningham",
@@ -30347,7 +30376,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-18T23:34:00+00:00",
+ "generated_at": "2026-11-18T23:37:05+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -30363,24 +30392,25 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-18T23:33:59+00:00",
+   "at": "2026-11-18T23:37:04+00:00",
    "teams": 24,
    "injuries": 86
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-18T23:33:59+00:00",
+   "at": "2026-11-18T23:37:04+00:00",
    "teams": 22,
-   "verified": 4,
+   "verified": 7,
    "used": [
     "PHI",
     "ORL",
+    "MIL",
     "MIA"
    ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-18T23:33:59+00:00",
+   "at": "2026-11-18T23:37:04+00:00",
    "current_players": 471,
    "last_players": 582
   },
@@ -30390,17 +30420,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-18T23:33:59+00:00",
+   "at": "2026-11-18T23:37:04+00:00",
    "count": 103
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-18T23:34:00+00:00",
+   "at": "2026-11-18T23:37:04+00:00",
    "count": 105
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-18T23:34:00+00:00",
+   "at": "2026-11-18T23:37:04+00:00",
    "count": 104
   },
   "x": {
@@ -30409,40 +30439,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-18T23:34:00+00:00",
+   "at": "2026-11-18T23:37:04+00:00",
    "players": 242,
    "read_at": "2026-11-18T23:30:52+00:00",
    "saved_for_history": 256
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-18T23:34:00+00:00",
+   "at": "2026-11-18T23:37:04+00:00",
    "players": 125,
    "read_at": "2026-11-18T23:30:53+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-18T23:34:00+00:00",
+   "at": "2026-11-18T23:37:04+00:00",
    "players": 10,
    "read_at": "2026-11-18T23:30:54+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-18T23:34:00+00:00",
+   "at": "2026-11-18T23:37:05+00:00",
    "games": 12,
-   "read_at": "2026-11-18T23:34:00+00:00"
+   "read_at": "2026-11-18T23:37:04+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-18T23:34:00+00:00",
+   "at": "2026-11-18T23:37:05+00:00",
    "injuries": 114,
    "notes": 163,
    "read_at": "2026-11-18T23:30:54+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-18T23:34:00+00:00",
-   "count": 64
+   "at": "2026-11-18T23:37:05+00:00",
+   "count": 65
   }
  }
 }
