@@ -127,7 +127,7 @@ function draw(){
   <td>${r.mpg}</td><td class="l">${esc(r.mates[0].name)} out</td><td class="big ${cl(r.best)}">${sg(r.best)}</td></tr>
   <tr class="d" id="d${i}" hidden><td colspan="4">
   <table class="sub"><tr><th class="l">Player out</th><th>Games he missed</th><th>${esc(r.player)}'s minutes<small>he plays → he's out</small></th>${ex?"<th>His expected minutes<small>he plays → he's out</small></th>":""}${ex&&HASL?"<th>Our points line<small>average · he plays → he's out</small></th>":""}</tr>
-  ${r.mates.map(m=>`<tr><td class="l">${esc(m.name)} out <span class="mut">${m.role}</span></td><td>${m.on}</td><td>${pair(m.an,m.ao,m.ad)}</td>${ex?`<td>${m.ed!=null?pair(m.en,m.eo,m.ed):'<span class="mut">not enough saved</span>'}</td>`:""}${ex&&HASL?`<td>${m.ld!=null?lpair(m.ln,m.lo,m.ld)+`<small class="lines">average of: ${m.lsn.join(", ")} → ${m.lso.join(", ")}</small>`:'<span class="mut">not enough bets</span>'}</td>`:""}</tr>`).join("")}</table>
+  ${r.mates.map(m=>`<tr><td class="l">${esc(m.name)} out <span class="mut">${m.role}</span></td><td>${m.on}</td><td>${pair(m.an,m.ao,m.ad)}</td>${ex?`<td>${m.ed!=null?pair(m.en,m.eo,m.ed):'<span class="mut">not enough saved</span>'}</td>`:""}${ex&&HASL?`<td>${m.ld!=null?lpair(m.ln,m.lo,m.ld):'<span class="mut">not enough bets</span>'}</td>`:""}</tr>`).join("")}</table>
   <details><summary>Every game</summary>${gamesTable(r,ex)}</details></td></tr>`).join("")
   :`<tr><td colspan="4" class="l empty">No players with at least ${MIN} games each way.</td></tr>`;
  document.querySelectorAll("#tb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("d"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
