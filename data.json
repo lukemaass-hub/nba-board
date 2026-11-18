@@ -8678,7 +8678,7 @@
    "time": "20:00",
    "vs": "MIN",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8686,28 +8686,29 @@
     },
     {
      "pos": "SG",
-     "name": "Jrue Holiday"
+     "name": "Sidy Cissoko"
     },
     {
      "pos": "SF",
-     "name": "Toumani Camara"
+     "name": "Jayson Kent"
     },
     {
      "pos": "PF",
-     "name": "Sidy Cissoko"
+     "name": "Toumani Camara"
     },
     {
      "pos": "C",
      "name": "Donovan Clingan"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "MIN": {
    "date": "2026-11-17",
    "time": "20:00",
    "vs": "POR",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8719,24 +8720,25 @@
     },
     {
      "pos": "SF",
-     "name": "Terrence Shannon"
+     "name": "Jaden McDaniels"
     },
     {
      "pos": "PF",
-     "name": "Jaden McDaniels"
+     "name": "Cody Williams"
     },
     {
      "pos": "C",
      "name": "Rudy Gobert"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "DET": {
    "date": "2026-11-17",
    "time": "20:00",
    "vs": "SAS",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8758,14 +8760,15 @@
      "pos": "C",
      "name": "John Collins"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "SAS": {
    "date": "2026-11-17",
    "time": "20:00",
    "vs": "DET",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -15744,7 +15747,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-18T00:30:02+00:00",
+  "read_at": "2026-11-18T00:36:10+00:00",
   "date": "2026-11-17",
   "games": {
    "NYK@TOR": {
@@ -18959,6 +18962,39 @@
  },
  "news": [
   {
+   "id": "nba539659",
+   "player": "De'Andre Hunter",
+   "headline": "Questionable for Wednesday",
+   "text": "Hunter (hip) is questionable for Wednesday's game against the Suns, James Ham of ESPN 1320 Sacramento reports.",
+   "reporter": "James Ham",
+   "outlet": "ESPN 1320 Sacramento",
+   "url": "https://www.rotowire.com/basketball/player/deandre-hunter-4776",
+   "at": "2026-11-18T00:33:00+00:00",
+   "team": "SAC"
+  },
+  {
+   "id": "nba539658",
+   "player": "Precious Achiuwa",
+   "headline": "Questionable for Wednesday",
+   "text": "Achiuwa (ankle) is questionable for Wednesday's game against the Suns, James Ham of ESPN 1320 Sacramento reports.",
+   "reporter": "James Ham",
+   "outlet": "ESPN 1320 Sacramento",
+   "url": "https://www.rotowire.com/basketball/player/precious-achiuwa-5249",
+   "at": "2026-11-18T00:30:00+00:00",
+   "team": "SAC"
+  },
+  {
+   "id": "nba539657",
+   "player": "Deni Avdija",
+   "headline": "Ruled out Tuesday",
+   "text": "Avdija (foot) won't play Tuesday versus Minnesota.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
+   "at": "2026-11-18T00:29:00+00:00",
+   "team": "POR"
+  },
+  {
    "id": "nba539655",
    "player": "Neemias Queta",
    "headline": "Off injury report",
@@ -19836,17 +19872,6 @@
    "outlet": "",
    "url": "https://www.rotowire.com/basketball/player/zach-edey-6263",
    "at": "2026-11-15T00:43:00+00:00",
-   "team": "MEM"
-  },
-  {
-   "id": "nba539170",
-   "player": "Jerami Grant",
-   "headline": "Won't play Saturday",
-   "text": "Grant (head) is out for Saturday's game against the Nets.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/jerami-grant-3588",
-   "at": "2026-11-15T00:35:00+00:00",
    "team": "MEM"
   }
  ],
@@ -23725,12 +23750,12 @@
    "team": "POR",
    "player": "Deni Avdija",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Foot",
-   "upd": "2026-11-17",
-   "until": "",
+   "upd": "2026-11-18",
+   "until": "2026-11-19",
    "note": "Avdija (foot) is questionable for Tuesday's game against the Timberwolves.",
-   "through": "2026-11-19",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Deni%20Avdija"
   },
   {
@@ -23780,18 +23805,6 @@
    "note": "Sharpe suffered a torn meniscus in his knee and is expected to miss six months, per Shams Charania of ESPN.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Shaedon%20Sharpe"
-  },
-  {
-   "team": "SAC",
-   "player": "Zach LaVine",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "LaVine is out for Sunday's game against Oklahoma City due to illness, Brandon Rahbar of DailyThunder.com reports.",
-   "through": "2026-11-19",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Zach%20LaVine"
   },
   {
    "team": "SAC",
@@ -26075,6 +26088,57 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Reaves"
   },
   {
+   "team": "SAC",
+   "player": "De'Andre Hunter",
+   "src": "James Ham",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-18",
+   "until": "",
+   "note": "Hunter (hip) is questionable for Wednesday's game against the Suns, James Ham of ESPN 1320 Sacramento reports.",
+   "through": "2026-11-18",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/deandre-hunter-4776",
+   "from": "2026-11-18",
+   "override": true,
+   "at": "2026-11-18T00:33:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "SAC",
+   "player": "Precious Achiuwa",
+   "src": "James Ham",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-18",
+   "until": "",
+   "note": "Achiuwa (ankle) is questionable for Wednesday's game against the Suns, James Ham of ESPN 1320 Sacramento reports.",
+   "through": "2026-11-18",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/precious-achiuwa-5249",
+   "from": "2026-11-18",
+   "override": true,
+   "at": "2026-11-18T00:30:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "POR",
+   "player": "Deni Avdija",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-17",
+   "until": "",
+   "note": "Avdija (foot) won't play Tuesday versus Minnesota.",
+   "through": "2026-11-17",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
+   "from": "2026-11-17",
+   "override": true,
+   "at": "2026-11-18T00:29:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "BOS",
    "player": "Neemias Queta",
    "src": "Jack Simone",
@@ -27008,27 +27072,10 @@
    "override": true,
    "at": "2026-11-15T00:43:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "MEM",
-   "player": "Jerami Grant",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-14",
-   "until": "",
-   "note": "Grant (head) is out for Saturday's game against the Nets.",
-   "through": "2026-11-14",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/jerami-grant-3588",
-   "from": "2026-11-14",
-   "override": true,
-   "at": "2026-11-15T00:35:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-18T00:30:04+00:00",
+ "generated_at": "2026-11-18T00:36:10+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -27044,20 +27091,24 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-18T00:30:00+00:00",
+   "at": "2026-11-18T00:36:09+00:00",
    "teams": 10,
    "injuries": 31
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-18T00:30:00+00:00",
+   "at": "2026-11-18T00:36:09+00:00",
    "teams": 10,
-   "verified": 2,
-   "used": []
+   "verified": 6,
+   "used": [
+    "DET",
+    "POR",
+    "MIN"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-18T00:30:00+00:00",
+   "at": "2026-11-18T00:36:09+00:00",
    "current_players": 471,
    "last_players": 582
   },
@@ -27067,18 +27118,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-18T00:30:00+00:00",
+   "at": "2026-11-18T00:36:10+00:00",
    "count": 105
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-18T00:30:01+00:00",
+   "at": "2026-11-18T00:36:10+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-18T00:30:01+00:00",
-   "count": 106
+   "at": "2026-11-18T00:36:10+00:00",
+   "count": 105
   },
   "x": {
    "ok": null,
@@ -27086,44 +27137,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-18T00:30:02+00:00",
+   "at": "2026-11-18T00:36:10+00:00",
    "players": 94,
    "read_at": "2026-11-18T00:30:01+00:00",
    "saved_for_history": 81
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-18T00:30:02+00:00",
+   "at": "2026-11-18T00:36:10+00:00",
    "players": 53,
    "read_at": "2026-11-18T00:30:02+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-18T00:30:02+00:00",
+   "at": "2026-11-18T00:36:10+00:00",
    "players": 9,
    "read_at": "2026-11-18T00:30:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-18T00:30:02+00:00",
+   "at": "2026-11-18T00:36:10+00:00",
    "games": 5,
-   "read_at": "2026-11-18T00:30:02+00:00",
-   "tip_times_fixed": [
-    "CHA@LAL 22:00 -> 23:00",
-    "UTA@LAC 23:00 -> 22:30"
-   ]
+   "read_at": "2026-11-18T00:36:10+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-18T00:30:03+00:00",
+   "at": "2026-11-18T00:36:10+00:00",
    "injuries": 109,
    "notes": 162,
    "read_at": "2026-11-18T00:30:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-18T00:30:04+00:00",
-   "count": 81
+   "at": "2026-11-18T00:36:10+00:00",
+   "count": 83
   }
  }
 }
