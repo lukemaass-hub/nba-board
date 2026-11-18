@@ -132,7 +132,12 @@ ALSO_INCLUDE = {"2026-10-26": [OWNER]}
 ALWAYS_INCLUDE = [OWNER]
 
 
+PAUSED = True   # user, Nov 17 2026: "hold off on sending things until everything is fixed". False to send again.
+
+
 def mode():
+    if PAUSED:
+        return "off"
     m = (os.environ.get("SLACK_DM_MODE") or "off").strip().lower()
     return m if m in ("off", "test", "on") else "off"
 

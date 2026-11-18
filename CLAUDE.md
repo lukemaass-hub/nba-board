@@ -260,3 +260,5 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
 - Nov 17 2026: the fixturedownload schedule had wrong tip times (UTA@LAC 11 PM, really 10:30; CHA@LAL 10 PM, really 11), so
   a fallback send could land after tip. update_data.parse_tips / fix_tip_times: on every refresh, today's times are
   corrected from ESPN's scoreboard (status lines.tip_times_fixed).
+- Nov 17 2026 (user): "hold off on sending things until everything is fixed" -> slack_assign.PAUSED = True: mode() is "off"
+  whatever SLACK_DM_MODE says (no group DMs, no unsent-game alerts). Set PAUSED = False only when the user says to resume.
