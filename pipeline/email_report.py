@@ -38,6 +38,8 @@ def fmt_time(t):
     return f"{(h + 11) % 12 + 1}:{m:02d} {'PM' if h >= 12 else 'AM'}"
 
 
+OUT_ANYWHERE = True       # a player any source lists as OUT for tonight is out (user, Nov 18 2026), unless he is in a
+                          # CONFIRMED starting five (then he is playing)
 ROTOWIRE_DECIDES = True   # RotoWire's lineup page sets tonight's statuses when it has the team (user, Nov 17 2026)
 
 
@@ -77,11 +79,16 @@ def injuries_for(data, team, date):
     rw_start = {norm_name(x["name"]) for x in lu.get("starters", [])} if rw_on else set()
     out = []
     for k, g in groups.items():
-        if rw_on and k in rw_start and k not in rw_tag:
+        confirmed_starter = rw_on and k in rw_start and bool(lu.get("confirmed"))
+        if rw_on and k in rw_start and k not in rw_tag and not (OUT_ANYWHERE and "out" in g["sts"] and not confirmed_starter):
             continue          # in RotoWire's starting five: playing
         if rw_on and k in rw_tag:
             g["beat"] = {"st": rw_tag[k], "at": "", "src": "RotoWire"}
         best = g["beat"]["st"] if g["beat"] else min(g["sts"], key=RANK.get)
+        if OUT_ANYWHERE and "out" in g["sts"] and not confirmed_starter:
+            best = "out"
+            if g["beat"] and g["beat"]["st"] != "out":
+                g["beat"] = {"st": "out", "at": "", "src": next(l["src"] for l in g["lines"] if l["st"] == "out")}
         srcs, seen = [], set()
         for l in g["lines"]:
             if l["src"] not in seen:

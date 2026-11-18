@@ -291,3 +291,6 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
 - Nov 18 2026: PHI@ORL report named Tyrese Maxey (GTD) the 6th man: Basketball Monster had verified PHI's lineup with
   Simons at PG (Maxey held out), RotoWire still had Maxey "Ques", so he stayed on the bench list with the most MPG.
   The 6th man is now never a questionable / GTD player (he still shows under Injuries).
+- Nov 18 2026 (user): "if a player is listed as out somewhere then they are removed" -> email_report.OUT_ANYWHERE: any
+  source's OUT for tonight makes him out (beats RotoWire's tag and newer "questionable" news), unless he is in a CONFIRMED
+  starting five. Backtest of all 160 sent reports: 0 players marked out who played (same as before).
