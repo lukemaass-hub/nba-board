@@ -283,7 +283,7 @@ function draw(){
  $("tb").innerHTML=rs.length?rs.map((r,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(r.player)}</b> <span class="mut">${r.team} · ${POS[r.pos]||r.pos}</span></td>
   <td>${r.mpg}</td><td class="l">${esc(r.mates[0].name)}</td><td class="big ${cl(r.best)}">${sg(r.best)}</td></tr>
   <tr class="d" id="d${i}" hidden><td colspan="4">
-  <table class="sub"><tr><th class="l">When this teammate was out</th><th>Games out</th><th>His minutes<small>healthy → out</small></th>${ex?"<th>Expected minutes<small>healthy → out</small></th>":""}</tr>
+  <table class="sub"><tr><th class="l">Teammate out</th><th>Games that teammate missed</th><th>${esc(r.player)}'s minutes<small>teammate plays → teammate out</small></th>${ex?"<th>His expected minutes<small>teammate plays → teammate out</small></th>":""}</tr>
   ${r.mates.map(m=>`<tr><td class="l">${esc(m.name)} <span class="mut">${m.role}</span></td><td>${m.on}</td><td>${pair(m.an,m.ao,m.ad)}</td>${ex?`<td>${m.ed!=null?pair(m.en,m.eo,m.ed):'<span class="mut">not enough saved</span>'}</td>`:""}</tr>`).join("")}</table>
   <details><summary>Every game</summary>${gamesTable(r,ex)}</details></td></tr>`).join("")
   :`<tr><td colspan="4" class="l empty">No players with at least ${MIN} games each way.</td></tr>`;
@@ -355,14 +355,16 @@ def page(D, CH, through):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Minutes When Teammates Sit</title><style>{CSS}</style></head><body>
 <h1>Minutes when a key teammate is out</h1>
-<p class="lead">How a player's minutes change when a starter or key bench player (20+ minutes a game) sits.
+<p class="lead">How many more (or fewer) minutes a player gets when one of his teammates, a starter or key bench player
+(20+ minutes a game), misses the game. Example: "Corey Kispert · Kingston Flemings · +13.4" means Kispert plays about 13
+more minutes in games Flemings misses. Click a player to see every teammate.
 Every number uses at least {MIN_GAMES} games. Games through {through}.</p>
 <div class="tabs"><button class="tab on" data-v="1">By team</button><button class="tab" data-v="2">Biggest differences</button>
 <button class="tab" data-v="3">Biggest misses</button><button class="tab" data-v="4">Minutes changes</button></div>
 <div id="view1">
 <div class="bar"><select id="season">{SEASON_OPTS}</select><select id="team"></select><input id="q" placeholder="or type a player" size="16"></div>
 <div class="wrap"><table><thead id="head"><tr>
-<th class="l" data-k="player">Player</th><th data-k="mpg">Min/game</th><th class="l">Biggest boost when out</th><th data-k="best">Extra min</th>
+<th class="l" data-k="player">Player</th><th data-k="mpg">Min/game</th><th class="l">Teammate out<small>the one who changes his minutes most</small></th><th data-k="best">Change in his minutes<small>when that teammate is out</small></th>
 </tr></thead><tbody id="tb"></tbody></table></div>
 </div>
 <div id="view2" hidden>
@@ -372,8 +374,8 @@ Every number uses at least {MIN_GAMES} games. Games through {through}.</p>
 <button class="sortbtn bexp" data-k="ea">Played above expected</button>
 <button class="sortbtn bexp" data-k="ed">Expected gained</button></span></div>
 <div class="wrap"><table><thead><tr>
-<th class="l">Player</th><th class="l">Teammate(s) out</th><th>Minutes played<small>healthy → out</small></th>
-<th class="bexp">Expected minutes<small>healthy → out</small></th><th class="bexp">Played vs expected<small>when out</small></th>
+<th class="l">Player</th><th class="l">Teammate(s) out</th><th>Player's minutes<small>teammate plays → teammate out</small></th>
+<th class="bexp">Player's expected minutes<small>teammate plays → teammate out</small></th><th class="bexp">Played vs expected<small>with the teammate out</small></th>
 </tr></thead><tbody id="btb"></tbody></table></div>
 <div id="bmore"></div>
 </div>
