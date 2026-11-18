@@ -803,7 +803,9 @@ def build_slack(data, game, date, test=False):
                     for p, n, why in starters]
             blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(rows)}})   # no "Expected starters (RotoWire, not confirmed)" line (user, Oct 27 2026)
         # only the 6th man: the bench player with the most minutes a game (user, Nov 15 2026)
-        bench = sorted(bench, key=lambda b: -((avg_minutes(data, b[1]) or (0,))[0]))[:1]
+        # never a questionable / game-time-decision player (Nov 18 2026: Maxey GTD, left out of PHI's confirmed lineup,
+        # was named 6th man because he plays the most minutes); he still shows under Injuries
+        bench = sorted([x for x in bench if x[2] != "q"], key=lambda b: -((avg_minutes(data, b[1]) or (0,))[0]))[:1]
         if bench or deep:
             txt = "*6th man:* " + " · ".join(f"{f'*{e(n)}*' if norm_name(n) in up_for else e(n)}{mins_tag(data, n, True)}{sl_text(slt, n)}{exp_text(xt, n)}"
                                            f"{tag.get(st, '')}{change_text(data, n)}{upt(n)}" for _, n, st in bench)

@@ -288,3 +288,6 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   Biggest misses (expected vs played) is unchanged. Points when out: over-rate shown as two plain % columns.
 - Nov 18 2026 (user): "we can return to sending alerts out to people" -> OWNER_ONLY = False: group DMs to the game's traders
   (+ owner) again.
+- Nov 18 2026: PHI@ORL report named Tyrese Maxey (GTD) the 6th man: Basketball Monster had verified PHI's lineup with
+  Simons at PG (Maxey held out), RotoWire still had Maxey "Ques", so he stayed on the bench list with the most MPG.
+  The 6th man is now never a questionable / GTD player (he still shows under Injuries).
