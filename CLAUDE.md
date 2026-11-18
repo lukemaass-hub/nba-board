@@ -262,3 +262,6 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   corrected from ESPN's scoreboard (status lines.tip_times_fixed).
 - Nov 17 2026 (user): "hold off on sending things until everything is fixed" -> slack_assign.PAUSED = True: mode() is "off"
   whatever SLACK_DM_MODE says (no group DMs, no unsent-game alerts). Set PAUSED = False only when the user says to resume.
+- Nov 17 2026: POR@MIN report listed Deni Avdija (ruled out at 7:29 PM, RotoWire news) as the 6th man: the NBA report's
+  record carried OUR read time (7:30), so its old "questionable" (on the report since 2:33 PM) counted as newer.
+  update_data.keep_status_since: an NBA-report status keeps the time it first appeared; only a change is new.

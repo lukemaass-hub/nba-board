@@ -292,6 +292,18 @@ def parse_pw_availability(html):
 
 
 
+def keep_status_since(recs, old_recs):
+    """An NBA-report status keeps the time it FIRST appeared, not the time we last read it (Nov 17 2026: Deni Avdija was
+    "questionable" on the report all afternoon; a 7:29 PM "won't play" lost to the 7:30 read of that old Q, so the report
+    showed him as the 6th man). A status that has not changed is old news; only a change counts as new."""
+    since = {(norm_name(r["player"]), r.get("from"), r.get("st")): r.get("at") for r in old_recs if r.get("at")}
+    for r in recs:
+        at = since.get((norm_name(r["player"]), r.get("from"), r.get("st")))
+        if at and at < r["at"]:
+            r["at"] = at
+    return recs
+
+
 def fetch_presserwire(prev):
     """-> {"read_at", "injuries", "notes"}; reuses the last read if it is under PW_EVERY_MIN minutes old."""
     now = dt.datetime.now(dt.timezone.utc)
@@ -302,6 +314,7 @@ def fetch_presserwire(prev):
     recs, notes = parse_pw_injury_report(get(PW_IR).text, read_at)
     if not recs:
         raise RuntimeError("Presser Wire injury report: no players read (page layout changed?)")
+    keep_status_since(recs, old.get("injuries") or [])
     try:
         notes += parse_pw_availability(get(PW_AV).text)
     except Exception as e:      # the notes are extra; the official statuses still count
