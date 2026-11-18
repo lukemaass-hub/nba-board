@@ -257,3 +257,6 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
 - Nov 16 2026: ORL@BOS and HOU@MIA got no group DM: the schedule bolds hybrid-feed games (":hybrid-time: *7:00 PM - A @ B* - ...")
   and slack_assign.parse_schedule skipped those lines; dm_traders then marked a game with no traders as sent. Fixed: emoji
   and * are stripped before matching, and a game with no traders is NOT marked sent (retried; owner emailed if it tips unsent).
+- Nov 17 2026: the fixturedownload schedule had wrong tip times (UTA@LAC 11 PM, really 10:30; CHA@LAL 10 PM, really 11), so
+  a fallback send could land after tip. update_data.parse_tips / fix_tip_times: on every refresh, today's times are
+  corrected from ESPN's scoreboard (status lines.tip_times_fixed).
