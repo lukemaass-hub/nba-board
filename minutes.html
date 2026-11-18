@@ -1,5 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Minutes When Teammates Sit</title><style>
+<title>Minutes When Teammates Sit</title><style>small.lines{display:block;font-weight:400;color:var(--mut,#777);font-size:11.5px;margin-top:2px}
+
 :root{--bg:#fcfcfb;--card:#fff;--ink:#0b0b0b;--ink2:#33322f;--mut:#6f6e69;--line:#ecebe6;--line2:#e6e5e0;--accent:#2a78d6;--sub:#f7f6f2;--hover:#f4f3ef}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1a19;--card:#222220;--ink:#f0efec;--ink2:#d6d5cf;--mut:#a8a79f;--line:#2e2e2b;--line2:#33332f;--sub:#20201e;--hover:#242422}}
 body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);max-width:1240px;margin:24px auto;padding:0 16px;line-height:1.45}
@@ -99,7 +100,8 @@ for(const [season,teams] of Object.entries(D)) for(const [team,T] of Object.entr
    const m={names:[K.name],role:K.role,on:og.length,nn:ng.length,sat,og,ng,
      ao:mean(og.map(i=>P.m[i])),an:mean(ng.map(i=>P.m[i])),eo:avg2(eo),en:avg2(en),neo:eo.length,nen:en.length,
      ea:oe.length>=MIN?mean(oe.map(i=>P.m[i]-E[i])):null,nea:oe.length,
-     lo:avg2(og.map(i=>Ln[i]).filter(x=>x!=null)),ln:avg2(ng.map(i=>Ln[i]).filter(x=>x!=null))};
+     lo:avg2(og.map(i=>Ln[i]).filter(x=>x!=null)),ln:avg2(ng.map(i=>Ln[i]).filter(x=>x!=null)),
+     lso:og.map(i=>Ln[i]).filter(x=>x!=null),lsn:ng.map(i=>Ln[i]).filter(x=>x!=null)};
    m.ld=(m.lo!=null&&m.ln!=null)?m.lo-m.ln:null;
    m.ad=m.ao-m.an; m.ed=(m.eo!=null&&m.en!=null)?m.eo-m.en:null; groups[k]=m;
   }
@@ -112,7 +114,7 @@ function fillTeams(sel,season,blank){const cur=$(sel).value, ts=[...new Set(R.fi
  $(sel).innerHTML=`<option value="">${blank}</option>`+ts.map(t=>`<option${t===cur?" selected":""}>${t}</option>`).join("");}
 const pair=(a,b,d)=>`${f(a)} → ${f(b)} <span class="${cl(d)} chg">${sg(d)}</span>`;
 const HASL=typeof LINES_ON!=="undefined"&&LINES_ON, lpair=(a,b,d)=>`${f(a)} → ${f(b)} ${d==null?"":Math.abs(d)<1?'<span class="mut">no change</span>':`<span class="${d>0?"up":"dn"} chg">${d>0?"+":""}${d.toFixed(1)}</span>`}`;
-const gamesTable=(r,ex)=>`<table class="games"><tr><th class="l">Date</th><th>Played</th>${ex?"<th>Expected</th>":""}${ex&&HASL?"<th>Our points line</th>":""}<th class="l">Key teammates out</th></tr>
+const gamesTable=(r,ex)=>`<table class="games"><tr><th class="l">Date</th><th>Played</th>${ex?"<th>Expected</th>":""}${ex&&HASL?"<th>Our points line<small>that game</small></th>":""}<th class="l">Key teammates out</th></tr>
  ${r.games.map(g=>`<tr><td class="l">${g.d}</td><td>${g.m}</td>${ex?`<td>${g.e??"–"}</td>`:""}${ex&&HASL?`<td>${g.l??"–"}</td>`:""}<td class="l">${g.out.length?esc(g.out.join(", ")):'<span class="mut">none</span>'}</td></tr>`).join("")}</table>`;
 // ---- tab 1: by team
 let key="best",dir=-1;
@@ -124,8 +126,8 @@ function draw(){
  $("tb").innerHTML=rs.length?rs.map((r,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(r.player)}</b> <span class="mut">${r.team} · ${POS[r.pos]||r.pos}</span></td>
   <td>${r.mpg}</td><td class="l">${esc(r.mates[0].name)} out</td><td class="big ${cl(r.best)}">${sg(r.best)}</td></tr>
   <tr class="d" id="d${i}" hidden><td colspan="4">
-  <table class="sub"><tr><th class="l">Player out</th><th>Games he missed</th><th>${esc(r.player)}'s minutes<small>he plays → he's out</small></th>${ex?"<th>His expected minutes<small>he plays → he's out</small></th>":""}${ex&&HASL?"<th>Our points line<small>he plays → he's out</small></th>":""}</tr>
-  ${r.mates.map(m=>`<tr><td class="l">${esc(m.name)} out <span class="mut">${m.role}</span></td><td>${m.on}</td><td>${pair(m.an,m.ao,m.ad)}</td>${ex?`<td>${m.ed!=null?pair(m.en,m.eo,m.ed):'<span class="mut">not enough saved</span>'}</td>`:""}${ex&&HASL?`<td>${m.ld!=null?lpair(m.ln,m.lo,m.ld):'<span class="mut">not enough bets</span>'}</td>`:""}</tr>`).join("")}</table>
+  <table class="sub"><tr><th class="l">Player out</th><th>Games he missed</th><th>${esc(r.player)}'s minutes<small>he plays → he's out</small></th>${ex?"<th>His expected minutes<small>he plays → he's out</small></th>":""}${ex&&HASL?"<th>Our points line<small>average · he plays → he's out</small></th>":""}</tr>
+  ${r.mates.map(m=>`<tr><td class="l">${esc(m.name)} out <span class="mut">${m.role}</span></td><td>${m.on}</td><td>${pair(m.an,m.ao,m.ad)}</td>${ex?`<td>${m.ed!=null?pair(m.en,m.eo,m.ed):'<span class="mut">not enough saved</span>'}</td>`:""}${ex&&HASL?`<td>${m.ld!=null?lpair(m.ln,m.lo,m.ld)+`<small class="lines">average of: ${m.lsn.join(", ")} → ${m.lso.join(", ")}</small>`:'<span class="mut">not enough bets</span>'}</td>`:""}</tr>`).join("")}</table>
   <details><summary>Every game</summary>${gamesTable(r,ex)}</details></td></tr>`).join("")
   :`<tr><td colspan="4" class="l empty">No players with at least ${MIN} games each way.</td></tr>`;
  document.querySelectorAll("#tb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("d"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
@@ -176,7 +178,7 @@ function cdraw(){
  $("ctb").innerHTML=rs.map((x,i)=>`<tr class="p" data-i="${i}"><td class="l"><b>${esc(x.player)}</b> <span class="mut">${x.team}</span></td><td>${f(x.last)} <span class="mut">(${x.lgp} g)</span></td>
   <td>${f(x.now)} <span class="mut">(${x.gp} g)</span></td><td class="big ${cl(x.d)}">${sg(x.d)}</td>
 </tr>
-  <tr class="d" id="c${i}" hidden><td colspan="4"><div class="why"><b>Why:</b> ${esc(x.kind)} · ${esc(x.why)}</div><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th>${HASL?"<th>Our points line</th>":""}<th class="l"></th></tr>
+  <tr class="d" id="c${i}" hidden><td colspan="4"><div class="why"><b>Why:</b> ${esc(x.kind)} · ${esc(x.why)}</div><table class="games"><tr><th class="l">Date</th><th class="l">Opponent</th><th>Minutes</th><th>Expected</th>${HASL?"<th>Our points line<small>that game</small></th>":""}<th class="l"></th></tr>
   ${x.log.map(g=>`<tr${g[4]?' class="wk"':''}><td class="l">${g[0]}</td><td class="l">${g[1]}</td><td>${g[2]}</td><td>${g[5]??"–"}</td>${HASL?`<td>${g[7]??"–"}</td>`:""}
    <td class="l mut">${g[6]?"left hurt (not counted)":g[3]?"started":g[2]===0?"DNP (coach)":"bench"}${g[4]?" · last week":""}</td></tr>`).join("")}</table></td></tr>`).join("") || `<tr><td colspan="4" class="l empty">None.</td></tr>`;
  document.querySelectorAll("#ctb tr.p").forEach(tr=>tr.onclick=()=>{const d=$("c"+tr.dataset.i); d.hidden=!d.hidden; tr.classList.toggle("open",!d.hidden);});
