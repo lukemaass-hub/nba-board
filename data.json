@@ -8968,19 +8968,19 @@
    "time": "20:00",
    "vs": "NOP",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Cade Cunningham"
-    },
-    {
-     "pos": "SG",
      "name": "Daniss Jenkins"
     },
     {
-     "pos": "SF",
+     "pos": "SG",
      "name": "Kevin Huerter"
+    },
+    {
+     "pos": "SF",
+     "name": "Javonte Green"
     },
     {
      "pos": "PF",
@@ -18348,9 +18348,15 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-19T00:45:37+00:00",
+  "read_at": "2026-11-19T00:48:41+00:00",
   "date": "2026-11-18",
   "games": {
+   "DET@NOP": {
+    "fav": "DET",
+    "spread": 3.5,
+    "details": "DET -3.5",
+    "provider": "Draft Kings"
+   },
    "ATL@OKC": {
     "fav": "OKC",
     "spread": 6.5,
@@ -25294,9 +25300,9 @@
    "player": "Isaiah Joe",
    "src": "ESPN",
    "kind": "O",
-   "injury": "Right Hip Bruise",
+   "injury": "out",
    "upd": "2026-11-18",
-   "until": "2026-11-18",
+   "until": "",
    "note": "Joe (hip) is listed as questionable for Wednesday's game against the Pelicans.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Isaiah%20Joe"
@@ -28137,19 +28143,6 @@
   },
   {
    "team": "DET",
-   "player": "Cade Cunningham",
-   "src": "RotoWire",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-18",
-   "until": "",
-   "note": "RotoWire tag: Out",
-   "through": "2026-11-18",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Cunningham"
-  },
-  {
-   "team": "DET",
    "player": "Jalen Duren",
    "src": "RotoWire",
    "kind": "O",
@@ -29507,7 +29500,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-19T00:45:38+00:00",
+ "generated_at": "2026-11-19T00:48:42+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -29523,13 +29516,13 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-19T00:45:34+00:00",
+   "at": "2026-11-19T00:48:41+00:00",
    "teams": 24,
-   "injuries": 77
+   "injuries": 76
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-19T00:45:34+00:00",
+   "at": "2026-11-19T00:48:41+00:00",
    "teams": 22,
    "verified": 16,
    "used": [
@@ -29538,7 +29531,7 @@
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-19T00:45:34+00:00",
+   "at": "2026-11-19T00:48:41+00:00",
    "current_players": 471,
    "last_players": 582
   },
@@ -29548,17 +29541,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-19T00:45:35+00:00",
+   "at": "2026-11-19T00:48:41+00:00",
    "count": 100
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-19T00:45:35+00:00",
+   "at": "2026-11-19T00:48:41+00:00",
    "count": 105
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-19T00:45:35+00:00",
+   "at": "2026-11-19T00:48:41+00:00",
    "count": 99
   },
   "x": {
@@ -29567,39 +29560,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-19T00:45:36+00:00",
+   "at": "2026-11-19T00:48:41+00:00",
    "players": 238,
    "read_at": "2026-11-19T00:45:35+00:00",
    "saved_for_history": 124
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-19T00:45:37+00:00",
+   "at": "2026-11-19T00:48:41+00:00",
    "players": 123,
    "read_at": "2026-11-19T00:45:36+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-19T00:45:37+00:00",
+   "at": "2026-11-19T00:48:41+00:00",
    "players": 10,
    "read_at": "2026-11-19T00:45:37+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-19T00:45:37+00:00",
-   "games": 5,
-   "read_at": "2026-11-19T00:45:37+00:00"
+   "at": "2026-11-19T00:48:42+00:00",
+   "games": 6,
+   "read_at": "2026-11-19T00:48:41+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-19T00:45:38+00:00",
+   "at": "2026-11-19T00:48:42+00:00",
    "injuries": 94,
    "notes": 175,
    "read_at": "2026-11-19T00:45:37+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-19T00:45:38+00:00",
+   "at": "2026-11-19T00:48:42+00:00",
    "count": 59
   }
  }
