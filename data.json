@@ -9200,7 +9200,7 @@
    "time": "22:00",
    "vs": "LAL",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9220,7 +9220,7 @@
     },
     {
      "pos": "C",
-     "name": "Jaxson Hayes"
+     "name": "Mo Bamba"
     }
    ]
   },
@@ -9229,7 +9229,7 @@
    "time": "22:00",
    "vs": "UTA",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9245,13 +9245,14 @@
     },
     {
      "pos": "PF",
-     "name": "Jake LaRavia"
+     "name": "Ziaire Williams"
     },
     {
      "pos": "C",
      "name": "Walker Kessler"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "PHX": {
    "date": "2026-11-18",
@@ -18143,7 +18144,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-19T02:36:10+00:00",
+  "read_at": "2026-11-19T02:39:15+00:00",
   "date": "2026-11-18",
   "games": {
    "BOS@DEN": {
@@ -29757,7 +29758,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-19T02:36:11+00:00",
+ "generated_at": "2026-11-19T02:39:15+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -29773,20 +29774,22 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-19T02:36:08+00:00",
+   "at": "2026-11-19T02:39:14+00:00",
    "teams": 24,
    "injuries": 78
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-19T02:36:08+00:00",
+   "at": "2026-11-19T02:39:14+00:00",
    "teams": 22,
-   "verified": 20,
-   "used": []
+   "verified": 22,
+   "used": [
+    "LAL"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-19T02:36:08+00:00",
+   "at": "2026-11-19T02:39:14+00:00",
    "current_players": 471,
    "last_players": 582
   },
@@ -29796,17 +29799,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-19T02:36:08+00:00",
+   "at": "2026-11-19T02:39:15+00:00",
    "count": 99
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-19T02:36:09+00:00",
+   "at": "2026-11-19T02:39:15+00:00",
    "count": 103
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-19T02:36:10+00:00",
+   "at": "2026-11-19T02:39:15+00:00",
    "count": 99
   },
   "x": {
@@ -29815,39 +29818,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-19T02:36:10+00:00",
+   "at": "2026-11-19T02:39:15+00:00",
    "players": 216,
    "read_at": "2026-11-19T02:30:00+00:00",
    "saved_for_history": 42
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-19T02:36:10+00:00",
+   "at": "2026-11-19T02:39:15+00:00",
    "players": 124,
    "read_at": "2026-11-19T02:30:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-19T02:36:10+00:00",
+   "at": "2026-11-19T02:39:15+00:00",
    "players": 10,
    "read_at": "2026-11-19T02:30:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-19T02:36:11+00:00",
+   "at": "2026-11-19T02:39:15+00:00",
    "games": 3,
-   "read_at": "2026-11-19T02:36:10+00:00"
+   "read_at": "2026-11-19T02:39:15+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-19T02:36:11+00:00",
+   "at": "2026-11-19T02:39:15+00:00",
    "injuries": 114,
    "notes": 164,
    "read_at": "2026-11-19T02:30:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-19T02:36:11+00:00",
+   "at": "2026-11-19T02:39:15+00:00",
    "count": 60
   }
  }
