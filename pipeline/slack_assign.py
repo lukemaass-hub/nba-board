@@ -132,7 +132,7 @@ ALSO_INCLUDE = {"2026-10-26": [OWNER]}
 ALWAYS_INCLUDE = [OWNER]
 
 
-PAUSED = False   # True = send nothing (user, Nov 17 2026: "hold off on sending things until everything is fixed")
+PAUSED = True   # user, Nov 19 2026: "stop sending until further notice". False only when the user says to resume.
 # Owner only (user, Nov 17 2026: "have the info send to me so I can verify before it starts sending to other people"):
 # every report goes to the owner's DM with the bot, marked [TEST] with who it would have gone to. False = traders again.
 OWNER_ONLY = False   # user, Nov 18 2026: "we can return to sending alerts out to people"
