@@ -8910,7 +8910,7 @@
    "time": "19:30",
    "vs": "TOR",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8932,7 +8932,8 @@
      "pos": "C",
      "name": "Alex Sarr"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "TOR": {
    "date": "2026-11-18",
@@ -14589,7 +14590,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-18T23:46:14+00:00",
+  "read_at": "2026-11-19T00:03:05+00:00",
   "date": "2026-11-18",
   "players": [
    {
@@ -16029,9 +16030,14 @@
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-18T23:46:15+00:00",
+  "read_at": "2026-11-19T00:03:06+00:00",
   "date": "2026-11-18",
   "players": [
+   {
+    "player": "Joel Embiid",
+    "team": "PHI",
+    "min": 38.0
+   },
    {
     "player": "LeBron James",
     "team": "PHI",
@@ -16043,34 +16049,34 @@
     "min": 35.0
    },
    {
-    "player": "Joel Embiid",
+    "player": "K. Caldwell-Pope",
     "team": "PHI",
     "min": 34.0
    },
    {
-    "player": "K. Caldwell-Pope",
-    "team": "PHI",
-    "min": 30.0
-   },
-   {
     "player": "Anfernee Simons",
     "team": "PHI",
-    "min": 27.0
+    "min": 31.0
    },
    {
     "player": "Jabari Walker",
     "team": "PHI",
-    "min": 26.0
+    "min": 30.0
    },
    {
     "player": "Labaron Philon",
     "team": "PHI",
-    "min": 9.0
+    "min": 13.0
+   },
+   {
+    "player": "Justin Edwards",
+    "team": "PHI",
+    "min": 12.0
    },
    {
     "player": "Tacko Fall",
     "team": "PHI",
-    "min": 7.0
+    "min": 11.0
    },
    {
     "player": "Tyler Herro",
@@ -16563,14 +16569,14 @@
     "min": 28.0
    },
    {
-    "player": "LJ Cryer",
-    "team": "GSW",
-    "min": 15.0
-   },
-   {
     "player": "Charles Bassey",
     "team": "GSW",
-    "min": 13.0
+    "min": 22.0
+   },
+   {
+    "player": "LJ Cryer",
+    "team": "GSW",
+    "min": 17.0
    },
    {
     "player": "De'Anthony Melton",
@@ -16580,12 +16586,12 @@
    {
     "player": "Gui Santos",
     "team": "GSW",
-    "min": 23.0
+    "min": 25.0
    },
    {
     "player": "Georges Niang",
     "team": "GSW",
-    "min": 20.0
+    "min": 24.0
    },
    {
     "player": "Will Richard",
@@ -16650,7 +16656,7 @@
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-18T23:46:16+00:00",
+  "read_at": "2026-11-19T00:03:07+00:00",
   "date": "2026-11-18",
   "players": [
    {
@@ -16707,7 +16713,7 @@
  },
  "expected_mix": {
   "date": "2026-11-18",
-  "read_at": "2026-11-18T23:46:16+00:00",
+  "read_at": "2026-11-19T00:03:07+00:00",
   "players": [
    {
     "player": "Shai Gilgeous-Alexander",
@@ -16784,31 +16790,37 @@
    {
     "player": "K. Caldwell-Pope",
     "team": "PHI",
-    "min": 30.0,
+    "min": 34.0,
     "src": "RotoWire"
    },
    {
     "player": "Anfernee Simons",
     "team": "PHI",
-    "min": 27.0,
+    "min": 31.0,
     "src": "RotoWire"
    },
    {
     "player": "Jabari Walker",
     "team": "PHI",
-    "min": 26.0,
+    "min": 30.0,
     "src": "RotoWire"
    },
    {
     "player": "Labaron Philon",
     "team": "PHI",
-    "min": 9.0,
+    "min": 13.0,
+    "src": "RotoWire"
+   },
+   {
+    "player": "Justin Edwards",
+    "team": "PHI",
+    "min": 12.0,
     "src": "RotoWire"
    },
    {
     "player": "Tacko Fall",
     "team": "PHI",
-    "min": 7.0,
+    "min": 11.0,
     "src": "RotoWire"
    },
    {
@@ -17382,15 +17394,15 @@
     "src": "RotoWire"
    },
    {
-    "player": "LJ Cryer",
+    "player": "Charles Bassey",
     "team": "GSW",
-    "min": 15.0,
+    "min": 22.0,
     "src": "RotoWire"
    },
    {
-    "player": "Charles Bassey",
+    "player": "LJ Cryer",
     "team": "GSW",
-    "min": 13.0,
+    "min": 17.0,
     "src": "RotoWire"
    },
    {
@@ -17402,13 +17414,13 @@
    {
     "player": "Gui Santos",
     "team": "GSW",
-    "min": 23.0,
+    "min": 25.0,
     "src": "RotoWire"
    },
    {
     "player": "Georges Niang",
     "team": "GSW",
-    "min": 20.0,
+    "min": 24.0,
     "src": "RotoWire"
    },
    {
@@ -18354,7 +18366,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-19T00:00:01+00:00",
+  "read_at": "2026-11-19T00:03:07+00:00",
   "date": "2026-11-18",
   "games": {
    "MEM@CLE": {
@@ -18482,7 +18494,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-18T23:46:17+00:00",
+  "read_at": "2026-11-19T00:03:07+00:00",
   "injuries": [
    {
     "team": "ATL",
@@ -19501,11 +19513,11 @@
     "until": "",
     "note": "",
     "through": "2026-11-18",
-    "st": "q",
+    "st": "avail",
     "url": "https://presserwire.com/nba/games/2026-11-18-atlanta-hawks-at-oklahoma-city-thunder.html",
     "from": "2026-11-18",
     "override": true,
-    "at": "2026-11-18T00:30:02+00:00"
+    "at": "2026-11-19T00:03:07+00:00"
    },
    {
     "team": "ORL",
@@ -22389,17 +22401,6 @@
    "url": "https://www.rotowire.com/basketball/player/moussa-diabate-5708",
    "at": "2026-11-16T00:06:00+00:00",
    "team": "CHA"
-  },
-  {
-   "id": "nba539330",
-   "player": "Luka Doncic",
-   "headline": "Goes for 43 in win",
-   "text": "Doncic recorded 43 points (13-28 FG, 5-13 3Pt, 12-14 FT), nine assists, three rebounds and a steal in 35 minutes during Sunday's 131-123 win over the Suns.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/luka-doncic-4396",
-   "at": "2026-11-16T00:03:00+00:00",
-   "team": "LAL"
   }
  ],
  "matchup_alerts": [
@@ -25594,7 +25595,7 @@
    "player": "Max Christie",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Left Ankle Sprain",
+   "injury": "day-to-day",
    "upd": "2026-11-17",
    "until": "",
    "note": "Christie (ankle) is questionable for Wednesday's game against the Warriors.",
@@ -27590,11 +27591,11 @@
    "until": "",
    "note": "",
    "through": "2026-11-18",
-   "st": "q",
+   "st": "avail",
    "url": "https://presserwire.com/nba/games/2026-11-18-atlanta-hawks-at-oklahoma-city-thunder.html",
    "from": "2026-11-18",
    "override": true,
-   "at": "2026-11-18T00:30:02+00:00"
+   "at": "2026-11-19T00:03:07+00:00"
   },
   {
    "team": "ORL",
@@ -30172,7 +30173,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-19T00:00:01+00:00",
+ "generated_at": "2026-11-19T00:03:08+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -30188,20 +30189,22 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-19T00:00:00+00:00",
+   "at": "2026-11-19T00:03:04+00:00",
    "teams": 24,
    "injuries": 79
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-19T00:00:00+00:00",
+   "at": "2026-11-19T00:03:04+00:00",
    "teams": 22,
-   "verified": 8,
-   "used": []
+   "verified": 9,
+   "used": [
+    "WAS"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-19T00:00:00+00:00",
+   "at": "2026-11-19T00:03:04+00:00",
    "current_players": 471,
    "last_players": 582
   },
@@ -30211,17 +30214,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-19T00:00:00+00:00",
+   "at": "2026-11-19T00:03:05+00:00",
    "count": 103
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-19T00:00:01+00:00",
+   "at": "2026-11-19T00:03:05+00:00",
    "count": 105
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-19T00:00:01+00:00",
+   "at": "2026-11-19T00:03:05+00:00",
    "count": 102
   },
   "x": {
@@ -30230,40 +30233,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-19T00:00:01+00:00",
+   "at": "2026-11-19T00:03:06+00:00",
    "players": 239,
-   "read_at": "2026-11-18T23:46:14+00:00",
+   "read_at": "2026-11-19T00:03:05+00:00",
    "saved_for_history": 170
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-19T00:00:01+00:00",
-   "players": 123,
-   "read_at": "2026-11-18T23:46:15+00:00"
+   "at": "2026-11-19T00:03:07+00:00",
+   "players": 124,
+   "read_at": "2026-11-19T00:03:06+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-19T00:00:01+00:00",
+   "at": "2026-11-19T00:03:07+00:00",
    "players": 10,
-   "read_at": "2026-11-18T23:46:16+00:00"
+   "read_at": "2026-11-19T00:03:07+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-19T00:00:01+00:00",
+   "at": "2026-11-19T00:03:07+00:00",
    "games": 12,
-   "read_at": "2026-11-19T00:00:01+00:00"
+   "read_at": "2026-11-19T00:03:07+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-19T00:00:01+00:00",
+   "at": "2026-11-19T00:03:08+00:00",
    "injuries": 114,
    "notes": 163,
-   "read_at": "2026-11-18T23:46:17+00:00"
+   "read_at": "2026-11-19T00:03:07+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-19T00:00:01+00:00",
-   "count": 62
+   "at": "2026-11-19T00:03:08+00:00",
+   "count": 61
   }
  }
 }
