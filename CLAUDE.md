@@ -294,3 +294,4 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
 - Nov 18 2026 (user): "if a player is listed as out somewhere then they are removed" -> email_report.OUT_ANYWHERE: any
   source's OUT for tonight makes him out (beats RotoWire's tag and newer "questionable" news), unless he is in a CONFIRMED
   starting five. Backtest of all 160 sent reports: 0 players marked out who played (same as before).
+- Nov 19 2026 (user): "stop sending until further notice" -> slack_assign.PAUSED = True (no group DMs, no alerts).
