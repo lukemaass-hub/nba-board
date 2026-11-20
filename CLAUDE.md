@@ -295,3 +295,5 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   source's OUT for tonight makes him out (beats RotoWire's tag and newer "questionable" news), unless he is in a CONFIRMED
   starting five. Backtest of all 160 sent reports: 0 players marked out who played (same as before).
 - Nov 19 2026 (user): "stop sending until further notice" -> slack_assign.PAUSED = True (no group DMs, no alerts).
+- Nov 20 2026 (user): "send all of these to my dms going forward until I am sure of the fix" -> PAUSED = False,
+  OWNER_ONLY = True: every report to the owner's DM with the bot, marked [TEST] with who it would have gone to.
