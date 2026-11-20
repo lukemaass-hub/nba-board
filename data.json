@@ -8425,9 +8425,9 @@
   },
   "CHA": {
    "PG": "Coby White/Dennis Schroder/Christian Anderson,Kylan Boswell",
-   "SG": "Sion James/Grayson Allen/Liam McNeeley,Kon Knueppel",
-   "SF": "Brandon Miller/Royce O'Neale/Michael Ajayi",
-   "PF": "Naz Reid/Grant Williams/Tidjane Salaun",
+   "SG": "Brandon Miller/Grayson Allen/Liam McNeeley,Kon Knueppel",
+   "SF": "Grant Williams/Sion James/Michael Ajayi",
+   "PF": "Naz Reid/Royce O'Neale/Tidjane Salaun",
    "C": "Moussa Diabate/Ryan Kalkbrenner/Hannes Steinbach,PJ Hall"
   },
   "CHI": {
@@ -8496,9 +8496,9 @@
   "LAL": {
    "PG": "Luka Doncic/Collin Sexton/Bronny James",
    "SG": "Austin Reaves/Quentin Grimes/Cameron Carr",
-   "SF": "Matisse Thybulle/Ziaire Williams/Adou Thiero,Jaden Hardy,Chris Manon",
-   "PF": "Jake LaRavia/Sandro Mamukelashvili,Jarred Vanderbilt/Arthur Kaluma",
-   "C": "Walker Kessler//Kevon Looney,Carson Cooper"
+   "SF": "Matisse Thybulle/Jake LaRavia/Adou Thiero,Jaden Hardy,Chris Manon",
+   "PF": "Ziaire Williams//Arthur Kaluma",
+   "C": "Walker Kessler/Sandro Mamukelashvili,Jarred Vanderbilt/Kevon Looney,Carson Cooper"
   },
   "MEM": {
    "PG": "Ty Jerome/Scotty Pippen Jr./Javon Small",
@@ -8628,15 +8628,15 @@
     },
     {
      "pos": "SG",
-     "name": "Sidy Cissoko"
+     "name": "Scoot Henderson"
     },
     {
      "pos": "SF",
-     "name": "Toumani Camara"
+     "name": "Sidy Cissoko"
     },
     {
      "pos": "PF",
-     "name": "Deni Avdija"
+     "name": "Toumani Camara"
     },
     {
      "pos": "C",
@@ -14126,11 +14126,11 @@
     "MIN"
    ]
   },
-  "fetched_at": "2026-11-19T19:19:09+00:00"
+  "fetched_at": "2026-11-20T00:30:53+00:00"
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-19T19:19:09+00:00",
+  "read_at": "2026-11-20T00:30:53+00:00",
   "date": "2026-11-19",
   "players": [
    {
@@ -14146,10 +14146,10 @@
     "min": 34.0
    },
    {
-    "player": "Jalen Brunson",
-    "team": "NYK",
-    "game": "NY@MIN",
-    "min": 35.0
+    "player": "Cameron Boozer",
+    "team": "MEM",
+    "game": "GS@MEM",
+    "min": 34.0
    },
    {
     "player": "Yaxel Lendeborg",
@@ -14158,10 +14158,16 @@
     "min": 35.0
    },
    {
-    "player": "Cameron Boozer",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 34.0
+    "player": "Damian Lillard",
+    "team": "POR",
+    "game": "POR@MIL",
+    "min": 32.0
+   },
+   {
+    "player": "Jalen Brunson",
+    "team": "NYK",
+    "game": "NY@MIN",
+    "min": 35.0
    },
    {
     "player": "Karl-Anthony Towns",
@@ -14170,16 +14176,10 @@
     "min": 33.0
    },
    {
-    "player": "Damian Lillard",
-    "team": "POR",
+    "player": "Tyler Herro",
+    "team": "MIL",
     "game": "POR@MIL",
     "min": 32.0
-   },
-   {
-    "player": "Ty Jerome",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 30.0
    },
    {
     "player": "LaMelo Ball",
@@ -14194,10 +14194,10 @@
     "min": 30.0
    },
    {
-    "player": "Tyler Herro",
-    "team": "MIL",
-    "game": "POR@MIL",
-    "min": 32.0
+    "player": "Cedric Coward",
+    "team": "MEM",
+    "game": "GS@MEM",
+    "min": 28.0
    },
    {
     "player": "De`Aaron Fox",
@@ -14212,28 +14212,10 @@
     "min": 33.0
    },
    {
-    "player": "Ayo Dosunmu",
-    "team": "MIN",
-    "game": "NY@MIN",
-    "min": 34.0
-   },
-   {
     "player": "Jaime Jaquez Jr",
     "team": "MIL",
     "game": "POR@MIL",
     "min": 31.0
-   },
-   {
-    "player": "Donovan Clingan",
-    "team": "POR",
-    "game": "POR@MIL",
-    "min": 24.0
-   },
-   {
-    "player": "Cedric Coward",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 28.0
    },
    {
     "player": "Brandin Podziemski",
@@ -14242,10 +14224,34 @@
     "min": 30.0
    },
    {
+    "player": "Ayo Dosunmu",
+    "team": "MIN",
+    "game": "NY@MIN",
+    "min": 34.0
+   },
+   {
+    "player": "Donovan Clingan",
+    "team": "POR",
+    "game": "POR@MIL",
+    "min": 24.0
+   },
+   {
     "player": "Jrue Holiday",
     "team": "POR",
     "game": "POR@MIL",
     "min": 29.0
+   },
+   {
+    "player": "Ryan Rollins",
+    "team": "MIL",
+    "game": "POR@MIL",
+    "min": 27.0
+   },
+   {
+    "player": "Cam Spencer",
+    "team": "MEM",
+    "game": "GS@MEM",
+    "min": 21.0
    },
    {
     "player": "OG Anunoby",
@@ -14266,6 +14272,12 @@
     "min": 32.0
    },
    {
+    "player": "Jerami Grant",
+    "team": "MEM",
+    "game": "GS@MEM",
+    "min": 24.0
+   },
+   {
     "player": "Julian Champagnie",
     "team": "SAS",
     "game": "LAC@SA",
@@ -14284,28 +14296,28 @@
     "min": 28.0
    },
    {
-    "player": "Kyle Kuzma",
-    "team": "MIL",
-    "game": "POR@MIL",
-    "min": 27.0
-   },
-   {
     "player": "Jonathan Kuminga",
     "team": "MIN",
     "game": "NY@MIN",
     "min": 27.0
    },
    {
-    "player": "Cam Spencer",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 21.0
-   },
-   {
-    "player": "Myles Turner",
+    "player": "Brayden Burries",
     "team": "MIL",
     "game": "POR@MIL",
-    "min": 28.0
+    "min": 22.0
+   },
+   {
+    "player": "De`Anthony Melton",
+    "team": "GSW",
+    "game": "GS@MEM",
+    "min": 22.0
+   },
+   {
+    "player": "Jaylen Wells",
+    "team": "MEM",
+    "game": "GS@MEM",
+    "min": 26.0
    },
    {
     "player": "Terrence Shannon Jr.",
@@ -14320,10 +14332,10 @@
     "min": 28.0
    },
    {
-    "player": "Ryan Rollins",
+    "player": "Kel`El Ware",
     "team": "MIL",
     "game": "POR@MIL",
-    "min": 23.0
+    "min": 20.0
    },
    {
     "player": "Keldon Johnson",
@@ -14332,10 +14344,10 @@
     "min": 23.0
    },
    {
-    "player": "Brayden Burries",
-    "team": "MIL",
+    "player": "Scoot Henderson",
+    "team": "POR",
     "game": "POR@MIL",
-    "min": 22.0
+    "min": 24.0
    },
    {
     "player": "Brook Lopez",
@@ -14344,40 +14356,10 @@
     "min": 26.0
    },
    {
-    "player": "Scoot Henderson",
-    "team": "POR",
-    "game": "POR@MIL",
-    "min": 24.0
-   },
-   {
     "player": "Rui Hachimura",
     "team": "LAC",
     "game": "LAC@SA",
     "min": 30.0
-   },
-   {
-    "player": "De`Anthony Melton",
-    "team": "GSW",
-    "game": "GS@MEM",
-    "min": 22.0
-   },
-   {
-    "player": "Zach Edey",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 22.0
-   },
-   {
-    "player": "Jerami Grant",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 24.0
-   },
-   {
-    "player": "Draymond Green",
-    "team": "GSW",
-    "game": "GS@MEM",
-    "min": 21.0
    },
    {
     "player": "Kris Dunn",
@@ -14386,16 +14368,16 @@
     "min": 26.0
    },
    {
-    "player": "Jaylen Wells",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 26.0
-   },
-   {
     "player": "Mikal Bridges",
     "team": "NYK",
     "game": "NY@MIN",
     "min": 26.0
+   },
+   {
+    "player": "Will Richard",
+    "team": "GSW",
+    "game": "GS@MEM",
+    "min": 24.0
    },
    {
     "player": "Isaiah Jackson",
@@ -14410,22 +14392,34 @@
     "min": 20.0
    },
    {
-    "player": "Kel`El Ware",
+    "player": "Taylor Hendricks",
+    "team": "MEM",
+    "game": "GS@MEM",
+    "min": 16.0
+   },
+   {
+    "player": "Kasparas Jakucionis",
     "team": "MIL",
     "game": "POR@MIL",
+    "min": 19.0
+   },
+   {
+    "player": "Gui Santos",
+    "team": "GSW",
+    "game": "GS@MEM",
     "min": 18.0
+   },
+   {
+    "player": "Georges Niang",
+    "team": "GSW",
+    "game": "GS@MEM",
+    "min": 20.0
    },
    {
     "player": "Derrick Jones Jr.",
     "team": "LAC",
     "game": "LAC@SA",
     "min": 26.0
-   },
-   {
-    "player": "Will Richard",
-    "team": "GSW",
-    "game": "GS@MEM",
-    "min": 24.0
    },
    {
     "player": "Landry Shamet",
@@ -14440,94 +14434,10 @@
     "min": 14.0
    },
    {
-    "player": "Georges Niang",
-    "team": "GSW",
-    "game": "GS@MEM",
-    "min": 20.0
-   },
-   {
-    "player": "Luke Kornet",
-    "team": "SAS",
-    "game": "LAC@SA",
-    "min": 17.0
-   },
-   {
     "player": "Harrison Barnes",
     "team": "SAS",
     "game": "LAC@SA",
     "min": 21.0
-   },
-   {
-    "player": "Gui Santos",
-    "team": "GSW",
-    "game": "GS@MEM",
-    "min": 18.0
-   },
-   {
-    "player": "Max Strus",
-    "team": "LAC",
-    "game": "LAC@SA",
-    "min": 20.0
-   },
-   {
-    "player": "Kasparas Jakucionis",
-    "team": "MIL",
-    "game": "POR@MIL",
-    "min": 16.0
-   },
-   {
-    "player": "Taylor Hendricks",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 16.0
-   },
-   {
-    "player": "Joan Beringer",
-    "team": "MIN",
-    "game": "NY@MIN",
-    "min": 18.0
-   },
-   {
-    "player": "Charles Bassey",
-    "team": "GSW",
-    "game": "GS@MEM",
-    "min": 13.0
-   },
-   {
-    "player": "Trey Lyles",
-    "team": "MIN",
-    "game": "NY@MIN",
-    "min": 19.0
-   },
-   {
-    "player": "Al Horford",
-    "team": "GSW",
-    "game": "GS@MEM",
-    "min": 17.0
-   },
-   {
-    "player": "Sidy Cissoko",
-    "team": "POR",
-    "game": "POR@MIL",
-    "min": 20.0
-   },
-   {
-    "player": "L.J. Cryer",
-    "team": "GSW",
-    "game": "GS@MEM",
-    "min": 14.0
-   },
-   {
-    "player": "Andre Drummond",
-    "team": "NYK",
-    "game": "NY@MIN",
-    "min": 12.0
-   },
-   {
-    "player": "Gary Payton",
-    "team": "GSW",
-    "game": "GS@MEM",
-    "min": 15.0
    },
    {
     "player": "Quinten Post",
@@ -14536,10 +14446,82 @@
     "min": 15.0
    },
    {
+    "player": "Al Horford",
+    "team": "GSW",
+    "game": "GS@MEM",
+    "min": 17.0
+   },
+   {
+    "player": "Luke Kornet",
+    "team": "SAS",
+    "game": "LAC@SA",
+    "min": 17.0
+   },
+   {
+    "player": "Charles Bassey",
+    "team": "GSW",
+    "game": "GS@MEM",
+    "min": 13.0
+   },
+   {
+    "player": "Max Strus",
+    "team": "LAC",
+    "game": "LAC@SA",
+    "min": 20.0
+   },
+   {
+    "player": "Sidy Cissoko",
+    "team": "POR",
+    "game": "POR@MIL",
+    "min": 20.0
+   },
+   {
     "player": "AJ Green",
     "team": "MIL",
     "game": "POR@MIL",
+    "min": 22.0
+   },
+   {
+    "player": "Gary Trent Jr.",
+    "team": "MIL",
+    "game": "POR@MIL",
+    "min": 21.0
+   },
+   {
+    "player": "Gary Payton",
+    "team": "GSW",
+    "game": "GS@MEM",
+    "min": 15.0
+   },
+   {
+    "player": "L.J. Cryer",
+    "team": "GSW",
+    "game": "GS@MEM",
+    "min": 15.0
+   },
+   {
+    "player": "Joan Beringer",
+    "team": "MIN",
+    "game": "NY@MIN",
+    "min": 18.0
+   },
+   {
+    "player": "Trey Lyles",
+    "team": "MIN",
+    "game": "NY@MIN",
     "min": 19.0
+   },
+   {
+    "player": "Andre Drummond",
+    "team": "NYK",
+    "game": "NY@MIN",
+    "min": 12.0
+   },
+   {
+    "player": "Graham Ike",
+    "team": "GSW",
+    "game": "GS@MEM",
+    "min": 10.0
    },
    {
     "player": "Kobe Sanders",
@@ -14560,14 +14542,8 @@
     "min": 16.0
    },
    {
-    "player": "Gary Trent Jr.",
-    "team": "MIL",
-    "game": "POR@MIL",
-    "min": 18.0
-   },
-   {
-    "player": "Graham Ike",
-    "team": "GSW",
+    "player": "Isaiah Stewart",
+    "team": "MEM",
     "game": "GS@MEM",
     "min": 10.0
    },
@@ -14578,10 +14554,10 @@
     "min": 15.0
    },
    {
-    "player": "Isaiah Stewart",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 10.0
+    "player": "Nate Ament",
+    "team": "MIL",
+    "game": "POR@MIL",
+    "min": 12.0
    },
    {
     "player": "Carter Bryant",
@@ -14602,12 +14578,6 @@
     "min": 9.0
    },
    {
-    "player": "Nate Ament",
-    "team": "MIL",
-    "game": "POR@MIL",
-    "min": 10.0
-   },
-   {
     "player": "Baba Miller",
     "team": "LAC",
     "game": "LAC@SA",
@@ -14618,88 +14588,77 @@
     "team": "NYK",
     "game": "NY@MIN",
     "min": 6.0
-   },
-   {
-    "player": "Tarris Reed Jr.",
-    "team": "SAS",
-    "game": "LAC@SA",
-    "min": 7.0
    }
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-19T19:19:10+00:00",
+  "read_at": "2026-11-20T00:30:54+00:00",
   "date": "2026-11-19",
   "players": [
    {
     "player": "Darius Garland",
     "team": "LAC",
-    "min": 32.0
-   },
-   {
-    "player": "Rui Hachimura",
-    "team": "LAC",
-    "min": 24.0
+    "min": 33.0
    },
    {
     "player": "Derrick Jones",
     "team": "LAC",
-    "min": 23.0
+    "min": 27.0
+   },
+   {
+    "player": "Rui Hachimura",
+    "team": "LAC",
+    "min": 27.0
    },
    {
     "player": "Brook Lopez",
     "team": "LAC",
-    "min": 20.0
+    "min": 25.0
    },
    {
     "player": "Kris Dunn",
+    "team": "LAC",
+    "min": 21.0
+   },
+   {
+    "player": "Max Strus",
+    "team": "LAC",
+    "min": 22.0
+   },
+   {
+    "player": "Kobe Sanders",
     "team": "LAC",
     "min": 20.0
    },
    {
     "player": "Keaton Wagler",
     "team": "LAC",
-    "min": 24.0
-   },
-   {
-    "player": "Max Strus",
-    "team": "LAC",
     "min": 20.0
-   },
-   {
-    "player": "Isaiah Jackson",
-    "team": "LAC",
-    "min": 16.0
-   },
-   {
-    "player": "Y. Niederhauser",
-    "team": "LAC",
-    "min": 12.0
-   },
-   {
-    "player": "Kobe Sanders",
-    "team": "LAC",
-    "min": 12.0
    },
    {
     "player": "Gradey Dick",
     "team": "LAC",
-    "min": 5.0
+    "min": 18.0
    },
    {
-    "player": "Jalen Pickett",
+    "player": "Isaiah Jackson",
     "team": "LAC",
-    "min": 1.0
+    "min": 17.0
    },
    {
-    "player": "Cam Christie",
+    "player": "Y. Niederhauser",
     "team": "LAC",
-    "min": 1.0
+    "min": 10.0
    },
    {
-    "player": "Baba Miller",
-    "team": "LAC",
-    "min": 1.0
+    "player": "Karl-Anthony Towns",
+    "team": "NYK",
+    "min": 35.0
+   },
+   {
+    "player": "OG Anunoby",
+    "team": "NYK",
+    "min": 35.0
    },
    {
     "player": "Jalen Brunson",
@@ -14707,14 +14666,9 @@
     "min": 35.0
    },
    {
-    "player": "Karl-Anthony Towns",
+    "player": "Josh Hart",
     "team": "NYK",
-    "min": 34.0
-   },
-   {
-    "player": "OG Anunoby",
-    "team": "NYK",
-    "min": 33.0
+    "min": 30.0
    },
    {
     "player": "Mikal Bridges",
@@ -14722,19 +14676,9 @@
     "min": 30.0
    },
    {
-    "player": "Josh Hart",
-    "team": "NYK",
-    "min": 26.0
-   },
-   {
     "player": "Landry Shamet",
     "team": "NYK",
     "min": 27.0
-   },
-   {
-    "player": "Miles McBride",
-    "team": "NYK",
-    "min": 20.0
    },
    {
     "player": "Tyler Kolek",
@@ -14744,6 +14688,11 @@
    {
     "player": "Andre Drummond",
     "team": "NYK",
+    "min": 12.0
+   },
+   {
+    "player": "Miles McBride",
+    "team": "NYK",
     "min": 10.0
    },
    {
@@ -14752,19 +14701,14 @@
     "min": 7.0
    },
    {
-    "player": "James Wiseman",
-    "team": "NYK",
-    "min": 2.0
-   },
-   {
     "player": "Jose Alvarado",
     "team": "NYK",
-    "min": 2.0
+    "min": 5.0
    },
    {
-    "player": "Deni Avdija",
+    "player": "Toumani Camara",
     "team": "POR",
-    "min": 34.0
+    "min": 33.0
    },
    {
     "player": "Damian Lillard",
@@ -14772,39 +14716,44 @@
     "min": 31.0
    },
    {
-    "player": "Toumani Camara",
+    "player": "Sidy Cissoko",
     "team": "POR",
-    "min": 31.0
+    "min": 30.0
    },
    {
-    "player": "Sidy Cissoko",
+    "player": "Scoot Henderson",
     "team": "POR",
     "min": 27.0
    },
    {
     "player": "Donovan Clingan",
     "team": "POR",
-    "min": 26.0
+    "min": 27.0
    },
    {
     "player": "Jrue Holiday",
     "team": "POR",
-    "min": 27.0
+    "min": 31.0
    },
    {
-    "player": "Scoot Henderson",
+    "player": "Jayson Kent",
     "team": "POR",
     "min": 23.0
    },
    {
     "player": "Branden Carlson",
     "team": "POR",
-    "min": 10.0
+    "min": 16.0
    },
    {
-    "player": "Jayson Kent",
+    "player": "Micah Potter",
     "team": "POR",
-    "min": 10.0
+    "min": 13.0
+   },
+   {
+    "player": "Yang Hansen",
+    "team": "POR",
+    "min": 9.0
    },
    {
     "player": "Brandin Podziemski",
@@ -14817,19 +14766,19 @@
     "min": 32.0
    },
    {
-    "player": "Al Horford",
-    "team": "GSW",
-    "min": 20.0
-   },
-   {
     "player": "LJ Cryer",
     "team": "GSW",
-    "min": 20.0
+    "min": 22.0
+   },
+   {
+    "player": "Al Horford",
+    "team": "GSW",
+    "min": 19.0
    },
    {
     "player": "Gui Santos",
     "team": "GSW",
-    "min": 18.0
+    "min": 19.0
    },
    {
     "player": "Will Richard",
@@ -14839,7 +14788,7 @@
    {
     "player": "De'Anthony Melton",
     "team": "GSW",
-    "min": 23.0
+    "min": 22.0
    },
    {
     "player": "Charles Bassey",
@@ -14849,7 +14798,7 @@
    {
     "player": "Georges Niang",
     "team": "GSW",
-    "min": 18.0
+    "min": 19.0
    },
    {
     "player": "Gary Payton",
@@ -14864,12 +14813,12 @@
    {
     "player": "Malevy Leons",
     "team": "GSW",
-    "min": 8.0
+    "min": 6.0
    }
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-19T19:19:10+00:00",
+  "read_at": "2026-11-20T00:30:55+00:00",
   "date": "2026-11-19",
   "players": [
    {
@@ -14918,15 +14867,15 @@
     "min": 33.0
    },
    {
-    "player": "Ty Jerome",
-    "team": "MEM",
-    "min": 26.3
+    "player": "Darius Garland",
+    "team": "LAC",
+    "min": 31.7
    }
   ]
  },
  "expected_mix": {
   "date": "2026-11-19",
-  "read_at": "2026-11-19T19:19:10+00:00",
+  "read_at": "2026-11-20T00:30:55+00:00",
   "players": [
    {
     "player": "Victor Wembanyama",
@@ -14983,37 +14932,43 @@
     "src": "FantasyPros"
    },
    {
-    "player": "Ty Jerome",
-    "team": "MEM",
-    "min": 26.3,
+    "player": "Darius Garland",
+    "team": "LAC",
+    "min": 31.7,
     "src": "FantasyPros"
    },
    {
-    "player": "Darius Garland",
+    "player": "Derrick Jones",
     "team": "LAC",
-    "min": 32.0,
+    "min": 27.0,
     "src": "RotoWire"
    },
    {
     "player": "Rui Hachimura",
     "team": "LAC",
-    "min": 24.0,
-    "src": "RotoWire"
-   },
-   {
-    "player": "Derrick Jones",
-    "team": "LAC",
-    "min": 23.0,
+    "min": 27.0,
     "src": "RotoWire"
    },
    {
     "player": "Brook Lopez",
     "team": "LAC",
-    "min": 20.0,
+    "min": 25.0,
     "src": "RotoWire"
    },
    {
     "player": "Kris Dunn",
+    "team": "LAC",
+    "min": 21.0,
+    "src": "RotoWire"
+   },
+   {
+    "player": "Max Strus",
+    "team": "LAC",
+    "min": 22.0,
+    "src": "RotoWire"
+   },
+   {
+    "player": "Kobe Sanders",
     "team": "LAC",
     "min": 20.0,
     "src": "RotoWire"
@@ -15021,61 +14976,37 @@
    {
     "player": "Keaton Wagler",
     "team": "LAC",
-    "min": 24.0,
-    "src": "RotoWire"
-   },
-   {
-    "player": "Max Strus",
-    "team": "LAC",
     "min": 20.0,
-    "src": "RotoWire"
-   },
-   {
-    "player": "Isaiah Jackson",
-    "team": "LAC",
-    "min": 16.0,
-    "src": "RotoWire"
-   },
-   {
-    "player": "Y. Niederhauser",
-    "team": "LAC",
-    "min": 12.0,
-    "src": "RotoWire"
-   },
-   {
-    "player": "Kobe Sanders",
-    "team": "LAC",
-    "min": 12.0,
     "src": "RotoWire"
    },
    {
     "player": "Gradey Dick",
     "team": "LAC",
-    "min": 5.0,
+    "min": 18.0,
     "src": "RotoWire"
    },
    {
-    "player": "Jalen Pickett",
+    "player": "Isaiah Jackson",
     "team": "LAC",
-    "min": 1.0,
+    "min": 17.0,
     "src": "RotoWire"
    },
    {
-    "player": "Cam Christie",
+    "player": "Y. Niederhauser",
     "team": "LAC",
-    "min": 1.0,
-    "src": "RotoWire"
-   },
-   {
-    "player": "Baba Miller",
-    "team": "LAC",
-    "min": 1.0,
+    "min": 10.0,
     "src": "RotoWire"
    },
    {
     "player": "OG Anunoby",
     "team": "NYK",
-    "min": 33.0,
+    "min": 35.0,
+    "src": "RotoWire"
+   },
+   {
+    "player": "Josh Hart",
+    "team": "NYK",
+    "min": 30.0,
     "src": "RotoWire"
    },
    {
@@ -15085,21 +15016,9 @@
     "src": "RotoWire"
    },
    {
-    "player": "Josh Hart",
-    "team": "NYK",
-    "min": 26.0,
-    "src": "RotoWire"
-   },
-   {
     "player": "Landry Shamet",
     "team": "NYK",
     "min": 27.0,
-    "src": "RotoWire"
-   },
-   {
-    "player": "Miles McBride",
-    "team": "NYK",
-    "min": 20.0,
     "src": "RotoWire"
    },
    {
@@ -15111,6 +15030,12 @@
    {
     "player": "Andre Drummond",
     "team": "NYK",
+    "min": 12.0,
+    "src": "RotoWire"
+   },
+   {
+    "player": "Miles McBride",
+    "team": "NYK",
     "min": 10.0,
     "src": "RotoWire"
    },
@@ -15121,25 +15046,25 @@
     "src": "RotoWire"
    },
    {
-    "player": "James Wiseman",
-    "team": "NYK",
-    "min": 2.0,
-    "src": "RotoWire"
-   },
-   {
     "player": "Jose Alvarado",
     "team": "NYK",
-    "min": 2.0,
+    "min": 5.0,
     "src": "RotoWire"
    },
    {
     "player": "Toumani Camara",
     "team": "POR",
-    "min": 31.0,
+    "min": 33.0,
     "src": "RotoWire"
    },
    {
     "player": "Sidy Cissoko",
+    "team": "POR",
+    "min": 30.0,
+    "src": "RotoWire"
+   },
+   {
+    "player": "Scoot Henderson",
     "team": "POR",
     "min": 27.0,
     "src": "RotoWire"
@@ -15147,17 +15072,17 @@
    {
     "player": "Donovan Clingan",
     "team": "POR",
-    "min": 26.0,
+    "min": 27.0,
     "src": "RotoWire"
    },
    {
     "player": "Jrue Holiday",
     "team": "POR",
-    "min": 27.0,
+    "min": 31.0,
     "src": "RotoWire"
    },
    {
-    "player": "Scoot Henderson",
+    "player": "Jayson Kent",
     "team": "POR",
     "min": 23.0,
     "src": "RotoWire"
@@ -15165,13 +15090,19 @@
    {
     "player": "Branden Carlson",
     "team": "POR",
-    "min": 10.0,
+    "min": 16.0,
     "src": "RotoWire"
    },
    {
-    "player": "Jayson Kent",
+    "player": "Micah Potter",
     "team": "POR",
-    "min": 10.0,
+    "min": 13.0,
+    "src": "RotoWire"
+   },
+   {
+    "player": "Yang Hansen",
+    "team": "POR",
+    "min": 9.0,
     "src": "RotoWire"
    },
    {
@@ -15187,21 +15118,21 @@
     "src": "RotoWire"
    },
    {
-    "player": "Al Horford",
+    "player": "LJ Cryer",
     "team": "GSW",
-    "min": 20.0,
+    "min": 22.0,
     "src": "RotoWire"
    },
    {
-    "player": "LJ Cryer",
+    "player": "Al Horford",
     "team": "GSW",
-    "min": 20.0,
+    "min": 19.0,
     "src": "RotoWire"
    },
    {
     "player": "Gui Santos",
     "team": "GSW",
-    "min": 18.0,
+    "min": 19.0,
     "src": "RotoWire"
    },
    {
@@ -15213,7 +15144,7 @@
    {
     "player": "De'Anthony Melton",
     "team": "GSW",
-    "min": 23.0,
+    "min": 22.0,
     "src": "RotoWire"
    },
    {
@@ -15225,7 +15156,7 @@
    {
     "player": "Georges Niang",
     "team": "GSW",
-    "min": 18.0,
+    "min": 19.0,
     "src": "RotoWire"
    },
    {
@@ -15243,7 +15174,7 @@
    {
     "player": "Malevy Leons",
     "team": "GSW",
-    "min": 8.0,
+    "min": 6.0,
     "src": "RotoWire"
    },
    {
@@ -15254,10 +15185,10 @@
     "src": "SportsLine"
    },
    {
-    "player": "Ayo Dosunmu",
-    "team": "MIN",
-    "game": "NY@MIN",
-    "min": 34.0,
+    "player": "Cedric Coward",
+    "team": "MEM",
+    "game": "GS@MEM",
+    "min": 28.0,
     "src": "SportsLine"
    },
    {
@@ -15268,10 +15199,24 @@
     "src": "SportsLine"
    },
    {
-    "player": "Cedric Coward",
+    "player": "Ayo Dosunmu",
+    "team": "MIN",
+    "game": "NY@MIN",
+    "min": 34.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Ryan Rollins",
+    "team": "MIL",
+    "game": "POR@MIL",
+    "min": 27.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Cam Spencer",
     "team": "MEM",
     "game": "GS@MEM",
-    "min": 28.0,
+    "min": 21.0,
     "src": "SportsLine"
    },
    {
@@ -15279,6 +15224,13 @@
     "team": "MIN",
     "game": "NY@MIN",
     "min": 33.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Jerami Grant",
+    "team": "MEM",
+    "game": "GS@MEM",
+    "min": 24.0,
     "src": "SportsLine"
    },
    {
@@ -15303,52 +15255,10 @@
     "src": "SportsLine"
    },
    {
-    "player": "Kyle Kuzma",
-    "team": "MIL",
-    "game": "POR@MIL",
-    "min": 27.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Jonathan Kuminga",
     "team": "MIN",
     "game": "NY@MIN",
     "min": 27.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Cam Spencer",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 21.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Myles Turner",
-    "team": "MIL",
-    "game": "POR@MIL",
-    "min": 28.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Terrence Shannon Jr.",
-    "team": "MIN",
-    "game": "NY@MIN",
-    "min": 27.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Ryan Rollins",
-    "team": "MIL",
-    "game": "POR@MIL",
-    "min": 23.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Keldon Johnson",
-    "team": "SAS",
-    "game": "LAC@SA",
-    "min": 23.0,
     "src": "SportsLine"
    },
    {
@@ -15359,27 +15269,6 @@
     "src": "SportsLine"
    },
    {
-    "player": "Zach Edey",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 22.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Jerami Grant",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 24.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Draymond Green",
-    "team": "GSW",
-    "game": "GS@MEM",
-    "min": 21.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Jaylen Wells",
     "team": "MEM",
     "game": "GS@MEM",
@@ -15387,10 +15276,38 @@
     "src": "SportsLine"
    },
    {
+    "player": "Terrence Shannon Jr.",
+    "team": "MIN",
+    "game": "NY@MIN",
+    "min": 27.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Kel`El Ware",
     "team": "MIL",
     "game": "POR@MIL",
-    "min": 18.0,
+    "min": 20.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Keldon Johnson",
+    "team": "SAS",
+    "game": "LAC@SA",
+    "min": 23.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Taylor Hendricks",
+    "team": "MEM",
+    "game": "GS@MEM",
+    "min": 16.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Kasparas Jakucionis",
+    "team": "MIL",
+    "game": "POR@MIL",
+    "min": 19.0,
     "src": "SportsLine"
    },
    {
@@ -15401,13 +15318,6 @@
     "src": "SportsLine"
    },
    {
-    "player": "Luke Kornet",
-    "team": "SAS",
-    "game": "LAC@SA",
-    "min": 17.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Harrison Barnes",
     "team": "SAS",
     "game": "LAC@SA",
@@ -15415,17 +15325,31 @@
     "src": "SportsLine"
    },
    {
-    "player": "Kasparas Jakucionis",
-    "team": "MIL",
-    "game": "POR@MIL",
-    "min": 16.0,
+    "player": "Quinten Post",
+    "team": "MEM",
+    "game": "GS@MEM",
+    "min": 15.0,
     "src": "SportsLine"
    },
    {
-    "player": "Taylor Hendricks",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 16.0,
+    "player": "Luke Kornet",
+    "team": "SAS",
+    "game": "LAC@SA",
+    "min": 17.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "AJ Green",
+    "team": "MIL",
+    "game": "POR@MIL",
+    "min": 22.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Gary Trent Jr.",
+    "team": "MIL",
+    "game": "POR@MIL",
+    "min": 21.0,
     "src": "SportsLine"
    },
    {
@@ -15443,31 +15367,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Quinten Post",
-    "team": "MEM",
-    "game": "GS@MEM",
-    "min": 15.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "AJ Green",
-    "team": "MIL",
-    "game": "POR@MIL",
-    "min": 19.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Gary Trent Jr.",
-    "team": "MIL",
-    "game": "POR@MIL",
-    "min": 18.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Isaiah Stewart",
     "team": "MEM",
     "game": "GS@MEM",
     "min": 10.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Nate Ament",
+    "team": "MIL",
+    "game": "POR@MIL",
+    "min": 12.0,
     "src": "SportsLine"
    },
    {
@@ -15485,15 +15395,8 @@
     "src": "SportsLine"
    },
    {
-    "player": "Nate Ament",
-    "team": "MIL",
-    "game": "POR@MIL",
-    "min": 10.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Tarris Reed Jr.",
-    "team": "SAS",
+    "player": "Baba Miller",
+    "team": "LAC",
     "game": "LAC@SA",
     "min": 7.0,
     "src": "SportsLine"
@@ -15501,19 +15404,13 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-19T19:19:11+00:00",
+  "read_at": "2026-11-20T00:30:55+00:00",
   "date": "2026-11-19",
   "games": {
    "GSW@MEM": {
     "fav": "MEM",
     "spread": 5.5,
     "details": "MEM -5.5",
-    "provider": "Draft Kings"
-   },
-   "POR@MIL": {
-    "fav": "POR",
-    "spread": 11.5,
-    "details": "POR -11.5",
     "provider": "Draft Kings"
    },
    "NYK@MIN": {
@@ -15549,7 +15446,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-19T19:19:11+00:00",
+  "read_at": "2026-11-20T00:30:55+00:00",
   "injuries": [
    {
     "team": "GSW",
@@ -15643,19 +15540,19 @@
    },
    {
     "team": "GSW",
-    "player": "L.J. Cryer",
+    "player": "LJ Cryer",
     "src": "NBA report",
     "kind": "G",
-    "injury": "Left Low Back Soreness Team Qs played 30/50",
+    "injury": "Left Low Back Soreness",
     "upd": "2026-11-19",
     "until": "",
     "note": "",
     "through": "2026-11-19",
-    "st": "q",
+    "st": "avail",
     "url": "https://presserwire.com/nba/games/2026-11-19-golden-state-warriors-at-memphis-grizzlies.html",
     "from": "2026-11-19",
     "override": true,
-    "at": "2026-11-19T19:19:11+00:00"
+    "at": "2026-11-20T00:30:55+00:00"
    },
    {
     "team": "LAC",
@@ -15920,7 +15817,7 @@
     "player": "Zyon Pullin",
     "src": "NBA report",
     "kind": "G",
-    "injury": "Right Quadriceps Contusion",
+    "injury": "Right Quadriceps",
     "upd": "2026-11-19",
     "until": "",
     "note": "",
@@ -16059,7 +15956,7 @@
     "player": "Dylan Harper",
     "src": "NBA report",
     "kind": "O",
-    "injury": "Left Hip Soreness",
+    "injury": "Left Hip External Rotator Strain",
     "upd": "2026-11-19",
     "until": "",
     "note": "",
@@ -16098,6 +15995,902 @@
     "from": "2026-11-19",
     "override": true,
     "at": "2026-11-19T02:06:08+00:00"
+   },
+   {
+    "team": "ATL",
+    "player": "Asa Newell",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Great Toe Surgery",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "ATL",
+    "player": "CJ McCollum",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Calf Strain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "ATL",
+    "player": "Henri Veesaar",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right ACL Tear",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "ATL",
+    "player": "Jock Landale",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Great Toe Sprain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "ATL",
+    "player": "Mouhamed Gueye",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Foot Fracture",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "ATL",
+    "player": "Kingston Flemings",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Lumbar Strain Team Qs played 15/21",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "st": "q",
+    "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "BKN",
+    "player": "Grant Nelson",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Ankle Sprain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-orlando-magic-at-brooklyn-nets.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "CHA",
+    "player": "Dennis Schroder",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Hamstring Strain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "CHA",
+    "player": "Grant Williams",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Hamstring Injury Management",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "CHA",
+    "player": "Grayson Allen",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Concussion Protocol",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "CHA",
+    "player": "Kon Knueppel",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Hamstring Strain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "CHI",
+    "player": "Caleb Wilson",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Metacarpal Fracture",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-washington-wizards-at-chicago-bulls.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "CHI",
+    "player": "Noa Essengue",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Bilateral Wrist Soreness",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "st": "prob",
+    "url": "https://presserwire.com/nba/games/2026-11-20-washington-wizards-at-chicago-bulls.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "CLE",
+    "player": "Evan Mobley",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Great Toe Sprain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "CLE",
+    "player": "Jaylon Tyson",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Ankle Injury Management",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "CLE",
+    "player": "Nae'Qwan Tomlin",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Low Back Stress Reaction",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "CLE",
+    "player": "Peyton Watson",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Low Back Contusion",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "st": "q",
+    "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "DEN",
+    "player": "Julian Strawther",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Knee Sprain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-houston-rockets-at-denver-nuggets.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "DET",
+    "player": "Duncan Robinson",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Quadriceps Strain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "DET",
+    "player": "Ebuka Okorie",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Oblique Strain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "DET",
+    "player": "Jalen Duren",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Hamstring Strain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "DET",
+    "player": "Ronald Holland II",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Knee Contusion / Bone Bruise",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "DET",
+    "player": "Taurean Prince",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Knee Surgery",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "DET",
+    "player": "Cade Cunningham",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Right Knee Soreness",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "st": "prob",
+    "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "HOU",
+    "player": "Clint Capela",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Ankle Sprain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-houston-rockets-at-denver-nuggets.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "HOU",
+    "player": "Alperen Sengun",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Left Eye Corneal Abrasion Listed Q 7x, played 6 \u00b7 Team Qs played 16/20",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "st": "q",
+    "url": "https://presserwire.com/nba/games/2026-11-20-houston-rockets-at-denver-nuggets.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "HOU",
+    "player": "Steven Adams",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Right Quadriceps Contusion Team Qs played 16/20",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "st": "q",
+    "url": "https://presserwire.com/nba/games/2026-11-20-houston-rockets-at-denver-nuggets.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "IND",
+    "player": "Ben Sheppard",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Meniscus Surgery",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "IND",
+    "player": "Johnny Furphy",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right ACL Repair / Surgery",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "IND",
+    "player": "Tyrese Haliburton",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Hamstring Strain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "IND",
+    "player": "Andrew Nembhard",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Left Hip Sprain Listed Q 12x, played 10 \u00b7 Team Qs played 57/70",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "st": "q",
+    "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "IND",
+    "player": "Braden Smith",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Right Ankle Sprain Team Qs played 57/70",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "st": "q",
+    "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "IND",
+    "player": "T.J. McConnell",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Right Hamstring Strain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "st": "prob",
+    "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "NOP",
+    "player": "Bennedict Mathurin",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Plantar Fasciitis",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "NOP",
+    "player": "Bryce McGowens",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Elbow Infection",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "NOP",
+    "player": "Dejounte Murray",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Ankle Sprain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "NOP",
+    "player": "Trendon Watford",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Ankle Sprain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "NOP",
+    "player": "Trey Murphy III",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Bilateral Patellar Tendinopathy Listed Q 3x, played 3",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "st": "q",
+    "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "OKC",
+    "player": "Cason Wallace",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Shoulder Surgery",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "OKC",
+    "player": "Chet Holmgren",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Knee/ Injury Recovery",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "OKC",
+    "player": "Jalen Williams",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Ankle Surgery",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "OKC",
+    "player": "Nikola Topic",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Hip Strain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "OKC",
+    "player": "Thomas Sorber",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Knee Surgery",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "OKC",
+    "player": "Alex Caruso",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Right Hip Soreness Listed Q 3x, played 3",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "st": "q",
+    "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "ORL",
+    "player": "Izaiyah Nelson",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Ankle injury recovery",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-orlando-magic-at-brooklyn-nets.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "ORL",
+    "player": "Jonathan Isaac",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Knee Injury Management",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-orlando-magic-at-brooklyn-nets.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "ORL",
+    "player": "Noah Penda",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Partially torn hamstring",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-orlando-magic-at-brooklyn-nets.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "ORL",
+    "player": "Paolo Banchero",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right High Ankle Sprain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-orlando-magic-at-brooklyn-nets.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "PHX",
+    "player": "Mark Williams",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Shoulder Surgery",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-phoenix-suns-at-utah-jazz.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "TOR",
+    "player": "Collin Murray-Boyles",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Concussion Protocol",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "TOR",
+    "player": "Kawhi Leonard",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Knee Injury Management",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "TOR",
+    "player": "RJ Barrett",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Hamstring Strain",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "UTA",
+    "player": "Jaren Jackson Jr.",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right MCL Tear",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-phoenix-suns-at-utah-jazz.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "UTA",
+    "player": "Jusuf Nurkic",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right 2nd Plantar Plate Tear",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-phoenix-suns-at-utah-jazz.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "UTA",
+    "player": "Lauri Markkanen",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Hand Fracture",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-phoenix-suns-at-utah-jazz.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "WAS",
+    "player": "Jamir Watkins",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left ACL Repair / Surgery",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-washington-wizards-at-chicago-bulls.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "WAS",
+    "player": "Justin Champagnie",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right Foot Surgery",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-washington-wizards-at-chicago-bulls.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "WAS",
+    "player": "Reece Beekman",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Right AC Joint Sprain / Separation",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-washington-wizards-at-chicago-bulls.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
+   },
+   {
+    "team": "WAS",
+    "player": "Tristan Vukcevic",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Hip Impingement",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-washington-wizards-at-chicago-bulls.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-20T00:30:55+00:00"
    }
   ],
   "notes": [
@@ -16161,12 +16954,11 @@
    {
     "team": "CLE",
     "players": [
-     "Jarrett Allen",
      "Evan Mobley"
     ],
     "text": "Asked about coach Kenny Atkinson's 15-game evaluation after the loss to Memphis, Cleveland's Jarrett Allen pointed to absences, starting with Evan Mobley: \"I think we have an identity and the base, but we just had so many circumstances that don't let us build upon it.\"",
     "at": "2026-11-19T03:58:31+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2123264633956147667"
    },
    {
     "team": "PHI",
@@ -16212,7 +17004,7 @@
     ],
     "text": "Nikola Topic, before his first Thunder home game of the season, on his ramp-up: \"Obviously it's not 100% right now. I hope that will be soon. But yeah, I'm just trying every day to get back where I was before, and that's pretty much it.\"",
     "at": "2026-11-18T18:52:05+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2123127118406234479"
    },
    {
     "team": "BOS",
@@ -16338,7 +17130,7 @@
     ],
     "text": "Asked about Dejounte Murray's trade request and absence from the team, Derik Queen said at practice: \"This was my first time going through it, but I just leave it to the front office. Wish DJ the best, wish he was here.\"",
     "at": "2026-11-17T21:42:52+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2122807711352140213"
    },
    {
     "team": "NOP",
@@ -16352,13 +17144,11 @@
    {
     "team": "NOP",
     "players": [
-     "Trendon Watford",
-     "Bryce McGowens",
-     "Trey Murphy III"
+     "Bryce McGowens"
     ],
     "text": "\"No, same injury report as before,\" Jamahl Mosley said of Trey Murphy III at Pelicans practice. \"We might try to look at doing some more movement stuff on the court, maybe contact\" Wednesday, \"but we'll see how that looks.\" Trendon Watford and Bryce McGowens did not practice.",
     "at": "2026-11-17T21:42:44+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2122807676417855699"
    },
    {
     "team": "DAL",
@@ -16538,12 +17328,11 @@
    {
     "team": "HOU",
     "players": [
-     "Fred VanVleet",
      "Steven Adams"
     ],
     "text": "Steven Adams returned for the Rockets in 4-minute stints. \"It's gonna take some time to get his wind back, but those 4-minute stints, even in those, you can see what he does for us,\" Ime Udoka said. Fred VanVleet was out.",
     "at": "2026-11-16T03:19:28+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2122167643818082512"
    },
    {
     "team": "LAC",
@@ -16594,12 +17383,11 @@
    {
     "team": "DET",
     "players": [
-     "Duncan Robinson",
-     "Ron Holland"
+     "Duncan Robinson"
     ],
     "text": "\"It was a quad. And again, you know, we just want to make sure we're taking care of him,\" J.B. Bickerstaff said of Duncan Robinson after the Pistons' loss in Miami. Asked about Ron Holland's injury, he said: \"Not yet. I haven't had a chance to talk to our medical staff yet.\"",
     "at": "2026-11-15T04:21:47+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2121820934697013418"
    },
    {
     "team": "MEM",
@@ -16653,7 +17441,7 @@
     ],
     "text": "Rick Carlisle said Friday the Pacers are \"spacing his minutes strategically\" as guard T.J. McConnell returns \"from being out for a while.\" \"I really admire the way he's handling it because we're playing him in short stints,\" Carlisle said.",
     "at": "2026-11-14T05:36:13+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2121477278597361699"
    },
    {
     "team": "GSW",
@@ -16671,7 +17459,7 @@
     ],
     "text": "Bulls coach Tiago Splitter called Caleb Wilson's upper-body injury \"just bad luck, you know, freak injury.\" He said \"you just gotta be patient and go from there.\" On Wilson traveling with the team: \"I'm not sure this travel, uh, but after that probably yes.\"",
     "at": "2026-11-14T02:43:36+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2121433839931458030"
    },
    {
     "team": "SAS",
@@ -16708,17 +17496,16 @@
     ],
     "text": "\"I felt good, you know, no issues when it comes to the maintenance of the injury or anything like that,\" Grant Williams said after his return at Phoenix. \"You just want to play more, but that's how, you know, return from injury comes.\"",
     "at": "2026-11-13T05:35:04+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2121114604394942551"
    },
    {
     "team": "TOR",
     "players": [
-     "Immanuel Quickley",
      "Kawhi Leonard"
     ],
     "text": "Immanuel Quickley played 28 minutes. Darko Rajakovic confirmed Toronto is being careful with his hamstring. With Scottie Barnes and Kawhi Leonard out, \"everybody's playing outside of their positions, playing a lot more minutes than when we have full roster,\" Rajakovic said.",
     "at": "2026-11-13T05:21:10+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2121111105141657849"
    },
    {
     "team": "PHX",
@@ -16780,13 +17567,11 @@
    {
     "team": "OKC",
     "players": [
-     "Isaiah Hartenstein",
-     "Chet Holmgren",
-     "Aday Mara"
+     "Chet Holmgren"
     ],
     "text": "With Chet Holmgren out, Isaiah Hartenstein and Aday Mara played heavy minutes together in the Thunder's loss Wednesday at Portland. Mark Daigneault on the pairing: \"they played a lot of minutes tonight\" and \"that's probably not sustainable either.\"",
     "at": "2026-11-12T07:54:22+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2120787271779827777"
    },
    {
     "team": "HOU",
@@ -16822,7 +17607,7 @@
     ],
     "text": "Immanuel Quickley returned from injury in Toronto's loss to Boston, and Darko Rajakovic praised his defense. Collin Murray-Boyles was back from illness; Rajakovic said he's \"not himself.\" Ja'Kobe Walter said \"our bodies are adapting pretty well\" to heavier minutes.",
     "at": "2026-11-12T04:02:20+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2120728879455519125"
    },
    {
     "team": "IND",
@@ -16922,7 +17707,7 @@
     ],
     "text": "Tyrese Haliburton's absence and T.J. McConnell's limited minutes were among the road-trip challenges Rick Carlisle listed after Indiana's loss in Dallas. \"No excuses,\" he said, but \"2 of the 3 games on this trip, we competed the way we need to compete.\"",
     "at": "2026-11-10T04:54:01+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2120017108205810081"
    },
    {
     "team": "CHA",
@@ -16950,7 +17735,7 @@
     ],
     "text": "Charles Lee wouldn't call Brandon Miller day-to-day after the Hornets' game against Cleveland, but said Miller is improving every day: \"I don't want to say day to day... But like, I don't think it's going to be a long-term thing.\" Naz Reid and Grayson Allen will be evaluated.",
     "at": "2026-11-10T04:08:29+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2120005649870524525"
    },
    {
     "team": "NOP",
@@ -16964,6 +17749,15 @@
     "text": "Zion Williamson was out Monday against Golden State for rest. \"No, just rest,\" Pelicans coach Jamahl Mosley said before the game. With Williamson and Trey Murphy III out, Mosley named Jeremiah Fears, Dejounte Murray, Herb Jones, Saddiq Bey and Karlo Matkovic as starters.",
     "at": "2026-11-10T01:42:41+00:00",
     "url": "https://presserwire.com/nba/availability.html"
+   },
+   {
+    "team": "HOU",
+    "players": [
+     "Clint Capela"
+    ],
+    "text": "Ime Udoka said Steven Adams and Clint Capela are targeting Washington and Miami, and Oscar Tshiebwe is sick, \"hopefully a one-game thing.\" He said Houston will play small, with Jabari Smith Jr., Marcus Smart and Jae'Sean Tate taking turns on Nikola Jokic.",
+    "at": "2026-11-10T00:17:19+00:00",
+    "url": "https://x.com/nbapresserwire/status/2119947477189304634"
    },
    {
     "team": "DEN",
@@ -17083,12 +17877,11 @@
    {
     "team": "ATL",
     "players": [
-     "Jock Landale",
      "Asa Newell"
     ],
     "text": "Onyeka Okongwu left the win over Brooklyn. Quin Snyder said there was an adjustment period, \"not wondering if you're going to have him.\" Aaron Wiggins said with bigs like Jock Landale and Asa Newell out, \"we have to fill in as a team, and it has to be as a collective.\"",
     "at": "2026-11-08T04:36:47+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2119287995606147580"
    },
    {
     "team": "BKN",
@@ -17151,7 +17944,7 @@
     ],
     "text": "Peyton Watson returned in the Cavaliers' win over the 76ers. Kenny Atkinson on what stood out: \"Defense. Peyton Watson. Big difference.\" Atkinson praised Watson's defense on Maxey and said: \"we got to make sure we're empowering him to bring the ball up.\"",
     "at": "2026-11-07T04:14:48+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2118920077680758954"
    },
    {
     "team": "CLE",
@@ -17232,7 +18025,7 @@
     ],
     "text": "Suns coach Jordan Ott said missing the injured Mark Williams hurts the defense: \"Mark's overall size deters rim attempts.\" He said the Suns now switch more, pulling their 5s off the rim. Defensive rebounding has surprised him: \"I did think we would be bigger this year.\"",
     "at": "2026-11-05T06:21:38+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2118227220535849143"
    },
    {
     "team": "PHI",
@@ -17279,7 +18072,7 @@
     ],
     "text": "\"I think he's playing through a lot of pain right now,\" Jazz coach Will Hardy said Wednesday of Lauri Markkanen. Hardy wouldn't commit to Markkanen's minutes at center: \"Be a night-to-night thing.\" He said those lineups spread the court.",
     "at": "2026-11-05T05:07:52+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2118208657389466087"
    },
    {
     "team": "DEN",
@@ -17334,7 +18127,7 @@
     ],
     "text": "Alex Caruso sat out Oklahoma City's win at Cleveland, but \"he was in everybody's ear just talking like he always does,\" Micah Peavy said at shootaround. Peavy, who guarded Harden, Mitchell and Mobley, said: \"I like to be that guy that coach can call on to guard those guys.\"",
     "at": "2026-11-04T19:20:10+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2118060755568459783"
    },
    {
     "team": "HOU",
@@ -17343,7 +18136,7 @@
     ],
     "text": "Steven Adams is out with no timeline. Ime Udoka said that takes away Houston's favored double-big lineup, which he likes with Adams over Alperen Sengun and Clint Capela, but \"gives other guys opportunity.\" Oscar Tshiebwe is a center option \"if need be without Clint.\"",
     "at": "2026-11-03T12:00:56+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2117587832395223179"
    },
    {
     "team": "GSW",
@@ -17408,7 +18201,7 @@
     ],
     "text": "Rick Carlisle thinks a bruised knee made Kelly Oubre Jr. a last-second scratch, leaving Indiana with six players. Braden Smith's cramp was \"not a pulled muscle or a strain as far as I know,\" he said. He said all six have earned \"at least the consideration for more minutes.\"",
     "at": "2026-11-03T04:07:17+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2117468632477585660"
    },
    {
     "team": "CHA",
@@ -17426,7 +18219,7 @@
     ],
     "text": "No Jock Landale and no Kingston Flemings for the Atlanta Hawks on Nov. 2, coach Quin Snyder said after the game.",
     "at": "2026-11-03T03:40:39+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2117461931145707679"
    },
    {
     "team": "CLE",
@@ -17435,7 +18228,7 @@
     ],
     "text": "Peyton Watson sat out the Cavaliers' loss to the Thunder. Kenny Atkinson said they're being cautious: \"I'd rather him get, you know, fully healthy, you know, rather than throwing him out there game 6, game 7.\" Jaylon Tyson was also out.",
     "at": "2026-11-03T03:21:01+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2117456990821892582"
    },
    {
     "team": "LAL",
@@ -17541,13 +18334,11 @@
    {
     "team": "DEN",
     "players": [
-     "Julian Strawther",
-     "Spencer Jones",
-     "Alpha Diallo"
+     "Julian Strawther"
     ],
     "text": "\"I know he's 2 for 9, but it's his first game back. I love that he shot 9.\" Denver coach David Adelman on Cameron Johnson's return. Spencer Jones is \"hopefully coming back soon,\" he said, with no firm timeline. Alpha Diallo and Julian Strawther will return \"at some point.\"",
     "at": "2026-10-31T06:13:02+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2116413114770244019"
    },
    {
     "team": "NYK",
@@ -17575,19 +18366,65 @@
     "text": "Jordan Goodwin hopes Oso Ighodaro returns Oct. 30 and said at Phoenix Suns shootaround his absence hurt: \"Being our point guard for that second unit. We play a lot through him.\" He'd open the floor for Collin Gillespie, Luke Kennard and him, and free Ryan Dunn to cut.",
     "at": "2026-10-30T18:59:52+00:00",
     "url": "https://presserwire.com/nba/availability.html"
-   },
-   {
-    "team": "NOP",
-    "players": [
-     "Jordan Poole"
-    ],
-    "text": "Dejounte Murray is out for New Orleans on Oct. 29, celebrating the birth of his son; Herb Jones starts. Jordan Poole (ankle) is out too, re-evaluated \"in the next couple of days,\" Jamahl Mosley said. With both out, he wants Jeremiah Fears to be \"a dominant point guard.\"",
-    "at": "2026-10-29T22:52:03+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
    }
   ]
  },
  "news": [
+  {
+   "id": "nba540074",
+   "player": "Jonathan Kuminga",
+   "headline": "Available versus Knicks",
+   "text": "Kuminga (shoulder) is available for Thursday's game against New York.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/jonathan-kuminga-5287",
+   "at": "2026-11-20T00:28:00+00:00",
+   "team": "MIN"
+  },
+  {
+   "id": "nba540072",
+   "player": "Deni Avdija",
+   "headline": "Remains sidelined Thursday",
+   "text": "Avdija (foot) is listed as out for Thursday's game against the Bucks.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
+   "at": "2026-11-20T00:22:00+00:00",
+   "team": "POR"
+  },
+  {
+   "id": "nba540071",
+   "player": "Toumani Camara",
+   "headline": "Getting green light Thursday",
+   "text": "Camara (soreness) has been cleared to play Thursday against Milwaukee.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/toumani-camara-5987",
+   "at": "2026-11-20T00:21:00+00:00",
+   "team": "POR"
+  },
+  {
+   "id": "nba540069",
+   "player": "Jusuf Nurkic",
+   "headline": "Not ready to return Friday",
+   "text": "Nurkic (toe) is listed as out for Friday's game against Phoenix.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/jusuf-nurkic-3580",
+   "at": "2026-11-20T00:05:00+00:00",
+   "team": "UTA"
+  },
+  {
+   "id": "nba540063",
+   "player": "Alperen Sengun",
+   "headline": "Tagged questionable for Friday",
+   "text": "Sengun (eye) is questionable for Friday's game against the Nuggets.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/alperen-sengun-5404",
+   "at": "2026-11-19T23:18:00+00:00",
+   "team": "HOU"
+  },
   {
    "id": "nba540023",
    "player": "Isaiah Stewart",
@@ -18093,171 +18930,6 @@
    "url": "https://www.rotowire.com/basketball/player/lj-cryer-6644",
    "at": "2026-11-17T00:41:00+00:00",
    "team": "GSW"
-  },
-  {
-   "id": "nba539478",
-   "player": "Tari Eason",
-   "headline": "Slated to start Monday",
-   "text": "Eason is in the starting lineup for Monday's game against Miami, Jackson Gatlin of the Locked On Podcast Network reports.",
-   "reporter": "Jackson Gatlin",
-   "outlet": "Locked On Podcast Network",
-   "url": "https://www.rotowire.com/basketball/player/tari-eason-5704",
-   "at": "2026-11-17T00:12:00+00:00",
-   "team": "HOU"
-  },
-  {
-   "id": "nba539475",
-   "player": "Joel Embiid",
-   "headline": "Cleared to play Monday",
-   "text": "Embiid (foot) is available for Monday's game against Brooklyn.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/joel-embiid-3572",
-   "at": "2026-11-17T00:06:00+00:00",
-   "team": "PHI"
-  },
-  {
-   "id": "nba539473",
-   "player": "Amen Thompson",
-   "headline": "Ruled out Monday",
-   "text": "Thompson (knee) is out for Monday's game against the Heat.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/amen-thompson-5931",
-   "at": "2026-11-16T23:49:00+00:00",
-   "team": "HOU"
-  },
-  {
-   "id": "nba539472",
-   "player": "Jalen Suggs",
-   "headline": "Starting Monday",
-   "text": "Suggs will start Monday's game against the Celtics.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/jalen-suggs-5379",
-   "at": "2026-11-16T23:47:00+00:00",
-   "team": "ORL"
-  },
-  {
-   "id": "nba539470",
-   "player": "Luka Garza",
-   "headline": "Starting against Orlando",
-   "text": "Garza is listed in the starting lineup for Monday's game against the Magic.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/luka-garza-5423",
-   "at": "2026-11-16T23:41:00+00:00",
-   "team": "BOS"
-  },
-  {
-   "id": "nba539467",
-   "player": "Mario Hezonja",
-   "headline": "Sliding back to bench Monday",
-   "text": "Hezonja is not listed in the starting lineup for Monday's game against Chicago, Serena Winters of FanDuel Sports Network Ohio reports.",
-   "reporter": "Serena Winters",
-   "outlet": "FanDuel Sports Network Ohio",
-   "url": "https://www.rotowire.com/basketball/player/mario-hezonja-3578",
-   "at": "2026-11-16T23:25:00+00:00",
-   "team": "CLE"
-  },
-  {
-   "id": "nba539463",
-   "player": "Zach Edey",
-   "headline": "Returning Monday",
-   "text": "Edey (ankle) is available for Monday's game against the Wizards.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/zach-edey-6263",
-   "at": "2026-11-16T23:15:00+00:00",
-   "team": "MEM"
-  },
-  {
-   "id": "nba539458",
-   "player": "Pelle Larsson",
-   "headline": "Out sick once again",
-   "text": "Larsson won't play in Monday's game against the Rockets due to an illness, Ira Winderman of the South Florida Sun Sentinel reports.",
-   "reporter": "Ira Winderman",
-   "outlet": "South Florida Sun Sentinel",
-   "url": "https://www.rotowire.com/basketball/player/pelle-larsson-6013",
-   "at": "2026-11-16T22:49:00+00:00",
-   "team": "MIA"
-  },
-  {
-   "id": "nba539455",
-   "player": "Jaylon Tyson",
-   "headline": "Officially out Monday",
-   "text": "Tyson (ankle) has been ruled out for Monday's game against Chicago.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/jaylon-tyson-6277",
-   "at": "2026-11-16T22:39:00+00:00",
-   "team": "CLE"
-  },
-  {
-   "id": "nba539454",
-   "player": "Jalen Smith",
-   "headline": "Will play Monday",
-   "text": "Smith (finger) will play in Monday's game against the Cavaliers, K.C. Johnson of Chicago Sports Network reports.",
-   "reporter": "K.C. Johnson",
-   "outlet": "Chicago Sports Network",
-   "url": "https://www.rotowire.com/basketball/player/jalen-smith-5169",
-   "at": "2026-11-16T22:38:00+00:00",
-   "team": "CHI"
-  },
-  {
-   "id": "nba539453",
-   "player": "Duncan Robinson",
-   "headline": "Ruled out vs. Spurs",
-   "text": "Robinson (quadriceps) has been ruled out for Tuesday's game against the Spurs.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/duncan-robinson-4470",
-   "at": "2026-11-16T22:37:00+00:00",
-   "team": "DET"
-  },
-  {
-   "id": "nba539452",
-   "player": "Peyton Watson",
-   "headline": "Will play Monday",
-   "text": "Watson (abdomen) will play in Monday's game against the Bulls, Danny Cunningham of Sports Radio 92.3 The Fan Cleveland reports.",
-   "reporter": "Danny Cunningham",
-   "outlet": "Sports Radio 92.3 The Fan Cleveland",
-   "url": "https://www.rotowire.com/basketball/player/peyton-watson-5722",
-   "at": "2026-11-16T22:35:00+00:00",
-   "team": "CLE"
-  },
-  {
-   "id": "nba539450",
-   "player": "De'Aaron Fox",
-   "headline": "Off injury report for Tuesday",
-   "text": "Fox (hip) is not listed on the injury report for Tuesday's game against the Pistons.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/deaaron-fox-4116",
-   "at": "2026-11-16T22:21:00+00:00",
-   "team": "SAS"
-  },
-  {
-   "id": "nba539449",
-   "player": "Neemias Queta",
-   "headline": "Sitting out Monday",
-   "text": "Queta (rest) won't play in Monday's game against the Magic, Taylor Snow of the Celtics' official site reports.",
-   "reporter": "Taylor Snow",
-   "outlet": "Celtics' official site",
-   "url": "https://www.rotowire.com/basketball/player/neemias-queta-5333",
-   "at": "2026-11-16T22:10:00+00:00",
-   "team": "BOS"
-  },
-  {
-   "id": "nba539444",
-   "player": "Tobias Harris",
-   "headline": "Likely out through November",
-   "text": "Harris (calf) is likely to be sidelined until early December, per Jeff Garcia of KENS 5 San Antonio.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/tobias-harris-3211",
-   "at": "2026-11-16T19:26:00+00:00",
-   "team": "SAS"
   }
  ],
  "matchup_alerts": [
@@ -18713,6 +19385,18 @@
  "injuries": [
   {
    "team": "ATL",
+   "player": "Jock Landale",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Hip",
+   "upd": "2026-11-19",
+   "until": "2026-11-22",
+   "note": "Expected to be out until at least Nov 22",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jock%20Landale"
+  },
+  {
+   "team": "ATL",
    "player": "Kingston Flemings",
    "src": "CBS",
    "kind": "G",
@@ -18725,15 +19409,15 @@
   },
   {
    "team": "ATL",
-   "player": "Jock Landale",
+   "player": "Asa Newell",
    "src": "CBS",
-   "kind": "G",
-   "injury": "Hip",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jock%20Landale"
+   "kind": "O",
+   "injury": "Toe",
+   "upd": "2026-11-17",
+   "until": "2027-03-17",
+   "note": "Expected to be out until at least Mar 17",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Asa%20Newell"
   },
   {
    "team": "ATL",
@@ -18746,18 +19430,6 @@
    "note": "Expected to be out until at least Dec 19",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=CJ%20McCollum"
-  },
-  {
-   "team": "ATL",
-   "player": "Asa Newell",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Toe",
-   "upd": "2026-11-17",
-   "until": "2027-03-17",
-   "note": "Expected to be out until at least Mar 17",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Asa%20Newell"
   },
   {
    "team": "ATL",
@@ -18787,25 +19459,37 @@
    "team": "BKN",
    "player": "Grant Nelson",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
+   "until": "2026-11-23",
+   "note": "Expected to be out until at least Nov 23",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Grant%20Nelson"
   },
   {
    "team": "CHA",
    "player": "Grayson Allen",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Concussion",
-   "upd": "2026-11-18",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
+   "upd": "2026-11-19",
+   "until": "2026-11-23",
+   "note": "Expected to be out until at least Nov 23",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Grayson%20Allen"
+  },
+  {
+   "team": "CHA",
+   "player": "Grant Williams",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Hamstring",
+   "upd": "2026-11-19",
+   "until": "2026-11-23",
+   "note": "Expected to be out until at least Nov 23",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Grant%20Williams"
   },
   {
    "team": "CHA",
@@ -18830,6 +19514,18 @@
    "note": "Expected to be out until at least Nov 25",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dennis%20Schroder"
+  },
+  {
+   "team": "CHI",
+   "player": "Noa Essengue",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Wrist",
+   "upd": "2026-11-19",
+   "until": "",
+   "note": "",
+   "through": "2026-11-21",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Noa%20Essengue"
   },
   {
    "team": "CHI",
@@ -18859,12 +19555,12 @@
    "team": "CLE",
    "player": "Jaylon Tyson",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
+   "until": "2026-11-23",
+   "note": "Expected to be out until at least Nov 23",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jaylon%20Tyson"
   },
   {
@@ -18905,15 +19601,15 @@
   },
   {
    "team": "DAL",
-   "player": "Sergio de Larrea",
+   "player": "Dereck Lively II",
    "src": "CBS",
    "kind": "O",
-   "injury": "Knee",
+   "injury": "Foot",
    "upd": "2026-11-17",
    "until": "2026-11-27",
    "note": "Expected to be out until at least Nov 27",
    "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Sergio%20de%20Larrea"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
   },
   {
    "team": "DAL",
@@ -18929,15 +19625,15 @@
   },
   {
    "team": "DAL",
-   "player": "Dereck Lively II",
+   "player": "Sergio de Larrea",
    "src": "CBS",
    "kind": "O",
-   "injury": "Foot",
+   "injury": "Knee",
    "upd": "2026-11-17",
    "until": "2026-11-27",
    "note": "Expected to be out until at least Nov 27",
    "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Sergio%20de%20Larrea"
   },
   {
    "team": "DEN",
@@ -18977,27 +19673,39 @@
   },
   {
    "team": "DET",
-   "player": "Taurean Prince",
+   "player": "Ebuka Okorie",
    "src": "CBS",
-   "kind": "G",
-   "injury": "Knee",
+   "kind": "O",
+   "injury": "Oblique",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Taurean%20Prince"
+   "until": "2026-11-22",
+   "note": "Expected to be out until at least Nov 22",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Ebuka%20Okorie"
   },
   {
    "team": "DET",
    "player": "Ron Holland",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Knee",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
+   "until": "2026-11-22",
+   "note": "Expected to be out until at least Nov 22",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Ron%20Holland"
+  },
+  {
+   "team": "DET",
+   "player": "Taurean Prince",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-11-19",
+   "until": "2026-12-13",
+   "note": "Expected to be out until at least Dec 13",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Taurean%20Prince"
   },
   {
    "team": "DET",
@@ -19022,18 +19730,6 @@
    "note": "Expected to be out until at least Nov 24",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jalen%20Duren"
-  },
-  {
-   "team": "GSW",
-   "player": "L.J. Cryer",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Back",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=L.J.%20Cryer"
   },
   {
    "team": "GSW",
@@ -19111,13 +19807,25 @@
    "team": "HOU",
    "player": "Clint Capela",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
+   "upd": "2026-11-19",
+   "until": "2026-11-23",
+   "note": "Expected to be out until at least Nov 23",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Clint%20Capela"
+  },
+  {
+   "team": "HOU",
+   "player": "Steven Adams",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Quadriceps",
    "upd": "2026-11-19",
    "until": "",
    "note": "",
    "through": "2026-11-21",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Clint%20Capela"
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Steven%20Adams"
   },
   {
    "team": "HOU",
@@ -19142,6 +19850,18 @@
    "note": "",
    "through": "2026-11-21",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Andrew%20Nembhard"
+  },
+  {
+   "team": "IND",
+   "player": "T.J. McConnell",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Hamstring",
+   "upd": "2026-11-19",
+   "until": "",
+   "note": "",
+   "through": "2026-11-21",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=T.J.%20McConnell"
   },
   {
    "team": "IND",
@@ -19243,12 +19963,12 @@
    "team": "MEM",
    "player": "Ty Jerome",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Hip",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
+   "until": "2026-11-21",
+   "note": "Expected to be out until at least Nov 21",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Ty%20Jerome"
   },
   {
@@ -19262,6 +19982,18 @@
    "note": "",
    "through": "2026-11-21",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Isaiah%20Stewart"
+  },
+  {
+   "team": "MEM",
+   "player": "Zach Edey",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Ankle",
+   "upd": "2026-11-19",
+   "until": "2026-11-21",
+   "note": "Expected to be out until at least Nov 21",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Zach%20Edey"
   },
   {
    "team": "MEM",
@@ -19313,15 +20045,27 @@
   },
   {
    "team": "MIL",
-   "player": "Ryan Rollins",
+   "player": "Kyle Kuzma",
    "src": "CBS",
-   "kind": "G",
-   "injury": "Illness",
+   "kind": "O",
+   "injury": "Shoulder",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Ryan%20Rollins"
+   "until": "2026-11-21",
+   "note": "Expected to be out until at least Nov 21",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kyle%20Kuzma"
+  },
+  {
+   "team": "MIL",
+   "player": "Myles Turner",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Shoulder",
+   "upd": "2026-11-19",
+   "until": "2026-11-21",
+   "note": "Expected to be out until at least Nov 21",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Myles%20Turner"
   },
   {
    "team": "MIL",
@@ -19385,6 +20129,30 @@
   },
   {
    "team": "NOP",
+   "player": "Trendon Watford",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Ankle",
+   "upd": "2026-11-19",
+   "until": "2026-11-27",
+   "note": "Expected to be out until at least Nov 27",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Trendon%20Watford"
+  },
+  {
+   "team": "NOP",
+   "player": "Bennedict Mathurin",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Foot",
+   "upd": "2026-11-19",
+   "until": "2026-11-27",
+   "note": "Expected to be out until at least Nov 27",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Bennedict%20Mathurin"
+  },
+  {
+   "team": "NOP",
    "player": "Trey Murphy III",
    "src": "CBS",
    "kind": "G",
@@ -19397,51 +20165,27 @@
   },
   {
    "team": "NOP",
-   "player": "Trendon Watford",
+   "player": "Bryce McGowens",
    "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
+   "kind": "O",
+   "injury": "Elbow",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Trendon%20Watford"
+   "until": "2026-11-27",
+   "note": "Expected to be out until at least Nov 27",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Bryce%20McGowens"
   },
   {
    "team": "NOP",
    "player": "Dejounte Murray",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Ankle",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
+   "until": "2026-11-27",
+   "note": "Expected to be out until at least Nov 27",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dejounte%20Murray"
-  },
-  {
-   "team": "NOP",
-   "player": "Bennedict Mathurin",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Foot",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Bennedict%20Mathurin"
-  },
-  {
-   "team": "NOP",
-   "player": "Bryce McGowens",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Elbow",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Bryce%20McGowens"
   },
   {
    "team": "OKC",
@@ -19553,18 +20297,6 @@
   },
   {
    "team": "PHI",
-   "player": "Dom Barlow",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Back",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dom%20Barlow"
-  },
-  {
-   "team": "PHI",
    "player": "Adem Bona",
    "src": "CBS",
    "kind": "G",
@@ -19574,6 +20306,18 @@
    "note": "",
    "through": "2026-11-21",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Adem%20Bona"
+  },
+  {
+   "team": "PHI",
+   "player": "Dom Barlow",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Back",
+   "upd": "2026-11-19",
+   "until": "",
+   "note": "",
+   "through": "2026-11-21",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dom%20Barlow"
   },
   {
    "team": "PHI",
@@ -19649,6 +20393,18 @@
   },
   {
    "team": "POR",
+   "player": "Robert Williams III",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Rest",
+   "upd": "2026-11-18",
+   "until": "2026-11-21",
+   "note": "Expected to be out until at least Nov 21",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Robert%20Williams%20III"
+  },
+  {
+   "team": "POR",
    "player": "Deni Avdija",
    "src": "CBS",
    "kind": "G",
@@ -19670,18 +20426,6 @@
    "note": "",
    "through": "2026-11-21",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Toumani%20Camara"
-  },
-  {
-   "team": "POR",
-   "player": "Robert Williams III",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Rest",
-   "upd": "2026-11-18",
-   "until": "2026-11-21",
-   "note": "Expected to be out until at least Nov 21",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Robert%20Williams%20III"
   },
   {
    "team": "POR",
@@ -19749,9 +20493,9 @@
    "src": "CBS",
    "kind": "O",
    "injury": "Hip",
-   "upd": "2026-11-18",
-   "until": "2026-11-21",
-   "note": "Expected to be out until at least Nov 21",
+   "upd": "2026-11-19",
+   "until": "2026-12-13",
+   "note": "Expected to be out until at least Dec 13",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dylan%20Harper"
   },
@@ -19783,36 +20527,24 @@
    "team": "TOR",
    "player": "RJ Barrett",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Hamstring",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
+   "until": "2026-12-13",
+   "note": "Expected to be out until at least Dec 13",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=RJ%20Barrett"
-  },
-  {
-   "team": "TOR",
-   "player": "Scottie Barnes",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Groin",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Scottie%20Barnes"
   },
   {
    "team": "TOR",
    "player": "Collin Murray-Boyles",
    "src": "CBS",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-11-18",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
+   "kind": "O",
+   "injury": "Concussion",
+   "upd": "2026-11-19",
+   "until": "2026-11-23",
+   "note": "Expected to be out until at least Nov 23",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Collin%20Murray-Boyles"
   },
   {
@@ -19843,12 +20575,12 @@
    "team": "UTA",
    "player": "Jusuf Nurkic",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Foot",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "",
-   "through": "2026-11-21",
+   "until": "2026-11-27",
+   "note": "Expected to be out until at least Nov 27",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jusuf%20Nurkic"
   },
   {
@@ -21151,12 +21883,12 @@
    "team": "ATL",
    "player": "Jock Landale",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Right Hip Inflammation",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "Landale (hip) won't play Wednesday in Oklahoma City.",
-   "through": "2026-11-21",
+   "until": "2026-11-22",
+   "note": "Landale (hip) won't play in Friday's game against the Hornets, Brad Rowland of the Locked On Podcast Network reports.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jock%20Landale"
   },
   {
@@ -21167,7 +21899,7 @@
    "injury": "Back Strain",
    "upd": "2026-11-19",
    "until": "",
-   "note": "Flemings (back) is out for Wednesday's game against the Thunder.",
+   "note": "Flemings (back) is questionable for Friday's game against the Hornets, Brad Rowland of the Locked On Podcast Network reports.",
    "through": "2026-11-21",
    "url": "https://www.espn.com/nba/injuries#:~:text=Kingston%20Flemings"
   },
@@ -21223,24 +21955,36 @@
    "team": "BKN",
    "player": "Grant Nelson",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Right Ankle Sprain",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "Nelson signed a two-way contract with the Nets on Friday, Michael Scotto of HoopsHype.com reports.",
-   "through": "2026-11-21",
+   "until": "2026-11-23",
+   "note": "Nelson (ankle) has been ruled out for Friday's game against Orlando.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Grant%20Nelson"
+  },
+  {
+   "team": "CHA",
+   "player": "Grant Williams",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Hamstring",
+   "upd": "2026-11-19",
+   "until": "2026-11-23",
+   "note": "Williams (hamstring) is listed as out for Friday's game versus the Hawks.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Grant%20Williams"
   },
   {
    "team": "CHA",
    "player": "Grayson Allen",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Concussion",
-   "upd": "2026-11-18",
-   "until": "",
-   "note": "Allen (concussion-like symptoms) has been ruled out for Tuesday's game against the Lakers.",
-   "through": "2026-11-21",
+   "upd": "2026-11-19",
+   "until": "2026-11-23",
+   "note": "Allen (concussion) has been ruled out for Friday's game against Atlanta.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Grayson%20Allen"
   },
   {
@@ -21266,6 +22010,18 @@
    "note": "Schroder has been diagnosed with a left hamstring strain and will be reevaluated in two weeks, Michael Scotto of HoopsHype.com reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Dennis%20Schroder"
+  },
+  {
+   "team": "CHI",
+   "player": "Noa Essengue",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Wrist Soreness",
+   "upd": "2026-11-19",
+   "until": "",
+   "note": "Essengue is listed as probable for Friday's game against Washington due to bilateral wrist soreness.",
+   "through": "2026-11-21",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Noa%20Essengue"
   },
   {
    "team": "CHI",
@@ -21295,12 +22051,12 @@
    "team": "CLE",
    "player": "Jaylon Tyson",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Right Ankle",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "Tyson (ankle) has been ruled out for Wednesday's game against Memphis.",
-   "through": "2026-11-21",
+   "until": "2026-11-23",
+   "note": "Tyson (ankle) has been ruled out for Friday's game against Indiana.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jaylon%20Tyson"
   },
   {
@@ -21311,7 +22067,7 @@
    "injury": "Back Bruise",
    "upd": "2026-11-19",
    "until": "",
-   "note": "Watson (back) is out for Wednesday's game versus Memphis.",
+   "note": "Watson (back) is questionable for Friday's game against the Pacers.",
    "through": "2026-11-21",
    "url": "https://www.espn.com/nba/injuries#:~:text=Peyton%20Watson"
   },
@@ -21401,38 +22157,38 @@
   },
   {
    "team": "DET",
-   "player": "Ugonna Onyenso",
+   "player": "Taurean Prince",
    "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Foot",
+   "kind": "O",
+   "injury": "Right Knee Surgery",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "Onyenso agreed to a two-way contract with the Pistons on Thursday.",
-   "through": "2026-11-21",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Ugonna%20Onyenso"
+   "until": "2026-12-13",
+   "note": "Prince underwent right knee surgery and is listed as out for Friday's game against the Raptors.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Taurean%20Prince"
   },
   {
    "team": "DET",
-   "player": "Taurean Prince",
+   "player": "Ebuka Okorie",
    "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Knee Soreness",
+   "kind": "O",
+   "injury": "Left Oblique Strain",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "Prince (knee) is out for Wednesday's game against the Pelicans.",
-   "through": "2026-11-21",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Taurean%20Prince"
+   "until": "2026-11-22",
+   "note": "Okorie (oblique) has been ruled out for Friday's game against Toronto.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Ebuka%20Okorie"
   },
   {
    "team": "DET",
    "player": "Ronald Holland II",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Left Knee Bruise",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "Holland (knee) is out for Wednesday's game against the Pelicans.",
-   "through": "2026-11-21",
+   "until": "2026-11-22",
+   "note": "Holland (knee) won't play in Friday's game against the Raptors, Blake Murphy of Sportsnet.ca reports.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Ronald%20Holland%20II"
   },
   {
@@ -21443,9 +22199,21 @@
    "injury": "Right Knee Soreness",
    "upd": "2026-11-19",
    "until": "",
-   "note": "Cunningham (knee) won't play in Wednesday's game against New Orleans.",
+   "note": "Cunningham (knee) is expected to play in Friday's game against the Raptors, Blake Murphy of Sportsnet.ca reports.",
    "through": "2026-11-21",
    "url": "https://www.espn.com/nba/injuries#:~:text=Cade%20Cunningham"
+  },
+  {
+   "team": "DET",
+   "player": "Ugonna Onyenso",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Left Foot",
+   "upd": "2026-11-19",
+   "until": "",
+   "note": "Onyenso agreed to a two-way contract with the Pistons on Thursday.",
+   "through": "2026-11-21",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Ugonna%20Onyenso"
   },
   {
    "team": "DET",
@@ -21482,18 +22250,6 @@
    "note": "Green (elbow) is out for Thursday's game against the Grizzlies.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Draymond%20Green"
-  },
-  {
-   "team": "GSW",
-   "player": "L.J. Cryer",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Back",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "Cryer (back) is questionable for Thursday's game against Memphis.",
-   "through": "2026-11-21",
-   "url": "https://www.espn.com/nba/injuries#:~:text=LJ%20Cryer"
   },
   {
    "team": "GSW",
@@ -21557,15 +22313,15 @@
   },
   {
    "team": "HOU",
-   "player": "Alperen Sengun",
+   "player": "Steven Adams",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Eye",
+   "injury": "Right Quadriceps Bruise",
    "upd": "2026-11-19",
    "until": "",
-   "note": "Sengun (eye) will not return to Wednesday's game against the Pacers, Will Guillory of The Athletic reports.",
+   "note": "Adams (quadriceps) is listed as questionable for Friday's game against Denver.",
    "through": "2026-11-21",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Alperen%20Sengun"
+   "url": "https://www.espn.com/nba/injuries#:~:text=Steven%20Adams"
   },
   {
    "team": "HOU",
@@ -21573,11 +22329,35 @@
    "src": "ESPN",
    "kind": "O",
    "injury": "Right Ankle Sprain",
-   "upd": "2026-11-17",
-   "until": "2026-11-20",
-   "note": "Capela (ankle) has been ruled out for Wednesday's game against Indiana.",
+   "upd": "2026-11-19",
+   "until": "2026-11-23",
+   "note": "Capela (ankle) is out for Friday's game against Denver.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Clint%20Capela"
+  },
+  {
+   "team": "HOU",
+   "player": "Alperen Sengun",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Eye",
+   "upd": "2026-11-19",
+   "until": "",
+   "note": "Sengun (eye) is questionable for Friday's game against the Nuggets.",
+   "through": "2026-11-21",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Alperen%20Sengun"
+  },
+  {
+   "team": "IND",
+   "player": "T.J. McConnell",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Right Hamstring Strain",
+   "upd": "2026-11-19",
+   "until": "",
+   "note": "McConnell (hamstring) is listed as probable for Friday's game in Cleveland.",
+   "through": "2026-11-21",
+   "url": "https://www.espn.com/nba/injuries#:~:text=T.J.%20McConnell"
   },
   {
    "team": "IND",
@@ -21587,7 +22367,7 @@
    "injury": "Left Hip Soreness",
    "upd": "2026-11-19",
    "until": "",
-   "note": "Nembhard (hip) won't play in Wednesday's game against the Rockets, Tony East of Forbes.com reports.",
+   "note": "Nembhard (hip) is questionable for Friday's game in Cleveland.",
    "through": "2026-11-21",
    "url": "https://www.espn.com/nba/injuries#:~:text=Andrew%20Nembhard"
   },
@@ -21599,7 +22379,7 @@
    "injury": "Right Ankle Sprain",
    "upd": "2026-11-19",
    "until": "",
-   "note": "Smith suffered a right ankle sprain during Wednesday's game against the Wizards, Tony East of Forbes.com reports.",
+   "note": "Smith (ankle) is listed as questionable for Friday's game against Cleveland.",
    "through": "2026-11-21",
    "url": "https://www.espn.com/nba/injuries#:~:text=Braden%20Smith"
   },
@@ -21692,7 +22472,7 @@
    "player": "Isaiah Stewart",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Illness",
+   "injury": "day-to-day",
    "upd": "2026-11-19",
    "until": "",
    "note": "Stewart is questionable for Thursday's game against the Warriors due to an illness.",
@@ -21773,27 +22553,27 @@
   },
   {
    "team": "MIL",
+   "player": "Kyle Kuzma",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Shoulder Bruise",
+   "upd": "2026-11-19",
+   "until": "2026-11-21",
+   "note": "Kuzma (shoulder) has been ruled out for Thursday's game against Portland due to a right shoulder contusion.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Kyle%20Kuzma"
+  },
+  {
+   "team": "MIL",
    "player": "Myles Turner",
    "src": "ESPN",
    "kind": "O",
    "injury": "Left Shoulder Bruise",
    "upd": "2026-11-19",
    "until": "2026-11-21",
-   "note": "Turner posted four points (2-5 FG, 0-2 3Pt), five rebounds, four assists and three blocks in 21 minutes during Wednesday's 137-130 loss to Miami.",
+   "note": "Turner (shoulder) has been ruled out for Thursday's game against Portland due to a left shoulder contusion,",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Myles%20Turner"
-  },
-  {
-   "team": "MIL",
-   "player": "Ryan Rollins",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "Rollins (illness) has been ruled out for Wednesday's game at Miami.",
-   "through": "2026-11-21",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Ryan%20Rollins"
   },
   {
    "team": "MIL",
@@ -21806,18 +22586,6 @@
    "note": "Dieng will undergo a procedure to repair a fractured left finger Monday, Justin Garcia of the Milwaukee Bucks Radio Network reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Ousmane%20Dieng"
-  },
-  {
-   "team": "MIN",
-   "player": "Jonathan Kuminga",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Shoulder",
-   "upd": "2026-11-18",
-   "until": "",
-   "note": "Kuminga (shoulder) is questionable for Thursday's game against the Knicks, Charlie Walton of ZoneCoverage.com reports.",
-   "through": "2026-11-21",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Jonathan%20Kuminga"
   },
   {
    "team": "MIN",
@@ -21857,25 +22625,13 @@
   },
   {
    "team": "NOP",
-   "player": "Bennedict Mathurin",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Left Foot Plantar Fasciitis",
-   "upd": "2026-11-17",
-   "until": "2026-11-20",
-   "note": "Mathurin (foot) has been ruled out for Wednesday's game against Detroit.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Bennedict%20Mathurin"
-  },
-  {
-   "team": "NOP",
    "player": "Bryce McGowens",
    "src": "ESPN",
    "kind": "O",
    "injury": "Left Elbow Infection",
-   "upd": "2026-11-17",
-   "until": "2026-11-20",
-   "note": "McGowens (elbow) has been ruled out for Wednesday's game against Detroit.",
+   "upd": "2026-11-19",
+   "until": "2026-11-27",
+   "note": "McGowens (elbow) has been ruled out for Friday's game against the Thunder.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Bryce%20McGowens"
   },
@@ -21885,11 +22641,23 @@
    "src": "ESPN",
    "kind": "O",
    "injury": "Right Ankle Sprain",
-   "upd": "2026-11-17",
-   "until": "2026-11-20",
-   "note": "Watford (ankle) has been ruled out for Wednesday's game against Detroit.",
+   "upd": "2026-11-19",
+   "until": "2026-11-27",
+   "note": "Watford (ankle) has been ruled out for Friday's game against Oklahoma City.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Trendon%20Watford"
+  },
+  {
+   "team": "NOP",
+   "player": "Bennedict Mathurin",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Foot Plantar Fasciitis",
+   "upd": "2026-11-19",
+   "until": "2026-11-27",
+   "note": "Mathurin (foot) has been ruled out for Friday's game against the Thunder.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Bennedict%20Mathurin"
   },
   {
    "team": "NOP",
@@ -21897,9 +22665,9 @@
    "src": "ESPN",
    "kind": "O",
    "injury": "Knee Tendinitis",
-   "upd": "2026-11-17",
+   "upd": "2026-11-19",
    "until": "2026-11-20",
-   "note": "Murphy (knee) has been ruled out for Wednesday's game against Detroit.",
+   "note": "Murphy (knee) is questionable for Friday's game against the Thunder.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Trey%20Murphy%20III"
   },
@@ -21910,7 +22678,7 @@
    "kind": "O",
    "injury": "Ankle",
    "upd": "2026-11-13",
-   "until": "2026-11-20",
+   "until": "2026-11-27",
    "note": "Murray (ankle) is out for Friday's game against Memphis.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Dejounte%20Murray"
@@ -21923,7 +22691,7 @@
    "injury": "Right Hip Soreness",
    "upd": "2026-11-19",
    "until": "",
-   "note": "Caruso won't return to Wednesday's game against the Hawks due to right hip soreness, Clemente Almanza of USA Today reports.",
+   "note": "Caruso is questionable for Friday's game against the Pelicans due to right hip soreness, Justin Martinez of The Oklahoman reports.",
    "through": "2026-11-21",
    "url": "https://www.espn.com/nba/injuries#:~:text=Alex%20Caruso"
   },
@@ -22222,8 +22990,8 @@
    "kind": "O",
    "injury": "Hip Soreness",
    "upd": "2026-11-19",
-   "until": "2026-11-21",
-   "note": "Harper (hip) will undergo further testing Thursday, but his return date remains uncertain and he won't be available to face the Clippers, Jeff McDonald of the San Antonio Express-News reports.",
+   "until": "2026-12-13",
+   "note": "Harper (hip) is expected to miss two to three weeks, Brett Siegel of ClutchPoints.com reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Dylan%20Harper"
   },
@@ -22253,39 +23021,27 @@
   },
   {
    "team": "TOR",
-   "player": "RJ Barrett",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Hamstring Soreness",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "Barrett (hamstring) is out for Wednesday's game against the Wizards, Michael Grange of Sportsnet.ca reports.",
-   "through": "2026-11-21",
-   "url": "https://www.espn.com/nba/injuries#:~:text=RJ%20Barrett"
-  },
-  {
-   "team": "TOR",
-   "player": "Scottie Barnes",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Groin",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "Barnes (injury management) has been ruled out for Wednesday's game against Washington, Esfandiar Baraheni of The Athletic reports.",
-   "through": "2026-11-21",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Scottie%20Barnes"
-  },
-  {
-   "team": "TOR",
    "player": "Collin Murray-Boyles",
    "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
+   "kind": "O",
+   "injury": "Concussion",
    "upd": "2026-11-19",
-   "until": "",
-   "note": "Murray-Boyles will not return to Wednesday's game against the Wizards due to an illness, Blake Murphy of Sportsnet.ca reports.",
-   "through": "2026-11-21",
+   "until": "2026-11-23",
+   "note": "Murray-Boyles (concussion) has been ruled out for Friday's game against the Pistons.",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Collin%20Murray-Boyles"
+  },
+  {
+   "team": "TOR",
+   "player": "RJ Barrett",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Hamstring Strain",
+   "upd": "2026-11-19",
+   "until": "2026-12-13",
+   "note": "Barrett has been diagnosed with a right hamstring strain and will be re-evaluated in two weeks, Brett Siegel of ClutchPoints.com reports.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=RJ%20Barrett"
   },
   {
    "team": "TOR",
@@ -22313,6 +23069,18 @@
   },
   {
    "team": "UTA",
+   "player": "Jusuf Nurkic",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Foot Strain",
+   "upd": "2026-11-20",
+   "until": "2026-11-27",
+   "note": "Nurkic (toe) is listed as out for Friday's game against Phoenix.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Jusuf%20Nurkic"
+  },
+  {
+   "team": "UTA",
    "player": "Lauri Markkanen",
    "src": "ESPN",
    "kind": "O",
@@ -22322,18 +23090,6 @@
    "note": "Markkanen has been diagnosed with a non-displaced fracture in his right hand and will be sidelined for at least one month, Shams Charania of ESPN reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Lauri%20Markkanen"
-  },
-  {
-   "team": "UTA",
-   "player": "Jusuf Nurkic",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Right Foot Strain",
-   "upd": "2026-11-06",
-   "until": "2026-11-20",
-   "note": "Nurkic (toe) has begun participating in on-court activities as he continues recovering from a right foot injury sustained during an Oct. 4 preseason game against Denver. He will be re-evaluated in two weeks, the Jazz announced Friday.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Jusuf%20Nurkic"
   },
   {
    "team": "UTA",
@@ -22499,19 +23255,19 @@
   },
   {
    "team": "GSW",
-   "player": "L.J. Cryer",
+   "player": "LJ Cryer",
    "src": "NBA report",
    "kind": "G",
-   "injury": "Left Low Back Soreness Team Qs played 30/50",
+   "injury": "Left Low Back Soreness",
    "upd": "2026-11-19",
    "until": "",
    "note": "",
    "through": "2026-11-19",
-   "st": "q",
+   "st": "avail",
    "url": "https://presserwire.com/nba/games/2026-11-19-golden-state-warriors-at-memphis-grizzlies.html",
    "from": "2026-11-19",
    "override": true,
-   "at": "2026-11-19T19:19:11+00:00"
+   "at": "2026-11-20T00:30:55+00:00"
   },
   {
    "team": "LAC",
@@ -22776,7 +23532,7 @@
    "player": "Zyon Pullin",
    "src": "NBA report",
    "kind": "G",
-   "injury": "Right Quadriceps Contusion",
+   "injury": "Right Quadriceps",
    "upd": "2026-11-19",
    "until": "",
    "note": "",
@@ -22915,7 +23671,7 @@
    "player": "Dylan Harper",
    "src": "NBA report",
    "kind": "O",
-   "injury": "Left Hip Soreness",
+   "injury": "Left Hip External Rotator Strain",
    "upd": "2026-11-19",
    "until": "",
    "note": "",
@@ -22956,56 +23712,913 @@
    "at": "2026-11-19T02:06:08+00:00"
   },
   {
-   "team": "POR",
-   "player": "Toumani Camara",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-19",
+   "team": "ATL",
+   "player": "Asa Newell",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Great Toe Surgery",
+   "upd": "2026-11-20",
    "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-19",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "ATL",
+   "player": "CJ McCollum",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Calf Strain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "ATL",
+   "player": "Henri Veesaar",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right ACL Tear",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "ATL",
+   "player": "Jock Landale",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Great Toe Sprain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "ATL",
+   "player": "Mouhamed Gueye",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Foot Fracture",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "ATL",
+   "player": "Kingston Flemings",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Lumbar Strain Team Qs played 15/21",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
    "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20Camara"
+   "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "BKN",
+   "player": "Grant Nelson",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Ankle Sprain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-orlando-magic-at-brooklyn-nets.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "CHA",
+   "player": "Dennis Schroder",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Hamstring Strain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "CHA",
+   "player": "Grant Williams",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Hamstring Injury Management",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "CHA",
+   "player": "Grayson Allen",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Concussion Protocol",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "CHA",
+   "player": "Kon Knueppel",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Hamstring Strain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-charlotte-hornets-at-atlanta-hawks.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "CHI",
+   "player": "Caleb Wilson",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Metacarpal Fracture",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-washington-wizards-at-chicago-bulls.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "CHI",
+   "player": "Noa Essengue",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Bilateral Wrist Soreness",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "st": "prob",
+   "url": "https://presserwire.com/nba/games/2026-11-20-washington-wizards-at-chicago-bulls.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "CLE",
+   "player": "Evan Mobley",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Great Toe Sprain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "CLE",
+   "player": "Jaylon Tyson",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Ankle Injury Management",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "CLE",
+   "player": "Nae'Qwan Tomlin",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Low Back Stress Reaction",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "CLE",
+   "player": "Peyton Watson",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Low Back Contusion",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "st": "q",
+   "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "DEN",
+   "player": "Julian Strawther",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Knee Sprain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-houston-rockets-at-denver-nuggets.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "DET",
+   "player": "Duncan Robinson",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Quadriceps Strain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "DET",
+   "player": "Ebuka Okorie",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Oblique Strain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "DET",
+   "player": "Jalen Duren",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Hamstring Strain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "DET",
+   "player": "Ronald Holland II",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Knee Contusion / Bone Bruise",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "DET",
+   "player": "Taurean Prince",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Knee Surgery",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "DET",
+   "player": "Cade Cunningham",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Right Knee Soreness",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "st": "prob",
+   "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "HOU",
+   "player": "Clint Capela",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Ankle Sprain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-houston-rockets-at-denver-nuggets.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "HOU",
+   "player": "Alperen Sengun",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Left Eye Corneal Abrasion Listed Q 7x, played 6 \u00b7 Team Qs played 16/20",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "st": "q",
+   "url": "https://presserwire.com/nba/games/2026-11-20-houston-rockets-at-denver-nuggets.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "HOU",
+   "player": "Steven Adams",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Right Quadriceps Contusion Team Qs played 16/20",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "st": "q",
+   "url": "https://presserwire.com/nba/games/2026-11-20-houston-rockets-at-denver-nuggets.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "IND",
+   "player": "Ben Sheppard",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Meniscus Surgery",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "IND",
+   "player": "Johnny Furphy",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right ACL Repair / Surgery",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "IND",
+   "player": "Tyrese Haliburton",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Hamstring Strain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "IND",
+   "player": "Andrew Nembhard",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Left Hip Sprain Listed Q 12x, played 10 \u00b7 Team Qs played 57/70",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "st": "q",
+   "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "IND",
+   "player": "Braden Smith",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Right Ankle Sprain Team Qs played 57/70",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "st": "q",
+   "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "IND",
+   "player": "T.J. McConnell",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Right Hamstring Strain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "st": "prob",
+   "url": "https://presserwire.com/nba/games/2026-11-20-indiana-pacers-at-cleveland-cavaliers.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "NOP",
+   "player": "Bennedict Mathurin",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Plantar Fasciitis",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "NOP",
+   "player": "Bryce McGowens",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Elbow Infection",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "NOP",
+   "player": "Dejounte Murray",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Ankle Sprain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "NOP",
+   "player": "Trendon Watford",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Ankle Sprain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "NOP",
+   "player": "Trey Murphy III",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Bilateral Patellar Tendinopathy Listed Q 3x, played 3",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "st": "q",
+   "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "OKC",
+   "player": "Cason Wallace",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Shoulder Surgery",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "OKC",
+   "player": "Chet Holmgren",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Knee/ Injury Recovery",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "OKC",
+   "player": "Jalen Williams",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Ankle Surgery",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "OKC",
+   "player": "Nikola Topic",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Hip Strain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "OKC",
+   "player": "Thomas Sorber",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Knee Surgery",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "OKC",
+   "player": "Alex Caruso",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Right Hip Soreness Listed Q 3x, played 3",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "st": "q",
+   "url": "https://presserwire.com/nba/games/2026-11-20-new-orleans-pelicans-at-oklahoma-city-thunder.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "ORL",
+   "player": "Izaiyah Nelson",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Ankle injury recovery",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-orlando-magic-at-brooklyn-nets.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "ORL",
+   "player": "Jonathan Isaac",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Knee Injury Management",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-orlando-magic-at-brooklyn-nets.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "ORL",
+   "player": "Noah Penda",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Partially torn hamstring",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-orlando-magic-at-brooklyn-nets.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "ORL",
+   "player": "Paolo Banchero",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right High Ankle Sprain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-orlando-magic-at-brooklyn-nets.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "PHX",
+   "player": "Mark Williams",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Shoulder Surgery",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-phoenix-suns-at-utah-jazz.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "TOR",
+   "player": "Collin Murray-Boyles",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Concussion Protocol",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "TOR",
+   "player": "Kawhi Leonard",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Knee Injury Management",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "TOR",
+   "player": "RJ Barrett",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Hamstring Strain",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "UTA",
+   "player": "Jaren Jackson Jr.",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right MCL Tear",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-phoenix-suns-at-utah-jazz.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "UTA",
+   "player": "Jusuf Nurkic",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right 2nd Plantar Plate Tear",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-phoenix-suns-at-utah-jazz.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "UTA",
+   "player": "Lauri Markkanen",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Hand Fracture",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-phoenix-suns-at-utah-jazz.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "WAS",
+   "player": "Jamir Watkins",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left ACL Repair / Surgery",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-washington-wizards-at-chicago-bulls.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "WAS",
+   "player": "Justin Champagnie",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right Foot Surgery",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-washington-wizards-at-chicago-bulls.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "WAS",
+   "player": "Reece Beekman",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Right AC Joint Sprain / Separation",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-washington-wizards-at-chicago-bulls.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
+  },
+  {
+   "team": "WAS",
+   "player": "Tristan Vukcevic",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Hip Impingement",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-washington-wizards-at-chicago-bulls.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:30:55+00:00"
   },
   {
    "team": "POR",
    "player": "Deni Avdija",
    "src": "RotoWire",
-   "kind": "G",
+   "kind": "O",
    "injury": "",
    "upd": "2026-11-19",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Out",
    "through": "2026-11-19",
-   "st": "q",
+   "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Avdija"
-  },
-  {
-   "team": "POR",
-   "player": "Deni Avdija",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-19",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Avdija"
-  },
-  {
-   "team": "POR",
-   "player": "Toumani Camara",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-19",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20Camara"
   },
   {
    "team": "POR",
@@ -23110,32 +24723,6 @@
    "through": "2026-11-19",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Turner"
-  },
-  {
-   "team": "MIN",
-   "player": "Jonathan Kuminga",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-19",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Kuminga"
-  },
-  {
-   "team": "MIN",
-   "player": "Jonathan Kuminga",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-19",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Kuminga"
   },
   {
    "team": "MIN",
@@ -23256,32 +24843,6 @@
   },
   {
    "team": "GSW",
-   "player": "L.J. Cryer",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-19",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=L.%20Cryer"
-  },
-  {
-   "team": "GSW",
-   "player": "L.J. Cryer",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-19",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=L.%20Cryer"
-  },
-  {
-   "team": "GSW",
    "player": "Jimmy Butler",
    "src": "RotoWire",
    "kind": "O",
@@ -23360,32 +24921,6 @@
   },
   {
    "team": "MEM",
-   "player": "Isaiah Stewart",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-19",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Stewart"
-  },
-  {
-   "team": "MEM",
-   "player": "Isaiah Stewart",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-19",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Stewart"
-  },
-  {
-   "team": "MEM",
    "player": "Zach Edey",
    "src": "RotoWire",
    "kind": "O",
@@ -23435,6 +24970,91 @@
    "through": "2026-11-19",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Pippen"
+  },
+  {
+   "team": "MIN",
+   "player": "Jonathan Kuminga",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-19",
+   "until": "",
+   "note": "Kuminga (shoulder) is available for Thursday's game against New York.",
+   "through": "2026-11-19",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/jonathan-kuminga-5287",
+   "from": "2026-11-19",
+   "override": true,
+   "at": "2026-11-20T00:28:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "POR",
+   "player": "Deni Avdija",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-19",
+   "until": "",
+   "note": "Avdija (foot) is listed as out for Thursday's game against the Bucks.",
+   "through": "2026-11-19",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
+   "from": "2026-11-19",
+   "override": true,
+   "at": "2026-11-20T00:22:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "POR",
+   "player": "Toumani Camara",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-19",
+   "until": "",
+   "note": "Camara (soreness) has been cleared to play Thursday against Milwaukee.",
+   "through": "2026-11-19",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/toumani-camara-5987",
+   "from": "2026-11-19",
+   "override": true,
+   "at": "2026-11-20T00:21:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "UTA",
+   "player": "Jusuf Nurkic",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "Nurkic (toe) is listed as out for Friday's game against Phoenix.",
+   "through": "2026-11-20",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/jusuf-nurkic-3580",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-20T00:05:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "HOU",
+   "player": "Alperen Sengun",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "Sengun (eye) is questionable for Friday's game against the Nuggets.",
+   "through": "2026-11-20",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/alperen-sengun-5404",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-19T23:18:00+00:00",
+   "from_news": true
   },
   {
    "team": "MEM",
@@ -24081,258 +25701,38 @@
    "override": true,
    "at": "2026-11-17T00:41:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "HOU",
-   "player": "Tari Eason",
-   "src": "Jackson Gatlin",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "Eason is in the starting lineup for Monday's game against Miami, Jackson Gatlin of the Locked On Podcast Network reports.",
-   "through": "2026-11-16",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/tari-eason-5704",
-   "from": "2026-11-16",
-   "override": true,
-   "at": "2026-11-17T00:12:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "PHI",
-   "player": "Joel Embiid",
-   "src": "RotoWire news",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "Embiid (foot) is available for Monday's game against Brooklyn.",
-   "through": "2026-11-16",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/joel-embiid-3572",
-   "from": "2026-11-16",
-   "override": true,
-   "at": "2026-11-17T00:06:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "HOU",
-   "player": "Amen Thompson",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "Thompson (knee) is out for Monday's game against the Heat.",
-   "through": "2026-11-16",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/amen-thompson-5931",
-   "from": "2026-11-16",
-   "override": true,
-   "at": "2026-11-16T23:49:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "ORL",
-   "player": "Jalen Suggs",
-   "src": "RotoWire news",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "Suggs will start Monday's game against the Celtics.",
-   "through": "2026-11-16",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/jalen-suggs-5379",
-   "from": "2026-11-16",
-   "override": true,
-   "at": "2026-11-16T23:47:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "BOS",
-   "player": "Luka Garza",
-   "src": "RotoWire news",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "Garza is listed in the starting lineup for Monday's game against the Magic.",
-   "through": "2026-11-16",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/luka-garza-5423",
-   "from": "2026-11-16",
-   "override": true,
-   "at": "2026-11-16T23:41:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "CLE",
-   "player": "Mario Hezonja",
-   "src": "Serena Winters",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "Hezonja is not listed in the starting lineup for Monday's game against Chicago, Serena Winters of FanDuel Sports Network Ohio reports.",
-   "through": "2026-11-16",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/mario-hezonja-3578",
-   "from": "2026-11-16",
-   "override": true,
-   "at": "2026-11-16T23:25:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "MEM",
-   "player": "Zach Edey",
-   "src": "RotoWire news",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "Edey (ankle) is available for Monday's game against the Wizards.",
-   "through": "2026-11-16",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/zach-edey-6263",
-   "from": "2026-11-16",
-   "override": true,
-   "at": "2026-11-16T23:15:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "MIA",
-   "player": "Pelle Larsson",
-   "src": "Ira Winderman",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "Larsson won't play in Monday's game against the Rockets due to an illness, Ira Winderman of the South Florida Sun Sentinel reports.",
-   "through": "2026-11-16",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/pelle-larsson-6013",
-   "from": "2026-11-16",
-   "override": true,
-   "at": "2026-11-16T22:49:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "CLE",
-   "player": "Jaylon Tyson",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "Tyson (ankle) has been ruled out for Monday's game against Chicago.",
-   "through": "2026-11-16",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/jaylon-tyson-6277",
-   "from": "2026-11-16",
-   "override": true,
-   "at": "2026-11-16T22:39:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "CHI",
-   "player": "Jalen Smith",
-   "src": "K.C. Johnson",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "Smith (finger) will play in Monday's game against the Cavaliers, K.C. Johnson of Chicago Sports Network reports.",
-   "through": "2026-11-16",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/jalen-smith-5169",
-   "from": "2026-11-16",
-   "override": true,
-   "at": "2026-11-16T22:38:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "DET",
-   "player": "Duncan Robinson",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-17",
-   "until": "",
-   "note": "Robinson (quadriceps) has been ruled out for Tuesday's game against the Spurs.",
-   "through": "2026-11-17",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/duncan-robinson-4470",
-   "from": "2026-11-17",
-   "override": true,
-   "at": "2026-11-16T22:37:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "CLE",
-   "player": "Peyton Watson",
-   "src": "Danny Cunningham",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "Watson (abdomen) will play in Monday's game against the Bulls, Danny Cunningham of Sports Radio 92.3 The Fan Cleveland reports.",
-   "through": "2026-11-16",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/peyton-watson-5722",
-   "from": "2026-11-16",
-   "override": true,
-   "at": "2026-11-16T22:35:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "BOS",
-   "player": "Neemias Queta",
-   "src": "Taylor Snow",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-16",
-   "until": "",
-   "note": "Queta (rest) won't play in Monday's game against the Magic, Taylor Snow of the Celtics' official site reports.",
-   "through": "2026-11-16",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/neemias-queta-5333",
-   "from": "2026-11-16",
-   "override": true,
-   "at": "2026-11-16T22:10:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-19T19:19:12+00:00",
+ "generated_at": "2026-11-20T00:30:56+00:00",
  "sources": {
   "schedule": {
    "ok": true,
    "at": "2026-11-19T19:18:56+00:00",
-   "count": 1200
+   "count": 1200,
+   "reused": true
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-19T19:19:08+00:00",
+   "at": "2026-11-20T00:30:52+00:00",
    "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-19T19:19:08+00:00",
+   "at": "2026-11-20T00:30:53+00:00",
    "teams": 8,
-   "injuries": 37
+   "injuries": 28
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-19T19:19:09+00:00",
+   "at": "2026-11-20T00:30:53+00:00",
    "teams": 8,
    "verified": 0,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-19T19:19:09+00:00",
+   "at": "2026-11-20T00:30:53+00:00",
    "current_players": 472,
    "last_players": 582
   },
@@ -24342,18 +25742,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-19T19:19:09+00:00",
-   "count": 102
+   "at": "2026-11-20T00:30:53+00:00",
+   "count": 107
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-19T19:19:09+00:00",
+   "at": "2026-11-20T00:30:53+00:00",
    "count": 101
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-19T19:19:09+00:00",
-   "count": 105
+   "at": "2026-11-20T00:30:53+00:00",
+   "count": 107
   },
   "x": {
    "ok": null,
@@ -24361,40 +25761,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-19T19:19:10+00:00",
-   "players": 82,
-   "read_at": "2026-11-19T19:19:09+00:00",
-   "saved_for_history": 89
+   "at": "2026-11-20T00:30:54+00:00",
+   "players": 76,
+   "read_at": "2026-11-20T00:30:53+00:00",
+   "saved_for_history": 82
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-19T19:19:10+00:00",
-   "players": 47,
-   "read_at": "2026-11-19T19:19:10+00:00"
+   "at": "2026-11-20T00:30:55+00:00",
+   "players": 44,
+   "read_at": "2026-11-20T00:30:54+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-19T19:19:11+00:00",
+   "at": "2026-11-20T00:30:55+00:00",
    "players": 10,
-   "read_at": "2026-11-19T19:19:10+00:00"
+   "read_at": "2026-11-20T00:30:55+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-19T19:19:11+00:00",
-   "games": 4,
-   "read_at": "2026-11-19T19:19:11+00:00"
+   "at": "2026-11-20T00:30:55+00:00",
+   "games": 3,
+   "read_at": "2026-11-20T00:30:55+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-19T19:19:12+00:00",
-   "injuries": 36,
+   "at": "2026-11-20T00:30:56+00:00",
+   "injuries": 95,
    "notes": 160,
-   "read_at": "2026-11-19T19:19:11+00:00"
+   "read_at": "2026-11-20T00:30:55+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-19T19:19:12+00:00",
-   "count": 61
+   "at": "2026-11-20T00:30:56+00:00",
+   "count": 51
   }
  }
 }
