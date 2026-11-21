@@ -8700,8 +8700,7 @@
      "pos": "C",
      "name": "Ivica Zubac"
     }
-   ],
-   "source": "Basketball Monster"
+   ]
   },
   "CLE": {
    "date": "2026-11-20",
@@ -8749,18 +8748,17 @@
     },
     {
      "pos": "SF",
-     "name": "Scottie Barnes"
+     "name": "Allen Graves"
     },
     {
      "pos": "PF",
-     "name": "Allen Graves"
+     "name": "Scottie Barnes"
     },
     {
      "pos": "C",
      "name": "Jakob Poeltl"
     }
-   ],
-   "source": "Basketball Monster"
+   ]
   },
   "DET": {
    "date": "2026-11-20",
@@ -8789,8 +8787,7 @@
      "pos": "C",
      "name": "John Collins"
     }
-   ],
-   "source": "Basketball Monster"
+   ]
   },
   "ORL": {
    "date": "2026-11-20",
@@ -14428,7 +14425,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-21T00:00:01+00:00",
+  "read_at": "2026-11-21T00:30:01+00:00",
   "date": "2026-11-20",
   "players": [
    {
@@ -15508,7 +15505,7 @@
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-21T00:00:02+00:00",
+  "read_at": "2026-11-21T00:30:01+00:00",
   "date": "2026-11-20",
   "players": [
    {
@@ -15827,17 +15824,17 @@
     "min": 28.0
    },
    {
+    "player": "Allen Graves",
+    "team": "TOR",
+    "min": 24.0
+   },
+   {
     "player": "Jamison Battle",
     "team": "TOR",
     "min": 27.0
    },
    {
     "player": "Jamal Shead",
-    "team": "TOR",
-    "min": 24.0
-   },
-   {
-    "player": "Allen Graves",
     "team": "TOR",
     "min": 24.0
    },
@@ -16024,7 +16021,7 @@
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-21T00:00:02+00:00",
+  "read_at": "2026-11-21T00:30:02+00:00",
   "date": "2026-11-20",
   "players": [
    {
@@ -16081,7 +16078,7 @@
  },
  "expected_mix": {
   "date": "2026-11-20",
-  "read_at": "2026-11-21T00:00:02+00:00",
+  "read_at": "2026-11-21T00:30:02+00:00",
   "players": [
    {
     "player": "Shai Gilgeous-Alexander",
@@ -16504,6 +16501,12 @@
     "src": "RotoWire"
    },
    {
+    "player": "Allen Graves",
+    "team": "TOR",
+    "min": 24.0,
+    "src": "RotoWire"
+   },
+   {
     "player": "Jamison Battle",
     "team": "TOR",
     "min": 27.0,
@@ -16511,12 +16514,6 @@
    },
    {
     "player": "Jamal Shead",
-    "team": "TOR",
-    "min": 24.0,
-    "src": "RotoWire"
-   },
-   {
-    "player": "Allen Graves",
     "team": "TOR",
     "min": 24.0,
     "src": "RotoWire"
@@ -17344,15 +17341,9 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-21T00:09:20+00:00",
+  "read_at": "2026-11-21T00:30:03+00:00",
   "date": "2026-11-20",
   "games": {
-   "CHA@ATL": {
-    "fav": "ATL",
-    "spread": 7.5,
-    "details": "ATL -7.5",
-    "provider": "Draft Kings"
-   },
    "ORL@BKN": {
     "fav": "ORL",
     "spread": 6.5,
@@ -17442,7 +17433,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-21T00:00:02+00:00",
+  "read_at": "2026-11-21T00:30:03+00:00",
   "injuries": [
    {
     "team": "ATL",
@@ -17778,6 +17769,21 @@
    },
    {
     "team": "DET",
+    "player": "Ronald Holland II",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Knee Contusion / Bone Bruise",
+    "upd": "2026-11-20",
+    "until": "",
+    "note": "",
+    "through": "2026-11-20",
+    "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+    "from": "2026-11-20",
+    "override": true,
+    "at": "2026-11-21T00:30:03+00:00"
+   },
+   {
+    "team": "DET",
     "player": "Taurean Prince",
     "src": "NBA report",
     "kind": "O",
@@ -17793,22 +17799,6 @@
    },
    {
     "team": "DET",
-    "player": "Ronald Holland II",
-    "src": "NBA report",
-    "kind": "G",
-    "injury": "Left Knee Contusion / Bone Bruise",
-    "upd": "2026-11-20",
-    "until": "",
-    "note": "",
-    "through": "2026-11-20",
-    "st": "doubt",
-    "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
-    "from": "2026-11-20",
-    "override": true,
-    "at": "2026-11-20T18:57:20+00:00"
-   },
-   {
-    "team": "DET",
     "player": "Cade Cunningham",
     "src": "NBA report",
     "kind": "G",
@@ -17817,11 +17807,11 @@
     "until": "",
     "note": "",
     "through": "2026-11-20",
-    "st": "prob",
+    "st": "avail",
     "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
     "from": "2026-11-20",
     "override": true,
-    "at": "2026-11-20T00:30:55+00:00"
+    "at": "2026-11-21T00:30:03+00:00"
    },
    {
     "team": "HOU",
@@ -20547,19 +20537,54 @@
     "text": "Karl-Anthony Towns played Philadelphia with his wrist wrapped and said the injury predates it: \"in the Bulls game for sure. That was when I did it.\" Asked if the wrist needs managing, no status was given: \"that's something we'll deal with in the future.\"",
     "at": "2026-10-31T04:29:22+00:00",
     "url": "https://presserwire.com/nba/availability.html"
-   },
-   {
-    "team": "MIL",
-    "players": [
-     "Kel'el Ware"
-    ],
-    "text": "\"All available,\" Taylor Jenkins said of the Milwaukee Bucks. Kel'el Ware at center \"has actually progressed to being something good for us,\" he said, though he wants more rim defense. Ware with Myles Turner? \"At some point in the season. How soon, I can't predict.\"",
-    "at": "2026-10-31T00:15:02+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
    }
   ]
  },
  "news": [
+  {
+   "id": "nba540227",
+   "player": "Allen Graves",
+   "headline": "Earns first career start Friday",
+   "text": "Graves will enter the starting lineup for Friday's game against the Pistons, Omer Osman reports.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/allen-graves-6975",
+   "at": "2026-11-21T00:23:00+00:00",
+   "team": "TOR"
+  },
+  {
+   "id": "nba540226",
+   "player": "Cade Cunningham",
+   "headline": "Will play Friday",
+   "text": "Cunningham (knee) is good to go for Friday's game against the Raptors, Eric Vincent of ClutchPoints.com reports.",
+   "reporter": "Eric Vincent",
+   "outlet": "ClutchPoints.com",
+   "url": "https://www.rotowire.com/basketball/player/cade-cunningham-5336",
+   "at": "2026-11-21T00:20:00+00:00",
+   "team": "DET"
+  },
+  {
+   "id": "nba540225",
+   "player": "Egor Demin",
+   "headline": "Shifting to bench Friday",
+   "text": "Demin is not listed in the starting lineup for Friday's game against the Magic, Erik Slater of ClutchPoints.com reports.",
+   "reporter": "Erik Slater",
+   "outlet": "ClutchPoints.com",
+   "url": "https://www.rotowire.com/basketball/player/egor-demin-6559",
+   "at": "2026-11-21T00:14:00+00:00",
+   "team": "BKN"
+  },
+  {
+   "id": "nba540224",
+   "player": "Danny Wolf",
+   "headline": "Starting Friday",
+   "text": "Wolf is in the starting lineup for Friday's matchup with the Magic, Erik Slater of ClutchPoints.com reports.",
+   "reporter": "Erik Slater",
+   "outlet": "ClutchPoints.com",
+   "url": "https://www.rotowire.com/basketball/player/danny-wolf-6560",
+   "at": "2026-11-21T00:13:00+00:00",
+   "team": "BKN"
+  },
   {
    "id": "nba540219",
    "player": "Peyton Watson",
@@ -21098,28 +21123,6 @@
    "url": "https://www.rotowire.com/basketball/player/deandre-hunter-4776",
    "at": "2026-11-18T00:33:00+00:00",
    "team": "SAC"
-  },
-  {
-   "id": "nba539658",
-   "player": "Precious Achiuwa",
-   "headline": "Questionable for Wednesday",
-   "text": "Achiuwa (ankle) is questionable for Wednesday's game against the Suns, James Ham of ESPN 1320 Sacramento reports.",
-   "reporter": "James Ham",
-   "outlet": "ESPN 1320 Sacramento",
-   "url": "https://www.rotowire.com/basketball/player/precious-achiuwa-5249",
-   "at": "2026-11-18T00:30:00+00:00",
-   "team": "SAC"
-  },
-  {
-   "id": "nba539657",
-   "player": "Deni Avdija",
-   "headline": "Ruled out Tuesday",
-   "text": "Avdija (foot) won't play Tuesday versus Minnesota.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
-   "at": "2026-11-18T00:29:00+00:00",
-   "team": "POR"
   }
  ],
  "matchup_alerts": [
@@ -24491,18 +24494,6 @@
   },
   {
    "team": "DET",
-   "player": "Cade Cunningham",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Knee Soreness",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "Cunningham (knee) is expected to play in Friday's game against the Raptors, Blake Murphy of Sportsnet.ca reports.",
-   "through": "2026-11-22",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Cade%20Cunningham"
-  },
-  {
-   "team": "DET",
    "player": "Ugonna Onyenso",
    "src": "ESPN",
    "kind": "G",
@@ -25771,6 +25762,21 @@
   },
   {
    "team": "DET",
+   "player": "Ronald Holland II",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Knee Contusion / Bone Bruise",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "",
+   "through": "2026-11-20",
+   "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-21T00:30:03+00:00"
+  },
+  {
+   "team": "DET",
    "player": "Taurean Prince",
    "src": "NBA report",
    "kind": "O",
@@ -25786,22 +25792,6 @@
   },
   {
    "team": "DET",
-   "player": "Ronald Holland II",
-   "src": "NBA report",
-   "kind": "G",
-   "injury": "Left Knee Contusion / Bone Bruise",
-   "upd": "2026-11-20",
-   "until": "",
-   "note": "",
-   "through": "2026-11-20",
-   "st": "doubt",
-   "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
-   "from": "2026-11-20",
-   "override": true,
-   "at": "2026-11-20T18:57:20+00:00"
-  },
-  {
-   "team": "DET",
    "player": "Cade Cunningham",
    "src": "NBA report",
    "kind": "G",
@@ -25810,11 +25800,11 @@
    "until": "",
    "note": "",
    "through": "2026-11-20",
-   "st": "prob",
+   "st": "avail",
    "url": "https://presserwire.com/nba/games/2026-11-20-toronto-raptors-at-detroit-pistons.html",
    "from": "2026-11-20",
    "override": true,
-   "at": "2026-11-20T00:30:55+00:00"
+   "at": "2026-11-21T00:30:03+00:00"
   },
   {
    "team": "HOU",
@@ -27283,32 +27273,6 @@
   },
   {
    "team": "DET",
-   "player": "Cade Cunningham",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-20",
-   "until": "",
-   "note": "RotoWire tag: Prob",
-   "through": "2026-11-20",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Cunningham"
-  },
-  {
-   "team": "DET",
-   "player": "Cade Cunningham",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-20",
-   "until": "",
-   "note": "RotoWire tag: Prob",
-   "through": "2026-11-20",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Cunningham"
-  },
-  {
-   "team": "DET",
    "player": "Ronald Holland II",
    "src": "RotoWire",
    "kind": "G",
@@ -27852,6 +27816,57 @@
    "through": "2026-11-20",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Reaves"
+  },
+  {
+   "team": "DET",
+   "player": "Cade Cunningham",
+   "src": "Eric Vincent",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "Cunningham (knee) is good to go for Friday's game against the Raptors, Eric Vincent of ClutchPoints.com reports.",
+   "through": "2026-11-20",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/cade-cunningham-5336",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-21T00:20:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "BKN",
+   "player": "Egor Demin",
+   "src": "Erik Slater",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "Demin is not listed in the starting lineup for Friday's game against the Magic, Erik Slater of ClutchPoints.com reports.",
+   "through": "2026-11-20",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/egor-demin-6559",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-21T00:14:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "BKN",
+   "player": "Danny Wolf",
+   "src": "Erik Slater",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "Wolf is in the starting lineup for Friday's matchup with the Magic, Erik Slater of ClutchPoints.com reports.",
+   "through": "2026-11-20",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/danny-wolf-6560",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-21T00:13:00+00:00",
+   "from_news": true
   },
   {
    "team": "CLE",
@@ -28532,40 +28547,6 @@
    "override": true,
    "at": "2026-11-18T00:33:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "SAC",
-   "player": "Precious Achiuwa",
-   "src": "James Ham",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-18",
-   "until": "",
-   "note": "Achiuwa (ankle) is questionable for Wednesday's game against the Suns, James Ham of ESPN 1320 Sacramento reports.",
-   "through": "2026-11-18",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/player/precious-achiuwa-5249",
-   "from": "2026-11-18",
-   "override": true,
-   "at": "2026-11-18T00:30:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "POR",
-   "player": "Deni Avdija",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-17",
-   "until": "",
-   "note": "Avdija (foot) won't play Tuesday versus Minnesota.",
-   "through": "2026-11-17",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
-   "from": "2026-11-17",
-   "override": true,
-   "at": "2026-11-18T00:29:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -28581,7 +28562,7 @@
    "at": "2026-11-20T23:39:00+00:00"
   }
  ],
- "generated_at": "2026-11-21T00:09:20+00:00",
+ "generated_at": "2026-11-21T00:30:04+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -28597,24 +28578,20 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-21T00:09:18+00:00",
+   "at": "2026-11-21T00:30:00+00:00",
    "teams": 18,
-   "injuries": 63
+   "injuries": 61
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-21T00:09:19+00:00",
+   "at": "2026-11-21T00:30:00+00:00",
    "teams": 16,
    "verified": 8,
-   "used": [
-    "TOR",
-    "DET",
-    "IND"
-   ]
+   "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-21T00:09:19+00:00",
+   "at": "2026-11-21T00:30:00+00:00",
    "current_players": 473,
    "last_players": 582
   },
@@ -28624,18 +28601,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-21T00:09:19+00:00",
+   "at": "2026-11-21T00:30:00+00:00",
    "count": 109
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-21T00:09:19+00:00",
+   "at": "2026-11-21T00:30:01+00:00",
    "count": 107
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-21T00:09:20+00:00",
-   "count": 106
+   "at": "2026-11-21T00:30:01+00:00",
+   "count": 105
   },
   "x": {
    "ok": null,
@@ -28643,40 +28620,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-21T00:09:20+00:00",
+   "at": "2026-11-21T00:30:01+00:00",
    "players": 179,
-   "read_at": "2026-11-21T00:00:01+00:00",
-   "saved_for_history": 176
+   "read_at": "2026-11-21T00:30:01+00:00",
+   "saved_for_history": 108
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-21T00:09:20+00:00",
+   "at": "2026-11-21T00:30:02+00:00",
    "players": 102,
-   "read_at": "2026-11-21T00:00:02+00:00"
+   "read_at": "2026-11-21T00:30:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-21T00:09:20+00:00",
+   "at": "2026-11-21T00:30:03+00:00",
    "players": 10,
-   "read_at": "2026-11-21T00:00:02+00:00"
+   "read_at": "2026-11-21T00:30:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-21T00:09:20+00:00",
-   "games": 9,
-   "read_at": "2026-11-21T00:09:20+00:00"
+   "at": "2026-11-21T00:30:03+00:00",
+   "games": 8,
+   "read_at": "2026-11-21T00:30:03+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-21T00:09:20+00:00",
+   "at": "2026-11-21T00:30:03+00:00",
    "injuries": 105,
-   "notes": 165,
-   "read_at": "2026-11-21T00:00:02+00:00"
+   "notes": 164,
+   "read_at": "2026-11-21T00:30:03+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-21T00:09:20+00:00",
-   "count": 51
+   "at": "2026-11-21T00:30:04+00:00",
+   "count": 53
   }
  }
 }
