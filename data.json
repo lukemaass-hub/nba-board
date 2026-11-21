@@ -8968,7 +8968,7 @@
    "time": "21:30",
    "vs": "UTA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8997,7 +8997,7 @@
    "time": "21:30",
    "vs": "PHX",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9019,7 +9019,8 @@
      "pos": "C",
      "name": "Jaxson Hayes"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "HOU": {
    "date": "2026-11-20",
@@ -17341,7 +17342,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-21T01:55:30+00:00",
+  "read_at": "2026-11-21T02:06:07+00:00",
   "date": "2026-11-20",
   "games": {
    "PHX@UTA": {
@@ -27757,19 +27758,6 @@
   },
   {
    "team": "SAC",
-   "player": "De'Andre Hunter",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-20",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-20",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Hunter"
-  },
-  {
-   "team": "SAC",
    "player": "Ben Simmons",
    "src": "RotoWire",
    "kind": "O",
@@ -27780,19 +27768,6 @@
    "through": "2026-11-20",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Simmons"
-  },
-  {
-   "team": "SAC",
-   "player": "De'Andre Hunter",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-20",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-20",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Hunter"
   },
   {
    "team": "SAC",
@@ -28595,7 +28570,7 @@
    "at": "2026-11-20T23:39:00+00:00"
   }
  ],
- "generated_at": "2026-11-21T01:55:31+00:00",
+ "generated_at": "2026-11-21T02:06:08+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -28606,24 +28581,27 @@
   "espn_depth": {
    "ok": true,
    "at": "2026-11-21T01:55:27+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-21T01:55:27+00:00",
+   "at": "2026-11-21T02:06:06+00:00",
    "teams": 18,
-   "injuries": 58
+   "injuries": 56
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-21T01:55:27+00:00",
+   "at": "2026-11-21T02:06:07+00:00",
    "teams": 16,
-   "verified": 10,
-   "used": []
+   "verified": 12,
+   "used": [
+    "UTA"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-21T01:55:28+00:00",
+   "at": "2026-11-21T02:06:07+00:00",
    "current_players": 473,
    "last_players": 582
   },
@@ -28633,17 +28611,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-21T01:55:28+00:00",
+   "at": "2026-11-21T02:06:07+00:00",
    "count": 107
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-21T01:55:28+00:00",
+   "at": "2026-11-21T02:06:07+00:00",
    "count": 107
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-21T01:55:28+00:00",
+   "at": "2026-11-21T02:06:07+00:00",
    "count": 106
   },
   "x": {
@@ -28652,39 +28630,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-21T01:55:29+00:00",
+   "at": "2026-11-21T02:06:07+00:00",
    "players": 179,
    "read_at": "2026-11-21T01:55:28+00:00",
    "saved_for_history": 65
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-21T01:55:30+00:00",
+   "at": "2026-11-21T02:06:07+00:00",
    "players": 102,
    "read_at": "2026-11-21T01:55:29+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-21T01:55:30+00:00",
+   "at": "2026-11-21T02:06:07+00:00",
    "players": 10,
    "read_at": "2026-11-21T01:55:30+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-21T01:55:30+00:00",
+   "at": "2026-11-21T02:06:07+00:00",
    "games": 3,
-   "read_at": "2026-11-21T01:55:30+00:00"
+   "read_at": "2026-11-21T02:06:07+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-21T01:55:31+00:00",
+   "at": "2026-11-21T02:06:07+00:00",
    "injuries": 107,
    "notes": 164,
    "read_at": "2026-11-21T01:55:30+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-21T01:55:31+00:00",
+   "at": "2026-11-21T02:06:08+00:00",
    "count": 56
   }
  }
