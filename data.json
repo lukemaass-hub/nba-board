@@ -8678,7 +8678,7 @@
    "time": "19:30",
    "vs": "CLE",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8700,7 +8700,8 @@
      "pos": "C",
      "name": "Ivica Zubac"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "CLE": {
    "date": "2026-11-20",
@@ -8736,7 +8737,7 @@
    "time": "19:30",
    "vs": "DET",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8748,24 +8749,25 @@
     },
     {
      "pos": "SF",
-     "name": "Jamison Battle"
+     "name": "Scottie Barnes"
     },
     {
      "pos": "PF",
-     "name": "Scottie Barnes"
+     "name": "Allen Graves"
     },
     {
      "pos": "C",
      "name": "Jakob Poeltl"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "DET": {
    "date": "2026-11-20",
    "time": "19:30",
    "vs": "TOR",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8787,7 +8789,8 @@
      "pos": "C",
      "name": "John Collins"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "ORL": {
    "date": "2026-11-20",
@@ -8831,11 +8834,11 @@
     },
     {
      "pos": "SG",
-     "name": "Michael Porter"
+     "name": "Danny Wolf"
     },
     {
      "pos": "SF",
-     "name": "Danny Wolf"
+     "name": "Michael Porter"
     },
     {
      "pos": "PF",
@@ -8845,8 +8848,7 @@
      "pos": "C",
      "name": "Day'Ron Sharpe"
     }
-   ],
-   "source": "Basketball Monster"
+   ]
   },
   "WAS": {
    "date": "2026-11-20",
@@ -17342,7 +17344,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-21T00:06:13+00:00",
+  "read_at": "2026-11-21T00:09:20+00:00",
   "date": "2026-11-20",
   "games": {
    "CHA@ATL": {
@@ -24309,18 +24311,6 @@
   },
   {
    "team": "CHI",
-   "player": "Noa Essengue",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "day-to-day",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "Essengue is listed as probable for Friday's game against Washington due to bilateral wrist soreness.",
-   "through": "2026-11-22",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Noa%20Essengue"
-  },
-  {
-   "team": "CHI",
    "player": "Tobe Awaka",
    "src": "ESPN",
    "kind": "O",
@@ -28591,7 +28581,7 @@
    "at": "2026-11-20T23:39:00+00:00"
   }
  ],
- "generated_at": "2026-11-21T00:06:13+00:00",
+ "generated_at": "2026-11-21T00:09:20+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -28607,22 +28597,24 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-21T00:06:10+00:00",
+   "at": "2026-11-21T00:09:18+00:00",
    "teams": 18,
    "injuries": 63
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-21T00:06:10+00:00",
+   "at": "2026-11-21T00:09:19+00:00",
    "teams": 16,
-   "verified": 4,
+   "verified": 8,
    "used": [
-    "BKN"
+    "TOR",
+    "DET",
+    "IND"
    ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-21T00:06:10+00:00",
+   "at": "2026-11-21T00:09:19+00:00",
    "current_players": 473,
    "last_players": 582
   },
@@ -28632,18 +28624,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-21T00:06:11+00:00",
+   "at": "2026-11-21T00:09:19+00:00",
    "count": 109
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-21T00:06:13+00:00",
+   "at": "2026-11-21T00:09:19+00:00",
    "count": 107
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-21T00:06:13+00:00",
-   "count": 107
+   "at": "2026-11-21T00:09:20+00:00",
+   "count": 106
   },
   "x": {
    "ok": null,
@@ -28651,39 +28643,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-21T00:06:13+00:00",
+   "at": "2026-11-21T00:09:20+00:00",
    "players": 179,
    "read_at": "2026-11-21T00:00:01+00:00",
    "saved_for_history": 176
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-21T00:06:13+00:00",
+   "at": "2026-11-21T00:09:20+00:00",
    "players": 102,
    "read_at": "2026-11-21T00:00:02+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-21T00:06:13+00:00",
+   "at": "2026-11-21T00:09:20+00:00",
    "players": 10,
    "read_at": "2026-11-21T00:00:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-21T00:06:13+00:00",
+   "at": "2026-11-21T00:09:20+00:00",
    "games": 9,
-   "read_at": "2026-11-21T00:06:13+00:00"
+   "read_at": "2026-11-21T00:09:20+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-21T00:06:13+00:00",
+   "at": "2026-11-21T00:09:20+00:00",
    "injuries": 105,
    "notes": 165,
    "read_at": "2026-11-21T00:00:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-21T00:06:13+00:00",
+   "at": "2026-11-21T00:09:20+00:00",
    "count": 51
   }
  }
