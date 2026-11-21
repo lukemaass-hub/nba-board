@@ -8707,7 +8707,7 @@
    "time": "19:30",
    "vs": "IND",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8794,7 +8794,7 @@
    "time": "19:30",
    "vs": "BKN",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8823,7 +8823,7 @@
    "time": "19:30",
    "vs": "ORL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8831,11 +8831,11 @@
     },
     {
      "pos": "SG",
-     "name": "Egor Demin"
+     "name": "Michael Porter"
     },
     {
      "pos": "SF",
-     "name": "Michael Porter"
+     "name": "Danny Wolf"
     },
     {
      "pos": "PF",
@@ -8845,7 +8845,8 @@
      "pos": "C",
      "name": "Day'Ron Sharpe"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "WAS": {
    "date": "2026-11-20",
@@ -17341,7 +17342,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-21T00:00:02+00:00",
+  "read_at": "2026-11-21T00:06:13+00:00",
   "date": "2026-11-20",
   "games": {
    "CHA@ATL": {
@@ -17370,8 +17371,8 @@
    },
    "WAS@CHI": {
     "fav": "CHI",
-    "spread": 2.5,
-    "details": "CHI -2.5",
+    "spread": 1.5,
+    "details": "CHI -1.5",
     "provider": "Draft Kings"
    },
    "NOP@OKC": {
@@ -28590,7 +28591,7 @@
    "at": "2026-11-20T23:39:00+00:00"
   }
  ],
- "generated_at": "2026-11-21T00:00:03+00:00",
+ "generated_at": "2026-11-21T00:06:13+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -28606,20 +28607,22 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-21T00:00:00+00:00",
+   "at": "2026-11-21T00:06:10+00:00",
    "teams": 18,
    "injuries": 63
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-21T00:00:00+00:00",
+   "at": "2026-11-21T00:06:10+00:00",
    "teams": 16,
-   "verified": 2,
-   "used": []
+   "verified": 4,
+   "used": [
+    "BKN"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-21T00:00:00+00:00",
+   "at": "2026-11-21T00:06:10+00:00",
    "current_players": 473,
    "last_players": 582
   },
@@ -28629,17 +28632,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-21T00:00:00+00:00",
+   "at": "2026-11-21T00:06:11+00:00",
    "count": 109
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-21T00:00:01+00:00",
+   "at": "2026-11-21T00:06:13+00:00",
    "count": 107
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-21T00:00:01+00:00",
+   "at": "2026-11-21T00:06:13+00:00",
    "count": 107
   },
   "x": {
@@ -28648,39 +28651,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-21T00:00:02+00:00",
+   "at": "2026-11-21T00:06:13+00:00",
    "players": 179,
    "read_at": "2026-11-21T00:00:01+00:00",
    "saved_for_history": 176
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-21T00:00:02+00:00",
+   "at": "2026-11-21T00:06:13+00:00",
    "players": 102,
    "read_at": "2026-11-21T00:00:02+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-21T00:00:02+00:00",
+   "at": "2026-11-21T00:06:13+00:00",
    "players": 10,
    "read_at": "2026-11-21T00:00:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-21T00:00:02+00:00",
+   "at": "2026-11-21T00:06:13+00:00",
    "games": 9,
-   "read_at": "2026-11-21T00:00:02+00:00"
+   "read_at": "2026-11-21T00:06:13+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-21T00:00:03+00:00",
+   "at": "2026-11-21T00:06:13+00:00",
    "injuries": 105,
    "notes": 165,
    "read_at": "2026-11-21T00:00:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-21T00:00:03+00:00",
+   "at": "2026-11-21T00:06:13+00:00",
    "count": 51
   }
  }
