@@ -8910,7 +8910,7 @@
    "time": "20:00",
    "vs": "OKC",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8918,11 +8918,11 @@
     },
     {
      "pos": "SG",
-     "name": "Trey Murphy"
+     "name": "Saddiq Bey"
     },
     {
      "pos": "SF",
-     "name": "Saddiq Bey"
+     "name": "Herbert Jones"
     },
     {
      "pos": "PF",
@@ -8939,7 +8939,7 @@
    "time": "20:00",
    "vs": "NOP",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -14425,7 +14425,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-21T00:45:35+00:00",
+  "read_at": "2026-11-21T01:25:10+00:00",
   "date": "2026-11-20",
   "players": [
    {
@@ -14531,15 +14531,15 @@
     "min": 31.0
    },
    {
-    "player": "Domantas Sabonis",
-    "team": "SAC",
-    "game": "SAC@LAL",
-    "min": 33.0
-   },
-   {
     "player": "James Harden",
     "team": "CLE",
     "game": "IND@CLE",
+    "min": 33.0
+   },
+   {
+    "player": "Domantas Sabonis",
+    "team": "SAC",
+    "game": "SAC@LAL",
     "min": 33.0
    },
    {
@@ -14549,16 +14549,16 @@
     "min": 31.0
    },
    {
-    "player": "Keyonte George",
-    "team": "UTA",
-    "game": "PHO@UTA",
-    "min": 33.0
-   },
-   {
     "player": "Dyson Daniels",
     "team": "ATL",
     "game": "CHA@ATL",
     "min": 32.0
+   },
+   {
+    "player": "Keyonte George",
+    "team": "UTA",
+    "game": "PHO@UTA",
+    "min": 33.0
    },
    {
     "player": "Kevin Durant",
@@ -14603,16 +14603,16 @@
     "min": 31.0
    },
    {
-    "player": "Zion Williamson",
-    "team": "NOP",
-    "game": "NO@OKC",
-    "min": 31.0
-   },
-   {
     "player": "Desmond Bane",
     "team": "ORL",
     "game": "ORL@BKN",
     "min": 34.0
+   },
+   {
+    "player": "Zion Williamson",
+    "team": "NOP",
+    "game": "NO@OKC",
+    "min": 31.0
    },
    {
     "player": "Amen Thompson",
@@ -14627,16 +14627,16 @@
     "min": 30.0
    },
    {
-    "player": "Ajay Mitchell",
-    "team": "OKC",
-    "game": "NO@OKC",
-    "min": 28.0
-   },
-   {
     "player": "Walker Kessler",
     "team": "LAL",
     "game": "SAC@LAL",
     "min": 31.0
+   },
+   {
+    "player": "Ajay Mitchell",
+    "team": "OKC",
+    "game": "NO@OKC",
+    "min": 28.0
    },
    {
     "player": "Julius Randle",
@@ -14663,16 +14663,16 @@
     "min": 35.0
    },
    {
-    "player": "Ivica Zubac",
-    "team": "IND",
-    "game": "IND@CLE",
-    "min": 29.0
-   },
-   {
     "player": "AJ Dybantsa",
     "team": "WAS",
     "game": "WAS@CHI",
     "min": 37.0
+   },
+   {
+    "player": "Ivica Zubac",
+    "team": "IND",
+    "game": "IND@CLE",
+    "min": 29.0
    },
    {
     "player": "Isaiah Hartenstein",
@@ -14681,10 +14681,10 @@
     "min": 25.0
    },
    {
-    "player": "Zach LaVine",
-    "team": "SAC",
-    "game": "SAC@LAL",
-    "min": 34.0
+    "player": "Saddiq Bey",
+    "team": "NOP",
+    "game": "NO@OKC",
+    "min": 37.0
    },
    {
     "player": "Michael Porter Jr.",
@@ -14693,10 +14693,10 @@
     "min": 33.0
    },
    {
-    "player": "Saddiq Bey",
-    "team": "NOP",
-    "game": "NO@OKC",
-    "min": 37.0
+    "player": "Zach LaVine",
+    "team": "SAC",
+    "game": "SAC@LAL",
+    "min": 34.0
    },
    {
     "player": "Miles Bridges",
@@ -14711,16 +14711,16 @@
     "min": 34.0
    },
    {
-    "player": "Jeremiah Fears",
-    "team": "NOP",
-    "game": "NO@OKC",
-    "min": 31.0
-   },
-   {
     "player": "Kyshawn George",
     "team": "WAS",
     "game": "WAS@CHI",
     "min": 34.0
+   },
+   {
+    "player": "Jeremiah Fears",
+    "team": "NOP",
+    "game": "NO@OKC",
+    "min": 31.0
    },
    {
     "player": "Jarrett Allen",
@@ -14747,26 +14747,20 @@
     "min": 29.0
    },
    {
-    "player": "Anthony Black",
-    "team": "ORL",
-    "game": "ORL@BKN",
-    "min": 29.0
-   },
-   {
     "player": "Matas Buzelis",
     "team": "CHI",
     "game": "WAS@CHI",
     "min": 29.0
    },
    {
-    "player": "Paul Reed",
-    "team": "DET",
-    "game": "TOR@DET",
-    "min": 25.0
+    "player": "Anthony Black",
+    "team": "ORL",
+    "game": "ORL@BKN",
+    "min": 29.0
    },
    {
-    "player": "Jakob Poeltl",
-    "team": "TOR",
+    "player": "Paul Reed",
+    "team": "DET",
     "game": "TOR@DET",
     "min": 25.0
    },
@@ -14777,16 +14771,16 @@
     "min": 24.0
    },
    {
+    "player": "Jakob Poeltl",
+    "team": "TOR",
+    "game": "TOR@DET",
+    "min": 25.0
+   },
+   {
     "player": "John Collins",
     "team": "DET",
     "game": "TOR@DET",
     "min": 27.0
-   },
-   {
-    "player": "Jared McCain",
-    "team": "OKC",
-    "game": "NO@OKC",
-    "min": 28.0
    },
    {
     "player": "Moussa Diabate",
@@ -14799,6 +14793,12 @@
     "team": "HOU",
     "game": "HOU@DEN",
     "min": 29.0
+   },
+   {
+    "player": "Jared McCain",
+    "team": "OKC",
+    "game": "NO@OKC",
+    "min": 28.0
    },
    {
     "player": "Alex Sarr",
@@ -14825,16 +14825,16 @@
     "min": 27.0
    },
    {
-    "player": "Aaron Wiggins",
-    "team": "ATL",
-    "game": "CHA@ATL",
-    "min": 26.0
-   },
-   {
     "player": "Dillon Brooks",
     "team": "PHX",
     "game": "PHO@UTA",
     "min": 30.0
+   },
+   {
+    "player": "Aaron Wiggins",
+    "team": "ATL",
+    "game": "CHA@ATL",
+    "min": 26.0
    },
    {
     "player": "Wendell Carter Jr.",
@@ -14873,22 +14873,22 @@
     "min": 31.0
    },
    {
-    "player": "Christian Braun",
-    "team": "DEN",
-    "game": "HOU@DEN",
-    "min": 34.0
-   },
-   {
     "player": "Kelly Oubre",
     "team": "IND",
     "game": "IND@CLE",
     "min": 30.0
    },
    {
-    "player": "Cameron Johnson",
+    "player": "Christian Braun",
     "team": "DEN",
     "game": "HOU@DEN",
-    "min": 30.0
+    "min": 34.0
+   },
+   {
+    "player": "Peyton Watson",
+    "team": "CLE",
+    "game": "IND@CLE",
+    "min": 29.0
    },
    {
     "player": "Aaron Gordon",
@@ -14897,10 +14897,10 @@
     "min": 29.0
    },
    {
-    "player": "Peyton Watson",
-    "team": "CLE",
-    "game": "IND@CLE",
-    "min": 29.0
+    "player": "Cameron Johnson",
+    "team": "DEN",
+    "game": "HOU@DEN",
+    "min": 30.0
    },
    {
     "player": "Keegan Murray",
@@ -14915,6 +14915,12 @@
     "min": 23.0
    },
    {
+    "player": "Isaiah Collier",
+    "team": "UTA",
+    "game": "PHO@UTA",
+    "min": 22.0
+   },
+   {
     "player": "De`Andre Hunter",
     "team": "SAC",
     "game": "SAC@LAL",
@@ -14927,21 +14933,9 @@
     "min": 23.0
    },
    {
-    "player": "Isaiah Collier",
-    "team": "UTA",
-    "game": "PHO@UTA",
-    "min": 22.0
-   },
-   {
     "player": "Sion James",
     "team": "CHA",
     "game": "CHA@ATL",
-    "min": 30.0
-   },
-   {
-    "player": "Tristan da Silva",
-    "team": "ORL",
-    "game": "ORL@BKN",
     "min": 30.0
    },
    {
@@ -14949,6 +14943,12 @@
     "team": "PHX",
     "game": "PHO@UTA",
     "min": 23.0
+   },
+   {
+    "player": "Tristan da Silva",
+    "team": "ORL",
+    "game": "ORL@BKN",
+    "min": 30.0
    },
    {
     "player": "Aaron Nesmith",
@@ -15011,22 +15011,16 @@
     "min": 31.0
    },
    {
-    "player": "Nolan Traore",
-    "team": "BKN",
-    "game": "ORL@BKN",
-    "min": 22.0
-   },
-   {
-    "player": "Jaxson Hayes",
-    "team": "UTA",
-    "game": "PHO@UTA",
-    "min": 25.0
-   },
-   {
     "player": "Collin Sexton",
     "team": "LAL",
     "game": "SAC@LAL",
     "min": 18.0
+   },
+   {
+    "player": "Nolan Traore",
+    "team": "BKN",
+    "game": "ORL@BKN",
+    "min": 22.0
    },
    {
     "player": "Mario Hezonja",
@@ -15039,6 +15033,12 @@
     "team": "IND",
     "game": "IND@CLE",
     "min": 19.0
+   },
+   {
+    "player": "Jaxson Hayes",
+    "team": "UTA",
+    "game": "PHO@UTA",
+    "min": 25.0
    },
    {
     "player": "Ziaire Williams",
@@ -15089,16 +15089,16 @@
     "min": 23.0
    },
    {
-    "player": "Ryan Kalkbrenner",
-    "team": "CHA",
-    "game": "CHA@ATL",
-    "min": 20.0
-   },
-   {
     "player": "Jordan Goodwin",
     "team": "PHX",
     "game": "PHO@UTA",
     "min": 19.0
+   },
+   {
+    "player": "Ryan Kalkbrenner",
+    "team": "CHA",
+    "game": "CHA@ATL",
+    "min": 20.0
    },
    {
     "player": "Jake LaRavia",
@@ -15155,22 +15155,16 @@
     "min": 17.0
    },
    {
-    "player": "Bennett Stirtz",
-    "team": "OKC",
-    "game": "NO@OKC",
-    "min": 21.0
-   },
-   {
     "player": "Moritz Wagner",
     "team": "BKN",
     "game": "ORL@BKN",
     "min": 17.0
    },
    {
-    "player": "Tari Eason",
-    "team": "HOU",
-    "game": "HOU@DEN",
-    "min": 19.0
+    "player": "Bennett Stirtz",
+    "team": "OKC",
+    "game": "NO@OKC",
+    "min": 21.0
    },
    {
     "player": "Mikel Brown Jr.",
@@ -15179,10 +15173,10 @@
     "min": 19.0
    },
    {
-    "player": "Patrick Williams",
-    "team": "CHI",
-    "game": "WAS@CHI",
-    "min": 21.0
+    "player": "Tari Eason",
+    "team": "HOU",
+    "game": "HOU@DEN",
+    "min": 19.0
    },
    {
     "player": "Tre Johnson",
@@ -15191,16 +15185,22 @@
     "min": 23.0
    },
    {
+    "player": "Patrick Williams",
+    "team": "CHI",
+    "game": "WAS@CHI",
+    "min": 21.0
+   },
+   {
     "player": "Nikola Vucevic",
     "team": "ORL",
     "game": "ORL@BKN",
     "min": 15.0
    },
    {
-    "player": "Matisse Thybulle",
-    "team": "LAL",
-    "game": "SAC@LAL",
-    "min": 22.0
+    "player": "Luke Kennard",
+    "team": "PHX",
+    "game": "PHO@UTA",
+    "min": 19.0
    },
    {
     "player": "Quenton Jackson",
@@ -15215,10 +15215,10 @@
     "min": 16.0
    },
    {
-    "player": "Luke Kennard",
-    "team": "PHX",
-    "game": "PHO@UTA",
-    "min": 19.0
+    "player": "Matisse Thybulle",
+    "team": "LAL",
+    "game": "SAC@LAL",
+    "min": 22.0
    },
    {
     "player": "Jamison Battle",
@@ -15269,16 +15269,16 @@
     "min": 24.0
    },
    {
-    "player": "Zach Collins",
-    "team": "CHI",
-    "game": "WAS@CHI",
-    "min": 12.0
-   },
-   {
     "player": "Buddy Hield",
     "team": "CHI",
     "game": "WAS@CHI",
     "min": 13.0
+   },
+   {
+    "player": "Zach Collins",
+    "team": "CHI",
+    "game": "WAS@CHI",
+    "min": 12.0
    },
    {
     "player": "Noah Clowney",
@@ -15311,28 +15311,28 @@
     "min": 15.0
    },
    {
-    "player": "Ryan Dunn",
-    "team": "PHX",
-    "game": "PHO@UTA",
-    "min": 14.0
-   },
-   {
     "player": "Jarred Vanderbilt",
     "team": "LAL",
     "game": "SAC@LAL",
     "min": 15.0
    },
    {
-    "player": "Christian Anderson",
-    "team": "CHA",
-    "game": "CHA@ATL",
-    "min": 11.0
-   },
-   {
     "player": "Khaman Maluach",
     "team": "PHX",
     "game": "PHO@UTA",
     "min": 12.0
+   },
+   {
+    "player": "Ryan Dunn",
+    "team": "PHX",
+    "game": "PHO@UTA",
+    "min": 14.0
+   },
+   {
+    "player": "Christian Anderson",
+    "team": "CHA",
+    "game": "CHA@ATL",
+    "min": 11.0
    },
    {
     "player": "Jase Richardson",
@@ -15359,20 +15359,14 @@
     "min": 14.0
    },
    {
-    "player": "Steven Adams",
-    "team": "HOU",
-    "game": "HOU@DEN",
-    "min": 13.0
-   },
-   {
     "player": "Ron Holland",
     "team": "DET",
     "game": "TOR@DET",
     "min": 12.0
    },
    {
-    "player": "Tyus Jones",
-    "team": "DEN",
+    "player": "Steven Adams",
+    "team": "HOU",
     "game": "HOU@DEN",
     "min": 13.0
    },
@@ -15381,6 +15375,12 @@
     "team": "DEN",
     "game": "HOU@DEN",
     "min": 14.0
+   },
+   {
+    "player": "Tyus Jones",
+    "team": "DEN",
+    "game": "HOU@DEN",
+    "min": 13.0
    },
    {
     "player": "Marvin Bagley III",
@@ -15467,16 +15467,16 @@
     "min": 13.0
    },
    {
-    "player": "Bryce Hopkins",
-    "team": "DEN",
-    "game": "HOU@DEN",
-    "min": 11.0
-   },
-   {
     "player": "Jamal Cain",
     "team": "ORL",
     "game": "ORL@BKN",
     "min": 12.0
+   },
+   {
+    "player": "Bryce Hopkins",
+    "team": "DEN",
+    "game": "HOU@DEN",
+    "min": 11.0
    },
    {
     "player": "Spencer Jones",
@@ -15505,7 +15505,7 @@
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-21T00:45:36+00:00",
+  "read_at": "2026-11-21T01:25:11+00:00",
   "date": "2026-11-20",
   "players": [
    {
@@ -15764,9 +15764,9 @@
     "min": 32.0
    },
    {
-    "player": "Trey Murphy",
+    "player": "Herbert Jones",
     "team": "NOP",
-    "min": 20.0
+    "min": 28.0
    },
    {
     "player": "Yves Missi",
@@ -15774,14 +15774,14 @@
     "min": 20.0
    },
    {
-    "player": "Herbert Jones",
-    "team": "NOP",
-    "min": 28.0
-   },
-   {
     "player": "Jordan Poole",
     "team": "NOP",
     "min": 25.0
+   },
+   {
+    "player": "Trey Murphy",
+    "team": "NOP",
+    "min": 20.0
    },
    {
     "player": "Derik Queen",
@@ -16021,7 +16021,7 @@
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-21T00:45:36+00:00",
+  "read_at": "2026-11-21T01:25:11+00:00",
   "date": "2026-11-20",
   "players": [
    {
@@ -16078,7 +16078,7 @@
  },
  "expected_mix": {
   "date": "2026-11-20",
-  "read_at": "2026-11-21T00:45:36+00:00",
+  "read_at": "2026-11-21T01:25:11+00:00",
   "players": [
    {
     "player": "Shai Gilgeous-Alexander",
@@ -16429,9 +16429,9 @@
     "src": "RotoWire"
    },
    {
-    "player": "Trey Murphy",
+    "player": "Herbert Jones",
     "team": "NOP",
-    "min": 20.0,
+    "min": 28.0,
     "src": "RotoWire"
    },
    {
@@ -16441,15 +16441,15 @@
     "src": "RotoWire"
    },
    {
-    "player": "Herbert Jones",
-    "team": "NOP",
-    "min": 28.0,
-    "src": "RotoWire"
-   },
-   {
     "player": "Jordan Poole",
     "team": "NOP",
     "min": 25.0,
+    "src": "RotoWire"
+   },
+   {
+    "player": "Trey Murphy",
+    "team": "NOP",
+    "min": 20.0,
     "src": "RotoWire"
    },
    {
@@ -16751,17 +16751,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Keyonte George",
-    "team": "UTA",
-    "game": "PHO@UTA",
-    "min": 33.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Dyson Daniels",
     "team": "ATL",
     "game": "CHA@ATL",
     "min": 32.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Keyonte George",
+    "team": "UTA",
+    "game": "PHO@UTA",
+    "min": 33.0,
     "src": "SportsLine"
    },
    {
@@ -16800,17 +16800,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Ajay Mitchell",
-    "team": "OKC",
-    "game": "NO@OKC",
-    "min": 28.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Walker Kessler",
     "team": "LAL",
     "game": "SAC@LAL",
     "min": 31.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Ajay Mitchell",
+    "team": "OKC",
+    "game": "NO@OKC",
+    "min": 28.0,
     "src": "SportsLine"
    },
    {
@@ -16947,10 +16947,10 @@
     "src": "SportsLine"
    },
    {
-    "player": "Cameron Johnson",
-    "team": "DEN",
-    "game": "HOU@DEN",
-    "min": 30.0,
+    "player": "Peyton Watson",
+    "team": "CLE",
+    "game": "IND@CLE",
+    "min": 29.0,
     "src": "SportsLine"
    },
    {
@@ -16961,10 +16961,10 @@
     "src": "SportsLine"
    },
    {
-    "player": "Peyton Watson",
-    "team": "CLE",
-    "game": "IND@CLE",
-    "min": 29.0,
+    "player": "Cameron Johnson",
+    "team": "DEN",
+    "game": "HOU@DEN",
+    "min": 30.0,
     "src": "SportsLine"
    },
    {
@@ -17017,20 +17017,6 @@
     "src": "SportsLine"
    },
    {
-    "player": "Nolan Traore",
-    "team": "BKN",
-    "game": "ORL@BKN",
-    "min": 22.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Jaxson Hayes",
-    "team": "UTA",
-    "game": "PHO@UTA",
-    "min": 25.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Collin Sexton",
     "team": "LAL",
     "game": "SAC@LAL",
@@ -17038,10 +17024,24 @@
     "src": "SportsLine"
    },
    {
+    "player": "Nolan Traore",
+    "team": "BKN",
+    "game": "ORL@BKN",
+    "min": 22.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Mario Hezonja",
     "team": "CLE",
     "game": "IND@CLE",
     "min": 20.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Jaxson Hayes",
+    "team": "UTA",
+    "game": "PHO@UTA",
+    "min": 25.0,
     "src": "SportsLine"
    },
    {
@@ -17136,17 +17136,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Bennett Stirtz",
-    "team": "OKC",
-    "game": "NO@OKC",
-    "min": 21.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Moritz Wagner",
     "team": "BKN",
     "game": "ORL@BKN",
     "min": 17.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Bennett Stirtz",
+    "team": "OKC",
+    "game": "NO@OKC",
+    "min": 21.0,
     "src": "SportsLine"
    },
    {
@@ -17178,17 +17178,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Zach Collins",
-    "team": "CHI",
-    "game": "WAS@CHI",
-    "min": 12.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Buddy Hield",
     "team": "CHI",
     "game": "WAS@CHI",
     "min": 13.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Zach Collins",
+    "team": "CHI",
+    "game": "WAS@CHI",
+    "min": 12.0,
     "src": "SportsLine"
    },
    {
@@ -17248,17 +17248,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Tyus Jones",
-    "team": "DEN",
-    "game": "HOU@DEN",
-    "min": 13.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Trevon Brazile",
     "team": "DEN",
     "game": "HOU@DEN",
     "min": 14.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Tyus Jones",
+    "team": "DEN",
+    "game": "HOU@DEN",
+    "min": 13.0,
     "src": "SportsLine"
    },
    {
@@ -17341,21 +17341,9 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-21T00:48:42+00:00",
+  "read_at": "2026-11-21T01:25:12+00:00",
   "date": "2026-11-20",
   "games": {
-   "WAS@CHI": {
-    "fav": "CHI",
-    "spread": 1.5,
-    "details": "CHI -1.5",
-    "provider": "Draft Kings"
-   },
-   "NOP@OKC": {
-    "fav": "OKC",
-    "spread": 11.5,
-    "details": "OKC -11.5",
-    "provider": "Draft Kings"
-   },
    "PHX@UTA": {
     "fav": "PHX",
     "spread": 4.5,
@@ -17415,7 +17403,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-21T00:45:37+00:00",
+  "read_at": "2026-11-21T01:25:12+00:00",
   "injuries": [
    {
     "team": "ATL",
@@ -17815,7 +17803,7 @@
     "player": "Alperen Sengun",
     "src": "NBA report",
     "kind": "G",
-    "injury": "Left Eye Corneal Abrasion Listed Q 7x, played 6 \u00b7 Team Qs played 16/20",
+    "injury": "Left Eye Corneal Listed Q 7x, played 6 \u00b7 Team Qs played 16/20",
     "upd": "2026-11-20",
     "until": "",
     "note": "",
@@ -18419,6 +18407,38 @@
     "at": "2026-11-20T00:30:55+00:00"
    },
    {
+    "team": "BOS",
+    "player": "Derrick White",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Left AC Joint Contusion",
+    "upd": "2026-11-21",
+    "until": "",
+    "note": "",
+    "through": "2026-11-21",
+    "st": "q",
+    "url": "https://presserwire.com/nba/games/2026-11-21-boston-celtics-at-sacramento-kings.html",
+    "from": "2026-11-21",
+    "override": true,
+    "at": "2026-11-21T01:25:12+00:00"
+   },
+   {
+    "team": "BOS",
+    "player": "Jayson Tatum",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Rest",
+    "upd": "2026-11-21",
+    "until": "",
+    "note": "",
+    "through": "2026-11-21",
+    "st": "q",
+    "url": "https://presserwire.com/nba/games/2026-11-21-boston-celtics-at-sacramento-kings.html",
+    "from": "2026-11-21",
+    "override": true,
+    "at": "2026-11-21T01:25:12+00:00"
+   },
+   {
     "team": "DAL",
     "player": "Dereck Lively II",
     "src": "NBA report",
@@ -18651,7 +18671,7 @@
     "player": "Scotty Pippen Jr.",
     "src": "NBA report",
     "kind": "O",
-    "injury": "Lumbar Disc Herniation",
+    "injury": "Lumbar Disc",
     "upd": "2026-11-21",
     "until": "",
     "note": "",
@@ -19434,7 +19454,7 @@
     ],
     "text": "Jayson Tatum bruised his hand in the Celtics' win the night before and played through it in Monday's loss to Orlando. \"Yeah, I bruised my hand last night, so just tried to wrap it, keep the swelling down a little bit,\" he said postgame. He said the hand did not limit him.",
     "at": "2026-11-17T03:49:42+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2122537637244489918"
    },
    {
     "team": "BOS",
@@ -20523,6 +20543,50 @@
   ]
  },
  "news": [
+  {
+   "id": "nba540235",
+   "player": "Jayson Tatum",
+   "headline": "Might rest Saturday",
+   "text": "Tatum (rest) is listed as questionable for Saturday's game against Sacramento.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/jayson-tatum-4108",
+   "at": "2026-11-21T01:07:00+00:00",
+   "team": "BOS"
+  },
+  {
+   "id": "nba540234",
+   "player": "Derrick White",
+   "headline": "Questionable for Saturday",
+   "text": "White (shoulder) is questionable to play in Saturday's game against Sacramento.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/derrick-white-4195",
+   "at": "2026-11-21T01:00:00+00:00",
+   "team": "BOS"
+  },
+  {
+   "id": "nba540232",
+   "player": "Aday Mara",
+   "headline": "Starting Friday",
+   "text": "Mara is now listed in the starting lineup for Friday's matchup with the Pelicans, Brandon Rahbar of DailyThunder.com reports.",
+   "reporter": "Brandon Rahbar",
+   "outlet": "DailyThunder.com",
+   "url": "https://www.rotowire.com/basketball/player/aday-mara-6932",
+   "at": "2026-11-21T00:58:00+00:00",
+   "team": "OKC"
+  },
+  {
+   "id": "nba540230",
+   "player": "Aday Mara",
+   "headline": "Headed to bench",
+   "text": "Mara will come off the bench in Friday's game against the Pelicans, Brandon Rahbar of DailyThunder.com reports.",
+   "reporter": "Brandon Rahbar",
+   "outlet": "DailyThunder.com",
+   "url": "https://www.rotowire.com/basketball/player/aday-mara-6932",
+   "at": "2026-11-21T00:53:00+00:00",
+   "team": "OKC"
+  },
   {
    "id": "nba540227",
    "player": "Allen Graves",
@@ -24119,6 +24183,30 @@
    "url": "https://www.espn.com/nba/injuries#:~:text=Henri%20Veesaar"
   },
   {
+   "team": "BOS",
+   "player": "Jayson Tatum",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-11-21",
+   "until": "",
+   "note": "Tatum (rest) is listed as questionable for Saturday's game against Sacramento.",
+   "through": "2026-11-22",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Jayson%20Tatum"
+  },
+  {
+   "team": "BOS",
+   "player": "Derrick White",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Left Shoulder",
+   "upd": "2026-11-21",
+   "until": "",
+   "note": "White (shoulder) is questionable to play in Saturday's game against Sacramento.",
+   "through": "2026-11-22",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Derrick%20White"
+  },
+  {
    "team": "BKN",
    "player": "Grant Nelson",
    "src": "ESPN",
@@ -24129,6 +24217,18 @@
    "note": "Nelson (ankle) has been ruled out for Friday's game against Orlando.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Grant%20Nelson"
+  },
+  {
+   "team": "CHA",
+   "player": "Brandon Miller",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Right Ankle",
+   "upd": "2026-11-21",
+   "until": "",
+   "note": "Miller amassed 28 points (10-19 FG, 5-12 3Pt, 3-3 FT), two rebounds, four assists and one block in 32 minutes during Tuesday's 118-114 overtime loss to the Lakers.",
+   "through": "2026-11-22",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Brandon%20Miller"
   },
   {
    "team": "CHA",
@@ -24342,7 +24442,7 @@
    "injury": "Left Knee Bruise",
    "upd": "2026-11-21",
    "until": "2026-11-22",
-   "note": "Holland (knee) has been upgraded to doubtful for Friday's game against Toronto, Hunter Patterson of The Athletic reports.",
+   "note": "Holland (knee) is listed as out for Friday's game against Toronto.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Ronald%20Holland%20II"
   },
@@ -25250,12 +25350,12 @@
    "team": "WAS",
    "player": "Felix Okpara",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Back Strain",
-   "upd": "2026-11-17",
-   "until": "",
+   "upd": "2026-11-21",
+   "until": "2026-11-22",
    "note": "Okpara (illness) is available for Friday's game against Toronto.",
-   "through": "2026-11-22",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Felix%20Okpara"
   },
   {
@@ -25704,7 +25804,7 @@
    "player": "Alperen Sengun",
    "src": "NBA report",
    "kind": "G",
-   "injury": "Left Eye Corneal Abrasion Listed Q 7x, played 6 \u00b7 Team Qs played 16/20",
+   "injury": "Left Eye Corneal Listed Q 7x, played 6 \u00b7 Team Qs played 16/20",
    "upd": "2026-11-20",
    "until": "",
    "note": "",
@@ -26308,6 +26408,38 @@
    "at": "2026-11-20T00:30:55+00:00"
   },
   {
+   "team": "BOS",
+   "player": "Derrick White",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Left AC Joint Contusion",
+   "upd": "2026-11-21",
+   "until": "",
+   "note": "",
+   "through": "2026-11-21",
+   "st": "q",
+   "url": "https://presserwire.com/nba/games/2026-11-21-boston-celtics-at-sacramento-kings.html",
+   "from": "2026-11-21",
+   "override": true,
+   "at": "2026-11-21T01:25:12+00:00"
+  },
+  {
+   "team": "BOS",
+   "player": "Jayson Tatum",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Rest",
+   "upd": "2026-11-21",
+   "until": "",
+   "note": "",
+   "through": "2026-11-21",
+   "st": "q",
+   "url": "https://presserwire.com/nba/games/2026-11-21-boston-celtics-at-sacramento-kings.html",
+   "from": "2026-11-21",
+   "override": true,
+   "at": "2026-11-21T01:25:12+00:00"
+  },
+  {
    "team": "DAL",
    "player": "Dereck Lively II",
    "src": "NBA report",
@@ -26540,7 +26672,7 @@
    "player": "Scotty Pippen Jr.",
    "src": "NBA report",
    "kind": "O",
-   "injury": "Lumbar Disc Herniation",
+   "injury": "Lumbar Disc",
    "upd": "2026-11-21",
    "until": "",
    "note": "",
@@ -27696,6 +27828,57 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Reaves"
   },
   {
+   "team": "BOS",
+   "player": "Jayson Tatum",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-21",
+   "until": "",
+   "note": "Tatum (rest) is listed as questionable for Saturday's game against Sacramento.",
+   "through": "2026-11-21",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/jayson-tatum-4108",
+   "from": "2026-11-21",
+   "override": true,
+   "at": "2026-11-21T01:07:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "BOS",
+   "player": "Derrick White",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-21",
+   "until": "",
+   "note": "White (shoulder) is questionable to play in Saturday's game against Sacramento.",
+   "through": "2026-11-21",
+   "st": "q",
+   "url": "https://www.rotowire.com/basketball/player/derrick-white-4195",
+   "from": "2026-11-21",
+   "override": true,
+   "at": "2026-11-21T01:00:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "OKC",
+   "player": "Aday Mara",
+   "src": "Brandon Rahbar",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-20",
+   "until": "",
+   "note": "Mara is now listed in the starting lineup for Friday's matchup with the Pelicans, Brandon Rahbar of DailyThunder.com reports.",
+   "through": "2026-11-20",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/aday-mara-6932",
+   "from": "2026-11-20",
+   "override": true,
+   "at": "2026-11-21T00:58:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "DET",
    "player": "Cade Cunningham",
    "src": "Eric Vincent",
@@ -28372,13 +28555,12 @@
    "at": "2026-11-20T23:39:00+00:00"
   }
  ],
- "generated_at": "2026-11-21T00:48:42+00:00",
+ "generated_at": "2026-11-21T01:25:12+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-20T18:57:05+00:00",
-   "count": 1200,
-   "reused": true
+   "at": "2026-11-21T01:25:09+00:00",
+   "count": 1200
   },
   "espn_depth": {
    "ok": true,
@@ -28388,20 +28570,20 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-21T00:48:41+00:00",
+   "at": "2026-11-21T01:25:09+00:00",
    "teams": 18,
    "injuries": 61
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-21T00:48:41+00:00",
+   "at": "2026-11-21T01:25:09+00:00",
    "teams": 16,
    "verified": 10,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-21T00:48:41+00:00",
+   "at": "2026-11-21T01:25:09+00:00",
    "current_players": 473,
    "last_players": 582
   },
@@ -28411,18 +28593,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-21T00:48:41+00:00",
+   "at": "2026-11-21T01:25:10+00:00",
    "count": 104
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-21T00:48:42+00:00",
+   "at": "2026-11-21T01:25:10+00:00",
    "count": 107
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-21T00:48:42+00:00",
-   "count": 105
+   "at": "2026-11-21T01:25:10+00:00",
+   "count": 108
   },
   "x": {
    "ok": null,
@@ -28430,40 +28612,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-21T00:48:42+00:00",
+   "at": "2026-11-21T01:25:11+00:00",
    "players": 179,
-   "read_at": "2026-11-21T00:45:35+00:00",
-   "saved_for_history": 108
+   "read_at": "2026-11-21T01:25:10+00:00",
+   "saved_for_history": 65
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-21T00:48:42+00:00",
+   "at": "2026-11-21T01:25:11+00:00",
    "players": 102,
-   "read_at": "2026-11-21T00:45:36+00:00"
+   "read_at": "2026-11-21T01:25:11+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-21T00:48:42+00:00",
+   "at": "2026-11-21T01:25:12+00:00",
    "players": 10,
-   "read_at": "2026-11-21T00:45:36+00:00"
+   "read_at": "2026-11-21T01:25:11+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-21T00:48:42+00:00",
-   "games": 5,
-   "read_at": "2026-11-21T00:48:42+00:00"
+   "at": "2026-11-21T01:25:12+00:00",
+   "games": 3,
+   "read_at": "2026-11-21T01:25:12+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-21T00:48:42+00:00",
-   "injuries": 105,
+   "at": "2026-11-21T01:25:12+00:00",
+   "injuries": 107,
    "notes": 164,
-   "read_at": "2026-11-21T00:45:37+00:00"
+   "read_at": "2026-11-21T01:25:12+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-21T00:48:42+00:00",
-   "count": 49
+   "at": "2026-11-21T01:25:12+00:00",
+   "count": 53
   }
  }
 }
