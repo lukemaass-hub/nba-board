@@ -8787,15 +8787,14 @@
      "pos": "C",
      "name": "Jalen Smith"
     }
-   ],
-   "source": "Basketball Monster"
+   ]
   },
   "DAL": {
    "date": "2026-11-22",
    "time": "19:00",
    "vs": "UTA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8817,14 +8816,15 @@
      "pos": "C",
      "name": "Daniel Gafford"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "UTA": {
    "date": "2026-11-22",
    "time": "19:00",
    "vs": "DAL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8846,7 +8846,8 @@
      "pos": "C",
      "name": "Jaxson Hayes"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "ORL": {
    "date": "2026-11-22",
@@ -16343,7 +16344,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-22T23:33:08+00:00",
+  "read_at": "2026-11-22T23:36:12+00:00",
   "date": "2026-11-22",
   "games": {
    "ORL@WAS": {
@@ -28198,7 +28199,7 @@
    "at": "2026-11-20T23:39:00+00:00"
   }
  ],
- "generated_at": "2026-11-22T23:33:08+00:00",
+ "generated_at": "2026-11-22T23:36:13+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -28214,24 +28215,25 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-22T23:33:07+00:00",
+   "at": "2026-11-22T23:36:11+00:00",
    "teams": 14,
    "injuries": 56
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-22T23:33:07+00:00",
+   "at": "2026-11-22T23:36:12+00:00",
    "teams": 14,
-   "verified": 8,
+   "verified": 10,
    "used": [
-    "CHI",
+    "DAL",
+    "UTA",
     "ORL",
     "WAS"
    ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-22T23:33:07+00:00",
+   "at": "2026-11-22T23:36:12+00:00",
    "current_players": 474,
    "last_players": 582
   },
@@ -28241,17 +28243,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-22T23:33:07+00:00",
+   "at": "2026-11-22T23:36:12+00:00",
    "count": 106
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-22T23:33:07+00:00",
+   "at": "2026-11-22T23:36:12+00:00",
    "count": 109
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-22T23:33:08+00:00",
+   "at": "2026-11-22T23:36:12+00:00",
    "count": 101
   },
   "x": {
@@ -28260,39 +28262,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-22T23:33:08+00:00",
+   "at": "2026-11-22T23:36:12+00:00",
    "players": 121,
    "read_at": "2026-11-22T23:30:01+00:00",
    "saved_for_history": 106
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-22T23:33:08+00:00",
+   "at": "2026-11-22T23:36:12+00:00",
    "players": 71,
    "read_at": "2026-11-22T23:30:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-22T23:33:08+00:00",
+   "at": "2026-11-22T23:36:12+00:00",
    "players": 10,
    "read_at": "2026-11-22T23:30:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-22T23:33:08+00:00",
+   "at": "2026-11-22T23:36:12+00:00",
    "games": 5,
-   "read_at": "2026-11-22T23:33:08+00:00"
+   "read_at": "2026-11-22T23:36:12+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-22T23:33:08+00:00",
+   "at": "2026-11-22T23:36:12+00:00",
    "injuries": 108,
    "notes": 166,
    "read_at": "2026-11-22T23:30:03+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-22T23:33:08+00:00",
+   "at": "2026-11-22T23:36:13+00:00",
    "count": 83
   }
  }
