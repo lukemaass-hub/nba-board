@@ -8678,7 +8678,7 @@
    "time": "19:30",
    "vs": "NYK",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8707,7 +8707,7 @@
    "time": "19:30",
    "vs": "POR",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -15965,7 +15965,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-22T00:00:58+00:00",
+  "read_at": "2026-11-22T00:10:09+00:00",
   "date": "2026-11-21",
   "games": {
    "POR@NYK": {
@@ -22900,6 +22900,18 @@
   },
   {
    "team": "CHI",
+   "player": "Norman Powell",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Right Hamstring",
+   "upd": "2026-11-22",
+   "until": "",
+   "note": "Powell tallied 16 points (7-18 FG, 1-5 3Pt, 1-2 FT), three rebounds, two assists and one steal in 33 minutes during Friday's 98-84 loss to Washington.",
+   "through": "2026-11-23",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Norman%20Powell"
+  },
+  {
+   "team": "CHI",
    "player": "Jalen Smith",
    "src": "ESPN",
    "kind": "G",
@@ -26894,34 +26906,36 @@
    "at": "2026-11-20T23:39:00+00:00"
   }
  ],
- "generated_at": "2026-11-22T00:00:58+00:00",
+ "generated_at": "2026-11-22T00:10:09+00:00",
  "sources": {
   "schedule": {
    "ok": true,
    "at": "2026-11-22T00:00:24+00:00",
-   "count": 1200
+   "count": 1200,
+   "reused": true
   },
   "espn_depth": {
    "ok": true,
    "at": "2026-11-22T00:00:55+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-22T00:00:55+00:00",
+   "at": "2026-11-22T00:10:07+00:00",
    "teams": 12,
    "injuries": 42
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-22T00:00:55+00:00",
+   "at": "2026-11-22T00:10:08+00:00",
    "teams": 10,
-   "verified": 2,
+   "verified": 4,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-22T00:00:56+00:00",
+   "at": "2026-11-22T00:10:08+00:00",
    "current_players": 473,
    "last_players": 582
   },
@@ -26931,18 +26945,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-22T00:00:56+00:00",
+   "at": "2026-11-22T00:10:08+00:00",
    "count": 108
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-22T00:00:56+00:00",
+   "at": "2026-11-22T00:10:08+00:00",
    "count": 102
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-22T00:00:57+00:00",
-   "count": 109
+   "at": "2026-11-22T00:10:09+00:00",
+   "count": 110
   },
   "x": {
    "ok": null,
@@ -26950,39 +26964,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-22T00:00:57+00:00",
+   "at": "2026-11-22T00:10:09+00:00",
    "players": 93,
    "read_at": "2026-11-22T00:00:57+00:00",
    "saved_for_history": 103
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-22T00:00:57+00:00",
+   "at": "2026-11-22T00:10:09+00:00",
    "players": 66,
    "read_at": "2026-11-22T00:00:57+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-22T00:00:57+00:00",
+   "at": "2026-11-22T00:10:09+00:00",
    "players": 10,
    "read_at": "2026-11-22T00:00:57+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-22T00:00:58+00:00",
+   "at": "2026-11-22T00:10:09+00:00",
    "games": 5,
-   "read_at": "2026-11-22T00:00:58+00:00"
+   "read_at": "2026-11-22T00:10:09+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-22T00:00:58+00:00",
+   "at": "2026-11-22T00:10:09+00:00",
    "injuries": 97,
    "notes": 166,
    "read_at": "2026-11-22T00:00:58+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-22T00:00:58+00:00",
+   "at": "2026-11-22T00:10:09+00:00",
    "count": 65
   }
  }
