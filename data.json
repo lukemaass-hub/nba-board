@@ -14314,7 +14314,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-22T23:06:26+00:00",
+  "read_at": "2026-11-22T23:30:01+00:00",
   "date": "2026-11-22",
   "players": [
    {
@@ -15046,7 +15046,7 @@
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-22T23:06:27+00:00",
+  "read_at": "2026-11-22T23:30:01+00:00",
   "date": "2026-11-22",
   "players": [
    {
@@ -15407,7 +15407,7 @@
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-22T23:06:27+00:00",
+  "read_at": "2026-11-22T23:30:02+00:00",
   "date": "2026-11-22",
   "players": [
    {
@@ -15464,7 +15464,7 @@
  },
  "expected_mix": {
   "date": "2026-11-22",
-  "read_at": "2026-11-22T23:06:27+00:00",
+  "read_at": "2026-11-22T23:30:02+00:00",
   "players": [
    {
     "player": "Nikola Jokic",
@@ -16340,15 +16340,9 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-22T23:06:28+00:00",
+  "read_at": "2026-11-22T23:30:02+00:00",
   "date": "2026-11-22",
   "games": {
-   "OKC@MIA": {
-    "fav": "MIA",
-    "spread": 4.5,
-    "details": "MIA -4.5",
-    "provider": "Draft Kings"
-   },
    "ORL@WAS": {
     "fav": "ORL",
     "spread": 4.5,
@@ -16408,7 +16402,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-22T23:06:28+00:00",
+  "read_at": "2026-11-22T23:30:03+00:00",
   "injuries": [
    {
     "team": "ATL",
@@ -17922,6 +17916,37 @@
     "at": "2026-11-22T22:07:18+00:00"
    },
    {
+    "team": "PHX",
+    "player": "Mark Williams",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Left Shoulder Surgery",
+    "upd": "2026-11-23",
+    "until": "",
+    "note": "",
+    "through": "2026-11-23",
+    "url": "https://presserwire.com/nba/games/2026-11-23-phoenix-suns-at-new-orleans-pelicans.html",
+    "from": "2026-11-23",
+    "override": true,
+    "at": "2026-11-22T23:30:03+00:00"
+   },
+   {
+    "team": "PHX",
+    "player": "Ryan Dunn",
+    "src": "NBA report",
+    "kind": "G",
+    "injury": "Right Quad Soreness Team Qs played 16/24",
+    "upd": "2026-11-23",
+    "until": "",
+    "note": "",
+    "through": "2026-11-23",
+    "st": "q",
+    "url": "https://presserwire.com/nba/games/2026-11-23-phoenix-suns-at-new-orleans-pelicans.html",
+    "from": "2026-11-23",
+    "override": true,
+    "at": "2026-11-22T23:30:03+00:00"
+   },
+   {
     "team": "POR",
     "player": "Chris Youngblood",
     "src": "NBA report",
@@ -18145,7 +18170,7 @@
     ],
     "text": "Ryan Dunn took a knee to his right quad on a screen in the Suns' win, Jordan Ott said. \"Well, I mean, he obviously didn't come back in,\" Ott said. \"So that'd be one of those things where we'll see what it looks like tomorrow.\"",
     "at": "2026-11-21T06:45:20+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2124031390111146325"
    },
    {
     "team": "UTA",
@@ -19308,7 +19333,7 @@
     ],
     "text": "Suns coach Jordan Ott said missing the injured Mark Williams hurts the defense: \"Mark's overall size deters rim attempts.\" He said the Suns now switch more, pulling their 5s off the rim. Defensive rebounding has surprised him: \"I did think we would be bigger this year.\"",
     "at": "2026-11-05T06:21:38+00:00",
-    "url": "https://presserwire.com/nba/availability.html"
+    "url": "https://x.com/nbapresserwire/status/2118227220535849143"
    },
    {
     "team": "PHI",
@@ -19552,6 +19577,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba540555",
+   "player": "Brandon Ingram",
+   "headline": "Removed from injury report",
+   "text": "Ingram (Achilles) is not listed on the injury report ahead of Monday's game against the Rockets.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/brandon-ingram-3861",
+   "at": "2026-11-22T23:17:00+00:00",
+   "team": "LAC"
+  },
   {
    "id": "nba540552",
    "player": "Dyson Daniels",
@@ -20442,17 +20478,6 @@
    "url": "https://www.rotowire.com/basketball/player/jusuf-nurkic-3580",
    "at": "2026-11-20T00:05:00+00:00",
    "team": "UTA"
-  },
-  {
-   "id": "nba540063",
-   "player": "Alperen Sengun",
-   "headline": "Tagged questionable for Friday",
-   "text": "Sengun (eye) is questionable for Friday's game against the Nuggets.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/alperen-sengun-5404",
-   "at": "2026-11-19T23:18:00+00:00",
-   "team": "HOU"
   }
  ],
  "matchup_alerts": [
@@ -22168,18 +22193,6 @@
   },
   {
    "team": "ATL",
-   "player": "Kingston Flemings",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Back",
-   "upd": "2026-11-20",
-   "until": "",
-   "note": "Flemings is Questionable for Sunday's (Nov. 22) game against the Pistons.",
-   "through": "2026-11-24",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20Flemings"
-  },
-  {
-   "team": "ATL",
    "player": "CJ McCollum",
    "src": "Covers",
    "kind": "O",
@@ -22326,12 +22339,12 @@
    "team": "CHI",
    "player": "Nic Claxton",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Illness",
    "upd": "2026-11-21",
    "until": "",
-   "note": "Claxton is Questionable for Sunday's (Nov. 22) game against the Nuggets.",
-   "through": "2026-11-24",
+   "note": "Claxton is OUT for Sunday's (Nov. 22) game against the Nuggets.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=N.%20Claxton"
   },
   {
@@ -22350,12 +22363,12 @@
    "team": "CHI",
    "player": "Norman Powell",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Hamstring",
    "upd": "2026-11-20",
    "until": "",
-   "note": "Powell is Questionable for Sunday's (Nov. 22) game against the Nuggets.",
-   "through": "2026-11-24",
+   "note": "The Bulls reported Powell to be re-evaluated later this week due to a hamstring injury.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=N.%20Powell"
   },
   {
@@ -22420,38 +22433,50 @@
   },
   {
    "team": "DAL",
-   "player": "PJ Washington",
+   "player": "Walter Clayton Jr",
    "src": "Covers",
    "kind": "G",
+   "injury": "Knee",
+   "upd": "2026-11-21",
+   "until": "",
+   "note": "Clayton Jr. is Questionable for Sunday;s (Nov. 22) game against Utah.",
+   "through": "2026-11-24",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=W.%20Clayton%20Jr."
+  },
+  {
+   "team": "DAL",
+   "player": "PJ Washington",
+   "src": "Covers",
+   "kind": "O",
    "injury": "Shoulder",
    "upd": "2026-11-21",
    "until": "",
-   "note": "Washington did not play on Saturday's (Nov. 21) game against the Clippers.",
-   "through": "2026-11-24",
+   "note": "Washington is OUT for Sunday's (Nov. 22) game against Utah.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=P.%20Washington"
   },
   {
    "team": "DAL",
    "player": "Tobi Lawal",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Groin",
    "upd": "2026-11-21",
    "until": "",
-   "note": "Lawal did not play on Saturday's (Nov. 21) game against the Clippers.",
-   "through": "2026-11-24",
+   "note": "Lawal is OUT for Sunday's (Nov. 22) game against Utah.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Lawal"
   },
   {
    "team": "DAL",
    "player": "Sergio de Larrea",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Knee",
    "upd": "2026-11-21",
    "until": "",
-   "note": "De Larrea did not play on Saturday's (Nov. 21) game against the Clippers.",
-   "through": "2026-11-24",
+   "note": "De Larrea is OUT for Sunday's (Nov. 22) game against Utah.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=S.%20De%20Larrea"
   },
   {
@@ -22513,18 +22538,6 @@
    "note": "Okorie is Out for Sunday's (Nov. 22) game against the Hawks.",
    "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=E.%20Okorie"
-  },
-  {
-   "team": "DET",
-   "player": "Ronald Holland Ii",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-11-20",
-   "until": "",
-   "note": "Holland is Questionable for Sunday's (Nov. 22) game against the Hawks.",
-   "through": "2026-11-24",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=R.%20Holland%20II"
   },
   {
    "team": "DET",
@@ -22966,7 +22979,7 @@
    "injury": "Illness",
    "upd": "2026-11-21",
    "until": "",
-   "note": "Towns did not play on Saturday's (Nov. 20) game against Portland.",
+   "note": "Towns is Questionable for Sunday's (Nov. 22) game against Indiana.",
    "through": "2026-11-24",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20Towns"
   },
@@ -22974,24 +22987,24 @@
    "team": "NYK",
    "player": "Jordan Clarkson",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Foot",
    "upd": "2026-11-21",
    "until": "",
-   "note": "Clarkson did not play on Saturday's (Nov. 21) game against the Trail Blazers.",
-   "through": "2026-11-24",
+   "note": "Clarkson is OUT for Sunday's (Nov. 22) game against Indiana.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Clarkson"
   },
   {
    "team": "NYK",
    "player": "OG Anunoby",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Calf",
    "upd": "2026-11-21",
    "until": "",
-   "note": "Anunoby did not play on Saturday's (Nov. 20) game against Portland.",
-   "through": "2026-11-24",
+   "note": "Anunoby is OUT for Sunday's (Nov. 22) game against Indiana.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=O.%20Anunoby"
   },
   {
@@ -23413,6 +23426,18 @@
    "note": "Ayton is Questionable for Sunday's (Nov. 22) game against Orlando.",
    "through": "2026-11-24",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=D.%20Ayton"
+  },
+  {
+   "team": "WAS",
+   "player": "Bub Carrington",
+   "src": "Covers",
+   "kind": "G",
+   "injury": "Illness",
+   "upd": "2026-11-21",
+   "until": "",
+   "note": "Carrington is Questionable for Sunday's (Nov. 22) game against Orlando.",
+   "through": "2026-11-24",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=B.%20Carrington"
   },
   {
    "team": "WAS",
@@ -23944,18 +23969,6 @@
   },
   {
    "team": "LAC",
-   "player": "Brandon Ingram",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Right Achilles Surgery",
-   "upd": "2026-11-20",
-   "until": "2026-11-23",
-   "note": "Ingram (Achilles) is expected to make his season and team debut Monday against the Rockets, per Shams Charania of ESPN.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Brandon%20Ingram"
-  },
-  {
-   "team": "LAC",
    "player": "Bradley Beal",
    "src": "ESPN",
    "kind": "O",
@@ -24427,7 +24440,7 @@
    "player": "Ryan Dunn",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Right Quadriceps",
+   "injury": "Right Quadriceps Soreness",
    "upd": "2026-11-22",
    "until": "",
    "note": "Dunn (quadriceps) was a full participant in Sunday's practice, Duane Rankin of The Arizona Republic reports.",
@@ -24637,30 +24650,6 @@
    "note": "Jackson has been diagnosed with a torn MCL in his right knee and will be sidelined for 6-to-8 weeks, per Shams Charania of ESPN.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jaren%20Jackson%20Jr."
-  },
-  {
-   "team": "WAS",
-   "player": "Bub Carrington",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "Carrington (illness) has been downgraded to questionable for Sunday's game against the Magic.",
-   "through": "2026-11-24",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Bub%20Carrington"
-  },
-  {
-   "team": "WAS",
-   "player": "Deandre Ayton",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "day-to-day",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "Ayton (illness) is questionable to play in Sunday's game against Orlando.",
-   "through": "2026-11-24",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Deandre%20Ayton"
   },
   {
    "team": "WAS",
@@ -26222,6 +26211,37 @@
    "at": "2026-11-22T22:07:18+00:00"
   },
   {
+   "team": "PHX",
+   "player": "Mark Williams",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Left Shoulder Surgery",
+   "upd": "2026-11-23",
+   "until": "",
+   "note": "",
+   "through": "2026-11-23",
+   "url": "https://presserwire.com/nba/games/2026-11-23-phoenix-suns-at-new-orleans-pelicans.html",
+   "from": "2026-11-23",
+   "override": true,
+   "at": "2026-11-22T23:30:03+00:00"
+  },
+  {
+   "team": "PHX",
+   "player": "Ryan Dunn",
+   "src": "NBA report",
+   "kind": "G",
+   "injury": "Right Quad Soreness Team Qs played 16/24",
+   "upd": "2026-11-23",
+   "until": "",
+   "note": "",
+   "through": "2026-11-23",
+   "st": "q",
+   "url": "https://presserwire.com/nba/games/2026-11-23-phoenix-suns-at-new-orleans-pelicans.html",
+   "from": "2026-11-23",
+   "override": true,
+   "at": "2026-11-22T23:30:03+00:00"
+  },
+  {
    "team": "POR",
    "player": "Chris Youngblood",
    "src": "NBA report",
@@ -26781,19 +26801,6 @@
    "through": "2026-11-22",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Noah%20Penda"
-  },
-  {
-   "team": "WAS",
-   "player": "Bub Carrington",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-22",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Carrington"
   },
   {
    "team": "WAS",
@@ -28138,23 +28145,6 @@
    "override": true,
    "at": "2026-11-20T00:05:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "HOU",
-   "player": "Alperen Sengun",
-   "src": "RotoWire news",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-20",
-   "until": "",
-   "note": "Sengun (eye) is questionable for Friday's game against the Nuggets.",
-   "through": "2026-11-20",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/player/alperen-sengun-5404",
-   "from": "2026-11-20",
-   "override": true,
-   "at": "2026-11-19T23:18:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -28170,7 +28160,7 @@
    "at": "2026-11-20T23:39:00+00:00"
   }
  ],
- "generated_at": "2026-11-22T23:06:28+00:00",
+ "generated_at": "2026-11-22T23:30:04+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -28181,24 +28171,25 @@
   "espn_depth": {
    "ok": true,
    "at": "2026-11-22T23:06:25+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-22T23:06:25+00:00",
+   "at": "2026-11-22T23:30:00+00:00",
    "teams": 14,
-   "injuries": 57
+   "injuries": 56
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-22T23:06:25+00:00",
+   "at": "2026-11-22T23:30:00+00:00",
    "teams": 14,
    "verified": 4,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-22T23:06:25+00:00",
+   "at": "2026-11-22T23:30:00+00:00",
    "current_players": 474,
    "last_players": 582
   },
@@ -28208,18 +28199,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-22T23:06:25+00:00",
+   "at": "2026-11-22T23:30:00+00:00",
    "count": 104
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-22T23:06:26+00:00",
+   "at": "2026-11-22T23:30:00+00:00",
    "count": 109
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-22T23:06:26+00:00",
-   "count": 104
+   "at": "2026-11-22T23:30:01+00:00",
+   "count": 101
   },
   "x": {
    "ok": null,
@@ -28227,39 +28218,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-22T23:06:27+00:00",
+   "at": "2026-11-22T23:30:01+00:00",
    "players": 121,
-   "read_at": "2026-11-22T23:06:26+00:00",
+   "read_at": "2026-11-22T23:30:01+00:00",
    "saved_for_history": 106
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-22T23:06:27+00:00",
+   "at": "2026-11-22T23:30:02+00:00",
    "players": 71,
-   "read_at": "2026-11-22T23:06:27+00:00"
+   "read_at": "2026-11-22T23:30:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-22T23:06:27+00:00",
+   "at": "2026-11-22T23:30:02+00:00",
    "players": 10,
-   "read_at": "2026-11-22T23:06:27+00:00"
+   "read_at": "2026-11-22T23:30:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-22T23:06:28+00:00",
-   "games": 6,
-   "read_at": "2026-11-22T23:06:28+00:00"
+   "at": "2026-11-22T23:30:03+00:00",
+   "games": 5,
+   "read_at": "2026-11-22T23:30:02+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-22T23:06:28+00:00",
-   "injuries": 106,
+   "at": "2026-11-22T23:30:03+00:00",
+   "injuries": 108,
    "notes": 166,
-   "read_at": "2026-11-22T23:06:28+00:00"
+   "read_at": "2026-11-22T23:30:03+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-22T23:06:28+00:00",
+   "at": "2026-11-22T23:30:04+00:00",
    "count": 82
   }
  }
