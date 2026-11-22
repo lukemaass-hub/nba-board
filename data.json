@@ -8678,7 +8678,7 @@
    "time": "18:00",
    "vs": "MIA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8690,24 +8690,25 @@
     },
     {
      "pos": "SF",
-     "name": "Kenrich Williams"
+     "name": "Micah Peavy"
     },
     {
      "pos": "PF",
-     "name": "Aday Mara"
+     "name": "Kenrich Williams"
     },
     {
      "pos": "C",
      "name": "Isaiah Hartenstein"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "MIA": {
    "date": "2026-11-22",
    "time": "18:00",
    "vs": "OKC",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8723,7 +8724,7 @@
     },
     {
      "pos": "PF",
-     "name": "Andrew Wiggins"
+     "name": "Bobby Portis"
     },
     {
      "pos": "C",
@@ -16548,7 +16549,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-22T22:30:02+00:00",
+  "read_at": "2026-11-22T22:36:09+00:00",
   "date": "2026-11-22",
   "games": {
    "OKC@MIA": {
@@ -16583,8 +16584,8 @@
    },
    "BOS@GSW": {
     "fav": "BOS",
-    "spread": 8.5,
-    "details": "BOS -8.5",
+    "spread": 7.5,
+    "details": "BOS -7.5",
     "provider": "Draft Kings"
    }
   },
@@ -23831,21 +23832,9 @@
    "injury": "Illness",
    "upd": "2026-11-22",
    "until": "2026-11-24",
-   "note": "Washington (illness) is doubtful to play Sunday's game against the Jazz.",
+   "note": "Washington (illness) has been ruled out for Sunday's game against the Jazz.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=P.J.%20Washington"
-  },
-  {
-   "team": "DAL",
-   "player": "Walter Clayton Jr.",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Knee Tendinitis",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "Clayton (knee) is listed as questionable for Sunday's game against the Jazz.",
-   "through": "2026-11-24",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Walter%20Clayton%20Jr."
   },
   {
    "team": "DAL",
@@ -24125,39 +24114,27 @@
   },
   {
    "team": "MEM",
-   "player": "Cameron Boozer",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Right Ankle Sprain",
-   "upd": "2026-11-22",
-   "until": "2026-11-25",
-   "note": "Boozer is out for Saturday's game against Minnesota due to a right ankle sprain.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Cameron%20Boozer"
-  },
-  {
-   "team": "MEM",
-   "player": "Javon Small",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "day-to-day",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "Small won't play Saturday against the Timberwolves due to personal reasons.",
-   "through": "2026-11-24",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Javon%20Small"
-  },
-  {
-   "team": "MEM",
    "player": "Jerami Grant",
    "src": "ESPN",
    "kind": "G",
    "injury": "Left Calf",
    "upd": "2026-11-22",
    "until": "",
-   "note": "Grant (calf) is out for Saturday's game against the Timberwolves.",
+   "note": "Grant (calf) has been ruled out for Monday's game against the Hornets.",
    "through": "2026-11-24",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jerami%20Grant"
+  },
+  {
+   "team": "MEM",
+   "player": "Cameron Boozer",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Ankle Sprain",
+   "upd": "2026-11-22",
+   "until": "2026-11-25",
+   "note": "Boozer (ankle) won't play Monday's game against the Hornets.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Cameron%20Boozer"
   },
   {
    "team": "MEM",
@@ -26513,6 +26490,19 @@
   },
   {
    "team": "OKC",
+   "player": "Aday Mara",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-22",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-11-22",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Aday%20Mara"
+  },
+  {
+   "team": "OKC",
    "player": "Thomas Sorber",
    "src": "RotoWire",
    "kind": "O",
@@ -28198,7 +28188,7 @@
    "at": "2026-11-20T23:39:00+00:00"
   }
  ],
- "generated_at": "2026-11-22T22:30:02+00:00",
+ "generated_at": "2026-11-22T22:36:09+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -28214,20 +28204,22 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-22T22:29:59+00:00",
+   "at": "2026-11-22T22:36:08+00:00",
    "teams": 14,
-   "injuries": 57
+   "injuries": 58
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-22T22:29:59+00:00",
+   "at": "2026-11-22T22:36:08+00:00",
    "teams": 14,
-   "verified": 2,
-   "used": []
+   "verified": 4,
+   "used": [
+    "OKC"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-22T22:29:59+00:00",
+   "at": "2026-11-22T22:36:08+00:00",
    "current_players": 474,
    "last_players": 582
   },
@@ -28237,18 +28229,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-22T22:30:00+00:00",
+   "at": "2026-11-22T22:36:08+00:00",
    "count": 106
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-22T22:30:00+00:00",
+   "at": "2026-11-22T22:36:09+00:00",
    "count": 109
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-22T22:30:00+00:00",
-   "count": 105
+   "at": "2026-11-22T22:36:09+00:00",
+   "count": 103
   },
   "x": {
    "ok": null,
@@ -28256,39 +28248,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-22T22:30:01+00:00",
+   "at": "2026-11-22T22:36:09+00:00",
    "players": 141,
    "read_at": "2026-11-22T22:30:00+00:00",
    "saved_for_history": 128
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-22T22:30:01+00:00",
+   "at": "2026-11-22T22:36:09+00:00",
    "players": 72,
    "read_at": "2026-11-22T22:30:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-22T22:30:02+00:00",
+   "at": "2026-11-22T22:36:09+00:00",
    "players": 10,
    "read_at": "2026-11-22T22:30:01+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-22T22:30:02+00:00",
+   "at": "2026-11-22T22:36:09+00:00",
    "games": 6,
-   "read_at": "2026-11-22T22:30:02+00:00"
+   "read_at": "2026-11-22T22:36:09+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-22T22:30:02+00:00",
+   "at": "2026-11-22T22:36:09+00:00",
    "injuries": 99,
    "notes": 166,
    "read_at": "2026-11-22T22:30:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-22T22:30:02+00:00",
+   "at": "2026-11-22T22:36:09+00:00",
    "count": 81
   }
  }
