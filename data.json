@@ -8620,7 +8620,7 @@
    "time": "19:00",
    "vs": "PHI",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8649,7 +8649,7 @@
    "time": "19:00",
    "vs": "POR",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8669,7 +8669,7 @@
     },
     {
      "pos": "C",
-     "name": "Dominick Barlow"
+     "name": "Jabari Walker"
     }
    ]
   },
@@ -8707,7 +8707,7 @@
    "time": "19:00",
    "vs": "MEM",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17682,7 +17682,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-23T23:30:50+00:00",
+  "read_at": "2026-11-23T23:36:58+00:00",
   "date": "2026-11-23",
   "games": {
    "MEM@CHA": {
@@ -17692,9 +17692,9 @@
     "provider": "Draft Kings"
    },
    "POR@PHI": {
-    "fav": "PHI",
+    "fav": "POR",
     "spread": 1.5,
-    "details": "PHI -1.5",
+    "details": "POR -1.5",
     "provider": "Draft Kings"
    },
    "OKC@IND": {
@@ -21672,17 +21672,6 @@
    "url": "https://www.rotowire.com/basketball/player/trey-murphy-5401",
    "at": "2026-11-20T23:39:00+00:00",
    "team": "NOP"
-  },
-  {
-   "id": "nba540216",
-   "player": "Nic Claxton",
-   "headline": "Starting versus Wizards",
-   "text": "Claxton will start in Friday's game against Washington, K.C. Johnson of Chicago Sports Network reports.",
-   "reporter": "K.C. Johnson",
-   "outlet": "Chicago Sports Network",
-   "url": "https://www.rotowire.com/basketball/player/nic-claxton-4827",
-   "at": "2026-11-20T23:32:00+00:00",
-   "team": "CHI"
   }
  ],
  "matchup_alerts": [
@@ -25414,18 +25403,6 @@
   },
   {
    "team": "PHI",
-   "player": "Dean Wade",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Hamstring Soreness",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "Wade (hamstring) is listed as probable for Monday's game against Portland.",
-   "through": "2026-11-25",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Dean%20Wade"
-  },
-  {
-   "team": "PHI",
    "player": "Ariel Hukporti",
    "src": "ESPN",
    "kind": "O",
@@ -29100,23 +29077,6 @@
    "override": true,
    "at": "2026-11-20T23:39:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "CHI",
-   "player": "Nic Claxton",
-   "src": "K.C. Johnson",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-20",
-   "until": "",
-   "note": "Claxton will start in Friday's game against Washington, K.C. Johnson of Chicago Sports Network reports.",
-   "through": "2026-11-20",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/nic-claxton-4827",
-   "from": "2026-11-20",
-   "override": true,
-   "at": "2026-11-20T23:32:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -29132,7 +29092,7 @@
    "at": "2026-11-20T23:39:00+00:00"
   }
  ],
- "generated_at": "2026-11-23T23:30:52+00:00",
+ "generated_at": "2026-11-23T23:36:58+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -29143,24 +29103,25 @@
   "espn_depth": {
    "ok": true,
    "at": "2026-11-23T23:30:47+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-23T23:30:48+00:00",
+   "at": "2026-11-23T23:36:57+00:00",
    "teams": 20,
    "injuries": 62
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-23T23:30:48+00:00",
+   "at": "2026-11-23T23:36:57+00:00",
    "teams": 18,
-   "verified": 0,
+   "verified": 2,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-23T23:30:48+00:00",
+   "at": "2026-11-23T23:36:57+00:00",
    "current_players": 474,
    "last_players": 582
   },
@@ -29170,18 +29131,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-23T23:30:48+00:00",
+   "at": "2026-11-23T23:36:58+00:00",
    "count": 99
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-23T23:30:48+00:00",
+   "at": "2026-11-23T23:36:58+00:00",
    "count": 105
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-23T23:30:49+00:00",
-   "count": 95
+   "at": "2026-11-23T23:36:58+00:00",
+   "count": 94
   },
   "x": {
    "ok": null,
@@ -29189,40 +29150,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-23T23:30:49+00:00",
+   "at": "2026-11-23T23:36:58+00:00",
    "players": 197,
    "read_at": "2026-11-23T23:30:49+00:00",
    "saved_for_history": 215
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-23T23:30:50+00:00",
+   "at": "2026-11-23T23:36:58+00:00",
    "players": 110,
    "read_at": "2026-11-23T23:30:49+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-23T23:30:50+00:00",
+   "at": "2026-11-23T23:36:58+00:00",
    "players": 10,
    "read_at": "2026-11-23T23:30:50+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-23T23:30:50+00:00",
+   "at": "2026-11-23T23:36:58+00:00",
    "games": 10,
-   "read_at": "2026-11-23T23:30:50+00:00"
+   "read_at": "2026-11-23T23:36:58+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-23T23:30:52+00:00",
+   "at": "2026-11-23T23:36:58+00:00",
    "injuries": 95,
    "notes": 165,
    "read_at": "2026-11-23T23:30:50+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-23T23:30:52+00:00",
-   "count": 84
+   "at": "2026-11-23T23:36:58+00:00",
+   "count": 83
   }
  }
 }
