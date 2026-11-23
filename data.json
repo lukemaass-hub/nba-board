@@ -14314,7 +14314,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-23T00:06:17+00:00",
+  "read_at": "2026-11-23T00:30:16+00:00",
   "date": "2026-11-22",
   "players": [
    {
@@ -15046,7 +15046,7 @@
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-23T00:06:18+00:00",
+  "read_at": "2026-11-23T00:30:17+00:00",
   "date": "2026-11-22",
   "players": [
    {
@@ -15407,7 +15407,7 @@
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-23T00:06:18+00:00",
+  "read_at": "2026-11-23T00:30:17+00:00",
   "date": "2026-11-22",
   "players": [
    {
@@ -15464,7 +15464,7 @@
  },
  "expected_mix": {
   "date": "2026-11-22",
-  "read_at": "2026-11-23T00:06:18+00:00",
+  "read_at": "2026-11-23T00:30:17+00:00",
   "players": [
    {
     "player": "Nikola Jokic",
@@ -16340,31 +16340,13 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-23T00:06:19+00:00",
+  "read_at": "2026-11-23T00:30:17+00:00",
   "date": "2026-11-22",
   "games": {
-   "ORL@WAS": {
-    "fav": "ORL",
-    "spread": 4.5,
-    "details": "ORL -4.5",
-    "provider": "Draft Kings"
-   },
-   "DEN@CHI": {
-    "fav": "DEN",
-    "spread": 9.5,
-    "details": "DEN -9.5",
-    "provider": "Draft Kings"
-   },
-   "DAL@UTA": {
-    "fav": "DAL",
-    "spread": 2.5,
-    "details": "DAL -2.5",
-    "provider": "Draft Kings"
-   },
    "IND@NYK": {
     "fav": "NYK",
-    "spread": 7.5,
-    "details": "NY -7.5",
+    "spread": 8.5,
+    "details": "NY -8.5",
     "provider": "Draft Kings"
    },
    "BOS@GSW": {
@@ -16402,7 +16384,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-23T00:06:19+00:00",
+  "read_at": "2026-11-23T00:30:17+00:00",
   "injuries": [
    {
     "team": "ATL",
@@ -19621,6 +19603,17 @@
  },
  "news": [
   {
+   "id": "nba540560",
+   "player": "Karl-Anthony Towns",
+   "headline": "Cleared to play Sunday",
+   "text": "Towns (illness) is available to play in Sunday's game against Indiana, Jared Schwartz of the New York Post reports.",
+   "reporter": "Jared Schwartz",
+   "outlet": "New York Post",
+   "url": "https://www.rotowire.com/basketball/player/karl-anthony-towns-3741",
+   "at": "2026-11-23T00:20:00+00:00",
+   "team": "NYK"
+  },
+  {
    "id": "nba540559",
    "player": "Miles McBride",
    "headline": "Not playing Sunday",
@@ -20499,39 +20492,6 @@
    "url": "https://www.rotowire.com/basketball/player/brook-lopez-2918",
    "at": "2026-11-20T15:55:00+00:00",
    "team": "LAC"
-  },
-  {
-   "id": "nba540074",
-   "player": "Jonathan Kuminga",
-   "headline": "Available versus Knicks",
-   "text": "Kuminga (shoulder) is available for Thursday's game against New York.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/jonathan-kuminga-5287",
-   "at": "2026-11-20T00:28:00+00:00",
-   "team": "MIN"
-  },
-  {
-   "id": "nba540072",
-   "player": "Deni Avdija",
-   "headline": "Remains sidelined Thursday",
-   "text": "Avdija (foot) is listed as out for Thursday's game against the Bucks.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
-   "at": "2026-11-20T00:22:00+00:00",
-   "team": "POR"
-  },
-  {
-   "id": "nba540071",
-   "player": "Toumani Camara",
-   "headline": "Getting green light Thursday",
-   "text": "Camara (soreness) has been cleared to play Thursday against Milwaukee.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/toumani-camara-5987",
-   "at": "2026-11-20T00:21:00+00:00",
-   "team": "POR"
   }
  ],
  "matchup_alerts": [
@@ -24215,6 +24175,18 @@
   },
   {
    "team": "NYK",
+   "player": "Miles McBride",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Abdomen",
+   "upd": "2026-11-23",
+   "until": "2026-11-25",
+   "note": "McBride (abdomen) has been ruled out for Sunday's game against the Pacers.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Miles%20McBride"
+  },
+  {
+   "team": "NYK",
    "player": "OG Anunoby",
    "src": "ESPN",
    "kind": "O",
@@ -24224,18 +24196,6 @@
    "note": "Anunoby (calf) won't play Sunday against the Pacers.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=OG%20Anunoby"
-  },
-  {
-   "team": "NYK",
-   "player": "Karl-Anthony Towns",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "Towns (illness) is questionable to play in Sunday's game against the Pacers.",
-   "through": "2026-11-24",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Karl-Anthony%20Towns"
   },
   {
    "team": "NYK",
@@ -26997,32 +26957,6 @@
   },
   {
    "team": "NYK",
-   "player": "Karl-Anthony Towns",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-22",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Towns"
-  },
-  {
-   "team": "NYK",
-   "player": "Karl-Anthony Towns",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-22",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Towns"
-  },
-  {
-   "team": "NYK",
    "player": "OG Anunoby",
    "src": "RotoWire",
    "kind": "O",
@@ -27150,6 +27084,23 @@
    "through": "2026-11-22",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Williams"
+  },
+  {
+   "team": "NYK",
+   "player": "Karl-Anthony Towns",
+   "src": "Jared Schwartz",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-22",
+   "until": "",
+   "note": "Towns (illness) is available to play in Sunday's game against Indiana, Jared Schwartz of the New York Post reports.",
+   "through": "2026-11-22",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/karl-anthony-towns-3741",
+   "from": "2026-11-22",
+   "override": true,
+   "at": "2026-11-23T00:20:00+00:00",
+   "from_news": true
   },
   {
    "team": "NYK",
@@ -28170,57 +28121,6 @@
    "override": true,
    "at": "2026-11-20T17:41:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "MIN",
-   "player": "Jonathan Kuminga",
-   "src": "RotoWire news",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "Kuminga (shoulder) is available for Thursday's game against New York.",
-   "through": "2026-11-19",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/jonathan-kuminga-5287",
-   "from": "2026-11-19",
-   "override": true,
-   "at": "2026-11-20T00:28:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "POR",
-   "player": "Deni Avdija",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "Avdija (foot) is listed as out for Thursday's game against the Bucks.",
-   "through": "2026-11-19",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/deni-avdija-5152",
-   "from": "2026-11-19",
-   "override": true,
-   "at": "2026-11-20T00:22:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "POR",
-   "player": "Toumani Camara",
-   "src": "RotoWire news",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-19",
-   "until": "",
-   "note": "Camara (soreness) has been cleared to play Thursday against Milwaukee.",
-   "through": "2026-11-19",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/toumani-camara-5987",
-   "from": "2026-11-19",
-   "override": true,
-   "at": "2026-11-20T00:21:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [
@@ -28236,36 +28136,34 @@
    "at": "2026-11-20T23:39:00+00:00"
   }
  ],
- "generated_at": "2026-11-23T00:06:20+00:00",
+ "generated_at": "2026-11-23T00:30:18+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-22T18:11:41+00:00",
-   "count": 1200,
-   "reused": true
+   "at": "2026-11-23T00:30:00+00:00",
+   "count": 1200
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-22T23:06:25+00:00",
-   "teams": 30,
-   "reused": true
+   "at": "2026-11-23T00:30:15+00:00",
+   "teams": 30
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-23T00:06:16+00:00",
+   "at": "2026-11-23T00:30:15+00:00",
    "teams": 14,
-   "injuries": 57
+   "injuries": 55
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-23T00:06:16+00:00",
+   "at": "2026-11-23T00:30:15+00:00",
    "teams": 14,
    "verified": 10,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-23T00:06:17+00:00",
+   "at": "2026-11-23T00:30:15+00:00",
    "current_players": 474,
    "last_players": 582
   },
@@ -28275,17 +28173,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-23T00:06:17+00:00",
+   "at": "2026-11-23T00:30:15+00:00",
    "count": 101
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-23T00:06:17+00:00",
+   "at": "2026-11-23T00:30:16+00:00",
    "count": 109
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-23T00:06:17+00:00",
+   "at": "2026-11-23T00:30:16+00:00",
    "count": 101
   },
   "x": {
@@ -28294,40 +28192,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-23T00:06:18+00:00",
+   "at": "2026-11-23T00:30:17+00:00",
    "players": 121,
-   "read_at": "2026-11-23T00:06:17+00:00",
+   "read_at": "2026-11-23T00:30:16+00:00",
    "saved_for_history": 41
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-23T00:06:18+00:00",
+   "at": "2026-11-23T00:30:17+00:00",
    "players": 71,
-   "read_at": "2026-11-23T00:06:18+00:00"
+   "read_at": "2026-11-23T00:30:17+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-23T00:06:19+00:00",
+   "at": "2026-11-23T00:30:17+00:00",
    "players": 10,
-   "read_at": "2026-11-23T00:06:18+00:00"
+   "read_at": "2026-11-23T00:30:17+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-23T00:06:19+00:00",
-   "games": 5,
-   "read_at": "2026-11-23T00:06:19+00:00"
+   "at": "2026-11-23T00:30:17+00:00",
+   "games": 2,
+   "read_at": "2026-11-23T00:30:17+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-23T00:06:19+00:00",
+   "at": "2026-11-23T00:30:18+00:00",
    "injuries": 111,
    "notes": 166,
-   "read_at": "2026-11-23T00:06:19+00:00"
+   "read_at": "2026-11-23T00:30:17+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-23T00:06:20+00:00",
-   "count": 83
+   "at": "2026-11-23T00:30:18+00:00",
+   "count": 81
   }
  }
 }
