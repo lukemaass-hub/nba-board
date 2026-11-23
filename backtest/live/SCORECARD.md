@@ -2,12 +2,12 @@
 
 Gain = 1+ minutes above the player's last-10-game average. Weights: last game x1, coach's-decision benchings x1. Picks lock at tip-off.
 
-**256 team-games scored** (2026-10-20 to 2026-11-21)
+**257 team-games scored** (2026-10-20 to 2026-11-22)
 
 | | #1 pick gained minutes |
 |---|---|
-| Model | 59.0% |
-| Next man up (same position) | 39.5% |
+| Model | 59.1% |
+| Next man up (same position) | 39.7% |
 | Random teammate | 39.4% |
 
 Model top 3: 55.9% gained. Rank correlation: 0.36.
@@ -16,13 +16,14 @@ Model top 3: 55.9% gained. Rank correlation: 0.36.
 |---|---|---|
 | high | 58 | 69.0% |
 | medium-high | 55 | 76.4% |
-| medium-low | 57 | 49.1% |
+| medium-low | 58 | 50.0% |
 | low | 86 | 47.7% |
 
 ## Latest
 
 | Date | Team | Out | #1 pick (change) | Hit | Confidence |
 |---|---|---|---|---|---|
+| 2026-11-22 | OKC | Alex Caruso (19); Nikola Topic (16); Jaylin Williams (17) | Nique Clifford (+14) | yes | medium-low |
 | 2026-11-21 | BOS | Mitchell Robinson (16); Jayson Tatum (33); Derrick White (30) | Payton Pritchard (+7) | yes | medium-low |
 | 2026-11-20 | CHA | Grayson Allen (27); Kon Knueppel (29); Dennis Schroder (29); Grant Williams (22) | Coby White (+7) | yes | medium-high |
 | 2026-11-20 | ATL | Jock Landale (15); CJ McCollum (26) | Nickeil Alexander-Walker (-1) | no | low |
@@ -47,4 +48,3 @@ Model top 3: 55.9% gained. Rank correlation: 0.36.
 | 2026-11-15 | CHA | Kon Knueppel (29); Dennis Schroder (29) | Grayson Allen (-3) | no | medium-low |
 | 2026-11-15 | LAL | Austin Reaves (35) | Quentin Grimes (+11) | yes | medium-low |
 | 2026-11-14 | MIA | Pelle Larsson (30) | Ryan Conwell (+12) | yes | high |
-| 2026-11-14 | NOP | Bennedict Mathurin (15); Trey Murphy III (33); Dejounte Murray (31) | Herbert Jones (+1) | yes | medium-high |
