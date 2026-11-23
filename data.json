@@ -8910,7 +8910,7 @@
    "time": "20:00",
    "vs": "NYK",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8939,7 +8939,7 @@
    "time": "20:00",
    "vs": "IND",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8961,7 +8961,8 @@
      "pos": "C",
      "name": "Karl-Anthony Towns"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "BOS": {
    "date": "2026-11-22",
@@ -14314,7 +14315,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-23T00:30:16+00:00",
+  "read_at": "2026-11-23T00:45:33+00:00",
   "date": "2026-11-22",
   "players": [
    {
@@ -15046,7 +15047,7 @@
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-23T00:30:17+00:00",
+  "read_at": "2026-11-23T00:45:34+00:00",
   "date": "2026-11-22",
   "players": [
    {
@@ -15407,7 +15408,7 @@
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-23T00:30:17+00:00",
+  "read_at": "2026-11-23T00:45:34+00:00",
   "date": "2026-11-22",
   "players": [
    {
@@ -15464,7 +15465,7 @@
  },
  "expected_mix": {
   "date": "2026-11-22",
-  "read_at": "2026-11-23T00:30:17+00:00",
+  "read_at": "2026-11-23T00:45:34+00:00",
   "players": [
    {
     "player": "Nikola Jokic",
@@ -16340,13 +16341,13 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-23T00:30:17+00:00",
+  "read_at": "2026-11-23T00:45:35+00:00",
   "date": "2026-11-22",
   "games": {
    "IND@NYK": {
     "fav": "NYK",
-    "spread": 8.5,
-    "details": "NY -8.5",
+    "spread": 6.5,
+    "details": "NY -6.5",
     "provider": "Draft Kings"
    },
    "BOS@GSW": {
@@ -16384,7 +16385,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-23T00:30:17+00:00",
+  "read_at": "2026-11-23T00:45:35+00:00",
   "injuries": [
    {
     "team": "ATL",
@@ -16986,16 +16987,16 @@
     "player": "Pascal Siakam",
     "src": "NBA report",
     "kind": "G",
-    "injury": "Left Hip Soreness / Tightness Listed Q 3x, played 3 \u00b7 Team Qs played 57/70",
+    "injury": "Left Hip Soreness / Tightness",
     "upd": "2026-11-22",
     "until": "",
     "note": "",
     "through": "2026-11-22",
-    "st": "q",
+    "st": "avail",
     "url": "https://presserwire.com/nba/games/2026-11-22-indiana-pacers-at-new-york-knicks.html",
     "from": "2026-11-22",
     "override": true,
-    "at": "2026-11-22T00:00:58+00:00"
+    "at": "2026-11-23T00:45:35+00:00"
    },
    {
     "team": "MIA",
@@ -17078,16 +17079,16 @@
     "player": "Karl-Anthony Towns",
     "src": "NBA report",
     "kind": "G",
-    "injury": "Illness Listed Q 4x, played 2",
+    "injury": "Illness",
     "upd": "2026-11-22",
     "until": "",
     "note": "",
     "through": "2026-11-22",
-    "st": "q",
+    "st": "avail",
     "url": "https://presserwire.com/nba/games/2026-11-22-indiana-pacers-at-new-york-knicks.html",
     "from": "2026-11-22",
     "override": true,
-    "at": "2026-11-22T18:11:55+00:00"
+    "at": "2026-11-23T00:45:35+00:00"
    },
    {
     "team": "OKC",
@@ -19602,6 +19603,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba540561",
+   "player": "Pascal Siakam",
+   "headline": "Good to go Sunday",
+   "text": "Siakam (hip) is available for Sunday's game against the Knicks.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/pascal-siakam-3922",
+   "at": "2026-11-23T00:37:00+00:00",
+   "team": "IND"
+  },
   {
    "id": "nba540560",
    "player": "Karl-Anthony Towns",
@@ -23899,18 +23911,6 @@
   },
   {
    "team": "IND",
-   "player": "Pascal Siakam",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Hip Soreness",
-   "upd": "2026-11-21",
-   "until": "",
-   "note": "Siakam (hip) is listed as questionable for Sunday's game against New York.",
-   "through": "2026-11-24",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Pascal%20Siakam"
-  },
-  {
-   "team": "IND",
    "player": "Tyrese Haliburton",
    "src": "ESPN",
    "kind": "O",
@@ -25277,16 +25277,16 @@
    "player": "Pascal Siakam",
    "src": "NBA report",
    "kind": "G",
-   "injury": "Left Hip Soreness / Tightness Listed Q 3x, played 3 \u00b7 Team Qs played 57/70",
+   "injury": "Left Hip Soreness / Tightness",
    "upd": "2026-11-22",
    "until": "",
    "note": "",
    "through": "2026-11-22",
-   "st": "q",
+   "st": "avail",
    "url": "https://presserwire.com/nba/games/2026-11-22-indiana-pacers-at-new-york-knicks.html",
    "from": "2026-11-22",
    "override": true,
-   "at": "2026-11-22T00:00:58+00:00"
+   "at": "2026-11-23T00:45:35+00:00"
   },
   {
    "team": "MIA",
@@ -25369,16 +25369,16 @@
    "player": "Karl-Anthony Towns",
    "src": "NBA report",
    "kind": "G",
-   "injury": "Illness Listed Q 4x, played 2",
+   "injury": "Illness",
    "upd": "2026-11-22",
    "until": "",
    "note": "",
    "through": "2026-11-22",
-   "st": "q",
+   "st": "avail",
    "url": "https://presserwire.com/nba/games/2026-11-22-indiana-pacers-at-new-york-knicks.html",
    "from": "2026-11-22",
    "override": true,
-   "at": "2026-11-22T18:11:55+00:00"
+   "at": "2026-11-23T00:45:35+00:00"
   },
   {
    "team": "OKC",
@@ -26879,32 +26879,6 @@
   },
   {
    "team": "IND",
-   "player": "Pascal Siakam",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-22",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Siakam"
-  },
-  {
-   "team": "IND",
-   "player": "Pascal Siakam",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-22",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=P.%20Siakam"
-  },
-  {
-   "team": "IND",
    "player": "Johnny Furphy",
    "src": "RotoWire",
    "kind": "O",
@@ -27084,6 +27058,23 @@
    "through": "2026-11-22",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=B.%20Williams"
+  },
+  {
+   "team": "IND",
+   "player": "Pascal Siakam",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-22",
+   "until": "",
+   "note": "Siakam (hip) is available for Sunday's game against the Knicks.",
+   "through": "2026-11-22",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/pascal-siakam-3922",
+   "from": "2026-11-22",
+   "override": true,
+   "at": "2026-11-23T00:37:00+00:00",
+   "from_news": true
   },
   {
    "team": "NYK",
@@ -28136,34 +28127,38 @@
    "at": "2026-11-20T23:39:00+00:00"
   }
  ],
- "generated_at": "2026-11-23T00:30:18+00:00",
+ "generated_at": "2026-11-23T00:45:36+00:00",
  "sources": {
   "schedule": {
    "ok": true,
    "at": "2026-11-23T00:30:00+00:00",
-   "count": 1200
+   "count": 1200,
+   "reused": true
   },
   "espn_depth": {
    "ok": true,
    "at": "2026-11-23T00:30:15+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-23T00:30:15+00:00",
+   "at": "2026-11-23T00:45:32+00:00",
    "teams": 14,
-   "injuries": 55
+   "injuries": 53
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-23T00:30:15+00:00",
+   "at": "2026-11-23T00:45:33+00:00",
    "teams": 14,
-   "verified": 10,
-   "used": []
+   "verified": 12,
+   "used": [
+    "NYK"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-23T00:30:15+00:00",
+   "at": "2026-11-23T00:45:33+00:00",
    "current_players": 474,
    "last_players": 582
   },
@@ -28173,18 +28168,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-23T00:30:15+00:00",
+   "at": "2026-11-23T00:45:33+00:00",
    "count": 101
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-23T00:30:16+00:00",
+   "at": "2026-11-23T00:45:33+00:00",
    "count": 109
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-23T00:30:16+00:00",
-   "count": 101
+   "at": "2026-11-23T00:45:33+00:00",
+   "count": 100
   },
   "x": {
    "ok": null,
@@ -28192,40 +28187,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-23T00:30:17+00:00",
+   "at": "2026-11-23T00:45:34+00:00",
    "players": 121,
-   "read_at": "2026-11-23T00:30:16+00:00",
+   "read_at": "2026-11-23T00:45:33+00:00",
    "saved_for_history": 41
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-23T00:30:17+00:00",
+   "at": "2026-11-23T00:45:34+00:00",
    "players": 71,
-   "read_at": "2026-11-23T00:30:17+00:00"
+   "read_at": "2026-11-23T00:45:34+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-23T00:30:17+00:00",
+   "at": "2026-11-23T00:45:35+00:00",
    "players": 10,
-   "read_at": "2026-11-23T00:30:17+00:00"
+   "read_at": "2026-11-23T00:45:34+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-23T00:30:17+00:00",
+   "at": "2026-11-23T00:45:35+00:00",
    "games": 2,
-   "read_at": "2026-11-23T00:30:17+00:00"
+   "read_at": "2026-11-23T00:45:35+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-23T00:30:18+00:00",
+   "at": "2026-11-23T00:45:35+00:00",
    "injuries": 111,
    "notes": 166,
-   "read_at": "2026-11-23T00:30:17+00:00"
+   "read_at": "2026-11-23T00:45:35+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-23T00:30:18+00:00",
-   "count": 81
+   "at": "2026-11-23T00:45:36+00:00",
+   "count": 82
   }
  }
 }
