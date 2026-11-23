@@ -8678,7 +8678,7 @@
    "time": "19:00",
    "vs": "CHA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8686,15 +8686,15 @@
     },
     {
      "pos": "SG",
-     "name": "Jahmai Mashack"
-    },
-    {
-     "pos": "SF",
      "name": "Cedric Coward"
     },
     {
-     "pos": "PF",
+     "pos": "SF",
      "name": "Jaylen Wells"
+    },
+    {
+     "pos": "PF",
+     "name": "Kris Murray"
     },
     {
      "pos": "C",
@@ -17682,7 +17682,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-23T23:36:58+00:00",
+  "read_at": "2026-11-23T23:43:05+00:00",
   "date": "2026-11-23",
   "games": {
    "MEM@CHA": {
@@ -21661,17 +21661,6 @@
    "url": "https://www.rotowire.com/basketball/player/peyton-watson-5722",
    "at": "2026-11-20T23:51:00+00:00",
    "team": "CLE"
-  },
-  {
-   "id": "nba540218",
-   "player": "Trey Murphy",
-   "headline": "Upgraded to available",
-   "text": "Murphy (knee) is available for Friday's game against Oklahoma City but will be under a minutes restriction, Clemente Almanza of USA Today reports.",
-   "reporter": "Clemente Almanza",
-   "outlet": "USA Today",
-   "url": "https://www.rotowire.com/basketball/player/trey-murphy-5401",
-   "at": "2026-11-20T23:39:00+00:00",
-   "team": "NOP"
   }
  ],
  "matchup_alerts": [
@@ -24767,6 +24756,18 @@
   },
   {
    "team": "DAL",
+   "player": "Tobi Lawal",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Groin",
+   "upd": "2026-11-23",
+   "until": "2026-11-27",
+   "note": "Lawal (groin) is out for Tuesday's game against Denver.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Tobi%20Lawal"
+  },
+  {
+   "team": "DAL",
    "player": "PJ Washington",
    "src": "ESPN",
    "kind": "G",
@@ -24776,18 +24777,6 @@
    "note": "Washington (illness) is questionable for Tuesday's game against the Nuggets.",
    "through": "2026-11-25",
    "url": "https://www.espn.com/nba/injuries#:~:text=P.J.%20Washington"
-  },
-  {
-   "team": "DAL",
-   "player": "Tobi Lawal",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Right Groin",
-   "upd": "2026-11-22",
-   "until": "2026-11-24",
-   "note": "Lawal (groin) has been ruled out for Sunday's game against the Jazz.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Tobi%20Lawal"
   },
   {
    "team": "DAL",
@@ -29060,39 +29049,10 @@
    "override": true,
    "at": "2026-11-20T23:51:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "NOP",
-   "player": "Trey Murphy",
-   "src": "Clemente Almanza",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-20",
-   "until": "",
-   "note": "Murphy (knee) is available for Friday's game against Oklahoma City but will be under a minutes restriction, Clemente Almanza of USA Today reports.",
-   "through": "2026-11-20",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/trey-murphy-5401",
-   "from": "2026-11-20",
-   "override": true,
-   "at": "2026-11-20T23:39:00+00:00",
-   "from_news": true
   }
  ],
- "restrictions": [
-  {
-   "team": "NOP",
-   "player": "Trey Murphy",
-   "from": "2026-11-20",
-   "through": "2026-11-20",
-   "text": "Murphy (knee) is available for Friday's game against Oklahoma City but will be under a minutes restriction, Clemente Almanza of USA Today reports.",
-   "reporter": "Clemente Almanza",
-   "outlet": "USA Today",
-   "url": "https://www.rotowire.com/basketball/player/trey-murphy-5401",
-   "at": "2026-11-20T23:39:00+00:00"
-  }
- ],
- "generated_at": "2026-11-23T23:36:58+00:00",
+ "restrictions": [],
+ "generated_at": "2026-11-23T23:43:05+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -29108,20 +29068,20 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-23T23:36:57+00:00",
+   "at": "2026-11-23T23:43:04+00:00",
    "teams": 20,
    "injuries": 62
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-23T23:36:57+00:00",
+   "at": "2026-11-23T23:43:04+00:00",
    "teams": 18,
-   "verified": 2,
+   "verified": 4,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-23T23:36:57+00:00",
+   "at": "2026-11-23T23:43:04+00:00",
    "current_players": 474,
    "last_players": 582
   },
@@ -29131,17 +29091,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-23T23:36:58+00:00",
+   "at": "2026-11-23T23:43:05+00:00",
    "count": 99
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-23T23:36:58+00:00",
+   "at": "2026-11-23T23:43:05+00:00",
    "count": 105
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-23T23:36:58+00:00",
+   "at": "2026-11-23T23:43:05+00:00",
    "count": 94
   },
   "x": {
@@ -29150,40 +29110,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-23T23:36:58+00:00",
+   "at": "2026-11-23T23:43:05+00:00",
    "players": 197,
    "read_at": "2026-11-23T23:30:49+00:00",
    "saved_for_history": 215
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-23T23:36:58+00:00",
+   "at": "2026-11-23T23:43:05+00:00",
    "players": 110,
    "read_at": "2026-11-23T23:30:49+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-23T23:36:58+00:00",
+   "at": "2026-11-23T23:43:05+00:00",
    "players": 10,
    "read_at": "2026-11-23T23:30:50+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-23T23:36:58+00:00",
+   "at": "2026-11-23T23:43:05+00:00",
    "games": 10,
-   "read_at": "2026-11-23T23:36:58+00:00"
+   "read_at": "2026-11-23T23:43:05+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-23T23:36:58+00:00",
+   "at": "2026-11-23T23:43:05+00:00",
    "injuries": 95,
    "notes": 165,
    "read_at": "2026-11-23T23:30:50+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-23T23:36:58+00:00",
-   "count": 83
+   "at": "2026-11-23T23:43:05+00:00",
+   "count": 82
   }
  }
 }
