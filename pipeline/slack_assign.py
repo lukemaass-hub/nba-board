@@ -149,7 +149,7 @@ ALWAYS_INCLUDE = [OWNER]
 PAUSED = False   # True = send nothing (user, Nov 19 2026 paused; Nov 20 owner-only instead)
 # Owner only (user, Nov 17 2026: "have the info send to me so I can verify before it starts sending to other people"):
 # every report goes to the owner's DM with the bot, marked [TEST] with who it would have gone to. False = traders again.
-OWNER_ONLY = True   # user, Nov 20 2026: "send all of these to my dms going forward until I am sure of the fix"
+OWNER_ONLY = False   # user, Nov 24 2026: "lets start that again" (traders get their group DMs)
 
 
 def mode():
