@@ -8910,7 +8910,7 @@
    "time": "20:00",
    "vs": "NOP",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8951,7 +8951,7 @@
     },
     {
      "pos": "SF",
-     "name": "Saddiq Bey"
+     "name": "Trey Murphy"
     },
     {
      "pos": "PF",
@@ -8997,7 +8997,7 @@
    "time": "20:00",
    "vs": "CLE",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17682,7 +17682,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-24T00:30:01+00:00",
+  "read_at": "2026-11-24T00:39:24+00:00",
   "date": "2026-11-23",
   "games": {
    "OKC@IND": {
@@ -17717,8 +17717,8 @@
    },
    "LAC@HOU": {
     "fav": "HOU",
-    "spread": 12.5,
-    "details": "HOU -12.5",
+    "spread": 13.5,
+    "details": "HOU -13.5",
     "provider": "Draft Kings"
    },
    "UTA@LAL": {
@@ -20760,6 +20760,39 @@
   ]
  },
  "news": [
+  {
+   "id": "nba540719",
+   "player": "Jaylon Tyson",
+   "headline": "Available vs. Chicago",
+   "text": "Tyson (ankle) is available and will come off the bench Monday against the Bulls, Serena Winters of FanDuel Sports Network Ohio reports.",
+   "reporter": "Serena Winters",
+   "outlet": "FanDuel Sports Network Ohio",
+   "url": "https://www.rotowire.com/basketball/player/jaylon-tyson-6277",
+   "at": "2026-11-24T00:36:00+00:00",
+   "team": "CLE"
+  },
+  {
+   "id": "nba540718",
+   "player": "Sam Merrill",
+   "headline": "Starting Monday",
+   "text": "Merrill will start Monday's game against the Bulls, Serena Winters of FanDuel Sports Network Ohio reports.",
+   "reporter": "Serena Winters",
+   "outlet": "FanDuel Sports Network Ohio",
+   "url": "https://www.rotowire.com/basketball/player/sam-merrill-5254",
+   "at": "2026-11-24T00:34:00+00:00",
+   "team": "CLE"
+  },
+  {
+   "id": "nba540717",
+   "player": "Zion Williamson",
+   "headline": "Cleared to play Monday",
+   "text": "Williamson (thigh) is available for Monday's game against the Suns.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/zion-williamson-4777",
+   "at": "2026-11-24T00:33:00+00:00",
+   "team": "NOP"
+  },
   {
    "id": "nba540715",
    "player": "Collin Murray-Boyles",
@@ -24615,18 +24648,6 @@
   },
   {
    "team": "CLE",
-   "player": "Jaylon Tyson",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Right Ankle",
-   "upd": "2026-11-22",
-   "until": "2026-11-23",
-   "note": "Tyson (ankle) is probable for Monday's game against the Bulls.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Jaylon%20Tyson"
-  },
-  {
-   "team": "CLE",
    "player": "Nae'Qwan Tomlin",
    "src": "ESPN",
    "kind": "O",
@@ -25038,7 +25059,7 @@
    "player": "Zion Williamson",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Left Thigh Bruise",
+   "injury": "day-to-day",
    "upd": "2026-11-22",
    "until": "",
    "note": "Williamson (thigh) is probable for Monday's game against Phoenix.",
@@ -27466,32 +27487,6 @@
   },
   {
    "team": "NOP",
-   "player": "Zion Williamson",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-23",
-   "until": "",
-   "note": "RotoWire tag: Prob",
-   "through": "2026-11-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Z.%20Williamson"
-  },
-  {
-   "team": "NOP",
-   "player": "Zion Williamson",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-23",
-   "until": "",
-   "note": "RotoWire tag: Prob",
-   "through": "2026-11-23",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Z.%20Williamson"
-  },
-  {
-   "team": "NOP",
    "player": "Bennedict Mathurin",
    "src": "RotoWire",
    "kind": "O",
@@ -27801,6 +27796,57 @@
    "through": "2026-11-23",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=M.%20Raynaud"
+  },
+  {
+   "team": "CLE",
+   "player": "Jaylon Tyson",
+   "src": "Serena Winters",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-23",
+   "until": "",
+   "note": "Tyson (ankle) is available and will come off the bench Monday against the Bulls, Serena Winters of FanDuel Sports Network Ohio reports.",
+   "through": "2026-11-23",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/jaylon-tyson-6277",
+   "from": "2026-11-23",
+   "override": true,
+   "at": "2026-11-24T00:36:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "CLE",
+   "player": "Sam Merrill",
+   "src": "Serena Winters",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-23",
+   "until": "",
+   "note": "Merrill will start Monday's game against the Bulls, Serena Winters of FanDuel Sports Network Ohio reports.",
+   "through": "2026-11-23",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/sam-merrill-5254",
+   "from": "2026-11-23",
+   "override": true,
+   "at": "2026-11-24T00:34:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "NOP",
+   "player": "Zion Williamson",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-23",
+   "until": "",
+   "note": "Williamson (thigh) is available for Monday's game against the Suns.",
+   "through": "2026-11-23",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/zion-williamson-4777",
+   "from": "2026-11-23",
+   "override": true,
+   "at": "2026-11-24T00:33:00+00:00",
+   "from_news": true
   },
   {
    "team": "MEM",
@@ -28858,7 +28904,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-24T00:30:02+00:00",
+ "generated_at": "2026-11-24T00:39:24+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -28868,26 +28914,26 @@
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-23T23:30:47+00:00",
+   "at": "2026-11-24T00:33:18+00:00",
    "teams": 30,
    "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-24T00:29:59+00:00",
+   "at": "2026-11-24T00:39:23+00:00",
    "teams": 20,
-   "injuries": 60
+   "injuries": 58
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-24T00:29:59+00:00",
+   "at": "2026-11-24T00:39:23+00:00",
    "teams": 18,
-   "verified": 12,
+   "verified": 13,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-24T00:29:59+00:00",
+   "at": "2026-11-24T00:39:23+00:00",
    "current_players": 474,
    "last_players": 582
   },
@@ -28897,18 +28943,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-24T00:30:00+00:00",
+   "at": "2026-11-24T00:39:23+00:00",
    "count": 93
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-24T00:30:00+00:00",
+   "at": "2026-11-24T00:39:24+00:00",
    "count": 105
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-24T00:30:00+00:00",
-   "count": 93
+   "at": "2026-11-24T00:39:24+00:00",
+   "count": 92
   },
   "x": {
    "ok": null,
@@ -28916,40 +28962,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-24T00:30:01+00:00",
+   "at": "2026-11-24T00:39:24+00:00",
    "players": 197,
    "read_at": "2026-11-24T00:30:00+00:00",
    "saved_for_history": 108
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-24T00:30:01+00:00",
+   "at": "2026-11-24T00:39:24+00:00",
    "players": 110,
    "read_at": "2026-11-24T00:30:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-24T00:30:01+00:00",
+   "at": "2026-11-24T00:39:24+00:00",
    "players": 10,
    "read_at": "2026-11-24T00:30:01+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-24T00:30:02+00:00",
+   "at": "2026-11-24T00:39:24+00:00",
    "games": 8,
-   "read_at": "2026-11-24T00:30:01+00:00"
+   "read_at": "2026-11-24T00:39:24+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-24T00:30:02+00:00",
+   "at": "2026-11-24T00:39:24+00:00",
    "injuries": 95,
    "notes": 166,
    "read_at": "2026-11-24T00:30:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-24T00:30:02+00:00",
-   "count": 79
+   "at": "2026-11-24T00:39:24+00:00",
+   "count": 82
   }
  }
 }
