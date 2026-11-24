@@ -47,6 +47,20 @@ def is_schedule(text, date):
     return bool(re.search(rf"\b0?{date.month}/0?{date.day}\b[^\n]*IP Trader Schedule", text or "", re.I))
 
 
+COVERED = re.compile(r"covered by other team", re.I)
+
+
+def covered_games(text):
+    """NBA games the schedule marks "Covered by other team" (no IP traders; Nov 21 2026, MIL@PHI 1 PM)."""
+    out = set()
+    for line in (text or "").splitlines():
+        if COVERED.search(line):
+            m = GAME.match(re.sub(r"^[\s>]*(?::[\w+-]+:\s*)*", "", line).replace("*", "").replace("_", ""))
+            if m and team_code(m.group(2)) and team_code(m.group(3)):
+                out.add((team_code(m.group(2)), team_code(m.group(3))))
+    return out
+
+
 def parse_schedule(text):
     """NBA games in the schedule text -> {(away_code, home_code): [{"user": id, "name": str, "role": str}]}."""
     out, sport = {}, None
