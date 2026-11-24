@@ -297,3 +297,7 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
 - Nov 19 2026 (user): "stop sending until further notice" -> slack_assign.PAUSED = True (no group DMs, no alerts).
 - Nov 20 2026 (user): "send all of these to my dms going forward until I am sure of the fix" -> PAUSED = False,
   OWNER_ONLY = True: every report to the owner's DM with the bot, marked [TEST] with who it would have gone to.
+- Nov 24 2026: owner DMs Nov 20-23 checked vs box scores: 31 reports, 62 teams, 61 with all 5 starters right (NOP Nov 20
+  sent at the 5-minute mark with RotoWire's expected lineup), every 6th man played, nobody listed out played. The one
+  game without a report, MIL@PHI Nov 21 1 PM, was "Covered by other team" in the trader schedule. User: covered games
+  need no DM -> slack_assign.covered_games; dm_traders logs them "skipped: covered by other team" (no retries, no alert).

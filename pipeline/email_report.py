@@ -949,6 +949,7 @@ def dm_traders(data, token, now, window, sent, stamp):
         print("Slack DMs: today's IP Trader Schedule isn't posted yet; trying again next run.")
         return
     sched = sa.parse_schedule(text)
+    covered_set = sa.covered_games(text)
     for key, g, confirmed in due:
         # one group DM per game: the bot + that game's Props AND Cores traders (user's choice, Oct 26 2026), like the
         # football reports; a lone trader gets a one-on-one message instead (hidden while the bot's Messages tab is off)
@@ -960,9 +961,17 @@ def dm_traders(data, token, now, window, sent, stamp):
         who = sa.plan(people)
         why = "lineups confirmed" if confirmed else "lineups not confirmed yet"
         title, blocks = build_slack(data, g, g["date"], test=(m == "test"))
-        if m != "off" and not people:   # not marked sent: a game missing from the schedule is retried, and the owner is emailed if it tips unsent
-            print(f"Slack DMs: {g['away']}@{g['home']} has no traders in today's IP Trader Schedule; not sent, will retry")
-            continue
+        covered = (g["away"], g["home"]) in covered_set
+        if m != "off" and not people:
+            if covered:     # "Covered by other team": not ours, no report in any mode, no retries, no alert (user, Nov 24 2026)
+                print(f"Slack DMs: {g['away']}@{g['home']} is covered by another team; nothing to send")
+                sent["dm " + key] = "skipped: covered by other team"
+                continue
+            # not marked sent: a game missing from the schedule is retried, and the owner is emailed if it tips unsent
+            if m == "on":
+                print(f"Slack DMs: {g['away']}@{g['home']} has no traders in today's IP Trader Schedule; not sent, will retry")
+                continue
+            who = "no one (no traders in today's schedule)"   # owner-only mode: he still gets it
         if m == "off":
             print(f"Slack DMs ({m}, {why}): {g['away']}@{g['home']} would go to {who}")
         else:

@@ -897,3 +897,28 @@ def test_out_anywhere_is_out_unless_confirmed_starter():
     d["lineups"]["PHI"]["confirmed"] = True          # in a confirmed starting five: he is playing
     d["injuries"] = [rec("ESPN", "out")]
     assert e.injuries_for(d, "PHI", "2026-11-18") == []
+
+
+def test_covered_by_other_team_game():
+    """Nov 21 2026: MIL@PHI (1 PM) was "Covered by other team": no traders, so it was never sent, even in owner-only mode."""
+    import slack_assign as sa
+    t = ("*_NBA_* :nba:\n"
+         ":hybrid-time: *1:00 PM - Milwaukee Bucks @ Philadelphia 76ers* - _Covered by other team_\n"
+         "8:00 PM - LA Clippers @ Dallas Mavericks - <@U1|Blake G> Cores / <@U2|Nathan N> Props\n"
+         "*_NHL_* :nhl:\n1:00 PM - Edmonton Oilers @ Carolina Hurricanes - _Covered by other team_\n")
+    assert sa.covered_games(t) == {("MIL", "PHI")}
+    assert sa.parse_schedule(t)[("MIL", "PHI")] == []
+
+
+def test_covered_game_is_skipped_without_alert(monkeypatch):
+    import email_report as e, slack_assign as sa
+    text = "*_NBA_* :nba:\n:hybrid-time: *1:00 PM - Milwaukee Bucks @ Philadelphia 76ers* - _Covered by other team_\n"
+    monkeypatch.setattr(sa, "fetch_schedule", lambda tok, day: text)
+    posts = []
+    monkeypatch.setattr(sa, "dm", lambda *a: posts.append(a)); monkeypatch.setattr(sa, "group_dm", lambda *a: posts.append(a))
+    monkeypatch.setattr(sa, "OWNER_ONLY", True); monkeypatch.setenv("SLACK_DM_MODE", "on")
+    d = {"schedule": [{"date": "2026-11-21", "time": "13:00", "away": "MIL", "home": "PHI"}], "depth": {}, "injuries": []}
+    now = dt.datetime(2026, 11, 21, 12, 56, tzinfo=e.ET)
+    log = {}
+    e.dm_traders(d, "x", now, 25, log, "")
+    assert posts == [] and log["dm 2026-11-21 MIL@PHI"].startswith("skipped")
