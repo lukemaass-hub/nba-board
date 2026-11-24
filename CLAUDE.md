@@ -301,3 +301,4 @@ Plain language, no jargon, short answers. The user is not a developer: say exact
   sent at the 5-minute mark with RotoWire's expected lineup), every 6th man played, nobody listed out played. The one
   game without a report, MIL@PHI Nov 21 1 PM, was "Covered by other team" in the trader schedule. User: covered games
   need no DM -> slack_assign.covered_games; dm_traders logs them "skipped: covered by other team" (no retries, no alert).
+- Nov 24 2026 (user): "lets start that again" -> OWNER_ONLY = False: group DMs to each game's traders (+ owner) again.
