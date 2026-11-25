@@ -8620,7 +8620,7 @@
    "time": "17:00",
    "vs": "PHI",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8642,14 +8642,15 @@
      "pos": "C",
      "name": "Bam Adebayo"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "PHI": {
    "date": "2026-11-25",
    "time": "17:00",
    "vs": "MIA",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17451,7 +17452,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-25T21:30:48+00:00",
+  "read_at": "2026-11-25T21:33:52+00:00",
   "date": "2026-11-25",
   "games": {
    "MIA@PHI": {
@@ -17468,8 +17469,8 @@
    },
    "CLE@NYK": {
     "fav": "NYK",
-    "spread": 1.5,
-    "details": "NY -1.5",
+    "spread": 2.5,
+    "details": "NY -2.5",
     "provider": "DraftKings"
    },
    "MIN@OKC": {
@@ -25604,7 +25605,7 @@
    "injury": "",
    "upd": "2026-11-25",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Prob",
    "through": "2026-11-25",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Brunson"
@@ -25669,7 +25670,7 @@
    "injury": "",
    "upd": "2026-11-25",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Prob",
    "through": "2026-11-25",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Brunson"
@@ -27017,7 +27018,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-25T21:30:49+00:00",
+ "generated_at": "2026-11-25T21:33:52+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -27028,24 +27029,27 @@
   "espn_depth": {
    "ok": true,
    "at": "2026-11-25T21:30:42+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-25T21:30:42+00:00",
+   "at": "2026-11-25T21:33:51+00:00",
    "teams": 18,
    "injuries": 63
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-25T21:30:42+00:00",
+   "at": "2026-11-25T21:33:52+00:00",
    "teams": 18,
-   "verified": 0,
-   "used": []
+   "verified": 2,
+   "used": [
+    "MIA"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-25T21:30:42+00:00",
+   "at": "2026-11-25T21:33:52+00:00",
    "current_players": 481,
    "last_players": 582
   },
@@ -27055,17 +27059,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-25T21:30:42+00:00",
+   "at": "2026-11-25T21:33:52+00:00",
    "count": 95
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-25T21:30:43+00:00",
+   "at": "2026-11-25T21:33:52+00:00",
    "count": 96
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-25T21:30:43+00:00",
+   "at": "2026-11-25T21:33:52+00:00",
    "count": 95
   },
   "x": {
@@ -27074,39 +27078,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-25T21:30:43+00:00",
+   "at": "2026-11-25T21:33:52+00:00",
    "players": 184,
    "read_at": "2026-11-25T21:30:43+00:00",
    "saved_for_history": 200
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-25T21:30:48+00:00",
+   "at": "2026-11-25T21:33:52+00:00",
    "players": 104,
    "read_at": "2026-11-25T21:30:43+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-25T21:30:48+00:00",
+   "at": "2026-11-25T21:33:52+00:00",
    "players": 10,
    "read_at": "2026-11-25T21:30:48+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-25T21:30:48+00:00",
+   "at": "2026-11-25T21:33:52+00:00",
    "games": 9,
-   "read_at": "2026-11-25T21:30:48+00:00"
+   "read_at": "2026-11-25T21:33:52+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-25T21:30:49+00:00",
+   "at": "2026-11-25T21:33:52+00:00",
    "injuries": 58,
    "notes": 169,
    "read_at": "2026-11-25T21:30:48+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-25T21:30:49+00:00",
+   "at": "2026-11-25T21:33:52+00:00",
    "count": 59
   }
  }
