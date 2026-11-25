@@ -8678,7 +8678,7 @@
    "time": "19:00",
    "vs": "CHA",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8707,7 +8707,7 @@
    "time": "19:00",
    "vs": "CHI",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8715,11 +8715,11 @@
     },
     {
      "pos": "SG",
-     "name": "Brandon Miller"
+     "name": "Sion James"
     },
     {
      "pos": "SF",
-     "name": "Sion James"
+     "name": "Brandon Miller"
     },
     {
      "pos": "PF",
@@ -8729,7 +8729,8 @@
      "pos": "C",
      "name": "Moussa Diabate"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "CLE": {
    "date": "2026-11-25",
@@ -17417,7 +17418,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-25T23:30:01+00:00",
+  "read_at": "2026-11-25T23:42:22+00:00",
   "date": "2026-11-25",
   "games": {
    "CHI@CHA": {
@@ -19956,6 +19957,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba540991",
+   "player": "Jaylen Brown",
+   "headline": "Won't return Wednesday",
+   "text": "Brown (hamstring) won't return to Wednesday's game against Miami, Kyle Neubeck of AllPHLY.com reports. He finished with six points (2-8 FG, 0-1 3Pt, 2-2 FT), one rebound and one assist over 17 minutes.",
+   "reporter": "Kyle Neubeck",
+   "outlet": "AllPHLY.com",
+   "url": "https://www.rotowire.com/basketball/player/jaylen-brown-3894",
+   "at": "2026-11-25T23:30:00+00:00",
+   "team": "PHI"
+  },
   {
    "id": "nba540990",
    "player": "OG Anunoby",
@@ -23907,6 +23919,18 @@
   },
   {
    "team": "NYK",
+   "player": "OG Anunoby",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Calf Soreness",
+   "upd": "2026-11-25",
+   "until": "2026-11-27",
+   "note": "Anunoby (calf) participated in on-court work for the first time since sustaining the injury, Ian Begley of SportsNet New York reports.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=OG%20Anunoby"
+  },
+  {
+   "team": "NYK",
    "player": "Miles McBride",
    "src": "ESPN",
    "kind": "O",
@@ -23928,18 +23952,6 @@
    "note": "Clarkson (foot) is out for Wednesday's game against Cleveland.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jordan%20Clarkson"
-  },
-  {
-   "team": "NYK",
-   "player": "OG Anunoby",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Left Calf Soreness",
-   "upd": "2026-11-24",
-   "until": "2026-11-27",
-   "note": "Anunoby (calf) is out for Wednesday's game against Cleveland.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=OG%20Anunoby"
   },
   {
    "team": "OKC",
@@ -24072,6 +24084,18 @@
    "note": "Banchero is expected to be sidelined for the next four-to-six weeks due to a right high-ankle sprain, Shams Charania of ESPN reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Paolo%20Banchero"
+  },
+  {
+   "team": "PHI",
+   "player": "Jaylen Brown",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Hamstring",
+   "upd": "2026-11-25",
+   "until": "2026-11-27",
+   "note": "Brown (hamstring) won't return to Wednesday's game against Miami, Kyle Neubeck of AllPHLY.com reports. He finished with six points (2-8 FG, 0-1 3Pt, 2-2 FT), one rebound and one assist over 17 minutes.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Jaylen%20Brown"
   },
   {
    "team": "PHI",
@@ -25270,26 +25294,13 @@
    "team": "PHI",
    "player": "Jaylen Brown",
    "src": "RotoWire",
-   "kind": "G",
+   "kind": "O",
    "injury": "",
    "upd": "2026-11-25",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Out",
    "through": "2026-11-25",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Brown"
-  },
-  {
-   "team": "PHI",
-   "player": "Jaylen Brown",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-25",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-25",
-   "st": "q",
+   "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Brown"
   },
   {
@@ -25304,6 +25315,19 @@
    "through": "2026-11-25",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Hukporti"
+  },
+  {
+   "team": "PHI",
+   "player": "Jaylen Brown",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-25",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-11-25",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Brown"
   },
   {
    "team": "PHI",
@@ -25980,6 +26004,23 @@
    "through": "2026-11-25",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=C.%20Youngblood"
+  },
+  {
+   "team": "PHI",
+   "player": "Jaylen Brown",
+   "src": "Kyle Neubeck",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-25",
+   "until": "",
+   "note": "Brown (hamstring) won't return to Wednesday's game against Miami, Kyle Neubeck of AllPHLY.com reports. He finished with six points (2-8 FG, 0-1 3Pt, 2-2 FT), one rebound and one assist over 17 minutes.",
+   "through": "2026-11-25",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/jaylen-brown-3894",
+   "from": "2026-11-25",
+   "override": true,
+   "at": "2026-11-25T23:30:00+00:00",
+   "from_news": true
   },
   {
    "team": "NYK",
@@ -26731,7 +26772,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-25T23:30:02+00:00",
+ "generated_at": "2026-11-25T23:42:22+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -26741,26 +26782,28 @@
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-25T22:34:11+00:00",
+   "at": "2026-11-25T23:36:17+00:00",
    "teams": 30,
    "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-25T23:29:59+00:00",
+   "at": "2026-11-25T23:42:22+00:00",
    "teams": 18,
    "injuries": 55
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-25T23:30:00+00:00",
+   "at": "2026-11-25T23:42:22+00:00",
    "teams": 18,
-   "verified": 2,
-   "used": []
+   "verified": 4,
+   "used": [
+    "CHA"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-25T23:30:00+00:00",
+   "at": "2026-11-25T23:42:22+00:00",
    "current_players": 481,
    "last_players": 582
   },
@@ -26770,18 +26813,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-25T23:30:00+00:00",
+   "at": "2026-11-25T23:42:22+00:00",
    "count": 94
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-25T23:30:00+00:00",
+   "at": "2026-11-25T23:42:22+00:00",
    "count": 96
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-25T23:30:00+00:00",
-   "count": 91
+   "at": "2026-11-25T23:42:22+00:00",
+   "count": 92
   },
   "x": {
    "ok": null,
@@ -26789,40 +26832,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-25T23:30:01+00:00",
+   "at": "2026-11-25T23:42:22+00:00",
    "players": 182,
    "read_at": "2026-11-25T23:30:00+00:00",
    "saved_for_history": 173
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-25T23:30:01+00:00",
+   "at": "2026-11-25T23:42:22+00:00",
    "players": 102,
    "read_at": "2026-11-25T23:30:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-25T23:30:01+00:00",
+   "at": "2026-11-25T23:42:22+00:00",
    "players": 10,
    "read_at": "2026-11-25T23:30:01+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-25T23:30:01+00:00",
+   "at": "2026-11-25T23:42:22+00:00",
    "games": 8,
-   "read_at": "2026-11-25T23:30:01+00:00"
+   "read_at": "2026-11-25T23:42:22+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-25T23:30:02+00:00",
+   "at": "2026-11-25T23:42:22+00:00",
    "injuries": 58,
    "notes": 169,
    "read_at": "2026-11-25T23:30:01+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-25T23:30:02+00:00",
-   "count": 55
+   "at": "2026-11-25T23:42:22+00:00",
+   "count": 56
   }
  }
 }
