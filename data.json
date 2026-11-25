@@ -8678,7 +8678,7 @@
    "time": "20:00",
    "vs": "WAS",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8686,7 +8686,7 @@
     },
     {
      "pos": "SG",
-     "name": "Jordan Walsh"
+     "name": "Sam Hauser"
     },
     {
      "pos": "SF",
@@ -8707,7 +8707,7 @@
    "time": "20:00",
    "vs": "BOS",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -15166,7 +15166,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-25T00:30:02+00:00",
+  "read_at": "2026-11-25T00:42:28+00:00",
   "date": "2026-11-24",
   "games": {
    "BOS@WAS": {
@@ -18451,28 +18451,6 @@
    "url": "https://www.rotowire.com/basketball/player/jahmai-mashack-6647",
    "at": "2026-11-22T00:46:00+00:00",
    "team": "MEM"
-  },
-  {
-   "id": "nba540400",
-   "player": "Derik Queen",
-   "headline": "Starting Saturday",
-   "text": "Queen will start Saturday against the Spurs.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/derik-queen-6541",
-   "at": "2026-11-22T00:41:00+00:00",
-   "team": "NOP"
-  },
-  {
-   "id": "nba540398",
-   "player": "Zion Williamson",
-   "headline": "Not playing Saturday",
-   "text": "Williamson is out for Saturday's game against the Spurs due to a left thigh contusion.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/zion-williamson-4777",
-   "at": "2026-11-22T00:39:00+00:00",
-   "team": "NOP"
   }
  ],
  "matchup_alerts": [
@@ -19192,6 +19170,18 @@
   },
   {
    "team": "DET",
+   "player": "Cade Cunningham",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-11-24",
+   "until": "2026-11-27",
+   "note": "Expected to be out until at least Nov 27",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cade%20Cunningham"
+  },
+  {
+   "team": "DET",
    "player": "Taurean Prince",
    "src": "CBS",
    "kind": "O",
@@ -19225,18 +19215,6 @@
    "note": "Expected to be out until at least Nov 30",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jalen%20Duren"
-  },
-  {
-   "team": "DET",
-   "player": "Cade Cunningham",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-11-23",
-   "until": "",
-   "note": "",
-   "through": "2026-11-26",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Cade%20Cunningham"
   },
   {
    "team": "DET",
@@ -19600,18 +19578,6 @@
   },
   {
    "team": "NYK",
-   "player": "Jordan Clarkson",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Foot",
-   "upd": "2026-11-24",
-   "until": "2026-11-27",
-   "note": "Expected to be out until at least Nov 27",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jordan%20Clarkson"
-  },
-  {
-   "team": "NYK",
    "player": "Josh Hart",
    "src": "CBS",
    "kind": "G",
@@ -19621,6 +19587,18 @@
    "note": "",
    "through": "2026-11-26",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Josh%20Hart"
+  },
+  {
+   "team": "NYK",
+   "player": "Jordan Clarkson",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Foot",
+   "upd": "2026-11-24",
+   "until": "2026-11-27",
+   "note": "Expected to be out until at least Nov 27",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Jordan%20Clarkson"
   },
   {
    "team": "OKC",
@@ -19636,6 +19614,18 @@
   },
   {
    "team": "OKC",
+   "player": "Nikola Topic",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Hip",
+   "upd": "2026-11-24",
+   "until": "2026-11-28",
+   "note": "Expected to be out until at least Nov 28",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nikola%20Topic"
+  },
+  {
+   "team": "OKC",
    "player": "Aday Mara",
    "src": "CBS",
    "kind": "O",
@@ -19645,18 +19635,6 @@
    "note": "Expected to be out until at least Nov 28",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Aday%20Mara"
-  },
-  {
-   "team": "OKC",
-   "player": "Nikola Topic",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Hip",
-   "upd": "2026-11-23",
-   "until": "",
-   "note": "",
-   "through": "2026-11-26",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nikola%20Topic"
   },
   {
    "team": "OKC",
@@ -22288,18 +22266,6 @@
   },
   {
    "team": "WAS",
-   "player": "Tre Mann",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-11-24",
-   "until": "",
-   "note": "Mann (illness) has been downgraded to questionable for Tuesday's game against Boston.",
-   "through": "2026-11-26",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Tre%20Mann"
-  },
-  {
-   "team": "WAS",
    "player": "Tristan Vukcevic",
    "src": "ESPN",
    "kind": "O",
@@ -23499,19 +23465,6 @@
   },
   {
    "team": "WAS",
-   "player": "Tre Mann",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-24",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-24",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=T.%20Mann"
-  },
-  {
-   "team": "WAS",
    "player": "Reece Beekman",
    "src": "RotoWire",
    "kind": "O",
@@ -24506,44 +24459,10 @@
    "override": true,
    "at": "2026-11-22T00:46:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "NOP",
-   "player": "Derik Queen",
-   "src": "RotoWire news",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-21",
-   "until": "",
-   "note": "Queen will start Saturday against the Spurs.",
-   "through": "2026-11-21",
-   "st": "prob",
-   "url": "https://www.rotowire.com/basketball/player/derik-queen-6541",
-   "from": "2026-11-21",
-   "override": true,
-   "at": "2026-11-22T00:41:00+00:00",
-   "from_news": true
-  },
-  {
-   "team": "NOP",
-   "player": "Zion Williamson",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-21",
-   "until": "",
-   "note": "Williamson is out for Saturday's game against the Spurs due to a left thigh contusion.",
-   "through": "2026-11-21",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/zion-williamson-4777",
-   "from": "2026-11-21",
-   "override": true,
-   "at": "2026-11-22T00:39:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-25T00:30:03+00:00",
+ "generated_at": "2026-11-25T00:42:28+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -24553,26 +24472,26 @@
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-24T23:30:38+00:00",
+   "at": "2026-11-25T00:33:17+00:00",
    "teams": 30,
    "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-25T00:30:00+00:00",
+   "at": "2026-11-25T00:42:26+00:00",
    "teams": 6,
-   "injuries": 21
+   "injuries": 20
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-25T00:30:00+00:00",
+   "at": "2026-11-25T00:42:27+00:00",
    "teams": 6,
-   "verified": 2,
+   "verified": 3,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-25T00:30:00+00:00",
+   "at": "2026-11-25T00:42:27+00:00",
    "current_players": 481,
    "last_players": 582
   },
@@ -24582,18 +24501,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-25T00:30:01+00:00",
+   "at": "2026-11-25T00:42:27+00:00",
    "count": 95
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-25T00:30:01+00:00",
+   "at": "2026-11-25T00:42:28+00:00",
    "count": 95
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-25T00:30:01+00:00",
-   "count": 95
+   "at": "2026-11-25T00:42:28+00:00",
+   "count": 94
   },
   "x": {
    "ok": null,
@@ -24601,40 +24520,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-25T00:30:02+00:00",
+   "at": "2026-11-25T00:42:28+00:00",
    "players": 64,
    "read_at": "2026-11-25T00:30:01+00:00",
    "saved_for_history": 46
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-25T00:30:02+00:00",
+   "at": "2026-11-25T00:42:28+00:00",
    "players": 32,
    "read_at": "2026-11-25T00:30:02+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-25T00:30:02+00:00",
+   "at": "2026-11-25T00:42:28+00:00",
    "players": 10,
    "read_at": "2026-11-25T00:30:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-25T00:30:02+00:00",
+   "at": "2026-11-25T00:42:28+00:00",
    "games": 2,
-   "read_at": "2026-11-25T00:30:02+00:00"
+   "read_at": "2026-11-25T00:42:28+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-25T00:30:03+00:00",
+   "at": "2026-11-25T00:42:28+00:00",
    "injuries": 67,
    "notes": 162,
    "read_at": "2026-11-25T00:30:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-25T00:30:03+00:00",
-   "count": 68
+   "at": "2026-11-25T00:42:28+00:00",
+   "count": 66
   }
  }
 }
