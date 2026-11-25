@@ -14117,7 +14117,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-25T01:42:46+00:00",
+  "read_at": "2026-11-25T02:12:52+00:00",
   "date": "2026-11-24",
   "players": [
    {
@@ -14241,15 +14241,15 @@
     "min": 28.0
    },
    {
-    "player": "Christian Braun",
-    "team": "DEN",
-    "game": "DAL@DEN",
-    "min": 34.0
-   },
-   {
     "player": "Kyshawn George",
     "team": "WAS",
     "game": "BOS@WAS",
+    "min": 34.0
+   },
+   {
+    "player": "Christian Braun",
+    "team": "DEN",
+    "game": "DAL@DEN",
     "min": 34.0
    },
    {
@@ -14507,7 +14507,7 @@
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-25T01:42:47+00:00",
+  "read_at": "2026-11-25T02:12:52+00:00",
   "date": "2026-11-24",
   "players": [
    {
@@ -14673,7 +14673,7 @@
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-25T01:42:47+00:00",
+  "read_at": "2026-11-25T02:12:53+00:00",
   "date": "2026-11-24",
   "players": [
    {
@@ -14730,7 +14730,7 @@
  },
  "expected_mix": {
   "date": "2026-11-24",
-  "read_at": "2026-11-25T01:42:47+00:00",
+  "read_at": "2026-11-25T02:12:53+00:00",
   "players": [
    {
     "player": "Nikola Jokic",
@@ -14989,16 +14989,16 @@
     "src": "SportsLine"
    },
    {
-    "player": "Christian Braun",
-    "team": "DEN",
-    "game": "DAL@DEN",
+    "player": "Kyshawn George",
+    "team": "WAS",
+    "game": "BOS@WAS",
     "min": 34.0,
     "src": "SportsLine"
    },
    {
-    "player": "Kyshawn George",
-    "team": "WAS",
-    "game": "BOS@WAS",
+    "player": "Christian Braun",
+    "team": "DEN",
+    "game": "DAL@DEN",
     "min": 34.0,
     "src": "SportsLine"
    },
@@ -15166,7 +15166,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-25T01:42:47+00:00",
+  "read_at": "2026-11-25T02:12:53+00:00",
   "date": "2026-11-24",
   "games": {
    "DAL@DEN": {
@@ -15192,7 +15192,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-25T01:42:47+00:00",
+  "read_at": "2026-11-25T02:12:53+00:00",
   "injuries": [
    {
     "team": "BOS",
@@ -22277,6 +22277,18 @@
   },
   {
    "team": "SAS",
+   "player": "De'Aaron Fox",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Right Lower Leg Bruise",
+   "upd": "2026-11-25",
+   "until": "",
+   "note": "Fox (shin) is questionable to play Wednesday's game against the Trail Blazers.",
+   "through": "2026-11-26",
+   "url": "https://www.espn.com/nba/injuries#:~:text=De%27Aaron%20Fox"
+  },
+  {
+   "team": "SAS",
    "player": "Victor Wembanyama",
    "src": "ESPN",
    "kind": "G",
@@ -22286,18 +22298,6 @@
    "note": "Wembanyama (back) is questionable for Wednesday's game in Portland.",
    "through": "2026-11-26",
    "url": "https://www.espn.com/nba/injuries#:~:text=Victor%20Wembanyama"
-  },
-  {
-   "team": "SAS",
-   "player": "De'Aaron Fox",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Right Lower Leg Bruise",
-   "upd": "2026-11-24",
-   "until": "",
-   "note": "Fox (shin) has been ruled out for Monday's game against the Kings, Jeff McDonald of the San Antonio Express-News reports.",
-   "through": "2026-11-26",
-   "url": "https://www.espn.com/nba/injuries#:~:text=De%27Aaron%20Fox"
   },
   {
    "team": "SAS",
@@ -24801,7 +24801,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-25T01:42:48+00:00",
+ "generated_at": "2026-11-25T02:12:53+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -24812,24 +24812,25 @@
   "espn_depth": {
    "ok": true,
    "at": "2026-11-25T01:42:45+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-25T01:42:45+00:00",
+   "at": "2026-11-25T02:12:50+00:00",
    "teams": 6,
    "injuries": 20
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-25T01:42:45+00:00",
+   "at": "2026-11-25T02:12:51+00:00",
    "teams": 6,
    "verified": 4,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-25T01:42:46+00:00",
+   "at": "2026-11-25T02:12:51+00:00",
    "current_players": 481,
    "last_players": 582
   },
@@ -24839,17 +24840,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-25T01:42:46+00:00",
+   "at": "2026-11-25T02:12:51+00:00",
    "count": 94
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-25T01:42:46+00:00",
+   "at": "2026-11-25T02:12:52+00:00",
    "count": 95
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-25T01:42:46+00:00",
+   "at": "2026-11-25T02:12:52+00:00",
    "count": 94
   },
   "x": {
@@ -24858,39 +24859,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-25T01:42:47+00:00",
+   "at": "2026-11-25T02:12:52+00:00",
    "players": 64,
-   "read_at": "2026-11-25T01:42:46+00:00",
+   "read_at": "2026-11-25T02:12:52+00:00",
    "saved_for_history": 24
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-25T01:42:47+00:00",
+   "at": "2026-11-25T02:12:53+00:00",
    "players": 32,
-   "read_at": "2026-11-25T01:42:47+00:00"
+   "read_at": "2026-11-25T02:12:52+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-25T01:42:47+00:00",
+   "at": "2026-11-25T02:12:53+00:00",
    "players": 10,
-   "read_at": "2026-11-25T01:42:47+00:00"
+   "read_at": "2026-11-25T02:12:53+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-25T01:42:47+00:00",
+   "at": "2026-11-25T02:12:53+00:00",
    "games": 1,
-   "read_at": "2026-11-25T01:42:47+00:00"
+   "read_at": "2026-11-25T02:12:53+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-25T01:42:48+00:00",
+   "at": "2026-11-25T02:12:53+00:00",
    "injuries": 78,
    "notes": 162,
-   "read_at": "2026-11-25T01:42:47+00:00"
+   "read_at": "2026-11-25T02:12:53+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-25T01:42:48+00:00",
+   "at": "2026-11-25T02:12:53+00:00",
    "count": 67
   }
  }
