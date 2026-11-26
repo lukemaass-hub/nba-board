@@ -8852,7 +8852,7 @@
    "time": "20:00",
    "vs": "MIL",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8860,11 +8860,11 @@
     },
     {
      "pos": "SG",
-     "name": "Michael Porter"
+     "name": "Danny Wolf"
     },
     {
      "pos": "SF",
-     "name": "Danny Wolf"
+     "name": "Michael Porter"
     },
     {
      "pos": "PF",
@@ -8874,14 +8874,15 @@
      "pos": "C",
      "name": "Day'Ron Sharpe"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "MIL": {
    "date": "2026-11-25",
    "time": "20:00",
    "vs": "BKN",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8903,14 +8904,15 @@
      "pos": "C",
      "name": "Myles Turner"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "LAC": {
    "date": "2026-11-25",
    "time": "20:00",
    "vs": "MEM",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8932,14 +8934,15 @@
      "pos": "C",
      "name": "Brook Lopez"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "MEM": {
    "date": "2026-11-25",
    "time": "20:00",
    "vs": "LAC",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8947,11 +8950,11 @@
     },
     {
      "pos": "SG",
-     "name": "Cedric Coward"
+     "name": "Jaylen Wells"
     },
     {
      "pos": "SF",
-     "name": "Jaylen Wells"
+     "name": "Cedric Coward"
     },
     {
      "pos": "PF",
@@ -8961,7 +8964,8 @@
      "pos": "C",
      "name": "Zach Edey"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "PHX": {
    "date": "2026-11-25",
@@ -14461,7 +14465,7 @@
     "MIN"
    ]
   },
-  "fetched_at": "2026-11-25T22:34:11+00:00"
+  "fetched_at": "2026-11-26T00:36:07+00:00"
  },
  "expected_minutes": {},
  "sportsline": {
@@ -17417,7 +17421,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-26T00:30:01+00:00",
+  "read_at": "2026-11-26T00:36:08+00:00",
   "date": "2026-11-25",
   "games": {
    "CLE@NYK": {
@@ -17464,10 +17468,6 @@
    }
   },
   "tips": {
-   "MIA@PHI": [
-    "2026-11-25",
-    "17:00"
-   ],
    "CHI@CHA": [
     "2026-11-25",
     "19:00"
@@ -26769,7 +26769,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-26T00:30:02+00:00",
+ "generated_at": "2026-11-26T00:36:08+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -26785,20 +26785,25 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-26T00:29:59+00:00",
+   "at": "2026-11-26T00:36:07+00:00",
    "teams": 18,
    "injuries": 55
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-26T00:30:00+00:00",
+   "at": "2026-11-26T00:36:07+00:00",
    "teams": 18,
-   "verified": 8,
-   "used": []
+   "verified": 12,
+   "used": [
+    "LAC",
+    "MEM",
+    "BKN",
+    "MIL"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-26T00:30:00+00:00",
+   "at": "2026-11-26T00:36:07+00:00",
    "current_players": 481,
    "last_players": 582
   },
@@ -26808,17 +26813,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-26T00:30:00+00:00",
+   "at": "2026-11-26T00:36:07+00:00",
    "count": 92
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-26T00:30:00+00:00",
+   "at": "2026-11-26T00:36:08+00:00",
    "count": 96
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-26T00:30:00+00:00",
+   "at": "2026-11-26T00:36:08+00:00",
    "count": 92
   },
   "x": {
@@ -26827,39 +26832,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-26T00:30:00+00:00",
+   "at": "2026-11-26T00:36:08+00:00",
    "players": 182,
    "read_at": "2026-11-26T00:30:00+00:00",
    "saved_for_history": 113
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-26T00:30:01+00:00",
+   "at": "2026-11-26T00:36:08+00:00",
    "players": 102,
    "read_at": "2026-11-26T00:30:00+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-26T00:30:01+00:00",
+   "at": "2026-11-26T00:36:08+00:00",
    "players": 10,
    "read_at": "2026-11-26T00:30:01+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-26T00:30:01+00:00",
+   "at": "2026-11-26T00:36:08+00:00",
    "games": 7,
-   "read_at": "2026-11-26T00:30:01+00:00"
+   "read_at": "2026-11-26T00:36:08+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-26T00:30:02+00:00",
+   "at": "2026-11-26T00:36:08+00:00",
    "injuries": 58,
    "notes": 169,
    "read_at": "2026-11-26T00:30:01+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-26T00:30:02+00:00",
+   "at": "2026-11-26T00:36:08+00:00",
    "count": 57
   }
  }
