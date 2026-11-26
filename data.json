@@ -8758,15 +8758,14 @@
      "pos": "C",
      "name": "Jarrett Allen"
     }
-   ],
-   "source": "Basketball Monster"
+   ]
   },
   "NYK": {
    "date": "2026-11-25",
    "time": "19:30",
    "vs": "CLE",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8788,14 +8787,15 @@
      "pos": "C",
      "name": "Karl-Anthony Towns"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "MIN": {
    "date": "2026-11-25",
    "time": "19:30",
    "vs": "OKC",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8824,15 +8824,15 @@
    "time": "19:30",
    "vs": "MIN",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
-     "name": "Shai Gilgeous-Alexander"
+     "name": "Bennett Stirtz"
     },
     {
      "pos": "SG",
-     "name": "Jared McCain"
+     "name": "Shai Gilgeous-Alexander"
     },
     {
      "pos": "SF",
@@ -8846,7 +8846,8 @@
      "pos": "C",
      "name": "Isaiah Hartenstein"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "BKN": {
    "date": "2026-11-25",
@@ -17418,7 +17419,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-26T00:00:02+00:00",
+  "read_at": "2026-11-26T00:06:08+00:00",
   "date": "2026-11-25",
   "games": {
    "CHI@CHA": {
@@ -20571,17 +20572,6 @@
    "outlet": "New York Post",
    "url": "https://www.rotowire.com/basketball/player/karl-anthony-towns-3741",
    "at": "2026-11-23T00:20:00+00:00",
-   "team": "NYK"
-  },
-  {
-   "id": "nba540559",
-   "player": "Miles McBride",
-   "headline": "Not playing Sunday",
-   "text": "McBride (abdomen) has been ruled out for Sunday's game against the Pacers.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/miles-mcbride-5402",
-   "at": "2026-11-23T00:05:00+00:00",
    "team": "NYK"
   }
  ],
@@ -26756,27 +26746,10 @@
    "override": true,
    "at": "2026-11-23T00:20:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "NYK",
-   "player": "Miles McBride",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "McBride (abdomen) has been ruled out for Sunday's game against the Pacers.",
-   "through": "2026-11-22",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/miles-mcbride-5402",
-   "from": "2026-11-22",
-   "override": true,
-   "at": "2026-11-23T00:05:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-26T00:00:02+00:00",
+ "generated_at": "2026-11-26T00:06:08+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -26792,22 +26765,23 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-26T00:00:00+00:00",
+   "at": "2026-11-26T00:06:07+00:00",
    "teams": 18,
    "injuries": 55
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-26T00:00:00+00:00",
+   "at": "2026-11-26T00:06:07+00:00",
    "teams": 18,
-   "verified": 5,
+   "verified": 8,
    "used": [
-    "CLE"
+    "NYK",
+    "OKC"
    ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-26T00:00:00+00:00",
+   "at": "2026-11-26T00:06:07+00:00",
    "current_players": 481,
    "last_players": 582
   },
@@ -26817,17 +26791,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-26T00:00:00+00:00",
+   "at": "2026-11-26T00:06:07+00:00",
    "count": 92
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-26T00:00:01+00:00",
+   "at": "2026-11-26T00:06:08+00:00",
    "count": 96
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-26T00:00:01+00:00",
+   "at": "2026-11-26T00:06:08+00:00",
    "count": 92
   },
   "x": {
@@ -26836,40 +26810,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-26T00:00:01+00:00",
+   "at": "2026-11-26T00:06:08+00:00",
    "players": 182,
    "read_at": "2026-11-26T00:00:01+00:00",
    "saved_for_history": 153
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-26T00:00:02+00:00",
+   "at": "2026-11-26T00:06:08+00:00",
    "players": 102,
    "read_at": "2026-11-26T00:00:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-26T00:00:02+00:00",
+   "at": "2026-11-26T00:06:08+00:00",
    "players": 10,
    "read_at": "2026-11-26T00:00:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-26T00:00:02+00:00",
+   "at": "2026-11-26T00:06:08+00:00",
    "games": 8,
-   "read_at": "2026-11-26T00:00:02+00:00"
+   "read_at": "2026-11-26T00:06:08+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-26T00:00:02+00:00",
+   "at": "2026-11-26T00:06:08+00:00",
    "injuries": 58,
    "notes": 169,
    "read_at": "2026-11-26T00:00:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-26T00:00:02+00:00",
-   "count": 57
+   "at": "2026-11-26T00:06:08+00:00",
+   "count": 56
   }
  }
 }
