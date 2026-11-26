@@ -8968,7 +8968,7 @@
    "time": "20:30",
    "vs": "HOU",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8997,7 +8997,7 @@
    "time": "20:30",
    "vs": "PHX",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -17235,7 +17235,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-26T01:00:13+00:00",
+  "read_at": "2026-11-26T01:06:20+00:00",
   "date": "2026-11-25",
   "games": {
    "LAC@MEM": {
@@ -19753,6 +19753,17 @@
  },
  "news": [
   {
+   "id": "nba540995",
+   "player": "Jaylen Brown",
+   "headline": "Set for imaging of hamstring",
+   "text": "Brown (hamstring) will receive imaging, and the Sixers will provide an update Thursday, Ky Carlin of USA Today reports.",
+   "reporter": "Ky Carlin",
+   "outlet": "USA Today",
+   "url": "https://www.rotowire.com/basketball/player/jaylen-brown-3894",
+   "at": "2026-11-26T01:01:00+00:00",
+   "team": "PHI"
+  },
+  {
    "id": "nba540994",
    "player": "Jared McCain",
    "headline": "Not starting Wednesday",
@@ -20356,17 +20367,6 @@
    "url": "https://www.rotowire.com/basketball/player/austin-reaves-5334",
    "at": "2026-11-23T01:09:00+00:00",
    "team": "LAL"
-  },
-  {
-   "id": "nba540563",
-   "player": "Jaxson Hayes",
-   "headline": "Questionable to return Sunday",
-   "text": "Hayes is questionable to return to Sunday's game against the Mavericks due to a left knee injury, Shreyas Laddha of The Salt Lake Tribune reports.",
-   "reporter": "Shreyas Laddha",
-   "outlet": "The Salt Lake Tribune",
-   "url": "https://www.rotowire.com/basketball/player/jaxson-hayes-4771",
-   "at": "2026-11-23T01:05:00+00:00",
-   "team": "UTA"
   }
  ],
  "matchup_alerts": [
@@ -23862,9 +23862,9 @@
    "src": "ESPN",
    "kind": "O",
    "injury": "Left Hamstring",
-   "upd": "2026-11-25",
+   "upd": "2026-11-26",
    "until": "2026-11-27",
-   "note": "Brown (hamstring) won't return to Wednesday's game against Miami, Kyle Neubeck of AllPHLY.com reports. He finished with six points (2-8 FG, 0-1 3Pt, 2-2 FT), one rebound and one assist over 17 minutes.",
+   "note": "Brown (hamstring) will receive imaging, and the Sixers will provide an update Thursday, Ky Carlin of USA Today reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jaylen%20Brown"
   },
@@ -26523,27 +26523,10 @@
    "override": true,
    "at": "2026-11-23T01:09:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "UTA",
-   "player": "Jaxson Hayes",
-   "src": "Shreyas Laddha",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-22",
-   "until": "",
-   "note": "Hayes is questionable to return to Sunday's game against the Mavericks due to a left knee injury, Shreyas Laddha of The Salt Lake Tribune reports.",
-   "through": "2026-11-22",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/player/jaxson-hayes-4771",
-   "from": "2026-11-22",
-   "override": true,
-   "at": "2026-11-23T01:05:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-26T01:00:14+00:00",
+ "generated_at": "2026-11-26T01:06:20+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -26554,24 +26537,25 @@
   "espn_depth": {
    "ok": true,
    "at": "2026-11-26T01:00:11+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-26T01:00:12+00:00",
+   "at": "2026-11-26T01:06:19+00:00",
    "teams": 18,
    "injuries": 55
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-26T01:00:12+00:00",
+   "at": "2026-11-26T01:06:19+00:00",
    "teams": 18,
-   "verified": 12,
+   "verified": 14,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-26T01:00:12+00:00",
+   "at": "2026-11-26T01:06:19+00:00",
    "current_players": 481,
    "last_players": 582
   },
@@ -26581,17 +26565,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-26T01:00:12+00:00",
+   "at": "2026-11-26T01:06:19+00:00",
    "count": 92
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-26T01:00:12+00:00",
+   "at": "2026-11-26T01:06:19+00:00",
    "count": 96
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-26T01:00:12+00:00",
+   "at": "2026-11-26T01:06:20+00:00",
    "count": 92
   },
   "x": {
@@ -26600,39 +26584,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-26T01:00:13+00:00",
+   "at": "2026-11-26T01:06:20+00:00",
    "players": 161,
    "read_at": "2026-11-26T01:00:12+00:00",
    "saved_for_history": 65
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-26T01:00:13+00:00",
+   "at": "2026-11-26T01:06:20+00:00",
    "players": 102,
    "read_at": "2026-11-26T01:00:13+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-26T01:00:13+00:00",
+   "at": "2026-11-26T01:06:20+00:00",
    "players": 10,
    "read_at": "2026-11-26T01:00:13+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-26T01:00:13+00:00",
+   "at": "2026-11-26T01:06:20+00:00",
    "games": 5,
-   "read_at": "2026-11-26T01:00:13+00:00"
+   "read_at": "2026-11-26T01:06:20+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-26T01:00:14+00:00",
+   "at": "2026-11-26T01:06:20+00:00",
    "injuries": 58,
    "notes": 169,
    "read_at": "2026-11-26T01:00:13+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-26T01:00:14+00:00",
+   "at": "2026-11-26T01:06:20+00:00",
    "count": 56
   }
  }
