@@ -9026,7 +9026,7 @@
    "time": "22:00",
    "vs": "GSW",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9034,7 +9034,7 @@
     },
     {
      "pos": "SG",
-     "name": "Malik Monk"
+     "name": "Emanuel Sharp"
     },
     {
      "pos": "SF",
@@ -9048,14 +9048,15 @@
      "pos": "C",
      "name": "Domantas Sabonis"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "GSW": {
    "date": "2026-11-25",
    "time": "22:00",
    "vs": "SAC",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9084,7 +9085,7 @@
    "time": "22:00",
    "vs": "POR",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9106,14 +9107,15 @@
      "pos": "C",
      "name": "Victor Wembanyama"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "POR": {
    "date": "2026-11-25",
    "time": "22:00",
    "vs": "SAS",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9135,7 +9137,8 @@
      "pos": "C",
      "name": "Donovan Clingan"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   }
  },
  "season_minutes": {
@@ -14461,7 +14464,7 @@
     "MIN"
    ]
   },
-  "fetched_at": "2026-11-26T00:36:07+00:00"
+  "fetched_at": "2026-11-26T02:36:36+00:00"
  },
  "expected_minutes": {},
  "sportsline": {
@@ -17057,7 +17060,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-26T02:33:32+00:00",
+  "read_at": "2026-11-26T02:36:37+00:00",
   "date": "2026-11-25",
   "games": {
    "SAC@GSW": {
@@ -17068,8 +17071,8 @@
    },
    "SAS@POR": {
     "fav": "SAS",
-    "spread": 4.5,
-    "details": "SA -4.5",
+    "spread": 3.5,
+    "details": "SA -3.5",
     "provider": "Draft Kings"
    }
   },
@@ -21866,18 +21869,6 @@
   },
   {
    "team": "CHA",
-   "player": "Sion James",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Thigh",
-   "upd": "2026-11-23",
-   "until": "",
-   "note": "James is Probable for Wednesday's (Nov. 25) game against the Bulls.",
-   "through": "2026-11-27",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=S.%20James"
-  },
-  {
-   "team": "CHA",
    "player": "Dennis Schroder",
    "src": "Covers",
    "kind": "O",
@@ -21904,12 +21895,12 @@
    "team": "CHI",
    "player": "Jalen Smith",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Illness",
-   "upd": "2026-11-23",
+   "upd": "2026-11-24",
    "until": "",
-   "note": "Smith is Questionable for Wednesday's (Nov. 25) game versus the Hornets.",
-   "through": "2026-11-27",
+   "note": "Smith is Out for Wednesday's (Nov. 25) game versus the Hornets.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Smith"
   },
   {
@@ -22217,10 +22208,10 @@
    "player": "Johnny Furphy",
    "src": "Covers",
    "kind": "O",
-   "injury": "ACL",
-   "upd": "2026-02-08",
+   "injury": "Knee",
+   "upd": "2026-11-24",
    "until": "",
-   "note": "Furphy was diagnosed with a torn right ACL, per Michael Scotto of USA Today.",
+   "note": "Furphy could make his season debut in the next few weeks, Tony East of Forbes.com reports.",
    "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Furphy"
   },
@@ -22321,18 +22312,6 @@
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=S.%20Pippen%20Jr."
   },
   {
-   "team": "MIA",
-   "player": "Giannis Antetokounmpo",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Groin",
-   "upd": "2026-11-23",
-   "until": "",
-   "note": "Antetokounmpo is Questionable for Wednesday's (Nov. 25) game against the 76ers.",
-   "through": "2026-11-27",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=G.%20Antetokounmpo"
-  },
-  {
    "team": "MIN",
    "player": "Jaylen Clark",
    "src": "Covers",
@@ -22403,42 +22382,6 @@
    "note": "Watford did not play in Monday's (Nov. 23) game against the Suns.",
    "through": "2026-11-27",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=T.%20Watford"
-  },
-  {
-   "team": "NYK",
-   "player": "Jalen Brunson",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-11-24",
-   "until": "",
-   "note": "Brunson is Questionable for Wednesday's (Nov. 25) game against Cleveland.",
-   "through": "2026-11-27",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Brunson"
-  },
-  {
-   "team": "NYK",
-   "player": "Josh Hart",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Shoulder",
-   "upd": "2026-11-24",
-   "until": "",
-   "note": "Hart is Probable for Wednesday's (Nov. 25) game against Cleveland.",
-   "through": "2026-11-27",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Hart"
-  },
-  {
-   "team": "NYK",
-   "player": "Karl Anthony Towns",
-   "src": "Covers",
-   "kind": "G",
-   "injury": "Knee",
-   "upd": "2026-11-24",
-   "until": "",
-   "note": "Towns is Probable for Wednesday's (Nov. 25) game against Cleveland.",
-   "through": "2026-11-27",
-   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=K.%20Towns"
   },
   {
    "team": "NYK",
@@ -22610,14 +22553,26 @@
   },
   {
    "team": "PHI",
+   "player": "Jaylen Brown",
+   "src": "Covers",
+   "kind": "O",
+   "injury": "Hamstring",
+   "upd": "2026-11-24",
+   "until": "",
+   "note": "Brown will not return to Wednesday's (Nov. 25) game against the Heat.",
+   "through": "",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Brown"
+  },
+  {
+   "team": "PHI",
    "player": "Joel Embiid",
    "src": "Covers",
-   "kind": "G",
+   "kind": "O",
    "injury": "Illness",
-   "upd": "2026-11-23",
+   "upd": "2026-11-24",
    "until": "",
-   "note": "Embiid is Doubtful for Wednesday's (Nov. 25) game against the Heat.",
-   "through": "2026-11-27",
+   "note": "Embiid is OUT for Wednesday's (Nov. 25) game against the Heat.",
+   "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=J.%20Embiid"
   },
   {
@@ -22691,6 +22646,18 @@
    "note": "The Trail Blazers announced on Monday (Aug. 24) that Sharpe expected to miss 6 months with a torn meniscus.",
    "through": "",
    "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=S.%20Sharpe"
+  },
+  {
+   "team": "SAC",
+   "player": "Zach LaVine",
+   "src": "Covers",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-11-24",
+   "until": "",
+   "note": "Lavine is Out for Wednesday's (Nov. 25) game versus the Warriors.",
+   "through": "",
+   "url": "https://www.covers.com/sport/basketball/nba/injuries#:~:text=Z.%20LaVine"
   },
   {
    "team": "SAC",
@@ -23495,6 +23462,18 @@
    "note": "Murray (ankle) is out for Friday's game against Memphis.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Dejounte%20Murray"
+  },
+  {
+   "team": "NYK",
+   "player": "Andre Drummond",
+   "src": "ESPN",
+   "kind": "G",
+   "injury": "Head",
+   "upd": "2026-11-26",
+   "until": "",
+   "note": "Drummond is questionable to return to Wednesday's game against Cleveland due to a head injury, Stefan Bondy of The New York Post reports.",
+   "through": "2026-11-27",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Andre%20Drummond"
   },
   {
    "team": "NYK",
@@ -26303,7 +26282,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-26T02:33:32+00:00",
+ "generated_at": "2026-11-26T02:36:37+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -26319,20 +26298,24 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-26T02:33:31+00:00",
+   "at": "2026-11-26T02:36:36+00:00",
    "teams": 18,
    "injuries": 51
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-26T02:33:31+00:00",
+   "at": "2026-11-26T02:36:36+00:00",
    "teams": 18,
-   "verified": 14,
-   "used": []
+   "verified": 18,
+   "used": [
+    "SAC",
+    "SAS",
+    "POR"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-26T02:33:31+00:00",
+   "at": "2026-11-26T02:36:36+00:00",
    "current_players": 481,
    "last_players": 582
   },
@@ -26342,18 +26325,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-26T02:33:31+00:00",
+   "at": "2026-11-26T02:36:37+00:00",
    "count": 91
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-26T02:33:32+00:00",
-   "count": 96
+   "at": "2026-11-26T02:36:37+00:00",
+   "count": 93
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-26T02:33:32+00:00",
-   "count": 89
+   "at": "2026-11-26T02:36:37+00:00",
+   "count": 90
   },
   "x": {
    "ok": null,
@@ -26361,39 +26344,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-26T02:33:32+00:00",
+   "at": "2026-11-26T02:36:37+00:00",
    "players": 143,
    "read_at": "2026-11-26T02:30:01+00:00",
    "saved_for_history": 43
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-26T02:33:32+00:00",
+   "at": "2026-11-26T02:36:37+00:00",
    "players": 100,
    "read_at": "2026-11-26T02:30:02+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-26T02:33:32+00:00",
+   "at": "2026-11-26T02:36:37+00:00",
    "players": 10,
    "read_at": "2026-11-26T02:30:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-26T02:33:32+00:00",
+   "at": "2026-11-26T02:36:37+00:00",
    "games": 2,
-   "read_at": "2026-11-26T02:33:32+00:00"
+   "read_at": "2026-11-26T02:36:37+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-26T02:33:32+00:00",
+   "at": "2026-11-26T02:36:37+00:00",
    "injuries": 58,
    "notes": 168,
    "read_at": "2026-11-26T02:30:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-26T02:33:32+00:00",
+   "at": "2026-11-26T02:36:37+00:00",
    "count": 61
   }
  }
