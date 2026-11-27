@@ -8620,7 +8620,7 @@
    "time": "19:00",
    "vs": "NYK",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8649,7 +8649,7 @@
    "time": "19:00",
    "vs": "MIA",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -18333,7 +18333,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-27T23:30:41+00:00",
+  "read_at": "2026-11-27T23:39:49+00:00",
   "date": "2026-11-27",
   "games": {
    "MIA@NYK": {
@@ -21488,6 +21488,17 @@
  },
  "news": [
   {
+   "id": "nba541187",
+   "player": "Dean Wade",
+   "headline": "Not playing Friday",
+   "text": "Wade (hamstring) is out for Friday's game against the Pacers, Austin Krell of Vertical 76 reports.",
+   "reporter": "Austin Krell",
+   "outlet": "Vertical 76",
+   "url": "https://www.rotowire.com/basketball/player/dean-wade-4893",
+   "at": "2026-11-27T23:32:00+00:00",
+   "team": "PHI"
+  },
+  {
    "id": "nba541186",
    "player": "Karl-Anthony Towns",
    "headline": "Will play Friday",
@@ -21948,17 +21959,6 @@
    "url": "https://www.rotowire.com/basketball/player/victor-wembanyama-5809",
    "at": "2026-11-25T01:24:00+00:00",
    "team": "SAS"
-  },
-  {
-   "id": "nba540876",
-   "player": "Cade Cunningham",
-   "headline": "Ruled out Tuesday",
-   "text": "Cunningham (knee) is listed as out for Tuesday's game against Orlando.",
-   "reporter": "",
-   "outlet": "",
-   "url": "https://www.rotowire.com/basketball/player/cade-cunningham-5336",
-   "at": "2026-11-24T23:36:00+00:00",
-   "team": "DET"
   }
  ],
  "matchup_alerts": [
@@ -25690,6 +25690,18 @@
   },
   {
    "team": "PHI",
+   "player": "Jaylen Brown",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Left Hamstring",
+   "upd": "2026-11-27",
+   "until": "2026-12-01",
+   "note": "Brown (hamstring) underwent an MRI that showed no signs of a new injury or re-aggravation, but he didn't travel with the team for the road trip, so he will miss the team's next two games, Kris Rhim of ESPN reports.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Jaylen%20Brown"
+  },
+  {
+   "team": "PHI",
    "player": "Joel Embiid",
    "src": "ESPN",
    "kind": "G",
@@ -25699,18 +25711,6 @@
    "note": "Embiid (illness) was at shootaround for the 76ers on Friday, Chris Hine of The Philly Inquirer reports.",
    "through": "2026-11-29",
    "url": "https://www.espn.com/nba/injuries#:~:text=Joel%20Embiid"
-  },
-  {
-   "team": "PHI",
-   "player": "Jaylen Brown",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Left Hamstring",
-   "upd": "2026-11-26",
-   "until": "2026-12-01",
-   "note": "Brown (hamstring) is out for Friday's game against the Pacers.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Jaylen%20Brown"
   },
   {
    "team": "PHI",
@@ -27796,6 +27796,19 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Brown"
   },
   {
+   "team": "PHI",
+   "player": "Dean Wade",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-27",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-11-27",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=Dean%20Wade"
+  },
+  {
    "team": "IND",
    "player": "Larry Nance Jr.",
    "src": "RotoWire",
@@ -28563,6 +28576,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=L.%20Markkanen"
   },
   {
+   "team": "PHI",
+   "player": "Dean Wade",
+   "src": "Austin Krell",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-27",
+   "until": "",
+   "note": "Wade (hamstring) is out for Friday's game against the Pacers, Austin Krell of Vertical 76 reports.",
+   "through": "2026-11-27",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/dean-wade-4893",
+   "from": "2026-11-27",
+   "override": true,
+   "at": "2026-11-27T23:32:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "NYK",
    "player": "Karl-Anthony Towns",
    "src": "Ira Winderman",
@@ -29054,27 +29084,10 @@
    "override": true,
    "at": "2026-11-25T01:24:00+00:00",
    "from_news": true
-  },
-  {
-   "team": "DET",
-   "player": "Cade Cunningham",
-   "src": "RotoWire news",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-24",
-   "until": "",
-   "note": "Cunningham (knee) is listed as out for Tuesday's game against Orlando.",
-   "through": "2026-11-24",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/player/cade-cunningham-5336",
-   "from": "2026-11-24",
-   "override": true,
-   "at": "2026-11-24T23:36:00+00:00",
-   "from_news": true
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-27T23:30:41+00:00",
+ "generated_at": "2026-11-27T23:39:49+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -29085,24 +29098,25 @@
   "espn_depth": {
    "ok": true,
    "at": "2026-11-27T23:30:38+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-27T23:30:38+00:00",
+   "at": "2026-11-27T23:39:48+00:00",
    "teams": 22,
-   "injuries": 73
+   "injuries": 74
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-27T23:30:39+00:00",
+   "at": "2026-11-27T23:39:48+00:00",
    "teams": 20,
-   "verified": 0,
+   "verified": 2,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-27T23:30:39+00:00",
+   "at": "2026-11-27T23:39:48+00:00",
    "current_players": 482,
    "last_players": 582
   },
@@ -29112,17 +29126,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-27T23:30:39+00:00",
+   "at": "2026-11-27T23:39:48+00:00",
    "count": 102
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-27T23:30:39+00:00",
+   "at": "2026-11-27T23:39:48+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-27T23:30:39+00:00",
+   "at": "2026-11-27T23:39:49+00:00",
    "count": 101
   },
   "x": {
@@ -29131,39 +29145,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-27T23:30:40+00:00",
+   "at": "2026-11-27T23:39:49+00:00",
    "players": 222,
    "read_at": "2026-11-27T23:30:39+00:00",
    "saved_for_history": 255
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-27T23:30:40+00:00",
+   "at": "2026-11-27T23:39:49+00:00",
    "players": 140,
    "read_at": "2026-11-27T23:30:40+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-27T23:30:41+00:00",
+   "at": "2026-11-27T23:39:49+00:00",
    "players": 10,
    "read_at": "2026-11-27T23:30:40+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-27T23:30:41+00:00",
+   "at": "2026-11-27T23:39:49+00:00",
    "games": 11,
-   "read_at": "2026-11-27T23:30:41+00:00"
+   "read_at": "2026-11-27T23:39:49+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-27T23:30:41+00:00",
+   "at": "2026-11-27T23:39:49+00:00",
    "injuries": 104,
    "notes": 157,
    "read_at": "2026-11-27T23:30:41+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-27T23:30:41+00:00",
+   "at": "2026-11-27T23:39:49+00:00",
    "count": 43
   }
  }
