@@ -14586,7 +14586,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-28T01:30:00+00:00",
+  "read_at": "2026-11-28T02:00:00+00:00",
   "date": "2026-11-27",
   "players": [
    {
@@ -15900,7 +15900,7 @@
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-28T01:30:01+00:00",
+  "read_at": "2026-11-28T02:00:01+00:00",
   "date": "2026-11-27",
   "players": [
    {
@@ -16279,9 +16279,9 @@
     "min": 27.0
    },
    {
-    "player": "Walter Clayton",
+    "player": "Zaccharie Risacher",
     "team": "DAL",
-    "min": 27.0
+    "min": 26.0
    },
    {
     "player": "P.J. Washington",
@@ -16294,9 +16294,9 @@
     "min": 24.0
    },
    {
-    "player": "Zaccharie Risacher",
+    "player": "Walter Clayton",
     "team": "DAL",
-    "min": 26.0
+    "min": 27.0
    },
    {
     "player": "Naji Marshall",
@@ -16586,7 +16586,7 @@
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-28T01:30:01+00:00",
+  "read_at": "2026-11-28T02:00:01+00:00",
   "date": "2026-11-27",
   "players": [
    {
@@ -16625,11 +16625,6 @@
     "min": 31.6
    },
    {
-    "player": "Devin Booker",
-    "team": "PHX",
-    "min": 37.3
-   },
-   {
     "player": "Cooper Flagg",
     "team": "DAL",
     "min": 36.0
@@ -16638,12 +16633,17 @@
     "player": "Joel Embiid",
     "team": "PHI",
     "min": 31.0
+   },
+   {
+    "player": "Kyrie Irving",
+    "team": "DAL",
+    "min": 36.0
    }
   ]
  },
  "expected_mix": {
   "date": "2026-11-27",
-  "read_at": "2026-11-28T01:30:01+00:00",
+  "read_at": "2026-11-28T02:00:01+00:00",
   "players": [
    {
     "player": "Luka Doncic",
@@ -16688,12 +16688,6 @@
     "src": "FantasyPros"
    },
    {
-    "player": "Devin Booker",
-    "team": "PHX",
-    "min": 37.3,
-    "src": "FantasyPros"
-   },
-   {
     "player": "Cooper Flagg",
     "team": "DAL",
     "min": 36.0,
@@ -16703,6 +16697,12 @@
     "player": "Joel Embiid",
     "team": "PHI",
     "min": 31.0,
+    "src": "FantasyPros"
+   },
+   {
+    "player": "Kyrie Irving",
+    "team": "DAL",
+    "min": 36.0,
     "src": "FantasyPros"
    },
    {
@@ -17126,9 +17126,9 @@
     "src": "RotoWire"
    },
    {
-    "player": "Walter Clayton",
+    "player": "Zaccharie Risacher",
     "team": "DAL",
-    "min": 27.0,
+    "min": 26.0,
     "src": "RotoWire"
    },
    {
@@ -17144,9 +17144,9 @@
     "src": "RotoWire"
    },
    {
-    "player": "Zaccharie Risacher",
+    "player": "Walter Clayton",
     "team": "DAL",
-    "min": 26.0,
+    "min": 27.0,
     "src": "RotoWire"
    },
    {
@@ -17511,6 +17511,13 @@
     "team": "DET",
     "game": "MIL@DET",
     "min": 32.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Devin Booker",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 35.0,
     "src": "SportsLine"
    },
    {
@@ -18251,15 +18258,9 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-28T01:36:19+00:00",
+  "read_at": "2026-11-28T02:00:01+00:00",
   "date": "2026-11-27",
   "games": {
-   "MEM@MIN": {
-    "fav": "MIN",
-    "spread": 2.5,
-    "details": "MIN -2.5",
-    "provider": "DraftKings"
-   },
    "DAL@PHX": {
     "fav": "PHX",
     "spread": 4.5,
@@ -18339,7 +18340,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-28T01:30:01+00:00",
+  "read_at": "2026-11-28T02:00:02+00:00",
   "injuries": [
    {
     "team": "ATL",
@@ -19393,32 +19394,32 @@
     "player": "De'Aaron Fox",
     "src": "NBA report",
     "kind": "G",
-    "injury": "Right Shin Contusion Team Qs played 28/31",
+    "injury": "Not given",
     "upd": "2026-11-27",
     "until": "",
     "note": "",
     "through": "2026-11-27",
-    "st": "q",
+    "st": "avail",
     "url": "https://presserwire.com/nba/games/2026-11-27-los-angeles-lakers-at-san-antonio-spurs.html",
     "from": "2026-11-27",
     "override": true,
-    "at": "2026-11-27T19:46:49+00:00"
+    "at": "2026-11-28T02:00:02+00:00"
    },
    {
     "team": "SAS",
     "player": "Dylan Harper",
     "src": "NBA report",
     "kind": "G",
-    "injury": "Left Hip External Rotator Strain Team Qs played 28/31",
+    "injury": "Not given",
     "upd": "2026-11-27",
     "until": "",
     "note": "",
     "through": "2026-11-27",
-    "st": "q",
+    "st": "avail",
     "url": "https://presserwire.com/nba/games/2026-11-27-los-angeles-lakers-at-san-antonio-spurs.html",
     "from": "2026-11-27",
     "override": true,
-    "at": "2026-11-27T19:46:49+00:00"
+    "at": "2026-11-28T02:00:02+00:00"
    },
    {
     "team": "TOR",
@@ -19498,6 +19499,21 @@
    },
    {
     "team": "UTA",
+    "player": "Mo Bamba",
+    "src": "NBA report",
+    "kind": "O",
+    "injury": "Illness",
+    "upd": "2026-11-27",
+    "until": "",
+    "note": "",
+    "through": "2026-11-27",
+    "url": "https://presserwire.com/nba/games/2026-11-27-denver-nuggets-at-utah-jazz.html",
+    "from": "2026-11-27",
+    "override": true,
+    "at": "2026-11-28T02:00:02+00:00"
+   },
+   {
+    "team": "UTA",
     "player": "Jaxson Hayes",
     "src": "NBA report",
     "kind": "G",
@@ -19506,11 +19522,11 @@
     "until": "",
     "note": "",
     "through": "2026-11-27",
-    "st": "q",
+    "st": "avail",
     "url": "https://presserwire.com/nba/games/2026-11-27-denver-nuggets-at-utah-jazz.html",
     "from": "2026-11-27",
     "override": true,
-    "at": "2026-11-27T19:46:49+00:00"
+    "at": "2026-11-28T02:00:02+00:00"
    },
    {
     "team": "UTA",
@@ -19522,27 +19538,11 @@
     "until": "",
     "note": "",
     "through": "2026-11-27",
-    "st": "q",
+    "st": "avail",
     "url": "https://presserwire.com/nba/games/2026-11-27-denver-nuggets-at-utah-jazz.html",
     "from": "2026-11-27",
     "override": true,
-    "at": "2026-11-27T19:46:49+00:00"
-   },
-   {
-    "team": "UTA",
-    "player": "Mo Bamba",
-    "src": "NBA report",
-    "kind": "G",
-    "injury": "Illness",
-    "upd": "2026-11-27",
-    "until": "",
-    "note": "",
-    "through": "2026-11-27",
-    "st": "q",
-    "url": "https://presserwire.com/nba/games/2026-11-27-denver-nuggets-at-utah-jazz.html",
-    "from": "2026-11-27",
-    "override": true,
-    "at": "2026-11-27T19:46:49+00:00"
+    "at": "2026-11-28T02:00:02+00:00"
    },
    {
     "team": "CHA",
@@ -19928,6 +19928,15 @@
   ],
   "notes": [
    {
+    "team": "SAS",
+    "players": [
+     "De'Aaron Fox"
+    ],
+    "text": "Spurs coach Mitch Johnson on De'Aaron Fox and Dylan Harper before the Lakers game: \"We'll go through some pregame and see how it goes. I'd say it's very close for both of them.\" On Harper: \"very thankful that it wasn't as serious as it may have looked.\"",
+    "at": "2026-11-28T01:33:09+00:00",
+    "url": "https://x.com/nbapresserwire/status/2126489540659646712"
+   },
+   {
     "team": "BOS",
     "players": [
      "Mitchell Robinson"
@@ -20287,20 +20296,11 @@
    {
     "team": "SAS",
     "players": [
-     "Dylan Harper"
+     "Jordan McLaughlin"
     ],
     "text": "Dylan Harper is out Monday at Sacramento, the Spurs' third starter missing. Jordan McLaughlin (shoulder) will play, coach Mitch Johnson said: \"Played through it. Obviously, you know, probably wasn't feeling awesome the next morning, but he's going to give it a go.\"",
     "at": "2026-11-24T02:33:34+00:00",
-    "url": "https://x.com/nbapresserwire/status/2125055193775833129"
-   },
-   {
-    "team": "SAS",
-    "players": [
-     "De'Aaron Fox"
-    ],
-    "text": "\"From my perspective, it looked like he got tripped,\" Spurs coach Mitch Johnson said of the play last game that has De'Aaron Fox out Monday at Sacramento. Victor Wembanyama is also out. Asked about both for Portland: \"Optimistic both should not be long-term.\"",
-    "at": "2026-11-24T02:33:33+00:00",
-    "url": "https://x.com/nbapresserwire/status/2125055191326318862"
+    "url": "https://presserwire.com/nba/availability.html"
    },
    {
     "team": "TOR",
@@ -21370,6 +21370,39 @@
   ]
  },
  "news": [
+  {
+   "id": "nba541211",
+   "player": "Norman Powell",
+   "headline": "Out vs. Indiana",
+   "text": "Powell (hamstring) is out for Saturday's game against the Pacers.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/norman-powell-3726",
+   "at": "2026-11-28T01:55:00+00:00",
+   "team": "CHI"
+  },
+  {
+   "id": "nba541212",
+   "player": "De'Aaron Fox",
+   "headline": "Good to go Friday",
+   "text": "Fox (shin) is available to play in Friday's game against the Lakers.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/deaaron-fox-4116",
+   "at": "2026-11-28T01:55:00+00:00",
+   "team": "SAS"
+  },
+  {
+   "id": "nba541210",
+   "player": "Dylan Harper",
+   "headline": "Cleared to play Friday",
+   "text": "Harper (hip) is available to play Friday against the Lakers.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/dylan-harper-6549",
+   "at": "2026-11-28T01:52:00+00:00",
+   "team": "SAS"
+  },
   {
    "id": "nba541203",
    "player": "Zach Edey",
@@ -24838,6 +24871,18 @@
   },
   {
    "team": "CHI",
+   "player": "Norman Powell",
+   "src": "ESPN",
+   "kind": "O",
+   "injury": "Right Hamstring Strain",
+   "upd": "2026-11-28",
+   "until": "2026-12-01",
+   "note": "Powell (hamstring) is out for Saturday's game against the Pacers.",
+   "through": "",
+   "url": "https://www.espn.com/nba/injuries#:~:text=Norman%20Powell"
+  },
+  {
+   "team": "CHI",
    "player": "Noa Essengue",
    "src": "ESPN",
    "kind": "G",
@@ -24859,18 +24904,6 @@
    "note": "Smith (illness) is listed as probable for Saturday's game against Indiana.",
    "through": "2026-11-29",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jalen%20Smith"
-  },
-  {
-   "team": "CHI",
-   "player": "Norman Powell",
-   "src": "ESPN",
-   "kind": "O",
-   "injury": "Right Hamstring Strain",
-   "upd": "2026-11-22",
-   "until": "2026-11-28",
-   "note": "Powell has been diagnosed with a mild right hamstring strain and will be re-evaluated later this week.",
-   "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Norman%20Powell"
   },
   {
    "team": "CHI",
@@ -25476,12 +25509,12 @@
    "team": "ORL",
    "player": "Colin Castleton",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Calf Soreness",
    "upd": "2026-11-26",
-   "until": "",
+   "until": "2026-11-29",
    "note": "Castleton totaled five points (2-4 FG, 1-1 3Pt) and four rebounds in seven minutes during Tuesday's 132-116 preseason win over the Cavaliers.",
-   "through": "2026-11-29",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Colin%20Castleton"
   },
   {
@@ -25681,9 +25714,9 @@
    "player": "Dylan Harper",
    "src": "ESPN",
    "kind": "O",
-   "injury": "Left Hip Strain",
+   "injury": "out",
    "upd": "2026-11-27",
-   "until": "2026-11-27",
+   "until": "",
    "note": "Harper (hip) participated in Friday's morning shootaround, per Matt Guzman of SI.com.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Dylan%20Harper"
@@ -25693,7 +25726,7 @@
    "player": "De'Aaron Fox",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Right Lower Leg Bruise",
+   "injury": "day-to-day",
    "upd": "2026-11-26",
    "until": "",
    "note": "Fox (shin) is questionable for Friday's game against the Lakers.",
@@ -25764,37 +25797,13 @@
    "team": "UTA",
    "player": "Mo Bamba",
    "src": "ESPN",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "Bamba (illness) is listed as questionable for Friday's game against the Nuggets, according to the Jazz's injury report.",
-   "through": "2026-11-29",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Mo%20Bamba"
-  },
-  {
-   "team": "UTA",
-   "player": "Jaxson Hayes",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "Left Knee",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "Hayes (knee) is questionable for Friday's game against the Nuggets.",
-   "through": "2026-11-29",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Jaxson%20Hayes"
-  },
-  {
-   "team": "UTA",
-   "player": "Jusuf Nurkic",
-   "src": "ESPN",
    "kind": "O",
-   "injury": "Right Foot Strain",
-   "upd": "2026-11-27",
-   "until": "2026-11-27",
-   "note": "Nurkic (foot) is questionable for Friday's game against the Nuggets.",
+   "injury": "Illness",
+   "upd": "2026-11-28",
+   "until": "2026-11-29",
+   "note": "Bamba (illness) has been ruled out for Friday's game against the Nuggets.",
    "through": "",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Jusuf%20Nurkic"
+   "url": "https://www.espn.com/nba/injuries#:~:text=Mo%20Bamba"
   },
   {
    "team": "UTA",
@@ -26920,32 +26929,32 @@
    "player": "De'Aaron Fox",
    "src": "NBA report",
    "kind": "G",
-   "injury": "Right Shin Contusion Team Qs played 28/31",
+   "injury": "Not given",
    "upd": "2026-11-27",
    "until": "",
    "note": "",
    "through": "2026-11-27",
-   "st": "q",
+   "st": "avail",
    "url": "https://presserwire.com/nba/games/2026-11-27-los-angeles-lakers-at-san-antonio-spurs.html",
    "from": "2026-11-27",
    "override": true,
-   "at": "2026-11-27T19:46:49+00:00"
+   "at": "2026-11-28T02:00:02+00:00"
   },
   {
    "team": "SAS",
    "player": "Dylan Harper",
    "src": "NBA report",
    "kind": "G",
-   "injury": "Left Hip External Rotator Strain Team Qs played 28/31",
+   "injury": "Not given",
    "upd": "2026-11-27",
    "until": "",
    "note": "",
    "through": "2026-11-27",
-   "st": "q",
+   "st": "avail",
    "url": "https://presserwire.com/nba/games/2026-11-27-los-angeles-lakers-at-san-antonio-spurs.html",
    "from": "2026-11-27",
    "override": true,
-   "at": "2026-11-27T19:46:49+00:00"
+   "at": "2026-11-28T02:00:02+00:00"
   },
   {
    "team": "TOR",
@@ -27025,6 +27034,21 @@
   },
   {
    "team": "UTA",
+   "player": "Mo Bamba",
+   "src": "NBA report",
+   "kind": "O",
+   "injury": "Illness",
+   "upd": "2026-11-27",
+   "until": "",
+   "note": "",
+   "through": "2026-11-27",
+   "url": "https://presserwire.com/nba/games/2026-11-27-denver-nuggets-at-utah-jazz.html",
+   "from": "2026-11-27",
+   "override": true,
+   "at": "2026-11-28T02:00:02+00:00"
+  },
+  {
+   "team": "UTA",
    "player": "Jaxson Hayes",
    "src": "NBA report",
    "kind": "G",
@@ -27033,11 +27057,11 @@
    "until": "",
    "note": "",
    "through": "2026-11-27",
-   "st": "q",
+   "st": "avail",
    "url": "https://presserwire.com/nba/games/2026-11-27-denver-nuggets-at-utah-jazz.html",
    "from": "2026-11-27",
    "override": true,
-   "at": "2026-11-27T19:46:49+00:00"
+   "at": "2026-11-28T02:00:02+00:00"
   },
   {
    "team": "UTA",
@@ -27049,27 +27073,11 @@
    "until": "",
    "note": "",
    "through": "2026-11-27",
-   "st": "q",
+   "st": "avail",
    "url": "https://presserwire.com/nba/games/2026-11-27-denver-nuggets-at-utah-jazz.html",
    "from": "2026-11-27",
    "override": true,
-   "at": "2026-11-27T19:46:49+00:00"
-  },
-  {
-   "team": "UTA",
-   "player": "Mo Bamba",
-   "src": "NBA report",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "",
-   "through": "2026-11-27",
-   "st": "q",
-   "url": "https://presserwire.com/nba/games/2026-11-27-denver-nuggets-at-utah-jazz.html",
-   "from": "2026-11-27",
-   "override": true,
-   "at": "2026-11-27T19:46:49+00:00"
+   "at": "2026-11-28T02:00:02+00:00"
   },
   {
    "team": "CHA",
@@ -28169,58 +28177,6 @@
   },
   {
    "team": "SAS",
-   "player": "De'Aaron Fox",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-27",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Fox"
-  },
-  {
-   "team": "SAS",
-   "player": "Dylan Harper",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-27",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Harper"
-  },
-  {
-   "team": "SAS",
-   "player": "De'Aaron Fox",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-27",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Fox"
-  },
-  {
-   "team": "SAS",
-   "player": "Dylan Harper",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-27",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=D.%20Harper"
-  },
-  {
-   "team": "SAS",
    "player": "Tobias Harris",
    "src": "RotoWire",
    "kind": "O",
@@ -28283,6 +28239,57 @@
    "through": "2026-11-27",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=L.%20Markkanen"
+  },
+  {
+   "team": "CHI",
+   "player": "Norman Powell",
+   "src": "RotoWire news",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-28",
+   "until": "",
+   "note": "Powell (hamstring) is out for Saturday's game against the Pacers.",
+   "through": "2026-11-28",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/norman-powell-3726",
+   "from": "2026-11-28",
+   "override": true,
+   "at": "2026-11-28T01:55:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "SAS",
+   "player": "De'Aaron Fox",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-27",
+   "until": "",
+   "note": "Fox (shin) is available to play in Friday's game against the Lakers.",
+   "through": "2026-11-27",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/deaaron-fox-4116",
+   "from": "2026-11-27",
+   "override": true,
+   "at": "2026-11-28T01:55:00+00:00",
+   "from_news": true
+  },
+  {
+   "team": "SAS",
+   "player": "Dylan Harper",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-27",
+   "until": "",
+   "note": "Harper (hip) is available to play Friday against the Lakers.",
+   "through": "2026-11-27",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/dylan-harper-6549",
+   "from": "2026-11-27",
+   "override": true,
+   "at": "2026-11-28T01:52:00+00:00",
+   "from_news": true
   },
   {
    "team": "MEM",
@@ -28847,35 +28854,35 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-28T01:36:20+00:00",
+ "generated_at": "2026-11-28T02:00:02+00:00",
  "sources": {
   "schedule": {
    "ok": true,
-   "at": "2026-11-27T19:46:33+00:00",
-   "count": 1200,
-   "reused": true
+   "at": "2026-11-28T01:59:59+00:00",
+   "count": 1200
   },
   "espn_depth": {
    "ok": true,
    "at": "2026-11-28T01:36:18+00:00",
-   "teams": 30
+   "teams": 30,
+   "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-28T01:36:18+00:00",
+   "at": "2026-11-28T02:00:00+00:00",
    "teams": 22,
-   "injuries": 64
+   "injuries": 60
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-28T01:36:18+00:00",
+   "at": "2026-11-28T02:00:00+00:00",
    "teams": 20,
-   "verified": 13,
+   "verified": 14,
    "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-28T01:36:18+00:00",
+   "at": "2026-11-28T02:00:00+00:00",
    "current_players": 482,
    "last_players": 582
   },
@@ -28885,18 +28892,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-28T01:36:19+00:00",
+   "at": "2026-11-28T02:00:00+00:00",
    "count": 99
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-28T01:36:19+00:00",
+   "at": "2026-11-28T02:00:00+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-28T01:36:19+00:00",
-   "count": 98
+   "at": "2026-11-28T02:00:00+00:00",
+   "count": 96
   },
   "x": {
    "ok": null,
@@ -28904,40 +28911,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-28T01:36:19+00:00",
+   "at": "2026-11-28T02:00:01+00:00",
    "players": 218,
-   "read_at": "2026-11-28T01:30:00+00:00",
-   "saved_for_history": 119
+   "read_at": "2026-11-28T02:00:00+00:00",
+   "saved_for_history": 98
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-28T01:36:19+00:00",
+   "at": "2026-11-28T02:00:01+00:00",
    "players": 136,
-   "read_at": "2026-11-28T01:30:01+00:00"
+   "read_at": "2026-11-28T02:00:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-28T01:36:19+00:00",
+   "at": "2026-11-28T02:00:01+00:00",
    "players": 10,
-   "read_at": "2026-11-28T01:30:01+00:00"
+   "read_at": "2026-11-28T02:00:01+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-28T01:36:20+00:00",
-   "games": 6,
-   "read_at": "2026-11-28T01:36:19+00:00"
+   "at": "2026-11-28T02:00:02+00:00",
+   "games": 5,
+   "read_at": "2026-11-28T02:00:01+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-28T01:36:20+00:00",
+   "at": "2026-11-28T02:00:02+00:00",
    "injuries": 104,
    "notes": 157,
-   "read_at": "2026-11-28T01:30:01+00:00"
+   "read_at": "2026-11-28T02:00:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-28T01:36:20+00:00",
-   "count": 46
+   "at": "2026-11-28T02:00:02+00:00",
+   "count": 49
   }
  }
 }
