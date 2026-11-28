@@ -9142,7 +9142,7 @@
    "time": "21:30",
    "vs": "SAS",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -9158,13 +9158,14 @@
     },
     {
      "pos": "PF",
-     "name": "Ziaire Williams"
+     "name": "Jake LaRavia"
     },
     {
      "pos": "C",
      "name": "Walker Kessler"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "SAS": {
    "date": "2026-11-27",
@@ -14586,7 +14587,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-28T02:00:00+00:00",
+  "read_at": "2026-11-28T02:15:18+00:00",
   "date": "2026-11-27",
   "players": [
    {
@@ -14662,12 +14663,6 @@
     "min": 32.0
    },
    {
-    "player": "Devin Booker",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 35.0
-   },
-   {
     "player": "Tyrese Maxey",
     "team": "PHI",
     "game": "PHI@IND",
@@ -14677,6 +14672,12 @@
     "player": "Jalen Johnson",
     "team": "ATL",
     "game": "ATL@BOS",
+    "min": 35.0
+   },
+   {
+    "player": "Devin Booker",
+    "team": "PHX",
+    "game": "DAL@PHO",
     "min": 35.0
    },
    {
@@ -14734,12 +14735,6 @@
     "min": 34.0
    },
    {
-    "player": "Yaxel Lendeborg",
-    "team": "GSW",
-    "game": "GS@POR",
-    "min": 35.0
-   },
-   {
     "player": "Bam Adebayo",
     "team": "MIA",
     "game": "MIA@NY",
@@ -14752,10 +14747,22 @@
     "min": 33.0
    },
    {
+    "player": "Yaxel Lendeborg",
+    "team": "GSW",
+    "game": "GS@POR",
+    "min": 35.0
+   },
+   {
     "player": "Cedric Coward",
     "team": "MEM",
     "game": "MEM@MIN",
     "min": 28.0
+   },
+   {
+    "player": "Keyonte George",
+    "team": "UTA",
+    "game": "DEN@UTA",
+    "min": 33.0
    },
    {
     "player": "Andrew Nembhard",
@@ -14776,12 +14783,6 @@
     "min": 31.0
    },
    {
-    "player": "Keyonte George",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 33.0
-   },
-   {
     "player": "Darryn Peterson",
     "team": "UTA",
     "game": "DEN@UTA",
@@ -14800,16 +14801,16 @@
     "min": 30.0
    },
    {
-    "player": "Jrue Holiday",
-    "team": "POR",
-    "game": "GS@POR",
-    "min": 29.0
-   },
-   {
     "player": "Stephon Castle",
     "team": "SAS",
     "game": "LAL@SA",
     "min": 31.0
+   },
+   {
+    "player": "Jrue Holiday",
+    "team": "POR",
+    "game": "GS@POR",
+    "min": 29.0
    },
    {
     "player": "Julius Randle",
@@ -14842,16 +14843,16 @@
     "min": 30.0
    },
    {
-    "player": "Dyson Daniels",
-    "team": "ATL",
-    "game": "ATL@BOS",
-    "min": 33.0
-   },
-   {
     "player": "Dylan Harper",
     "team": "SAS",
     "game": "LAL@SA",
     "min": 30.0
+   },
+   {
+    "player": "Dyson Daniels",
+    "team": "ATL",
+    "game": "ATL@BOS",
+    "min": 33.0
    },
    {
     "player": "John Collins",
@@ -14866,12 +14867,6 @@
     "min": 28.0
    },
    {
-    "player": "Miles Bridges",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 27.0
-   },
-   {
     "player": "Rudy Gobert",
     "team": "MIN",
     "game": "MEM@MIN",
@@ -14882,6 +14877,12 @@
     "team": "MIN",
     "game": "MEM@MIN",
     "min": 28.0
+   },
+   {
+    "player": "Miles Bridges",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 27.0
    },
    {
     "player": "VJ Edgecombe",
@@ -14908,16 +14909,16 @@
     "min": 22.0
    },
    {
-    "player": "Jalen Green",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 30.0
-   },
-   {
     "player": "Trey Murphy",
     "team": "NOP",
     "game": "NO@LAC",
     "min": 34.0
+   },
+   {
+    "player": "Jalen Green",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 30.0
    },
    {
     "player": "Austin Reaves",
@@ -14992,22 +14993,16 @@
     "min": 25.0
    },
    {
-    "player": "Dillon Brooks",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 30.0
-   },
-   {
     "player": "De`Aaron Fox",
     "team": "SAS",
     "game": "LAL@SA",
     "min": 27.0
    },
    {
-    "player": "Collin Murray-Boyles",
-    "team": "TOR",
-    "game": "BKN@TOR",
-    "min": 29.0
+    "player": "PJ Washington",
+    "team": "DAL",
+    "game": "DAL@PHO",
+    "min": 31.0
    },
    {
     "player": "Christian Braun",
@@ -15016,10 +15011,16 @@
     "min": 34.0
    },
    {
-    "player": "PJ Washington",
-    "team": "DAL",
+    "player": "Dillon Brooks",
+    "team": "PHX",
     "game": "DAL@PHO",
-    "min": 31.0
+    "min": 30.0
+   },
+   {
+    "player": "Collin Murray-Boyles",
+    "team": "TOR",
+    "game": "BKN@TOR",
+    "min": 29.0
    },
    {
     "player": "Cameron Johnson",
@@ -15040,22 +15041,16 @@
     "min": 26.0
    },
    {
-    "player": "Mikal Bridges",
-    "team": "NYK",
-    "game": "MIA@NY",
-    "min": 26.0
-   },
-   {
-    "player": "Draymond Green",
-    "team": "GSW",
-    "game": "GS@POR",
-    "min": 28.0
-   },
-   {
     "player": "Aaron Gordon",
     "team": "DEN",
     "game": "DEN@UTA",
     "min": 29.0
+   },
+   {
+    "player": "Mikal Bridges",
+    "team": "NYK",
+    "game": "MIA@NY",
+    "min": 26.0
    },
    {
     "player": "Rui Hachimura",
@@ -15076,10 +15071,22 @@
     "min": 28.0
    },
    {
+    "player": "Draymond Green",
+    "team": "GSW",
+    "game": "GS@POR",
+    "min": 28.0
+   },
+   {
     "player": "Neemias Queta",
     "team": "BOS",
     "game": "ATL@BOS",
     "min": 25.0
+   },
+   {
+    "player": "Ace Bailey",
+    "team": "UTA",
+    "game": "DEN@UTA",
+    "min": 30.0
    },
    {
     "player": "Myles Turner",
@@ -15106,16 +15113,16 @@
     "min": 28.0
    },
    {
-    "player": "Ace Bailey",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 30.0
-   },
-   {
     "player": "Brook Lopez",
     "team": "LAC",
     "game": "NO@LAC",
     "min": 26.0
+   },
+   {
+    "player": "Scoot Henderson",
+    "team": "POR",
+    "game": "GS@POR",
+    "min": 25.0
    },
    {
     "player": "Derik Queen",
@@ -15124,10 +15131,10 @@
     "min": 23.0
    },
    {
-    "player": "Scoot Henderson",
-    "team": "POR",
-    "game": "GS@POR",
-    "min": 25.0
+    "player": "Saddiq Bey",
+    "team": "NOP",
+    "game": "NO@LAC",
+    "min": 27.0
    },
    {
     "player": "Isaiah Joe",
@@ -15151,12 +15158,6 @@
     "player": "Oso Ighodaro",
     "team": "PHX",
     "game": "DAL@PHO",
-    "min": 26.0
-   },
-   {
-    "player": "Saddiq Bey",
-    "team": "NOP",
-    "game": "NO@LAC",
     "min": 26.0
    },
    {
@@ -15184,10 +15185,10 @@
     "min": 25.0
    },
    {
-    "player": "Collin Gillespie",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 23.0
+    "player": "Devin Vassell",
+    "team": "SAS",
+    "game": "LAL@SA",
+    "min": 28.0
    },
    {
     "player": "De`Anthony Melton",
@@ -15196,10 +15197,10 @@
     "min": 23.0
    },
    {
-    "player": "Devin Vassell",
-    "team": "SAS",
-    "game": "LAL@SA",
-    "min": 28.0
+    "player": "Collin Gillespie",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 23.0
    },
    {
     "player": "Aaron Nesmith",
@@ -15256,6 +15257,18 @@
     "min": 17.0
    },
    {
+    "player": "Isaiah Collier",
+    "team": "UTA",
+    "game": "DEN@UTA",
+    "min": 20.0
+   },
+   {
+    "player": "Jaxson Hayes",
+    "team": "UTA",
+    "game": "DEN@UTA",
+    "min": 25.0
+   },
+   {
     "player": "Quentin Grimes",
     "team": "LAL",
     "game": "LAL@SA",
@@ -15266,12 +15279,6 @@
     "team": "SAS",
     "game": "LAL@SA",
     "min": 27.0
-   },
-   {
-    "player": "Isaiah Collier",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 19.0
    },
    {
     "player": "Obi Toppin",
@@ -15286,16 +15293,16 @@
     "min": 25.0
    },
    {
+    "player": "Jordan Poole",
+    "team": "NOP",
+    "game": "NO@LAC",
+    "min": 20.0
+   },
+   {
     "player": "Egor Demin",
     "team": "BKN",
     "game": "BKN@TOR",
     "min": 24.0
-   },
-   {
-    "player": "Jaxson Hayes",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 25.0
    },
    {
     "player": "Derrick Jones Jr.",
@@ -15316,9 +15323,21 @@
     "min": 22.0
    },
    {
+    "player": "Zaccharie Risacher",
+    "team": "DAL",
+    "game": "DAL@PHO",
+    "min": 23.0
+   },
+   {
     "player": "Zach Edey",
     "team": "MEM",
     "game": "MEM@MIN",
+    "min": 16.0
+   },
+   {
+    "player": "Jusuf Nurkic",
+    "team": "UTA",
+    "game": "DEN@UTA",
     "min": 16.0
    },
    {
@@ -15328,39 +15347,15 @@
     "min": 18.0
    },
    {
-    "player": "Jordan Poole",
-    "team": "NOP",
-    "game": "NO@LAC",
-    "min": 19.0
-   },
-   {
     "player": "Svi Mykhailiuk",
     "team": "UTA",
     "game": "DEN@UTA",
     "min": 25.0
    },
    {
-    "player": "Jordan Goodwin",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 18.0
-   },
-   {
-    "player": "Zaccharie Risacher",
-    "team": "DAL",
-    "game": "DAL@PHO",
-    "min": 23.0
-   },
-   {
     "player": "DeMar DeRozan",
     "team": "DEN",
     "game": "DEN@UTA",
-    "min": 20.0
-   },
-   {
-    "player": "Trey Lyles",
-    "team": "MIN",
-    "game": "MEM@MIN",
     "min": 20.0
    },
    {
@@ -15370,16 +15365,22 @@
     "min": 21.0
    },
    {
+    "player": "Trey Lyles",
+    "team": "MIN",
+    "game": "MEM@MIN",
+    "min": 20.0
+   },
+   {
     "player": "Andrew Wiggins",
     "team": "MIA",
     "game": "MIA@NY",
     "min": 23.0
    },
    {
-    "player": "Jusuf Nurkic",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 16.0
+    "player": "Jordan Goodwin",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 18.0
    },
    {
     "player": "Joan Beringer",
@@ -15400,16 +15401,16 @@
     "min": 27.0
    },
    {
-    "player": "Mohamed Bamba",
-    "team": "UTA",
-    "game": "DEN@UTA",
+    "player": "Walter Clayton Jr.",
+    "team": "DAL",
+    "game": "DAL@PHO",
     "min": 19.0
    },
    {
-    "player": "Will Richard",
+    "player": "Charles Bassey",
     "team": "GSW",
     "game": "GS@POR",
-    "min": 25.0
+    "min": 15.0
    },
    {
     "player": "Allen Graves",
@@ -15418,10 +15419,10 @@
     "min": 22.0
    },
    {
-    "player": "Charles Bassey",
+    "player": "Will Richard",
     "team": "GSW",
     "game": "GS@POR",
-    "min": 15.0
+    "min": 25.0
    },
    {
     "player": "Sidy Cissoko",
@@ -15436,16 +15437,16 @@
     "min": 18.0
    },
    {
-    "player": "Walter Clayton Jr.",
-    "team": "DAL",
-    "game": "DAL@PHO",
-    "min": 19.0
-   },
-   {
     "player": "Kris Dunn",
     "team": "LAC",
     "game": "NO@LAC",
     "min": 19.0
+   },
+   {
+    "player": "Caleb Martin",
+    "team": "DAL",
+    "game": "DAL@PHO",
+    "min": 21.0
    },
    {
     "player": "Corey Kispert",
@@ -15460,10 +15461,22 @@
     "min": 18.0
    },
    {
-    "player": "Caleb Martin",
+    "player": "Kyle Filipowski",
+    "team": "UTA",
+    "game": "DEN@UTA",
+    "min": 15.0
+   },
+   {
+    "player": "Morez Johnson Jr.",
     "team": "DAL",
     "game": "DAL@PHO",
-    "min": 21.0
+    "min": 19.0
+   },
+   {
+    "player": "Brice Sensabaugh",
+    "team": "UTA",
+    "game": "DEN@UTA",
+    "min": 16.0
    },
    {
     "player": "Jake LaRavia",
@@ -15496,16 +15509,16 @@
     "min": 19.0
    },
    {
-    "player": "Morez Johnson Jr.",
-    "team": "DAL",
-    "game": "DAL@PHO",
-    "min": 19.0
-   },
-   {
     "player": "Sandro Mamukelashvili",
     "team": "LAL",
     "game": "LAL@SA",
     "min": 18.0
+   },
+   {
+    "player": "Herbert Jones",
+    "team": "NOP",
+    "game": "NO@LAC",
+    "min": 26.0
    },
    {
     "player": "Georges Niang",
@@ -15526,12 +15539,6 @@
     "min": 20.0
    },
    {
-    "player": "Kyle Filipowski",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 15.0
-   },
-   {
     "player": "Ziaire Williams",
     "team": "LAL",
     "game": "LAL@SA",
@@ -15542,12 +15549,6 @@
     "team": "PHX",
     "game": "DAL@PHO",
     "min": 18.0
-   },
-   {
-    "player": "Brice Sensabaugh",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 15.0
    },
    {
     "player": "Olivier-Maxence Prosper",
@@ -15562,28 +15563,10 @@
     "min": 13.0
    },
    {
-    "player": "Herbert Jones",
-    "team": "NOP",
-    "game": "NO@LAC",
-    "min": 24.0
-   },
-   {
-    "player": "Benedict Mathurin",
-    "team": "NOP",
-    "game": "NO@LAC",
-    "min": 18.0
-   },
-   {
     "player": "Quinten Post",
     "team": "MEM",
     "game": "MEM@MIN",
     "min": 14.0
-   },
-   {
-    "player": "Ryan Dunn",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 18.0
    },
    {
     "player": "Sam Hauser",
@@ -15598,22 +15581,22 @@
     "min": 18.0
    },
    {
-    "player": "Noah Clowney",
-    "team": "BKN",
-    "game": "BKN@TOR",
-    "min": 19.0
-   },
-   {
     "player": "Isaiah Jackson",
     "team": "LAC",
     "game": "NO@LAC",
     "min": 12.0
    },
    {
-    "player": "Al Horford",
-    "team": "GSW",
-    "game": "GS@POR",
-    "min": 16.0
+    "player": "Noah Clowney",
+    "team": "BKN",
+    "game": "BKN@TOR",
+    "min": 19.0
+   },
+   {
+    "player": "Ryan Dunn",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 18.0
    },
    {
     "player": "Matisse Thybulle",
@@ -15628,9 +15611,9 @@
     "min": 15.0
    },
    {
-    "player": "Luke Kornet",
-    "team": "SAS",
-    "game": "LAL@SA",
+    "player": "Al Horford",
+    "team": "GSW",
+    "game": "GS@POR",
     "min": 16.0
    },
    {
@@ -15638,6 +15621,18 @@
     "team": "GSW",
     "game": "GS@POR",
     "min": 15.0
+   },
+   {
+    "player": "Luke Kornet",
+    "team": "SAS",
+    "game": "LAL@SA",
+    "min": 16.0
+   },
+   {
+    "player": "Harrison Barnes",
+    "team": "SAS",
+    "game": "LAL@SA",
+    "min": 19.0
    },
    {
     "player": "L.J. Cryer",
@@ -15652,21 +15647,15 @@
     "min": 11.0
    },
    {
-    "player": "Harrison Barnes",
-    "team": "SAS",
-    "game": "LAL@SA",
-    "min": 19.0
+    "player": "Kobe Sanders",
+    "team": "LAC",
+    "game": "NO@LAC",
+    "min": 15.0
    },
    {
     "player": "Mike Conley",
     "team": "BOS",
     "game": "ATL@BOS",
-    "min": 15.0
-   },
-   {
-    "player": "Kobe Sanders",
-    "team": "LAC",
-    "game": "NO@LAC",
     "min": 15.0
    },
    {
@@ -15682,16 +15671,22 @@
     "min": 12.0
    },
    {
-    "player": "Khaman Maluach",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 12.0
-   },
-   {
     "player": "Jalen Slawson",
     "team": "IND",
     "game": "PHI@IND",
     "min": 12.0
+   },
+   {
+    "player": "Marvin Bagley III",
+    "team": "DEN",
+    "game": "DEN@UTA",
+    "min": 10.0
+   },
+   {
+    "player": "Gradey Dick",
+    "team": "LAC",
+    "game": "NO@LAC",
+    "min": 13.0
    },
    {
     "player": "Tyler Kolek",
@@ -15706,6 +15701,12 @@
     "min": 15.0
    },
    {
+    "player": "Khaman Maluach",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 12.0
+   },
+   {
     "player": "Luka Garza",
     "team": "BOS",
     "game": "ATL@BOS",
@@ -15716,18 +15717,6 @@
     "team": "IND",
     "game": "PHI@IND",
     "min": 12.0
-   },
-   {
-    "player": "Gradey Dick",
-    "team": "LAC",
-    "game": "NO@LAC",
-    "min": 13.0
-   },
-   {
-    "player": "Marvin Bagley III",
-    "team": "DEN",
-    "game": "DEN@UTA",
-    "min": 10.0
    },
    {
     "player": "Zuby Ejiofor",
@@ -15754,15 +15743,21 @@
     "min": 16.0
    },
    {
+    "player": "Karlo Matkovic",
+    "team": "NOP",
+    "game": "NO@LAC",
+    "min": 13.0
+   },
+   {
     "player": "Marcus Sasser",
     "team": "DAL",
     "game": "DAL@PHO",
     "min": 13.0
    },
    {
-    "player": "Karlo Matkovic",
-    "team": "NOP",
-    "game": "NO@LAC",
+    "player": "Trevon Brazile",
+    "team": "DEN",
+    "game": "DEN@UTA",
     "min": 13.0
    },
    {
@@ -15770,12 +15765,6 @@
     "team": "BKN",
     "game": "BKN@TOR",
     "min": 15.0
-   },
-   {
-    "player": "Trevon Brazile",
-    "team": "DEN",
-    "game": "DEN@UTA",
-    "min": 13.0
    },
    {
     "player": "Nate Ament",
@@ -15796,15 +15785,27 @@
     "min": 15.0
    },
    {
+    "player": "Jericho Sims",
+    "team": "MIL",
+    "game": "MIL@DET",
+    "min": 14.0
+   },
+   {
     "player": "Jarred Vanderbilt",
     "team": "LAL",
     "game": "LAL@SA",
     "min": 13.0
    },
    {
-    "player": "Jericho Sims",
-    "team": "MIL",
-    "game": "MIL@DET",
+    "player": "DeAndre Jordan",
+    "team": "NOP",
+    "game": "NO@LAC",
+    "min": 10.0
+   },
+   {
+    "player": "Josh Okogie",
+    "team": "UTA",
+    "game": "DEN@UTA",
     "min": 14.0
    },
    {
@@ -15812,6 +15813,12 @@
     "team": "BKN",
     "game": "BKN@TOR",
     "min": 13.0
+   },
+   {
+    "player": "Josh Green",
+    "team": "UTA",
+    "game": "DEN@UTA",
+    "min": 16.0
    },
    {
     "player": "Tim Hardaway",
@@ -15824,24 +15831,6 @@
     "team": "DEN",
     "game": "DEN@UTA",
     "min": 10.0
-   },
-   {
-    "player": "DeAndre Jordan",
-    "team": "NOP",
-    "game": "NO@LAC",
-    "min": 10.0
-   },
-   {
-    "player": "Josh Okogie",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 13.0
-   },
-   {
-    "player": "Josh Green",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 16.0
    },
    {
     "player": "Larry Nance",
@@ -15874,16 +15863,16 @@
     "min": 10.0
    },
    {
-    "player": "Hansen Yang",
-    "team": "POR",
-    "game": "GS@POR",
-    "min": 8.0
-   },
-   {
     "player": "Yanic Konan Niederhauser",
     "team": "LAC",
     "game": "NO@LAC",
     "min": 9.0
+   },
+   {
+    "player": "Hansen Yang",
+    "team": "POR",
+    "game": "GS@POR",
+    "min": 8.0
    },
    {
     "player": "Carter Bryant",
@@ -15900,7 +15889,7 @@
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-28T02:00:01+00:00",
+  "read_at": "2026-11-28T02:15:19+00:00",
   "date": "2026-11-27",
   "players": [
    {
@@ -16586,7 +16575,7 @@
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-28T02:00:01+00:00",
+  "read_at": "2026-11-28T02:15:20+00:00",
   "date": "2026-11-27",
   "players": [
    {
@@ -16643,7 +16632,7 @@
  },
  "expected_mix": {
   "date": "2026-11-27",
-  "read_at": "2026-11-28T02:00:01+00:00",
+  "read_at": "2026-11-28T02:15:20+00:00",
   "players": [
    {
     "player": "Luka Doncic",
@@ -17563,6 +17552,13 @@
     "src": "SportsLine"
    },
    {
+    "player": "Keyonte George",
+    "team": "UTA",
+    "game": "DEN@UTA",
+    "min": 33.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Andrew Nembhard",
     "team": "IND",
     "game": "PHI@IND",
@@ -17573,13 +17569,6 @@
     "player": "Brandon Ingram",
     "team": "LAC",
     "game": "NO@LAC",
-    "min": 33.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Keyonte George",
-    "team": "UTA",
-    "game": "DEN@UTA",
     "min": 33.0,
     "src": "SportsLine"
    },
@@ -17598,17 +17587,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Jrue Holiday",
-    "team": "POR",
-    "game": "GS@POR",
-    "min": 29.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Stephon Castle",
     "team": "SAS",
     "game": "LAL@SA",
     "min": 31.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Jrue Holiday",
+    "team": "POR",
+    "game": "GS@POR",
+    "min": 29.0,
     "src": "SportsLine"
    },
    {
@@ -17661,13 +17650,6 @@
     "src": "SportsLine"
    },
    {
-    "player": "Miles Bridges",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 27.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Rudy Gobert",
     "team": "MIN",
     "game": "MEM@MIN",
@@ -17679,6 +17661,13 @@
     "team": "MIN",
     "game": "MEM@MIN",
     "min": 28.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Miles Bridges",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 27.0,
     "src": "SportsLine"
    },
    {
@@ -17738,17 +17727,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Dillon Brooks",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 30.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "De`Aaron Fox",
     "team": "SAS",
     "game": "LAL@SA",
     "min": 27.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Dillon Brooks",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 30.0,
     "src": "SportsLine"
    },
    {
@@ -17780,6 +17769,13 @@
     "src": "SportsLine"
    },
    {
+    "player": "Ace Bailey",
+    "team": "UTA",
+    "game": "DEN@UTA",
+    "min": 30.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Ja`Kobe Walter",
     "team": "TOR",
     "game": "BKN@TOR",
@@ -17798,13 +17794,6 @@
     "team": "NYK",
     "game": "MIA@NY",
     "min": 28.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Ace Bailey",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 30.0,
     "src": "SportsLine"
    },
    {
@@ -17850,17 +17839,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Collin Gillespie",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 23.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Devin Vassell",
     "team": "SAS",
     "game": "LAL@SA",
     "min": 28.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Collin Gillespie",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 23.0,
     "src": "SportsLine"
    },
    {
@@ -17885,23 +17874,9 @@
     "src": "SportsLine"
    },
    {
-    "player": "Julian Champagnie",
-    "team": "SAS",
-    "game": "LAL@SA",
-    "min": 27.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Isaiah Collier",
     "team": "UTA",
     "game": "DEN@UTA",
-    "min": 19.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Obi Toppin",
-    "team": "IND",
-    "game": "PHI@IND",
     "min": 20.0,
     "src": "SportsLine"
    },
@@ -17913,10 +17888,31 @@
     "src": "SportsLine"
    },
    {
+    "player": "Julian Champagnie",
+    "team": "SAS",
+    "game": "LAL@SA",
+    "min": 27.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Obi Toppin",
+    "team": "IND",
+    "game": "PHI@IND",
+    "min": 20.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Derrick Jones Jr.",
     "team": "LAC",
     "game": "NO@LAC",
     "min": 26.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Jusuf Nurkic",
+    "team": "UTA",
+    "game": "DEN@UTA",
+    "min": 16.0,
     "src": "SportsLine"
    },
    {
@@ -17934,10 +17930,10 @@
     "src": "SportsLine"
    },
    {
-    "player": "Jordan Goodwin",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 18.0,
+    "player": "Keldon Johnson",
+    "team": "SAS",
+    "game": "LAL@SA",
+    "min": 21.0,
     "src": "SportsLine"
    },
    {
@@ -17948,17 +17944,10 @@
     "src": "SportsLine"
    },
    {
-    "player": "Keldon Johnson",
-    "team": "SAS",
-    "game": "LAL@SA",
-    "min": 21.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Jusuf Nurkic",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 16.0,
+    "player": "Jordan Goodwin",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 18.0,
     "src": "SportsLine"
    },
    {
@@ -17966,13 +17955,6 @@
     "team": "MIN",
     "game": "MEM@MIN",
     "min": 18.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Mohamed Bamba",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 19.0,
     "src": "SportsLine"
    },
    {
@@ -18004,6 +17986,20 @@
     "src": "SportsLine"
    },
    {
+    "player": "Kyle Filipowski",
+    "team": "UTA",
+    "game": "DEN@UTA",
+    "min": 15.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Brice Sensabaugh",
+    "team": "UTA",
+    "game": "DEN@UTA",
+    "min": 16.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Kentavious Caldwell-Pope",
     "team": "PHI",
     "game": "PHI@IND",
@@ -18025,24 +18021,10 @@
     "src": "SportsLine"
    },
    {
-    "player": "Kyle Filipowski",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 15.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Luke Kennard",
     "team": "PHX",
     "game": "DAL@PHO",
     "min": 18.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Brice Sensabaugh",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 15.0,
     "src": "SportsLine"
    },
    {
@@ -18057,20 +18039,6 @@
     "team": "DET",
     "game": "MIL@DET",
     "min": 13.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Benedict Mathurin",
-    "team": "NOP",
-    "game": "NO@LAC",
-    "min": 18.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Ryan Dunn",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 18.0,
     "src": "SportsLine"
    },
    {
@@ -18095,6 +18063,13 @@
     "src": "SportsLine"
    },
    {
+    "player": "Ryan Dunn",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 18.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Jarace Walker",
     "team": "IND",
     "game": "PHI@IND",
@@ -18109,13 +18084,6 @@
     "src": "SportsLine"
    },
    {
-    "player": "Trayce Jackson-Davis",
-    "team": "TOR",
-    "game": "BKN@TOR",
-    "min": 11.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Harrison Barnes",
     "team": "SAS",
     "game": "LAL@SA",
@@ -18123,10 +18091,10 @@
     "src": "SportsLine"
    },
    {
-    "player": "Mike Conley",
-    "team": "BOS",
-    "game": "ATL@BOS",
-    "min": 15.0,
+    "player": "Trayce Jackson-Davis",
+    "team": "TOR",
+    "game": "BKN@TOR",
+    "min": 11.0,
     "src": "SportsLine"
    },
    {
@@ -18137,10 +18105,10 @@
     "src": "SportsLine"
    },
    {
-    "player": "Khaman Maluach",
-    "team": "PHX",
-    "game": "DAL@PHO",
-    "min": 12.0,
+    "player": "Mike Conley",
+    "team": "BOS",
+    "game": "ATL@BOS",
+    "min": 15.0,
     "src": "SportsLine"
    },
    {
@@ -18148,6 +18116,13 @@
     "team": "IND",
     "game": "PHI@IND",
     "min": 12.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Gradey Dick",
+    "team": "LAC",
+    "game": "NO@LAC",
+    "min": 13.0,
     "src": "SportsLine"
    },
    {
@@ -18165,6 +18140,13 @@
     "src": "SportsLine"
    },
    {
+    "player": "Khaman Maluach",
+    "team": "PHX",
+    "game": "DAL@PHO",
+    "min": 12.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Luka Garza",
     "team": "BOS",
     "game": "ATL@BOS",
@@ -18179,16 +18161,16 @@
     "src": "SportsLine"
    },
    {
-    "player": "Gradey Dick",
-    "team": "LAC",
-    "game": "NO@LAC",
-    "min": 13.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Hugo Gonzalez",
     "team": "BOS",
     "game": "ATL@BOS",
+    "min": 14.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Josh Okogie",
+    "team": "UTA",
+    "game": "DEN@UTA",
     "min": 14.0,
     "src": "SportsLine"
    },
@@ -18200,24 +18182,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Bryce Hopkins",
-    "team": "DEN",
-    "game": "DEN@UTA",
-    "min": 10.0,
-    "src": "SportsLine"
-   },
-   {
-    "player": "Josh Okogie",
-    "team": "UTA",
-    "game": "DEN@UTA",
-    "min": 13.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Josh Green",
     "team": "UTA",
     "game": "DEN@UTA",
     "min": 16.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Bryce Hopkins",
+    "team": "DEN",
+    "game": "DEN@UTA",
+    "min": 10.0,
     "src": "SportsLine"
    },
    {
@@ -18235,17 +18210,17 @@
     "src": "SportsLine"
    },
    {
-    "player": "Hansen Yang",
-    "team": "POR",
-    "game": "GS@POR",
-    "min": 8.0,
-    "src": "SportsLine"
-   },
-   {
     "player": "Yanic Konan Niederhauser",
     "team": "LAC",
     "game": "NO@LAC",
     "min": 9.0,
+    "src": "SportsLine"
+   },
+   {
+    "player": "Hansen Yang",
+    "team": "POR",
+    "game": "GS@POR",
+    "min": 8.0,
     "src": "SportsLine"
    },
    {
@@ -18258,7 +18233,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-28T02:12:15+00:00",
+  "read_at": "2026-11-28T02:15:20+00:00",
   "date": "2026-11-27",
   "games": {
    "LAL@SAS": {
@@ -18334,7 +18309,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-28T02:00:02+00:00",
+  "read_at": "2026-11-28T02:15:20+00:00",
   "injuries": [
    {
     "team": "ATL",
@@ -28835,7 +28810,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-28T02:12:15+00:00",
+ "generated_at": "2026-11-28T02:15:20+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -28851,20 +28826,22 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-28T02:12:14+00:00",
+   "at": "2026-11-28T02:15:18+00:00",
    "teams": 22,
    "injuries": 60
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-28T02:12:15+00:00",
+   "at": "2026-11-28T02:15:18+00:00",
    "teams": 20,
-   "verified": 18,
-   "used": []
+   "verified": 20,
+   "used": [
+    "LAL"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-28T02:12:15+00:00",
+   "at": "2026-11-28T02:15:18+00:00",
    "current_players": 482,
    "last_players": 582
   },
@@ -28874,17 +28851,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-28T02:12:15+00:00",
+   "at": "2026-11-28T02:15:18+00:00",
    "count": 99
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-28T02:12:15+00:00",
+   "at": "2026-11-28T02:15:18+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-28T02:12:15+00:00",
+   "at": "2026-11-28T02:15:18+00:00",
    "count": 94
   },
   "x": {
@@ -28893,39 +28870,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-28T02:12:15+00:00",
-   "players": 218,
-   "read_at": "2026-11-28T02:00:00+00:00",
-   "saved_for_history": 98
+   "at": "2026-11-28T02:15:19+00:00",
+   "players": 216,
+   "read_at": "2026-11-28T02:15:18+00:00",
+   "saved_for_history": 96
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-28T02:12:15+00:00",
+   "at": "2026-11-28T02:15:20+00:00",
    "players": 136,
-   "read_at": "2026-11-28T02:00:01+00:00"
+   "read_at": "2026-11-28T02:15:19+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-28T02:12:15+00:00",
+   "at": "2026-11-28T02:15:20+00:00",
    "players": 10,
-   "read_at": "2026-11-28T02:00:01+00:00"
+   "read_at": "2026-11-28T02:15:20+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-28T02:12:15+00:00",
+   "at": "2026-11-28T02:15:20+00:00",
    "games": 4,
-   "read_at": "2026-11-28T02:12:15+00:00"
+   "read_at": "2026-11-28T02:15:20+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-28T02:12:15+00:00",
+   "at": "2026-11-28T02:15:20+00:00",
    "injuries": 104,
    "notes": 157,
-   "read_at": "2026-11-28T02:00:02+00:00"
+   "read_at": "2026-11-28T02:15:20+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-28T02:12:15+00:00",
+   "at": "2026-11-28T02:15:20+00:00",
    "count": 50
   }
  }
