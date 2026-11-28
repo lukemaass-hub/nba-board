@@ -8910,7 +8910,7 @@
    "time": "20:30",
    "vs": "MIN",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8918,11 +8918,11 @@
     },
     {
      "pos": "SG",
-     "name": "Cedric Coward"
+     "name": "Jaylen Wells"
     },
     {
      "pos": "SF",
-     "name": "Jaylen Wells"
+     "name": "Cedric Coward"
     },
     {
      "pos": "PF",
@@ -8932,14 +8932,15 @@
      "pos": "C",
      "name": "Zach Edey"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "MIN": {
    "date": "2026-11-27",
    "time": "20:30",
    "vs": "MEM",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -18260,7 +18261,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-28T01:00:01+00:00",
+  "read_at": "2026-11-28T01:09:09+00:00",
   "date": "2026-11-27",
   "games": {
    "ATL@BOS": {
@@ -21387,6 +21388,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba541203",
+   "player": "Zach Edey",
+   "headline": "Available to play Friday",
+   "text": "Edey (ankle) is available for Friday's game against the Timberwolves.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/zach-edey-6263",
+   "at": "2026-11-28T01:01:00+00:00",
+   "team": "MEM"
+  },
   {
    "id": "nba541201",
    "player": "Stephen Curry",
@@ -25074,9 +25086,9 @@
    "src": "ESPN",
    "kind": "O",
    "injury": "Right Abdomen",
-   "upd": "2026-11-26",
+   "upd": "2026-11-28",
    "until": "2026-12-12",
-   "note": "Curry (abdomen) will be re-evaluated Friday after Thanksgiving, Anthony Slater of ESPN.com reports.",
+   "note": "Curry (abdomen/oblique) has been ruled out for each of the Warriors' next three games, Anthony Slater of ESPN.com reports",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Stephen%20Curry"
   },
@@ -28403,6 +28415,23 @@
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=L.%20Markkanen"
   },
   {
+   "team": "MEM",
+   "player": "Zach Edey",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-27",
+   "until": "",
+   "note": "Edey (ankle) is available for Friday's game against the Timberwolves.",
+   "through": "2026-11-27",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/zach-edey-6263",
+   "from": "2026-11-27",
+   "override": true,
+   "at": "2026-11-28T01:01:00+00:00",
+   "from_news": true
+  },
+  {
    "team": "GSW",
    "player": "Stephen Curry",
    "src": "Anthony Slater",
@@ -28982,7 +29011,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-28T01:00:01+00:00",
+ "generated_at": "2026-11-28T01:09:09+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -28998,20 +29027,22 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-28T00:59:59+00:00",
+   "at": "2026-11-28T01:09:08+00:00",
    "teams": 22,
    "injuries": 68
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-28T01:00:00+00:00",
+   "at": "2026-11-28T01:09:08+00:00",
    "teams": 20,
-   "verified": 10,
-   "used": []
+   "verified": 12,
+   "used": [
+    "MEM"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-28T01:00:00+00:00",
+   "at": "2026-11-28T01:09:08+00:00",
    "current_players": 482,
    "last_players": 582
   },
@@ -29021,17 +29052,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-28T01:00:00+00:00",
+   "at": "2026-11-28T01:09:09+00:00",
    "count": 100
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-28T01:00:00+00:00",
+   "at": "2026-11-28T01:09:09+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-28T01:00:00+00:00",
+   "at": "2026-11-28T01:09:09+00:00",
    "count": 100
   },
   "x": {
@@ -29040,40 +29071,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-28T01:00:00+00:00",
+   "at": "2026-11-28T01:09:09+00:00",
    "players": 219,
    "read_at": "2026-11-28T01:00:00+00:00",
    "saved_for_history": 140
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-28T01:00:01+00:00",
+   "at": "2026-11-28T01:09:09+00:00",
    "players": 135,
    "read_at": "2026-11-28T01:00:00+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-28T01:00:01+00:00",
+   "at": "2026-11-28T01:09:09+00:00",
    "players": 10,
    "read_at": "2026-11-28T01:00:01+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-28T01:00:01+00:00",
+   "at": "2026-11-28T01:09:09+00:00",
    "games": 7,
-   "read_at": "2026-11-28T01:00:01+00:00"
+   "read_at": "2026-11-28T01:09:09+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-28T01:00:01+00:00",
+   "at": "2026-11-28T01:09:09+00:00",
    "injuries": 104,
    "notes": 157,
    "read_at": "2026-11-28T01:00:01+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-28T01:00:01+00:00",
-   "count": 47
+   "at": "2026-11-28T01:09:09+00:00",
+   "count": 48
   }
  }
 }
