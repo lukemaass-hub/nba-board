@@ -8678,7 +8678,7 @@
    "time": "19:30",
    "vs": "DET",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8707,7 +8707,7 @@
    "time": "19:30",
    "vs": "MIL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8729,7 +8729,8 @@
      "pos": "C",
      "name": "John Collins"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "PHI": {
    "date": "2026-11-27",
@@ -8787,8 +8788,7 @@
      "pos": "C",
      "name": "Ivica Zubac"
     }
-   ],
-   "source": "Basketball Monster"
+   ]
   },
   "BKN": {
    "date": "2026-11-27",
@@ -8799,7 +8799,7 @@
    "starters": [
     {
      "pos": "PG",
-     "name": "Egor Demin"
+     "name": "Mikel Brown"
     },
     {
      "pos": "SG",
@@ -18295,7 +18295,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-28T00:06:10+00:00",
+  "read_at": "2026-11-28T00:09:13+00:00",
   "date": "2026-11-27",
   "games": {
    "MIA@NYK": {
@@ -18312,8 +18312,8 @@
    },
    "PHI@IND": {
     "fav": "PHI",
-    "spread": 3.5,
-    "details": "PHI -3.5",
+    "spread": 4.5,
+    "details": "PHI -4.5",
     "provider": "DraftKings"
    },
    "BKN@TOR": {
@@ -25677,7 +25677,7 @@
    "player": "Joel Embiid",
    "src": "ESPN",
    "kind": "G",
-   "injury": "Illness",
+   "injury": "day-to-day",
    "upd": "2026-11-27",
    "until": "",
    "note": "Embiid (illness) was at shootaround for the 76ers on Friday, Chris Hine of The Philly Inquirer reports.",
@@ -27716,32 +27716,6 @@
   },
   {
    "team": "PHI",
-   "player": "Joel Embiid",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-27",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Embiid"
-  },
-  {
-   "team": "PHI",
-   "player": "Joel Embiid",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-27",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Embiid"
-  },
-  {
-   "team": "PHI",
    "player": "Ariel Hukporti",
    "src": "RotoWire",
    "kind": "O",
@@ -29062,7 +29036,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-28T00:06:10+00:00",
+ "generated_at": "2026-11-28T00:09:13+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -29078,22 +29052,22 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-28T00:06:09+00:00",
+   "at": "2026-11-28T00:09:12+00:00",
    "teams": 22,
-   "injuries": 73
+   "injuries": 71
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-28T00:06:09+00:00",
+   "at": "2026-11-28T00:09:13+00:00",
    "teams": 20,
-   "verified": 6,
+   "verified": 8,
    "used": [
-    "IND"
+    "DET"
    ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-28T00:06:09+00:00",
+   "at": "2026-11-28T00:09:13+00:00",
    "current_players": 482,
    "last_players": 582
   },
@@ -29103,17 +29077,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-28T00:06:09+00:00",
+   "at": "2026-11-28T00:09:13+00:00",
    "count": 102
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-28T00:06:09+00:00",
+   "at": "2026-11-28T00:09:13+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-28T00:06:10+00:00",
+   "at": "2026-11-28T00:09:13+00:00",
    "count": 101
   },
   "x": {
@@ -29122,39 +29096,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-28T00:06:10+00:00",
+   "at": "2026-11-28T00:09:13+00:00",
    "players": 221,
    "read_at": "2026-11-28T00:00:01+00:00",
    "saved_for_history": 232
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-28T00:06:10+00:00",
+   "at": "2026-11-28T00:09:13+00:00",
    "players": 137,
    "read_at": "2026-11-28T00:00:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-28T00:06:10+00:00",
+   "at": "2026-11-28T00:09:13+00:00",
    "players": 10,
    "read_at": "2026-11-28T00:00:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-28T00:06:10+00:00",
+   "at": "2026-11-28T00:09:13+00:00",
    "games": 11,
-   "read_at": "2026-11-28T00:06:10+00:00"
+   "read_at": "2026-11-28T00:09:13+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-28T00:06:10+00:00",
+   "at": "2026-11-28T00:09:13+00:00",
    "injuries": 104,
    "notes": 157,
    "read_at": "2026-11-28T00:00:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-28T00:06:10+00:00",
+   "at": "2026-11-28T00:09:13+00:00",
    "count": 44
   }
  }
