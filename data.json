@@ -8715,15 +8715,15 @@
     },
     {
      "pos": "SG",
-     "name": "Isaiah Joe"
-    },
-    {
-     "pos": "SF",
      "name": "Kevin Huerter"
     },
     {
-     "pos": "PF",
+     "pos": "SF",
      "name": "Ausar Thompson"
+    },
+    {
+     "pos": "PF",
+     "name": "Javonte Green"
     },
     {
      "pos": "C",
@@ -8852,7 +8852,7 @@
    "time": "20:00",
    "vs": "BOS",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8874,14 +8874,15 @@
      "pos": "C",
      "name": "Onyeka Okongwu"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "BOS": {
    "date": "2026-11-27",
    "time": "20:00",
    "vs": "ATL",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8889,21 +8890,22 @@
     },
     {
      "pos": "SG",
-     "name": "Jordan Walsh"
+     "name": "Hugo Gonzalez"
     },
     {
      "pos": "SF",
-     "name": "Jayson Tatum"
+     "name": "Paul George"
     },
     {
      "pos": "PF",
-     "name": "Paul George"
+     "name": "Jayson Tatum"
     },
     {
      "pos": "C",
      "name": "Neemias Queta"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "MEM": {
    "date": "2026-11-27",
@@ -18290,7 +18292,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-28T00:30:02+00:00",
+  "read_at": "2026-11-28T00:39:21+00:00",
   "date": "2026-11-27",
   "games": {
    "MIL@DET": {
@@ -18301,8 +18303,8 @@
    },
    "PHI@IND": {
     "fav": "PHI",
-    "spread": 4.5,
-    "details": "PHI -4.5",
+    "spread": 3.5,
+    "details": "PHI -3.5",
     "provider": "DraftKings"
    },
    "BKN@TOR": {
@@ -21437,6 +21439,17 @@
   ]
  },
  "news": [
+  {
+   "id": "nba541197",
+   "player": "Kyrie Irving",
+   "headline": "Won't play Friday",
+   "text": "Irving (knee) has been ruled out for Friday's game against the Suns, Noah Weber of TheSmokingCuban.com reports.",
+   "reporter": "Noah Weber",
+   "outlet": "TheSmokingCuban.com",
+   "url": "https://www.rotowire.com/basketball/player/kyrie-irving-3186",
+   "at": "2026-11-28T00:30:00+00:00",
+   "team": "DAL"
+  },
   {
    "id": "nba541191",
    "player": "Joel Embiid",
@@ -28046,26 +28059,13 @@
    "team": "DAL",
    "player": "Kyrie Irving",
    "src": "RotoWire",
-   "kind": "G",
+   "kind": "O",
    "injury": "",
    "upd": "2026-11-27",
    "until": "",
-   "note": "RotoWire tag: Ques",
+   "note": "RotoWire tag: Out",
    "through": "2026-11-27",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Irving"
-  },
-  {
-   "team": "DAL",
-   "player": "Kyrie Irving",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-27",
-   "st": "q",
+   "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Irving"
   },
   {
@@ -28093,6 +28093,19 @@
    "through": "2026-11-27",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20de%20Larrea"
+  },
+  {
+   "team": "DAL",
+   "player": "Kyrie Irving",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-27",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-11-27",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=K.%20Irving"
   },
   {
    "team": "DAL",
@@ -28470,6 +28483,23 @@
    "through": "2026-11-27",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=L.%20Markkanen"
+  },
+  {
+   "team": "DAL",
+   "player": "Kyrie Irving",
+   "src": "Noah Weber",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-27",
+   "until": "",
+   "note": "Irving (knee) has been ruled out for Friday's game against the Suns, Noah Weber of TheSmokingCuban.com reports.",
+   "through": "2026-11-27",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/player/kyrie-irving-3186",
+   "from": "2026-11-27",
+   "override": true,
+   "at": "2026-11-28T00:30:00+00:00",
+   "from_news": true
   },
   {
    "team": "PHI",
@@ -29017,7 +29047,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-28T00:30:02+00:00",
+ "generated_at": "2026-11-28T00:39:21+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -29027,26 +29057,29 @@
   },
   "espn_depth": {
    "ok": true,
-   "at": "2026-11-27T23:30:38+00:00",
+   "at": "2026-11-28T00:33:15+00:00",
    "teams": 30,
    "reused": true
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-28T00:30:00+00:00",
+   "at": "2026-11-28T00:39:20+00:00",
    "teams": 22,
    "injuries": 71
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-28T00:30:00+00:00",
+   "at": "2026-11-28T00:39:20+00:00",
    "teams": 20,
-   "verified": 8,
-   "used": []
+   "verified": 10,
+   "used": [
+    "ATL",
+    "BOS"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-28T00:30:00+00:00",
+   "at": "2026-11-28T00:39:20+00:00",
    "current_players": 482,
    "last_players": 582
   },
@@ -29056,17 +29089,17 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-28T00:30:00+00:00",
+   "at": "2026-11-28T00:39:20+00:00",
    "count": 100
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-28T00:30:01+00:00",
+   "at": "2026-11-28T00:39:20+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-28T00:30:01+00:00",
+   "at": "2026-11-28T00:39:21+00:00",
    "count": 100
   },
   "x": {
@@ -29075,40 +29108,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-28T00:30:01+00:00",
+   "at": "2026-11-28T00:39:21+00:00",
    "players": 221,
    "read_at": "2026-11-28T00:30:01+00:00",
    "saved_for_history": 164
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-28T00:30:01+00:00",
+   "at": "2026-11-28T00:39:21+00:00",
    "players": 136,
    "read_at": "2026-11-28T00:30:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-28T00:30:02+00:00",
+   "at": "2026-11-28T00:39:21+00:00",
    "players": 10,
    "read_at": "2026-11-28T00:30:01+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-28T00:30:02+00:00",
+   "at": "2026-11-28T00:39:21+00:00",
    "games": 10,
-   "read_at": "2026-11-28T00:30:02+00:00"
+   "read_at": "2026-11-28T00:39:21+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-28T00:30:02+00:00",
+   "at": "2026-11-28T00:39:21+00:00",
    "injuries": 104,
    "notes": 157,
    "read_at": "2026-11-28T00:30:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-28T00:30:02+00:00",
-   "count": 45
+   "at": "2026-11-28T00:39:21+00:00",
+   "count": 46
   }
  }
 }
