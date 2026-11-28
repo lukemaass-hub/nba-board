@@ -8736,7 +8736,7 @@
    "time": "19:30",
    "vs": "IND",
    "home": false,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8748,11 +8748,11 @@
     },
     {
      "pos": "SF",
-     "name": "Kentavious Caldwell-Pope"
+     "name": "LeBron James"
     },
     {
      "pos": "PF",
-     "name": "LeBron James"
+     "name": "Dominick Barlow"
     },
     {
      "pos": "C",
@@ -8765,7 +8765,7 @@
    "time": "19:30",
    "vs": "PHI",
    "home": true,
-   "confirmed": false,
+   "confirmed": true,
    "starters": [
     {
      "pos": "PG",
@@ -8787,7 +8787,8 @@
      "pos": "C",
      "name": "Ivica Zubac"
     }
-   ]
+   ],
+   "source": "Basketball Monster"
   },
   "BKN": {
    "date": "2026-11-27",
@@ -18294,7 +18295,7 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-28T00:00:02+00:00",
+  "read_at": "2026-11-28T00:03:06+00:00",
   "date": "2026-11-27",
   "games": {
    "MIA@NYK": {
@@ -25193,18 +25194,6 @@
   },
   {
    "team": "IND",
-   "player": "Larry Nance Jr.",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "day-to-day",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "Nance (ankle) is probable for Friday's game against the 76ers.",
-   "through": "2026-11-29",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Larry%20Nance%20Jr."
-  },
-  {
-   "team": "IND",
    "player": "Tyrese Haliburton",
    "src": "ESPN",
    "kind": "O",
@@ -27740,19 +27729,6 @@
   },
   {
    "team": "PHI",
-   "player": "Ariel Hukporti",
-   "src": "RotoWire",
-   "kind": "O",
-   "injury": "",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "RotoWire tag: OFS",
-   "through": "2026-11-27",
-   "st": "out",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Hukporti"
-  },
-  {
-   "team": "PHI",
    "player": "Joel Embiid",
    "src": "RotoWire",
    "kind": "G",
@@ -27763,6 +27739,19 @@
    "through": "2026-11-27",
    "st": "q",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=J.%20Embiid"
+  },
+  {
+   "team": "PHI",
+   "player": "Ariel Hukporti",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-27",
+   "until": "",
+   "note": "RotoWire tag: OFS",
+   "through": "2026-11-27",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=A.%20Hukporti"
   },
   {
    "team": "PHI",
@@ -29073,7 +29062,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-28T00:00:03+00:00",
+ "generated_at": "2026-11-28T00:03:06+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -29089,20 +29078,22 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-27T23:59:59+00:00",
+   "at": "2026-11-28T00:03:05+00:00",
    "teams": 22,
    "injuries": 73
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-28T00:00:00+00:00",
+   "at": "2026-11-28T00:03:05+00:00",
    "teams": 20,
-   "verified": 2,
-   "used": []
+   "verified": 4,
+   "used": [
+    "IND"
+   ]
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-28T00:00:00+00:00",
+   "at": "2026-11-28T00:03:05+00:00",
    "current_players": 482,
    "last_players": 582
   },
@@ -29112,18 +29103,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-28T00:00:01+00:00",
+   "at": "2026-11-28T00:03:05+00:00",
    "count": 102
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-28T00:00:01+00:00",
+   "at": "2026-11-28T00:03:06+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-28T00:00:01+00:00",
-   "count": 102
+   "at": "2026-11-28T00:03:06+00:00",
+   "count": 101
   },
   "x": {
    "ok": null,
@@ -29131,39 +29122,39 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-28T00:00:01+00:00",
+   "at": "2026-11-28T00:03:06+00:00",
    "players": 221,
    "read_at": "2026-11-28T00:00:01+00:00",
    "saved_for_history": 232
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-28T00:00:02+00:00",
+   "at": "2026-11-28T00:03:06+00:00",
    "players": 137,
    "read_at": "2026-11-28T00:00:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-28T00:00:02+00:00",
+   "at": "2026-11-28T00:03:06+00:00",
    "players": 10,
    "read_at": "2026-11-28T00:00:02+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-28T00:00:02+00:00",
+   "at": "2026-11-28T00:03:06+00:00",
    "games": 11,
-   "read_at": "2026-11-28T00:00:02+00:00"
+   "read_at": "2026-11-28T00:03:06+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-28T00:00:03+00:00",
+   "at": "2026-11-28T00:03:06+00:00",
    "injuries": 104,
    "notes": 157,
    "read_at": "2026-11-28T00:00:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-28T00:00:03+00:00",
+   "at": "2026-11-28T00:03:06+00:00",
    "count": 44
   }
  }
