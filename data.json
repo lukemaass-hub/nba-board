@@ -8729,8 +8729,7 @@
      "pos": "C",
      "name": "John Collins"
     }
-   ],
-   "source": "Basketball Monster"
+   ]
   },
   "PHI": {
    "date": "2026-11-27",
@@ -14587,7 +14586,7 @@
  },
  "expected_minutes": {},
  "sportsline": {
-  "read_at": "2026-11-28T00:00:01+00:00",
+  "read_at": "2026-11-28T00:30:01+00:00",
   "date": "2026-11-27",
   "players": [
    {
@@ -15919,7 +15918,7 @@
   ]
  },
  "rotowire_minutes": {
-  "read_at": "2026-11-28T00:00:01+00:00",
+  "read_at": "2026-11-28T00:30:01+00:00",
   "date": "2026-11-27",
   "players": [
    {
@@ -15943,6 +15942,11 @@
     "min": 32.0
    },
    {
+    "player": "Dominick Barlow",
+    "team": "PHI",
+    "min": 14.0
+   },
+   {
     "player": "K. Caldwell-Pope",
     "team": "PHI",
     "min": 27.0
@@ -15956,11 +15960,6 @@
     "player": "Jabari Walker",
     "team": "PHI",
     "min": 21.0
-   },
-   {
-    "player": "Dominick Barlow",
-    "team": "PHI",
-    "min": 14.0
    },
    {
     "player": "Adem Bona",
@@ -16081,11 +16080,6 @@
     "player": "Cam Spencer",
     "team": "MEM",
     "min": 24.0
-   },
-   {
-    "player": "Isaiah Stewart",
-    "team": "MEM",
-    "min": 19.0
    },
    {
     "player": "O. Prosper",
@@ -16363,12 +16357,12 @@
     "min": 29.0
    },
    {
-    "player": "Egor Demin",
+    "player": "Danny Wolf",
     "team": "BKN",
-    "min": 26.0
+    "min": 25.0
    },
    {
-    "player": "Danny Wolf",
+    "player": "Mikel Brown",
     "team": "BKN",
     "min": 25.0
    },
@@ -16378,9 +16372,9 @@
     "min": 27.0
    },
    {
-    "player": "Mikel Brown",
+    "player": "Egor Demin",
     "team": "BKN",
-    "min": 25.0
+    "min": 26.0
    },
    {
     "player": "Keon Ellis",
@@ -16610,7 +16604,7 @@
   ]
  },
  "fantasypros": {
-  "read_at": "2026-11-28T00:00:02+00:00",
+  "read_at": "2026-11-28T00:30:01+00:00",
   "date": "2026-11-27",
   "players": [
    {
@@ -16667,7 +16661,7 @@
  },
  "expected_mix": {
   "date": "2026-11-27",
-  "read_at": "2026-11-28T00:00:02+00:00",
+  "read_at": "2026-11-28T00:30:01+00:00",
   "players": [
    {
     "player": "Luka Doncic",
@@ -16742,6 +16736,12 @@
     "src": "RotoWire"
    },
    {
+    "player": "Dominick Barlow",
+    "team": "PHI",
+    "min": 14.0,
+    "src": "RotoWire"
+   },
+   {
     "player": "K. Caldwell-Pope",
     "team": "PHI",
     "min": 27.0,
@@ -16757,12 +16757,6 @@
     "player": "Jabari Walker",
     "team": "PHI",
     "min": 21.0,
-    "src": "RotoWire"
-   },
-   {
-    "player": "Dominick Barlow",
-    "team": "PHI",
-    "min": 14.0,
     "src": "RotoWire"
    },
    {
@@ -16907,12 +16901,6 @@
     "player": "Cam Spencer",
     "team": "MEM",
     "min": 24.0,
-    "src": "RotoWire"
-   },
-   {
-    "player": "Isaiah Stewart",
-    "team": "MEM",
-    "min": 19.0,
     "src": "RotoWire"
    },
    {
@@ -17228,13 +17216,13 @@
     "src": "RotoWire"
    },
    {
-    "player": "Egor Demin",
+    "player": "Danny Wolf",
     "team": "BKN",
-    "min": 26.0,
+    "min": 25.0,
     "src": "RotoWire"
    },
    {
-    "player": "Danny Wolf",
+    "player": "Mikel Brown",
     "team": "BKN",
     "min": 25.0,
     "src": "RotoWire"
@@ -17246,9 +17234,9 @@
     "src": "RotoWire"
    },
    {
-    "player": "Mikel Brown",
+    "player": "Egor Demin",
     "team": "BKN",
-    "min": 25.0,
+    "min": 26.0,
     "src": "RotoWire"
    },
    {
@@ -18216,6 +18204,13 @@
     "src": "SportsLine"
    },
    {
+    "player": "Isaiah Stewart",
+    "team": "MEM",
+    "game": "MEM@MIN",
+    "min": 10.0,
+    "src": "SportsLine"
+   },
+   {
     "player": "Hugo Gonzalez",
     "team": "BOS",
     "game": "ATL@BOS",
@@ -18295,15 +18290,9 @@
   ]
  },
  "lines": {
-  "read_at": "2026-11-28T00:09:13+00:00",
+  "read_at": "2026-11-28T00:30:02+00:00",
   "date": "2026-11-27",
   "games": {
-   "MIA@NYK": {
-    "fav": "NYK",
-    "spread": 2.5,
-    "details": "NY -2.5",
-    "provider": "DraftKings"
-   },
    "MIL@DET": {
     "fav": "DET",
     "spread": 9.5,
@@ -18336,8 +18325,8 @@
    },
    "DAL@PHX": {
     "fav": "PHX",
-    "spread": 3.5,
-    "details": "PHX -3.5",
+    "spread": 4.5,
+    "details": "PHX -4.5",
     "provider": "DraftKings"
    },
    "LAL@SAS": {
@@ -18413,7 +18402,7 @@
   }
  },
  "presserwire": {
-  "read_at": "2026-11-28T00:00:02+00:00",
+  "read_at": "2026-11-28T00:30:02+00:00",
   "injuries": [
    {
     "team": "ATL",
@@ -18692,7 +18681,7 @@
     "player": "Taurean Prince",
     "src": "NBA report",
     "kind": "O",
-    "injury": "Right Arthroscopy",
+    "injury": "Right Knee Arthroscopy",
     "upd": "2026-11-27",
     "until": "",
     "note": "",
@@ -19274,7 +19263,7 @@
     "player": "Ariel Hukporti",
     "src": "NBA report",
     "kind": "O",
-    "injury": "Right Achilles Tendon",
+    "injury": "Right Achilles Tendon Rupture / Tear",
     "upd": "2026-11-27",
     "until": "",
     "note": "",
@@ -19319,16 +19308,16 @@
     "player": "Joel Embiid",
     "src": "NBA report",
     "kind": "G",
-    "injury": "Illness Listed Q 10x, played 9 \u00b7 Team Qs played 22/27",
+    "injury": "Illness",
     "upd": "2026-11-27",
     "until": "",
     "note": "",
     "through": "2026-11-27",
-    "st": "q",
+    "st": "avail",
     "url": "https://presserwire.com/nba/games/2026-11-27-philadelphia-76ers-at-indiana-pacers.html",
     "from": "2026-11-27",
     "override": true,
-    "at": "2026-11-27T19:46:49+00:00"
+    "at": "2026-11-28T00:30:02+00:00"
    },
    {
     "team": "PHX",
@@ -19487,7 +19476,7 @@
     "player": "Dylan Harper",
     "src": "NBA report",
     "kind": "G",
-    "injury": "Left Hip External Rotator Strain Team Qs played 28/31",
+    "injury": "Left Hip External Team Qs played 28/31",
     "upd": "2026-11-27",
     "until": "",
     "note": "",
@@ -19595,7 +19584,7 @@
     "player": "Jusuf Nurkic",
     "src": "NBA report",
     "kind": "G",
-    "injury": "Right 2nd Plantar Plate Tear",
+    "injury": "Right 2nd Plantar",
     "upd": "2026-11-27",
     "until": "",
     "note": "",
@@ -19887,7 +19876,7 @@
     "player": "Jonathan Isaac",
     "src": "NBA report",
     "kind": "O",
-    "injury": "Left Knee Injury Management",
+    "injury": "Left Knee Injury",
     "upd": "2026-11-28",
     "until": "",
     "note": "",
@@ -21449,6 +21438,17 @@
  },
  "news": [
   {
+   "id": "nba541191",
+   "player": "Joel Embiid",
+   "headline": "Available and starting Friday",
+   "text": "Embiid (illness) is available and starting Friday against the Pacers.",
+   "reporter": "",
+   "outlet": "",
+   "url": "https://www.rotowire.com/basketball/player/joel-embiid-3572",
+   "at": "2026-11-28T00:08:00+00:00",
+   "team": "PHI"
+  },
+  {
    "id": "nba541190",
    "player": "Terrence Shannon",
    "headline": "Starting Friday",
@@ -22398,18 +22398,6 @@
   },
   {
    "team": "ATL",
-   "player": "CJ McCollum",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Calf",
-   "upd": "2026-11-17",
-   "until": "2026-12-19",
-   "note": "Expected to be out until at least Dec 19",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=CJ%20McCollum"
-  },
-  {
-   "team": "ATL",
    "player": "Asa Newell",
    "src": "CBS",
    "kind": "O",
@@ -22419,6 +22407,18 @@
    "note": "Expected to be out until at least Mar 17",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Asa%20Newell"
+  },
+  {
+   "team": "ATL",
+   "player": "CJ McCollum",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Calf",
+   "upd": "2026-11-17",
+   "until": "2026-12-19",
+   "note": "Expected to be out until at least Dec 19",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=CJ%20McCollum"
   },
   {
    "team": "ATL",
@@ -22614,18 +22614,6 @@
   },
   {
    "team": "DAL",
-   "player": "Tobi Lawal",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Groin",
-   "upd": "2026-11-26",
-   "until": "2026-11-30",
-   "note": "Expected to be out until at least Nov 30",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tobi%20Lawal"
-  },
-  {
-   "team": "DAL",
    "player": "Tarik Biberovic",
    "src": "CBS",
    "kind": "O",
@@ -22647,6 +22635,18 @@
    "note": "Expected to be out until at least Nov 30",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dereck%20Lively%20II"
+  },
+  {
+   "team": "DAL",
+   "player": "Tobi Lawal",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Groin",
+   "upd": "2026-11-26",
+   "until": "2026-11-30",
+   "note": "Expected to be out until at least Nov 30",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Tobi%20Lawal"
   },
   {
    "team": "DAL",
@@ -22686,18 +22686,6 @@
   },
   {
    "team": "DET",
-   "player": "Taurean Prince",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Knee",
-   "upd": "2026-11-24",
-   "until": "2026-12-26",
-   "note": "Expected to be out until at least Dec 26",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Taurean%20Prince"
-  },
-  {
-   "team": "DET",
    "player": "Ebuka Okorie",
    "src": "CBS",
    "kind": "O",
@@ -22707,6 +22695,18 @@
    "note": "Expected to be out until at least Dec 13",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Ebuka%20Okorie"
+  },
+  {
+   "team": "DET",
+   "player": "Taurean Prince",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Knee",
+   "upd": "2026-11-24",
+   "until": "2026-12-26",
+   "note": "Expected to be out until at least Dec 26",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Taurean%20Prince"
   },
   {
    "team": "DET",
@@ -22794,18 +22794,6 @@
   },
   {
    "team": "IND",
-   "player": "Larry Nance Jr.",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Ankle",
-   "upd": "2026-11-23",
-   "until": "",
-   "note": "",
-   "through": "2026-11-29",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Larry%20Nance%20Jr."
-  },
-  {
-   "team": "IND",
    "player": "Tyrese Haliburton",
    "src": "CBS",
    "kind": "O",
@@ -22856,12 +22844,12 @@
    "team": "MEM",
    "player": "Isaiah Stewart",
    "src": "CBS",
-   "kind": "G",
+   "kind": "O",
    "injury": "Hip",
-   "upd": "2026-11-26",
-   "until": "",
-   "note": "",
-   "through": "2026-11-29",
+   "upd": "2026-11-27",
+   "until": "2026-11-29",
+   "note": "Expected to be out until at least Nov 29",
+   "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Isaiah%20Stewart"
   },
   {
@@ -23058,30 +23046,6 @@
   },
   {
    "team": "NYK",
-   "player": "Miles McBride",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Groin",
-   "upd": "2026-11-27",
-   "until": "2026-11-29",
-   "note": "Expected to be out until at least Nov 29",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Miles%20McBride"
-  },
-  {
-   "team": "NYK",
-   "player": "Karl-Anthony Towns",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Abdomen",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "",
-   "through": "2026-11-29",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Karl-Anthony%20Towns"
-  },
-  {
-   "team": "NYK",
    "player": "OG Anunoby",
    "src": "CBS",
    "kind": "O",
@@ -23091,6 +23055,18 @@
    "note": "Expected to be out until at least Nov 29",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=OG%20Anunoby"
+  },
+  {
+   "team": "NYK",
+   "player": "Miles McBride",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Groin",
+   "upd": "2026-11-27",
+   "until": "2026-11-29",
+   "note": "Expected to be out until at least Nov 29",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Miles%20McBride"
   },
   {
    "team": "NYK",
@@ -23106,18 +23082,6 @@
   },
   {
    "team": "OKC",
-   "player": "Nikola Topic",
-   "src": "CBS",
-   "kind": "O",
-   "injury": "Hip",
-   "upd": "2026-11-27",
-   "until": "2026-12-13",
-   "note": "Expected to be out until at least Dec 13",
-   "through": "",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nikola%20Topic"
-  },
-  {
-   "team": "OKC",
    "player": "Aday Mara",
    "src": "CBS",
    "kind": "O",
@@ -23127,6 +23091,18 @@
    "note": "Expected to be out until at least Nov 30",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Aday%20Mara"
+  },
+  {
+   "team": "OKC",
+   "player": "Nikola Topic",
+   "src": "CBS",
+   "kind": "O",
+   "injury": "Hip",
+   "upd": "2026-11-27",
+   "until": "2026-12-13",
+   "note": "Expected to be out until at least Dec 13",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Nikola%20Topic"
   },
   {
    "team": "OKC",
@@ -23190,18 +23166,6 @@
   },
   {
    "team": "ORL",
-   "player": "Anthony Black",
-   "src": "CBS",
-   "kind": "G",
-   "injury": "Back",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "",
-   "through": "2026-11-29",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Anthony%20Black"
-  },
-  {
-   "team": "ORL",
    "player": "Kevin Porter",
    "src": "CBS",
    "kind": "O",
@@ -23211,6 +23175,18 @@
    "note": "Expected to be out until at least Nov 29",
    "through": "",
    "url": "https://www.cbssports.com/nba/injuries/#:~:text=Kevin%20Porter"
+  },
+  {
+   "team": "ORL",
+   "player": "Anthony Black",
+   "src": "CBS",
+   "kind": "G",
+   "injury": "Back",
+   "upd": "2026-11-27",
+   "until": "",
+   "note": "",
+   "through": "2026-11-29",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Anthony%20Black"
   },
   {
    "team": "ORL",
@@ -23286,15 +23262,15 @@
   },
   {
    "team": "PHI",
-   "player": "Joel Embiid",
+   "player": "Dean Wade",
    "src": "CBS",
-   "kind": "G",
-   "injury": "Illness",
-   "upd": "2026-11-25",
-   "until": "",
-   "note": "",
-   "through": "2026-11-29",
-   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Joel%20Embiid"
+   "kind": "O",
+   "injury": "Hamstring",
+   "upd": "2026-11-27",
+   "until": "2026-11-28",
+   "note": "Expected to be out until at least Nov 28",
+   "through": "",
+   "url": "https://www.cbssports.com/nba/injuries/#:~:text=Dean%20Wade"
   },
   {
    "team": "PHI",
@@ -23982,7 +23958,7 @@
   },
   {
    "team": "IND",
-   "player": "Larry Nance Jr.",
+   "player": "Larry Nance Jr",
    "src": "Covers",
    "kind": "G",
    "injury": "Ankle",
@@ -24258,7 +24234,7 @@
   },
   {
    "team": "NYK",
-   "player": "Karl-Anthony Towns",
+   "player": "Karl Anthony Towns",
    "src": "Covers",
    "kind": "G",
    "injury": "Abdomen",
@@ -25244,12 +25220,12 @@
    "team": "MEM",
    "player": "Isaiah Stewart",
    "src": "ESPN",
-   "kind": "G",
+   "kind": "O",
    "injury": "Right Hip Soreness",
-   "upd": "2026-11-26",
-   "until": "",
+   "upd": "2026-11-28",
+   "until": "2026-11-29",
    "note": "Stewart is questionable for Friday's game against the Timberwolves due to right hip soreness.",
-   "through": "2026-11-29",
+   "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Isaiah%20Stewart"
   },
   {
@@ -25671,18 +25647,6 @@
    "note": "Brown (hamstring) underwent an MRI that showed no signs of a new injury or re-aggravation, but he didn't travel with the team for the road trip, so he will miss the team's next two games, Kris Rhim of ESPN reports.",
    "through": "",
    "url": "https://www.espn.com/nba/injuries#:~:text=Jaylen%20Brown"
-  },
-  {
-   "team": "PHI",
-   "player": "Joel Embiid",
-   "src": "ESPN",
-   "kind": "G",
-   "injury": "day-to-day",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "Embiid (illness) was at shootaround for the 76ers on Friday, Chris Hine of The Philly Inquirer reports.",
-   "through": "2026-11-29",
-   "url": "https://www.espn.com/nba/injuries#:~:text=Joel%20Embiid"
   },
   {
    "team": "PHI",
@@ -26273,7 +26237,7 @@
    "player": "Taurean Prince",
    "src": "NBA report",
    "kind": "O",
-   "injury": "Right Arthroscopy",
+   "injury": "Right Knee Arthroscopy",
    "upd": "2026-11-27",
    "until": "",
    "note": "",
@@ -26855,7 +26819,7 @@
    "player": "Ariel Hukporti",
    "src": "NBA report",
    "kind": "O",
-   "injury": "Right Achilles Tendon",
+   "injury": "Right Achilles Tendon Rupture / Tear",
    "upd": "2026-11-27",
    "until": "",
    "note": "",
@@ -26900,16 +26864,16 @@
    "player": "Joel Embiid",
    "src": "NBA report",
    "kind": "G",
-   "injury": "Illness Listed Q 10x, played 9 \u00b7 Team Qs played 22/27",
+   "injury": "Illness",
    "upd": "2026-11-27",
    "until": "",
    "note": "",
    "through": "2026-11-27",
-   "st": "q",
+   "st": "avail",
    "url": "https://presserwire.com/nba/games/2026-11-27-philadelphia-76ers-at-indiana-pacers.html",
    "from": "2026-11-27",
    "override": true,
-   "at": "2026-11-27T19:46:49+00:00"
+   "at": "2026-11-28T00:30:02+00:00"
   },
   {
    "team": "PHX",
@@ -27068,7 +27032,7 @@
    "player": "Dylan Harper",
    "src": "NBA report",
    "kind": "G",
-   "injury": "Left Hip External Rotator Strain Team Qs played 28/31",
+   "injury": "Left Hip External Team Qs played 28/31",
    "upd": "2026-11-27",
    "until": "",
    "note": "",
@@ -27176,7 +27140,7 @@
    "player": "Jusuf Nurkic",
    "src": "NBA report",
    "kind": "G",
-   "injury": "Right 2nd Plantar Plate Tear",
+   "injury": "Right 2nd Plantar",
    "upd": "2026-11-27",
    "until": "",
    "note": "",
@@ -27468,7 +27432,7 @@
    "player": "Jonathan Isaac",
    "src": "NBA report",
    "kind": "O",
-   "injury": "Left Knee Injury Management",
+   "injury": "Left Knee Injury",
    "upd": "2026-11-28",
    "until": "",
    "note": "",
@@ -27963,19 +27927,6 @@
   },
   {
    "team": "MEM",
-   "player": "Isaiah Stewart",
-   "src": "RotoWire",
-   "kind": "G",
-   "injury": "",
-   "upd": "2026-11-27",
-   "until": "",
-   "note": "RotoWire tag: Ques",
-   "through": "2026-11-27",
-   "st": "q",
-   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Stewart"
-  },
-  {
-   "team": "MEM",
    "player": "Cameron Boozer",
    "src": "RotoWire",
    "kind": "O",
@@ -28025,6 +27976,19 @@
    "through": "2026-11-27",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=S.%20Pippen"
+  },
+  {
+   "team": "MEM",
+   "player": "Isaiah Stewart",
+   "src": "RotoWire",
+   "kind": "O",
+   "injury": "",
+   "upd": "2026-11-27",
+   "until": "",
+   "note": "RotoWire tag: Out",
+   "through": "2026-11-27",
+   "st": "out",
+   "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=I.%20Stewart"
   },
   {
    "team": "MIN",
@@ -28506,6 +28470,23 @@
    "through": "2026-11-27",
    "st": "out",
    "url": "https://www.rotowire.com/basketball/nba-lineups.php#:~:text=L.%20Markkanen"
+  },
+  {
+   "team": "PHI",
+   "player": "Joel Embiid",
+   "src": "RotoWire news",
+   "kind": "G",
+   "injury": "",
+   "upd": "2026-11-27",
+   "until": "",
+   "note": "Embiid (illness) is available and starting Friday against the Pacers.",
+   "through": "2026-11-27",
+   "st": "prob",
+   "url": "https://www.rotowire.com/basketball/player/joel-embiid-3572",
+   "from": "2026-11-27",
+   "override": true,
+   "at": "2026-11-28T00:08:00+00:00",
+   "from_news": true
   },
   {
    "team": "MIN",
@@ -29036,7 +29017,7 @@
   }
  ],
  "restrictions": [],
- "generated_at": "2026-11-28T00:09:13+00:00",
+ "generated_at": "2026-11-28T00:30:02+00:00",
  "sources": {
   "schedule": {
    "ok": true,
@@ -29052,22 +29033,20 @@
   },
   "rotowire": {
    "ok": true,
-   "at": "2026-11-28T00:09:12+00:00",
+   "at": "2026-11-28T00:30:00+00:00",
    "teams": 22,
    "injuries": 71
   },
   "bm_lineups": {
    "ok": true,
-   "at": "2026-11-28T00:09:13+00:00",
+   "at": "2026-11-28T00:30:00+00:00",
    "teams": 20,
    "verified": 8,
-   "used": [
-    "DET"
-   ]
+   "used": []
   },
   "season_minutes": {
    "ok": true,
-   "at": "2026-11-28T00:09:13+00:00",
+   "at": "2026-11-28T00:30:00+00:00",
    "current_players": 482,
    "last_players": 582
   },
@@ -29077,18 +29056,18 @@
   },
   "cbs": {
    "ok": true,
-   "at": "2026-11-28T00:09:13+00:00",
-   "count": 102
+   "at": "2026-11-28T00:30:00+00:00",
+   "count": 100
   },
   "covers": {
    "ok": true,
-   "at": "2026-11-28T00:09:13+00:00",
+   "at": "2026-11-28T00:30:01+00:00",
    "count": 98
   },
   "espn": {
    "ok": true,
-   "at": "2026-11-28T00:09:13+00:00",
-   "count": 101
+   "at": "2026-11-28T00:30:01+00:00",
+   "count": 100
   },
   "x": {
    "ok": null,
@@ -29096,40 +29075,40 @@
   },
   "sportsline": {
    "ok": true,
-   "at": "2026-11-28T00:09:13+00:00",
+   "at": "2026-11-28T00:30:01+00:00",
    "players": 221,
-   "read_at": "2026-11-28T00:00:01+00:00",
-   "saved_for_history": 232
+   "read_at": "2026-11-28T00:30:01+00:00",
+   "saved_for_history": 164
   },
   "rotowire_minutes": {
    "ok": true,
-   "at": "2026-11-28T00:09:13+00:00",
-   "players": 137,
-   "read_at": "2026-11-28T00:00:01+00:00"
+   "at": "2026-11-28T00:30:01+00:00",
+   "players": 136,
+   "read_at": "2026-11-28T00:30:01+00:00"
   },
   "fantasypros": {
    "ok": true,
-   "at": "2026-11-28T00:09:13+00:00",
+   "at": "2026-11-28T00:30:02+00:00",
    "players": 10,
-   "read_at": "2026-11-28T00:00:02+00:00"
+   "read_at": "2026-11-28T00:30:01+00:00"
   },
   "lines": {
    "ok": true,
-   "at": "2026-11-28T00:09:13+00:00",
-   "games": 11,
-   "read_at": "2026-11-28T00:09:13+00:00"
+   "at": "2026-11-28T00:30:02+00:00",
+   "games": 10,
+   "read_at": "2026-11-28T00:30:02+00:00"
   },
   "presserwire": {
    "ok": true,
-   "at": "2026-11-28T00:09:13+00:00",
+   "at": "2026-11-28T00:30:02+00:00",
    "injuries": 104,
    "notes": 157,
-   "read_at": "2026-11-28T00:00:02+00:00"
+   "read_at": "2026-11-28T00:30:02+00:00"
   },
   "news": {
    "ok": true,
-   "at": "2026-11-28T00:09:13+00:00",
-   "count": 44
+   "at": "2026-11-28T00:30:02+00:00",
+   "count": 45
   }
  }
 }
